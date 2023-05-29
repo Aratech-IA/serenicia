@@ -1,0 +1,44 @@
+{% extends "app4_ehpad_base/base.html" %}{% load i18n %}
+{% load static %}
+{% block content %}
+    <main class="d-flex flex-row">
+        <div>
+            {% include "./composant/navLeft.html" %}
+        </div>
+
+    <div class="container mt-5 ms-3">
+            <div class="badge mb-3 bg-lightblue text-wrap w-100">
+                <h3> {% trans 'Listing cancel delivery of' %} {{ customer.user.last_name }}</h3></div>
+    <div class=" mx-1 row w-100">
+                <a class="btn btn-perso my-3"
+                   href="{% url "account_delivery" customer.pk %}">{% trans 'Back to profile' %}</a>
+            </div>
+            <div class="list-group">
+                {% if canceldelivery %}
+
+                    {% for foo in canceldelivery %}
+                                     <div
+                                            class="list-group-item list-group-item-action">
+                                        <div class="d-flex w-100 justify-content-between ">
+                                            <h5 class="my-auto">{{ foo.date_cancel }}</h5>
+                                            <a type="button" class="btn btn-danger"
+                                               href="{% url 'cancel_delivery_delete' foo.pk %}">X
+                                            </a>
+                                        </div>
+                                                             <p class="mb-1">{{ foo.commentary_cancel }}</p>
+
+                                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{% trans 'Please register your first tour delivery' %}</h5>
+                        </div>
+                        <p class="mb-1">{% trans "This message is here because you havn't tour delivery register" %}</p>
+                    </div>
+
+                    </div>
+                {% endif %}
+        </div>
+    </main>
+{% endblock content %}

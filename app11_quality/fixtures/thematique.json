@@ -1,0 +1,90 @@
+[
+{
+    "model": "app11_quality.thematique",
+    "pk": 1,
+    "fields": {
+        "number": 1,
+        "title": "Bientraitance et éthique"
+    }
+},
+{
+    "model": "app11_quality.thematique",
+    "pk": 2,
+    "fields": {
+        "number": 2,
+        "title": "Droits de la personne accompagnée"
+    }
+},
+{
+    "model": "app11_quality.thematique",
+    "pk": 4,
+    "fields": {
+        "number": 3,
+        "title": "Expression et participation de la personne accompagnée"
+    }
+},
+{
+    "model": "app11_quality.thematique",
+    "pk": 8,
+    "fields": {
+        "number": 7,
+        "title": "Continuité et fluidité des parcours"
+    }
+},
+{
+    "model": "app11_quality.thematique",
+    "pk": 11,
+    "fields": {
+        "number": 14,
+        "title": "L’ESSMS est doté d’un plan de gestion de crise et de continuité de l’activité"
+    }
+},
+{
+    "model": "app11_quality.thematique",
+    "pk": 12,
+    "fields": {
+        "number": 4,
+        "title": "Coconstruction et personnalisation du projet d'accompagnement"
+    }
+},
+{
+    "model": "app11_quality.thematique",
+    "pk": 13,
+    "fields": {
+        "number": 5,
+        "title": "Accompagnement à l'autonomie"
+    }
+},
+{
+    "model": "app11_quality.thematique",
+    "pk": 14,
+    "fields": {
+        "number": 6,
+        "title": "Accompagnement à la santé"
+    }
+},
+{
+    "model": "app11_quality.thematique",
+    "pk": 15,
+    "fields": {
+        "number": 7,
+        "title": "Politique ressources humaines"
+    }
+},
+{
+    "model": "app11_quality.thematique",
+    "pk": 16,
+    "fields": {
+        "number": 8,
+        "title": "Démarche qualité et gestion des risques"
+    }
+},
+{
+    "model": "app11_quality.thematique",
+    "pk": 17,
+    "fields": {
+        "number": 13,
+        "title": "L’ESSMS assure le recueil et le traitement des évènements indésirables."
+    }
+}
+]

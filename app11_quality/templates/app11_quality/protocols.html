@@ -1,0 +1,66 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+
+<div class="pt-3 mb-5"> <h2 class="pb-3">{%trans "Generic"%} </h2>
+{% for protocol in protocolsGen %}
+    <div class="d-flex direction-row">
+            {% include "app11_quality/generic_protocol.html" %}
+         <a href="{%url 'app11_quality pdf' protocol_id=protocol.id%}" target="_blank">PDF</a>
+
+    </div>
+
+{% endfor %}
+</div>
+
+<style>
+.accordion-button{
+    width: 95vw;
+
+}
+.accordion-body{
+    width: 95vw;
+
+}
+</style>
+
+<div> <h2 class="pb-3">{%trans "Specific"%} </h2>
+{% for protocol in protocolsSpe %}
+<div class="accordion" id="accordionSpe">
+    <div class="accordion-item">
+        <div class="accordion-item-header" class="prot{{protocol.id}}">
+            <h2 class="d-flex flex-row justify-content-between">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#cole{{protocol.id}}" aria-expanded="true" aria-controls="cole{{protocol.id}}">
+                    {{protocol.name}}
+                </button>
+                <a href="{%url 'app11_quality pdf' protocol_id=protocol.id%}">PDF</a>
+            </h2>
+            <div id="cole{{protocol.id}}" class="accordion-collapse collapse" aria-labelledby="headingOne">
+                <div class="accordion-body">
+                    {%for title in protocol.title.all%}
+                  <h5>{{title.name}}</h5>
+                    <a href="{%url 'app11_quality pdf' protocol_id=protocol.id%}}">PDF</a>
+                  <p>{{title.description}}</p>
+                    {%for image in title.image.all%}
+                    {% if image.image.url %}
+                    <img src="{{image.image.url}}" height="25%" width="25%" >
+                    {% endif %}
+                    {%endfor%}
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+</div>
+
+
+
+
+{% endblock %}
+
+

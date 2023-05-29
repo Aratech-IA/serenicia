@@ -1,0 +1,35 @@
+{% extends "app4_ehpad_base/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<link rel="stylesheet" href=" {% static 'app6_care/css/style.css' %}">
+
+<div class="m-5">
+    <a class="btn btn-perso" href="{% url 'nappy_management' %}">{% trans 'Nappies management' %}</a>
+    <div class="d-flex flex-column align-items-center">
+        <h2 class="mt-3">{% trans 'Nappies management' %}</h2>
+        <h3 class="m-3"><u>{% trans 'Delivery receipt' %}</u></h3>
+        <p>{% trans 'unit' %} : {% trans 'box' %}</p>
+        <form action="{% url 'nappy_delivery' %}" method="post">{% csrf_token %}
+            <table class="app6-table">
+                {{ formset.management_form }}
+                <tr>
+                    <th colspan="2"><u>{% trans 'nappy' %}}</u></th>
+                    <th><u>{% trans 'Received boxes' %}</u></th>
+                </tr>
+                {% for form in formset %}
+                <tr>
+                    <td class="app6-td">{{ form.id }}</td>
+                    <td class="app6-td">{{ form.name }}</td>
+                    <td class="app6-td">{{ form.boxes }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <div class="d-flex justify-content-center mt-5">
+                <input type="submit" value="{% trans 'Confirm the received stock' %}" class="btn btn-perso">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

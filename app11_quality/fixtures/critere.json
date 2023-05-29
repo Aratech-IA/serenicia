@@ -1,0 +1,4658 @@
+[
+{
+    "model": "app11_quality.critere",
+    "pk": 1,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 1,
+        "objectif": 1,
+        "number": 1,
+        "title": "La personne accompagnée exprime sa perception de la bientraitance",
+        "manager": 449,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 2,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 2,
+        "objectif": 2,
+        "number": 1,
+        "title": "La personne accompagnée et son entourage sont informés du rôle des professionnels et autres intervenants et peuvent les identifier",
+        "manager": 292,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            8,
+            7
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 3,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 2,
+        "objectif": 2,
+        "number": 2,
+        "title": "La personne accompagnée est informée de ses droits et devoirs dans le cadre de la vie collective ou du fonctionnement du service",
+        "manager": 445,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            7,
+            9,
+            10,
+            11,
+            12,
+            89,
+            102,
+            14,
+            54,
+            847,
+            848
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 4,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 2,
+        "objectif": 2,
+        "number": 3,
+        "title": "La personne accompagnée est systématiquement informée de la possibilité de désigner une personne de confiance pour l'accompagner et l'assister dans ses démarches",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            5,
+            7
+        ],
+        "reference": [
+            13,
+            14,
+            15,
+            849
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 5,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 2,
+        "objectif": 2,
+        "number": 4,
+        "title": "La personne a accès aux informations relatives à son accompagnement",
+        "manager": 1558,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            10,
+            13,
+            17,
+            18,
+            828
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 6,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 2,
+        "objectif": 2,
+        "number": 5,
+        "title": "La personne peut s'adresser aux professionnels qui l'accompagnent pour être orientée, accompagnée et soutenue dans l'exercice de ses droits individuels",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            19,
+            20,
+            7
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 7,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 2,
+        "objectif": 2,
+        "number": 6,
+        "title": "Les professionnels informent la personne accompagnée de ses droits et de leurs modalités d’exercice, ou l’orientent vers le bon interlocuteur",
+        "manager": 374,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            19,
+            20,
+            21,
+            7,
+            10,
+            11,
+            12,
+            727
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 8,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 2,
+        "objectif": 2,
+        "number": 7,
+        "title": "Les professionnels sont régulièrement sensibilisés et/ou formés à la connaissance des droits de la personne accompagnée",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            7,
+            11,
+            19,
+            20,
+            21,
+            10
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 9,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 2,
+        "objectif": 3,
+        "number": 1,
+        "title": "La personne accompagnée est associée à la révision des règles de vie collective ou des modalités de fonctionnement du service et des outils favorisant leur compréhension",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            1,
+            9,
+            22,
+            24,
+            25,
+            26,
+            27,
+            28,
+            100,
+            12
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 10,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 2,
+        "objectif": 3,
+        "number": 2,
+        "title": "Les professionnels coconstruisent les règles de vie collective ou les modalités de fonctionnement du service dans le respect des droits et libertés de la personne accompagnée",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            9,
+            29,
+            727
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 11,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 2,
+        "objectif": 5,
+        "number": 1,
+        "title": "La personne accompagnée est assurée que les choix qu'elle exprime sur son cadre de vie ou d’accompagnement sont pris en compte",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            30,
+            31
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 12,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 1,
+        "objectif": 4,
+        "number": 1,
+        "title": "Les professionnels identifient en équipe les questionnements éthiques propres à la personne accompagnée",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            32,
+            33,
+            34
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 13,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 1,
+        "objectif": 4,
+        "number": 2,
+        "title": "Les professionnels associent la personne et son entourage, aux questionnements éthiques, liés à son accompagnement",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            32
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 14,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 1,
+        "objectif": 4,
+        "number": 3,
+        "title": "Les professionnels sont régulièrement sensibilisés et/ou formés au questionnement éthique",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            32,
+            1
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 15,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 1,
+        "objectif": 4,
+        "number": 4,
+        "title": "L'ESSMS organise le questionnement éthique en associant l'ensemble des acteurs (personne accompagnée, professionnels, partenaires) et participe à des instances de réflexion éthique sur le territoire",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            32,
+            35,
+            36
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 16,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 2,
+        "objectif": 6,
+        "number": 1,
+        "title": "Les professionnels soutiennent la liberté d'aller et de venir de la personne accompagnée",
+        "manager": 447,
+        "exigence": "imperative",
+        "essms": "essms",
+        "structure": "etablissement",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            37,
+            38,
+            39,
+            40,
+            41,
+            10,
+            11,
+            42,
+            26
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 17,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 2,
+        "objectif": 6,
+        "number": 2,
+        "title": "Les professionnels respectent la dignité et l'intégrité de la personne accompagnée",
+        "manager": 87,
+        "exigence": "imperative",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            3,
+            40,
+            41,
+            10,
+            11,
+            42,
+            28,
+            727,
+            874
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 18,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 2,
+        "objectif": 6,
+        "number": 3,
+        "title": "Les professionnels respectent la vie privée et l'intimité de la personne accompagnée",
+        "manager": 87,
+        "exigence": "imperative",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            3,
+            8,
+            9,
+            10,
+            11,
+            40,
+            41,
+            42,
+            44,
+            45,
+            727
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 19,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 2,
+        "objectif": 6,
+        "number": 4,
+        "title": "Les professionnels respectent la liberté d'opinion, les croyances et la vie spirituelle de la personne accompagnée",
+        "manager": 87,
+        "exigence": "imperative",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            8,
+            41,
+            40,
+            11,
+            42,
+            44
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 20,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 2,
+        "objectif": 6,
+        "number": 5,
+        "title": "Les professionnels respectent le droit à l'image de la personne accompagnée",
+        "manager": 87,
+        "exigence": "imperative",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            46,
+            47
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 21,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 2,
+        "objectif": 6,
+        "number": 6,
+        "title": "L'ESSMS favorise l'exercice des droits et libertés de la personne accompagnée",
+        "manager": 87,
+        "exigence": "imperative",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            48,
+            10,
+            727
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 22,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 2,
+        "objectif": 6,
+        "number": 7,
+        "title": "L’ESSMS garantit la confidentialité et la protection des informations et données relatives à la personne accompagnée",
+        "manager": 87,
+        "exigence": "imperative",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            40,
+            41,
+            10,
+            11,
+            42,
+            49,
+            50,
+            51,
+            28,
+            97
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 23,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 4,
+        "objectif": 7,
+        "number": 1,
+        "title": "Les professionnels favorisent la préservation et le développement des relations sociales et affectives de la personne accompagnée",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            1,
+            40,
+            41,
+            42,
+            11,
+            44,
+            52,
+            53,
+            54,
+            55,
+            727
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 24,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 4,
+        "objectif": 7,
+        "number": 2,
+        "title": "Les professionnels soutiennent et/ou orientent la personne accompagnée pour accéder aux services et dispositifs de droit commun",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            52,
+            727
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 42,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 8,
+        "objectif": 12,
+        "number": 1,
+        "title": "Les professionnels anticipent les situations de crise ou de rupture dans l'accompagnement ou le parcours de la personne et l'alertent des risques engendrés, le cas échéant",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            38,
+            76,
+            58,
+            91,
+            61,
+            62,
+            63,
+            92
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 49,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 8,
+        "objectif": 14,
+        "number": 2,
+        "title": "Les professionnels respectent les règles de sécurisation des données, des dossiers et des accès",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            50
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 50,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 2,
+        "objectif": 5,
+        "number": 2,
+        "title": "La personne accompagnée bénéficie d’un espace de vie privé, adapté et respectueux de ses droits fondamentaux, qu'elle est encouragée à personnaliser",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "etablissement",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            3,
+            40,
+            9,
+            10,
+            11,
+            42,
+            45,
+            41,
+            52,
+            30
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 51,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 4,
+        "objectif": 15,
+        "number": 1,
+        "title": "La personne accompagnée participe aux instances collectives ou à toutes autres formes de participation",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            10,
+            101,
+            102,
+            9,
+            26,
+            104,
+            27,
+            28,
+            29,
+            25,
+            2,
+            24,
+            22,
+            1,
+            7,
+            100,
+            59
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 52,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 4,
+        "objectif": 15,
+        "number": 2,
+        "title": "La personne accompagnée est informée de la suite donnée aux demandes formulées dans le cadre des instances collectives ou à toutes autres formes de participation",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            104,
+            2
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 53,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 4,
+        "objectif": 15,
+        "number": 3,
+        "title": "Les professionnels facilitent l'accès à la traçabilité des échanges et réponses apportées dans le cadre des instances collectives ou à toutes autres formes de participation",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            104,
+            2
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 54,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 4,
+        "objectif": 16,
+        "number": 1,
+        "title": "La personne accompagnée est soutenue dans son expression. Le partage de son expérience est favorisé et l’expression de ses préférences prise en compte",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            1,
+            19,
+            86,
+            7
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 55,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 4,
+        "objectif": 16,
+        "number": 2,
+        "title": "Les professionnels facilitent l'expression de la personne accompagnée grâce à l'utilisation de moyens et outils adaptés",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            1,
+            19,
+            86,
+            7,
+            727
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 56,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 4,
+        "objectif": 16,
+        "number": 3,
+        "title": "Les professionnels analysent le recueil de l'expression de la personne accompagnée et en tirent les enseignements",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            1,
+            727
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 57,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 4,
+        "objectif": 17,
+        "number": 1,
+        "title": "La personne accompagnée a la possibilité d'exprimer son consentement éclairé, grâce à une information claire et des moyens adaptés",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            5,
+            7
+        ],
+        "reference": [
+            1,
+            40,
+            41,
+            10,
+            11,
+            42,
+            105,
+            48,
+            19,
+            24,
+            866
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 90,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 4,
+        "objectif": 17,
+        "number": 2,
+        "title": "Les professionnels recherchent l'adhésion de la personne accompagnée, grâce à une information claire et des moyens adaptés",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            4,
+            6
+        ],
+        "reference": [
+            727,
+            1,
+            40,
+            41,
+            10,
+            11,
+            42,
+            105,
+            48,
+            19,
+            24,
+            868
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 91,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 4,
+        "objectif": 17,
+        "number": 3,
+        "title": "Les professionnels réinterrogent le refus de la personne tout au long de son accompagnement et recherchent des alternatives avec elle",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            1,
+            19
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 92,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 4,
+        "objectif": 17,
+        "number": 4,
+        "title": "Les professionnels assurent la traçabilité du consentement ou du refus exprimé par la personne accompagnée",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            11
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 93,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 4,
+        "objectif": 50,
+        "number": 1,
+        "title": "La personne accompagnée a la possibilité de maintenir ses liens sociaux et d’en créer de nouveaux, dans et hors l’établissement ou le service",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            1,
+            40,
+            41,
+            42,
+            11,
+            44,
+            52,
+            53,
+            55
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 94,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 4,
+        "objectif": 50,
+        "number": 2,
+        "title": "La personne peut s’investir dans la vie sociale et culturelle et participer à des évènements sur le territoire grâce à un accompagnement adapté",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            34,
+            72,
+            44,
+            48,
+            52,
+            53
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 95,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 4,
+        "objectif": 50,
+        "number": 3,
+        "title": "Les professionnels informent la personne accompagnée sur l’offre d’activités sportives, socio-culturelles et de loisirs, recueillent ses attentes et respectent ses choix de participation",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            727,
+            34,
+            72,
+            44,
+            48,
+            52,
+            53
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 96,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 4,
+        "objectif": 50,
+        "number": 4,
+        "title": "Les professionnels identifient et mobilisent les ressources et moyens nécessaires à la mise en place d'activités sportives, socio-culturelles et de loisirs",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            44,
+            53,
+            106,
+            107
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 97,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 4,
+        "objectif": 50,
+        "number": 5,
+        "title": "Les professionnels encouragent le recours à la pair-aidance et autres dispositifs facilitant l'entraide entre les personnes accompagnées",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            58,
+            59,
+            727
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 98,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 4,
+        "objectif": 51,
+        "number": 1,
+        "title": "La personne est accompagnée selon ses besoins et ses souhaits dans sa participation à la vie citoyenne",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            40,
+            41,
+            42,
+            11,
+            108,
+            109,
+            110,
+            24
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 99,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 4,
+        "objectif": 51,
+        "number": 2,
+        "title": "Les professionnels utilisent des moyens et des outils adaptés permettant à la personne accompagnée d'exercer sa citoyenneté ou de bénéficier d’une éducation à la citoyenneté",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            11,
+            40,
+            41,
+            42,
+            108,
+            111,
+            24,
+            25
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 135,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 8,
+        "objectif": 59,
+        "number": 1,
+        "title": "La personne est accompagnée pour prévenir les situations de transition ou de rupture dans son parcours",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            24,
+            105,
+            80,
+            71
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 136,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 8,
+        "objectif": 59,
+        "number": 2,
+        "title": "Les professionnels accompagnent la personne et mobilisent les partenariats nécessaires en cas de situation de rupture concernant son parcours",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            24,
+            105,
+            80,
+            71
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 137,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 8,
+        "objectif": 59,
+        "number": 3,
+        "title": "Les professionnels apportent leur(s) expertise(s) en soutien d'autres intervenants dans l'accompagnement de la personne",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            112,
+            124
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 138,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 8,
+        "objectif": 59,
+        "number": 4,
+        "title": "Les professionnels participent aux réunions de coordinations (médicopsychosociales) nécessaires à l'accompagnement de la personne",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            105
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 208,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 12,
+        "objectif": 8,
+        "number": 1,
+        "title": "Les professionnels adaptent le projet d’accompagnement aux risques de fugue ou de disparition auxquels la personne est confrontée",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "etablissement",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            56,
+            57,
+            38
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 209,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 12,
+        "objectif": 8,
+        "number": 2,
+        "title": "Les professionnels adaptent le projet d’accompagnement aux risques liés aux addictions et conduites à risques auxquels la personne est confrontée",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            58,
+            59
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 210,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 12,
+        "objectif": 8,
+        "number": 3,
+        "title": "Les professionnels adaptent le projet d’accompagnement aux risques liés aux chutes auxquels la personne est confrontée",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4
+        ],
+        "reference": [
+            60,
+            61,
+            62,
+            63
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 215,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 13,
+        "objectif": 9,
+        "number": 1,
+        "title": "Les professionnels soutiennent et accompagnent la personne dans le suivi de son parcours scolaire, en étroite collaboration avec les établissements scolaires",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            4,
+            6,
+            7
+        ],
+        "reference": [
+            72,
+            823,
+            19,
+            69,
+            71
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 216,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 13,
+        "objectif": 9,
+        "number": 2,
+        "title": "Les professionnels soutiennent et accompagnent la personne dans le suivi de son parcours professionnel en lien avec les partenaires",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            71,
+            72,
+            823,
+            727,
+            59
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 217,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 13,
+        "objectif": 9,
+        "number": 3,
+        "title": "Les professionnels soutiennent et accompagnent la personne dans le développement de ses compétences, la stimulation, le maintien et la valorisation de ses acquis/acquisitions (capacités, compétences)",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            53,
+            33,
+            73,
+            816,
+            727,
+            24,
+            30
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 220,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 12,
+        "objectif": 8,
+        "number": 4,
+        "title": "Les professionnels adaptent le projet d'accompagnement aux risques de dénutrition, malnutrition et/ou des troubles de la déglutition auxquels la personne est confrontée",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            48,
+            65,
+            64
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 221,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 12,
+        "objectif": 8,
+        "number": 5,
+        "title": "Les professionnels adaptent le projet d’accompagnement aux risques liés à la sexualité auxquels la personne est confrontée",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            5,
+            38,
+            727
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 222,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 12,
+        "objectif": 8,
+        "number": 6,
+        "title": "Les professionnels adaptent le projet d’accompagnement aux risques de harcèlement ou d’abus de faiblesse auxquels la personne est confrontée",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            67,
+            38
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 227,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 13,
+        "objectif": 91,
+        "number": 3,
+        "title": "Les professionnels sont régulièrement sensibilisés et/ou formés à la préservation de l’autonomie et à la prévention du risque d’isolement des personnes accompagnées",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            816,
+            130,
+            61,
+            62,
+            63
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 229,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 14,
+        "objectif": 10,
+        "number": 1,
+        "title": "Les professionnels repèrent et/ou évaluent régulièrement et tracent les besoins d’accompagnement en santé mentale de la personne, selon des modalités adaptées",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            75,
+            76,
+            77,
+            78,
+            52,
+            823,
+            59
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 233,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 14,
+        "objectif": 10,
+        "number": 2,
+        "title": "Les professionnels coconstruisent le projet d’accompagnement en santé mentale avec la personne et le réévaluent régulièrement",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "medicosocial",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            75,
+            76,
+            77,
+            78,
+            52
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 234,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 14,
+        "objectif": 10,
+        "number": 3,
+        "title": "Les professionnels alertent et/ou mobilisent tous les moyens nécessaires pour mettre en œuvre le projet d’accompagnement en santé mentale de la personne",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            52,
+            77,
+            78
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 236,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 14,
+        "objectif": 11,
+        "number": 1,
+        "title": "Les professionnels recueillent et tracent les volontés de la personne sur son accompagnement de fin de vie et ses directives anticipées, selon des modalités adaptées",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "medicosocial",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            5
+        ],
+        "reference": [
+            82,
+            83,
+            84,
+            866,
+            3,
+            875,
+            79,
+            80,
+            81,
+            24,
+            876
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 238,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 14,
+        "objectif": 11,
+        "number": 2,
+        "title": "Les professionnels échangent en équipe pour adapter l’accompagnement à la fin de vie de la personne, dans le respect des volontés exprimées",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "medicosocial",
+        "structure": "structures",
+        "public": [
+            5,
+            2,
+            3
+        ],
+        "reference": [
+            3,
+            80,
+            81,
+            86,
+            24
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 239,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 14,
+        "objectif": 11,
+        "number": 3,
+        "title": "Les professionnels échangent en équipe pour adapter l’accompagnement au deuil vécu par la personne",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            24,
+            79,
+            71
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 242,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 14,
+        "objectif": 11,
+        "number": 4,
+        "title": "Les professionnels mettent en œuvre l’accompagnement de la fin de vie et/ou du deuil de la personne",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            3,
+            79,
+            80,
+            81,
+            87,
+            24,
+            89,
+            90,
+            88
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 243,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 8,
+        "objectif": 12,
+        "number": 2,
+        "title": "Les professionnels accompagnent les interruptions et les ruptures d’accompagnement de la personne",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            80,
+            58,
+            91,
+            76
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 244,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 8,
+        "objectif": 12,
+        "number": 3,
+        "title": "Les professionnels sont régulièrement sensibilisés et/ou formés au repérage, à la prévention, et à la gestion des risques de rupture de parcours de la personne accompagnée",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            61,
+            62,
+            63
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 246,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 8,
+        "objectif": 13,
+        "number": 3,
+        "title": "Les professionnels transmettent toute information nécessaire à la continuité de l’accompagnement de la personne aux professionnels qui prennent le relais et à l’entourage",
+        "manager": 444,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            97,
+            38,
+            782,
+            49,
+            91,
+            96,
+            95,
+            94
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 249,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 8,
+        "objectif": 13,
+        "number": 1,
+        "title": "Les professionnels se coordonnent avec les partenaires du territoire impliqués dans le parcours de la personne accompagnée et partagent les informations nécessaires",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            91,
+            59
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 250,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 8,
+        "objectif": 13,
+        "number": 2,
+        "title": "Les professionnels informent la personne accompagnée, et son entourage, des alternatives pour la continuité de son parcours",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            80,
+            93,
+            38
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 251,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 8,
+        "objectif": 14,
+        "number": 1,
+        "title": "Les professionnels partagent entre eux les informations nécessaires à l’accompagnement de la personne",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            80,
+            49,
+            94,
+            97
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 253,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 1,
+        "objectif": 87,
+        "number": 1,
+        "title": "L’ESSMS définit sa stratégie en matière de bientraitance et en partage une définition commune avec l’ensemble des acteurs",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            10,
+            1,
+            138
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 255,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 1,
+        "objectif": 87,
+        "number": 2,
+        "title": "L’ESSMS définit l’organisation et les modalités de déploiement de sa démarche de bientraitance et met à disposition les outils adaptés",
+        "manager": 352,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            1,
+            10,
+            138
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 256,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 1,
+        "objectif": 87,
+        "number": 3,
+        "title": "L’ESSMS organise des actions de sensibilisation à la bientraitance pour tout nouvel intervenant (partenaire, bénévole…)",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            1,
+            10,
+            138,
+            33
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 257,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 1,
+        "objectif": 87,
+        "number": 4,
+        "title": "Les professionnels sont régulièrement sensibilisés et/ou formés à la bientraitance",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            1,
+            33,
+            10,
+            138,
+            48
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 259,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 12,
+        "objectif": 79,
+        "number": 1,
+        "title": "L’ESSMS met en œuvre une approche inclusive des accompagnements proposés",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            73,
+            139,
+            69
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 260,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 12,
+        "objectif": 79,
+        "number": 2,
+        "title": "L’ESSMS s’inscrit dans des partenariats pour enrichir son offre d’accompagnement au bénéfice des personnes",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            140,
+            141,
+            56,
+            105
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 261,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 12,
+        "objectif": 79,
+        "number": 3,
+        "title": "L’ESSMS s’inscrit dans des projets communs avec les partenaires du territoire pour renforcer l’offre d’accompagnement",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            1,
+            9,
+            139,
+            80,
+            115,
+            58,
+            59,
+            29,
+            73,
+            34,
+            117
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 262,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 12,
+        "objectif": 79,
+        "number": 4,
+        "title": "L’ESSMS est force de proposition et d’innovation pour améliorer la qualité des accompagnements et les modalités d’intervention",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            29
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 263,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 12,
+        "objectif": 79,
+        "number": 5,
+        "title": "L’ESSMS développe des actions d’ouverture à et sur son environnement pour favoriser les interactions et partenariats",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            1,
+            29,
+            143
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 264,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 13,
+        "objectif": 91,
+        "number": 1,
+        "title": "L’ESSMS définit sa stratégie de préservation de l’autonomie et de prévention du risque d’isolement des personnes accompagnées et s’assure de sa mise en œuvre",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            130,
+            76,
+            59,
+            816,
+            61,
+            62,
+            63
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 265,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 13,
+        "objectif": 91,
+        "number": 2,
+        "title": "Les professionnels mettent en œuvre les actions de préservation de l’autonomie et de prévention du risque d’isolement des personnes accompagnées",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            816,
+            130,
+            61,
+            62,
+            63
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 267,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 14,
+        "objectif": 92,
+        "number": 1,
+        "title": "L’ESSMS définit sa stratégie de gestion du risque médicamenteux et s’assure de sa mise en œuvre",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "medicosocial",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            132,
+            155,
+            133,
+            850,
+            851
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 268,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 14,
+        "objectif": 92,
+        "number": 2,
+        "title": "Les professionnels respectent la sécurisation du circuit du médicament",
+        "manager": 87,
+        "exigence": "imperative",
+        "essms": "medicosocial",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            161,
+            133,
+            850,
+            851,
+            155
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 269,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 14,
+        "objectif": 92,
+        "number": 3,
+        "title": "Les professionnels accompagnent les personnes dans la continuité de leur prise en charge médicamenteuse",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "medicosocial",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            850,
+            851,
+            132,
+            133
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 270,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 14,
+        "objectif": 92,
+        "number": 4,
+        "title": "Les professionnels alertent en cas de risque lié à la prise en charge médicamenteuse, dont la iatrogénie",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            850,
+            851,
+            133,
+            727
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 271,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 14,
+        "objectif": 92,
+        "number": 5,
+        "title": "Les professionnels sont régulièrement sensibilisés et/ou formés à la prévention et à la gestion du risque médicamenteux",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "medicosocial",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            850,
+            851,
+            133,
+            727
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 272,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 14,
+        "objectif": 93,
+        "number": 1,
+        "title": "L’ESSMS définit sa stratégie de prévention et de maîtrise du risque infectieux et s’assure de sa mise en œuvre",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            58,
+            316,
+            175,
+            852
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 273,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 14,
+        "objectif": 93,
+        "number": 2,
+        "title": "Les professionnels mettent en œuvre les actions de prévention et de gestion du risque infectieux",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            58,
+            179,
+            852
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 274,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 14,
+        "objectif": 93,
+        "number": 3,
+        "title": "Les professionnels sont régulièrement sensibilisés et/ou formés à la prévention et à la maîtrise du risque infectieux",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            58,
+            179,
+            852
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 275,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 15,
+        "objectif": 94,
+        "number": 1,
+        "title": "L’ESSMS définit et déploie sa politique ressources humaines et met en œuvre une démarche de prévention des risques professionnels",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            853,
+            185,
+            184
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 276,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 15,
+        "objectif": 94,
+        "number": 2,
+        "title": "L’ESSMS met en œuvre un processus d’accueil et d’intégration des nouveaux professionnels et intervenants",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            854
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 277,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 15,
+        "objectif": 94,
+        "number": 3,
+        "title": "L’ESSMS adapte sa gestion des emplois et des parcours professionnels aux évolutions du secteur et de sa stratégie",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            855
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 278,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 15,
+        "objectif": 94,
+        "number": 4,
+        "title": "L’ESSMS met au service des accompagnements une équipe de professionnels formés et qualifiés",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            1,
+            76,
+            13,
+            117,
+            24
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 279,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 15,
+        "objectif": 94,
+        "number": 5,
+        "title": "L’ESSMS définit des modalités de travail adaptées pour garantir la sécurité, la continuité et la qualité de l’accompagnement des personnes",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            29
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 280,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 15,
+        "objectif": 94,
+        "number": 6,
+        "title": "Les professionnels sont régulièrement sensibilisés et/ou formés aux RBPP, procédures et références spécifiques à leur cadre d’intervention",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            295,
+            856
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 281,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 15,
+        "objectif": 95,
+        "number": 1,
+        "title": "L’ESSMS promeut une politique favorisant la qualité de vie au travail",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            291,
+            292,
+            293,
+            857,
+            858
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 282,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 15,
+        "objectif": 95,
+        "number": 2,
+        "title": "L’ESSMS favorise la qualité de l’environnement de travail des professionnels",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            291,
+            292,
+            293,
+            857,
+            124
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 284,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 16,
+        "objectif": 96,
+        "number": 1,
+        "title": "L’ESSMS définit sa politique qualité et gestion des risques",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            59,
+            76,
+            38
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 285,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 16,
+        "objectif": 96,
+        "number": 2,
+        "title": "L’ESSMS met en œuvre sa démarche qualité et gestion des risques",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            59,
+            76,
+            38
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 286,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 16,
+        "objectif": 97,
+        "number": 1,
+        "title": "L’ESSMS définit, avec les professionnels, un plan de prévention et de gestion des risques de maltraitance et de violence au bénéfice des personnes accompagnées",
+        "manager": 87,
+        "exigence": "imperative",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            1,
+            226,
+            67,
+            71,
+            44,
+            859,
+            860,
+            862,
+            861
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 287,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 15,
+        "objectif": 95,
+        "number": 3,
+        "title": "L’ESSMS organise des espaces de discussion et de partage pour les professionnels et des temps de soutien psychologique et/ou éthique",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            857,
+            291,
+            292,
+            293
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 289,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 16,
+        "objectif": 97,
+        "number": 2,
+        "title": "L’ESSMS traite les signalements de faits de maltraitance et de violence, et met en place des actions correctives",
+        "manager": 87,
+        "exigence": "imperative",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            1,
+            226,
+            71,
+            859,
+            860,
+            861,
+            862
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 290,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 16,
+        "objectif": 98,
+        "number": 1,
+        "title": "L’ESSMS organise le recueil et le traitement des plaintes et des réclamations",
+        "manager": 87,
+        "exigence": "imperative",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            859
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 291,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 16,
+        "objectif": 98,
+        "number": 2,
+        "title": "L’ESSMS communique sur le traitement des plaintes et des réclamations aux parties prenantes",
+        "manager": 87,
+        "exigence": "imperative",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            859
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 292,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 16,
+        "objectif": 98,
+        "number": 3,
+        "title": "Les professionnels analysent en équipe les plaintes et les réclamations et mettent en place des actions correctives",
+        "manager": 87,
+        "exigence": "imperative",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            859
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 293,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 16,
+        "objectif": 99,
+        "number": 1,
+        "title": "L’ESSMS organise le recueil et le traitement des évènements indésirables",
+        "manager": 87,
+        "exigence": "imperative",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            864,
+            243,
+            252,
+            865
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 294,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 16,
+        "objectif": 99,
+        "number": 2,
+        "title": "L’ESSMS communique sur le traitement des évènements indésirables auprès des parties prenantes",
+        "manager": 87,
+        "exigence": "imperative",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            864,
+            865,
+            243,
+            252
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 295,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 16,
+        "objectif": 99,
+        "number": 3,
+        "title": "Les professionnels déclarent et analysent en équipe les évènements indésirables et mettent en place des actions correctives",
+        "manager": 87,
+        "exigence": "imperative",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            865,
+            864,
+            243,
+            252,
+            48
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 296,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 16,
+        "objectif": 99,
+        "number": 4,
+        "title": "Les professionnels sont régulièrement sensibilisés et/ou formés à la gestion des évènements indésirables",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            864,
+            865,
+            243,
+            252
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 297,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 16,
+        "objectif": 101,
+        "number": 3,
+        "title": "Les professionnels sont régulièrement sensibilisés et/ou formés aux outils numériques",
+        "manager": 447,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            873
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 298,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 16,
+        "objectif": 101,
+        "number": 2,
+        "title": "L’ESSMS définit et déploie sa stratégie numérique",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            872,
+            873,
+            277
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 299,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 16,
+        "objectif": 101,
+        "number": 1,
+        "title": "L’ESSMS définit et met en œuvre sa stratégie d’optimisation des achats et de développement durable",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            871
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 300,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 16,
+        "objectif": 100,
+        "number": 4,
+        "title": "Les professionnels sont régulièrement sensibilisés et/ou formés à la gestion de crise",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            880,
+            879,
+            264,
+            867,
+            316
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 301,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 16,
+        "objectif": 100,
+        "number": 3,
+        "title": "Les professionnels participent aux exercices et aux retours d’expérience partagés, organisés par l’ESSMS",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            867,
+            869,
+            268,
+            316,
+            68
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 302,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 16,
+        "objectif": 100,
+        "number": 2,
+        "title": "L’ESSMS communique son plan de gestion de crise en interne et en externe",
+        "manager": 87,
+        "exigence": "imperative",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            880,
+            879,
+            264,
+            867,
+            316
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 303,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 16,
+        "objectif": 100,
+        "number": 1,
+        "title": "L’ESSMS définit, avec les professionnels, un plan de gestion de crise et de continuité de l’activité et le réactualise régulièrement",
+        "manager": 87,
+        "exigence": "imperative",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "reference": [
+            867,
+            869,
+            870,
+            264,
+            316,
+            880,
+            879,
+            68
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 304,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 12,
+        "objectif": 52,
+        "number": 1,
+        "title": "La personne exprime ses attentes sur son projet d’accompagnement",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            25,
+            59,
+            114,
+            115,
+            52,
+            10,
+            11,
+            116,
+            40,
+            41,
+            42,
+            112,
+            113
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 305,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 12,
+        "objectif": 52,
+        "number": 2,
+        "title": "La personne avec son entourage et les professionnels en équipe coconstruisent le projet d’accompagnement",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            113,
+            118,
+            120,
+            122,
+            119,
+            3,
+            58,
+            774,
+            112,
+            22,
+            117,
+            25,
+            115
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 306,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 12,
+        "objectif": 52,
+        "number": 3,
+        "title": "Les professionnels évaluent les besoins de la personne pour construire son projet d’accompagnement en utilisant des outils d’évaluations validés",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            105,
+            113,
+            114,
+            115,
+            777,
+            778,
+            782,
+            112
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 307,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 12,
+        "objectif": 52,
+        "number": 4,
+        "title": "Les professionnels coconstruisent avec la personne et son entourage son projet d’accompagnement",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            1,
+            69,
+            30,
+            793,
+            10,
+            774,
+            112,
+            778,
+            115,
+            727
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 308,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 12,
+        "objectif": 52,
+        "number": 5,
+        "title": "Les professionnels mobilisent les ressources internes et/ou externes et les outils pour mettre en œuvre le projet d’accompagnement de la personne",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            823,
+            124,
+            69
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 309,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 12,
+        "objectif": 52,
+        "number": 6,
+        "title": "Les professionnels assurent la traçabilité et réévaluent le projet d’accompagnement avec la personne, chaque fois que nécessaire, et au moins une fois par an",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            48,
+            124,
+            126,
+            778,
+            112,
+            125,
+            118,
+            80
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 310,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 12,
+        "objectif": 53,
+        "number": 1,
+        "title": "La personne définit avec les professionnels la place de son entourage dans son accompagnement",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            113,
+            127,
+            7
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 311,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 12,
+        "objectif": 53,
+        "number": 2,
+        "title": "Les professionnels informent, orientent et/ou accompagnent l’entourage vers les dispositifs de prévention, de soutien et de répit existants",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            7
+        ],
+        "reference": [
+            113,
+            30,
+            727,
+            805,
+            127
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 312,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 13,
+        "objectif": 54,
+        "number": 1,
+        "title": "La personne accompagnée exprime régulièrement ses attentes sur les mesures d’aide et de soutien souhaitées pour favoriser ou préserver son autonomie",
+        "manager": 450,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            40,
+            41,
+            10,
+            11,
+            42,
+            816,
+            817,
+            112,
+            25,
+            59,
+            52
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 313,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 13,
+        "objectif": 54,
+        "number": 2,
+        "title": "Les professionnels évaluent régulièrement les besoins de la personne accompagnée pour favoriser ou préserver son autonomie",
+        "manager": 352,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            816,
+            817,
+            61,
+            62,
+            63,
+            823,
+            33,
+            130
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 314,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 13,
+        "objectif": 54,
+        "number": 3,
+        "title": "Les professionnels repèrent de manière précoce les risques de perte d’autonomie et d’isolement social de la personne accompagnée et alertent les personnes-ressources",
+        "manager": 854,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            816,
+            130,
+            817,
+            33,
+            782,
+            61,
+            62,
+            63,
+            823
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 315,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 13,
+        "objectif": 55,
+        "number": 1,
+        "title": "La personne accompagnée a la possibilité d’exprimer ses attentes en matière de logement ou d’hébergement",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            48,
+            40,
+            41,
+            10,
+            11,
+            42,
+            112,
+            80,
+            31,
+            25,
+            52,
+            59
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 316,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 13,
+        "objectif": 55,
+        "number": 2,
+        "title": "La personne est accompagnée dans ses démarches pour accéder ou se maintenir dans son logement ou hébergement",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            59,
+            80
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 317,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 13,
+        "objectif": 55,
+        "number": 3,
+        "title": "Les professionnels accompagnent la personne dans sa recherche de logement ou d’hébergement adapté à ses besoins et attentes",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            40,
+            41,
+            10,
+            11,
+            42,
+            71,
+            31,
+            80,
+            59,
+            727
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 318,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 14,
+        "objectif": 56,
+        "number": 1,
+        "title": "La personne accompagnée participe à la définition de ses besoins en matière de prévention et d’éducation à la santé",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            40,
+            41,
+            10,
+            11,
+            42,
+            112,
+            59,
+            52,
+            13,
+            25
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 319,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 14,
+        "objectif": 56,
+        "number": 2,
+        "title": "Les professionnels évaluent les besoins de la personne accompagnée en matière de prévention et d’éducation à la santé",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            59,
+            13
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 320,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 14,
+        "objectif": 56,
+        "number": 3,
+        "title": "Les professionnels orientent vers et/ou mettent en œuvre un programme de prévention et d’éducation à la santé adapté à la personne accompagnée",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            58,
+            19,
+            52,
+            76
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 321,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 14,
+        "objectif": 56,
+        "number": 4,
+        "title": "Les professionnels facilitent la compréhension des messages de prévention et d’éducation à la santé de la personne accompagnée",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            58,
+            827,
+            826,
+            19
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 322,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 14,
+        "objectif": 56,
+        "number": 5,
+        "title": "Les professionnels organisent l’accompagnement et/ou accompagnent la personne lors des dépistages et des soins de prévention",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            76
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 323,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 14,
+        "objectif": 56,
+        "number": 6,
+        "title": "Les professionnels sont régulièrement sensibilisés et/ou formés à la prévention et à l’éducation à la santé",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            13
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 324,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 14,
+        "objectif": 57,
+        "number": 1,
+        "title": "La personne accompagnée est informée des soins qui lui sont proposés, selon des modalités adaptées",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "medicosocial",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            81,
+            17,
+            13,
+            18,
+            828
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 325,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 14,
+        "objectif": 57,
+        "number": 2,
+        "title": "La personne accompagnée bénéficie de temps d’échange et de soutien autour de son état de santé, des soins possibles et de la stratégie thérapeutique proposée",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "medicosocial",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            81,
+            13
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 326,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 14,
+        "objectif": 57,
+        "number": 3,
+        "title": "La personne bénéficie d’un accompagnement adapté, en cas de refus de soins",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "medicosocial",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            13,
+            81,
+            1
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 327,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 14,
+        "objectif": 57,
+        "number": 4,
+        "title": "La personne accompagnée est associée à la gestion de son traitement médicamenteux pour favoriser sa compréhension et son adhésion et s’assurer de sa continuité",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "medicosocial",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            133,
+            132
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 328,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 14,
+        "objectif": 57,
+        "number": 5,
+        "title": "Les professionnels identifient et/ou évaluent régulièrement les besoins en santé de la personne accompagnée",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            61,
+            30
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 329,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 14,
+        "objectif": 57,
+        "number": 6,
+        "title": "Les professionnels repèrent de manière précoce les risques en santé pour la personne accompagnée et alertent les personnes-ressources",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            118,
+            782,
+            75
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 330,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 14,
+        "objectif": 57,
+        "number": 7,
+        "title": "Les professionnels tiennent compte du rapport bénéfice/risque pour proposer des modalités d’accompagnement adaptées à la santé de la personne",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "medicosocial",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            61,
+            62,
+            63
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 331,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 14,
+        "objectif": 57,
+        "number": 8,
+        "title": "Les professionnels s’appuient sur des activités et des approches non médicamenteuses dans l’accompagnement de la personne",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "medicosocial",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            778,
+            134
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 332,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 14,
+        "objectif": 57,
+        "number": 9,
+        "title": "Les professionnels sont régulièrement sensibilisés et/ou formés aux activités et approches non médicamenteuses",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "medicosocial",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            831
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 333,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 14,
+        "objectif": 57,
+        "number": 10,
+        "title": "Les professionnels mobilisent les expertises et partenariats du territoire, nécessaires à l’accompagnement à la santé de la personne",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            29,
+            105
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 334,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 14,
+        "objectif": 58,
+        "number": 1,
+        "title": "La personne s’exprime sur la manière dont sont prises en charge ses douleurs tout au long de son accompagnement",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            113,
+            90,
+            13,
+            836
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 335,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 14,
+        "objectif": 58,
+        "number": 2,
+        "title": "Les professionnels repèrent et/ou évaluent régulièrement et tracent les douleurs de la personne accompagnée selon des modalités adaptées",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            113,
+            90,
+            13,
+            836,
+            136
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 336,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 14,
+        "objectif": 58,
+        "number": 3,
+        "title": "Les professionnels recueillent, auprès de l’entourage, des informations sur les manifestations habituelles des douleurs chez la personne accompagnée",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            90,
+            136,
+            836
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 337,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 14,
+        "objectif": 58,
+        "number": 4,
+        "title": "Les professionnels coconstruisent avec la personne accompagnée, la stratégie de prise en charge de la douleur",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "medicosocial",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            90,
+            836,
+            136,
+            13,
+            113
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 338,
+    "fields": {
+        "chapitre": 1,
+        "thematique": 14,
+        "objectif": 58,
+        "number": 5,
+        "title": "Les professionnels alertent et/ou mobilisent tous les moyens nécessaires pour soulager la douleur de la personne accompagnée",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            113,
+            90,
+            3,
+            836,
+            136
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 339,
+    "fields": {
+        "chapitre": 2,
+        "thematique": 12,
+        "objectif": 8,
+        "number": 7,
+        "title": "Les professionnels adaptent le projet d’accompagnement aux risques de radicalisation et/ou de prosélytisme auxquels la personne est confrontée",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            56,
+            68
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 340,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 2,
+        "objectif": 88,
+        "number": 1,
+        "title": "L’ESSMS accompagne les personnes pour qu’elles puissent vivre dans des conditions matérielles et un cadre de vie respectueux de leurs droits fondamentaux",
+        "manager": 447,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "service",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            10,
+            840
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 341,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 2,
+        "objectif": 88,
+        "number": 2,
+        "title": "L’ESSMS garantit un cadre de vie respectueux des droits fondamentaux des personnes accompagnées",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "etablissement",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            37,
+            8,
+            840,
+            10,
+            44,
+            9
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 342,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 4,
+        "objectif": 89,
+        "number": 1,
+        "title": "L’ESSMS met à disposition des personnes accompagnées des espaces de rencontre et de socialisation, ainsi que des espaces d’apaisement et de bien-être",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "etablissement",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            8,
+            44,
+            37,
+            727,
+            9
+        ]
+    }
+},
+{
+    "model": "app11_quality.critere",
+    "pk": 344,
+    "fields": {
+        "chapitre": 3,
+        "thematique": 16,
+        "objectif": 97,
+        "number": 3,
+        "title": "Les professionnels sont régulièrement sensibilisés et/ou formés à la détection et au signalement de faits de maltraitance et de violence",
+        "manager": 87,
+        "exigence": "standard",
+        "essms": "essms",
+        "structure": "structures",
+        "public": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "reference": [
+            71,
+            859,
+            860,
+            861,
+            862,
+            48
+        ]
+    }
+}
+]

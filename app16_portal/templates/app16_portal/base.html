@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+
+  <head>
+      <meta charset="UTF-8">
+      <title>Serenicia</title>
+      <link rel="shortcut icon" href="{% static 'app4_ehpad_base/img/s.svg' %}">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+      <link rel="stylesheet" href="{% static 'app16_portal/css/app16_style.css' %}">
+      {% block extrastyle %}
+      {% endblock extrastyle %}
+  </head>
+
+  <body class="bg-light">
+    {% block navbar %}
+    {% endblock navbar %}
+    {% block content %}
+    {% endblock content %}
+    {% block modal %}
+    {% endblock modal %}
+  </body>
+  <script src="{% static 'app1_base/js/bootstrap.js' %}"></script>
+  {% block openmodal %}
+  {% endblock openmodal %}
+</html>

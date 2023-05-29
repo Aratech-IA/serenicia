@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+{% load static %}
+{% load i18n %}
+
+<html>
+
+<head id="header">
+    <title>Serenicia</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!-- <link rel="stylesheet" href="{% static 'app1_base/css/bootstrap.css' %}"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="{% static 'app1_base/css/style.css' %}"> -->
+    {% include 'app13 _resident/css.html'%}
+
+</head>
+
+<body class="vh-100 vw-100 pt-0 bg-lightgrey">
+
+    <div class="tv d-flex vh-100 vw-100">
+
+        <div class="ratio ratio-16x9 col-9 d-flex vh-100" id="jitsimeet" style="max-height: 850px"></div>
+
+        <div class="tv-right col-3 h-100 d-flex justify-content-center align-item-center bg-grey">
+                {% include 'app13 _resident/commande_alexa.html'%}
+        </div>
+
+    </div>
+
+
+
+
+</body>
+
+
+
+{% block scriptjitsi %}
+    <script src='https://meet.jit.si/external_api.js'></script>
+    <script>
+        const domain = 'meet.jit.si';
+        const options = {
+            roomName: '{{ roomname }}',
+            userInfo: {displayName: '{{ username }}'},
+            parentNode: document.querySelector('#jitsimeet'),
+            configOverwrite: {prejoinPageEnabled: false},
+        };
+        meetAPI = new JitsiMeetExternalAPI(domain, options);
+    </script>
+{% endblock scriptjitsi %}
+
+
+
+
+{% block alexanav %}
+
+<script>
+
+        console.log("check for web socket");
+        let socket = new WebSocket('{{ ws_alexa }}');
+
+        socket.onmessage = function (event) {
+                console.log('connection ws Alexa opened');
+                let message = JSON.parse(event.data);
+                socket.send(JSON.stringify({'answer': true}));
+                console.log(message);
+                url = message.redirect;
+                socket.close()
+                window.location.href = url;
+        };
+
+        socket.onclose = function () {
+            console.log('connection ws Alexa closed');
+        };
+
+
+
+</script>
+
+{% endblock alexanav %}
+
+</html>

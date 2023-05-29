@@ -1,0 +1,250 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<head>
+    <style>
+        .maindetail {
+            padding-top: 4em;
+        }
+
+        .profil-pic{
+            height: 110px;
+            width: 110px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        .place-pic{
+            height: auto;
+            max-width: 120px;
+        }
+        .gobal-eval-face{
+            max-width: 80px;
+        }
+        .eval-face{
+            max-width: 60px;
+        }
+        .question-eval-face{
+            max-width: 45px;
+        }
+        .sticky-top-btn{
+            position: fixed;
+            margin: 0.5rem !important;
+        }
+        .choices-text{
+            margin-bottom: 0;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .list-main-div{
+            max-width: 1200px;
+        }
+    </style>
+</head>
+
+<div class="d-flex justify-content-center align item-center justify-content-md-start">
+    <div class="d-flex flex-md-column gap-2 sticky-top-btn">
+        <form method="post" action="{% url 'app10_social_activities historic' %}">{% csrf_token %}
+            <button class="btn btn-perso w-100">{% trans 'Back' %}</button>
+            <input hidden name="month" value="{{ activity.end.month }}">
+            <input hidden name="year" value="{{ activity.end.year }}">
+        </form>
+        <a href="#top" class="btn btn-perso">{% trans 'Details' %}</a>
+        <a href="#evaluations" class="btn btn-perso">{% trans 'Evaluations' %}</a>
+    </div>
+</div>
+
+<main class="maindetail mt-md-2">
+    <div class="d-flex flex-column gap-3 p-1">
+        <!--    détails de l'activité    -->
+        <div class="d-flex flex-column align-items-center gap-1 text-center">
+            <div class="border border-darkblue rounded-3 p-2">
+                <h3 class="mb-0">{{ activity.event.type }}</h3>
+                <div class="d-flex flex-wrap justify-content-evenly w-100">
+                    <div class="d-flex flex-column p-2 text-center">
+                        <h5 class="text-muted">{% trans 'Organizer' %}</h5>
+                        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 h-100">
+                            {% if activity.event.organizer.user.profile.photo %}
+                                <img src="{{ activity.event.organizer.user.profile.photo.url }}" alt="{{ activity.organizer }}" class="profil-pic">
+                            {% else %}
+                                <img src="{% static 'app4_ehpad_base/img/no_picture.png' %}" alt="{{ activity.organizer }}" class="profil-pic">
+                            {% endif %}
+                            <h5>{{ activity.event.organizer }}</h5>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column p-2 text-center align-items-center justify-content-between">
+                        <h5 class="text-muted">{% trans 'Place' %}</h5>
+                        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 h-100">
+                            {% if activity.event.location.photo %}
+                                <img src="{{ activity.event.location.photo.url }}" alt="{{ activity.location.name }}" class="place-pic rounded-3">
+                            {% else %}
+                                <img src="{% static 'app4_ehpad_base/img/no_picture.png' %}" alt="{{ activity.location.name }}" class="place-pic rounded-3">
+                            {% endif %}
+                            <h5>{{ activity.event.location.name }}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--    dates de l'évènement    -->
+        <div class="d-flex justify-content-center">
+            <div class="border border-darkblue rounded-3 p-2 d-flex flex-wrap gap-1 gap-sm-5 justify-content-center">
+                <div class='text-center'>
+                    <span>{% trans 'Started' %}: {{ activity.start }}</span>
+                </div>
+                <div class="text-center">
+                    <span>{% trans 'Ended' %}: {{ activity.end }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center gap-2">
+            {% if pic_available %}
+                <a href="{% url 'app10_social_activities historic gallery' act_id=activity.id %}" class="btn btn-perso">
+                        <h5 class="choices-text">{% trans 'See the pictures' %}</h5>
+                </a>
+            {% else %}
+                <div class="btn btn-perso disabled">{% trans 'No photos available' %}</div>
+            {% endif %}
+            {% if activity.blog_post %}
+                <a href="{% url 'show_post' post_id=activity.blog_post.id %}" class="btn btn-perso">
+                    <h5 class="choices-text">{% trans 'Blog post' %}</h5>
+                </a>
+            {% else %}
+                <a href="{% url 'create_post' act_id=activity.id %}" class="btn btn-perso">
+                    <h5 class="choices-text">{% trans 'Create blog post' %}</h5>
+                </a>
+            {% endif %}
+        </div>
+        <!--     liste des inscrits / présents       -->
+        <div class="d-flex flex-column align-items-center">
+            <h5 class="text-muted text-center">{% trans 'Registered / present' %}</h5>
+            <div class="d-flex flex-wrap gap-1 justify-content-center list-main-div">
+            {% for participant in list_participants %}
+                <div class="d-flex gap-1 align-items-center border border-darkblue rounded-3 p-2" style="width:300px;">
+                    <div>
+                        {% if participant.profilej.user.profile.photo %}
+                            <img src="{{ participant.profilej.user.profile.photo.url }}" alt="{{ participant.profilej }}" class="profil-pic">
+                        {% else %}
+                            <img src="{% static 'app4_ehpad_base/img/no_picture.png' %}" alt="{{ participant.profilej }}" class="profil-pic">
+                        {% endif %}
+                    </div>
+                    <div class="text-center w-100">
+                        <span>{{ participant.profilej.user.profile.civility }} {{ participant.profilej.user.first_name.0 }}. {{ participant.profilej.user.last_name }}</span>
+                    </div>
+                    <div>
+                        {% if participant.is_present %}
+                            <svg width="60px" height="60px" viewBox="0 0 16 16" class="bi bi-check-circle-fill" fill="green" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+</svg>
+                        {% else %}
+                            <svg width="60px" height="60px" viewBox="0 0 16 16" class="bi bi-x-circle-fill" fill="red" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+</svg>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+        <div id="evaluations"></div>
+        <hr class="w-75 mx-auto">
+        <!-- modal sondage -->
+        <div class="modal fade" id="surveyModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">{% trans 'Survey for' %} {{ activity.event.type }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex flex-column justify-content-center align-items-center">
+                        {% for eval in list_voter.0.list_eval %}
+                            <div class="text-muted">{% trans 'Question N°' %}{{ eval.question.order }}</div>
+                            <h3>{{ eval.question.text }}</h3>
+                        {% endfor %}
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-perso" data-bs-dismiss="modal">{% trans 'Close' %}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--    détails des évaluations    -->
+        <div class="d-flex flex-column justify-content-center gap-1">
+            <div class="d-flex gap-2 justify-content-center">
+                <h3 class="text-center">{% trans 'Evaluations' %}</h3>
+                <button class="btn btn-perso" data-bs-toggle="modal" data-bs-target="#surveyModal">{% trans 'See survey' %}</button>
+            </div>
+            <!--      note globale      -->
+            <div class="d-flex justify-content-center align-items-center gap-5">
+                <h5 class="text-muted">{% trans 'Overall rating' %}</h5>
+                {% if act_rating %}
+                    {% if act_rating < 1.5 %}
+                        <img src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}" class="gobal-eval-face">
+                    {% elif act_rating < 2.5 %}
+                        <img src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}" class="gobal-eval-face">
+                    {% elif act_rating < 3.5 %}
+                        <img src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}" class="gobal-eval-face">
+                    {% else %}
+                        <img src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}" class="gobal-eval-face">
+                    {% endif %}
+                {% else %}
+                    <div class="gobal-eval-face"></div>
+                {% endif %}
+            </div>
+            <!--      notes des votants      -->
+            <div class="d-flex flex-wrap justify-content-center align-items-center gap-2 mx-auto">
+                {% for voter in list_voter|dictsort:'object.user.last_name' %}
+                    <div class="border border-darkblue rounded-3 p-2 voter-card">
+                        <!--      détails du votant      -->
+                        <div class="d-flex flex-column align-items-center flex-md-row">
+                            <div class="d-flex align-items-center gap-1">
+                                <div>
+                                    {% if voter.object.user.profile.photo %}
+                                        <img src="{{ voter.object.user.profile.photo.url }}" alt="{{ voter.object }}" class="profil-pic">
+                                    {% else %}
+                                        <img src="{% static 'app4_ehpad_base/img/no_picture.png' %}" alt="{{ voter.object }}" class="profil-pic">
+                                    {% endif %}
+                                </div>
+                                <div class="text-center">
+                                    <span>{{ voter.object.user.profile.civility }} {{ voter.object.user.first_name.0 }}. {{ voter.object.user.last_name }}</span>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-1 align-items-center ps-md-5">
+                                <span class="text-muted">{% trans 'Average' %}</span>
+                                {% if voter.note < 1.5 %}
+                                    <img src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}" class="eval-face">
+                                {% elif voter.note < 2.5 %}
+                                    <img src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}" class="eval-face">
+                                {% elif voter.note < 3.5 %}
+                                    <img src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}" class="eval-face">
+                                {% else %}
+                                    <img src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}" class="eval-face">
+                                {% endif %}
+                            </div>
+                        </div>
+                        <!--      détails de l'évaluation        -->
+                        <div class="d-flex flex-wrap justify-content-evenly gap-2 pt-3">
+                            {% for eval in voter.list_eval|dictsort:'question.order' %}
+                                <div class="d-flex flex-column align-items-center text-center">
+                                    <div>{% trans 'Question N°' %}{{ eval.question.order }}</div>
+                                    {% if eval.note < 1.5 %}
+                                        <img src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}" class="question-eval-face">
+                                    {% elif eval.note < 2.5 %}
+                                        <img src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}" class="question-eval-face">
+                                    {% elif eval.note < 3.5 %}
+                                        <img src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}" class="question-eval-face">
+                                    {% else %}
+                                        <img src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}" class="question-eval-face">
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</main>
+{% endblock content %}

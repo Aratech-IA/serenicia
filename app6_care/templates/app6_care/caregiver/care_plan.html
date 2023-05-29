@@ -1,0 +1,350 @@
+{% extends "app4_ehpad_base/base.html" %}
+{% load static %}
+{% load i18n %}
+{% load caregiver_filters %}
+
+{% block content %}
+<head>
+    <style>
+        {% for value in tlvl1 %}
+            .background{{ value.task_lvl_1__id }}{
+                background-color: {{ value.task_lvl_1__color }};
+            }
+
+            .border{{ value.task_lvl_1__id }}{
+                border-color: {{ value.task_lvl_1__color }} !important;
+                border: 1px solid;
+            }
+        {% endfor %}
+        .btn-icon{
+            width: 30px;
+        }
+        .comment-zone{
+            width: 100%;
+            min-height: 200px;;
+        }
+        .profile-pic{
+          overflow: hidden;
+          border-radius: 50px;
+          width: 60px;
+          height: 60px;
+          object-fit: cover;
+        }
+    </style>
+</head>
+
+<a href="{% url 'care last comments' %}" class="btn btn-outline-primary sticky-top-btn">
+    <svg viewBox="0 0 16 16" class="bi bi-chat-text btn-icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
+      <path fill-rule="evenodd" d="M4 5.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zM4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8zm0 2.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z"/>
+    </svg>
+</a>
+
+<main class="container">
+    <div>
+      <img class="profile-pic" src="{{ resident.user.profile.get_photo_url }}">
+      <span>{{ resident.user.profile.civility }} {{ resident.user.first_name.0 }}. {{ resident.user.last_name }}</span>
+    </div>
+    <div class="d-flex flex-column gap-2 my-2">
+        {% for task in tasks %}
+            {% with btngrp_base='btn'|btn_grp_id_concat:task.lvl1.id|btn_grp_id_concat:task.lvl1_inter_id %}
+                <div class="border{{ task.lvl1.id }} rounded-3">
+                    <div class="d-flex justify-content-between background{{ task.lvl1.id }} rounded-top p-1">
+                        <h3 class="mb-0">{{ task.lvl1.name }}</h3>
+                        {% if today %}
+                            <button onclick="validAllIntervention(this, '{{ btngrp_base }}', '{% url 'finalize intervention' lvl1=task.lvl1.id lvl1_inter_id=task.lvl1_inter_id %}')" class="btn btn-perso {% if task.done %}disabled{% endif %}">{% trans 'Finalize intervention' %}</button>
+                        {% endif %}
+                    </div>
+                    {% for sub_task in task.sub_lvl %}
+                        <div class="d-flex flex-wrap justify-content-between p-2">
+                            <div class="d-flex gap-3 align-items-center">
+                                <span>{{ sub_task.date|date:"H:i" }}</span>
+                                <span>
+                                    {{ sub_task.lvl2.name }}{% if sub_task.lvl3 %} {{ sub_task.lvl3.name }}{% endif %}
+                                </span>
+                            </div>
+                            <div class="d-flex flex-fill justify-content-end align-items-end">
+                                {% with btngrp=btngrp_base|btn_grp_id_concat:forloop.counter %}
+                                    <div class="d-flex gap-2" id="{{ btngrp }}">
+                                        <!--           bouton validation             -->
+                                        <button name="validation" class="btn {% if sub_task.unrealized or sub_task.rejected %}btn-outline-secondary disabled{% else %}btn-perso{% endif %} {% if sub_task.done or task.done %}disabled{% endif %}" onclick="validIntervention(this, '{% if sub_task.lvl3 %}{% url 'care plan intervention' lvl1=task.lvl1.id lvl1_inter_id=task.lvl1_inter_id lvl2=sub_task.lvl2.id lvl3=sub_task.lvl3.id lvl4=0 %}{% else %}{% url 'care plan intervention' lvl1=task.lvl1.id lvl1_inter_id=task.lvl1_inter_id lvl2=sub_task.lvl2.id lvl3=0 lvl4=0 %}{% endif %}')">
+                                            <svg viewBox="0 0 16 16" class="bi bi-check-circle btn-icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                              <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                              <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
+                                            </svg>
+                                        </button>
+                                        <!--           bouton détails             -->
+                                        <button name="details" value="{{ sub_task.details }}" class="btn {% if not sub_task.details or sub_task.unrealized or sub_task.rejected %}btn-outline-secondary disabled{% elif task.done and not sub_task.details_done %}btn-outline-secondary disabled{% else %}btn-perso{% endif %}" data-bs-toggle="modal" data-bs-target="#modal{{ task.lvl1.id }}-{{ task.lvl1_inter_id }}-{{ sub_task.lvl2.id }}{% if sub_task.lvl3 %}-{{ sub_task.lvl3.id }}{% endif %}">
+                                            <svg viewBox="0 0 16 16" class="bi bi-plus-circle btn-icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                              <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                              <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                            </svg>
+                                        </button>
+                                        <!--           bouton commentaire             -->
+                                        <button name="comment" class="btn {% if not task.done or sub_task.comment %}btn-outline-primary{% else %}btn-outline-secondary disabled{% endif %} {% if sub_task.comment %}active{% endif %}" data-bs-toggle="modal" data-bs-target="#modalcom{{ task.lvl1.id }}-{{ task.lvl1_inter_id }}-{{ sub_task.lvl2.id }}{% if sub_task.lvl3 %}-{{ sub_task.lvl3.id }}{% endif %}">
+                                            <svg viewBox="0 0 16 16" class="bi bi-chat-dots btn-icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                              <path fill-rule="evenodd" d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
+                                              <path d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                            </svg>
+                                        </button>
+                                        <!--           bouton annulation             -->
+                                        <button name="cancel" class="btn {% if not sub_task.done or task.done %}btn-outline-secondary disabled{% else %}btn-danger{% endif %}" onclick="cancelTask(this, '{{ btngrp }}')" value="{{ sub_task.done }}">
+                                            <svg viewBox="0 0 16 16" class="bi bi-x-circle btn-icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                              <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                              <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                            </svg>
+                                        </button>
+                                        {% if sub_task.reject %}
+                                            <!--           bouton refus             -->
+                                            <button name="reject" class="btn {% if sub_task.rejected %}btn-danger disabled{% elif sub_task.done or task.done %}btn-outline-secondary disabled{% else %}btn-outline-danger{% endif %}" onclick="rejectIntervention(this, '{% url 'care plan intervention' lvl1=task.lvl1.id lvl1_inter_id=task.lvl1_inter_id lvl2=sub_task.lvl2.id lvl3=sub_task.reject lvl4=0 %}')">
+                                                <svg viewBox="0 0 16 16" class="bi bi-emoji-angry btn-icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                  <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                  <path fill-rule="evenodd" d="M4.285 12.433a.5.5 0 0 0 .683-.183A3.498 3.498 0 0 1 8 10.5c1.295 0 2.426.703 3.032 1.75a.5.5 0 0 0 .866-.5A4.498 4.498 0 0 0 8 9.5a4.5 4.5 0 0 0-3.898 2.25.5.5 0 0 0 .183.683z"/>
+                                                  <path d="M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z"/>
+                                                  <path fill-rule="evenodd" d="M4.053 4.276a.5.5 0 0 1 .67-.223l2 1a.5.5 0 1 1-.447.894l-2-1a.5.5 0 0 1-.223-.67zm7.894 0a.5.5 0 0 0-.67-.223l-2 1a.5.5 0 1 0 .447.894l2-1a.5.5 0 0 0 .223-.67z"/>
+                                                </svg>
+                                            </button>
+                                        {% else %}
+                                            <div style="width: 56px;"></div>
+                                        {% endif %}
+                                    </div>
+                                    <!-- Modal détails -->
+                                    <div class="modal fade" id="modal{{ task.lvl1.id }}-{{ task.lvl1_inter_id }}-{{ sub_task.lvl2.id }}{% if sub_task.lvl3 %}-{{ sub_task.lvl3.id }}{% endif %}" tabindex="-1" aria-hidden="true">
+                                      <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5 class="modal-title">{% trans 'Details' %} : {{ sub_task.lvl2.name }}{% if sub_task.lvl3 %} {{ sub_task.lvl3.name }}{% endif %}</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                          </div>
+                                          <div class="modal-body" id="modal{{ btngrp }}">
+                                            {% if sub_task.lvl3 %}
+                                              {% for detail in sub_task.lvl3.details.all %}
+                                                <button class="btn {% if detail in sub_task.details_done %}btn-perso disabled{% elif task.done %}btn-outline-secondary disabled{% else %}btn-perso{% endif %}" onclick="validInterventionModal(this, '{{ btngrp }}', '{% url 'care plan intervention' lvl1=task.lvl1.id lvl1_inter_id=task.lvl1_inter_id lvl2=sub_task.lvl2.id lvl3=sub_task.lvl3.id lvl4=detail.id %}')">
+                                                    <img class="btn-icon" src="{% static detail.get_svg_path %}">
+                                                    {{ detail.name }}
+                                                </button>
+                                              {% endfor %}
+                                            {% else %}
+                                              {% for detail in sub_task.lvl2.details.all %}
+                                                <button class="btn {% if detail in sub_task.details_done %}btn-perso disabled{% elif task.done %}btn-outline-secondary disabled{% else %}btn-perso{% endif %}" onclick="validInterventionModal(this, '{{ btngrp }}', '{% url 'care plan intervention' lvl1=task.lvl1.id lvl1_inter_id=task.lvl1_inter_id lvl2=sub_task.lvl2.id lvl3=detail.id lvl4=0 %}')">
+                                                    <img class="btn-icon" src="{% static detail.get_svg_path %}">
+                                                    {{ detail.name }}
+                                                </button>
+                                              {% endfor %}
+                                            {% endif %}
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'Close' %}</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <!-- Modal commentaire -->
+                                    <div class="modal fade" id="modalcom{{ task.lvl1.id }}-{{ task.lvl1_inter_id }}-{{ sub_task.lvl2.id }}{% if sub_task.lvl3 %}-{{ sub_task.lvl3.id }}{% endif %}" tabindex="-1" aria-hidden="true">
+                                      <div class="modal-dialog modal-xl modal-dialog-centered">
+                                        <div class="modal-content">
+                                            {% csrf_token %}
+                                            <div class="modal-header">
+                                            <h5 class="modal-title">{% trans 'Comment' %} : {{ sub_task.lvl2.name }}{% if sub_task.lvl3 %} {{ sub_task.lvl3.name }}{% endif %}</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                          </div>
+                                          <div class="modal-body">
+                                              <textarea id="com{{ btngrp }}" name="{{ sub_task.comment.id }}" class="comment-zone" maxlength="1500" {% if task.done %}readonly{% endif %} onkeyup="toggleSaveBtn('save{{ btngrp }}')">{{ sub_task.comment.content|unquote_raw }}</textarea>
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'Close' %}</button>
+                                              {% if not task.done %}
+                                                <button id="save{{ btngrp }}" type="submit" class="btn btn-perso disabled" onclick="addComment('{{ btngrp }}', '{{ task.lvl1.id }}/{{ task.lvl1_inter_id }}/{{ sub_task.lvl2.id }}/{% if sub_task.lvl3 %}{{ sub_task.lvl3.id }}{% else %}0{% endif %}/', 'com{{ task.lvl1.id }}-{{ task.lvl1_inter_id }}-{{ sub_task.lvl2.id }}{% if sub_task.lvl3 %}-{{ sub_task.lvl3.id }}{% endif %}')">
+                                                    {% trans 'Save' %}
+                                                </button>
+                                              {% endif %}
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                {% endwith %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endwith %}
+        {% endfor %}
+    </div>
+</main>
+<script>
+    async function fetchUrl(url){
+        var response = await fetch(url, {method: 'GET'});
+            if (response.ok){
+                var result = await response.json();
+                return result.detail_id;
+            };
+    };
+
+    async function validIntervention(btn, url){
+        var detail_id = await fetchUrl(url);
+        if (detail_id){
+            btn.classList.add('disabled');
+            activateCancelBtn(btn.parentNode, detail_id);
+            disableRejectBtn(btn.parentNode);
+        };
+    };
+
+    function disableButton(classList){
+        classList.add('btn-outline-secondary', 'disabled');
+    };
+
+    async function validAllIntervention(btn, btngrp_base, url){
+        if (await fetchUrl(url)){
+            btn.classList.add('disabled');
+            let desactivate = [];
+            let modalbtnlist = document.querySelectorAll('[id^=modal' + btngrp_base);
+            for (modalindex=0; modalindex < modalbtnlist.length; modalindex++){
+                let disabled = 0;
+                for (btnindex=0; btnindex < modalbtnlist[modalindex].children.length; btnindex++){
+                    var classList = modalbtnlist[modalindex].children[btnindex].classList;
+                    if (!classList.contains('disabled')){
+                        classList.remove('btn-perso');
+                        disableButton(classList);
+                        disabled++;
+                    };
+                };
+                if (disabled == modalbtnlist[modalindex].children.length){
+                    desactivate.push(modalindex);
+                };
+            };
+            let textarealist = document.querySelectorAll('[id^=com' + btngrp_base);
+            let savebtnlist = document.querySelectorAll('[id^=save' + btngrp_base);
+            console.log(textarealist);
+            console.log(savebtnlist);
+            for (index=0; index < textarealist.length; index++){
+                textarealist[index].readOnly = true;
+                savebtnlist[index].hidden = true;
+            };
+            let btngrplist = document.querySelectorAll('[id^=' + btngrp_base);
+            let exclude = ['details', 'comment'];
+            for (grpindex=0; grpindex < btngrplist.length; grpindex++){
+                for (btnindex=0; btnindex < btngrplist[grpindex].children.length; btnindex++){
+                    if (!exclude.includes(btngrplist[grpindex].children[btnindex].name)){
+                        var classList = btngrplist[grpindex].children[btnindex].classList;
+                        if (!classList.contains('disabled')){
+                            if (classList.contains('btn-perso')){
+                                classList.remove('btn-perso');
+                                disableButton(classList);
+                            } else {
+                                classList.remove('btn-danger', 'btn-outline-danger');
+                                disableButton(classList);
+                            };
+                        };
+                    } else if (btngrplist[grpindex].children[btnindex].name == 'details' && desactivate.includes(grpindex)){
+                        btngrplist[grpindex].children[btnindex].classList.remove('btn-perso');
+                        disableButton(btngrplist[grpindex].children[btnindex].classList);
+                    } else if (btngrplist[grpindex].children[btnindex].name == 'comment' && !btngrplist[grpindex].children[btnindex].classList.contains('active')){
+                        disableButton(btngrplist[grpindex].children[btnindex].classList);
+                    };
+                };
+            };
+        };
+    };
+
+    async function validInterventionModal(btn, btnGrp, url){
+        var parentNode = document.getElementById(btnGrp);
+        var detail_id = await fetchUrl(url);
+        if (detail_id){
+            btn.classList.add('disabled');
+            activateCancelBtn(parentNode, detail_id);
+            parentNode.children[0].classList.add('disabled');
+            disableRejectBtn(parentNode);
+        };
+    };
+
+    function unrealizedTaskBtn(parentNode){
+        for (let i = 0; i < 2; i++) {
+            parentNode.children[i].classList.remove('btn-perso');
+            disableButton(parentNode.children[i].classList);
+        }
+    };
+
+    function disableRejectBtn(parentNode){
+        for (btnindex=0; btnindex < parentNode.children.length; btnindex++){
+            if (parentNode.children[btnindex].name == 'reject'){
+                parentNode.children[btnindex].classList.remove('btn-outline-danger');
+                disableButton(parentNode.children[btnindex].classList);
+            };
+        };
+    };
+
+    function activateCancelBtn(parentNode, details_id){
+        let cancelBtn = parentNode.children[3];
+        cancelBtn.value = details_id;
+        cancelBtn.classList.remove('disabled', 'btn-outline-secondary');
+        cancelBtn.classList.add('btn-danger');
+    };
+
+    async function cancelTask(btn, btngrp){
+        await fetchUrl('cancel/' + btn.value + '/');
+        for (btnindex=0; btnindex < btn.parentNode.children.length; btnindex++){
+           var btnelement = btn.parentNode.children[btnindex];
+           switch (btnelement.name){
+               case 'validation':
+                    btnelement.classList.remove('btn-outline-secondary', 'disabled');
+                    btnelement.classList.add('btn-perso');
+                    break;
+               case 'reject':
+                    btnelement.classList.remove('btn-danger', 'disabled');
+                    btnelement.classList.add('btn-outline-danger');
+                    break;
+               case 'cancel':
+                    btnelement.classList.remove('btn-danger');
+                    disableButton(btnelement.classList);
+                    break;
+               case 'details':
+                    if (btnelement.value == 'True'){
+                        btnelement.classList.remove('btn-outline-secondary', 'disabled')
+                        btnelement.classList.add('btn-perso')
+                    };
+           };
+        };
+        let modalbtn = document.getElementById('modal' + btngrp);
+        for (btnindex=0; btnindex < modalbtn.children.length; btnindex++){
+            modalbtn.children[btnindex].classList.remove('disabled');
+        };
+    };
+
+    async function rejectIntervention(btn, url){
+        btn.classList.remove('btn-outline-danger');
+        btn.classList.add('btn-danger');
+        unrealizedTaskBtn(btn.parentNode);
+        var detail_id = await validIntervention(btn, url);
+        activateCancelBtn(btn.parentNode, details_id);
+    };
+
+    async function addComment(btngrp, task_ids, modal_id){
+        var comelement = document.getElementById('com' + btngrp);
+        var action = 'disable';
+        if (!comelement.value && comelement.name){
+            await fetchUrl('comment/delete/' + comelement.name + '/');
+            comelement.name = false;
+        }else if (comelement.value){
+            var url = 'comment/' + task_ids + encodeURI(encodeURIComponent(comelement.value)) + '/';
+            var comment_id = await fetchUrl(url);
+            comelement.name = comment_id;
+            action = 'active';
+        };
+        var btngrplist = document.getElementById(btngrp);
+        for (btnindex=0; btnindex < btngrplist.children.length; btnindex++){
+            if (btngrplist.children[btnindex].name == 'comment'){
+                if (action == 'active'){
+                    btngrplist.children[btnindex].classList.add(action);
+                } else {
+                    btngrplist.children[btnindex].classList.remove('active');
+                };
+            };
+        };
+        document.getElementById('save' + btngrp).classList.add('disabled');
+    };
+
+    function toggleSaveBtn(save_id){
+        document.getElementById(save_id).classList.remove('disabled');
+    };
+</script>
+{% endblock content %}

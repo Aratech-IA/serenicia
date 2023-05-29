@@ -1,0 +1,24 @@
+<script>
+async function try_connect(){
+    var result = await fetchWithTimeout('{{ FACIAL_RECO_IP }}', {
+            method: 'GET',
+            })
+        .then(response => {
+            return response.json();
+            })
+        .catch(error => {
+            return 'error'
+            });
+    var recobtn = document.getElementsByClassName('recobtn');
+    if (result == 'None'){
+            for (i = 0; i < recobtn.length; i++) {
+                recobtn[i].classList.remove('disabled');
+            }
+        }else{
+            for (i = 0; i < recobtn.length; i++) {
+                recobtn[i].classList.add('disabled');
+            }
+        };
+};
+try_connect();
+</script>

@@ -1,0 +1,318 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+<head>
+    <title>{% trans "Criteria sheet" %}</title>
+</head>
+
+
+<main class="mt-3 mx-2 mx-lg-5">
+    <div class="d-flex justify-content-between align-items-start">
+        <div>
+            <h3 class="text-uppercase">{% trans "Thematic" %}</h3>
+            <h3>{{manual_page.thematique.title}}</h3>
+        </div>
+        <a class="btn btn-perso" href="{% url 'app11_quality index-fiche-critere' %}">{% trans "Return" %}</a>
+    </div>
+
+    <div class="py-3">
+        <h3 class="largeur1">{% trans "GOAL" %} {{manual_page.chapitre.number}}.{{manual_page.objectif.number}}</h3>
+        <h3>{{manual_page.objectif.title}}.</h3>
+    </div>
+
+    <div class="pb-4">
+        <h4 class="largeur2">{% trans "CRITERION" %} {{manual_page.chapitre.number}}.{{manual_page.objectif.number}}.{{manual_page.number}} </h4>
+        <h4>{{manual_page.title}}.</h4>
+    </div>
+    <div class="d-flex flex-wrap justify-content-between">
+        <div>
+            <!-- Niveau d'exigence -->
+            <div class="d-sm-flex">
+                <div>
+                    <p class="bg-secondary px-1 text-center">{% trans "Requirement level" %} :</p>
+                </div>
+                <div class="ps-2">
+                    <p>{{valeur.valeurexigence}}</p>
+                </div>
+            </div>
+
+            <!-- Champ d'application -->
+            <div class="d-sm-flex py-3">
+                <div>
+                    <p class="bg-secondary px-1 text-center">{% trans "Scope" %} :</p>
+                </div>
+                <div class="ps-2">
+                    <p>{{valeur.valeuressms}}</p>
+                    <p>{{valeur.valeurstructure}}</p>
+                    <div class="d-flex">
+                        {% for public in valeur.valeurpublic %}
+                            <p>{{public}}</p>
+                            {% if not forloop.last %}
+                                <p class="px-1">/</p>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if perms.app11_quality.view_critere %}
+            <!-- Gestion du responsable du critère -->
+            <div>
+                {% if manual_page.manager %}
+                    <div class="d-flex flex-wrap gap-2 align-items-center">
+                        <span class="fw-bold">{% trans 'Manager' %} : </span><span>{{ manual_page.manager }}</span>
+                        <div>
+                            <a class="btn btn-perso" href="{% url 'app11_quality select manager' crit_id=manual_page.id %}">{% trans 'Modify' %}</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <div>
+                        <a class="btn btn-perso" href="{% url 'app11_quality select manager' crit_id=manual_page.id %}">{% trans 'Add a manager' %}</a>
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="d-lg-flex pt-4">
+        <!-- Eléments d'évaluation -->
+        <div class="col-lg-6 px-2 ps-lg-0 pe-lg-3 pt-lg-4">
+            <div class="d-flex justify-content-center align-items-center bg-lightblue border border-dark py-2">
+                <h5 class="">{% trans "Evaluation elements" %}</h5>
+            </div>
+            {% for element, details in element.items %}
+                <div class="border-left border-right border-bottom border-dark p-2">
+                    <p class="fw-bolder">{{element}}</p>
+                    <div class="ps-3">
+                        {% for detail in details %}
+                            <p>• {{detail.text}}.</p>
+                            {% if request.user.profileserenicia == manual_page.manager %}
+                                <form class="d-flex gap-2 align-items-center" action="" method="post">{% csrf_token %}
+                                    <input id="eval{{ detail.id }}" type="hidden" name="eval">
+                                    <input type="hidden" name="eval-id" value="{{ detail.id }}">
+                                    <input type="image" onclick="evaluation(1, {{ detail.id }})" src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}" class="{% if detail.eval == 1 %}hlface{% else %}evalface{% endif %}">
+                                    <input type="image" onclick="evaluation(2, {{ detail.id }})" src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}" class="{% if detail.eval == 2 %}hlface{% else %}evalface{% endif %}">
+                                    <input type="image" onclick="evaluation(3, {{ detail.id }})" src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}" class="{% if detail.eval == 3 %}hlface{% else %}evalface{% endif %}">
+                                    <input type="image" onclick="evaluation(4, {{ detail.id }})" src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}" class="{% if detail.eval == 4 %}hlface{% else %}evalface{% endif %}">
+                                    <button class="btn btn-perso {% if detail.eval == 5 %}active{% endif %}" onclick="evaluation(5, {{ detail.id }})">{% trans 'Optimized' %}</button>
+                                    <button class="btn btn-outline-secondary {% if detail.eval == 0 %}active{% endif %}" onclick="evaluation(0, {{ detail.id }})">{% trans 'In progress' %}</button>
+                                </form>
+                            {% else %}
+                                <div class="d-flex align-items-center">
+                                    {% if detail.eval == 1 %}
+                                        <img src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}" class="evalface">
+                                    {% elif detail.eval == 2 %}
+                                        <img src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}" class="evalface">
+                                    {% elif detail.eval == 3 %}
+                                        <img src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}" class="evalface">
+                                    {% elif detail.eval == 4 %}
+                                        <img src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}" class="evalface">
+                                    {% elif detail.eval == 5 %}
+                                        <div class="btn btn-perso active">{% trans 'Optimized' %}</div>
+                                    {% else %}
+                                        <div class="btn btn-outline-secondary active">{% trans 'In progress' %}</div>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="col-lg-6 px-2 pe-lg-0 ps-lg-3 pt-5 pt-lg-0">
+            <!-- Logo livre -->
+            <div class="d-flex justify-content-center align-items-center">
+                -------- <img src="{% static 'app11_quality/images/book_200x229.png' %}" alt= "{% trans 'books logo' %}" height="36em" class="px-2"> --------
+            </div>
+            <!-- Références -->
+            <div class="d-flex justify-content-center align-items-center pt-1 pb-2">
+                <h5>{% trans "References" %}</h5>
+            </div>
+            {% for reference, details in reference.items %}
+                <div class="pb-2">
+                    <p class="fw-bolder">{{reference}}</p>
+                    {% for detail in details %}
+                        <a href="{{detail.url}}" target="_blank">
+                            <p>• {{detail.detail}}</p>
+                        </a>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% if request.user.profileserenicia == manual_page.manager %}
+        <!-- Saut de ligne -->
+        <div class="d-flex justify-content-center align-items-center pt-4 pb-3">
+            <p class="lightblue">--------------------------------------------------------</p>
+        </div>
+    
+        <!-- création d'une response -->
+        <div class="tri d-flex flex-column justify-content-center pt-3">
+            <form action="" method="post">
+                {% csrf_token %}
+                <input type="submit" name="add_response" value="{% trans 'Add a response to this criterion' %}" class="btn btn-perso w-100">
+            </form>
+        </div>
+    {% endif %}
+
+    {% if responses %}
+        <!-- Saut de ligne -->
+        <div class="d-flex justify-content-center align-items-center pt-4 pb-3">
+            <p class="lightblue">--------------------------------------------------------</p>
+        </div>
+    {% endif %}
+
+    <!-- Affichage des responses -->
+    <div>
+        {% if add_response %}
+            <div class="d-flex flex-column flex-lg-row mb-4 p-2 border border-2 border-darkblue rounded rounded-3">
+                <div id="addrep" class="{% if rep.protocols.all %} col-lg-7 {% endif %} {% if not rep.protocols.all %} w-100 {% endif %}">
+                    <!-- Info sur la personne qui fait la réponse -->
+                    <div class="d-flex align-items-center fw-bold p-1 bg-grey mb-3 mx-sm-2 mx-md-3 mx-lg-4 rounded rounded-3">
+                        <img src="{{ request.user.profile.get_photo_url }}" width="60em" height="60em" alt="{% trans 'Photo of the speaker' %}" class="photoreponse rounded-circle">
+                        <div class="d-flex flex-column justify-content-center ps-3">
+                            <p>{% trans "Written by" %} {{ request.user.profileserenicia }}</p>
+                            <p>{% trans "the" %} {{ rep.date }}</p>
+                        </div>
+                    </div>
+
+                    <!-- Réponse -->
+                    {% if request.user.profileserenicia == manual_page.manager%}
+                        <!-- Affichage du form response -->
+                        <div class="tri d-flex flex-column justify-content-center pt-3">
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                {{ form }}
+                                <input type="submit" value="{% trans 'Validate' %}" class="btn btn-perso w-100">
+                            </form>
+                        </div>
+                    {% endif %}
+
+                    {% if rep.text %}
+                        <div class="pb-3 pb-lg-0 text-response d-flex flex-column justify-content-center px-2 px-lg-4">
+                            {{ rep.text|linebreaks }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+
+        {% for rep in responses %}
+            <div class="d-flex flex-column flex-lg-row mb-4 p-2 border border-2 border-darkblue rounded rounded-3">
+
+                <div class="{% if request.user.profileserenicia != manual_page.manager %} col-lg-8 {% endif %} {% if rep.protocols.all and request.user.profileserenicia == manual_page.manager  %} col-lg-7 {% endif %} {% if not rep.protocols.all %} w-100 {% endif %}">
+                    <!-- Info sur la personne qui fait la réponse -->
+                    <div class="d-flex align-items-center fw-bold p-1 bg-grey mb-3 mx-sm-2 mx-md-3 mx-lg-4 rounded rounded-3">
+                        <img src="{{ rep.get_photo_url }}" width="60em" height="60em" alt="{% trans 'Photo of the speaker' %}" class="photoreponse rounded-circle">
+                        <div class="d-flex flex-column justify-content-center ps-3">
+                            <p>{% trans "Written by" %} {{ rep.created_by }}</p>
+                            <p>{% trans "the" %} {{ rep.date }}</p>
+                        </div>
+                    </div>
+
+                    {% if modif_rep == rep.id %}
+                        {% if request.user.profileserenicia == manual_page.manager%}
+                        <!-- Réponse -->
+                            <!-- Affichage du form response -->
+                            <div id="{{ modif_rep }}" class="tri d-flex flex-column justify-content-center pt-3">
+                                <form action="" method="post">
+                                    {% csrf_token %}
+                                    {{ form }}
+                                    <input type="hidden" name="modif_rep" value="{{ rep.id }}">
+                                    <button type="submit" class="btn btn-perso w-100">{% trans 'Validate' %}</button>
+                                </form>
+                            </div>
+                        {% endif %}
+
+                    {% else%}
+                        {% if rep.text %}
+                            <div class="pb-3 pb-lg-0 text-response d-flex flex-column justify-content-center px-2 px-lg-4">
+                                {{ rep.text|linebreaks }}
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                </div>
+                
+                <!-- Protocoles associés -->
+                {% if rep.protocols.all %}
+                    <div class="{% if request.user.profileserenicia != manual_page.manager %} col-lg-4 {% endif %} {% if rep.protocols.all and request.user.profileserenicia == manual_page.manager  %} col-lg-3 {% endif %}  d-flex flex-column justify-content-center p-1">
+                        <div class="d-flex flex-column align-items-start">
+                            <div class="d-flex justify-content-between align-items-center w-100">
+                                <h6>{% trans "Associated protocols" %} :</h6>
+                            </div>
+                            <ul class="ps-2">
+                                {% for protocol in rep.protocols.all %}
+                                    <li class="pb-1">
+                                        <a href="{%url 'app11_quality dlProtocol' protocol_id=protocol.id %}" target="_blank">
+                                            <p>--> {{ protocol.name }}</p>
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if request.user.profileserenicia == manual_page.manager %}
+                    <div class="col-lg-2 d-flex flex-column justify-content-between p-2">
+                        <!-- Suppression d'une réponse à un protocole -->
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <button type="submit" name="delete" value="{{ rep.id }}" class="btn btn-perso w-100">
+                                {% trans "Delete response" %}
+                            </button>
+                        </form>
+                        <!-- Modifier la réponse -->
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <button id="modifrep" type="submit" name="modif_rep" value="{{ rep.id }}" class="btn btn-perso w-100 my-1">
+                                    {% trans "Edit response" %}
+                            </button>
+                        </form>
+                        <!-- Modifier les protocoles associés à la réponse -->
+                        <button class="btn btn-perso">
+                            <a href="{% url 'app11_quality selectProtocols' response_id=rep.id%}">
+                                {% trans 'Modify Protocol' %}
+                            </a>
+                        </button>
+                    </div>
+                {% endif %}
+                
+            </div>
+        {% endfor %}
+    </div>
+
+</main>
+
+<script>
+    function evaluation(note, id){
+        document.getElementById('eval' + id).setAttribute('value', note);
+        this.form.submit();
+    };
+</script>
+
+{% if modif_rep %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+            window.location = '#{{ modif_rep }}'
+        });
+    </script>
+{% endif %}
+
+{% if add_response %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+            window.location = '#addrep'
+        });
+    </script>
+{% endif %}
+
+
+
+
+{% endblock %}

@@ -1,0 +1,2 @@
+
+  python3 webcam.py --cert-file ../../../practice-csr/server.crt --key-file ../../../practice-csr/server.key

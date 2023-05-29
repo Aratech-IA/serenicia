@@ -1,0 +1,176 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+{% load static %}
+{% load i18n %}
+{% load custom_filters_app9 %}
+
+{% block content %}
+<head>
+    <style>
+        .svg-icon{
+            height: 20px;
+            width: 20px;
+        }
+    </style>
+</head>
+
+{% if waiting_confirmation %}
+    <div class="modal" id="warning_msg" tabindex="-1">
+        <div class="modal-dialog">
+            <form action="" method="post" class="modal-content border border-darkblue">{% csrf_token %}
+                <input hidden name="confirmation" value="{{ waiting_confirmation.id }}">
+                <div class="modal-header">
+                    <h5 class="modal-title">{% trans "Waiting for confirmation" %}</h5>
+                </div>
+                <div class="modal-body text-center">
+                    <span>{% trans 'You have been invited to participate in the personalized support project of' %} {{ resident.user.profile.civility }} {{ resident.user.first_name.0 }} {{ resident.user.last_name }}</span>
+                    <h5>{{ waiting_confirmation.planning_event.start|date:'l j F' }} {{ waiting_confirmation.planning_event.start|date:'H:i' }} - {{ waiting_confirmation.planning_event.end|date:'H:i' }}</h5>
+                    <div class="d-flex flex-column align-items-center">
+                        <span>{% trans 'Select a mode' %}</span>
+                        <select name="type-select" class="btn btn-perso">
+                            <option selected value="presence">{% trans 'In the building' %}</option>
+                            <option value="distance">{% trans 'From a distance' %}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <button class="btn btn-outline-warning" data-bs-dismiss="modal">
+                            {% trans 'Later' %}
+                        </button>
+                    <div class="d-flex gap-2 justify-content-center">
+                        <button class="btn btn-outline-danger" name="participation" value="rejected">
+                            {% trans 'I do not participate' %}
+                        </button>
+                        <button class="btn btn-perso" name="participation" value="confirmed">
+                            {% trans 'I participate' %}
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endif %}
+
+<main class="d-flex flex-column gap-3">
+    {% if appointments %}
+        <div class="d-flex flex-column align-items-center">
+            <h3>{% trans 'Scheduled appointment' %}{{ appointments|pluralize }}</h3>
+            <div class="d-flex flex-wrap justify-content-center gap-2">
+                {% for app in appointments|dictsort:'planning_event.start' %}
+                    <div>
+                        <div class="d-flex flex-column align-items-center rounded-3 border border-darkblue p-2">
+                            <span class="fw-bold">{{ app.planning_event.start|date:'l j F' }} {{ app.planning_event.start|date:'H:i' }} / {{ app.planning_event.end|date:'H:i' }}</span>
+                            <div class="d-flex gap-2">
+                                {% if app.by_video %}
+                                    <span>{% trans 'From a distance' %}</span>
+                                    <div>
+                                        <svg viewBox="0 0 16 16" class="bi bi-display svg-icon svg-icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5.75 13.5c.167-.333.25-.833.25-1.5h4c0 .667.083 1.167.25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75z"/>
+          <path fill-rule="evenodd" d="M13.991 3H2c-.325 0-.502.078-.602.145a.758.758 0 0 0-.254.302A1.46 1.46 0 0 0 1 4.01V10c0 .325.078.502.145.602.07.105.17.188.302.254a1.464 1.464 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.758.758 0 0 0 .254-.302 1.464 1.464 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.757.757 0 0 0-.302-.254A1.46 1.46 0 0 0 13.99 3zM14 2H2C0 2 0 4 0 4v6c0 2 2 2 2 2h12c2 0 2-2 2-2V4c0-2-2-2-2-2z"/>
+        </svg>
+                                    </div>
+                                {% else %}
+                                    <span>{% trans 'In the presence' %}</span>
+                                    <div>
+                                        <svg viewBox="0 0 16 16" class="bi bi-person-circle svg-icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
+          <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+          <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
+        </svg>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            {% if app|get_list_appointments:request.user.profileserenicia %}
+                                <hr class="w-75 mx-auto">
+                                {% for other_app in app|get_list_appointments:request.user.profileserenicia %}
+                                    <div class="d-flex justify-content-between align-items-center w-100">
+                                        <span class="{% if other_app.rejected %}text-decoration-line-through{% endif %}">{{ other_app.profileserenicia.user.get_full_name }}</span>
+                                        {% if other_app.confirmed and not other_app.rejected %}
+                                            <div class="d-flex gap-1">
+                                                {% if other_app.by_video %}
+                                                    <div>
+                                                        <svg viewBox="0 0 16 16" class="bi bi-display svg-icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5.75 13.5c.167-.333.25-.833.25-1.5h4c0 .667.083 1.167.25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75z"/>
+          <path fill-rule="evenodd" d="M13.991 3H2c-.325 0-.502.078-.602.145a.758.758 0 0 0-.254.302A1.46 1.46 0 0 0 1 4.01V10c0 .325.078.502.145.602.07.105.17.188.302.254a1.464 1.464 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.758.758 0 0 0 .254-.302 1.464 1.464 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.757.757 0 0 0-.302-.254A1.46 1.46 0 0 0 13.99 3zM14 2H2C0 2 0 4 0 4v6c0 2 2 2 2 2h12c2 0 2-2 2-2V4c0-2-2-2-2-2z"/>
+        </svg>
+                                                    </div>
+                                                {% else %}
+                                                    <div>
+                                                        <svg viewBox="0 0 16 16" class="bi bi-person-circle svg-icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
+          <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+          <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
+        </svg>
+                                                    </div>
+                                                {% endif %}
+                                                <div>
+                                                    <svg viewBox="0 0 16 16" class="bi bi-check-circle-fill svg-icon" fill="green" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                </svg>
+                                                </div>
+                                            </div>
+                                        {% else %}
+                                            <div>
+                                                <svg viewBox="0 0 16 16" class="bi bi-x-circle-fill svg-icon" fill="red" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                    </svg>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                            <form action="" method="post" class="d-flex w-100 justify-content-end mt-1">{% csrf_token %}
+                                {% if app.owner %}
+                                    <button class="btn btn-sm btn-outline-danger" name="delete" value="{{ app.planning_event.id }}">{% trans 'Delete' %}</button>
+                                {% else %}
+                                    <button class="btn btn-sm btn-outline-danger" name="cancel" value="{{ app.id }}">{% trans 'Cancel' %}</button>
+                                {% endif %}
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <div class="d-flex flex-column align-items-center">
+            <h3>{% trans 'Make an appointment' %}</h3>
+            <form class="d-flex flex-column gap-2" action="" method="post">{% csrf_token %}
+                <div class="d-flex flex-wrap justify-content-center gap-2">
+                    <div class="d-flex flex-column align-items-center">
+                        <h5>{% trans 'Select a date' %}</h5>
+                        <div class="d-flex justify-content-center">
+                            <select name="date-select" class="btn btn-perso">
+                                {% for slot in list_slot %}
+                                    <option {% if forloop.first %}selected{% endif %} value="{{ slot.start|date:'Y-m-d-H-i' }}">
+                                        {{ slot.start|date:"l j F H:i" }} - {{ slot.end|date:"H:i" }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column align-items-center">
+                        <h5>{% trans 'Select a mode' %}</h5>
+                        <select name="type-select" class="btn btn-perso">
+                            <option selected value="presence">{% trans 'In the presence' %}</option>
+                            <option value="distance">{% trans 'From a distance' %}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="d-flex flex-column align-items-center">
+                    <h5>{% trans 'Select one or more family members you want to invite (optional)' %}</h5>
+                    <div class="d-flex flex-wrap justify-content-center gap-2">
+                    {% for profile in list_profile %}
+                        <div>
+                            <input class="btn-check" type="checkbox" name="profile-select" id="cb-{{ profile.id }}" value="{{ profile.id }}">
+                            <label for="cb-{{ profile.id }}" class="btn btn-perso">{{ profile }}</label>
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end mt-4">
+                    <button class="btn btn-perso" type="submit">{% trans 'Save' %}</button>
+                </div>
+            </form>
+        </div>
+    {% endif %}
+</main>
+{% endblock content %}

@@ -1,0 +1,417 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+{% load i18n %}
+{% load static %}
+{% load custom_filters %}
+
+{% block scriptsmails %}
+    {% if sent %}
+    <script type="text/javascript">
+        $(window).on('load', function() {
+            $('#notif').modal('show');
+        });
+    </script>
+    {% endif %}
+
+    {% if used_campaigns %}
+    <script type="text/javascript">
+        $(window).on('load', function() {
+            $('#notif').modal('show');
+        });
+    </script>
+    {% endif %}
+    <script>
+        $("#envoidemessage").on('submit', function (fileSize) {
+            if (window.File && window.FileReader && window.FileList && window.Blob) {
+                var file = $('#fileUpload')[0].files[0];
+                if (file && file.size > 10485760) {
+                    let div = document.getElementById('fileInputParentDiv')
+                    div.style.border='1px solid red';
+                    div.style.borderRadius='10px';
+                    div.style.padding='5px';
+                    div.innerHTML+=`<div style="color:red;">{% trans 'Selected files are too big' %} !</div>`;
+                    fileSize.preventDefault();
+                }
+            }
+        });
+    </script>
+    <script>
+        function clamping(el, list) {
+            if ($(el).prop('checked')){
+                list.style.webkitLineClamp = "unset";
+            } else {
+                list.style.webkitLineClamp = 1;
+            }
+        }
+    </script>
+    <script>
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        function markNotifAsRead(unread_div, main_div, unopened_msg){
+            document.getElementById(main_div).firstElementChild.removeAttribute("onclick");
+            document.getElementById(unread_div).style.display = 'none';
+            var notif_count = document.getElementById('unopened_notif_count');
+            var count = notif_count.innerText - 1;
+            if(count > 0){
+                notif_count.innerText = count;
+            }else{
+                notif_count.style.display = 'none';
+                if(unopened_msg < 1){
+                    document.getElementById('notif_unopened').style.display = 'none';
+                };
+            };
+        };
+
+        async function NotifRead(url, unread_div, main_div, unopened_msg){
+            var result = await fetchWithTimeout(url, {
+                method: 'GET',
+                })
+            .then(response => {
+                if(response.ok){
+                    markNotifAsRead(unread_div, main_div, unopened_msg);
+                    return 'ok';
+                }else{
+                    alert("{% trans 'An error has occurred, please try again later' %}");
+                    return 'error';
+                };
+                })
+            .catch(error => {
+                    return 'error'
+                });
+        };
+
+        function markMsgAsRead(main_div, unopened_notif){
+            document.getElementById(main_div).removeAttribute("onclick");
+            document.getElementById(main_div).classList.remove('fw-bold');
+            var msg_count = document.getElementById('unopened_msg_count');
+            var count = msg_count.innerText - 1;
+            if(count > 0){
+                msg_count.innerText = count;
+            }else{
+                msg_count.style.display = 'none';
+                if(unopened_notif < 1){
+                    document.getElementById('notif_unopened').style.display = 'none';
+                };
+            };
+        };
+
+        async function messageRead(url, main_div, unopened_notif){
+            var result = await fetchWithTimeout(url, {
+                method: 'GET',
+                })
+            .then(response => {
+                if(response.ok){
+                    markMsgAsRead(main_div, unopened_notif);
+                    return 'ok';
+                }else{
+                    alert("{% trans 'An error has occurred, please try again later' %}");
+                    return 'error';
+                };
+                })
+            .catch(error => {
+                    return 'error'
+                });
+        };
+
+        //TODO ci-dessous potentiellement inutile, remplacé par fonction NotifRead (juste au dessus)
+        function sendInfo(clicked_id, mail_id, url) {
+            if (($('#' + clicked_id).parent().find('.unread').length > 0) || (clicked_id == "NO UNREAD")){
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        "X-CSRFToken":getCookie('csrftoken'),
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: mail_id,
+                })
+                $('.mail' + mail_id ).removeClass("unopened-color")
+            }
+        }
+    </script>
+    <script>
+        function clearForm(formSelect, formOption) {
+            $(formSelect).change(function(){
+                $(formOption).find("input").val('');
+                $(formOption).find("textarea").val('');
+                $(formOption).find("select").val('');
+                $(formOption).hide();
+                $('.' + $(this).val() + 'options').show();
+            });
+        };
+        clearForm('.selectfilename', '.fileoptions');
+        clearForm('.checkboxes-templates_mail', '.renametypemail');
+        clearForm('.checkboxes-templates_campaign', '.renametypecampaign');
+    </script>
+    <script>
+            $('#prospectstabtrigger').click(function(){
+                $('#names').find("input[type=checkbox]").prop('checked',false);
+                $('#groupstab').find("input[type=checkbox]").prop('checked',false);
+            });
+    </script>
+    <script>
+        (function() {
+            $('#groupstabtrigger').click(function(){
+                $('#prospectstab').find("input[type=checkbox]").prop('checked',false);
+            });
+        });
+    </script>
+    <script>
+         $( '#envoidemail' ).on('submit', function(e) {
+           if($('input[type=checkbox].checkboxes-recipients:checked').length == 0 && $('input[type=checkbox].checkboxes-prospects:checked').length == 0) {
+              alert( "{% trans 'You must select a recipient' %}" );
+              e.preventDefault();
+           }
+        });
+    </script>
+{% if not istoobig %}
+    <script>
+
+         $( '#aperçuenvoidemail' ).on('submit', function(e) {
+           if($('input[type=checkbox].checkboxes-emails:checked').length == 0) {
+              alert( "{% trans 'You must select at least 1 email' %}" );
+              e.preventDefault();
+           }
+        });
+
+    </script>
+{% endif %}
+    <script>
+        $('input[type=checkbox]').on("change", function() {
+            $('.'+this.classList[0]).not(this).prop('checked', false);
+
+<!--            {% if '/messagerie/send' in request.path %}-->
+<!--            showCheckedMessage();-->
+<!--            {% endif %}-->
+        });
+
+        function syncCheck(id_parent, class_child) {
+            $(id_parent).on("change", function() {
+                var all_child_checked = $(class_child+":checked").length===$(class_child).length
+<!--                console.log(this.checked, all_child_checked)-->
+                if (this.checked != all_child_checked) {
+<!--                    console.log('used P', this.id, this.checked)-->
+                    $(class_child).prop("checked", this.checked).trigger('change');
+                    {% if '/messagerie/send' in request.path or convo_id %}
+<!--                    showCheckedMessage();-->
+                    {% elif listemail and not istoobig %}
+                    showChecked();
+                    {% endif %}
+                }
+            });
+            if (id_parent == '#recipients_sender') {
+                $(id_parent).on('click', function() {
+                    if (this.checked) {
+                        $('.checkboxes_all').not('.checkboxes_sender').prop('checked', false)
+                        {% if '/messagerie/send' in request.path or convo_id %}
+<!--                        showCheckedMessage();-->
+                        {% elif listemail and not istoobig %}
+                        showChecked();
+                        {% endif %}
+                    }
+                });
+            }
+
+            $(class_child).on("change", function() {
+                var all_child_checked = $(class_child+":checked").length===$(class_child).length
+                console.log('child', $(id_parent).is(':checked'), all_child_checked)
+                if ($(id_parent).is(':checked') != all_child_checked) {
+                    console.log('used C', this.id, this.checked)
+                    $(id_parent).prop("checked", all_child_checked).trigger('change');
+                }
+            });
+        };
+        syncCheck("#emailparent", ".checkboxes-emails")
+    </script>
+{% if listemail and not istoobig %}
+    <script>
+    showChecked();
+    function showChecked(){
+        document.getElementById("resultemail").textContent = "{% trans 'Confirm sending of' %} " + document.querySelectorAll("input[name='mailstosend[]']:checked").length + " {% trans 'email' %}";
+        document.getElementById("resultemailshow").textContent = "{% trans 'Are you sure that you want to send' %} " + document.querySelectorAll("input[name='mailstosend[]']:checked").length + " {% trans 'email(s)' %}?";
+    }
+    document.querySelectorAll("input[name='mailstosend[]']").forEach(i=>{
+     i.onchange = function(){
+      showChecked();
+     }
+    });
+    </script>
+{% endif %}
+    <script>
+        const ps = document.querySelectorAll('p');
+        const observer = new ResizeObserver(entries => {
+          for (let entry of entries) {
+            entry.target.classList[entry.target.scrollHeight > entry.contentRect.height ? 'add' : 'remove']('truncated');
+          }
+        });
+        ps.forEach(p => {
+          observer.observe(p);
+        });
+    </script>
+    <script>
+        function show_hide_manager_options(checkbox_input, options_check, checkbox_alt, options_check_alt, single_check, multi_check){
+            $(checkbox_input).change(function(){
+                if($(checkbox_input+':checked').length > 0){
+                    $(options_check).show();
+                    $(options_check_alt).hide();
+                    $(checkbox_alt).prop("checked", false);
+                    if($(checkbox_input+':checked').length == 1){
+                        console.log("one")
+                        $(single_check).show();
+                    }
+                    if($(checkbox_input+':checked').length > 1){
+                        console.log("+one")
+                        $(single_check).hide()
+                        $(multi_check).show();
+                    }
+                    else {
+                        $(multi_check).hide()
+                    }
+                }
+                else {
+                    $(options_check).hide()
+                }
+            });
+        };
+
+        show_hide_manager_options('input[type=checkbox].checkboxes-templates_mail', ".options_mail", ".checkboxes-templates_campaign", ".options_campaign", ".single_mail", ".multi_mail")
+        show_hide_manager_options('input[type=checkbox].checkboxes-templates_campaign', ".options_campaign", ".checkboxes-templates_mail", ".options_mail", ".single_campaign", ".multi_campaign")
+    </script>
+    <script>
+        var input = $('#searchnames');
+        input.change( function () {
+            var filter = input.val();
+            filter = filter.toLowerCase()
+            filter = filter.normalize('NFKD').replace(/[^\w]/g, '')
+             if(filter.length == 0) { // show all if filter is empty
+                   $('.labelname').each(function() {
+                     $(this).show();
+                     $(this).prev().show();
+                   });
+                   return;
+              }
+
+             $('.labelname').each(function() {
+             $(this).hide();
+             $(this).prev().hide();
+             }); // hide all labels
+
+            $('.labelname').each(function() {
+                value = this.textContent.toLowerCase();
+                value = value.normalize('NFKD').replace(/[^\w]/g, '')
+                if (value.includes(filter)){
+                  $(this).show();
+                }
+
+            });
+        }).keyup(function() {
+            $(this).change();
+        });
+    </script>
+    <script>
+        $( '#createcampaign' ).on('click', function(testname_campaign) {
+            let name_input = document.getElementById("campagne_name")
+            console.log(name_input)
+            if (name_input.value == "") {
+                testname_campaign.preventDefault();
+            }
+            else {
+                let name = name_input.value
+
+                var list_campaign = [];
+                {% for campaign in listcampaign %}
+                list_campaign.push("{{ campaign.nom_de_la_campagne }}");
+                {% endfor %}
+                for (campaign of list_campaign) {
+                    if (campaign == name) {
+
+                        testname_campaign.preventDefault();
+                        name_input.style.border= "1px solid red";
+                        name_input.insertAdjacentHTML("afterend","<div style='color:red;'>{% trans 'This name already exist' %}</div>")
+                        <!--https://developer.mozilla.org/fr/docs/Web/API/Element/insertAdjacentHTML-->
+                    };
+                }
+            }
+        });
+    </script>
+    <script>
+    $( '#creationdemail' ).on('submit', function(testname) {
+        let name_input = document.getElementById("id_nom_du_mail_type")
+        let name = name_input.value
+        var usednames = [];
+        {% for usedname in usednames %}
+        var adding = usednames.push("{{ usedname }}");
+        {% endfor %}
+        for (usedname of usednames) {
+            if (usedname == name) {
+                testname.preventDefault();
+                name_input.style.border= "1px solid red";
+                name_input.insertAdjacentHTML("afterend","<div style='color:red;'>{% trans 'This name already exist' %}</div>")
+                <!--https://developer.mozilla.org/fr/docs/Web/API/Element/insertAdjacentHTML-->
+            };
+        }
+    });
+    </script>
+
+{% endblock scriptsmails %}
+
+<!-- {% block styleapp5 %}
+    <style>
+        .section-titre {
+            box-shadow: inset 0 -0.9em 0 rgb(147, 169, 210);
+        }
+    </style>
+{% endblock styleapp5 %} -->
+
+{% block extra-top-body %}
+    <!-- BOUTONS DE NAVIGATION -->
+    <div id="navmails" class="d-flex justify-content-between m-2 my-md-2 px-md-5">
+        <div class="d-flex flex-wrap align-items-center gap-2">
+
+            <!-- BOUTONS MESSAGERIE -->
+            <div class="btn-group btn-group-lg">
+                <a href="{% url 'internal_emailing_mailbox' %}" class="btn btn-perso {% if '/messagerie/' in request.path %}active{% endif %}">
+                    <svg width="30px" viewbox="0 0 16 16" class="bi bi-envelope-fill" fill="currentColor">
+                      <path fill-rule="evenodd" d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
+                    </svg>
+                </a>
+                <a href="{% url 'internal_emailing_receiver' mod='new' %}" class="btn btn-perso fw-bold {% if '/messagerie/new/' in request.path %}active{% endif %}">{% trans 'New' %}</a>
+                <a href="{% url 'internal_emailing_mailbox' %}" class="btn btn-perso fw-bold {% if '/messagerie/received/' in request.path %}active{% endif %}">{% trans 'Received' %}{{ 2|pluralize }}</a>
+                <a href="{% url 'internal_emailing_mailbox_sent' %}" class="btn btn-perso fw-bold {% if '/messagerie/sent/' in request.path %}active{% endif %}">{% trans 'Sent' %}{{ 2|pluralize }}</a>
+            </div>
+            {% if perms.app0_access.view_app5customgroup  %}
+
+                <!-- BOUTONS GROUPES -->
+                <div class="btn-group btn-group-lg">
+                    <a href="{% url 'custom group modify' selected=0 %}" class="btn btn-perso fw-bold {% if '/groups/' in request.path %}active{% endif %}">
+                        <svg width="30px" viewbox="0 0 16 16" class="bi bi-people-fill" fill="currentColor">
+                          <path fill-rule="evenodd" d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+                        </svg>
+                    </a>
+                    <a href="{% url 'custom group create' %}" class="btn btn-perso fw-bold {% if '/groups/new/' in request.path %}active{% endif %}">{% trans 'New' %}</a>
+                    <a href="{% url 'custom group modify' selected=0 %}" class="btn btn-perso fw-bold {% if '/groups/modify/' in request.path %}active{% endif %}">{% trans 'Modify' %}</a>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- TITRE -->
+        <div class="d-none d-lg-block">
+            <div class="section-titre d-inline-flex px-5">
+                    <h1 class="text-center mb-0">{% if '/messagerie/' in request.path %}{% trans "Messaging" %}{% elif '/groups/' in request.path %}{% trans 'Groups' %}{% endif %}</h1>
+            </div>
+        </div>
+    </div>
+{% endblock extra-top-body %}
+

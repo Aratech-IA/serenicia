@@ -1,0 +1,43 @@
+{% extends "app4_ehpad_base/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<head>
+    <style>
+        .profile-pic{
+          overflow: hidden;
+          border-radius: 50px;
+          width: 60px;
+          height: 60px;
+          object-fit: cover;
+        }
+        .bg-grey-secondary{
+            background-color: #d3d3d3;
+        }
+    </style>
+</head>
+
+<main class="container mt-2">
+    <div class="d-flex flex-column gap-2">
+        {% if comments %}
+            {% for com in comments %}
+                <div class="d-flex flex-column gap-1 border border-darkblue rounded-3 p-2">
+                    {% with  com.intervention_set.get as inter %}
+                        <div class="d-flex gap-1 rounded-3 p-1 bg-grey-secondary">
+                            <img class="profile-pic" src="{{ inter.nurse.profile.get_photo_url }}">
+                            <div class="d-flex flex-column justify-content-center">
+                                <span class="fw-bold">{{ inter.nurse.get_full_name }}</span>
+                                <span>{{ inter.end }}</span>
+                            </div>
+                        </div>
+                    {% endwith %}
+                    <span>{{ com.content|linebreaksbr }}</span>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h2 class="text-center">{% trans 'No comments available' %}.</h2>
+        {% endif %}
+    </div>
+</main>
+{% endblock content %}

@@ -1,0 +1,28 @@
+{% extends "app1_base/base.html" %}
+
+{% load static %}
+
+{% block extrastyle %}
+    <style>
+        #body {
+            background-color: #f8f9fa;
+        }
+
+        @media (orientation: landscape){
+            .text-top{
+                flex-direction: row;
+            }
+        }
+        
+        @media (orientation: portrait){
+            .text-top{
+                flex-direction: column;
+            }
+        }
+    </style>
+{% endblock extrastyle %}
+
+
+{% block content %}{% endblock content %}
+
+{% block scripts %}

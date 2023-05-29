@@ -1,0 +1,76 @@
+#internalmail {
+
+    .black:checked {
+            background-color: black;
+            border-color: black;
+    }
+
+    .FileInputField {
+        margin: 0px 0px 0px 10px;
+    }
+
+    .danger:checked {
+        background-color: red;
+        border-color: red;
+    }
+
+    .btn-danger:hover {
+        background-color: red !important;
+        color: white !important;
+    }
+
+    .nav-tabs .nav-link {
+        border: solid 2px $lightblue;
+        border-radius: 10px;
+    }
+
+    .nav-tabs {
+        border: none;
+    }
+
+    .new:hover .plus {
+        animation: zoom 1.3s 10;
+    }
+
+    @keyframes zoom {
+        20% {
+            transform: scale(0.4);
+        }
+        50% {
+            transform: scale(1.8);
+        }
+    }
+
+    .form-control, .tox-tinymce {
+        border-color: $lightblue;
+        border-radius: 10px;
+    }
+
+    .editor {
+        width: 100%;
+        height: 600px;
+        border-radius: 10px;
+        background-color: #d3d3d3;
+    }
+
+    .style1 {
+        padding: 1em;
+        box-shadow: 0 5px 5px rgba(0, 0, 0, .2), 0 5px 5px rgba(0, 0, 0, .2); border-radius: 10px;
+    }
+
+    .style2 {
+        box-shadow: inset 0 -0.2em 0 $lightblue
+    }
+
+    .style3 {
+        height: 100%;
+        max-height: 300px;
+        overflow-x: scroll;
+    }
+
+    .style4 {
+        width: 100%;
+        border: solid 1px $lightblue;
+        border-radius: 10px;
+    }
+}

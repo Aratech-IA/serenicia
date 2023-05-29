@@ -1,0 +1,66 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+{% load i18n %}
+{% load static %}
+{% block content %}
+
+<head>
+  <style>
+      .head {
+          background-color: rgb(211, 211, 211);
+          z-index: 10;
+      }
+
+      @media screen and (max-width: 991px) {
+          .collapse_styled {
+              background-color: rgba(0, 0, 0, .82);
+              overflow: auto;
+              height: 100vh;
+          }
+      }
+
+      .nav-item > .btn {
+          height: 1.8em;
+          padding: 0;
+          font-size: 0.95em;
+      }
+
+      .navbar-brand-img {
+          width: 6em;
+      }
+
+      @media only screen and (min-width: 400px) {
+          .navbar-brand-img {
+              width: 9em;
+          }
+      }
+  </style>
+</head>
+
+
+{% if perms.app0_access.view_synerpa %}
+
+  <div class="container mt-5">
+    <div class="d-flex flex-column justify-content-center align-items-center mb-5">
+      <img src="{% static 'app4_ehpad_base/img/synerpa_logo.png' %}" width="400em" class="img-fluid mb-5">
+      <h1 class="pb-4">{% trans 'Welcome !' %}</h1>
+      <h3 class="pb-3">{% trans "Here you are in the SYNERPA quality tool" %} !</h3>
+      <h4>{% trans "This tool includes all of the" %} <span class="fw-bold">{% trans "new standards published by the Haute Autorité de Santé" %}.</span></h4>
+    </div>
+  </div>
+
+{% else %}
+
+  <div class="container mt-5">
+    <div class="d-flex flex-column justify-content-center align-items-center mb-5">
+      <img src="{% static 'app4_ehpad_base/img/serenicia.png' %}" width="550em" class="img-fluid my-5">
+      <h1>{% trans 'Welcome !' %}</h1>
+      <h3>{% blocktranslate %}Here you are in the Serenicia application.{% endblocktranslate %}</h3>
+      <h3>{% blocktranslate %}Your profile does not have any assigned resident,{% endblocktranslate %}</h3>
+      <h3>{% blocktranslate %}but you can use our features.{% endblocktranslate %}</h3>
+      <h3>{% blocktranslate %}Click on your name at the top right of the screen !{% endblocktranslate %}</h3>
+    </div>
+  </div>
+
+{% endif %}
+
+{% endblock content %}

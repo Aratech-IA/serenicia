@@ -1,0 +1,76 @@
+{% load i18n %}
+{% load custom_filters_app9 %}
+
+
+<div class="modal fade" id="projectModal" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header d-flex justify-content-between gap-5">
+                <button type="button" class="btn btn-perso" data-bs-dismiss="modal">{% trans 'Back' %}</button>
+                <h5 class="modal-title" id="projectModalLabel">{% trans 'Personnalized support project' %}</h5>
+                <h5>{{ support_project.project.survey.date|date:"F Y" }}</h5>
+            </div>
+            <div class="modal-body">
+                <div class="accordion">
+                    {% for chapter in support_project.project.survey.chapters.all %}
+                        <div class="accordion-item">
+                            {% if chapter|show_by_default:request.user %}
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button btn-perso" type="button" data-bs-toggle="collapse" data-bs-target="#panelchap{{ chapter.id }}" aria-expanded="true" aria-controls="panelchap{{ chapter.id }}">
+                                        {{ chapter.number }}. {{ chapter.title }}
+                                    </button>
+                                </h2>
+                                <div id="panelchap{{ chapter.id }}" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                            {% else %}
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button btn-perso collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelchap{{ chapter.id }}" aria-expanded="true" aria-controls="panelchap{{ chapter.id }}">
+                                        {{ chapter.number }}. {{ chapter.title }}
+                                    </button>
+                                </h2>
+                                <div id="panelchap{{ chapter.id }}" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
+                            {% endif %}
+
+                                    <div class="accordion-body d-flex justify-content-between">
+                                        {% if chapter.select_meal_type and support_project.project.survey.target.meal_type %}
+                                            <div class="d-flex flex-column">
+                                                <h5>{% trans 'Meal type' %}</h5>
+                                                <div class="d-flex flex-wrap justify-content-between gap-1">
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        {{ support_project.project.survey.target.meal_type }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                        <div class="d-flex flex-column">
+                                            {% for question in chapter.questions.all %}
+                                                <h5>{{ question.number }}. {{ question.text }}</h5>
+                                                <div class="d-flex flex-wrap justify-content-between gap-1">
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        {% for notation in support_project.project.notation.all %}
+                                                            {% if notation.chapter == chapter and notation.question == question %}
+                                                                {{ notation.notation.text }}
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                        {% if chapter.can_comment %}
+                                            {% for com in support_project.comments %}
+                                                {% if com.chapter == chapter %}
+                                                    <div class="w-50">
+                                                        {{ com.text|linebreaks }}
+                                                    </div>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

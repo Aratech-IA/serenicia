@@ -1,0 +1,30 @@
+{% extends 'app16_portal/base.html' %}
+{% load i18n %}
+
+{% block extrastyle %}
+    <style>
+        body{
+            padding-top: 70px;
+        }
+    </style>
+{% endblock extrastyle %}
+
+{% block navbar %}
+    <header>
+        <nav class="navbar fixed-top bg-light-grey px-2">
+            <div class="d-flex w-100 justify-content-end gap-2">
+                <a href="{% url 'admin:app16_portal_portalprofile_change' request.user.id %}" class="d-flex align-items-center justify-content-between btn btn-perso gap-2">
+                    <img src="{{ request.user.profile.get_photo_url }}" class="navbar-profile-pic">
+                    <span>{% trans 'My profile' %}</span>
+                </a>
+                <a href="{% url 'portal logout' %}" class="d-flex align-items-center justify-content-center gap-2 btn btn-perso">
+                    <svg viewBox="0 0 16 16" class="bi bi-power svg-icon-lg" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M5.578 4.437a5 5 0 1 0 4.922.044l.5-.866a6 6 0 1 1-5.908-.053l.486.875z"/>
+                        <path fill-rule="evenodd" d="M7.5 8V1h1v7h-1z"/>
+                    </svg>
+                    <span>{% trans 'Logout' %}</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+{% endblock navbar %}

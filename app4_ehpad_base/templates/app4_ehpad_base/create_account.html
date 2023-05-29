@@ -1,0 +1,37 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+{% load i18n %}
+{% load static %}
+{% block content %}
+
+
+<div class="container mt-5">
+  <form method="post" action="{% url 'create account' %}">{% csrf_token %}
+    <div class="d-flex flex-column justify-content-center align-items-center gap-2">
+        {{ form }}
+        <button class="btn btn-perso">{% trans 'Save' %}</button>
+    </div>
+  </form>
+  {% if created_user %}
+    <br>
+    <div class="d-flex flex-column justify-content-center align-items-center mb-5
+     border border-darkblue rounded-3 mx-auto py-3 created">
+      <h4>{% trans 'User created' %}</h4>
+      <div class="row w-100">
+        <span class="col-auto justify-content-start">{% trans 'Username' %} :</span>
+        <span class="col fw-bold">{{ created_user }}</span>
+      </div>
+      <div class="row w-100">
+        <span class="col-auto justify-content-start">{% trans 'Password' %} :</span>
+        <span class="col fw-bold">{% trans 'same as username' %}</span>
+      </div>
+    </div>
+  {% endif %}
+  {% if error %}
+    <br>
+    <div class="d-flex flex-column justify-content-center align-items-center mb-5
+     border border-danger rounded-3 mx-auto py-3 created">
+      <h4>{% trans 'This user already exists' %}</h4>
+    </div>
+  {% endif %}
+</div>
+{% endblock content %}

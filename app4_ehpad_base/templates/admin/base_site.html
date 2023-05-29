@@ -1,0 +1,73 @@
+{% extends 'admin/base_site.html' %}
+{% load static %}
+{% load admin_utils %}
+{% block extrahead %}{{ block.super }}
+{% if DOMAIN == 'serenicia' %}
+<style>
+:root {
+  --primary: #5285e3;
+  --primary-fg: #000;
+  --header-color: #000;
+  --accent: #93a9d2;
+  --secondary: #d3d3d3;
+  --link-fg: #000;
+  --link-selected-fg: #5285e3;
+  --link-hover-color: #5285e3;
+  --body-bg: #f5f5f5;
+  --selected-row: #93a9d2;
+  --breadcrumbs-link-fg: #d3d3d3;
+  --breadcrumbs-fg: #f5f5f5;
+  --button-hover-bg: #93a9d2;
+  --button-bg: #5285e3;
+  --default-button-hover-bg: #93a9d2;
+  --default-button-bg: #5285e3;
+  --darkened-bg: #d3d3d3;
+  --body-fg: #000;
+  --body-quiet-color: #000;
+  --hairline-color: #f5f5f5;
+  --border-color: #d3d3d3;
+  --selected-bg: #5285e3;
+}
+
+ #user-tools a {
+    border-style: none;
+ }
+
+  #user-tools a:hover {
+    text-decoration: underline overline;
+ }
+
+ #header {
+    border-bottom: 1px solid #93a9d2;
+ }
+</style>
+{% endif %}
+{% endblock %}
+{% block branding %}
+<h1>
+    {% if DOMAIN == 'serenicia' %}
+        <a href="{% url 'admin:index' %}">
+            <img src="{% static 'app4_ehpad_base/img/logo_serenicia.svg' %}" alt="Logo Sérénicia" width="170em" >
+        </a>
+    {% else %}
+    <a href="{% url 'admin:index' %}">
+        <style>
+img {
+  border-radius: 10%;
+}
+</style>
+        <img src="{% static 'app1_base/img/logo_protecia.jpg' %}" alt="Protecia" class="rounded"  height="50" >  Protecia Admin
+    </a>
+    {% endif %}
+</h1>
+{% endblock %}
+
+{% block nav-global %}
+    {% get_residence as residence %}
+    {{ residence.client }}
+    {% if residence.len %}
+        {% for field in residence %}
+            {{ field }}
+        {% endfor %}
+    {% endif %}
+{% endblock %}

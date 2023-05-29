@@ -1,0 +1,238 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    
+<head>
+<meta charset="utf-8">
+<title>Roboticia Dataset</title>
+<style type="text/css">
+   #element1 {display:inline-block;margin-right:10px;} 
+   #element2 {display:inline-block;} 
+</style>
+</head>
+
+
+<body>
+     
+<canvas  id="bb" style="border:1px solid #080808;">Please update your browser</canvas>
+<p align="center"><button style="height:70px;width:500px" onclick="sendBox()" class="button large"><h1>Validate form</h1></button></p>
+<div id="legend"><h1 id="element1">Selected class is : </h1><h1 id ="element2"></h1></div>
+<div id="legend2"><h2 id="element1">Make a bounding box around each :  </h2><h2 id ="element2">{% for cls in classes %}{{ cls }}, {% endfor %}</h2></div>
+<div id="legend2"><h3 id="element1">Keyboard control : w to delete box, a and z to change active class and e to change class of an already draw box. Show tutorial here. </h3></div>
+
+<form name='sendbox' id="sendbox" action="/train/dataset/{{dataset}}/{{img_name}}" method="post">{% csrf_token %}
+<input type="hidden" name="box" id="box" value="">
+<input type="hidden" name="file" value="{{ file }}">
+	</form>
+
+<script type="text/javascript">
+    $( "#legend" ).position({my: "right center", at: "right bottom"});
+    
+    var canvas = document.getElementById('bb')
+    var ctx = canvas.getContext("2d");
+    
+    var ratio = {{ratio|stringformat:"f"}}
+    var offset_img = 0
+    var width = canvas.width = window.innerWidth-50;
+    var height = canvas.height = width*ratio;
+    
+    var x = 0;
+    var y =0;  
+    var X = 0;
+    var Y = 0;
+    var mouseClicked = false;
+    
+    var bounding_box = new Array();
+    
+    function get_bb() {
+        var bb = {{ bb }};
+        for (var i=0; i < bb.length; i++){
+        bounding_box.push([Math.round(bb[i][1]*width),
+                           Math.round(bb[i][2]*height),
+                           Math.round(bb[i][3]*width),Math.round(bb[i][4]*height),bb[i][0]]);
+        }
+		draw_box()
+    }
+
+    var cls = 0
+    
+    var color = ["#00f","#5af","#a0f","#000","#b1f","#08f","#00f","#30f","#0ff","#505"]
+    var cls_name = [{% for cls in classes %}"{{ cls }}",{% endfor %}]
+	var nb_cls = cls_name.length
+    
+    document.getElementById("element2").innerHTML = cls_name[cls];
+    canvas.addEventListener("click", onMouseClick, false);
+    
+    canvas.addEventListener("mousemove", onMouseMove, false);
+    window.addEventListener('keydown',key,false);
+    ctx.font = "16px Arial";
+
+    
+
+    function draw() {
+       ctx.clearRect(0,0,width,height);
+       ctx.drawImage(img, offset_img, offset_img, width-offset_img*2, height-offset_img*2);
+       draw_box()
+       ctx.strokeStyle = color[cls];
+       ctx.beginPath();
+       ctx.moveTo(x, 0); 
+       ctx.lineTo(x, height)
+       ctx.moveTo(0, y); 
+       ctx.lineTo(width, y)
+       ctx.stroke();
+
+   }
+   
+   function key(e) {
+       console.log(e.keyCode)
+       if (e.keyCode == 87) {
+           //console.log(bounding_box)
+           for(var i=0; i < bounding_box.length; i++) {
+               if (x > bounding_box[i][0]-bounding_box[i][2]/2 &&
+                   x < bounding_box[i][0]+bounding_box[i][2]/2 &&
+                   y > bounding_box[i][1]-bounding_box[i][3]/2 &&
+                   y < bounding_box[i][1]+bounding_box[i][3]/2 ){
+                   bounding_box.splice(i, 1);
+                   draw()
+               }
+           }
+       }
+       if (e.keyCode == 65) {
+           if (cls < nb_cls-1 ){
+               cls++;
+           }   
+           else {
+           cls=0;
+           }
+           document.getElementById("element2").innerHTML = cls_name[cls];
+           draw()
+		   ctx.fillStyle = color[cls];
+	       ctx.fillText(cls_name[cls], x+10, y-10);
+           
+       }
+       if (e.keyCode == 90) {
+           
+           if (cls > 0 ){
+               cls--;
+           }   
+           else {
+           cls=nb_cls-1;
+           }
+           document.getElementById("element2").innerHTML = cls_name[cls];
+           draw()
+		   ctx.fillStyle = color[cls];
+	       ctx.fillText(cls_name[cls], x+10, y-10);
+       }
+       if (e.keyCode == 69) {
+           for(var i=0; i < bounding_box.length; i++) {
+               if (x > bounding_box[i][0]-bounding_box[i][2]/2 &&
+                   x < bounding_box[i][0]+bounding_box[i][2]/2 &&
+                   y > bounding_box[i][1]-bounding_box[i][3]/2 &&
+                   y < bounding_box[i][1]+bounding_box[i][3]/2 ){
+                   bounding_box[i][4]=cls;
+                   console.log(bounding_box[i]);
+                   draw()
+               }
+           }
+       }
+
+   }
+
+   function add_bounding_box(x1,y1,wb,hb,cls) {
+       //var xx1 = Math.min(Math.max(x1-offset_img,0),width-(offset_img*2));
+       if (Math.abs(wb) > 8 && Math.abs(hb) > 8) {
+           var centerx = Math.round(x1+(wb/2));
+           var centery = Math.round(y1+(hb/2));
+           var item = [centerx, centery,Math.abs(wb),Math.abs(hb),cls];
+           bounding_box.push(item);
+       }
+       
+       
+
+
+   }
+
+   function draw_box(){
+       for(var i=0; i < bounding_box.length; i++) {
+           ctx.strokeStyle = color[bounding_box[i][4]];
+           ctx.strokeRect(bounding_box[i][0]-bounding_box[i][2]/2,
+                          bounding_box[i][1]-bounding_box[i][3]/2,
+                          bounding_box[i][2],
+                          bounding_box[i][3]);
+           ctx.fillStyle = color[bounding_box[i][4]];
+           ctx.fillText(cls_name[bounding_box[i][4]], bounding_box[i][0]-bounding_box[i][2]/2,
+                        bounding_box[i][1]-bounding_box[i][3]/2);
+           //ctx.fillStyle = 'rgb(200, 0, 0)';
+           //ctx.fillRect(10, 10, 50, 50);
+       }  
+
+   }
+   
+
+   function onMouseClick(e) {
+       //console.log(canvas.offsetLeft)
+       if(mouseClicked){
+           add_bounding_box(X, Y, e.pageX - this.offsetLeft - X , e.pageY - this.offsetTop -Y , cls)
+       }
+       X = e.pageX - this.offsetLeft ;
+       Y = e.pageY - this.offsetTop  ;
+       mouseClicked = !mouseClicked;
+       
+  }
+   
+   function onMouseMove(e) { 
+       x = e.pageX - this.offsetLeft;
+       y = e.pageY - this.offsetTop;
+       ctx.clearRect(0,0,width,height);
+       ctx.drawImage(img, offset_img, offset_img, width-offset_img*2, height-offset_img*2);
+       ctx.beginPath();
+       ctx.moveTo(x, 0); 
+       ctx.lineTo(x, height)
+       ctx.moveTo(0, y); 
+       ctx.lineTo(width, y)
+       draw_box()
+       ctx.strokeStyle = color[cls];
+
+       ctx.lineWidth = 1;
+       if (mouseClicked){
+           ctx.strokeRect(X, Y, e.pageX - this.offsetLeft - X, e.pageY - this.offsetTop -Y);
+           
+           ctx.fillStyle = color[cls];
+           ctx.fillText(cls_name[cls], X, Y);
+       }
+	   else {
+	       ctx.fillStyle = color[cls];
+	       ctx.fillText(cls_name[cls], x+10, y-10);
+	   }
+       
+       ctx.stroke();
+       
+   }
+   
+    function sendBox(){
+	var bb = new Array();
+	for(var i=0; i < bounding_box.length; i++) {
+		bb.push([ bounding_box[i][4],
+		          bounding_box[i][0]/width,
+				  bounding_box[i][1]/height,
+				  bounding_box[i][2]/width,
+				  bounding_box[i][3]/height]);
+		}
+	bb_form = JSON.stringify(bb);
+	document.getElementById("box").value = bb_form;
+	document.sendbox.submit();
+	}
+   
+
+    var img = new Image();
+    img.onload = function() {
+        ctx.drawImage(img, offset_img, offset_img, width-offset_img*2, height-offset_img*2);
+	    get_bb();
+        };
+    img.src = '{{ img }}';
+   
+       
+</script>
+
+</body>
+</html>

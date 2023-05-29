@@ -1,0 +1,160 @@
+{% extends "app1_base/base.html" %}
+
+{% block content %}
+
+<div class="row">
+  <div class="columns">
+    <h1 class="section-title">Configuration</h1>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="large-12 columns">
+    <div class="callout">
+      <h2>Robot :</h2>
+      <div class="row">
+        <div class="large-11 columns">
+          <div class="callout primary">
+            <p>Creature : {{ robot.brand }}-{{ robot.creature }}</p>
+			<p>Network access : http://{{hostname}}.local  -  You can change this name using Raspiconfig (accés SSH)</p>
+			<p>IP address : {{ip}}</p>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="large-12 columns">
+    <div class="callout">
+      <h2>Wifi :</h2>
+      <div class="row">
+        <div class="large-6 columns">
+		<div class="callout primary">
+            <p>Robot is connected to : {{connect}} </p>
+			
+          </div>
+          <div class="callout primary">
+            <p>Wifi scan : </p>
+			{% if wifi %}
+				{% for res in wifi %}
+					{% if res.ssid %}
+						<p>{{res.ssid}} -  Signal :  {{res.quality}} - {% if res.encrypted %}Secure {% else %} Open {% endif %}</p>
+					{% endif %}  
+				{% endfor %}
+			{% else %}
+			<p>Wifi </p>
+			{% endif %}
+			
+          </div>
+		  
+		  <div class="callout primary">
+		  <form action="/settings/wifi_restart/" method="post">
+		  {% csrf_token %}
+		  <div class="row">
+				  <div class="large-8 columns">
+            Apply change (restart wifi) 
+			</div>
+			<div class="large-4 columns">
+            <button type = "submit" id="restart-wifi" type="button" class="button">Restart</button>
+			</div>
+			
+        </div>
+			</form>
+			
+			
+          </div>
+        </div>
+		
+		<div class="large-6 columns">
+          <div class="callout primary">
+            <p>Network set on the robot : </p>
+			{% if conf %}
+				{% for res in conf %}
+				
+					<form action="/settings/wifi_suppr/" method="post">
+			        <input type='hidden' name='wifi_ssid' value='{{res.ssid}}' />
+			       {% csrf_token %}
+						<p>{{res.ssid}}  {% if res.opts.priority %}- Priority : {{ res.opts.priority }} {% endif %}
+							<button type = "submit" id="update-wifi" type="button" class="button tiny">Delete</button></p>
+						
+					</form>
+				
+				{% endfor %}
+				{% else %}
+			<p>No network configured</p>
+			{% endif %}
+				</div>
+		   <div class="callout primary">
+		   <p>Add wifi : </p>
+			  <form action="/settings/wifi_add/" method="post">
+			  
+			  {% csrf_token %}
+				<div class="row">
+				  <div class="large-4 columns">
+					<label for="ssid">Name : </label>
+				  </div>
+				  <div class="large-8 columns">
+					<input id="wifi_ssid" name = "wifi_ssid" type="text" class="input-group-field" >
+				  </div>
+				  </div>
+				  <div class="row">
+				   <div class="large-4 columns">
+					<label for="psk">Password : </label>
+				  </div>
+				  <div class="large-8 columns">
+					<input id="wifi_psk" name = "wifi_psk" type="text" class="input-group-field" >
+				  </div>
+				  </div>
+				  <p></p>
+				  <div class="row">
+				  <div class="large-2 columns">
+				  <label>Priority : </label>
+				  </div>
+				  
+				  <div class="large-4 columns">
+				  <select name="wifi_priority">
+					<option value="Aucune">None</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+				  </select>
+				  </div>
+				  
+				  
+				  
+				  <div class="large-4 columns">
+				  <button type = "submit" id="update-wifi" type="button" class="button">Add</button>
+					</label>
+				  </div>
+				  
+				  </div>
+				  
+				  
+				  
+				   
+				   
+			  </form>
+			  </div>
+	  
+				
+			
+			
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+{% endblock content %}
+
+{% block endscript %}
+
+{% endblock endscript %}

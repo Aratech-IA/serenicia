@@ -1,0 +1,189 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+
+{% block content %}
+    {% load static %}
+    {% load i18n %}
+<style>
+
+.one h1 {
+  text-align:center;
+  font-size:35px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  font-family:"Playfair Display", serif;
+  font-weight:400;
+}
+.one h1 span {
+  margin-top: 5px;
+  font-size:15px; word-spacing:1px; letter-spacing:2px;
+  text-transform: uppercase;
+  font-family:"Raleway", sans-serif;
+  font-weight:500;
+  display: grid;
+  grid-template-columns: 1fr max-content 1fr;
+  grid-template-rows: 27px 0;
+  grid-gap: 20px;
+  align-items: center;
+}
+
+.one h1 span:after,.one h1 span:before {
+    content: " ";
+}
+
+.title {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  font-family: "Raleway", sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+}
+
+.title span {
+  display: block;
+  font-size: 0.5em;
+  line-height: 1.3;
+}
+
+
+.two .title:before {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 60px;
+  height: 2px;
+  content: "";
+  background-color: #93a9d2;
+}
+
+.two .title span {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  line-height: 3em;
+  padding-left: 0.25em;
+  color: rgba(0, 0, 0, 0.4);
+  padding-bottom: 10px;
+}
+
+</style>
+
+<div class="container pt-5">
+
+  <div class="one pb-2 position-relative">
+    <h1 >{% trans "List of latest articles" %}<span>Serenicia Blog</span></h1>
+  </div>
+
+  <div class="text-center mb-2">
+    <a href=" {% url 'create_post' act_id=0 %}" class="pb-5 text-center">
+      <button type="button" class="btn btn-perso btn-lg">
+        {% trans "Create a new Article" %}
+      </button>
+    </a>
+  </div>
+
+
+  <div class="row">
+    <div class="row d-flex flex-wrap">
+      {% if data %}
+        <table class="table table-hover table-secondary">
+          <thead>
+            <tr>
+              <th scope="col">{% trans "Title" %}</th>
+              <th scope="col">{% trans "Creation date" %}</th>
+              <th scope="col">{% trans "Written by" %}</th>
+              <th scope="col">{% trans "Public post" %} ?</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for post in data %}
+              <tr>
+                <th scope="row"><a href=" {% url 'show_post' post.id %}">{{post.title}}</a></th>
+                <td>{{post.created_on}}</td>
+                <td>{{post.author.first_name}} {{post.author.last_name}}</td>
+                <td>{{post.is_public}}</td>
+                <td>
+                  <a href=" {% url 'edit_post' post.id %}">
+                    <button type="button" class="btn btn-perso">{% trans "Modify" %}</button>
+                  </a>
+                </td>
+                <td>
+                  <a href="#" data-bs-toggle="modal" data-bs-target="#delete{{post.id}}">
+                    <button type="button" class="btn btn-outline-danger">{% trans "Remove" %}</button>
+                  </a>
+                  <!-- Modal to delete article -->
+                  <div class="modal fade" id="delete{{post.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel"> &#x26A0; {% trans "Remove" %} &#x26A0; &#9888;</h5>
+                          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <h3>{% trans "Are you sure you want to delete the article" %} :</h3>
+                            <h3>{{post.title}}</h3>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Cancel" %}</button>
+                          <a class="btn btn-sm btn-danger" href="{% url 'delete_post' post.id %}">{% trans "Remove" %}</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+        
+        <!--PAGINATION-->
+        <div class="pagination mt-3 mb-3">
+          <span class="step-links text-center">
+            {% if data.has_previous %}
+              <a class="btn btn-perso-p" href="?page=1">
+                &laquo; {% trans "first" %}
+              </a>
+              <a class="btn btn-perso-p" href="?page={{ data.previous_page_number }}">
+                {% trans "previous" %}
+              </a>
+            {% endif %}
+
+            <span class="current p-3">
+              {% trans "Page" %} {{ data.number }} {% trans "of" %} {{ data.paginator.num_pages }}.
+            </span>
+
+            {% if data.has_next %}
+              <a class="btn btn-perso-p" href="?page={{ data.next_page_number }}">
+                {% trans "next" %}
+              </a>
+              <a class="btn btn-perso-p" href="?page={{ data.paginator.num_pages }}">
+                {% trans "last" %} &raquo;
+              </a>
+            {% endif %}
+          </span>
+        </div>
+
+      {% else %}
+        <div class="two p-3">
+          <h1 class="title">{% trans "There are no recent posts" %}...
+            <span>{% trans "Please come back later" %}</span>
+          </h1>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+
+{% block endscript %}
+
+
+{% endblock endscript %}

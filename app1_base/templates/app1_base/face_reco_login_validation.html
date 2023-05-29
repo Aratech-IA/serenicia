@@ -1,0 +1,37 @@
+{% extends "app1_base/base.html" %}
+
+{% load static %}
+{% load i18n %}
+
+{% block extrastyle %}
+    <style>
+        #user_pic{
+            max-height: 200px;
+        }
+        #eval_img{
+            max-height: 150px
+        }
+    </style>
+{% endblock extrastyle %}
+
+<body id="body">
+    <div class="container-fluid">
+        <div class="text-center mt-2">
+            {% if identified_user.profile.photo %}
+                <img id="user_pic" class="img-fluid rounded-3" src="{{ identified_user.profile.photo.url }}">
+            {% endif %}
+            <h2 class="mt-2">{{ identified_user.get_full_name }}</h2>
+        </div>
+        <br>
+                <hr class="w-50 mx-auto">
+        <br>
+                <h1 class="text-center">{% trans 'Confirm identity' %}</h1>
+        <form action="{% url 'face reco login' %}" method="post">{% csrf_token %}
+            <div class="d-flex h-50 w-100 justify-content-evenly">
+                <input id="eval_img" type="image" src="{% static 'app1_base/img/visage_rouge.svg' %}" name="invalid">
+                <input id="eval_img" type="image" src="{% static 'app1_base/img/visage_vert_fonce.svg' %}" name="valid">
+                <input hidden value="{{ identified_user.profileserenicia.folder }}" name="user_folder">
+            </div>
+        </form>
+    </div>
+</body>

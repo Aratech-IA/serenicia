@@ -1,0 +1,36 @@
+{% extends "app4_ehpad_base/base.html" %}
+{% load i18n %}
+
+
+{% block content %}
+<main style="margin: 10px 10px 40px 10px; font-size:18px;">
+    <form method="POST" name="access">
+        {% csrf_token %}
+        <select name="access" class="form-select btn btn-perso" aria-label="Default select example" style="width:335px;margin:10px;" onchange="this.form.submit()">
+            <option selected>{% trans 'Choose a permission to see' %}</option>
+            {% for access in accesss %}
+                <option value="{{access}}">{{access}}</option>
+            {% endfor %}
+        </select>
+        {% trans 'Viewing' %}: {{access}}
+    </form>
+    <div style="display:flex; flex-wrap:wrap">
+        {% for rel in rels %}
+            {% with caregiver=rel.0 residents=rel.1 %}
+                <div style="width:33%; border: 1px solid black; margin: 2px;display:flex; flex-wrap:wrap">
+                    <div style="width:40%; border: 1px solid black; padding: 5px;">
+                        {{ caregiver.last_name }} {{ caregiver.first_name }} <br> {% if caregiver.profileserenicia.UP_volunteer %}[UP]{% endif %}
+                    </div>
+                    <div style="width:60%; border: 1px solid black; padding: 5px;">
+                        {% for resident in residents %}
+                            &nbsp;&nbsp;&nbsp;&nbsp;- <!--{{ forloop.counter }} | -->{{ resident.profile.civility}} {{ resident.last_name }} [N°{{ resident.profile.client.room_number }}]
+<!--                        {{ resident.first_name }}--><br>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endwith %}
+        {% endfor %}
+    </div>
+</main>
+
+{% endblock content %}

@@ -1,0 +1,173 @@
+#connexionpage {
+
+    .container-lg {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 14px 28px rgba(0, 0, 0, .2), 0 10px 10px rgba(0, 0, 0, .2);
+        position: relative;
+        overflow: hidden;
+        width: 768px;
+        max-width: 100%;
+        min-height: 480px;
+    }
+    
+    #container-sm {
+        display: none
+    }
+    
+    .form-container form {
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        padding:  0 50px;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .sign-in-container {
+        input {
+            background: #eee;
+            border: solid 1px $lightblue;
+            border-radius: 20px;
+            margin-top: 0.3em;
+            margin-bottom: 1em;
+        }
+    }
+    
+    .form-container {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        transition: all .6s ease-in-out;
+    }
+    
+    .sign-in-container {
+        left: 0;
+        width: 90%;
+        z-index: 2;
+    
+        @media screen and (min-width: $phone-media-rupture) {
+            width: 65%;
+        }
+    
+        @media screen and (min-width: 821px) {
+            width: 50%;
+        }
+    }
+    
+    .sign-up-container {
+        left: 0;
+        width: 50%;
+        z-index: 1;
+        opacity: 0;
+    }
+    
+    .overlay-container {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 50%;
+        height: 100%;
+        overflow: hidden;
+        transition: transform .6s ease-in-out;
+        z-index: 100;
+    }
+    
+    .overlay {
+        background: #ff416c;
+        background: linear-gradient(to right, $lightblue, $lightblue) no-repeat 0 0 / cover;
+        color: #fff;
+        position: relative;
+        left: -100%;
+        height: 100%;
+        width: 200%;
+        transform: translateY(0);
+        transition: transform .6s ease-in-out;
+    }
+    
+    .overlay-panel {
+        position: absolute;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 0 40px;
+        height: 100%;
+        width: 50%;
+        text-align: center;
+        transform: translateY(0);
+        transition: transform .6s ease-in-out;
+    }
+    
+    .overlay-right {
+        right: 0;
+        transform: translateY(0);
+    }
+    
+    .overlay-left {
+        transform: translateY(-20%);
+    }
+    
+    /* Move signin to right */
+    .container-lg.right-panel-active .sign-in-container {
+        transform: translateY(100%);
+    }
+    
+    /* Move overlay to left */
+    .container-lg.right-panel-active .overlay-container {
+        transform: translateX(-100%);
+    }
+    
+    /* Bring signup over signin */
+    .container-lg.right-panel-active .sign-up-container {
+        transform: translateX(100%);
+        opacity: 1;
+        z-index: 5;
+    }
+    
+    /* Move overlay back to right */
+    .container-lg.right-panel-active .overlay {
+        transform: translateX(50%);
+    }
+    
+    /* Bring back the text to center */
+    .container-lg.right-panel-active .overlay-left {
+        transform: translateY(0);
+    }
+    
+    /* Same effect for right */
+    .container-lg.right-panel-active .overlay-right {
+        transform: translateY(20%);
+    }
+    
+    @media only screen and (max-width: 820px) {
+        #container-lg {
+            display: none;
+        }
+    
+        #container-sm {
+            display: block;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 14px 28px rgba(0, 0, 0, .2), 0 10px 10px rgba(0, 0, 0, .2);
+            padding: 1em 2em;
+        }
+    
+        #select {
+            display: none;
+        }
+    }
+    
+    .social__content {
+        box-shadow: 0 14px 28px rgba(0, 0, 0, .2), 0 10px 10px rgba(0, 0, 0, .2);
+        border-radius: 10px;
+    }
+    
+    .social__content img {
+        width: 300px;
+        height: auto;
+    }
+}

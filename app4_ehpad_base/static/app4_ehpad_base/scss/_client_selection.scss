@@ -1,0 +1,50 @@
+.birthday {
+    background-color: $lightblue;
+}
+
+#no_reco {
+    background-color: rgba(211,211,211,1);
+    width: 100px;
+    height: 138px;
+}
+
+#no_reco_txt {
+    color: black;
+    font-size: small;
+}
+
+.top-label {
+    width: 50px;
+    cursor: default !important;
+}
+
+.select-resident-pic {
+    max-height: 140px;
+    width: auto;
+}
+
+.caracteristiques p {
+    margin-bottom: 0.1em;
+}
+
+.etiquetteok {
+    left: -3em;
+    top: -3em;
+}
+
+.d-flex-important {
+    display: flex !important;
+}
+
+.d-none-important {
+    display: none !important;
+}
+
+.carteresident {
+    width: 302px;
+    height: 180px;
+}
+
+.picsresident {
+    width: 100px;
+}

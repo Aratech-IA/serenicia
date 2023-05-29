@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="13.042mm"
+   height="13.042402mm"
+   viewBox="0 0 13.042 13.042399"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
+   sodipodi:docname="favicon.svg"
+   inkscape:export-filename="C:\Users\nico-\Google Drive (nicolas.lambert@serenicia.net)\Sérénicia\Design\Logos\Sérénicia\favicon.png"
+   inkscape:export-xdpi="62.32"
+   inkscape:export-ydpi="62.32">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="5.6"
+     inkscape:cx="61.726158"
+     inkscape:cy="29.950352"
+     inkscape:document-units="mm"
+     inkscape:current-layer="g851"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     lock-margins="false" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-67.736627,-136.39577)">
+    <g
+       id="g851"
+       transform="translate(0.66817385,-0.13363519)">
+      <path
+         style="fill:#93a9d2;fill-opacity:1;stroke-width:0.272032"
+         d="m 68.714187,149.41083 c -1.776566,-0.39169 -2.141957,-1.31955 -0.963551,-2.44683 0.41615,-0.39809 0.561879,-0.42303 0.735624,-0.12586 0.164973,0.28215 0.902887,0.34477 3.09279,0.26245 2.31959,-0.0872 3.116481,-0.23208 4.118286,-0.74876 0.728028,-0.37547 1.190033,-0.78423 1.116213,-0.98758 -0.217719,-0.59972 -1.598432,-1.29249 -3.718069,-1.86553 -2.946178,-0.79648 -3.365319,-1.14607 -3.202689,-2.67121 0.231768,-2.17352 1.223438,-3.14022 4.033198,-3.93165 1.468998,-0.41377 5.359598,-0.50259 5.908334,-0.13489 0.199837,0.13392 0.314184,0.58511 0.264591,1.04406 -0.07397,0.68451 -0.350569,0.94567 -1.807176,1.70629 l -1.71984,0.89808 0.926067,-0.82016 0.926069,-0.82014 -1.60567,-0.007 c -2.804313,-0.0131 -5.773436,1.21155 -5.617705,2.31715 0.06084,0.43191 0.474892,0.68141 1.76947,1.06622 4.700792,1.39729 6.118462,3.36127 4.024221,5.57496 -1.23877,1.30942 -5.79254,2.23937 -8.280163,1.69093 z"
+         id="path853"
+         sodipodi:nodetypes="csccccccccccccccccccc" />
+    </g>
+  </g>
+</svg>

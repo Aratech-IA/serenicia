@@ -1,0 +1,278 @@
+{% extends "app3_messaging/mails_base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+
+
+<main class="sendmail m-4">
+                <!-- top right bottom left   -->
+    {% if sent %}
+    <div class="modal hide fade" tabindex="-1" role="dialog" id="notif">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content pt-3 text-center">
+                <div class="modal-body text-center m-2 p-0" role="alert">
+                    {% trans 'Your emails have been sent' %} !
+                </div>
+                <button type="button" data-bs-dismiss="modal" aria-label="Close" class="close btn btn-perso col-sm-3 my-2">{% trans 'Close' %}</button>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <h1>{% trans 'Emailing App' %}</h1>
+    <div class="nav nav-tabs mb-2">
+        <ul class="nav" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a href="{% url 'mails_create' %}" data-equalizer-watch class="nav-link {% if '/create' in request.path %}active{% endif %}">
+                    <span>{% trans 'Create an email preset' %}</span>
+                </a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a href="{% url 'mails_send' %}" data-equalizer-watch class="nav-link {% if '/send' in request.path %}active{% endif %}">
+                    <span>{% trans 'Send an email' %}</span>
+                </a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a href="{% url 'mails_mailbox' %}" data-equalizer-watch class="nav-link {% if '/mailbox' in request.path %}active{% endif %}">
+                    <span>{% trans 'Sent campaigns' %}</span>
+                </a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a href="{% url 'mails_manage' %}" data-equalizer-watch class="nav-link {% if '/manage' in request.path %}active{% endif %}">
+                    <span>{% trans 'Settings' %}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    {% if not listemail %}
+    <form  action="" method="post" name="envoicampagne" class="row envoicampagne mx-2" id="envoicampagne">
+        {% csrf_token %}
+        <h3 class="m-0 p-0">{% trans 'Use an already created campaign' %} :</h3>
+        <div class="col-sm-3 ps-3 pe-0">
+            <label class="text-wrap">
+                {% trans 'Number of mails in the batch' %} :
+                <input class="form-control me-1" type="number" name="number_to_send">
+            </label>
+        </div>
+        <div class="col-sm-3 ps-2 pe-4">
+            <label for="CampaignSelect">{% trans 'Select a Campaign' %} :</label>
+            <select class="form-control form-select selectfilename" id="CampaignSelect" name="campaign_id" required>
+                {% if templates|length == 0 %}
+                <option value="" selected>{% trans "No named campaign created yet" %}.</option>
+                {% else %}
+                <option value="" selected>-- {% trans 'Please choose an option' %} --</option>
+                {% endif %}
+                {% for campaign in listcampaign %}
+                <option id="{{campaign.nom_de_la_campagne}}" value="{{campaign.id}}" class="mt-5">{{campaign.nom_de_la_campagne}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" name="sendcampaign" id="sendcampaign" class="col-sm-2 btn btn-persomt-4">
+            {% trans 'Send batch' %}
+        </button>
+    </form>
+    <hr>
+    <form  action="" method="post" name="envoidemail" class="row envoidemail mx-1" id="envoidemail">
+        {% csrf_token %}
+        <h3 class="m-0 p-0">{% trans 'Create a new Campaign' %} :</h3>
+        <div class="asideselectrecipient col-sm-3 p-0 mb-3">
+            <label for="subject">{% trans 'Subject of email' %} :</label>
+                <input class="form-control" type="text" id="subject" name="subject" maxlength="120" required>
+            <ul class="list-group col-sm-12 mt-4">
+                <li>
+                    <p class="groups">
+                        {% trans 'Groups' %}:
+                    </p>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <button class="nav-link active" id="groupstabtrigger" data-bs-toggle="tab" data-bs-target="#groupstab"
+                                type="button" role="tab" aria-controls="Standard" aria-selected="true">{% trans 'Standard' %}</button>
+                        <button class="nav-link" id="prospectstabtrigger" data-bs-toggle="tab" data-bs-target="#prospectstab"
+                                type="button" role="tab" aria-controls="Prospects" aria-selected="false" {% if not perms.app0_access.view_massmailing %}disabled{%endif%}>{% trans 'Prospects' %}</button>
+                    </div>
+                </li>
+                <li class="list-group-item tab-content ps-1">
+                    <div class="tab-pane fade show active" id="groupstab" role="tabpanel" aria-labelledby="groupstabtrigger">
+                        {% for g in allgroups %}
+                        <label class="dropdown-item text-wrap">
+                            <input class="gr{{g.id}} form-check-input me-1 checkboxes-groups" id="id{{g.id}}parent" type="checkbox" value="">
+                            {{g}}
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <div class="tab-pane fade" id="prospectstab" role="tabpanel" aria-labelledby="prospectstabtrigger">
+                        {% for p in allprospects %}
+                        <label class="dropdown-item text-wrap">
+                            <input class="p{{forloop.counter}} form-check-input me-1 checkboxes-prospects" id="id{{p.id}}allprospects" type="checkbox" value="{{p}}" name="allprospects[]">
+                            {{p}}
+                        </label>
+                        {% endfor %}
+                    </div>
+                </li>
+                <li>
+                    <p class="groups">
+                        {% trans 'Users' %}:
+                    </p>
+                </li>
+                <li class="list-group-item p-0 my-3">
+                    <label for="searchnames">{% trans 'Search bar' %}:</label>
+                    <input class="col-sm-12 w-100" type="text" id="searchnames" placeholder="{% trans 'Look up users...' %}">
+                </li>
+                <li id="names" class="list-group list-group-item">
+                    {% for u, g in compiledusers %}{% if u.last_name != '' or u.first_name != '' %}
+                    <label class="dropdown-item text-wrap labelname">
+                        <input class="u{{forloop.counter}} form-check-input me-1 {% for gn in g %} g{{gn.id}} {% endfor %} checkboxes-recipients"
+                               type="checkbox" value="{{u.email}}" name="recipients[]">{{u.last_name}} {{u.first_name}}</label>{% else %}
+                    <label class="dropdown-item text-truncate labelname">
+                        <input class="u{{forloop.counter}} form-check-input me-1 {% for gn in g %} g{{gn.id}} {% endfor %} checkboxes-recipients"
+                               type="checkbox" value="{{u.email}}" name="recipients[]">{{u.email}}</label>{% endif %}
+                    {% endfor %}
+                </li>
+            </ul>
+        </div>
+        <div class="form-group col-sm-9 pe-0">
+            <label for="FileSelect">{% trans 'Select a preset:' %}</label>
+            <select class="form-control form-select selectfilename" id="FileSelect" name="templatefilename" required>
+                {% if templates|length == 0 %}
+                <option value="" selected>-- {% trans "No preset created yet. Please create a preset in the 'Create an email preset' tab." %} --</option>
+                {% else %}
+                <option value="" selected>-- {% trans 'Please choose an option' %} --</option>
+                {% endif %}
+                {% for key in templates %}
+                <option id="{{key.NAME}}" value="{{key.NAME}}" class="mt-5">{{key.NAME}}</option>
+                {% endfor %}
+            </select>
+            {% for key in templates %}
+            <div class="{{key.NAME}}options fileoptions col-sm-8 d-none w-100 border border-darkblue p-3 bg-grey my-3">
+                {{ key.LIST|safe }}
+            </div>
+            {% endfor%}
+            <div class="mt-4">
+                <button type="submit" name="envoidemail" class="btn btn-perso me-3">
+                    {% trans 'Step 2: Send the emails without saving as a Campaign' %}.
+                </button>
+            </div>
+            <div class="mt-4">
+                <div class="creation_campaign_options">
+                    <div class="col-sm-4 ms-3 my-3">
+                    {{ form }}
+                    </div>
+                    <button type="submit" name="createcampaign" id="createcampaign" class="btn btn-perso me-3">
+                        {% trans 'Save the Campaign' %}
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </form>
+    {% endif %}
+    {% if listemail %}
+    <form  action="" method="post" name="aperçuenvoidemail" class="row aperçuenvoidemail mx-1" id="aperçuenvoidemail">
+        {% csrf_token %}
+        <input type="hidden" name="id_mail_type" class="btn btn-perso" value="{{id_mail_type}}">
+        {% if istoobig %}
+        <div>
+            <div class="modal fade" id="confirmMailtoobig" tabindex="-1" aria-labelledby="confirmMailtoobig" aria-hidden="true" role="dialog">
+                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body text-center m-3 p-0" role="alert">
+                            <h4 class="modal-title">{% trans 'Confirmation' %}</h4>
+                            <p id="resultemailshowtoobig">{% trans 'Are you sure that you want to send' %} {{istoobig}}{% trans 'emails' %}?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" data-bs-dismiss="modal" aria-label="Close" class="btn btn-outline-danger">{% trans 'Cancel' %}</button>
+                            <button type="submit" name="aperçuenvoidemail" class="btn btn-perso">{% trans 'Yes, I am sure' %}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="alert alert-warning my-4" role="alert">
+                {% trans 'Displaying more than' %}{{istoobig}}{% trans 'emails degrade your user experience. Instead, here is the email that will be sent to the first recipient' %} :
+            </div>
+            <input type="hidden" name="listemailtoobig" class="btn btn-perso" value="{{campaign_id}}">
+            <input type="hidden" name="istoobignumber" class="btn btn-perso" value="{{istoobig}}">
+            <div id="aperculiste" class="carousel" data-interval="false">
+                <div class="carousel-inner rounded-3">
+                    <div class="carousel-item active bg-lightblue">
+                        <div class="w-75">
+                            <div class="w-100 border border-lightblue p-3 bg-grey my-5">
+                                {% for mail in listemail %} <!--only has one element-->
+                                {{ mail|safe }}{%endfor%}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="m-4">
+                <div>
+                    <button type="button" id="resultemailtoobig" data-bs-toggle="modal"
+                            data-bs-target="#confirmMailtoobig" class="btn btn-perso buttonnumberemail me-3">
+                        {% trans 'Confirm sending of ' %}{{ istoobig }} {% trans 'emails' %}</button>
+                    <button type="button" class="btn btn-outline-danger" onclick="javascript:history.back();">{% trans 'Cancel' %}</button>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div>
+            <div class="modal fade" id="confirmMail" tabindex="-1" aria-labelledby="confirmMail" aria-hidden="true" role="dialog">
+                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body text-center m-3 p-0" role="alert">
+                            <h4 class="modal-title">{% trans 'Confirmation' %}</h4>
+                            <p id="resultemailshow">{% trans 'Are you sure you want to send X emails' %} ?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" data-bs-dismiss="modal" aria-label="Close" class="btn btn-outline-danger">{% trans 'Cancel' %}</button>
+                            <button type="submit" name="aperçuenvoidemail" class="btn btn-perso">{% trans 'Yes, I am sure' %}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="residentpicture" class="carousel" data-interval="false">
+                <div class="carousel-inner rounded-3">
+
+                    {% for mail in listemail %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %} bg-lightblue">
+                        <div class="w-75">
+                            <div class="w-100 border border-lightblue p-3 bg-grey mb-5 mt-4">
+                                {{ mail.LIST|safe }}
+                            </div>
+                            <div class="carousel-caption d-none d-md-block">
+                                <label class="text-wrap">
+                                    <input class="m{{forloop.counter}} checkboxes-emails form-check-input me-1 " type="checkbox" value="{{ mail.NAME.clef }}" name="mailstosend[]">
+                                    {% trans 'Select this email' %}
+                                </label>
+                                <hr/>
+                                {{ forloop.counter }} / {{ listemail|length }}
+                            </div>
+
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <a class="carousel-control-prev" href="#residentpicture" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">{% trans "Previous" %}</span>
+                </a>
+                <a class="carousel-control-next" href="#residentpicture" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">{% trans "Next" %}</span>
+                </a>
+            </div>
+            <div class="m-4">
+                <label class="text-wrap hover my-3 bg-grey p-3 border rounded rounded-3">
+                    <input class="form-check-input me-1" id="emailparent" type="checkbox" value="">
+                    {% trans 'Select all' %}
+                </label>
+                <div>
+                    <button type="button" name="aperçuenvoidemail" id="resultemail" data-bs-toggle="modal"
+                            data-bs-target="#confirmMail" class="btn btn-perso buttonnumberemail me-3">
+                        {% trans 'Confirm sending of 0 emails' %}</button>
+                    <button type="button" class="btn btn-outline-danger" onclick="javascript:history.back();">{% trans 'Cancel' %}</button>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </form>
+    {% endif %}
+</main>
+{% endblock %}

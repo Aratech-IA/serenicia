@@ -1,0 +1,108 @@
+{% extends 'app4_ehpad_base/base_footer.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+{% if exist %}
+    <div class="modal" id="warning_msg" tabindex="-1" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content border border-darkblue">
+                <div class="modal-header">
+                    <h5 class="modal-title">{% trans 'Recording' %}</h5>
+                </div>
+                <div class="modal-body text-center">
+                    <h5>{% trans 'Your passphrase is already recorded, do you want to record a new one ?' %}</h5>
+                </div>
+                <div class="modal-footer">
+                    <div class="d-flex gap-2 justify-content-center">
+                        <a href="{% url 'app4_ehpad_base index' %}" class="btn p-0">
+                            <svg width="60px" height="60px" viewBox="0 0 16 16" class="bi bi-x-circle-fill" fill="red" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                        </svg>
+                        </a>
+                        <button class="btn p-0" data-bs-dismiss="modal" onclick="requestMic()">
+                            <svg width="60px" height="60px" viewBox="0 0 16 16" class="bi bi-check-circle-fill" fill="green" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                        </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% else %}
+    <div class="modal" id="warning_msg" tabindex="-1" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content border border-darkblue">
+                <div class="modal-header">
+                    <h5 class="modal-title">{% trans 'Record your passphrase' %}</h5>
+                </div>
+                <div class="modal-body text-center">
+                    <h5>{% trans 'The recording will last a maximum of 5 seconds.' %}</h5>
+                    <h5>{% trans "Put yourself in a calm environment then click on 'Start' to start the recording." %}</h5>
+                    <br>
+                    <h5>{% trans "Once recorded you can listen to it in the player and click on 'Save'." %}</h5>
+                </div>
+                <div class="modal-footer">
+                    <div class="d-flex gap-2 justify-content-center">
+                        <a href="{% url 'app4_ehpad_base index' %}" class="btn p-0">
+                            <svg width="60px" height="60px" viewBox="0 0 16 16" class="bi bi-x-circle-fill" fill="red" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                        </svg>
+                        </a>
+                        <button class="btn p-0" data-bs-dismiss="modal" onclick="requestMic()">
+                            <svg width="60px" height="60px" viewBox="0 0 16 16" class="bi bi-check-circle-fill" fill="green" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                        </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+<main class="mt-5 d-flex flex-column justify-content-center align-items-center gap-5">
+    <div class="d-flex justify-content-center gap-2">
+        <button class="btn btn-outline-danger disabled" id="stop">{% trans 'Stop' %}</button>
+        <button class="btn btn-perso" id="start">{% trans 'Start' %}</button>
+        <a href="{% url 'record passphrase' %}" class="btn btn-perso" id="restart" style="display: none">{% trans 'Restart' %}</a>
+    </div>
+    <div class="spinner-grow text-danger" id="recording" role="status" style="display: none"></div>
+    <div class="d-flex flex-column align-items-center justify-content-center gap-2">
+        <audio id="player" controls></audio>
+        <form action="{% url 'record passphrase' %}" method="post" enctype="multipart/form-data" id="formdata">{% csrf_token %}
+            <input type="file" name="passphrase" id="fileinput" hidden>
+            <button class="btn btn-perso align-self-end disabled" id="save">{% trans 'Save' %}</button>
+        </form>
+    </div>
+
+</main>
+<script src="{% static 'app4_ehpad_base/js/audio_recorder.js' %}"></script>
+<script>
+    const stopButton = document.getElementById('stop');
+    const startButton = document.getElementById('start');
+    const recordMsg = document.getElementById('recording');
+    const saveButton = document.getElementById('save')
+
+    startButton.addEventListener("click", function () {
+        stopButton.classList.remove("disabled");
+        startButton.style.display = 'none';
+        document.getElementById('restart').style.display = 'block';
+        recordMsg.style.display = 'block';
+        startRecording();
+    });
+
+    stopButton.addEventListener("click", function () {
+        recordMsg.style.display = 'none';
+        stopButton.classList.add("disabled");
+        var url = stopRecording();
+        document.getElementById('player').src = url;
+        saveButton.classList.remove("disabled");
+    });
+
+    saveButton.addEventListener("click", function () {
+        completeForm('formdata', 'fileinput');
+    });
+</script>
+{% endblock content %}

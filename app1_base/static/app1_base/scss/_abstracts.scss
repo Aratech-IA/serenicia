@@ -1,0 +1,32 @@
+/* Déclaration des couleurs */
+$lightblue: rgb(147, 169, 210);
+$darkblue: rgb(82, 133, 227);
+$grey: lightgrey;
+$white: whitesmoke;
+$black: #000;
+
+/* Attribution des couleurs */
+$bg-lightblue: $lightblue;
+$bg-darkblue: $darkblue;
+$bg-white: $white;
+$bg-grey: $grey;
+
+/* Gestion des fonts */
+$font-size: 14px;
+$font-size-medium: 16px;
+$font-size-large: 19px;
+
+$font-familly-title: 'inter', sans-serif;
+$font-familly-content: 'open sans', sans-serif;
+$font-familly-fallback: 'Helvetica, Arial, sans-serif';
+
+/* Transitions */
+$transition-fast: 0.3s;
+$transition-medium: 0.5s;
+$transition-slow: 0.9s;
+
+/* Définition des breakpoints */
+$phone-media-rupture: 576px;
+$tablette-media-rupture: 768px;
+$desktops-media-rupture: 992px;
+$fix-media-rupture: 1200px;

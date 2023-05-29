@@ -1,0 +1,31 @@
+// 0. Mise en place du charset
+// @charset 'utf-8';
+
+// 1. Inclusion de nos abstracts
+// @import
+    // '../scss/abstracts';
+
+// 2. Inclusion de nos vendors
+// @import
+//     '~reset-css/sass/reset';
+
+// 3. Import de la base de l'app
+// @import
+    // '../scss/base';
+//     '../scss/typo';
+
+// 4. Import de nos layouts
+@import
+//     '../scss/header',
+//     '../scss/footer',
+//     '../scss/accueil',
+//     '../scss/domicile-ehpad',
+//     '../scss/mon-avis',
+//     '../scss/evalmenu',
+//     '../scss/contact',
+//     '../scss/ethique',
+//     '../scss/plan-du-site',
+    '../scss/select_manager',
+    '../scss/protocols',
+    '../scss/index-fiche-critere',
+    '../scss/fiche-critere';

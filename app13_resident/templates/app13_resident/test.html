@@ -1,0 +1,393 @@
+{% extends "app13 _resident/base_app4.html" %}
+{% load static %}
+
+{% load i18n %}
+
+{#{% include 'app13 _resident/header_app4.html'%}#}
+
+{% block content%}
+
+
+ <style>
+        body {
+          background-image: -webkit-linear-gradient(left, #80ce80 0%,#80ce80 100%);
+          background-image: linear-gradient(to right, #80ce80 0%,#80ce80 100%);
+          width: auto;
+          overflow: hidden;
+          margin: 0;
+          padding: 0;
+          height: 100%;
+        }
+
+        .wrap {
+          overflow: hidden;
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          margin: auto;
+          height: 120px;
+        }
+
+        .bgWave {
+          position: absolute;
+          left: 0;
+          width: 200%;
+          height: 100%;
+          background-repeat: repeat;
+          background-position: left bottom;
+          transform-origin: left bottom;
+        }
+
+        .waveOne {
+          background-size: 50% 120px;
+          background-image: url(https://upload.cc/i1/2020/05/14/A2kBfn.png);
+          animation: wave 10s linear infinite;
+        }
+
+        .waveTwo {
+          background-size: 50% 120px;
+          background-image: url(https://upload.cc/i1/2020/05/14/A2kBfn.png);
+          animation: wave-reverse 20s linear infinite;
+          right: 0;
+          left: auto;
+        }
+
+        @keyframes wave {
+            0% {
+                transform: translateX(0)
+            }
+            50% {
+                transform: translateX(-25%)
+            }
+            100% {
+                transform: translateX(-50%)
+            }
+        }
+
+        @keyframes wave-reverse {
+            0% {
+                transform: translateX(0) scaleY(1)
+            }
+            50% {
+                transform: translateX(25%) scaleY(0.55)
+            }
+            100% {
+                transform: translateX(50%) scaleY(1)
+            }
+        }
+
+        .glass {
+            margin:1vh 0;
+            padding: 1vh 1vw;
+            background: rgba( 255, 255, 255, 0.40 );
+            box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.37);
+            backdrop-filter: blur( 11.0px );
+            -webkit-backdrop-filter: blur( 11.0px );
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Inter', sans-serif;
+            font-weight: bold;
+        }
+
+        p, li {
+            font-size: 1.25em;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: bold;
+        }
+
+        li {
+            text-decoration: none;
+            list-style: none;
+        }
+
+        .border, iframe {
+            border-radius: 20px;
+        }
+
+        .png {
+            border-radius: 0;
+        }
+
+        .fotorama {
+            z-index:2
+        }
+
+        .logo {
+            position: absolute;
+            right: 5px;
+            bottom : 5px;
+        }
+
+        .lune {
+            margin-top: 3.1em;
+        }
+
+        .pleinelune {
+            margin-top: 0.5em;
+        }
+
+        </style>
+
+<div class="row">
+            <div class="col-9">
+
+                <div class="glass">
+                    <h1>
+                        <img height="50px" width="auto" src="{{ IMG_LOGO }}" alt="logo">
+                        {{ greet }}, {{ request.user.first_name }} {{ request.user.last_name }}
+                    </h1>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="glass text-center">
+                                    {% if meal.type == 'noon' or 'evening' %}
+                                        {% if meal.type == 'noon' %}
+                                            <h5>{% trans "Lunch" %}</h5>
+                                        {% elif meal.type == 'evening' %}
+                                            <h5>{% trans "Dinner" %}</h5>
+                                        {% endif %}
+                                        {% if meal.date == today %}
+                                            <h5 class="text-muted">{% trans 'Today' %}</h5>
+                                        {% else %}
+                                            <h5 class="text-muted">{% trans 'Yesterday' %}</h5>
+                                        {% endif %}
+                                    <hr class="mx-auto" width="70%">
+                                    <h5><u>{% trans "Entree" %}</u></h5>
+                                    <h4>{{ meal.entree }}</h4>
+                                    <hr class="mx-auto" width="20%">
+                                    <h5><u>{% trans "Main course" %}</u></h5>
+                                    <h4>{{ meal.main_dish }}</h4>
+                                    {% if meal.accompaniment is not None %}
+                                        <h4>{{ meal.accompaniment }}</h4>
+                                    {% endif %}
+                                    <hr class="mx-auto" width="20%">
+                                    <h5><u>{% trans "Dessert" %}</u></h5>
+                                    {% if meal.dry_cheese %}
+                                        <h4>{% trans "dry cheese" %}</h4>
+                                    {% endif %}
+                                    {% if meal.cottage_cheese %}
+                                        <h4>{% trans "cottage cheese" %}</h4>
+                                    {% endif %}
+                                    <h4>{{ meal.dessert }}</h4>
+                                    <hr class="mx-auto" width="70%">
+                                    {% if meal.type == 'noon' %}
+                                        {% if notation.noon %}
+                                            <p>{% trans 'Resident' %}</p>
+                                            {% if notation.noon == 1 %}
+                                                <img src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}"
+                                                    alt="{% trans 'very bad' %}" class="w-50">
+                                            {% elif notation.noon == 2 %}
+                                                <img src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}"
+                                                    alt="{% trans 'bad' %}" class="w-50">
+                                            {% elif notation.noon == 3 %}
+                                                <img src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}"
+                                                    alt="{% trans 'good' %}" class="w-50">
+                                            {% elif notation.noon == 4 %}
+                                                <img src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}"
+                                                    alt="{% trans 'very good' %}" class="w-50">
+                                            {% endif %}
+                                        {% endif %}
+                                    {% elif meal.type == 'evening' %}
+                                        {% if notation.evening %}
+                                            <p>{% trans 'Resident' %}</p>
+                                            {% if notation.evening == 1 %}
+                                                <img src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}"
+                                                    alt="{% trans 'very bad' %}" class="w-50">
+                                            {% elif notation.evening == 2 %}
+                                                <img src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}"
+                                                    alt="{% trans 'bad' %}" class="w-50">
+                                            {% elif notation.evening == 3 %}
+                                                <img src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}"
+                                                    alt="{% trans 'good' %}" class="w-50">
+                                            {% elif notation.evening == 4 %}
+                                                <img src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}"
+                                                    alt="{% trans 'very good' %}" class="w-50">
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endif %}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <!-- heure chiffre -->
+                                <div class="glass text-center">
+                                    <iframe src="https://www.zeitverschiebung.net/clock-widget-iframe-v2?language=fr&size=medium&timezone=Europe%2FParis" width="100%" height="115" frameborder="0" seamless></iframe>
+                                </div>
+
+
+                                <div class="fotorama" data-height="255px" data-loop="true" data-autoplay="5000" data-nav="false">
+                                    <!-- Lune du jour -->
+                                    <div class="glass text-center" style="height: 245px;">
+                                        <div id="contain_moon" style="text-align:center;padding-bottom:5px;">
+                                            <div style="font-weight:bold"></div>
+                                            <div class="mt-4 fs-5" style="margin-bottom:-15px;padding:30px;filter:drop-shadow(0 0 30px hsl(220,100%,15%))"></div>
+                                            <div class="lune fs-5">.</div>
+                                            <div class="pleinelune fs-5" style="font-size:small">.</div>
+                                        </div>
+                                        <script>(function(){var d=new Date().getDate();var m=document.querySelectorAll("#contain_moon div");var a=new XMLHttpRequest();var url="https://www.icalendar37.net/lunar/api/?lang=fr&month="+(new Date().getMonth()+1)+"&year="+(new Date().getFullYear())+"&size=100&lightColor=rgb(245,245,245)&shadeColor=rgb(17,17,17)&LDZ="+new Date(new Date().getFullYear(),new Date().getMonth(),1)/1000+"";m[1].style.height="100px";a.onreadystatechange=function(){if(a.readyState==4&&a.status==200){var b=JSON.parse(a.responseText);m[1].innerHTML=b.phase[d].svg;if(typeof moon_widget_loaded=="function")moon_widget_loaded(b);m[2].innerHTML=b.phase[d].npWidget;m[3].innerHTML="Prochaine pleine lune<br>"+b.nextFullMoon}};a.open("GET",url,true);a.send()})()</script>
+                                    </div>
+
+                                    <!-- heure horloge analogique (Aiguilles) -->
+                                    <div class="glass d-flex justify-content-center" style="height: 180px;">
+                                        <table>
+                                         <tr>
+                                            <td style="text-align: center;">
+                                                <canvas id="canvas_tt6125fd0980bbf" width="140" height="140">
+                                                </canvas>
+                                            </td>
+                                         </tr>
+                                        <tr>
+                                            <td style="text-align: center; font-weight: bold">
+                                            <a href="//24timezones.com/Paris/heure" style="text-decoration: none" class="clock24" id="tz24-1629879561-c1195-eyJzaXplIjoiMjAwIiwiYmdjb2xvciI6IjAwQ0MwMCIsImxhbmciOiJmciIsInR5cGUiOiJhIiwiY2FudmFzX2lkIjoiY2FudmFzX3R0NjEyNWZkMDk4MGJiZiJ9" title="heure actuelle Paris" target="_blank" rel="nofollow"></a>
+                                            </td>
+                                        </tr>
+                                        </table>
+                                        <script type="text/javascript" src="//w.24timezones.com/l.js" async></script>
+                                    </div>
+                                </div>
+
+                                <!-- Météo -->
+                                <div class="glass text-center">
+                                    <img src="https://w.bookcdn.com/weather/picture/32_526327_1_3_2bcc71_250_24ae60_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=581&anc_id=41273"  alt="booked.net"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <!-- Défilement photos -->
+                        <div class="glass d-flex justify-content-center">
+                            <div class="fotorama" data-loop="true" data-autoplay="3000" data-maxheight="400" data-maxwidth="500" data-nav="false" >
+                                {% for image in images %}
+                                    <img class="img-fluid border"  src="{{ image }}" alt="carroussel">
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <!-- Programme journée -->
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="glass">
+                                    {% include 'app13 _resident/planning.html'%}
+                                </div>
+                            </div>
+
+                            <div class="col-7">
+                                <div class="fotorama" data-loop='true' data-autoplay='20000' data-nav='false' data-height="100%">
+
+                                    <!-- Citation du jour -->
+                                    <div class="glass text-center">
+                                        <h4>Dicton du jour :</h4>
+                                        <p><script language="JavaScript"
+                                            src="https://citations.HasardDuJour.com/citation-hasard-du-jour.php">
+                                            </script>
+                                        </p>
+                                    </div>
+
+                                    <!-- Saint du jour -->
+                                    <div class="glass text-center">
+                                        <h4>Ephéméride :</h4>
+                                        <div id="widget_nominis" class="css_nominis"></div>
+                                        <script type="text/javascript" src="https://nominis.cef.fr/widgets/widget.php?id=widget_nominis&format=2"></script>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Commandes vocales -->
+            <div class="consignes col-3">
+                <div class="glass ps-3">
+
+                    <h2 class="text-center pb-2">Consignes Echo</h2>
+                    <ul>
+                        <li>Echo quel jour sommes-nous ?</li>
+                        <li>Echo quelle heure est-il ?</li>
+                        <li>Echo météo ?</li>
+                        <li>Echo les informations</li>
+                        <li>Echo, musique</li>
+                        
+                        <li class="pt-3">Echo ouvre le volet</li>
+                        <li>Echo ferme le volet</li>
+                        <li>Echo arrête le volet</li>
+
+                        <li class="text-light pt-3">Allume la TV</li>
+                        <li class="text-light">Eteins la TV</li>
+                    </ul>
+
+                    <h2 class="pt-4 pb-2 text-center">Echo, démarre Fidèle,</h2>
+                    <ul>
+                        <li>Le menu de midi ?</li>
+                        <li>Le menu de ce soir ?</li>
+                        <li>Mon emploi du temps ?</li>
+                        <li>Appel vidéo</li>
+                        <li>Evalmenu</li>
+                        <li>Album Photo</li>
+                        <li>Communication de la direction ?</li>
+                        <li>Communication du Pôle Soins ?</li>
+                        <li>Communication du Service Hôtelier et Restauration ?</li>
+                        <li>Communication du Conseil de Vie Sociale ?</li>
+                    </ul>
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <div class="wrap">
+
+            <div class="bgWave waveOne"></div>
+            <div class="bgWave waveTwo"></div>
+            <div class="d-flex justify-content-center align-item-center">
+                <img class="logo" height="50px" width="auto" src="{% static 'app4_ehpad_base/img/serenicia.png' %}">
+            </div>
+        
+        </div>
+
+        <script>
+              $(".fotorama").fotorama({ arrows: false });
+              $(".fotorama__stage").css( "height", "100%" );
+        </script>
+
+{% block alexanav %}
+<script>
+
+        console.log("check for web socket");
+        let socket = new WebSocket('{{ ws_alexa }}');
+
+        socket.onmessage = function (event) {
+                console.log('connection ws Alexa opened');
+                let message = JSON.parse(event.data);
+                socket.send(JSON.stringify({'answer': true}));
+                console.log(message);
+                url = message.redirect;
+                socket.close()
+                window.location.href = url;
+        };
+
+        socket.onclose = function () {
+            console.log('connection ws Alexa closed');
+        };
+
+        setTimeout(function(){
+            window.location.reload(1);
+        }, 600000);
+
+</script>
+
+{% endblock alexanav %}
+{% endblock content%}

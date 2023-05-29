@@ -1,0 +1,232 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+    {% block content %}
+        {% load static %}
+            {% load i18n %}
+
+
+<style>
+.card {
+    display: flex;
+    position: relative;
+    word-wrap: break-word;
+    flex-direction: column;
+    background-color: white;
+    border: solid 1px #ccc;
+    border-radius: 15px;
+    box-shadow: 0 20px 20px -20px #a6a6a6;
+}
+
+.accordion-button-1:hover {
+    color: #000;
+    background: #93a9d2;
+    border-top-left-radius: 15px !important;
+    border-top-right-radius: 15px !important;
+}
+
+.accordion-button-1:not(.collapsed) {
+    color: #000;
+    background: #93a9d2;
+    border-top-left-radius: 15px !important;
+    border-top-right-radius: 15px !important;
+}
+
+.accordion-button-2:hover {
+    color: #000;
+    background: #93a9d2;
+    border-bottom-left-radius: 15px !important;
+    border-bottom-right-radius: 15px !important;
+}
+
+.accordion-button-2:not(.collapsed) {
+    color: #000;
+    background: #93a9d2;
+}
+
+.accordion-button-2:not(.collapsed):hover {
+    color: #000;
+    background: #93a9d2;
+    border-bottom-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}
+
+</style>
+
+<div class="container pt-5">
+
+    <h5 class="text-center text-uppercase pb-4">
+        {% trans "Create arrival inventory for" %}
+        {% if user_resident.profile.civility %} {{ user_resident.profile.civility }} {% endif %}
+        {{ user_resident.last_name }} {{ user_resident.first_name }}
+    </h5>
+
+    <div class="accordion accordion-flush card" id="accordionFlushExample">
+        <div class="accordion-item">
+
+            <div class="accordion-header border-bottom" id="flush-headingOne">
+                <button class="accordion-button accordion-button-1 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+
+                    <div class="col pt-0 pb-0 d-flex justify-content-start">
+                        <h6 class="text-uppercase">{% trans "Clothing and equipment" %}</h6>
+                    </div>
+
+                </button>
+            </div>
+
+            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+
+                    <form method="post" enctype="multipart/form-data" action="{% url 'create_inventory' %}">
+                    {% csrf_token %}
+
+                        <div class="container row">
+                            <div class="col">
+
+                                <h6 class="text-start text-uppercase text-decoration-underline">{% trans "linen" %} :</h6>
+
+                                    <div class="row">
+                                        <div class="col">{% trans "Laundry washing option" %} : {{ kit_form.laundry_washed }}</div>
+                                        <div class="col">{% trans "Laundry marking option" %} : {{ kit_form.laundry_labeled }}</div>
+                                    </div>
+
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="container row">
+                            <div class="col">
+
+                                 <h6 class="text-start text-uppercase text-decoration-underline">{% trans "Equipment" %} :</h6>
+
+                                <div class="row">
+                                    <div class="col">{% trans "Hearing equipment" %} : {{ kit_form.hearing_equipment }}</div>
+                                    <div class="col">{% trans "Dental equipment" %} : {{ kit_form.dental_equipment }}</div>
+                                </div>
+
+                                <div class="row pt-3">
+                                    <div class="col">{% trans "Cane" %} : {{ kit_form.cane }}</div>
+                                    <div class="col">{% trans "Wheelchair" %} : {{ kit_form.wheelchair }}</div>
+                                    <div class="col">{% trans "Walker" %} : {{ kit_form.walker }}</div>
+                                    <div class="col">{% trans "Glasses" %} : {{ kit_form.glasses }}</div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <hr>
+
+                         <div class="container row">
+                            <div class="col">
+
+                                 <h6 class="text-start text-uppercase text-decoration-underline">{% trans "Outside" %} :</h6>
+
+                                <div class="row">
+                                    <div class="col">{% trans "Summer shoe" %} : {{ kit_form.summer_shoe }}</div>
+                                    <div class="col">{% trans "Winter shoe" %} : {{ kit_form.winter_shoe }}</div>
+                                    <div class="col">{% trans "Jacket" %} : {{ kit_form.jacket }}</div>
+                                    <div class="col">{% trans "Head cover" %} : {{ kit_form.head_cover }}</div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <hr>
+
+                         <div class="container row">
+                            <div class="col">
+
+                                <h6 class="text-start text-uppercase text-decoration-underline">{% trans "Days clothing" %} :</h6>
+
+                                <div class="row">
+                                    <div class="col">{% trans "Pants" %} : {{ kit_form.pants }}</div>
+                                    <div class="col">{% trans "Pull" %} : {{ kit_form.pull }}</div>
+                                    <div class="col">{% trans "Long sleeve t-shirt" %} : {{ kit_form.t_shirt_long }}</div>
+                                    <div class="col">{% trans "Short sleeve t-shirt" %} : {{ kit_form.t_shirt_short }}</div>
+                                </div>
+
+                                <div class="row pt-3">
+                                    <div class="col">{% trans "Long sleeve sweater" %} : {{ kit_form.sweater_long }}</div>
+                                    <div class="col">{% trans "Short sleeve sweater" %} : {{ kit_form.sweater_short }}</div>
+
+                                    {% if user_resident.profile.civility == 'Mme' or user_resident.profile.civility == 'Mrs' %}
+                                        <div class="col">{% trans "Skirt dress" %} : {{ kit_form.skirt_dress }}</div>
+                                    {% endif %}
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <hr>
+
+                         <div class="container row">
+                            <div class="col">
+
+                                <h6 class="text-start text-uppercase text-decoration-underline">{% trans "Night clothing" %} :</h6>
+
+                                <div class="row">
+                                    <div class="col">{% trans "Nightdress" %} : {{ kit_form.nightdress }}</div>
+                                    <div class="col">{% trans "Dressing gown" %} : {{ kit_form.dressing_gown }}</div>
+                                    <div class="col">{% trans "Slipper" %} : {{ kit_form.slipper }}</div>
+                                    <div class="col">{% trans "Short sleeve t-shirt" %} : {{ kit_form.t_shirt_short }}</div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <hr>
+
+                         <div class="container row">
+                            <div class="col">
+
+                                <h6 class="text-start text-uppercase text-decoration-underline">{% trans "Underwear" %} :</h6>
+
+                                <div class="row">
+                                    <div class="col">{% trans "Underwear" %} : {{ kit_form.underwear }}</div>
+                                    {% if user_resident.profile.civility == 'Mme' or user_resident.profile.civility == 'Mrs' %}
+                                        <div class="col">{% trans "Bra" %} : {{ kit_form.bra }}</div>
+                                    {% endif %}
+                                    <div class="col">{% trans "Socks" %} : {{ kit_form.socks }}</div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="d-flex justify-content-center pt-4 pb-5">
+                            <button type="submit" class="btn btn-perso">{% trans "Save" %}</button>
+                            <a type="submit" class="btn btn-outline-secondary ms-2" href="/resident/">{% trans "Home" %}</a>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="accordion-item">
+
+                <div class="accordion-header" id="flush-headingTwo">
+                    <button class="accordion-button accordion-button-2 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+
+                        <div class="col pt-0 pb-0 d-flex justify-content-start">
+                            <h6 class="text-uppercase">{% trans "Equipment in the bathroom" %}</h6>
+                        </div>
+
+                    </button>
+                </div>
+
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock content %}

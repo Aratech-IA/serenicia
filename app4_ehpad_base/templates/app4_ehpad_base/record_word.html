@@ -1,0 +1,169 @@
+{% extends 'app4_ehpad_base/base_footer.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+{% if onboard == "False" %}
+    <div class="modal" id="toto" tabindex="-1" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content border border-darkblue">
+                <div class="modal-header d-block">
+                    <h5 class="modal-title text-center">{% trans 'Warning word recording' %}</h5>
+                </div>
+                <div class="modal-body">
+                    <h5>{% trans 'In order to perfect our algorithms developed to prevent situations of distress for the residents, Serenicia is asking for your contribution' %} !</h5>
+                    <br>
+                    <h5>{% trans "We simply need to acquire data that will enable us to detect these distress situations even better" %}.</h5>
+                </div>
+                <div class="modal-footer">
+                    <div class="d-flex gap-2 justify-content-center">
+                        <button class="btn btn-perso" id="button_1">{% trans "Great, I'm in" %} !</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="rules_2" tabindex="-1" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content border border-darkblue">
+                <div class="modal-header d-block">
+                    <h5 class="modal-title text-center">{% trans 'Warning word recording' %}</h5>
+                </div>
+                <div class="modal-body">
+                    <h5>{% trans 'To help us, all you have to do is record the sentences and expressions that will be offered to you. We also call on your talents as actors and actresses to add emotion to these recordings' %}...</h5>
+                    <br>
+                    <h5>{% trans "We have made sure that it is fun for you, do not hesitate to start over many times if you feel like it" %}.</h5>
+                </div>
+                <div class="modal-footer">
+                    <div class="d-flex gap-2 justify-content-center">
+                        <button class="btn btn-perso" id="button_2">{% trans 'I would really like to contribute' %} !</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="rules_3" tabindex="-1" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content border border-darkblue">
+                <div class="modal-header d-block">
+                    <h5 class="modal-title text-center">{% trans 'Warning word recording' %}</h5>
+                </div>
+                <div class="modal-body">
+                    <h5>{% trans 'Just follow the directions; some of them will probably seem a little incoherent to you, but the result will be extremely useful for us' %}.</h5>
+                    <br>
+                    <h5>{% trans 'Are you ready' %} ?</h5>
+                </div>
+                <div class="modal-footer">
+                    <div class="d-flex gap-2 justify-content-center">
+                        <button class="btn btn-perso" id="button_3">{% trans "Let's go" %} !!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+<main class="d-flex flex-column text-center gap-2">
+    <div class="d-flex justify-content-center my-5">
+        <div class="d-flex flex-column border border-darkblue rounded-3 p-1">
+            <span>{% trans 'Score' %} : {{ request.user.profileserenicia.total_score }}</span>
+            <span>{% trans 'Played words' %} : {{ request.user.profileserenicia.word_played }}</span>
+        </div>
+    </div>
+    <h4 class="mb-5">{% trans "You will pronounce the following phase:" %}</h4>
+    <div class="d-flex flex-wrap justify-content-center gap-2">
+        <h5 class="fw-bold text-success">{{ word.text|upper }}</h5><h5>{% trans 'with this intonation' %} :</h5><h5 class="fw-bold text-success">{{ intonation.text|upper }}</h5>
+        <span>({% widthratio word.points 1 intonation.points %} {% trans 'points' %})</span>
+    </div>
+    <span>{% trans "Click on 'Record' when you're ready. recording will stop after 5 seconds" %}</span>
+    <div class="d-flex justify-content-center gap-5 my-5">
+        <a href="{% url 'record word' onboard="True" %}" class="btn btn-perso">{% trans 'I would like another expression' %}</a>
+        <button class="btn btn-perso" id="start">{% trans 'Start' %}</button>
+        <button id="stop" hidden></button>
+    </div>
+    <div class="spinner-grow text-danger align-self-center" id="recording" role="status" style="display: none"></div>
+    <div class="modal" id="recordfinished" tabindex="-1" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content border border-darkblue">
+                <div class="modal-header">
+                    <h5 class="modal-title">{% trans 'Listen to your recording' %}</h5>
+                </div>
+                <div class="modal-body text-center">
+                    <audio id="player" controls></audio>
+                </div>
+                <div class="modal-footer">
+                    <form action="{% url 'record word' onboard="True"%}" method="post" id="formword" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="file" name="word" id="fileinput" hidden>
+                        <input name="filename" value="{{ word.id }}" hidden>
+                        <input name="dirname" value="{{ intonation.id }}" hidden>
+                        <button class="btn btn-perso" id="end" name="end" value="1">{% trans 'Leave game' %}</button>
+                        <button class="btn btn-perso" id="next">{% trans 'New try' %}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="{% static 'app4_ehpad_base/js/audio_recorder.js' %}"></script>
+
+<script type="text/javascript">
+    var button_1 = document.getElementById('button_1');
+    var button_2 = document.getElementById('button_2');
+    var button_3 = document.getElementById('button_3');
+    button_1.addEventListener('click',hideshow_1,false);
+    button_2.addEventListener('click',hideshow_2,false);
+    button_3.addEventListener('click',hide_3,false);
+
+    new bootstrap.Modal(document.getElementById('toto'), {backdrop:"static", keyboard:false}).toggle();
+
+    function hideshow_1() {
+        $('#toto').hide();
+        $('#rules_2').show();
+    }
+
+    function hideshow_2() {
+        $('#rules_2').hide();
+        $('#rules_3').show();
+    }
+
+    function hide_3() {
+        $('#rules_3').hide();
+        $('.modal-backdrop').hide();
+        requestMic();
+    }
+
+</script>
+
+<script>
+    startButton = document.getElementById('start');
+    stopButton = document.getElementById('stop');
+    nextButton = document.getElementById('next');
+    endButton = document.getElementById('end');
+    recordMsg = document.getElementById('recording');
+
+    startButton.addEventListener("click", function () {
+        recordMsg.style.display = 'block';
+        startButton.classList.add("disabled");
+        startRecording();
+    });
+
+    stopButton.addEventListener("click", function () {
+        var url = stopRecording();
+        recordMsg.style.display = 'none';
+        document.getElementById('player').src = url;
+        $('#recordfinished').modal('show');
+    });
+
+    nextButton.addEventListener("click", function () {
+        completeForm('formword', 'fileinput');
+    });
+
+    endButton.addEventListener("click", function () {
+        completeForm('formword', 'fileinput');
+    });
+</script>
+{% endblock content %}

@@ -1,0 +1,131 @@
+{% extends "app4_ehpad_base/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+
+
+<main class="d-flex flex-column align-items-center gap-2 p-3">
+    <!--  sélection du menu  -->
+    <div class="dropdown">
+      <a class="btn btn-perso dropdown-toggle" href="#" role="button" id="menuSelection" data-bs-toggle="dropdown" aria-expanded="false">
+        {% if menu %}
+          {{ menu }}
+        {% else %}
+          {% trans "Select menu" %}
+        {% endif %}
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="menuSelection">
+          {% for choice in history %}
+            <li><a class="dropdown-item {% if menu == choice %}bg-lightblue{% endif %}" href="{% url 'Select menu' menu_id=choice.id %}">{{ choice }}</a></li>
+          {% endfor %}
+      </ul>
+    </div>
+    {% if menu %}
+        <!--  sélection type de photo  -->
+        <form action="" method="post">{% csrf_token %}
+            <div class="d-flex flex-wrap justify-content-center gap-2 presentation-div">
+                {% for presentation in list_presentation %}
+                    <div>
+                        {% if selected_type == presentation %}
+                            <input class="btn-check" type="radio" name="pic_type" value="{{ presentation.id }}" id="{{ presentation.id }}" onchange="this.form.submit()" checked>
+                        {% else %}
+                            <input class="btn-check" type="radio" name="pic_type" value="{{ presentation.id }}" id="{{ presentation.id }}" onchange="this.form.submit()">
+                        {% endif %}
+                        <label class="btn btn-perso" for="{{ presentation.id }}">{{ presentation.type }}</label>
+                    </div>
+                {% endfor %}
+            </div>
+        </form>
+        <div class="d-flex flex-wrap justify-content-evenly gap-3 w-100">
+            <!--      affichage entrée          -->
+            <div class="d-flex flex-column align-items-center">
+                <form action="" method="post" enctype="multipart/form-data" class="my-0">{% csrf_token %}
+                    {{ form_entree }}
+                    <label class="btn btn-perso d-flex flex-column align-items-center capture-btn" for="{{ form_entree.photo.id_for_label }}">
+                        <svg viewBox="0 0 16 16" class="bi bi-camera-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                          <path fill-rule="evenodd" d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z"/>
+                        </svg>
+                        <span class="fw-bold">{% trans "Entree" %}</span>
+                    </label>
+                </form>
+                <h4>{{ menu.entree }}</h4>
+                <div class="d-flex justify-content-center">
+                {% if pics.entree %}
+                    <input class="rounded-3 meal-pic" data-bs-toggle="modal" data-bs-target="#modalentree" type="image" src="{{ pics.entree.photo.url }}">
+                        <!-- Modal -->
+                    <div class="modal fade" id="modalentree" tabindex="-1" aria-hidden="true">
+                      <div class="modal-dialog modal-fullscreen">
+                        <div class="modal-body vh-100 d-flex justify-content-center align-items-center">
+                            <img class="rounded-3 pic-fullscreen" src="{{ pics.entree.photo.url }}">
+                          </div>
+                      </div>
+                    </div>
+                {% else %}
+                        <img class="meal-pic" src="{% static 'app4_ehpad_base/img/no_picture.png' %}">
+                {% endif %}
+                </div>
+            </div>
+            <!--      affichage plat principal          -->
+            <div class="d-flex flex-column align-items-center">
+                <form action="" method="post" enctype="multipart/form-data" class="my-0">{% csrf_token %}
+                    {{ form_main_dish }}
+                    <label class="btn btn-perso d-flex flex-column align-items-center capture-btn" for="{{ form_main_dish.photo.id_for_label }}">
+                        <svg viewBox="0 0 16 16" class="bi bi-camera-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                          <path fill-rule="evenodd" d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z"/>
+                        </svg>
+                        <span class="fw-bold">{% trans "Main course" %}</span>
+                    </label>
+                </form>
+                <h4>{{ menu.main_dish }} {% if menu.accompaniment %}{{ menu.accompaniment }}{% endif %}</h4>
+                <div class="d-flex justify-content-center">
+                {% if pics.main_dish %}
+                    <input class="rounded-3 meal-pic" data-bs-toggle="modal" data-bs-target="#modalmaindish" type="image" src="{{ pics.main_dish.photo.url }}">
+                        <!-- Modal -->
+                    <div class="modal fade" id="modalmaindish" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-fullscreen">
+                            <div class="modal-body vh-100 d-flex justify-content-center align-items-center">
+                                <img class="pic-fullscreen rounded-3" src="{{ pics.main_dish.photo.url }}">
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                        <img class="meal-pic" src="{% static 'app4_ehpad_base/img/no_picture.png' %}">
+                {% endif %}
+                </div>
+            </div>
+            <!--      affichage dessert          -->
+            <div class="d-flex flex-column align-items-center">
+                <form action="" method="post" enctype="multipart/form-data" class="my-0">{% csrf_token %}
+                    {{ form_dessert }}
+                    <label class="btn btn-perso d-flex flex-column align-items-center capture-btn" for="{{ form_dessert.photo.id_for_label }}">
+                        <svg viewBox="0 0 16 16" class="bi bi-camera-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                          <path fill-rule="evenodd" d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z"/>
+                        </svg>
+                        <span class="fw-bold">{% trans "Dessert" %}</span>
+                    </label>
+                </form>
+                <h4>{{ menu.dessert }}</h4>
+                <div class="d-flex justify-content-center">
+                {% if pics.dessert %}
+                    <input class="rounded-3 meal-pic" data-bs-toggle="modal" data-bs-target="#modaldessert" type="image" src="{{ pics.dessert.photo.url }}">
+                        <!-- Modal -->
+                    <div class="modal fade" id="modaldessert" tabindex="-1" aria-hidden="true">
+                      <div class="modal-dialog modal-fullscreen">
+                        <div class="modal-body vh-100 d-flex justify-content-center align-items-center">
+                            <img class="pic-fullscreen rounded-3" src="{{ pics.dessert.photo.url }}">
+                          </div>
+                      </div>
+                    </div>
+                {% else %}
+                        <img class="meal-pic" src="{% static 'app4_ehpad_base/img/no_picture.png' %}">
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</main>
+{% endblock %}

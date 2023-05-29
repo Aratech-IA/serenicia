@@ -1,0 +1,245 @@
+.head {
+    background-color: $grey;
+    z-index: 10;
+}
+
+.navbar {
+    box-shadow: 0 0 1.5em rgba(0,0,0,.5);
+}
+
+.collapse_styled {
+    @media screen and (max-width: 991px) {
+        background-color: rgba(0, 0, 0, .82);
+        overflow: auto;
+        height: 100vh;
+    }
+}
+
+.navbar-brand-img {
+    width: 5em;
+
+    @media only screen and (min-width: 400px) {
+            width: 6em;
+    }
+
+    @media only screen and (min-width: 450px) {
+            width: 7em;
+    }
+}
+
+// Menu burger
+
+#menu_burger {
+    box-shadow: 0 0 1.5em rgba(0,0,0,.5);
+    position: fixed;
+    height: 100vh;
+    z-index: 10;
+    background-color: $lightblue !important;
+
+    @media screen and (max-width: $tablette-media-rupture) {
+        transition: transform 0.5s;
+        transform: translateX(-100%);
+    }
+    
+    @media screen and (min-width: $tablette-media-rupture) {
+        width: 50px;
+    }
+
+    &:hover {
+        width: auto;
+    }
+}
+
+#menu_burger.visible {
+    transform: translateX(0%);
+}
+
+.navigation {
+
+    overflow-y: scroll;
+    
+    p, .dropdown-toggle::after {
+        @media screen and (min-width: $tablette-media-rupture) {
+            display: none;
+        }
+    }
+
+    &:hover {
+        p, .dropdown-toggle::after {
+            display: flex;
+        }
+    }
+
+    .active {
+        color: $darkblue !important;
+    }
+
+    .evalmenu {
+        .disabled {
+            pointer-events: none;
+            cursor: default;
+
+            p {
+                color: gray;
+            }
+        }
+    }
+}
+
+
+// Menu prénom.nom
+
+.menu_nom {
+    // display: none;
+    position: fixed;
+    transition: transform 0.5s;
+    transform: translateX(100%);
+    height: 100%;
+    right: 0em;
+    font-size: 1.1em;
+}
+
+.menu_nom_transition {
+    display: flex;
+    flex-direction: column;
+    background-color: $lightblue !important;
+    transition: transform 0.5s;
+    transform: translateX(0%);
+    z-index: 10;
+    opacity: 1;
+}
+
+
+// prénom.nom
+
+.boutons_ronds {
+
+    a {
+        color: #ccc;
+        text-shadow: 0 -1px 0 black
+    }
+
+    a:hover, a:focus {
+        background: rgba(0,0,0,.4);
+        box-shadow: 0 1px 0 rgba(255,255,255,.4);
+    }
+
+    a:hover span, a:focus span {
+        transform: scale(1) rotate(0);
+        opacity: 1;
+    }
+
+    a span {
+        cursor: pointer;
+        position: absolute;
+        z-index: 5;
+        font-size: 0.9em;
+        font-weight: bold;
+        margin-top: 25px;
+        margin-left: -80px;
+        color: $darkblue;
+        background: rgba(0,0,0,.9);
+        padding: 0.5em;
+        border-radius: 3px;
+        box-shadow: 0 0 2px rgba(0,0,0,.5);
+        transform: scale(0) rotate(-12deg);
+        transition: all.25s;
+        opacity: 0;
+    }
+
+    .disabled {
+        pointer-events: none;
+        cursor: default;
+        color: grey;
+        // cercle nom disabled
+        background-color: $grey;
+        width: 1.9em;
+        height: 1.9em;
+        border-radius: 1.9em;
+
+        @media screen and (min-width: $tablette-media-rupture) {
+            width: 2.2em;
+            height: 2.2em;
+            border-radius: 2.2em;
+        }
+    }
+
+    .dropdown_photo {
+        img {
+            padding-bottom: 0.2em;
+            width: 1.4em;
+
+            @media screen and (min-width: $tablette-media-rupture) {
+                width: 1.7em;
+            }
+        }
+        
+        .dropdown-toggle::after {
+            display: none;
+        }
+    }
+}
+
+.cerclenom {
+    background-color: $lightblue;
+    width: 1.9em;
+    height: 1.9em;
+    border-radius: 1.9em;
+
+    @media screen and (min-width: $tablette-media-rupture) {
+        width: 2.2em;
+        height: 2.2em;
+        border-radius: 2.2em;
+    }
+}
+
+.clicnom {
+    cursor: pointer;
+    
+    @media screen and (min-width: $tablette-media-rupture) {
+        font-size: 1.2em;
+    }
+
+    span {
+        bottom: -5%;
+        left: 44%;
+        z-index: -1;
+    }
+}
+
+.clicburger {
+    cursor: pointer;
+    font-size: 1.2em;
+
+    span {
+        bottom: -5%;
+        left: 44%;
+        z-index: -1;
+    }
+}
+
+.who {
+    font-size: 1.2em;
+
+    @media screen and (min-width: $tablette-media-rupture) {
+        font-size: 1.5em;
+    }
+}
+
+.font-eval {
+    font-size: 0.7em;
+}
+
+.contenus {
+    @media screen and (min-width: $tablette-media-rupture) {
+        padding-left: 50px;
+    }
+}
+
+
+// Menu personnalisé
+
+#menuperso {
+    box-shadow: 0 0 1.5em rgba(0,0,0,.5);
+    font-size: 0.95em;
+}

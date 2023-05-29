@@ -1,0 +1,1703 @@
+[
+{
+    "model": "app11_quality.references",
+    "pk": 1,
+    "fields": {
+        "reference": "globales",
+        "detail": "RBPP La bientraitance : définition et repères pour la mise en œuvre, 2008",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/reco_bientraitance.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 2,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Expression et participation des usagers dans les établissements relevant du secteur de l’inclusion sociale, 2008",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/reco_expression_participation_usagers.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 3,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "Guide méthodologique Le déploiement de la bientraitance Les principes de bientraitance : déclinaison d’une charte, 2012",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2012-10/bientraitance_-_rapport.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 4,
+    "fields": {
+        "reference": "references",
+        "detail": "Loi n°2002-2 du 2 janvier 2002",
+        "reference_url": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000215460/"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 5,
+    "fields": {
+        "reference": "references",
+        "detail": "Loi n°2005-102 du 11 février 2005 pour l'égalité des droits et des chances, la participation et la citoyenneté des personnes handicapées",
+        "reference_url": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000809647/"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 6,
+    "fields": {
+        "reference": "references",
+        "detail": "Loi n°2007-293 du 5 mars 2007 réformant la protection de l'enfance",
+        "reference_url": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000823100/"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 7,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Qualité de vie en MAS-FAM (volet 1) Expression, communication, participation exercice de la citoyenneté, 2014",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/ane-handicapes-qualite_de_vie_en_mas-fam_volet_1_-juillet_2013.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 8,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Qualité de vie en EHPAD (volet 2) Le cadre de vie et la vie quotidienne, 2011",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/synthese_qualite_de_vie_2_v210911-2_2018-03-16_12-32-35_301.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 9,
+    "fields": {
+        "reference": "globales",
+        "detail": "RBPP Concilier vie en collectivité et personnalisation de l'accueil et de l’accompagnement, 2009",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/reco_vie_en_collectivite_anesm.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 10,
+    "fields": {
+        "reference": "references",
+        "detail": "Article L311-3 CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041721294"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 11,
+    "fields": {
+        "reference": "references",
+        "detail": "Article L311-4 CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041721298/"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 12,
+    "fields": {
+        "reference": "references",
+        "detail": "Article L311-7 CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006797744/"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 13,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP L’accompagnement à la santé de la personne handicapée, 2013",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/anesm-rbpp-accompagnement_sante-juillet_2013.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 14,
+    "fields": {
+        "reference": "references",
+        "detail": "Article L311-5-1 CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031711852/"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 15,
+    "fields": {
+        "reference": "references",
+        "detail": "Article D311-0-4 CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033275296"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 17,
+    "fields": {
+        "reference": "references",
+        "detail": "Arrêté du 5 mars 2004 portant homologation des recommandations de bonnes pratiques relatives à l’accès aux informations concernant la santé d’une personne, et notamment l’accompagnement de cet accès",
+        "reference_url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000601005"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 18,
+    "fields": {
+        "reference": "references",
+        "detail": "Article L1111-7 CSP",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000024316824/2015-11-24"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 19,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Prendre en compte la santé des mineurs/jeunes majeurs dans le cadre des établissements/services de la protection de l’enfance et/ou mettant en œuvre des mesures éducatives, 2015",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/chap_1___rbpp_sante_mineurs_jeunes_majeurs.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 20,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Accompagner l’accès aux droits dans les établissements ou services de l’inclusion socialerelevant de l’article L312-1 du code de l’action sociale et des familles, 2015",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/synthese_accomppagner_l_acces_aux_droits.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 21,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Participation des personnes protégées dans la mise en œuvre des mesures de protection juridique, 2012",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/anesm_09_protection-juridique_cs4_web.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 22,
+    "fields": {
+        "reference": "globales",
+        "detail": "Outil d’amélioration des pratiques professionnelles, Soutenir et encourager l’engagement des usagers dans les secteurs social, médico-social et sanitaire, 2020",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2020-09/has_49_argumentaire_engagement_usagers.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 24,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP L’accompagnement de la personne polyhandicapée dans sa spécificité, 2020",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2020-11/polyhandicap_synthese_vdef.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 25,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP L’expression et la participation du mineur, de ses parents et du jeune majeur dans le champ de la protection de l’enfance, 2014",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/anesm-rbpp-protection_de_l_enfance-decembre_2014-interactif.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 26,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP L'accompagnement des personnes atteintes d’une maladie d’Alzheimer ou apparentée en établissement médico-social, 2009",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2012-04/accompagnement_etablissement_medico_social.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 27,
+    "fields": {
+        "reference": "autresreferences",
+        "detail": "Manuel du Conseil de l’Europe sur la participation des enfants, 2020",
+        "reference_url": "https://rm.coe.int/publication-handbook-on-children-s-participation-fr/1680a1453a"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 28,
+    "fields": {
+        "reference": "autresreferences",
+        "detail": "Charte des CRA et du GNCRA, 2020",
+        "reference_url": "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwjgn_6U-e31AhVCzhoKHbQWAzEQFnoECAcQAQ&url=https%3A%2F%2Fwww.cra-auvergne.com%2Fapp%2Fdownload%2F8067551664%2FCHARTE_GNCRA_VF.pdf%3Ft%3D1624282411&usg=AOvVaw0_nlb9c9q_uuAqbTrMDQIi"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 29,
+    "fields": {
+        "reference": "globales",
+        "detail": "RBPP Élaboration, rédaction et animation du projet d’établissement ou de service, 2010",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/reco_projet_etablissement_service_anesm.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 30,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "Guide méthodologique Services d’aide et de soins à domicile : accompagnement des personnes atteintes de maladie neurodégénérative Guide MND : L'adaptation des pratiques d'accompagnement, 2020",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2020-07/diqasm_guidemnd_projetdeservice_publi.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 31,
+    "fields": {
+        "reference": "autresreferences",
+        "detail": "Convention relative aux droits des personnes handicapées, Nations Unies",
+        "reference_url": "https://www.ohchr.org/fr/professionalinterest/pages/conventionrightspersonswithdisabilities.aspx"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 32,
+    "fields": {
+        "reference": "globales",
+        "detail": "RBPP Le questionnement éthique dans les établissements et services sociaux et médicosociaux, 2010",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/synthese_recommandation_ethique_anesm.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 33,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Pour un accompagnement de qualité des personnes avec autisme ou autres troubles envahissants du développement, 2010",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/reco_autisme_anesm.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 34,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "Guide méthodologique Services d’aide et de soins à domicile : accompagnement des personnes atteintes de maladie neurodégénérative Guide MND : le projet de service, 2020",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2020-07/diqasm_guidemnd_projetdeservice_publi.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 35,
+    "fields": {
+        "reference": "references",
+        "detail": "Arrêté du 4 janvier 2012 relatif à la constitution, à la composition et au fonctionnement des espaces de réflexion éthique régionaux et interrégionaux",
+        "reference_url": "https://solidarites-sante.gouv.fr/fichiers/bo/2012/12-04/ste_20120004_0100_0086.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 36,
+    "fields": {
+        "reference": "autresreferences",
+        "detail": "Convention internationale des droits de l'enfant (CIDE)",
+        "reference_url": "https://www.unicef.fr/sites/default/files/convention-des-droits-de-lenfant.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 37,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Les espaces de calme-retrait et d’apaisement, 2017",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/rbpp_les_espaces_de_calme_retrait.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 38,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Les « comportements-problèmes » au sein des établissements et services accueillant des enfants et adultes handicapés, 2016",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/rbpp_comportements_problemes_volets_1_et_2.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 39,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "Liberté d’aller et venir dans les établissements sanitaires et médicosociaux, et obligation de soins et de sécurité, Conférence de consensus, 2004",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/Liberte_aller_venir_long.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 40,
+    "fields": {
+        "reference": "autresreferences",
+        "detail": "Charte des droits et libertés de la personne accueillie",
+        "reference_url": "https://www.le-pelican.org/wp-content/uploads/2014/07/charte-droits-personne.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 41,
+    "fields": {
+        "reference": "autresreferences",
+        "detail": "Charte des droits et libertés de la personne âgée en situation de handicap et de dépendance",
+        "reference_url": "http://www.ch-buzancais.fr/fichiers/Charte%20personne%20agee%20dependante.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 42,
+    "fields": {
+        "reference": "autresreferences",
+        "detail": "Les 10 droits fondamentaux de l'enfant, CIDE, 1989",
+        "reference_url": "https://www.diplomatie.gouv.fr/IMG/pdf/Conv_Droit_Enfant.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 44,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Qualité de vie en MAS-FAM (volet 2) vie quotidienne, sociale, culture et loisirs, 2014",
+        "reference_url": "https://crmh.centredoc.fr/doc_num.php?explnum_id=155"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 45,
+    "fields": {
+        "reference": "references",
+        "detail": "Circulaire N° DGCS/SD3B/2021/147 du 5 juillet 2021",
+        "reference_url": "https://www.legifrance.gouv.fr/circulaire/id/45220"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 46,
+    "fields": {
+        "reference": "references",
+        "detail": "Loi n° 78-17 du 6 janvier 1978 relative à l'informatique, aux fichiers et aux libertés",
+        "reference_url": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000886460/"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 47,
+    "fields": {
+        "reference": "references",
+        "detail": "Loi n°2020-1266 du 19 octobre 2020 visant à encadrer l'exploitation commerciale de l'image d'enfants de moins de seize ans sur les plateformes en ligne",
+        "reference_url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042439054"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 48,
+    "fields": {
+        "reference": "autresreferences",
+        "detail": "Rapport « Les droits fondamentaux des personnes âgées en Ehpad », Défenseur des droits, 2021",
+        "reference_url": "https://www.defenseurdesdroits.fr/sites/default/files/atoms/files/836210050_ddd_droitsehpad_access.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 49,
+    "fields": {
+        "reference": "references",
+        "detail": "Article L1110-4 CSP",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043895798/"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 50,
+    "fields": {
+        "reference": "references",
+        "detail": "Règlement Général de la Protection des Données (RGPD)",
+        "reference_url": "https://www.cnil.fr/fr/reglement-europeen-protection-donnees"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 51,
+    "fields": {
+        "reference": "autresreferences",
+        "detail": "Référentiel relatif aux traitements de données à caractère personnel mis en oeuvre dans le cadre de l'accueil, l'hébergement et l'accompagnement social et médico-social des personnes âgées, des personnes en situation de handicap et de celles en difficulté, CNIL, 2021",
+        "reference_url": "https://www.cnil.fr/sites/default/files/atoms/files/referentiel_relatif_aux_traitements_de_donnees_personnelles_pour_le_suivi_social_et_medico-social_des_personnes_agees_en_situation_de_handicap_ou_en_difficulte.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 52,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP La personnalisation de l’accompagnement des personnes accueillies dans les centres d’accueil pour demandeurs d’asile (CADA), 2014",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/anesm-rbpp_cada_mai_2014.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 53,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Qualité de vie en EHPAD (volet 3) La vie sociale des résidents en EHPAD, 2012",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/synthese_qualite_de_vie_3-2_2018-03-16_12-32-35_305.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 54,
+    "fields": {
+        "reference": "references",
+        "detail": "Article L311-9 CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020466006"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 55,
+    "fields": {
+        "reference": "references",
+        "detail": "Article D312-162 CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006906548/"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 56,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP L’accompagnement des enfants ayant des difficultés psychologiques perturbant gravement les processus de socialisation, 2017",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/web_rbpp_socialisation.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 57,
+    "fields": {
+        "reference": "autresreferences",
+        "detail": "Fugue chez les personnes âgées : la prévention comme remède, la SFGG",
+        "reference_url": "https://sfgg.org/actualites/fugue-chez-personnes-agees-prevention-remede/"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 58,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Prévention des addictions et réduction des risques et des dommages par les centres de soins, d’accompagnement et de prévention en addictologie (CSAPA), 2020",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2020-01/la_prevention_des_addictions_et_la_reduction_des_risques_et_des_dommages_par_les_csapa-_recommandations.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 59,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP La réduction des risques et des dommages dans les centres d’accueil et d’accompagnement à la réduction des risques pour usagers de drogues (CAARUD), 2017",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/recommandations_caarud_web.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 60,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Évaluation et prise en charge des personnes âgées faisant des chutes répétées, 2009",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2009-06/chutes_repetees_personnes_agees_-_recommandations.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 61,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Repérage des risques de perte d’autonomie ou de son aggravation pour les personnes âgées (Volet Résidences autonomie), 2016",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/perte_autonomie_volet_resi_aut_decembre_2016.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 62,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Repérage des risques de perte d’autonomie ou de son aggravation pour les personnes âgées (Volet EHPAD), 2016",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/ane-rbpp_reperage_des_risques_personnes_agees-ehpad-pdf_interactif.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 63,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Repérage des risques de perte d’autonomie ou de son aggravation pour les personnes âgées (Volet domicile), 2016",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/anesm-rbpp_reperage_des_risques_personnes_agees_a5-bat_-_pdf_interactif.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 64,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Diagnostic de la dénutrition chez la personne de 70 ans et plus, 2021",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2021-11/reco368_recommandations_denutrition_pa_cd_20211110_v1.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 65,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Diagnostic de la dénutrition de l’enfant et de l’adulte, 2009",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2019-11/reco277_recommandations_rbp_denutrition_cd_2019_11_13_v0.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 67,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Repérage et accompagnement en centre d’hébergement et de réinsertion sociale (CHRS) des victimes et des auteurs de violence au sein du couple, 2018",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-09/violences_chrs_recommandations.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 68,
+    "fields": {
+        "reference": "references",
+        "detail": "Instruction N° SG/HFDS/DGCS/2017/219 du 4 juillet 2017 relative aux mesures de sécurisation dans les établissements et services sociaux et médicosociaux",
+        "reference_url": "https://solidarites-sante.gouv.fr/fichiers/bo/2017/17-08/ste_20170008_0000_0003.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 69,
+    "fields": {
+        "reference": "globales",
+        "detail": "RBPP Accompagner la scolarité et contribuer à l’inclusion scolaire, 2021",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2021-09/_rbpp_parcours_scolaires_final.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 71,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Repérage et accompagnement des situations de ruptures dans les parcours des personnes accueillies en centre d’hébergement et de réinsertion sociale (CHRS), 2015",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/ane-rbpp-reperage_et_accompagnement_en_chrs-interactif.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 72,
+    "fields": {
+        "reference": "references",
+        "detail": "Article L311-1 CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000024042709/"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 73,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Adaptation de l’accompagnement aux attentes et besoins des travailleurs handicapés en ESAT, 2013",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/anesm_rbpp_-handicapes-travailleurs_en_esat.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 75,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Prise en compte de la souffrance psychique de la personne âgée : prévention, repérage, accompagnement, 2014",
+        "reference_url": "https://www.f2rsmpsy.fr/fichs/11427.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 76,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP La prise en compte de la santé physique et psychique des personnes accueillies en Centre d'hébergement et de réinsertion sociale (CHRS), 2015",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/anesm-rbpp-prise_en_compte_de_la_sante_en_chrs-pdf_interactif.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 77,
+    "fields": {
+        "reference": "autresreferences",
+        "detail": "Mettre en œuvre un projet de parcours en psychiatrie et santé mentale, Méthodes et outils pour les territoires, ANAP",
+        "reference_url": "https://ressources.anap.fr/parcours/publication/2508"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 78,
+    "fields": {
+        "reference": "autresreferences",
+        "detail": "Rapport annuel enfant santé mentale: le droit au bien être, Défenseur des droits, 2021",
+        "reference_url": "https://defenseurdesdroits.fr/sites/default/files/atoms/files/rae21-num-28.10.21_01access.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 79,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Accompagner la fin de vie des personnes âgées en EHPAD, 2017",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-06/web_rbpp_findevie_ehpad.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 80,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Lits halte soins santé (LHSS), lits d’accueil médicalisés (LAM) et appartements de coordination thérapeutique (ACT) : l’accompagnement des personnes en situation de précarité et la continuité des parcours, 2021",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2021-01/synthese_lhss_lam_act___08122020.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 81,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Qualité de vie en EHPAD (volet 4) l'impact des éléments de santé sur la qualité de vie, 2012",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/synthese_qualite_de_vie_4_novembre2012-2_2018-03-16_12-32-35_310.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 82,
+    "fields": {
+        "reference": "references",
+        "detail": "Article L1111-11 CSP",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041721077"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 83,
+    "fields": {
+        "reference": "references",
+        "detail": "Article R1111-19 CSP",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000034397214"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 84,
+    "fields": {
+        "reference": "references",
+        "detail": "Article D312-158 CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038743629/"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 86,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Qualité de vie en MAS-FAM (volet 3) Le parcours et les formes souples d’accueil et d’hébergement, 2014",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/anesm-qualite_de_vie_en_mas-fam_volet_3_-pdf-interacti.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 87,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Accompagner la fin de vie des personnes âgées à domicile, 2017",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/web_rbpp_findevie_domicile.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 88,
+    "fields": {
+        "reference": "references",
+        "detail": "Article D311-38 CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006906262"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 89,
+    "fields": {
+        "reference": "references",
+        "detail": "Article L311-8 CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038887735/"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 90,
+    "fields": {
+        "reference": "references",
+        "detail": "Article L1112-4 CSP",
+        "reference_url": "https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000021939987/2020-10-06"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 91,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Favoriser les articulations entre les professionnels intervenant en protection de l’enfance et les professionnels intervenant dans un cadre pénal, à l’égard d’un mineur, 2015",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/anesm-rbpp_l_accompagnement_des_enfants_civiles_penales.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 92,
+    "fields": {
+        "reference": "references",
+        "detail": "Article L312-7 CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031727823/"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 93,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "Guide d’amélioration des pratiques professionnelles Accueil, accompagnement et organisation des soins en établissement de santé pour les personnes en situation de handicap, 2018",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2017-09/guide_handicap_etablissement.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 94,
+    "fields": {
+        "reference": "globales",
+        "detail": "Outil d’amélioration des pratiques professionnelles Plan personnalisé de coordination en santé, 2019",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_282_modele_ppcs_web.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 95,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "Outil d'amélioration des pratiques professionnelles Dossier de liaison d’urgence (DLU), 2015",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2015-07/dlu_doc_liaison_web.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 96,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "Outil d'amélioration des pratiques professionnelles Dossier de liaison d’urgence (DLU-Dom), 2021",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2021-03/argumentaire_du_dossier_de_liaison_durgence_domicile_dlu-dom.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 97,
+    "fields": {
+        "reference": "references",
+        "detail": "Article R1110-1 CSP",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032924972"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 100,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP La participation des usagers dans les établissements médicosociaux relevant de l’addictologie, 2010",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/reco_addictologie_anesm.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 101,
+    "fields": {
+        "reference": "references",
+        "detail": "Article D311-21 CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006906243"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 102,
+    "fields": {
+        "reference": "references",
+        "detail": "Article L311-6 CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028807361/"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 104,
+    "fields": {
+        "reference": "autresreferences",
+        "detail": "Guide ANSA: \"Mettre en place ou redynamiser son conseil de vie sociale\"",
+        "reference_url": "https://www.solidarites-actives.com/sites/default/files/2021-06/ansa-dgcs-guide-bonnes-pratiques-cvs-protection-enfance-vf-copyright-pdf%20%281%29.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 105,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Pratiques de coopération et de coordination du parcours de la personne en situation de handicap, 2018",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/web_rbpp_coordination.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 106,
+    "fields": {
+        "reference": "references",
+        "detail": "Instruction N°DGCS/SD3B/2017/115 31 mars 2017",
+        "reference_url": "https://solidarites-sante.gouv.fr/IMG/pdf/sport-en-esms-rapport-2.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 107,
+    "fields": {
+        "reference": "autresreferences",
+        "detail": "Recommandations de l'Organisation Mondiale de la Santé du 25 nov 2020",
+        "reference_url": "https://www.who.int/fr/publications-detail/9789240014886"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 108,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Spécificité de l’accompagnement des adultes handicapés psychiques, 2015",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/anesm_1__rbpp_accompagnement_adultes_handicapes_psychiques_2016.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 109,
+    "fields": {
+        "reference": "references",
+        "detail": "Article L114-1 CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006796449/"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 110,
+    "fields": {
+        "reference": "references",
+        "detail": "Article L116-1 CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006796473/"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 111,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Qualité de vie en résidences autonomie, 2018",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-12/qualite_de_vie_en_residences_autonomie-synthese.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 112,
+    "fields": {
+        "reference": "globales",
+        "detail": "RBPP Les attentes de la personne et le projet personnalisé, 2008",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/reco_projet.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 113,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "Guide méthodologique Qualité de vie : handicap, les problèmes somatiques et les phénomènes douloureux, 2017",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/guide_des_problemes_somatiques.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 114,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "Fiche repère Le projet personnalisé : une dynamique de parcours d’accompagnement (Volet résidences autonomie), 2019",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2019-01/qualite_de_vie_en_residences_autonomie-fr_pp_ra.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 115,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Qualité de vie en EHPAD (volet 1) de l'accueil de la personne à son accompagnement, 2012",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/synthese_reco_qualite_de_vie_ehpad_anesm-2_2018-03-16_12-32-35_297.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 116,
+    "fields": {
+        "reference": "references",
+        "detail": "Article D312-59-5 CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020489156/"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 117,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP L’accompagnement des jeunes en situation de handicap par les services d’éducation spéciale et de soins à domicile (SESSAD), 2015",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/anesm_sessad4_web.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 118,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Le repérage, le diagnostic, l’évaluation pluridisciplinaire et l’accompagnement précoce et personnalisé des enfants en centre d’action médico-sociale précoce (CAMPS), 2015",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/ane-trans-rbpp_l_accompagnement_des_enfants_en_camsp.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 119,
+    "fields": {
+        "reference": "references",
+        "detail": "Article D312-155-0 CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033072919"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 120,
+    "fields": {
+        "reference": "references",
+        "detail": "Article D312-172 CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006906590/"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 122,
+    "fields": {
+        "reference": "references",
+        "detail": "Article D312-14 CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006906301/2005-01-08"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 124,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "Guide méthodologique Services d’aide et de soins à domicile : accompagnement des personnes atteintes de maladie neurodégénérative Guide MND : le projet personnalisé, 2020",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2020-07/diqasm_guide_mnd_projetpersonnalise.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 125,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP L’adaptation de l’intervention auprès des personnes handicapées vieillissantes, 2015",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/anesm-rbpp-adaptation_personnes_handicapees_vieillissantes-interactif.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 126,
+    "fields": {
+        "reference": "references",
+        "detail": "Article D312-59-6 CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020489152"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 127,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP L’exercice de l’autorité parentale dans le cadre du placement, 2010",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/anesm_synthese-orange-autoriteparentale.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 130,
+    "fields": {
+        "reference": "globales",
+        "detail": "Outil d’amélioration des pratiques professionnelles L’outil de repérage des risques de perte d’autonomie ou de son aggravation, 2018",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2019-03/fiche-outil_reperage_perte_autonomie.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 132,
+    "fields": {
+        "reference": "references",
+        "detail": "Article L313-26 CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020892776"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 133,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "Outil d'amélioration des pratiques professionnelles Prise en charge médicamenteuse en EHPAD, 2017",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-05/fr_medicament_vdef_crea.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 134,
+    "fields": {
+        "reference": "autresreferences",
+        "detail": "Guide pratique \"Interventions non médicamenteuses et maladie d’Alzheimer : comprendre, connaître, mettre en œuvre\", Fondation Médéric Alzheimer",
+        "reference_url": "https://www.fondation-mederic-alzheimer.org/sites/default/files/2021_guide_interventions_non_medicamenteuses.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 136,
+    "fields": {
+        "reference": "references",
+        "detail": "Loi n° 2004-806 du 9 août 2004 relative à la politique de santé publique",
+        "reference_url": "https://solidarites-sante.gouv.fr/IMG/pdf/Rapport_Haut_conseil_de_la_sante_publique_-_Objectifs_de_sante_publique.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 138,
+    "fields": {
+        "reference": "references",
+        "detail": "Circulaire N°DGCS/SD2A/2014/58 du 20 février 2014",
+        "reference_url": "https://www.legifrance.gouv.fr/circulaire/id/38073"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 139,
+    "fields": {
+        "reference": "autresreferences",
+        "detail": "Stratégie des Nations Unies pour l’inclusion du handicap, 2019",
+        "reference_url": "https://www.un.org/sites/un2.un.org/files/2021/10/undis_sg_report_2020_french.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 140,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Repérage des déficiences sensorielles et accompagnement des personnes qui en sont atteintes dans les établissements pour personnes âgées – Volet EHPAD, 2016",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/web_rbpp_deficience_volet_ephad.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 141,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Repérage des déficiences sensorielles et accompagnement des personnes qui en sont atteintes dans les établissements pour personnes âgées – Volet résidences autonomie, 2016",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/deficience_resi_aut_230117.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 143,
+    "fields": {
+        "reference": "globales",
+        "detail": "RBPP Ouverture de l’établissement à et sur son environnement, 2008",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/reco_ouverture.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 155,
+    "fields": {
+        "reference": "references",
+        "detail": "Article L5126-1 CSP",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043424060/"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 161,
+    "fields": {
+        "reference": "references",
+        "detail": "Article R4312-38 et suivants CSP",
+        "reference_url": "https://www.sniil.fr/exercer-en-liberal/notre-exercice/textes-officiels/445-code-de-la-sante-publique-chapitre-ii-regles-professionnelles-section-2-infirmiers-ou-infirmieres-dexercice-liberal#:~:text=Article%20R4312%2D38,rapport%20avec%20son%20activit%C3%A9%20professionnelle."
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 175,
+    "fields": {
+        "reference": "references",
+        "detail": "Article D312-160 CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032610139"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 179,
+    "fields": {
+        "reference": "references",
+        "detail": "Article R1413-79 CSP",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000034686956#:~:text=2%C2%B0%20L'infection%20associ%C3%A9e,3113%2D1."
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 184,
+    "fields": {
+        "reference": "references",
+        "detail": "Article L4121-1 Code du travail",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006178066/"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 185,
+    "fields": {
+        "reference": "references",
+        "detail": "Article R4121-1 Code du travail",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000023795562/"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 226,
+    "fields": {
+        "reference": "references",
+        "detail": "Article L119-1 CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/id/LEGIARTI000045135272/2022-02-09#:~:text=Les%20situations%20de%20maltraitance%20peuvent,au%20sein%20de%20ces%20situations."
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 243,
+    "fields": {
+        "reference": "references",
+        "detail": "Article L331-8-1 CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031711904"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 252,
+    "fields": {
+        "reference": "references",
+        "detail": "Article R331-8 et suivants CASF",
+        "reference_url": "https://www.accens-avocats.com/obligation-de-signalement-des-structures-sociales-et-medico-sociales/#:~:text=331%2D8%2D1%20%C2%BB.,des%20personnes%20prises%20en%20charge."
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 264,
+    "fields": {
+        "reference": "references",
+        "detail": "Article D312-161 CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032610131"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 268,
+    "fields": {
+        "reference": "references",
+        "detail": "Décret no 2005-768 du 7 juillet 2005",
+        "reference_url": "https://www.legifrance.gouv.fr/loda/id/LEGITEXT000006051979/#:~:text=des%20%C3%A9tablissements%20...-,D%C3%A9cret%20n%C2%B02005%2D768%20du%207%20juillet%202005%20relatif,action%20sociale%20et%20des%20familles."
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 277,
+    "fields": {
+        "reference": "references",
+        "detail": "Article L1111-8-2 CSP",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042536620"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 291,
+    "fields": {
+        "reference": "autresreferences",
+        "detail": "Stratégie nationale d’amélioration de la qualité de vie au travail – prendre soin de ceux qui nous soignent, 2016",
+        "reference_url": "https://solidarites-sante.gouv.fr/IMG/pdf/strategie_qvt_05122016.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 292,
+    "fields": {
+        "reference": "autresreferences",
+        "detail": "Stratégie pour favoriser la qualité de vie au travail en établissements médico-sociaux, ministère des Solidarités et de la Santé, 2018",
+        "reference_url": "https://solidarites-sante.gouv.fr/IMG/pdf/strategie_qvt_ems.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 293,
+    "fields": {
+        "reference": "autresreferences",
+        "detail": "Guide pratique Démarche qualité de vie au travail dans les établissements médico-sociaux, ministère des Solidarités et de la Santé, 2021",
+        "reference_url": "https://solidarites-sante.gouv.fr/IMG/pdf/gqvt_interactif.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 295,
+    "fields": {
+        "reference": "globales",
+        "detail": "Toutes RBPP validées et publiées",
+        "reference_url": "https://www.has-sante.fr/"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 316,
+    "fields": {
+        "reference": "references",
+        "detail": "Circulaire interministérielle DGCS/DGS no 2012-118 du 15 mars 2012 relative à la mise en œuvre du programme national de prévention des infections dans le secteur médico-social 2011/2013",
+        "reference_url": "https://www.paca.ars.sante.fr/media/2477/download?inline"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 727,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Trouble du spectre de l’autisme : interventions et parcours de vie de l’adulte, 2018",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-09/autisme_adulte_guide_appropriation_fevrier_2018.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 774,
+    "fields": {
+        "reference": "references",
+        "detail": "Article D312-59-1 et suivants CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006906399/"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 777,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Autisme et autres TED diagnostic et évaluation chez l’adulte, 2011",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2012-06/reco2clics_-_autisme_et_autre_ted_diagnostic_et_evaluation_chez_ladulte.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 778,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Autisme et autres troubles envahissants du développement : interventions éducatives et thérapeutiques coordonnées chez l’enfant et l’adolescent, 2012",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2012-07/autisme_enfant_reco2clics_vd.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 782,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Trouble du spectre de l’autisme – Signes d’alerte, repérage, diagnostic et évaluation chez l’enfant et l’adolescent, 2018",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-02/tsa_-_des_signes_dalerte_a_la_consultation_dediee_en_soins_primaires_1er_ligne_-_synthese.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 793,
+    "fields": {
+        "reference": "references",
+        "detail": "Article L421-17-2 CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043520156"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 805,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Le soutien des aidants non professionnels. Une recommandation à destination des professionnels du secteur social et médico-social pour soutenir les aidants de personnes âgées, adultes handicapées ou souffrant de maladie chronique vivant à domicile, 2015.",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/ane-trans-rbpp-soutien_aidants-interactif.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 816,
+    "fields": {
+        "reference": "autresreferences",
+        "detail": "Plan national d’action de prévention de la perte d’autonomie, 2015",
+        "reference_url": "https://solidarites-sante.gouv.fr/IMG/pdf/plan_national_daction_de_prevention_de_la_perte_dautonomie.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 817,
+    "fields": {
+        "reference": "autresreferences",
+        "detail": "Plan national de mobilisation contre les addictions, 2018-2022",
+        "reference_url": "https://www.drogues.gouv.fr/sites/default/files/2021-12/plan_mildeca_2018-2022_def_190212_web.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 823,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP L’accompagnement des mineurs non accompagnés dits « mineurs isolés étrangers » (MNA), 2018",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/rbpp_mna_web.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 826,
+    "fields": {
+        "reference": "references",
+        "detail": "Article L214-1-1 CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043514578"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 827,
+    "fields": {
+        "reference": "references",
+        "detail": "Arrêté du 23 septembre 2021 portant création d’une charte nationale pour l’accueil du jeune enfant",
+        "reference_url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044126586"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 828,
+    "fields": {
+        "reference": "references",
+        "detail": "Article L1111-9 CSP",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006685787"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 831,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP L’accueil et l’accompagnement des personnes atteintes d’une maladie neurodégénérative en unité d’hébergement renforcé (UHR), 2016",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/web_synthese_uhr.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 836,
+    "fields": {
+        "reference": "references",
+        "detail": "Circulaire DGS/DH/DAS n o 99/84 du 11 février 1999",
+        "reference_url": "http://affairesjuridiques.aphp.fr/textes/circulaire-dgsdhdas-n-9984-du-11-fevrier-1999-relative-a-la-mise-en-place-de-protocoles-de-prise-en-charge-de-la-douleur-aigue-par-les-equipes-pluridisciplinaires-medicales-et-soignantes-des/?pdf=607106"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 840,
+    "fields": {
+        "reference": "references",
+        "detail": "Circulaire n o DGCS/SD3B/2021/147 du 5 juillet 2021",
+        "reference_url": "https://www.legifrance.gouv.fr/circulaire/id/45220#:~:text=et%20reproductifs%20...-,CIRCULAIRE%20N%C2%B0%20DGCS%2FSD3B%2F2021%2F147%20du%205,la%20lutte%20contre%20les%20violences."
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 847,
+    "fields": {
+        "reference": "references",
+        "detail": "Article L311-10 CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006797750"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 848,
+    "fields": {
+        "reference": "references",
+        "detail": "Article L311-11 CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006797751"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 849,
+    "fields": {
+        "reference": "references",
+        "detail": "Article L1111-6 CSP",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041721063/"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 850,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "Outil d’amélioration des pratiques professionnelles Comment améliorer la qualité et la sécurité des prescriptions de médicaments chez la personne âgée, 2014",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2014-10/fpcs_prescription_web.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 851,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "Guide Le risque médicamenteux au domicile, 2020",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2020-07/diqasm_sr_guide_medicament_dom_publi.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 852,
+    "fields": {
+        "reference": "references",
+        "detail": "Instruction no DGCS/SPA/2016/195 du 15 juin 2016 relative à la mise en œuvre du programme national d’actions de prévention des infections associées aux soins (PROPIAS) dans le secteur médico-social 2016/2018",
+        "reference_url": "https://www.legifrance.gouv.fr/download/pdf/circ?id=41086"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 853,
+    "fields": {
+        "reference": "references",
+        "detail": "Décret no 2017/564 du 19 avril 2017 relatif aux procédures de recueil des signalements émis par les lanceurs d’alertes au sein des personnes morales de droit public ou de droit privé ou des administrations de l’État",
+        "reference_url": "https://www.legifrance.gouv.fr/download/pdf?id=30RsPERaHwR4kPhU8qPi3Z0MAYBpOrokJOp3oZQzPBE="
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 854,
+    "fields": {
+        "reference": "globales",
+        "detail": "RBPP Mise en œuvre d’une stratégie d’adaptation à l’emploi des personnels au regard des populations accompagnées, 2008",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/reco_adaptation_emploi.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 855,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "Guide méthodologique Accueil, accompagnement et organisation des soins en établissement de santé pour les personnes en situation de handicap, 2017",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2017-09/guide_handicap_etablissement.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 856,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "Toutes RBPP validées et publiées",
+        "reference_url": "https://www.has-sante.fr/"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 857,
+    "fields": {
+        "reference": "globales",
+        "detail": "Guide La qualité de vie au travail au service de la qualité des soins : du constat à la mise en œuvre dans les établissements sanitaires, médico-sociaux et sociaux, 2017",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2017-09/guide_demarche_qvt_2017.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 858,
+    "fields": {
+        "reference": "globales",
+        "detail": "Guide méthodologique Construire une démarche qualité de vie au travail, 2019",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2017-09/guide_demarche_qvt_2017.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 859,
+    "fields": {
+        "reference": "globales",
+        "detail": "RBPP Mission du responsable d’établissement et rôle de l’encadrement dans la prévention et le traitement de la maltraitance, 2008",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/reco_maltraitance_etablissement.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 860,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Conduites violentes dans les établissements accueillant des adolescents: prévention et réponses, 2008",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/reco_conduites_violentes.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 861,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP Mission du responsable et rôle de l’encadrement dans la prévention et le traitement de la maltraitance à domicile, 2009",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2018-03/reco_maltraitance_a_domicile_anesm.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 862,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "RBPP La prévention de la violence entre les mineurs adolescents au sein des établissements d’accueil, 2019",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2019-02/prevention_violence_entre_mineurs__adolescents__etablissements_accueil-recommandations.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 864,
+    "fields": {
+        "reference": "references",
+        "detail": "Arrêté du 28 décembre 2016 relatif à l’obligation de signalement des structures sociales et médico-sociales",
+        "reference_url": "https://www.legifrance.gouv.fr/download/pdf?id=hAbW-EvXSWBaxf5tm-lNFArRoeBsOD9vbz7y-maxcGM="
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 865,
+    "fields": {
+        "reference": "globales",
+        "detail": "Guide méthodologique L’analyse des évènements indésirables associés aux soins (EIAS) : mode d’emploi, 2021",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2021-09/guide_lanalyse_des_evenements_indesirables_associes_aux_soins_eias.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 866,
+    "fields": {
+        "reference": "references",
+        "detail": "Article L1111-4 CSP",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041721056/"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 867,
+    "fields": {
+        "reference": "references",
+        "detail": "Arrêté du 8 août 2005 fixant le cahier des charges du plan d’organisation à mettre en œuvre en cas de crise sanitaire ou climatique et les conditions d’installation d’un système fixe de rafraîchissement de l’air dans les établissements mentionnés au I de l’article L313-12",
+        "reference_url": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000447707/"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 868,
+    "fields": {
+        "reference": "references",
+        "detail": "Article L1111-2 CSP",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041721051/"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 869,
+    "fields": {
+        "reference": "specifiques",
+        "detail": "Guide « sûreté dans les établissements d’accueil du jeune enfant », se préparer et faire face aux situations d’urgence particulière, 2017",
+        "reference_url": "https://solidarites-sante.gouv.fr/IMG/pdf/final_mise-a-jour_24-avril_guide-securite_eaje.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 870,
+    "fields": {
+        "reference": "globales",
+        "detail": "Outil d’auto-évaluation de sûreté Modèle de fiche de sécurité à l’intention des responsables d’établissements et services sociaux et médico- sociaux, 2017",
+        "reference_url": "https://solidarites-sante.gouv.fr/ministere/defense-et-securite-hfds/les-guides-du-hfds/article/guide-outil-d-auto-evaluation-de-surete-modele-de-fiche-de-securite"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 871,
+    "fields": {
+        "reference": "autresreferences",
+        "detail": "Mon observatoire du développement durable – Rapport national consolidé, ANAP, 2019",
+        "reference_url": "https://ressources.anap.fr/rse/publication/2717-mon-observatoire-du-developpement-durable-campagne-2019"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 872,
+    "fields": {
+        "reference": "autresreferences",
+        "detail": "Programme ESMS numérique, CNSA",
+        "reference_url": "https://www.cnsa.fr/grands-chantiers/programme-esms-numerique/le-programme-esms-numerique-en-detail"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 873,
+    "fields": {
+        "reference": "autresreferences",
+        "detail": "Feuille de route du numérique en santé : Trajectoire du numérique en santé, adaptée pour le secteur médico-social, ministère des Solidarités et de la Santé, 2021",
+        "reference_url": "https://esante.gouv.fr/sites/default/files/media_entity/documents/trajectoire_medico_social_200125_vf-.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 874,
+    "fields": {
+        "reference": "references",
+        "detail": "Article L116-2 CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006796474/"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 875,
+    "fields": {
+        "reference": "references",
+        "detail": "Article L1111-12 CSP",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031972320"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 876,
+    "fields": {
+        "reference": "globales",
+        "detail": "Outil d’amélioration des pratiques professionnelles Les directives anticipées concernant les situations de fin de vie, 2016",
+        "reference_url": "https://www.has-sante.fr/upload/docs/application/pdf/2016-03/da_professionnels_v11_actualisation.pdf"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 879,
+    "fields": {
+        "reference": "references",
+        "detail": "Articles D312-155-4-1 CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006906532/2005-07-09"
+    }
+},
+{
+    "model": "app11_quality.references",
+    "pk": 880,
+    "fields": {
+        "reference": "references",
+        "detail": "Article D312-155-4-2 CASF",
+        "reference_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006906533/2005-07-09"
+    }
+}
+]

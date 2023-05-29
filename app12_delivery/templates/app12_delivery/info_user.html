@@ -1,0 +1,46 @@
+{% extends "app4_ehpad_base/base.html" %}{% load i18n %}
+{% load static %}
+{% block content %}
+    <main class="d-flex flex-row container-fluid">
+        <div>
+            {% include "./composant/navLeft.html" %}
+        </div>
+        <div class="container-fluid mt-2">
+                        {% if is_created %}
+                <br>
+                <div class="d-flex flex-column justify-content-center align-items-center mb-5
+     border border-darkblue rounded-3 mx-auto py-3 created">
+                    <h4>{% trans 'Fed Info User' %}</h4>
+                    <a href="{% url 'account_delivery' pkCustomer %}" class="btn btn-perso mt-3">{% trans 'Back to profile' %}</a>
+
+                </div>
+            {% elif if_exist %}
+                <br>
+                <div class="d-flex flex-column justify-content-center align-items-center mb-5
+     border border-darkblue rounded-3 mx-auto py-3 created">
+                    <h4>{% trans 'Info user already exist' %}</h4>
+                    <a href="{% url 'account_delivery' pkCustomer %}" class="btn btn-perso mt-3">{% trans 'Back to profile' %}</a>
+
+                </div>
+            {% endif %}
+                                <h4>{% trans 'You need collect consent of user for feed this from' %}</h4>
+
+        <div class="container-fluid mt-5">
+                        <form method="post" action="{% url 'info_user_create' pkCustomer %}">{% csrf_token %}
+                            {% for form in formFeedInfoUser %}
+                            <div class="card-body card">
+                                <span class="text-danger">{{ form.errors }}</span>
+                                            {{ form.label_tag }} {{form}}
+                                    {% if form.help_text %}
+        <p class="text-secondary">{{ form.help_text|safe }}</p>
+        {% endif %}
+                            </div>
+                            {% endfor %}
+                    <button class="btn btn-perso mt-3">{% trans 'Save' %}</button>
+                        </form>
+
+        </div>
+        </div>
+    </main>
+
+{% endblock content %}

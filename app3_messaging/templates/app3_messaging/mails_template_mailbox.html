@@ -1,0 +1,143 @@
+{% extends "app3_messaging/mails_base.html" %}
+{% load static %}
+{% load i18n %}
+{% load custom_filters %}
+
+{% block content %}
+
+<main class="m-3">
+    <h1>{% trans 'Emailing App' %}</h1>
+    <div class="nav nav-tabs mb-3">
+        <ul class="nav" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a href="{% url 'mails_create' %}" data-equalizer-watch class="nav-link {% if '/create' in request.path %}active{% endif %}">
+                    <span>{% trans 'Create an email preset' %}</span>
+                </a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a href="{% url 'mails_send' %}" data-equalizer-watch class="nav-link {% if '/send' in request.path %}active{% endif %}">
+                    <span>{% trans 'Send an email' %}</span>
+                </a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a href="{% url 'mails_mailbox' %}" data-equalizer-watch class="nav-link {% if '/mailbox' in request.path %}active{% endif %}">
+                    <span>{% trans 'Sent campaigns' %}</span>
+                </a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a href="{% url 'mails_manage' %}" data-equalizer-watch class="nav-link {% if '/manage' in request.path %}active{% endif %}">
+                    <span>{% trans 'Settings' %}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="my-3 mx-4">
+        <div class="row fw-bold">{% trans 'Help' %} :</div>
+        <div>{% trans 'On' %} 100% {% trans 'of prepared emails' %} :</div>
+        <div class="row"><div class="form-check-input me-1 bg-success" type="checkbox"></div>&nbsp;{% trans 'Sent' %}</div>
+        <div class="row"><div class="form-check-input me-1 bg-primary" type="checkbox"></div>&nbsp;{% trans 'Opened' %}</div>
+        <div class="row"><div class="form-check-input me-1 bg-info" type="checkbox"></div>&nbsp;{% trans 'Clicked' %}</div>
+        <div class="row"><div class="form-check-input me-1 bg-danger" type="checkbox"></div>&nbsp;{% trans 'Unsubscribed' %}</div>
+    </div>
+    <div class="accordion" id="accordionMailbox">
+        {% if not page_obj_campaign %}
+            <div class="alert alert-info" role="alert">
+                {% trans 'You have yet to send any Campaign' %}.
+            </div>
+        {% endif %}
+    {% for campaign in page_obj_campaign %}
+        <div class="accordion-item">
+            <div class="accordion-header" id="heading{{forloop.counter}}">
+                <div class="accordion-button collapsed d-flex" data-bs-toggle="collapse" data-bs-target="#collapse{{forloop.counter}}" aria-expanded="false" aria-controls="collapseThree">
+                    <div class="me-3">{% trans 'Campaign' %} {{campaign.0.id}}</div>
+                    <div class="infos">
+                        {% trans 'Sent by' %} : {{campaign.0.sender}}
+                    </div>
+                    <div class="infos">
+                        {{campaign.0.number_clicked}} {% trans 'clicks' %} / {{campaign.0.number_opened}} {% trans 'openings' %} / {{campaign.0.number_sent}} {% trans 'sent' %} / {{campaign.2}} {% trans 'prepared' %} | {{campaign.0.number_unsubscribed}} {% trans 'unsubsribed' %}
+                    </div>
+
+                </div>
+            </div>
+            <div id="collapse{{forloop.counter}}" class="accordion-collapse collapse" aria-labelledby="heading{{forloop.counter}}" data-parent="#accordionMailbox">
+                <div class="accordion-body">
+                    <div class="my-3">
+                        <div class="progress sent rounded-2">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: {{campaign.0.number_sent|progress_percent:campaign.2}}%;" aria-valuenow="{{campaign.0.number_sent|progress_percent:campaign.2}}" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        <div class="progress opened rounded-2 mb-0">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: {{campaign.0.number_opened|progress_percent:campaign.2}}%;" aria-valuenow="{{campaign.0.number_opened|progress_percent:campaign.2}}" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        <div class="progress clicked rounded-2 mb-0">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: {{campaign.0.number_clicked|progress_percent:campaign.2}}%;" aria-valuenow="{{campaign.0.number_clicked|progress_percent:campaign.2}}" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        <div class="progress opened rounded-2 mb-0">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{campaign.0.number_unsubscribed|progress_percent:campaign.2}}%;" aria-valuenow="{{campaign.0.number_unsubscribed|progress_percent:campaign.2}}" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                    </div>
+                    {% if campaign.1|length == 10 %}
+                        <div class="alert alert-warning my-4" role="alert">
+                            {% trans 'Displaying more than 10 emails may degrade your user experience' %}.
+                        </div>
+                    {% endif %}
+                    {% for mail in campaign.1|get_x_amount:10 %}
+                        {% if forloop.first %}
+                        <div>
+                            {% trans 'Subject' %} : {{ mail.1.subject }}
+                        </div>
+                        <div>
+                            {% trans 'Sending date' %} : {{ mail.1.date_sent }}
+                        </div>
+                        {% endif %}
+                        <div class="list-group-item">
+                            <div id="headingsent{{forloop.counter}}" class="d-flex align-items-center">
+
+                                <div class="infos2">
+                                    {% trans 'Recipient' %} : {{ mail.0.email }}
+                                </div>
+                                <div class="infos">
+                                    {% if mail.1.date_opened %}
+                                    {% trans 'Opening date' %} : {{mail.1.date_opened}}&nbsp;
+                                    {% endif %}
+                                </div>
+                                <div class="infos">
+                                    {% if mail.1.date_clicked %}
+                                    {% trans 'Link opening date' %} : {{mail.1.date_clicked}}
+                                    {% endif %}
+                                </div>
+
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+        <div class="pagination">
+            <ul class="step-links pagination">
+                {% if page_obj_campaign.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page_campaign=1">&laquo; </a></li>
+                <li class="page-item"><a class="page-link" href="?page_campaign={{ page_obj_campaign.previous_page_number }}">{{ page_obj_campaign.previous_page_number }}</a></li>
+                {% endif %}
+                {% if page_obj_campaign.number %}
+                <li class="page-item">
+                    <a href="" class="current page-link bg-grey">
+                        {{ page_obj_campaign.number }}
+                    </a>
+                </li>
+                {% endif %}
+                {% if page_obj_campaign.has_next %}
+                <li class="page-item"><a class="page-link" href="?page_campaign={{ page_obj_campaign.next_page_number }}">{{ page_obj_campaign.next_page_number }}</a></li>
+                <li class="page-item"><a class="page-link" href="?page_campaign={{ page_obj_campaign.paginator.num_pages }}"> &raquo;</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</main>
+
+
+{% endblock %}

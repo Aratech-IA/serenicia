@@ -1,0 +1,58 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+
+
+<div class="container my-5">
+    {% if '/contact/' in request.path %}
+        <form action="{% url 'Contact videochat' %}" method="post">{% csrf_token %}
+    {% else %}
+        <form action="{% url 'Videochat' %}" method="get">
+    {% endif %}
+        <div class="d-flex flex-wrap justify-content-center">
+            {% for contact in contactlist %}
+                {% if contact.group == "top_selection" %}
+                    <button class="btn btn-perso mx-2 my-2">
+                        <img class="rounded-3 img-fluid profilepic mb-2"
+                                src="{% if contact.user.profile.photo %}
+                                {{ contact.user.profile.photo.url }}
+                                {% else %}
+                                {% static 'app4_ehpad_base/img/appareil_photo.png' %}
+                                {% endif %}"
+                                alt="photo_{{ contact.user.first_name }}">
+                        <h4>{{ contact.user.first_name }} {{ contact.user.last_name }}</h4>
+                    </button>
+                {% endif %}
+                {% if contact.group == "sub_selection" %}
+                    <button class="btn btn-perso mx-2 my-2" name="selected" value="{{ contact.user.id }}">
+                        <img class="rounded-3 img-fluid profilepic mb-2"
+                                src="{% if contact.user.profile.photo %}
+                                {{ contact.user.profile.photo.url }}
+                                {% else %}
+                                {% static 'app4_ehpad_base/img/appareil_photo.png' %}
+                                {% endif %}"
+                                alt="photo_{{ contact.user.first_name }}">
+                        <h4>{{ contact.user.first_name }} {{ contact.user.last_name }}</h4>
+                        {% if contact.contact %}
+                            {% if contact.user.email %}
+                                <span class="text-muted">{{ contact.user.email }}</span>
+                            {% endif %}
+                            {% if contact.user.profile.phone_number %}
+                                <br>
+                                <span class="text-muted">{{ contact.user.profile.phone_number }}</span>
+                            {% endif %}
+                        {% endif %}
+                    </button>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </form>
+</div>
+
+{% endblock content %}
+
+{% block endscript %}
+
+{% endblock endscript %}

@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Roboticia Dataset</title>
+</head>
+<body>
+    Image list to process :
+    
+    {% for img in list_img %}
+    <a href="{{list_dataset}}/{{img}}">
+      <p>{{ img }}</p>
+    </a>
+  {% endfor %}
+
+
+</body>
+</html>

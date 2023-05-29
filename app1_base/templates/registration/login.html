@@ -1,0 +1,134 @@
+{% if DOMAIN == 'serenicia' %}
+    {% include 'app4_ehpad_base/registration/login.html' %}
+{% else %}
+
+{% load static %}
+{% load i18n %}
+
+<head id="header">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% if DOMAIN == 'serenicia' %}
+    <title>Serenicia</title>
+    <link rel="shortcut icon" href="{% get_static_prefix %}app4_ehpad_base/img/favicon.ico">
+    {% else %}
+    <title>Protecia</title>
+    <link rel="shortcut icon" href="{% get_static_prefix %}app1_base/img/favicon.ico">
+    {% endif %}
+
+
+    <!-- <link rel="stylesheet" href="{% static 'app1_base/css/github.css' %}"> -->
+    <!-- <link rel="stylesheet" href="{% static 'app1_base/css/bootstrap.css' %}"> -->
+
+    {% if DOMAIN == "serenicia" %}
+        <!-- <link rel="stylesheet" href="{% static 'app1_base/css/style.css' %}"> -->
+    {% else %}
+        <link rel="stylesheet" href="{% static 'app1_base/css/alt_style_1.css' %}">
+    {% endif %}
+
+</head>
+
+{% block content %}
+    <body class="bg-light">
+    <div class="container-fluid">
+        <div class="d-flex flex-column gap-5">
+
+            {% if DOMAIN == 'serenicia' %}
+                <img class="img-fluid mx-auto" width="550em" src="{% get_static_prefix %}app4_ehpad_base/img/logo_serenicia.svg" alt="{% trans 'Serenicia logo' %}">
+            {% else %}
+                <img class="img-fluid mx-auto" src="{% get_static_prefix %}app1_base/img/logo_protecia_fg.jpg">
+            {% endif %}
+
+            <form method="post" action="{% url 'login' %}">
+                <div class="d-flex justify-content-center m-1 bg-lightblue rounded-3">
+                    <div class="d-flex flex-column align-items-center border border-darkblue rounded-3 p-1 bg-light col-md-6">
+
+                        {% if form.errors %}
+                            <p>{% trans "Your username and password didn't match. Please try again" %}.</p>
+                        {% endif %}
+
+                        {% if next %}
+                            {% if user.is_authenticated %}
+                                <p>{% trans "Your account doesn't have access to this page. To proceed, please login with an account that has access" %}.</p>
+                            {% else %}
+                                <p>{% trans 'Please login to see this page.' %}</p>
+                            {% endif %}
+                        {% endif %}
+
+                        {% csrf_token %}
+                        <div class="d-flex flex-column align-items-center gap-2">
+                            <div class="d-flex flex-wrap justify-content-center gap-2">
+                                <span>{% trans 'Username' %}</span>{{ form.username }}
+                            </div>
+
+                            <div class="d-flex flex-wrap justify-content-center gap-2 w-100">
+                                <span class="mx-auto">
+                                    {% trans 'Password' %}
+                                    <img class="btn px-0" src="{% static 'app4_ehpad_base/img/bi/eye-fill.svg' %}" id="eye_icon" onclick="togglePassword()">
+                                </span>
+                                <div>{{ form.password }}</div>
+
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-center">
+                            <div>&nbsp;</div>
+                            <div class="d-flex justify-content-evenly">
+                                <a href="{% url 'face reco login' %}" class="btn btn-perso disabled recobtn">
+                                    <svg width="50px" height="50px" viewBox="0 0 16 16" class="bi bi-person-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                      <path fill-rule="evenodd" d="M8 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 5c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10zm4.854-7.85a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                                    </svg>
+                                </a>
+                                <div class="d-flex align-items-center">
+                                    <button type="submit" name="valid_alert" value="ok" class="btn btn-perso">
+                                        {% trans 'Login' %}
+                                    </button>
+                                </div>
+                            </div>
+                            <p class="text-right d-flex justify-content-between">
+                                {% if DOMAIN == 'serenicia' %}
+                                <a href="{% url 'select_type_user' %}">{% trans 'Sign up' %}</a> {% endif %}
+                                {% if DOMAIN == 'protecia' %}
+                                <a href="{% url 'register_simple' %}">{% trans 'Sign up' %}</a> {% endif %}
+                                <a href="{% url 'password_reset' %}">{% trans 'Reset Password' %}</a>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+
+            {% if DOMAIN == 'serenicia' %}
+                <div class="ratio ratio-16x9">
+                <iframe width="420" height="315" src="{{ SITE_INTERNET }}"
+                        frameborder="0"
+                        allowfullscreen></iframe>
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+    </body>
+
+{% endblock content %}
+
+{% block scripts %}
+    <script>
+        function togglePassword() {
+          var pwdfield = document.getElementById("id_password");
+          var eyeicon = document.getElementById("eye_icon");
+          if (pwdfield.type === "password") {
+            eyeicon.src = "{% static 'app4_ehpad_base/img/bi/eye-slash-fill.svg' %}";
+            pwdfield.type = "text";
+          } else {
+            eyeicon.src = "{% static 'app4_ehpad_base/img/bi/eye-fill.svg' %}";
+            pwdfield.type = "password";
+          }
+        }
+    </script>
+    {% include 'app1_base/check_api_face_reco.html' %}
+{% endblock scripts %}
+
+{% endif %}

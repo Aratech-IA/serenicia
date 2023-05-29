@@ -1,0 +1,22 @@
+{% extends "app1_base/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<div class="d-flex flex-column mt-2 gap-2">
+    <div class="d-flex justify-content-center gap-3">
+        <a href="javascript:history.back()" class="btn btn-perso d-flex align-items-center">{% trans 'Back' %}</a>
+        <h3>{% trans 'Detail' %} : {{ img.time|date:'Y-m-d H:i:s' }}</h3>
+    </div>
+    <div class="row">
+        {% if no_box %}
+            <img src="{% get_media_prefix %}/{{no_box}}" alt="{% trans 'no identification' %}">
+        {% else  %}
+           <img src="{% get_media_prefix %}/{{img.file}}" alt="{% trans 'picture with identification' %}">
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}
+
+{% block endscript %}
+{% endblock endscript %}

@@ -1,0 +1,169 @@
+{% extends "app1_base/base.html" %}
+
+{% block content %}
+{% load i18n %}
+
+<head>
+    <style>
+        .configurezone{
+            background: #f5f5f5;
+        }
+    </style>
+</head>
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-title">{% trans 'Alert' %}</h2>
+        </div>
+        <div>
+            <div class="text-center">
+                <span>{% trans 'Alert settled' %}</span>
+                <hr class="w-25 mx-auto">
+                <div class="w-75">
+                    {% for res in alert %}
+                    <code id="robot-state"
+                          class="accesslog hljs text-right"> {% translate res.stuffs_char_foreign.stuffs as stuffs %}{{stuffs|capfirst}} {% translate res.actions_char %}
+                        ({% for cam in res.camera.all %} *{{ cam.name }}*  {% endfor %}) --->
+                        {% if res.mail %}Mail{% endif %}
+                        {% if res.telegram %}Telegram{% endif %}
+                        {% if res.sms %}Sms{% endif %}
+                        {% if res.call %}call{% endif %}
+                        {% if res.alarm %}Alarm{% endif %}
+                        {% if res.hook %}External url{% endif %}
+                        &nbsp &nbsp&nbsp&nbsp<a
+                                href="{% url 'alert' suppr='alert' pk=res.id %}">{% trans 'delete alert' %}</a> <br>
+                    </code>{% endfor %}
+                </div>
+            </div>
+            <div class="border border-darkblue p-3 rounded-3 configurezone w-75 mx-auto">
+                <form action="{% url 'alert' %}" method="post" class="my-auto">{% csrf_token %}
+                    <input type="hidden" name="type" value="alert">
+                    <div class="col text-center">
+                        <div class="col">
+                            <span>{% trans 'Select objects' %} : </span>
+                            {{ form.stuffs_char_foreign }}
+                        </div>
+                        <div class="col my-1">
+                            <script language="JavaScript">
+                                function toggle(source) {
+                                    checkboxes = document.getElementsByName('camera');
+                                    for (var i = 0, n = checkboxes.length; i < n; i++) {
+                                        checkboxes[i].checked = source.checked;
+                                    }
+                                }
+                            </script>
+                            <fieldset class="inlineLabels">
+                                <label>{% trans 'Camera' %} - <input type="checkbox" onClick="toggle(this)">
+                                    {% trans 'All' %}
+                                </label>
+                                {{ form.camera }}
+                            </fieldset>
+                        </div>
+                        <div class="col">
+                            <label>{% trans 'Action' %} :</label>
+                            <span>{{ form.actions_char.0 }}</span>
+                            <span class="mx-2">{{ form.actions_char.1 }}</span>
+                            <span>{{ form.actions_char.2 }}</span>
+                        </div>
+                        <div class="col my-1">
+                            <label>{% trans 'Contact' %} :</label>
+                            {% if autorization.mail %}
+                                <label for="{{ form.mail.id_for_label }}">
+                                    {{ form.mail }}{{ form.mail.label }}</label>{% endif %}
+
+                            {% if autorization.telegram %}
+                                <label for="{{ form.telegram.id_for_label }}">
+                                    {{ form.telegram }}{{ form.telegram.label }}</label>{% endif %}
+
+                            {% if autorization.sms %}
+                                <label for="{{ form.sms.id_for_label }}">
+                                    {{ form.sms }}{{ form.sms.label }}</label>{% endif %}
+
+                            {% if autorization.call %}
+                                <label for="{{ form.call.id_for_label }}">
+                                    {{ form.call }}{{ form.call.label }}</label>{% endif %}
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" name="valid_alert" value="ok" class="btn btn-perso">
+                            {% trans 'Add Alert' %}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="text-center">
+                <code id="robot-state" class="accesslog hljs">
+                    {% if not chat_id %}<span>{% trans "You don't have any Telegram id set." %}</span><p class="my-auto">{% trans ' Please send ' %}
+                        <span style="color:#FF0000" ;>/register {{ telegram_token }}&nbsp;</span></p>
+                        {% trans ' to ProteciaBot on your Telegram app.' %}
+                    {% else %}
+                        {% trans 'List of Telegram id set :  ' %}
+                        {% for id in chat_id %}
+                            {{ id.chat_id }} / {{ id.name }}
+                            <a href="{% url 'alert' suppr='telegram' pk=id.id %}">-{% trans 'delete' %}-</a><br>
+                        {% endfor %}{% trans ' Please send ' %}
+                        <span style="color:#FF0000" ;>/register {{ telegram_token }} </span>
+                        {% trans ' to ProteciaBot on your Telegram app' %}{% trans ' to add a new contact.' %}
+                    {% endif %}
+                </code>
+            </div>
+        </div>
+        <hr class="mx-auto">
+        <div class="text-center">
+            <h2 class="section-title">
+                {% trans 'Automatic launch' %}
+            </h2>
+        </div>
+        <div>
+            <div class="text-center">
+                <span>{% trans 'List of automat settled' %}</span>
+                <hr class="w-25 mx-auto">
+                <div class="w-75 text-right">
+                    {% for res in auto %}
+                        <code id="robot-state" class="accesslog hljs"> {% trans res.2 %}
+                            &nbsp{{ res.1 }}:{{ res.0 }}&nbsp {% trans res.3 %}&nbsp&nbsp&nbsp
+                            <a href="{% url 'alert' suppr='auto' pk=res.4 %}">{% trans 'delete automat' %}</a> <br>
+                        </code>{% endfor %}
+                </div>
+            </div>
+            <div class="border border-darkblue rounded-3 my-2 p-3 w-75 mx-auto configurezone">
+                <form action="{% url 'alert' %}" method="post" class="my-0">{% csrf_token %}
+                    <input type="hidden" name="type" value="auto">
+                    <div class="d-grid gap-2 text-center">
+                        <div class="col">
+                            <label>{% trans 'Hour' %} :
+                                {{ aform.hour }}
+                            </label>
+                        </div>
+                        <div class="col">
+                            {% trans 'Minute' %} :
+                            {{ aform.minute }}
+
+                        </div>
+                        <div class="col">
+                            {% trans 'Day of the week' %} :
+                            {{ aform.day }}
+
+                        </div>
+                        <div class="col">
+                            {% trans 'Action' %} :
+                            {{ aform.action }}
+
+                        </div>
+                    </div>
+                    <div class="col text-right mt-2">
+                            <button type="submit" name="valid_auto" value="ok"
+                                    class="btn btn-perso">{% trans 'Add automat' %}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br>
+{% endblock content %}
+
+{% block endscript %}
+
+{% endblock endscript %}

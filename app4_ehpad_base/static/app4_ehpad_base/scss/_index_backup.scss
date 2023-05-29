@@ -1,0 +1,60 @@
+.myHeight1 {
+    height: 300px;
+}
+
+.myHeight2 {
+    height: 400px;
+}
+
+.myHeight3 {
+    height: 35px;
+}
+
+.myHeight4 {
+    max-height: 500px;
+}
+
+.myZIndex {
+    z-index: 1;
+}
+
+.myZIndex2 {
+    z-index: 666;
+}
+
+.myWidth {
+    width: 200px;
+}
+
+.resident_large_pic {
+    overflow:hidden;
+    -webkit-border-radius:50px;
+    -moz-border-radius:50px;
+    border-radius:150px;
+    width:150px;
+    height:150px;
+    object-fit: cover;
+}
+
+.resident_small_pic {
+    overflow:hidden;
+    -webkit-border-radius:50px;
+    -moz-border-radius:50px;
+    border-radius:50px;
+    width:48px;
+    height:48px;
+    object-fit: cover;
+}
+
+.grey {
+    background: grey;
+}
+
+.orange {
+    color: #ff6f00;
+    border: 2px solid #ff7f00;
+}
+
+.my_radius {
+    border-radius: 0.75rem;
+}

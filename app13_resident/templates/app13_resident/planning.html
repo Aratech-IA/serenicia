@@ -1,0 +1,16 @@
+{% load i18n %}
+{% load static %}
+
+<div class="cadreblanc d-flex flex-column justify-content-around align-item-center px-2 mx-1 pt-3">
+
+    {% for data in todays_event %}
+        <div class="event-heure">
+            <div class="event-heure-titre d-inline-flex px-2">
+                <h5 class="mb-0">{{ data.event_date.hour }}h{% if data.event_date.minute != 0 %}{{ data.event_date.minute }}{% endif %}</h5>
+            </div>
+        </div>
+        
+        <h5 class="text-center pb-2">{{ data.event_type }}</h5>
+    {% endfor %}
+    
+</div>

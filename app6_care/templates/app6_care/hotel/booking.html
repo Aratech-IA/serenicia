@@ -1,0 +1,79 @@
+{% load static %}
+{% load i18n %}
+
+<head>
+    <style>
+        .photo-rounded{
+            height: 80px;
+            width: 80px;
+            border-radius: 100px;
+            object-fit: cover;
+            overflow: hidden;
+        }
+        .photo-rounded-small{
+            height: 50px;
+            width: 50px;
+            border-radius: 100px;
+            object-fit: cover;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<div class="mb-2">
+    <div class="d-flex flex-column align-items-center">
+        {% if bookings.guests %}
+            <div class="d-flex flex-column">
+                <h4 class="text-center">{% trans 'Guests' %}</h4>
+                <div class="d-flex flex-wrap gap-2">
+                    {% for booking in bookings.guests %}
+                        <div class="d-flex flex-column border border-darkblue rounded-3 p-2">
+                            <div class="d-flex gap-2 align-items-center">
+                                <img src="{{ booking.owner.get_photo_url }}" class="photo-rounded">
+                                <h5>{{ booking.owner.user.get_full_name }}</h5>
+                            </div>
+                            <span class="text-right">{% trans 'Number of guests' %} : <span class="fw-bold">{{ booking.other_guests }}</span></span>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+        {% if bookings.guests and bookings.families %}
+            <hr width="75%">
+        {% endif %}
+        {% if bookings.families %}
+            <div class="d-flex flex-column">
+                <h4 class="text-center">{% trans 'Families' %}</h4>
+                <div class="d-flex flex-wrap justify-content-center gap-2">
+                    {% for booking in bookings.families %}
+                        <div class="d-flex flex-column border border-darkblue rounded-3 p-2">
+                            <div class="d-flex gap-2 align-items-center">
+                                <img src="{{ booking.owner.get_photo_url }}" class="photo-rounded">
+                                <h5>{{ booking.owner.user.get_full_name }}</h5>
+                            </div>
+                            <div class="d-flex flex-wrap justify-content-end gap-2">
+                                {% for guest in booking.guests.all %}
+                                    <div class="d-flex align-items-center gap-1">
+                                        <span>{{ guest.get_full_name }}</span>
+                                        <img src="{{ guest.profile.get_photo_url }}" class="photo-rounded-small">
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            {% if booking.other_guests %}
+                                <span class="text-right mt-1">{% trans 'Other guests' %} : <span class="fw-bold">{{ booking.other_guests }}</span></span>
+                            {% endif %}
+                            <div class="d-flex justify-content-center gap-2">
+                            {% if booking.private %}
+                                <span class="fw-bold">{% trans 'Private room' %}{% if booking.surprise %},{% endif %}</span>
+                            {% endif %}
+                            {% if booking.surprise %}
+                                <span class="fw-bold">{% trans 'Surprise visit' %}</span>
+                            {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>

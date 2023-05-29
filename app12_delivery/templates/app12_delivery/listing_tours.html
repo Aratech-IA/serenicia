@@ -1,0 +1,37 @@
+{% extends "app4_ehpad_base/base.html" %}{% load i18n %}
+{% load static %}
+{% block content %}
+    <main class="d-flex flex-row">
+        <div>
+            {% include "./composant/navLeft.html" %}
+        </div>
+
+    <div class="container mt-5 ms-3">
+           <div class="badge mb-3 bg-lightblue text-wrap w-100">
+                <h3> {% trans 'Listing tour delivery' %}</h3></div>
+            <div class="list-group">
+                {% if tour_for_delivery %}
+
+                    {% for foo in tour_for_delivery %}
+                        <a href="{% url "detail_tour" foo.id %}" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">{% trans 'Tour date to' %} : {{ foo.date_tour_delivery }}</h5>
+                                <small class="text-muted">{% trans 'Sector ' %}</small>
+                            </div>
+                            <p class="mb-1">{% trans 'Number of delivery' %}</p>
+                            <small class="text-muted">{% trans 'Time estimate' %} : {{ foo.time_estimate }}</small>
+                        </a>
+                    {% endfor %}
+                {% else %}
+                    <div class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{% trans 'Please register your first tour delivery' %}</h5>
+                        </div>
+                        <p class="mb-1">{% trans "This message is here because you havn't tour delivery register" %}</p>
+                    </div>
+
+                    </div>
+                {% endif %}
+        </div>
+    </main>
+{% endblock content %}

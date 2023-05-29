@@ -1,0 +1,138 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+
+{% block content %}
+    {% load static %}
+    {% load i18n %}
+
+
+<div class="container pt-5">
+  <div class="row">
+    <div class="one pb-2">
+      <h1>
+        {% trans "Edit article" %} " {{post_name}} "
+        <span>
+          {% trans "Serenicia Blog" %}
+        </span>
+      </h1>
+    </div>
+
+    <form action="{% url 'edit_post' post_id %}" method="post">
+      {% csrf_token %}
+
+      {% for field in form %}
+        {% if not field.label_tag == 'files' %}
+          <div class="form-group mb-3">
+            <h6><small>{{ field.label_tag }}</small></h6>
+            <h6><small>{{ field.help_text }}</small></h6>
+            <h6><small>{{ field.errors }}</small></h6>
+            {{ field }}
+          </div>
+        {% endif %}
+      {% endfor %}
+
+      <div class="form-group pb-5">
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-perso" data-bs-toggle="modal" data-bs-target="#select_pictures">
+          {% trans "Select Photos" %}
+        </button>
+
+        <label for="files__pdf">
+          <div class="btn btn-perso">
+            {% trans "Select a PDF" %}
+          </div>
+        </label>
+
+        <!-- Modal -->
+        <div class="modal fade" id="select_pictures" tabindex="-1" aria-labelledby="select_pictures_label" aria-hidden="true">
+          <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="select_pictures_label">
+                  {% trans "Select your photos" %}
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  {% if list_pictures %}
+                    {% for picture in list_pictures %}
+                    <div class="col-md-3">
+                      <div class="custom-control custom-checkbox image-checkbox">
+                          <input type="checkbox" class="custom-control-input" value="{{picture}}" id="{{picture}}" name="pics_list">
+                          <label class="custom-control-label" for="{{picture}}">
+                              <img src="{{picture}}" alt="#" class="img-fluid">
+                          </label>
+                      </div>
+                    </div>
+                    {% endfor %}
+                  {% else %}
+                    <h1>{% trans "There are no photos to add" %}</h1>
+                    <h4>{% trans "Please add public photos to find them here" %}</h4>
+                  {% endif %}
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-perso" data-bs-dismiss="modal">
+                  {% trans "OK" %}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-perso-p">
+        {% trans "SEND" %}
+      </button>
+    </form>
+
+    <a class="mb-5 mt-4" href="{% url 'public_photo' %}">
+      <button class="btn btn-outline-danger">
+        {% trans "CANCEL" %}
+      </button>
+    </a>
+  </div>
+</div>
+
+{% if pictures_already_put %}
+    <h3 class="pt-5">{% trans "Photos already present in the article" %} :</h3>
+    <p class="text-danger">{% trans "Click on the photo to remove it from the article" %}</p>
+
+    <div class="d-flex flex-wrap justify-content-center align-items-center">
+      {% for img in pictures_already_put %}
+        <a href=" {% url 'delete_picture' img.id %}" class="img-to-delete">
+          <img src="{{img.image}}" alt="pictureToDelete" class="p-5 image">
+          <div class="overlay_delete">
+              <div class="text">
+                {% trans "DELETE" %}
+              </div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+{% endif %}
+
+
+<script src="https://cdn.tiny.cloud/1/{% if tinymce_key %}{{tinymce_key}}{% else %}no-api-key{% endif %}/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script type="text/javascript">
+      tinymce.init({
+        selector: '#id_content',
+        plugins: [
+                'advlist autolink lists link image charmap print preview anchor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table paste code help wordcount'
+                ],
+        toolbar: `undo redo | fontselect fontsizeselect | bold italic underline strikethrough
+        | forecolor backcolor | link image | alignleft aligncenter alignright alignjustify alignnone blockquote`,
+        menubar: true,
+        browser_spellcheck : true,
+        contextmenu: false,
+      });
+    </script>
+{% endblock content %}
+
+{% block endscript %}
+
+
+{% endblock endscript %}

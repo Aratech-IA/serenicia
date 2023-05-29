@@ -1,0 +1,219 @@
+{% extends "app4_ehpad_base/eval_base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+
+
+    <body id="body">
+    <div class="container-fluid mx-0">
+
+        {#  affichage webcam  #}
+        <video class="img-fluid" id="video" autoplay="true"></video>
+
+        {# affichage de l'image capturée avant enregistrement #}
+        <canvas class="img-fluid" id="canvas" style="display: none"></canvas>
+
+        {# affichage du texte supérieur #}
+        <div class="d-flex justify-content-center mx-auto border border-darkblue rounded-3 mt-4 w-75 position-relative bg-light">
+            <h3 class="fw-bold">
+                {% if mealtype == 'dessert' %}
+                    {% blocktranslate with date=menu.date|date:'l d F' %}Dessert from {{ date }} at{% endblocktranslate %} {% trans menu.type %}
+                {% elif mealtype == 'entree' %}
+                    {% blocktranslate with date=menu.date|date:'l d F' %}Entry from {{ date }} at{% endblocktranslate %} {% trans menu.type %}
+                {% elif mealtype == 'maindish' %}
+                    {% blocktranslate with date=menu.date|date:'l d F' %}Main course from {{ date }} at{% endblocktranslate %} {% trans menu.type %}
+                {% elif mealtype == 'service' %}
+                    {% blocktranslate with date=menu.date|date:'l d F' %}{{ date }} at{% endblocktranslate %} {% trans menu.type %}
+                {% endif %}
+            </h3>
+        </div>
+        <div class="d-flex justify-content-center mx-auto border border-darkblue rounded-3 mt-2 w-75 position-relative bg-light">
+            <h3 class="fw-bold">
+                {% if mealtype == 'dessert' %}
+                    {{ menu.dessert.name }}
+                {% elif mealtype == 'entree' %}
+                    {{ menu.entree.name }}
+                {% elif mealtype == 'maindish' %}
+                    {{ menu.main_dish.name }}{% if menu.accompaniment %} {% trans 'with' %} {{ menu.accompaniment.name }}{% endif %}
+                {% elif mealtype == 'service' %}
+                    {% trans 'The team that served you' %}
+                {% endif %}
+            </h3>
+        </div>
+
+        {# affichage de la fleche next ou return #}
+        {% if mealtype == 'service' %}
+        <div class="d-flex justify-content-start h-50 px-0 position-relative">
+            <img class="h-50 my-auto" src="{% static 'app4_ehpad_base/img/fleche_gauche.png' %}">
+        {% else %}
+        <div class="d-flex justify-content-end h-50 px-0 position-relative">
+            <img class="h-50 my-auto" src="{% static 'app4_ehpad_base/img/fleche_droite.png' %}">
+        {% endif %}
+        </div>
+        {# affihage des smiley de vote #}
+        <div class="container d-flex h-25 px-0">
+            <div class="d-flex w-100 justify-content-around align-self-end position-relative">
+                <img src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}">
+                <img src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}">
+                <img src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}">
+                <img src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}">
+                </div>
+            </div>
+
+        {# emplacement des boutons #}
+        <div class="container d-flex w-100 justify-content-around align-items-start position-relative mt-3">
+            <button id="capture" class="col col-3 btn btn-lg btn-perso"
+                    style="display: block">{% trans 'Capture' %}</button>
+            <a href="{% url 'Select menu' %}" id="back" class="col col-3 btn btn-lg btn-perso"
+                    style="display: block">{% trans 'Back' %}</a>
+            <button id="save" class="col col-3 btn btn-lg btn-perso" style="display: none">{% trans 'Save' %}</button>
+            <button id="return" class="col col-3 btn btn-lg btn-perso"
+                    style="display: none">{% trans 'Back' %}</button>
+        </div>
+    </div>
+    </body>
+
+
+    <script>
+        window.onorientationchange = function() {
+        var orientation = window.orientation;
+            switch(orientation) {
+                case 0:
+                case 90:
+                case -90: window.location.reload();
+                break; }
+        };
+
+        (function () {
+
+            var streaming = false,
+                video = document.querySelector('#video'),
+                canvas = document.querySelector('#canvas'),
+                capturebutton = document.querySelector('#capture'),
+                backbutton = document.querySelector('#back'),
+                savepreview = document.querySelector('#save'),
+                returnbutton = document.querySelector('#return');
+                // HD size
+                width = 1920,
+                height = 1080;
+
+            if (navigator.mediaDevices.getUserMedia) {
+                // récupère la première caméra dispo (généralement selfie)
+                //navigator.mediaDevices.getUserMedia({video: true})
+
+                // force l'utilisation de l'objectif arrière (tablette et mobile uniquement)
+                navigator.mediaDevices.getUserMedia({video: {facingMode: {exact: "environment"}}})
+
+                    .then(function (stream) {
+                        video.srcObject = stream;
+                    })
+                    .catch(function (err0r) {
+                        console.log("Something went wrong! :", err0r);
+                    });
+            }
+
+            video.addEventListener('canplay', function (ev) {
+                if (!streaming) {
+                    height = video.videoHeight / (video.videoWidth / width);
+                    video.setAttribute('width', width);
+                    video.setAttribute('height', height);
+                    canvas.setAttribute('width', width);
+                    canvas.setAttribute('height', height);
+                    streaming = true;
+                }
+            }, false);
+
+            function savepicture(_callback) {
+
+                // récupération du canvas sous la forme d'une string
+                var img_string = canvas.toDataURL('image/jpeg');
+                //img_string = img_string.replace("data:image/png base64;", "");
+
+                // création d'un formulaire pour l'envoi en post
+                var formul = document.createElement('form');
+                formul.setAttribute('method', 'POST');
+                formul.setAttribute('action', "");
+
+                var tokenhiddenfield = document.createElement('input');
+                tokenhiddenfield.setAttribute('type', 'hidden');
+                tokenhiddenfield.setAttribute('name', 'csrfmiddlewaretoken');
+                tokenhiddenfield.setAttribute('value', '{{ csrf_token }}');
+                formul.appendChild(tokenhiddenfield);
+
+                // création du input pour l'envoi de la string
+                var hiddenfield = document.createElement('input');
+                hiddenfield.setAttribute('type', 'hidden');
+                hiddenfield.setAttribute('name', 'image');
+                hiddenfield.setAttribute('value', img_string);
+                formul.appendChild(hiddenfield);
+
+                // envoi du formulaire
+                document.body.appendChild(formul);
+                formul.submit();
+                _callback();
+            }
+
+            function previewcapture() {
+                canvas.width = width;
+                canvas.height = height;
+                canvas.getContext('2d').drawImage(video, 0, 0, width, height);
+            }
+
+            function toggleVideo() {
+                var view = document.getElementById("video");
+                // cache ou affiche la vidéo et les boutons associés
+                if (view.style.display === "none") {
+                    view.style.display = "block";
+                    backbutton.style.display = "block";
+                    capturebutton.style.display = "block";
+                } else {
+                    view.style.display = "none";
+                    backbutton.style.display = "none";
+                    capturebutton.style.display = "none";
+                }
+            }
+
+            function togglePreview() {
+                // cache ou affiche la photo et les boutons de commande avant enregistrement
+                if (canvas.style.display === "none") {
+                    canvas.style.display = "block";
+                    returnbutton.style.display = "block";
+                    savepreview.style.display = "block";
+                } else {
+                    canvas.style.display = "none";
+                    returnbutton.style.display = "none";
+                    savepreview.style.display = "none";
+                }
+            }
+
+            returnbutton.addEventListener('click', function (ev) {
+                // cache la photo prise
+                togglePreview();
+                // affiche la vidéo
+                toggleVideo();
+                ev.preventDefault();
+            }, false);
+
+            capturebutton.addEventListener('click', function (ev) {
+                // capture une photo
+                previewcapture();
+                // cache la vidéo
+                toggleVideo();
+                // affiche la photo prise
+                togglePreview();
+                ev.preventDefault();
+            }, false);
+
+
+            savepreview.addEventListener('click', function (ev) {
+                // enregistre la photo
+                savepicture();
+                // redirige utilisateur
+                window.location.replace("{% url 'Select menu' %}")
+                ev.preventDefault();
+            }, false);
+
+        })();
+    </script>
+{% endblock %}

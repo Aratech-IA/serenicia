@@ -1,0 +1,133 @@
+{% extends 'app4_ehpad_base/base.html' %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+
+<style>
+    .table-wrap {
+        overflow-y: scroll;
+    }
+</style>
+
+<h1 class="page-header align-self-center">{% trans "Convert to profile picture" %}/h1>
+<br>
+{% if not photos %}<p>{% trans "Attention the angles will not appear, I will be cut in a circle" %} :)</p>{% endif %}
+
+<div class="container-fluid d-flex">
+
+    <!-- MODAL TO CROP THE IMAGE -->
+
+    <div class="modal" id="modalCrop">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">{% trans "Crop to profile picture" %}</h4>
+                </div>
+                <div class="modal-body">
+                    <img src="" id="image" style="max-width: 100%;">
+                </div>
+                <div class="modal-footer">
+                    <div class="btn-group pull-left" role="group">
+                        <button type="button" class="btn btn-default js-zoom-in">
+                            <span class="fa fa-search-plus"></span>
+                        </button>
+                        <button type="button" class="btn btn-default js-zoom-out">
+                            <span class="fa fa-search-minus"></span>
+                        </button>
+                    </div>
+                    <button type="button" class="btn btn-default" data-bs-dismiss="modal">{% trans "Abort" %}</button>
+                    <button type="button" class="btn btn-primary js-crop-and-upload">{% trans "I'm done, send" %} !</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTAINER TO DISPLAY THE CROPPED IMAGES -->
+
+    <div class="col-9 align-self-center">
+        {% if photos %}<p><h2>{% trans "Preview" %} :</h2></p>{% endif %}
+        <div class="row" style="margin-top: 75px">
+            {% for photo in photos %}
+            <div class="d-flex flex-row flex-wrap justify-content-around align-items-center" data-bs-placement="top" title="Valider cette photo de profil">
+                <div class="col-7 text-center mt-5 p-3 position-relative">
+                      <span class="d-none d-md-block text-center chip-lg position-absolute top-0 start-0 translate-middle"
+                            style="z-index: 1">
+                                <img src="{{ photo.file.url }}" height="200"
+                                     class="rounded-circle"
+                                     alt="profile pic chip"></span>
+                    <span class="d-lg-none d-md-none d-xl-none d-xxl-none text-center chip-lg position-absolute top-0 start-50 translate-middle"
+                          style="z-index: 1">
+                                <img src="{{ photo.file.url }}" height="200"
+                                     class="rounded-circle"
+                                     alt="profile pic chip"></span>
+                    <input type="image" class="img-fluid d-none d-md-block" src="{% static 'app4_ehpad_base/img/fullpic_placeholder.png' %}" width="100%" alt="placeholder">
+                </div>
+            </div>
+            <div class="col-12 m-3 p-3"></div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- CONTAINER TO DISPLAY FORM AS VERTICAL TABLE OF 1 COL IMAGES -->
+
+    <div class="col-3 align-self-center">
+        <!-- FORM TO UPLOAD THE IMAGES -->
+        <!--<form method="post" enctype="multipart/form-data" id="formUpload">-->
+        <!--    {% csrf_token %}-->
+        <!--        <div class="input-group-prepend d-flex flex-grow-1 justify-content-base m-2 overflow-auto">-->
+        <!--        <span class="input-group-text">Photo à utiliser </span>{{ form.file }}</div>-->
+        <!--        <div hidden>{{ form.profil }}</div>-->
+        <!--</form>-->
+        <!--TODO : NEW FORM WITH CHOICEFIELD BASED ON MEDIAFILES & DEACTIVATE ENCTYPE HERE (keep for later use)-->
+        <p class="text-wrap">{% trans "Select picture" %} : </p>
+        <div class="table-wrap" style="max-height: 400px">
+            <table class="table">
+                <tbody>
+                    {% for image in images %}
+                        <tr><th><input type="image" src="{{ image }}" width="80%" onclick="cropper_select({{ image }})"></th></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--{{ form.file }} // hidden{{ form.profil }}-->
+
+<script>
+    function cropper_select(img_url, _callback) {
+        document.getElementById('modalCrop').setAttribute('src', img_url);
+        var formul = document.createElement('form');
+        formul.setAttribute('method', 'POST');
+        formul.setAttribute('action', "");
+
+        var tokenhiddenfield = document.createElement('input');
+        tokenhiddenfield.setAttribute('type', 'hidden');
+        tokenhiddenfield.setAttribute('name', 'csrfmiddlewaretoken');
+        tokenhiddenfield.setAttribute('value', '{{ csrf_token }}');
+        formul.appendChild(tokenhiddenfield);
+
+<!--        // création du input pour l'envoi de la note-->
+<!--        var form_file = document.createElement('input');-->
+<!--        hiddenfield.setAttribute('type', 'hidden');-->
+<!--        hiddenfield.setAttribute('value', img_url);-->
+<!--        formul.appendChild(form_file);-->
+
+        // création du input pour l'envoi de la note
+        var form.profil = document.createElement('input');
+        hiddenfield.setAttribute('type', 'hidden');
+        hiddenfield.setAttribute('value', {{ form.profil }});
+        formul.appendChild(form.profil);
+
+        // envoi du formulaire
+        document.body.appendChild(formul);
+        formul.submit();
+        _callback();
+    }
+</script>
+
+{% endblock %}

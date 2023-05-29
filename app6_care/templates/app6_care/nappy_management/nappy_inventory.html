@@ -1,0 +1,63 @@
+{% extends "app4_ehpad_base/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<link rel="stylesheet" href=" {% static 'app6_care/css/style.css' %}">
+
+<div class="m-5">
+    <a class="btn btn-perso" href="{% url 'nappy_management' %}">{% trans 'Nappies management' %}</a>
+    <div class="d-flex flex-column align-items-center">
+        <h2 class="mt-3">{% trans 'Nappies management' %}</h2>
+        <h3 class="m-3"><u>{% trans 'Inventory' %}</u></h3>
+        <p>{% trans 'unit' %} : {% trans 'nappy' %}</p>
+        <form action="{% url 'nappy_inventory' %}" method="post">{% csrf_token %}
+            <h4 class="app6-bg-light-grey text-center mb-2">{% trans 'Storehouse stock' %}</h4>
+            <table class="app6-table">
+                <tr>
+                    <th colspan="2"><u>{% trans 'nappy' %}</u></th>
+                    <th><u>{% trans 'Supposed stock' %}</u></th>
+                    <th><u>{% trans 'Real stock' %}</u></th>
+                </tr>
+                {{ storehouse_formset.management_form }}
+                {% for form in storehouse_formset %}
+                <tr>
+                    <td class="app6-td">{{ form.id }}</td>
+                    <td class="app6-td">{{ form.name }}</td>
+                    <td class="app6-td">{{ form.stock }}</td>
+                    <td class="app6-td">{{ form.real_stock }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <h4 class="app6-bg-light-grey app6-space-btw-2-tables text-center">{% trans 'Stock per sector' %}</h4>
+            <table class="app6-table">
+                <tr>
+                    <th colspan="2"><u>{% trans 'nappy' %}</u></th>
+                    <th><u>{% trans 'Supposed stock' %}</u></th>
+                    <th><u>{% trans 'Real stock' %}</u></th>
+                </tr>
+                <tbody class="app6-tbody">
+                {% for formset in formsets %}
+                {{ formset.management_form }}
+                <tr>
+                    <th class="app6-bg-light-grey" colspan="4">{{formset.prefix}}</th>
+                </tr>
+                {% for form in formset %}
+                <tr>
+                    <td class="app6-td">{{ form.id }}</td>
+                    <td class="app6-td">{{ form.name }}</td>
+                    <td class="app6-td">{{ form.stock }}</td>
+                    <td class="app6-td">{{ form.real_stock }}</td>
+                </tr>
+                {% endfor %}
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-center mt-5">
+                <input type="submit" value="{% trans 'Confirm inventory' %}" class="btn btn-perso">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+

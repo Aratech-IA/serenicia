@@ -1,0 +1,364 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+{% load static %}
+{% load i18n %}
+{% load custom_filters_app9 %}
+
+{% block sticky-top-btn %}
+    <a href="{% url 'app9_personnalized_project index' %}" class="btn btn-perso sticky-top-btn d-none d-md-block m-2">{% trans 'Back' %}</a>
+{% endblock sticky-top-btn %}
+
+{% block content %}
+<head>
+    <style>
+        .definitive-answer{
+            pointer-events: none;
+        }
+        .comment-area{
+            width: 100%;
+            height: 350px;
+        }
+        .interviewee-profile-pic{
+            height: 50px;
+            width: 50px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        .resident-profile-pic{
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<div class="container mt-2">
+    <div class="d-flex flex-wrap justify-content-between align-items-center">
+        <div class="d-flex gap-2 align-items-center">
+            {% if survey.target.user.profile.photo %}
+                <img src="{{ survey.target.user.profile.photo.url }}" class="resident-profile-pic">
+            {% else %}
+                <img src="{% static 'app4_ehpad_base/img/no_picture.png' %}" class="resident-profile-pic">
+            {% endif %}
+            <h1>{{ survey.title }}</h1>
+        </div>
+        <h1>{{ survey.date|date:"F Y" }}</h1>
+    </div>
+    <div class="d-flex flex-wrap justify-content-end gap-2">
+        {% if not perms.app0_access.view_family %}
+            <div class="d-flex flex-wrap gap-1">
+                <h5 class="text-muted">{% trans 'Last update' %}:</h5><h5>{% if date.update %}{{ date.update }}{% else %}{% trans 'none' %}{% endif %}</h5>
+            </div>
+        {% endif %}
+        <div class="d-flex flex-wrap gap-1">
+            <h5 class="text-muted">{% trans 'Finalized on' %}:</h5><h5>{% if date.filled %}{{ date.filled }}{% else %}{% trans 'incomplete' %}{% endif %}</h5>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center gap-2 mb-2 flex-wrap">
+        <button class="btn btn-perso {% if not activity %}disabled{% endif %}" data-bs-toggle="modal" data-bs-target="#activitiesModal">
+            {% trans 'Activities' %}
+        </button>
+        {% if perms.app0_access.view_cuisine %}
+            <a class="btn btn-perso" href="{% url 'Dashboard evaluation' res_id=survey.target.user.id %}">Eval'Menu</a>
+        {% endif %}
+        <a class="btn btn-perso" href="{% url 'story life' res_id=survey.target.id %}">{% trans 'Story life' %}</a>
+        {% if perms.app0_access.view_genosociogram %}
+            <a class="btn btn-perso" href="{% url 'genosociogram' family=survey.target.id %}">{% trans 'Genosociogram' %}</a>
+        {% endif %}
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="activitiesModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">{% trans 'Participation in activities' %}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <p>{% trans 'Period from' %} {{ activity.start|date:'j F Y' }} {% trans 'to today' %}</p>
+              <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">{% trans 'Activity' %}</th>
+                      <th scope="col">{% trans 'Last date' %}</th>
+                      <th scope="col">{% trans 'Number of registrations' %}</th>
+                      <th scope="col">{% trans 'Number of participations' %}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for name, presence in activity.data.items %}
+                        <tr>
+                          <th scope="row">{{ name }}</th>
+                          <td>{{ presence.last_register|date:'j F Y' }}</td>
+                          <td>{{ presence.registered }}</td>
+                          <td class="table-lightblue">{{ presence.participated }}</td>
+                        </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-perso" data-bs-dismiss="modal">{% trans 'Close' %}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+        {% if survey.intro %}
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button btn-perso {% if request.method != 'GET' %}collapsed{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#panelintro" aria-expanded="true" aria-controls="panelintro">
+                        <span class="fw-bold fs-5">{% trans 'Introduction' %}</span>
+                    </button>
+                </h2>
+                <div id="panelintro" class="accordion-collapse collapse {% if request.method == 'GET' %}show{% endif %}" aria-labelledby="panelsStayOpen-headingOne">
+                    <div class="accordion-body">
+                        <span class="fw-bold">{{ survey.intro|linebreaks }}</span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if other_int %}
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button btn-perso {% if survey.created_by != request.user.profileserenicia %}collapsed{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#panelanswered" aria-expanded="true" aria-controls="panelanswered">
+                        <span>{% trans 'Have answered' %}</span>
+                    </button>
+                </h2>
+                <div id="panelanswered" class="accordion-collapse {% if survey.created_by == request.user.profileserenicia %}show{% else %}collapse{% endif %}" aria-labelledby="panelsStayOpen-headingOne">
+                    <div class="accordion-body">
+                        <div class="d-flex justify-content-end gap-2">
+                            {% for interviewee in other_int %}
+                                <div class="d-flex align-items-center gap-1">
+                                    {% if interviewee.user.profile.photo %}
+                                        <img src="{{ interviewee.user.profile.photo.url }}" class="interviewee-profile-pic">
+                                    {% else %}
+                                        <img src="{% static 'app4_ehpad_base/img/no_picture.png' %}" class="interviewee-profile-pic">
+                                    {% endif %}
+                                    <span>{{ interviewee.user.get_full_name }}</span>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button btn-perso collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelvisibility" aria-expanded="true" aria-controls="panelanswered">
+                        <span>{% trans 'Interventions visibility' %}</span>
+                    </button>
+                </h2>
+                <div id="panelvisibility" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
+                    <div class="accordion-body">
+                        <div class="d-flex flex-column gap-2">
+                            <h5>{% trans 'Choose a level of visibility of interventions for family members' %}</h5>
+                            {% if readonly %}
+                                <div class="d-flex justify-content-end">
+                                    {% if visibility.selected == 'no-answer' %}
+                                        <div class="btn btn-perso btn-sm active definitive-answer">{% trans 'No answer' %}</div>
+                                    {% else %}
+                                        {% for choices in visibility.choices %}
+                                            {% if visibility.selected == choices.0 %}
+                                                <div class="btn btn-perso btn-sm active definitive-answer">{{ choices.1 }}</div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                            {% else %}
+                                 <form method="post" action="">{% csrf_token %}
+                                    <button class="btn btn-perso btn-sm {% if visibility.selected == 'no-answer' %}active{% endif %}" name="visibility" value="no-answer">{% trans 'No answer' %}</button>
+                                    {% for choices in visibility.choices %}
+                                        <button class="btn btn-perso btn-sm {% if visibility.selected == choices.0 %}active{% endif %}" name="visibility" value="{{ choices.0 }}">{{ choices.1 }}</button>
+                                    {% endfor %}
+                                </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+    {% for chapter in survey.chapters.all %}
+        {% with chapter|show_by_default:request.user as show_by_default %}
+            {% with chapter.id|stringformat:"s" as chap_id %}
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button btn-perso {% if last_chapter != chap_id and not show_by_default %}collapsed{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#panelchap{{ chapter.id }}" aria-expanded="true" aria-controls="panelchap{{ chapter.id }}">
+                            {{ chapter.number }}. {{ chapter.title }}
+                        </button>
+                    </h2>
+                    <div id="panelchap{{ chapter.id }}" class="accordion-collapse collapse {% if last_chapter == chap_id or show_by_default %}show{% endif %}" aria-labelledby="panelsStayOpen-headingOne">
+                        <div class="accordion-body">
+                            {% if chapter.select_meal_type %}
+                                {% if survey.created_by == request.user.profileserenicia %}
+                                    <h5>{% trans 'Meal type' %}</h5>
+                                    <form method="post" action="">{% csrf_token %}
+                                        <input hidden name="chapter" value="{{ chapter.id }}">
+                                        {% for pt in presentation_type %}
+                                            <button class="btn btn-perso btn-sm {% if survey.target.meal_type == pt %}active{% endif %}" name="meal_type" value="{{ pt.id }}">{{ pt }}</button>
+                                        {% endfor %}
+                                    </form>
+                                {% else %}
+                                    {% if survey.target.meal_type %}
+                                        <h5>{% trans 'Meal type' %}</h5>
+                                        <div class="btn btn-perso btn-sm active">{{ survey.target.meal_type }}</div>
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
+                            {% for question in chapter.questions.all %}
+                                {% with question.id|stringformat:"s" as quest_id %}
+                                    <h5>{{ question.number }}. {{ question.text }}</h5>
+                                        <div class="d-flex flex-wrap justify-content-between gap-1">
+                                            <div class="d-flex align-items-center gap-2">
+                                                {% if readonly %}
+                                                    {% for choice in question.notation_choices.all %}
+                                                        {% with choice.id|stringformat:"s" as choice_id %}
+                                                            {% with chap_id|add:'.'|add:quest_id|add:'.'|add:choice_id as value %}
+                                                                {% if value in answer %}
+                                                                    <div class="btn btn-perso btn-sm active definitive-answer">{{ choice.text }}</div>
+                                                                {% endif %}
+                                                            {% endwith %}
+                                                        {% endwith %}
+                                                    {% endfor %}
+                                                {% else %}
+                                                    {% if survey.created_by == request.user.profileserenicia or show_by_default %}
+                                                        <form method="post" action="">{% csrf_token %}
+                                                            {% for choice in question.notation_choices.all %}
+                                                                {% with choice.id|stringformat:"s" as choice_id %}
+                                                                    {% with chap_id|add:'.'|add:quest_id|add:'.'|add:choice_id as value %}
+                                                                            <button class="btn btn-perso btn-sm {% if value in answer %}active{% endif %}" name="choice" value="{{ value }}">{{ choice.text }}</button>
+                                                                    {% endwith %}
+                                                                {% endwith %}
+                                                            {% endfor %}
+                                                        </form>
+                                                    {% else %}
+                                                        {% for choice in question.notation_choices.all %}
+                                                            {% with choice.id|stringformat:"s" as choice_id %}
+                                                                {% with chap_id|add:'.'|add:quest_id|add:'.'|add:choice_id as value %}
+                                                                    {% if value in answer %}
+                                                                        <div class="btn btn-perso btn-sm active definitive-answer">{{ choice.text }}</div>
+                                                                    {% endif %}
+                                                                {% endwith %}
+                                                            {% endwith %}
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                {% endif %}
+                                            </div>
+                                            <div class="d-flex flex-wrap align-items-center gap-2">
+                                                {% for interviewee in other_int %}
+                                                    {% with other_ans|get_item:interviewee.id as dict_answer %}
+                                                        {% with chap_id|add:'.'|add:quest_id as answer %}
+                                                            {% if dict_answer|get_item:answer %}
+                                                                <div class="d-flex align-items-center gap-1">
+                                                                    {% if interviewee.user.profile.photo %}
+                                                                        <img src="{{ interviewee.user.profile.photo.url }}" class="interviewee-profile-pic">
+                                                                    {% else %}
+                                                                        <img src="{% static 'app4_ehpad_base/img/no_picture.png' %}" class="interviewee-profile-pic">
+                                                                    {% endif %}
+                                                                    <div class="btn btn-outline-secondary btn-sm active definitive-answer">{{ dict_answer|get_item:answer }}</div>
+                                                                </div>
+                                                            {% endif %}
+                                                        {% endwith %}
+                                                    {% endwith %}
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                {% endwith %}
+                            {% endfor %}
+                        </div>
+                        {% if chapter.can_comment %}
+                            {% if survey.created_by == request.user.profileserenicia or show_by_default %}
+                                <button class="btn btn-perso m-2" data-bs-toggle="modal" data-bs-target="#comment-{{ chapter.id }}">{% trans 'Add comment' %}</button>
+                            {% else %}
+                                <button class="btn btn-perso m-2" data-bs-toggle="modal" data-bs-target="#comment-{{ chapter.id }}">{% trans 'View comment' %}</button>
+                            {% endif %}
+                            <!-- comment modal -->
+                            <div class="modal fade" id="comment-{{ chapter.id }}" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-xl">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <div class="d-flex flex-column">
+                                                <h5 class="modal-title">{{ chapter.number }}. {{ chapter.title }}</h5>
+                                                <h6>{% if chapter.comment_title %}{{ chapter.comment_title }}{% else %}{% trans 'Comment' %}{% endif %}</h6>
+                                            </div>
+                                        </div>
+                                        <nav>
+                                          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                              {% if show_by_default or survey.created_by == request.user.profileserenicia %}
+                                                <a class="nav-link active" id="primary-com-tab" data-bs-toggle="tab" data-bs-target="#primary-com{{ chapter.id }}" type="button" role="tab" aria-controls="primary-com{{ chapter.id }}" aria-selected="true">{% trans 'My comment' %}</a>
+                                              {% endif %}
+                                              {% for com in other_com %}
+                                                    {% if chapter.id == com.chapter.id %}
+                                                        <a class="nav-link" id="{{ com.id }}-com-tab" data-bs-toggle="tab" data-bs-target="#com{{ com.id }}" type="button" role="tab" aria-controls="com{{ com.id }}" aria-selected="false">{{ com.surveyresponse.interviewee.user.get_full_name }}</a>
+                                                    {% endif %}
+                                                {% endfor %}
+                                          </div>
+                                        </nav>
+                                        <div class="tab-content">
+                                            {% if show_by_default or survey.created_by == request.user.profileserenicia %}
+                                              <div class="tab-pane fade show active" id="primary-com{{ chapter.id }}" role="tabpanel" aria-labelledby="primary-com-tab">
+                                                  {% if not date.filled %}
+                                                      <form action="" method="post">{% csrf_token %}
+                                                        <div class="modal-body d-flex justify-content-center">
+                                                            <textarea name="comment" class="comment-area" maxlength="2000">{% for com in comment %}{% if chapter.id == com.chapter %}{{ com.text }}{% endif %}{% endfor %}</textarea>
+                                                            <input hidden name="chapter" value="{{ chapter.id }}">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="reset" class="btn btn-outline-danger" data-bs-dismiss="modal" aria-label="Close">{% trans 'Cancel' %}</button>
+                                                            <button class="btn btn-perso">{% trans 'Save' %}</button>
+                                                        </div>
+                                                    </form>
+                                                  {% else %}
+                                                      <div class="modal-body d-flex justify-content-center">
+                                                            <span>{% for com in comment %}{% if chapter.id == com.chapter %}{{ com.text|linebreaks }}{% endif %}{% endfor %}</span>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button class="btn btn-perso" data-bs-dismiss="modal" aria-label="Close">{% trans 'Close' %}</button>
+                                                        </div>
+                                                  {% endif %}
+                                              </div>
+                                            {% endif %}
+                                            {% for com in other_com %}
+                                                {% if chapter.id == com.chapter.id %}
+                                                    <div class="tab-pane fade" id="com{{ com.id }}" role="tabpanel" aria-labelledby="{{ com.id }}-com-tab">
+                                                    {% if request.user.profileserenicia == survey.created_by and not date.filled %}
+                                                       <form action="" method="post">{% csrf_token %}
+                                                        <div class="modal-body d-flex justify-content-center">
+                                                            <textarea name="text-update" class="comment-area" maxlength="2000">{{ com.text }}</textarea>
+                                                            <input hidden name="chapter" value="{{ chapter.id }}">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="reset" class="btn btn-outline-danger" data-bs-dismiss="modal" aria-label="Close">{% trans 'Cancel' %}</button>
+                                                            <button class="btn btn-perso" name="update-com" value="{{ com.id }}">{% trans 'Save' %}</button>
+                                                        </div>
+                                                      </form>
+                                                    {% else %}
+                                                        <div class="modal-body d-flex justify-content-center">
+                                                            <span>{{ com.text|linebreaks }}</span>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button class="btn btn-perso" data-bs-dismiss="modal" aria-label="Close">{% trans 'Close' %}</button>
+                                                        </div>
+                                                      {% endif %}
+                                                    </div>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endwith %}
+        {% endwith %}
+    {% endfor %}
+    </div>
+    {% if survey.created_by == request.user.profileserenicia and not date.filled %}
+        <form action="" method="post" class="d-flex justify-content-center mt-2">{% csrf_token %}
+            <button class="btn btn-lg btn-perso" name="finalize" value="finalize">{% trans 'Finalize project' %}</button>
+        </form>
+    {% endif %}
+</div>
+{% endblock content %}

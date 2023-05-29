@@ -1,0 +1,47 @@
+{% extends "app4_ehpad_base/base.html" %}{% load i18n %}
+{% load static %}
+{% block content %}
+    <head>
+        <style>
+            .created {
+                max-width: 400px;
+            }
+
+            ul.errorlist {
+                display: none;
+            }
+        </style>
+    </head>
+    <main class="d-flex flex-row">
+        <div>
+            {% include "./composant/navLeft.html" %}
+        </div>
+
+        <div class="container mt-5">
+        <div class="card">
+<div class="badge bg-lightblue text-wrap w-100 mb-3">
+                    <h3> {% trans 'Create a cancel of delivery' %}</h3></div>
+            <form method="post" action="{% url 'cancel_delivery' pkCustomer %}">{% csrf_token %}
+                <div class="d-flex flex-column justify-content-center align-items-center gap-2">
+                    {{ cancelForm }}
+{#                    <button class="btn btn-perso">{% trans 'Save' %}</button>#}
+                    <button class="w-100 h-25 mt-3 btn btn-register bg-lightblue text-light">
+                    <h4>{% trans 'Save' %}</h4></button>
+                </div>
+            </form>
+            {% if error %}
+                <br>
+                <div class="d-flex flex-column justify-content-center align-items-center mb-5
+     border border-danger rounded-3 mx-auto py-3 created">
+                    <h4>{% trans 'This cancel already exists' %}</h4>
+                </div>
+            {% endif %}
+                </div>
+            <div class=" mx-1 row w-100">
+                <a class="btn btn-perso mt-3"
+                   href="{% url "account_delivery" pkCustomer %}">{% trans 'Back to profile' %}</a>
+            </div>
+
+        </div>
+    </main>
+{% endblock content %}

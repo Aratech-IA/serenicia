@@ -1,0 +1,188 @@
+{% load static %}
+{% load i18n %}
+
+{% include 'app13 _resident/header_app4.html'%}
+
+<!-- Logo Ehpad -->
+<div class="fixed-top">
+    <img src="{{ IMG_LOGO }} " alt="brand logo" class="img-fluid" width="200em">
+</div>
+
+<!-- Fond Gris -->
+<div class="col-9 d-flex">
+    <!-- Etablissement, Programme journée, Météo -->
+    <div class="col1 d-flex flex-column justify-content-evenly align-item-center">
+        
+        <!-- Programme journée -->
+        <div class="d-flex w-100">
+            {% include 'app13 _resident/planning.html'%}
+        </div>
+
+        <!-- Météo -->
+        <div class="d-flex">
+            {% include 'app13 _resident/meteo.html'%}
+        </div>
+    </div>
+
+    <!-- Menu -->
+    <div class="col2 my-auto">
+        <!-- Affichage repas -->
+        {% include 'app4_ehpad_base/menu_of_the_day.html' %}
+    </div>
+
+    <!-- tout sauf menu et météo -->
+    <div class="col3 vh-100">
+        <!-- heures, Saint, Lune -->
+        <div class="haut1">
+            
+            <div class="d-flex">
+                <!-- heure horloge analogique -->
+                <div class="col-6 d-flex pt-1">
+                    <div class="mx-auto my-auto">
+                        <table>
+                            <tr>
+                                <td style="text-align: center;">
+                                    <canvas id="canvas_tt6125fd0980bbf" width="180" height="180">
+                                    </canvas>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center; font-weight: bold">
+                                    <a href="//24timezones.com/Paris/heure" style="text-decoration: none" class="clock24" id="tz24-1629879561-c1195-eyJzaXplIjoiMjAwIiwiYmdjb2xvciI6IjAwQ0MwMCIsImxhbmciOiJmciIsInR5cGUiOiJhIiwiY2FudmFzX2lkIjoiY2FudmFzX3R0NjEyNWZkMDk4MGJiZiJ9" title="heure actuelle Paris" target="_blank" rel="nofollow"></a>
+                                </td>
+                            </tr>
+                        </table>
+                        <script type="text/javascript" src="//w.24timezones.com/l.js" async></script>
+                    </div>
+                </div>
+
+                <!-- heure chiffre -->
+                <div class="col-6">
+                    <iframe src="https://www.zeitverschiebung.net/clock-widget-iframe-v2?language=fr&size=medium&timezone=Europe%2FParis" height="115" frameborder="0" seamless>
+                    </iframe>
+                </div>
+            </div>
+
+            <div class="d-flex">
+                <!-- Saint du jour -->
+                <div id="widget_nominis" class="col-6 css_nominis my-auto fs-5 text-center"></div>
+                <script type="text/javascript" src="https://nominis.cef.fr/widgets/widget.php?id=widget_nominis&format=2"></script>
+
+                <!-- Lune du jour -->
+                <div id="contain_moon" class="col-6 text-center fs-5">
+                    <div style="font-weight:bold">La lune aujourd'hui</div>
+                    <div style="margin-top:-20px;margin-bottom:35px;padding:30px;filter:drop-shadow(0 0 30px hsl(220,100%,15%))"></div>
+                    <div>.</div>
+                    <div style="font-size:small">.</div>
+                </div>
+                <script>(function(){var d=new Date().getDate();var m=document.querySelectorAll("#contain_moon div");var a=new XMLHttpRequest();var url="https://www.icalendar37.net/lunar/api/?lang=fr&month="+(new Date().getMonth()+1)+"&year="+(new Date().getFullYear())+"&size=100&lightColor=rgb(245,245,245)&shadeColor=rgb(17,17,17)&LDZ="+new Date(new Date().getFullYear(),new Date().getMonth(),1)/1000+"";m[1].style.height="100px";a.onreadystatechange=function(){if(a.readyState==4&&a.status==200){var b=JSON.parse(a.responseText);m[1].innerHTML=b.phase[d].svg;if(typeof moon_widget_loaded=="function")moon_widget_loaded(b);m[2].innerHTML=b.phase[d].npWidget;m[3].innerHTML="Prochaine pleine lune<br>"+b.nextFullMoon}};a.open("GET",url,true);a.send()})()</script>
+            </div>
+            
+
+            
+        </div>
+
+        <!-- Citation du jour -->
+        <div class="haut2 px-1 d-flex justify-content-center align-item-center">
+            <p>
+                <script language="JavaScript"
+                src="https://citations.HasardDuJour.com/citation-hasard-du-jour.php">
+                </script>
+            </p>
+        </div>
+        
+
+        <!-- Défilement photos -->
+        <div class="haut3 d-flex justify-centent-center align-item-center px-2">
+            {% include 'app13 _resident/defilementphotos.html'%}
+        </div>
+    
+    </div>
+</div>
+
+<!-- Fond vert (Commandes Alexa) -->
+<div class="tv-right col-3 h-100 d-flex justify-content-center align-item-center bg-grey">
+    <div class="text-center my-auto">
+        <h6>- Echo, quel jour sommes-nous ?</h6>
+        <h6 class="pb-3">- Echo, quelle heure est-il ?</h6>
+    
+        <h6>- Echo, météo</h6>
+        <h6>- Echo, info</h6>
+        <h6>- Echo, musique</h6>
+        <h6 class="text-white pb-3">- Echo, messagerie</h6>
+        
+        <div class="d-flex mb-4">
+            <div class="mx-auto my-auto">
+                <svg
+                    width="5em"
+                    height="5em"
+                    fill="currentColor"
+                    class="bi bi-house"
+                    viewbox="0 0 967 891"
+                    inkscape:export-xdpi="119.954"
+                    inkscape:export-ydpi="119.954">
+                    <path
+                    d="m 99.99028,791.4062 v -416 h 64 v 416 a 32,32 0 0 0 32,32.00001 h 576 a 32,32 0 0 0 32,-32.00001 v -416 h 64 v 416 a 96,96 0 0 1 -96,96.00001 h -576 a 96,96 0 0 1 -96,-96.00001 z m 704,-703.999998 V 311.40619 l -128,-127.99999 V 87.406202 a 32,32 0 0 1 32,-32 h 64 a 32,32 0 0 1 32,32 z" />
+                    <path
+                    d="m 438.74228,23.406202 a 64,64 0 0 1 90.496,0 l 425.408,425.343998 a 32.040425,32.040425 0 0 1 -45.312,45.312 L 483.99028,68.654202 58.646283,494.0622 a 32.040425,32.040425 0 1 1 -45.312,-45.312 z" />
+                    <path
+                    d="m 420.3882,662.31162 v 0 l 63.59117,63.59121 63.59121,-63.59121 c -35.12941,-35.12943 -92.053,-35.12939 -127.18238,0 z m -84.58921,-84.58919 42.19508,42.19508 c 58.61532,-58.61533 153.95234,-58.21727 212.56768,0.39808 l 42.49361,-42.49361 c -81.90229,-82.10125 -215.15503,-82.0018 -297.25637,-0.0996 z M 675.64855,535.2288 718.14223,492.73519 C 588.7705,364.35863 380.18344,364.35859 251.01069,492.9343 l 42.19515,42.19515 C 398.49465,429.4428 570.06133,429.84073 675.64855,535.229 Z" />
+                </svg> 
+            </div>
+            <div class="pe-5">
+                <h6>- Echo, ouvre le Volet</h6>
+                <h6>- Echo, ferme le Volet</h6>
+                <h6>- Echo, arrête le Volet</h6>
+            </div>
+        </div>
+        
+    
+        <h5 class="pt-4 pb-2"><u>Echo Démarre Fidèle</u></h5>
+        <h6>* Le menu de midi ?</h6>
+        <h6>* Le menu du soir ?</h6>
+        <h6>* Mon emploi du temps ?</h6>
+        <h6>* Evalmenu</h6>
+        <h6>* Appel Visio</h6>
+        <h6 class="text-white">* Albums ?</h6>
+        <h6>* Communication de la direction ?</h6>
+        <h6>* Communication du Pôle Soins ?</h6>
+        <h6>* Communication du Service Hôtelier et Restauration ?</h6>
+        <h6>* Communication du Conseil de Vie Sociale ?</h6>
+    
+    
+        <h5 class="text-white pt-4">Echo, éteins la TV</h5>
+    
+    </div>
+</div>
+
+<div class="fixed-bottom ps-2 pb-2">
+    <img src="{% static 'app4_ehpad_base/img/serenicia.png' %}" alt="Logo Serenicia" width="170em" class="p-2">
+</div>
+
+
+{% include 'app13 _resident/footer_app4.html'%}
+
+
+{% block alexanav %}
+<script>
+
+        console.log("check for web socket");
+        let socket = new WebSocket('{{ ws_alexa }}');
+
+        socket.onmessage = function (event) {
+                console.log('connection ws Alexa opened');
+                let message = JSON.parse(event.data);
+                socket.send(JSON.stringify({'answer': true}));
+                console.log(message);
+                url = message.redirect;
+                socket.close()
+                window.location.href = url;
+        };
+
+        socket.onclose = function () {
+            console.log('connection ws Alexa closed');
+        };
+        
+</script>
+
+{% endblock alexanav %}

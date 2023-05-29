@@ -1,0 +1,437 @@
+{% extends "app4_ehpad_base/base.html" %}
+{% load static %}
+{% load i18n %}
+{% load caregiver_filters %}
+
+{% block content %}
+<head>
+  <link href="{% static 'app4_ehpad_base/js/fullcalendar/main.css' %}" rel='stylesheet' />
+  <script src="{% static 'app4_ehpad_base/js/fullcalendar/main.js' %}"></script>
+
+  <script>
+    let calendar = null;
+
+    async function fetchCalendarWithTimeout(resource, options) {
+        const { timeout = 1000 } = options;
+
+        const controller = new AbortController();
+        const id = setTimeout(() => controller.abort(), timeout);
+
+        const response = await fetch(resource, {
+          ...options,
+          signal: controller.signal
+        }).then(response => {
+            if(response.ok){
+                clearTimeout(id);
+                return response.json();
+            } else {
+                alert("{% trans 'An error has occurred, please try again later' %}");
+                return 'error';
+            };
+        }).catch(error =>{
+            alert("{% trans 'An error has occurred, please try again later' %}");
+            return 'error';
+        });
+        return response;
+    }
+
+    async function createEvent(event){
+      var url = 'https://' + '{{ request.get_host }}' + '/app6_care/caregiver/plan/create/';
+      let formData = new FormData();
+      formData.append('csrfmiddlewaretoken', "{{ csrf_token }}");
+      formData.append('start', event.start.toISOString().split('.')[0]);
+      for (const [key, value] of Object.entries(event._def.extendedProps)) {
+        formData.append(key, value);
+      };
+      var response = await fetchCalendarWithTimeout(url, {method: 'POST', body: formData});
+      event.setExtendedProp("pl_ev_id", response);
+    };
+
+    async function updateEventDates(pl_event_id=0, start='0'){
+        var url = 'https://' + '{{ request.get_host }}' + '/app6_care/caregiver/plan/update/';
+        await fetchCalendarWithTimeout(url + pl_event_id +'/' + start.toISOString() + '/', {method: 'GET'});
+    };
+
+    async function deleteEvent(button){
+        var event = calendar.getEventById(button.value);
+        pl_event_id = event._def.extendedProps.pl_ev_id;
+        await fetchCalendarWithTimeout('https://' + '{{ request.get_host }}' + '/app6_care/caregiver/plan/delete/' + pl_event_id +'/', {method: 'GET'});
+        event.remove();
+        $('#eventModal').modal('hide');
+    };
+
+    async function showEventModal(pl_event_id, fc_event_id, start){
+          var url = 'https://' + '{{ request.get_host }}' + '/app6_care/caregiver/plan/modal/';
+          var data = await fetchCalendarWithTimeout(url + pl_event_id + '/', {method: 'GET'})
+              .then(response => {
+                  if(response == 'error'){
+                      return;
+                  } else {
+                      return response;
+                  };
+              });
+          document.getElementById('eventModalTitle').innerHTML = data.date;
+          document.getElementById('eventModalDelete').value = fc_event_id;
+          document.getElementById('modalLvl1').innerHTML = data.lvl1;
+          if (data.lvl1 !== data.lvl2){
+            document.getElementById('modalLvl2').innerHTML = data.lvl2;
+          }else{
+            document.getElementById('modalLvl2').innerHTML = '';
+          };
+          if (data.lvl3){
+            document.getElementById('modalLvl3').innerHTML = data.lvl3;
+          }else{
+            document.getElementById('modalLvl3').innerHTML = '';
+          };
+          document.getElementById('modalHeader').style.backgroundColor = data.color;
+          document.getElementById('modalContent').style.border = "1px solid " + data.color;
+          $('#eventModal').modal('show');
+      };
+
+      async function changeColor(picker){
+        var url = 'https://' + '{{ request.get_host }}' + '/app6_care/caregiver/plan/color/';
+        await fetchCalendarWithTimeout(url + picker.name + '/' + picker.value.split('#')[1] + '/', {method: 'GET'});
+        location.reload();
+      };
+
+      function add30Minutes(date) {
+          return new Date(date.getTime() + 30*60000);
+      };
+
+    document.addEventListener('DOMContentLoaded', function() {
+      let draggableEl = document.getElementById('container-el');
+      let calendarEl = document.getElementById('calendar');
+
+      new FullCalendar.Draggable(draggableEl, {
+        itemSelector: '.fc-event',
+        eventData: function(eventEl) {
+          values = JSON.parse(eventEl.dataset.event);
+          id = calendar.getEvents().length;
+          return {
+            title: eventEl.innerText,
+            duration: "00:30",
+            id: "new" + id,
+            backgroundColor: values.color,
+            borderColor: values.color,
+            extendedProps: {
+              lvl1: values.lvl1,
+              lvl2: values.lvl2,
+              lvl3: values.lvl3,
+            },
+          };
+        }
+      });
+
+      calendar = new FullCalendar.Calendar(calendarEl, {
+        views: {
+          timeGridWeek: {
+            eventMaxStack: 1,
+          },
+          list: {
+            displayEventTime: true,
+          },
+        },
+        dayHeaderFormat: {
+            weekday: 'long',
+        },
+        validRange: {
+            start: "{{ first_monday|date:"Y-m-d H:i" }}",
+        },
+        headerToolbar: false,
+        initialView: 'timeGridWeek',
+        droppable: true,
+        editable: true,
+        initialDate: "{{ initial_date|date:"Y-m-d H:i" }}",
+        weekText: '',
+        firstDay: 1,
+        allDaySlot: false,
+        locale: '{{ request.LANGUAGE_CODE }}',
+        expandRows: true,
+        displayEventTime: false,
+        eventDurationEditable: false,
+        slotEventOverlap: false,
+        listDaySideFormat: false,
+        contentHeight: 'auto',
+
+        events: [
+            {% for data in plan.tasks.all %}
+                {
+                    {% if data.task_lvl_2.name %}
+                        title: "{{ data.task_lvl_2.name|safe }}{% if data.task_lvl_3.name %} - {{ data.task_lvl_3.name|safe }}{% endif %}",
+                    {% else %}
+                        title: "{{ data.task_lvl_1.name|safe }}",
+                    {% endif %}
+                    start: '{{ data.planning_event_new.start|date:"Y-m-d H:i" }}',
+                    end: '{{ data.planning_event_new.end|date:"Y-m-d H:i" }}',
+                    id: 'old' + {{ data.planning_event_new.id }},
+                    backgroundColor: "{{ data.task_lvl_1.color }}",
+                    borderColor: "{{ data.task_lvl_1.color }}",
+                    extendedProps: {
+                      pl_ev_id: {{ data.planning_event_new.id }},
+                      lvl1: "{{ data.task_lvl_1.id }}",
+                      lvl2: "{{ data.task_lvl_2.id }}",
+                      lvl3: "{{ data.task_lvl_3.id }}",
+                    },
+                },
+            {% endfor %}
+        ],
+
+        eventDrop: function(info) {
+          if (info.event.end === null){
+            info.event.setEnd(add30Minutes(info.event.start));
+          };
+          updateEventDates(info.event._def.extendedProps.pl_ev_id, info.event.start);
+        },
+
+        eventReceive: function(info) {
+          createEvent(info.event);
+        },
+
+        eventClick: function(info) {
+            showEventModal(info.event._def.extendedProps.pl_ev_id, info.event.id, info.event.start);
+        },
+
+      });
+
+      calendar.render();
+
+    });
+
+  </script>
+
+  <style>    
+    #container-el{
+      background-color: #d3d3d3;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: 200px;
+      overflow-y: scroll;
+    }
+
+    .calendar {
+      padding-left: 200px;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+
+    .accordion-button {
+      padding: 0.5em;
+    }
+
+    .profile-pic{
+      overflow: hidden;
+      border-radius: 50px;
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+    }
+
+    .ctrl-icon{
+      width: 30px;
+    }
+
+    {% for task in task_list %}
+        .background-{{ task.id }}{
+            background-color: {{ task.color }};
+        }
+        .btn-{{ task.id }}{
+            color: #000000;
+            background-color: #fff;
+            border-color: {{ task.color }};
+        }
+        .btn-{{ task.id }}:hover{
+            color: #fff;
+            background-color: {{ task.color }};
+        }
+    {% endfor %}
+  </style>
+</head>
+
+
+<main>
+  <div class="message d-md-none pt-4">
+    <h4 class="text-center">{% trans "Thank you for making the care plan on tablet or computer" %}</h4>
+  </div>
+
+  <div class="d-none d-md-flex">
+
+    <div class="d-flex flex-column gap-1" id="container-el">
+      <div class="accordion" id="accordionTasksEvents">
+        {% for task1 in task_list %}
+        <div class="accordion-item bg-light">
+          <h2 class="accordion-header" id="heading{{ task1.id }}">
+            <button class="accordion-button collapsed background-{{ task1.id }}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ task1.id }}" aria-expanded="true" aria-controls="collapse{{ task1.id }}">
+              <span class="text-left">{{ task1.name }}</span>
+            </button>
+          </h2>
+          <div id="collapse{{ task1.id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ task1.id }}" data-bs-parent="#accordionTasksEvents">
+            <div class="accordion-body d-flex flex-column gap-1">
+                <div class="d-flex justify-content-center">
+                <input type="color" id="colorpicker{{ task1.id }}" value="{{ task1.color }}" name="{{ task1.id }}" onchange="changeColor(this)">
+                </div>
+              {% for task2 in task1.details.all|care_plan_only %}
+                {% if task2.details.all|care_plan_only %}
+                    {% for task3 in task2.details.all|care_plan_only %}
+                        <div class='fc-event btn btn-{{ task1.id }}' data-event='{ "lvl2": "{{ task2.id }}", "lvl1": "{{ task1.id }}", "lvl3": "{{ task3.id }}", "color": "{{ task1.color }}" }'>{{ task2.name }} - {{ task3.name }}</div>
+                    {% endfor %}
+                {% else %}
+                    <div class='fc-event btn btn-{{ task1.id }}' data-event='{ "lvl2": "{{ task2.id }}", "lvl1": "{{ task1.id }}", "color": "{{ task1.color }}" }'>{{ task2.name }}</div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="calendar">
+      <div class="d-flex justify-content-between align-items-center p-2">
+        <div>
+          <img class="profile-pic" src="{{ plan.resident.user.profile.get_photo_url }}">
+          <span>{{ plan.resident.user.profile.civility }} {{ plan.resident.user.first_name.0 }}. {{ plan.resident.user.last_name }}</span>
+        </div>
+        <form action="" method="post" class="d-flex gap-2">
+          {% csrf_token %}
+          <button class="btn btn-perso" id="btn-copy" name="week" value="{{ week }}" type="submit">{% trans 'Copy the week' %}</button>
+          <button class="btn btn-perso" type="button" data-bs-toggle="modal" data-bs-target="#emptyDayModal">{% trans 'Empty one day' %}</button>
+        </form>
+      </div>
+      <div class="d-flex justify-content-between align-items-center px-2">
+        <div class="btn-group" role="group">
+          <button class="btn btn-perso {% if week == 1 %}disabled{% endif %}" id="btn-prev">
+            <svg viewBox="0 0 16 16" class="bi bi-caret-left-fill ctrl-icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3.86 8.753l5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                  </svg>
+          </button>
+          <button class="btn btn-perso" id="btn-next">
+            <svg viewBox="0 0 16 16" class="bi bi-caret-right-fill ctrl-icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                  </svg>
+          </button>
+        </div>
+        <h4>{% trans 'Week' %} <span id="week-number">{{ week }}</span></h4>
+        <div class="btn-group" role="group">
+          <button class="btn btn-perso active" id="week-display">
+            {% trans 'Week' %}
+          </button>
+          <button class="btn btn-perso" id="week-display-list">
+            {% trans 'List' %}
+          </button>
+        </div>
+      </div>
+      <div id="calendar"></div>
+    </div>
+
+  </div>
+
+  <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" id="modalContent">
+        <div class="modal-header" id="modalHeader">
+          <h5 class="modal-title" id="eventModalTitle"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="eventModalBody">
+            <h3 id="modalLvl1"></h3>
+            <h3 id="modalLvl2"></h3>
+            <h3 id="modalLvl3"></h3>
+            <h3 id="modalLvl4"></h3>
+        </div>
+        <div class="modal-footer d-flex justify-content-between">
+          <button class="btn btn-danger" id="eventModalDelete" onclick="deleteEvent(this)">{% trans 'Delete' %}</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'Close' %}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="emptyDayModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <form action="" method="post" class="modal-content">
+        {% csrf_token %}
+        <div class="modal-header">
+          <h5 class="modal-title">{% trans 'Select a day to empty' %}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body d-flex justify-content-center align-items-center">
+          <select name="day">
+            <option value="0">{% trans 'Monday' %}</option>
+            <option value="1">{% trans 'Tuesday' %}</option>
+            <option value="2">{% trans 'Wednesday' %}</option>
+            <option value="3">{% trans 'Thursday' %}</option>
+            <option value="4">{% trans 'Friday' %}</option>
+            <option value="5">{% trans 'Saturday' %}</option>
+            <option value="6">{% trans 'Sunday' %}</option>
+          </select>
+        </div>
+        <div class="modal-footer d-flex justify-content-between">
+          <button type="submit" id="btn-empty" name="week" value="{{ week }}" class="btn btn-danger">{% trans 'Empty the day' %}</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'Close' %}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</main>
+
+<script>
+
+  // Récupère la hauteur de la navbar
+  let nav = document.getElementById("navbar");
+
+  // Met un padding top
+  const resizeObserver = new ResizeObserver(() => {
+    let e = document.getElementById("container-el")
+    e.style.paddingTop = nav.clientHeight + "px";
+  });
+
+  resizeObserver.observe(nav);
+
+  var week_nb = {{ week }};
+  let weekSpan = document.getElementById('week-number');
+  let btnCopy = document.getElementById('btn-copy');
+  let btnEmpty = document.getElementById('btn-empty');
+  let btnPrev = document.getElementById('btn-prev');
+
+  document.getElementById('btn-next').addEventListener('click', function() {
+      calendar.next();
+      week_nb++;
+      weekSpan.innerHTML = week_nb;
+      btnCopy.value = week_nb;
+      btnEmpty.value = week_nb;
+      if (week_nb > 1){
+        btnPrev.classList.remove('disabled');
+      };
+    });
+
+  btnPrev.addEventListener('click', function() {
+      calendar.prev();
+      week_nb--;
+      weekSpan.innerHTML = week_nb;
+      btnCopy.value = week_nb;
+      btnEmpty.value = week_nb;
+      if (week_nb == 1){
+        btnPrev.classList.add('disabled');
+      };
+  });
+
+  let btnWeek = document.getElementById('week-display');
+  let btnWeekList = document.getElementById('week-display-list');
+
+  btnWeek.addEventListener('click', function() {
+    calendar.changeView('timeGridWeek');
+    btnWeek.classList.add('active');
+    btnWeekList.classList.remove('active');
+  });
+
+  btnWeekList.addEventListener('click', function() {
+    calendar.changeView('listWeek');
+    btnWeekList.classList.add('active');
+    btnWeek.classList.remove('active');
+  });
+
+</script>
+
+{% endblock content %}

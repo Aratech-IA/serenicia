@@ -1,0 +1,26 @@
+.svg-icon-lg{
+  width: 40px;
+  height: 40px;
+}
+
+.navbar-profile-pic{
+  overflow: hidden;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+}
+
+.site-card{
+  width: 400px;
+  height: 200px;
+}
+
+.svg-icon-sm{
+  width: 20px;
+  height: 20px;
+}
+
+.error-msg-zone{
+    height: 40px;
+}

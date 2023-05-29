@@ -1,0 +1,190 @@
+// Pics
+
+.resident-pic {
+    overflow:hidden;
+    -webkit-border-radius:50px;
+    -moz-border-radius:50px;
+    border-radius:50px;
+    width:90px;
+    height:90px;
+    object-fit: cover;
+}
+
+.resident-small-pic {
+    overflow:hidden;
+    -webkit-border-radius:50px;
+    -moz-border-radius:50px;
+    border-radius:50px;
+    width:48px;
+    height:48px;
+    object-fit: cover;
+}
+
+
+// Buttons
+
+.app6-btn-icon {
+    cursor: pointer;
+    width: 110px; /* same width than app6-icon */
+}
+
+.app6-btn-icon:hover {
+    color: #5285e3 !important;
+}
+
+.app6-icon {
+    width: 110px;
+    border-radius: 0.75rem;
+}
+
+.app6-icon:hover {
+    background-color: #93a9d2 !important;
+    border-color: #93a9d2;
+}
+
+.app6-btn-icon-no-hover {
+    width: 110px; /* same width than app6-icon */
+    color: #5285e3;
+}
+
+.app6-icon-no-hover {
+    width: 110px;
+    border-radius: 0.75rem;
+}
+
+.app6-green-text-hover:hover {
+    background: #f8f9fa;
+    color: #5285e3 !important;
+}
+
+.app6-white-bg-hover:hover {
+    background: #f8f9fa !important;
+}
+
+.app6-bg-light-grey {
+    background-color: rgba(211,211,211,1);
+}
+
+.app6-btn-red-hover:hover {
+    background: #dc3545 !important;
+    border: 1px solid #f8f9fa !important;
+}
+
+.app6-btn-blue-hover:hover {
+    background: #0dcaf0 !important;
+    border: 1px solid #0dcaf0 !important;
+}
+
+
+// Table
+
+.app6-table {
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 1rem;
+}
+
+@media (max-width: 1200px) {
+    .app6-table{
+        font-size: .8rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .app6-table{
+        font-size: .5rem;
+    }
+}
+
+.app6-space-btw-2-tables {
+    margin-top: 70px;
+}
+
+.app6-tbody {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.app6-td {
+    padding: 8px 0;
+}
+
+.app6-table-unit {
+    text-align: left;
+}
+
+
+// Input
+
+.app6-input {
+    text-align: center;
+    border: none;
+    background-color: rgb(248, 249, 250);
+    padding: 0;
+}
+
+.app6-user-input {
+    width: 100%;
+    background-color: #b6e3b6;
+    padding: 3px 0;
+}
+
+.app6-input-name {
+    min-width: 200px;
+    padding: 3px 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+// Sizing
+
+.my_height {
+    min-height: 20px;
+}
+
+.task {
+    width: 4vw;
+}
+
+.taskname {
+    width: 8vw;
+}
+
+.protocol {
+    margin-top: 5vh;
+}
+
+.protocolHidden {
+    visibility: hidden;
+}
+
+.my_height2 {
+    min-height: 160px;
+}
+
+.my_height3 {
+    height: 35px;
+}
+
+.app6-width-25px {
+    width: 25px;
+}
+
+.app6-width-35px {
+    width: 35px;
+}
+
+.app6-width-60px {
+    width: 60px;
+}
+
+.position_absolute {
+    position: absolute;
+    top: 70px;
+    left: 30px;
+}
+
+.ctrl-icon {
+    width: 30px;
+}

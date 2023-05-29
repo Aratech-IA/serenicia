@@ -1,0 +1,148 @@
+{% extends "app4_ehpad_base/base.html" %}
+{% load static %}
+{% load i18n %}
+{% load caregiver_filters %}
+
+
+{% block content %}
+<style>
+    .resident-pic{
+    overflow:hidden;
+    -webkit-border-radius:50px;
+    -moz-border-radius:50px;
+    border-radius:50px;
+    width:90px;
+    height:90px;
+    object-fit: cover;
+}
+.planning-title{
+     writing-mode: vertical-lr;
+     transform: scale(-1);
+     text-align: center;
+     vertical-align: center;
+ }
+
+.bg-seren-today{
+    background-color: #93a9d2;
+    border-radius: 15px;
+}
+
+.bg-seren{
+    border: solid 3px #93a9d2;
+    border-radius: 15px;
+}
+
+.color-seren{
+    color: #93a9d2;
+}
+
+.height-seren{
+    height:200px;
+}
+
+.title-size{
+    font-size: 3.5em;
+}
+</style>
+<div class="container mt-3">
+    <a class="btn btn-lg btn-perso" href="{% url 'caregiver'%}">RETOUR</a>
+
+    <div class="d-flex justify-content-center align-items-center m-5">
+                <h3>Semaine du plan de soin - {{request.session.res_lastname}}</h3>
+                {% if request.session.profile_pic %}<img class="resident-pic" src="{{ request.session.profile_pic }}" alt="{% trans 'resident profile pic' %}">{% endif %}
+    </div>
+
+    <div class="row">
+        <div class="col-md-2 bg-seren-today me-3 justify-content-center align-items-center d-flex">
+            <h1 class="planning-title title-size text-white">PLANNING HEBDOMADAIRE</h1>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                {% for x in range %}
+                    {% if x > 0 %}
+                    <div class="col-1 bg-seren me-2 ms-5 mb-2 d-flex justify-content-center" >
+                        <h4 class="planning-title height-seren m-0 p-0 color-seren">{% if x == 1 %}LUNDI{% elif x == 2 %} MARDI{% elif x == 3 %}MERCREDI{% elif x == 4 %}JEUDI {% elif x == 5%}VENDREDI{% elif x == 6%}SAMEDI{% elif x == 7%} DIMANCHE {%endif%}</h4>
+                    </div>
+                    <div class="col-4 mb-2 d-flex flex-column justify-content-center align-items-center{% if today_day == x %} text-light bg-seren-today {% else %} bg-seren {% endif %}">
+                        <p>{% if nb_of_task|get_keyvalue:x %} {{nb_of_task|get_keyvalue:x}} soins. {% else %} Pas de soin. {% endif %}</p>
+                        <a class="btn btn-lg btn-perso text-center" href="{% url 'plan_de_soin_jour' patient_id=patient_id day_id=x %}">Accéder</a>
+                    </div>
+                    {%endif%}
+                {% endfor %}
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="my-5 pt-5">
+        <h2>Ajouter un soin pour tous les jours de la semaine:</h2>
+        <form action="{% url 'plan_de_soin' patient_id=patient_id %}" method="post">
+            {% csrf_token %}
+            <label class="form-label" for="care">Choisissez un soin :</label>
+            <select class='form-control w-25' name="task_level_2" id="care" required>
+                {% for care in care_list %}
+                <option value="{{care.id}}">{{care.name}}</option>
+                {% endfor %}
+            </select>
+            <label class="form-label" for="time_to_care">L'heure du soin :</label>
+            <input class="form-control w-25" type="time" id="time_to_care" name="start_time" required>
+            <input class="btn btn-perso mt-3" type="submit" value="Ajouter">
+        </form>
+    </div>
+
+
+<!--    <div class="row d-flex justify-content-center">-->
+
+<!--        <div class="col-lg-3 col-md-6 d-flex flex-column justify-content-between text-center p-5 m-2" style="{% if today_day == 1 %} border: solid 10px #93a9d2; {% else %} border: solid 3px #93a9d2; {% endif %} border-radius:15px;" >-->
+<!--            <h1>LUNDI</h1>-->
+<!--            <p>{% if nb_of_task.1 %} {{nb_of_task.1}} soins. {% else %} Pas de soin. {% endif %}</p>-->
+<!--            <a class="btn btn-lg btn-perso text-center" href="{% url 'plan_de_soin_jour' patient_id=patient_id day_id=1 %}">Accéder</a>-->
+<!--        </div>-->
+
+<!--        <div class="col-lg-3 col-md-6 d-flex flex-column justify-content-between text-center p-5 m-2" style="{% if today_day == 2 %} border: solid 10px #93a9d2; {% else %} border: solid 3px #93a9d2; {% endif %} border-radius:15px;" >-->
+<!--            <h1>MARDI</h1>-->
+<!--            <p>{% if nb_of_task.2 %} {{nb_of_task.2}} soins. {% else %} Pas de soin. {% endif %}</p>-->
+<!--            <a class="btn btn-lg btn-perso text-center" href="{% url 'plan_de_soin_jour' patient_id=patient_id day_id=2 %}">Accéder</a>-->
+<!--        </div>-->
+
+<!--        <div class="col-lg-3 col-md-6 d-flex flex-column justify-content-between text-center p-5 m-2" style="{% if today_day == 3 %} border: solid 10px #93a9d2; {% else %} border: solid 3px #93a9d2; {% endif %} border-radius:15px;" >-->
+<!--            <h1>MERCREDI</h1>-->
+<!--            <p>{% if nb_of_task.3 %} {{nb_of_task.3}} soins. {% else %} Pas de soin. {% endif %}</p>-->
+<!--            <a class="btn btn-lg btn-perso text-center" href="{% url 'plan_de_soin_jour' patient_id=patient_id day_id=3 %}">Accéder</a>-->
+<!--        </div>-->
+
+<!--        <div class="col-lg-3 col-md-6 d-flex flex-column justify-content-between text-center p-5 m-2" style="{% if today_day == 4 %} border: solid 10px #93a9d2; {% else %} border: solid 3px #93a9d2; {% endif %} border-radius:15px;" >-->
+<!--            <h1>JEUDI</h1>-->
+<!--            <p>{% if nb_of_task.4 %} {{nb_of_task.4}} soins. {% else %} Pas de soin. {% endif %}</p>-->
+<!--            <a class="btn btn-lg btn-perso text-center" href="{% url 'plan_de_soin_jour' patient_id=patient_id day_id=4 %}">Accéder</a>-->
+<!--        </div>-->
+
+<!--        <div class="col-lg-3 col-md-6 d-flex flex-column justify-content-between text-center p-5 m-2" style="{% if today_day == 5 %} border: solid 10px #93a9d2; {% else %} border: solid 3px #93a9d2; {% endif %} border-radius:15px;" >-->
+<!--            <h1>VENDREDI</h1>-->
+<!--            <p>{% if nb_of_task.5 %} {{nb_of_task.5}} soins. {% else %} Pas de soin. {% endif %}</p>-->
+<!--            <a class="btn btn-lg btn-perso text-center" href="{% url 'plan_de_soin_jour' patient_id=patient_id day_id=5 %}">Accéder</a>-->
+<!--        </div>-->
+
+<!--        <div class="col-lg-3 col-md-6 d-flex flex-column justify-content-between text-center p-5 m-2" style="{% if today_day == 6 %} border: solid 10px #93a9d2; {% else %} border: solid 3px #93a9d2; {% endif %} border-radius:15px;" >-->
+<!--            <h1 class="font-weight-bolder">SAMEDI</h1>-->
+<!--            <p>{% if nb_of_task.6 %} {{nb_of_task.6}} soins. {% else %} Pas de soin. {% endif %}</p>-->
+<!--            <a class="btn btn-lg btn-perso text-center" href="{% url 'plan_de_soin_jour' patient_id=patient_id day_id=6 %}">Accéder</a>-->
+<!--        </div>-->
+
+<!--        <div class="col-lg-3 col-md-6 d-flex flex-column justify-content-between text-center p-5 m-2" style="{% if today_day == 7 %} border: solid 10px #93a9d2; {% else %} border: solid 3px #93a9d2; {% endif %} border-radius:15px;" >-->
+<!--            <h1>DIMANCHE</h1>-->
+<!--            <p>{% if nb_of_task.7 %} {{nb_of_task.7}} soins. {% else %} Pas de soin. {% endif %}</p>-->
+<!--            <a class="btn btn-lg btn-perso text-center" href="{% url 'plan_de_soin_jour' patient_id=patient_id day_id=7 %}">Accéder</a>-->
+<!--        </div>-->
+
+
+
+<!--    </div>-->
+
+
+</div>
+{% endblock %}
+{% block scriptcaregiver %}
+{% endblock scriptcaregiver %}

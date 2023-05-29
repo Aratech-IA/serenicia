@@ -1,0 +1,19 @@
+rm -rf app0_access/migrations
+rm -rf app1_base/migrations
+rm -rf app2_machine_learning/migrations
+rm -rf app3_messaging/migrations
+rm -rf app4_ehpad_base/migrations
+rm -rf app5_ehpad_messaging/migrations
+rm -rf app6_care/migrations
+rm -rf app8_survey/migrations
+rm -rf app9_personnalized_project/migrations
+rm -rf app10_social_activities/migrations
+rm -rf app11_quality/migrations
+rm -rf app12_delivery/migrations
+rm -rf app15_calendar/migrations
+rm -rf app16_portal/migrations
+
+python3 manage.py makemigrations app0_access app1_base app2_machine_learning app3_messaging app4_ehpad_base app5_ehpad_messaging app6_care app7_video app8_survey
+python3 manage.py makemigrations app9_personnalized_project app10_social_activities app11_quality app12_delivery app13_resident app14_profile
+python3 manage.py makemigrations app15_calendar app16_portal
+

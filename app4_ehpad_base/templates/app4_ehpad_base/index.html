@@ -1,0 +1,839 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+
+{% block content %}
+{% load static %}
+{% load i18n %}
+
+
+<div>
+    <!--PROFILE SECTION-->
+    <div class="container-fluid bg-lightblue d-flex p-2 p-lg-5 position-relative">
+        <!-- Logo + link client en dessous de 991px -->
+        <div class="d-lg-none position-absolute fixed-top d-flex justify-content-end" style="z-index:1;">
+            <a href="{{ SITE_INTERNET }}" target="_blank">
+                <img src="{{ IMG_LOGO }}" class="logopetit" alt="{% trans 'Location logo' %}">
+            </a>
+        </div>
+
+        <div class="col-lg-9 col-12 pe-lg-5">
+
+            <div class="d-flex flex-column flex-lg-row">
+
+                <!--Photo du résident-->
+                <div class="col-lg-2 text-center">
+                    {% if profile_pic %}
+                        <span class="profile-pic w-100" style="z-index:1;">
+                            <img src="{{ profile_pic }}" class="resident_large_pic z-index" alt="{% trans 'Profile pic' %}" width="100%">
+                        </span>
+                    {% else %}
+                        <span class="profile-pic w-100" style="z-index:1;">
+                            <img src="http://sarangglobaltours.com/wp-content/uploads/2014/02/team.png" class="circle resident_large_pic z-index" alt="{% trans 'Profile pic' %}" width="100%">
+                        </span>
+                    {% endif %}
+                </div>
+
+                <!--Nom, logement, complétion du dossier-->
+                <div class="col-lg-10 d-flex flex-column justify-content-center align-items-center">
+                    <h4 class="text-center mt-5">{{ civility }} {{firstname}}. {{lastname}} {% if main_resident_informations %} {% trans 'Housing' %} {{ main_resident_informations.room_number }}{% endif %}</h4>
+
+                    {% if main_resident_informations %}
+                        {% if main_resident_informations.got_multi_resistant_bacteria %}<label class="orange my_radius m-1 p-1">BMR</label>{% endif%}
+                    {% endif %}
+
+                    <div class="progress ms-lg-2 d-flex justify-content-between">
+
+                        <div class="progress-bar d-flex justify-content-end" role="progressbar" style="width: {{ bar_progress.percent_total }}%;" aria-valuenow="{{ bar_progress.percent_total }}" aria-valuemin="0" aria-valuemax="100">
+                            <h6 class="position-absolute ms-1" style="margin-bottom: 1.8px;">{{ bar_progress.results }}</h6>
+                        </div>
+
+                        {% if bar_progress.percent_total != 100 %}
+                            <div class="me-1">
+                                <a class="" data-bs-toggle="modal" data-bs-target="#myModal" style="cursor: pointer;"><img src="{% static 'app4_ehpad_base/img/icon-info.svg' %}"></a>
+                            </div>
+
+                            <div class="modal fade" id="myModal" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">{% trans 'Missing information' %}</h4>
+                                            <div class="close" data-bs-dismiss="modal">&times;</div>
+                                        </div>
+
+                                        <div class="modal-body bg-lightblue">
+                                            {% for message in messages %}
+                                                {% if "info" in message.tags %}
+                                                <p>{{ message }}</p>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-lg-flex justify-content-lg-center align-items-lg-center mt-3">
+
+                <!--Carrousel Photos-->
+                <div class="col-12 col-lg-10">
+                    <!--Carrousel-->
+                    <div id="carouselphotos" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+                        <div class="carousel-inner">
+                            {% for image in images %}
+                                <div class="carousel-item bg-white myHeight12
+                                {% if carousel_active_pic %}
+                                    {% if carousel_active_pic == image.image %}
+                                    active
+                                    {% endif %}
+                                {% elif forloop.first %}
+                                    active
+                                {% endif %}">
+                                    <form action="{% url 'app4_ehpad_base gallery details' %}" method="post" class="d-flex justify-content-center align-items-center h-100">{% csrf_token %}
+                                        <input hidden name="pic_url" value="{{ image.image_full }}">
+                                        <input type="image" data-bs-toggle="modal" data-bs-target="#show{{forloop.counter}}" src="{{ image.image }}" class="img-fluid mx-auto my-auto d-block myHeight11" alt="alt">
+                                    </form>
+                                </div>
+                            {% endfor %}
+
+                            <!--Previous-->
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselphotos" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">{% trans "Previous" %}</span>
+                            </button>
+                            <!--next-->
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselphotos" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">{% trans "Next" %}</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    {% if perms.app0_access.view_family %}
+                        {% if photo_album %}
+                            <div class="d-flex flex-wrap justify-content-center">
+                                {% for album in photo_album %}
+                                    <a href="{% url 'photo_from_family' name=album.name %}" class="px-2 pt-3">
+                                        <div class="h-100 d-flex flex-column carousel-border p-2 align-items-center justify-content-between bg-white p-3">
+                                            <img src="{{ album.thumbnail_url }}" class="img-fluid my-auto rounded-3" style="max-height: 150px; max-width: 75px;">
+                                            <h5>{{ album.name }}</h5>
+                                        </div>
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                </div>
+
+                <!-- voir/créer album + voir galerie -->
+                <div class="col-12 col-lg-2 d-flex flex-column">
+                    {% include 'app4_ehpad_base/dir_photo_family_index.html' %}
+                </div>
+
+            </div> 
+        </div>
+
+        <div class="d-none d-lg-flex flex-lg-column justify-content-lg-around col-lg-3 col-12 ps-4">
+            <!-- Logo + link client au dessus de 991px -->
+            <div class="d-none d-lg-block pb-2">
+                <a href="{{ SITE_INTERNET }}" target="_blank">
+                    <img src="{{ IMG_LOGO }}" width="100%" alt="brand logo">
+                </a>
+            </div>
+            <!-- Meteo -->
+            <div class="d-none d-lg-block">
+                <iframe id="widget_autocomplete_preview"
+                        width="100%"
+                        height="317"
+                        frameborder="0"
+                        scrolling="no"
+                        src="https://meteofrance.com/widget/prevision/303510">
+                </iframe>
+            </div>
+        </div>
+        
+    </div>
+
+
+    <!--REFERENT SECTION-->
+    <div class="container-fluid bg-white p-2 p-md-3 p-xl-5">
+        <div class="d-flex justify-content-center">
+            <div class="section-titre d-inline-flex px-5">
+                <h2 class="text-center mb-0">{% trans "Your referents" %}</h2>
+            </div>
+        </div>
+        
+        <div class="mt-4 mt-lg-5">
+            <form class="input-group d-flex flex-column flex-lg-row justify-content-lg-between justify-content-xl-evenly" action="{% url 'internal_emailing_family' %}" method="post">
+            {% csrf_token %}
+                <div class="d-flex flex-column align-items-center pb-4 pb-lg-0">
+                    <h4 class="text-center">{% trans "IDE nurse" %}</h4>
+                    <p class="text-center">{% trans "Medical care" %}</p>
+                    <table class="table table-hover">
+                            {% for ref in ref_ide %}
+                            <tr>
+                                <th class="text-center" scope="row">{{ref.first_name}}</th>
+                                <td class="text-center">{{ref.last_name}}</td>
+                            </tr>
+                            {% endfor %}
+                    </table>
+                    <div class="d-flex justify-content-center">
+                        <button name="contact_ref" type="submit" value="view_ide" class="{{forloop.counter}}ref_contact bouton btn btn-perso">{% trans "Contact the Nurses" %}</button>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column align-items-center pb-4 pb-lg-0">
+                    <h4 class="text-center">{% trans "Caregiver Assistant AS / AMP / AES" %}</h4>
+                    <p class="text-center">{% trans "Nursing care, linen management" %}</p>
+                    <table class="table table-hover">
+                            {% for ref in ref_as %}
+                            <tr>
+                                <th class="text-center" scope="row">{{ref.first_name}}</th>
+                                <td class="text-center">{{ref.last_name}}</td>
+                            </tr>
+                            {% endfor %}
+                    </table>
+                    <div class="d-flex justify-content-center">
+                        <button name="contact_ref" type="submit" value="view_as" class="{{forloop.counter}}ref_contact bouton btn btn-perso">{% trans "Contact Caregivers" %}</button>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column align-items-center pb-4 pb-lg-0">
+                    <h4 class="text-center">{% trans "Hotel Service Agent" %}</h4>
+                    <p class="text-center">{% trans "Maintenance of premises and meal service" %}</p>
+                    <table class="table table-hover" >
+                            {% for ref in ref_ash %}
+                            <tr>
+                                <th class="text-center" scope="row">{{ref.first_name}}</th>
+                                <td class="text-center">{{ref.last_name}}</td>
+                            </tr>
+                            {% endfor %}
+                    </table>
+                    <div class="d-flex justify-content-center">
+                        <button name="contact_ref" type="submit" value="view_ash" class="{{forloop.counter}}ref_contact bouton btn btn-perso">{% trans "Contact the Hotel Service" %}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="d-flex flex-column flex-lg-row justify-content-lg-between justify-content-xl-evenly">
+            <div>
+            {% if family_list %}
+                <div class="d-flex justify-content-center mt-5 mb-4">
+                    <div class="section-titre d-inline-flex px-5">
+                        <h2 class="text-center mb-0">{% trans "My Family" %}</h2>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column align-items-center pb-4 pb-lg-0">
+                    <table class="table table-hover">
+                        {% for ref in family_list %}
+                            <form class="input-group d-flex flex-column flex-lg-row justify-content-lg-between justify-content-xl-evenly" action="{% url 'internal_emailing_family' %}" method="post">
+                                {% csrf_token %}
+                                <tr>
+                                    <th class="text-center" scope="row">{{ref.first_name}}</th>
+                                    <td class="text-center">{{ref.last_name}}</td>
+                                    <input name="family_id" type="hidden" value="{{ref.id}}">
+                                    <td><button name="contact_ref" type="submit" value="view_one_family" class="{{forloop.counter}}ref_contact bouton btn btn-perso">{% trans "Contact" %}</button></td>
+                                </tr>
+                            </form>
+                        {% endfor %}
+                    </table>
+                    <div class="d-flex justify-content-center">
+                        <form class="d-flex flex-column flex-lg-row justify-content-lg-between justify-content-xl-evenly" action="{% url 'internal_emailing_family' %}" method="post">
+                            {% csrf_token %}
+                            <button name="contact_ref" type="submit" value="view_family" class="{{forloop.counter}}ref_contact btn btn-perso">{% trans "Contact all your family" %}</button>
+                        </form>
+                    </div>
+                </div>
+            {% endif %}
+            </div>
+
+            <div>
+            {% if praticiens %}
+                <div class="d-flex justify-content-center mt-5 mb-4">
+                    <div class="section-titre d-inline-flex px-5">
+                        <h2 class="text-center mb-0">{% trans "Liberal speakers" %}</h2>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column align-items-center pb-4 pb-lg-0">
+                    <table class="table table-hover">
+                        {% for praticien in praticiens %}
+                            <form class="input-group d-flex flex-column flex-lg-row justify-content-lg-between justify-content-xl-evenly" action="{% url 'internal_emailing_family' %}" method="post">
+                                {% csrf_token %}
+                                <tr>
+                                    <th class="text-center" scope="row">{{praticien.groups.first.name}}</th>
+                                    <th class="text-center">{{praticien.first_name}}</th>
+                                    <td class="text-center">{{praticien.last_name}}</td>
+                                    <input name="family_id" type="hidden" value="{{praticien.id}}">
+                                    <td><button name="contact_ref" type="submit" value="view_one_family" class="{{forloop.counter}}ref_contact bouton btn btn-perso">{% trans "Contact" %}</button></td>
+                                </tr>
+                            </form>
+                        {% endfor %}
+                    </table>
+                </div>
+            {% endif %}
+            </div>
+
+        </div>
+
+    </div>
+
+    {% if interventions_lvl > 0 %}
+    <!--Latest interventions-->
+    <div class="container-fluid bg-lightblue p-2 p-sm-3 p-xl-5">
+        <div class="d-flex justify-content-center pb-4 pb-lg-5">
+            <div class="section-titre d-inline-flex px-5">
+                <h2 class="text-center mb-0">{% trans "I keep up to date with the latest supports in real time" %}</h2>
+            </div>
+        </div>
+        
+        {% if last_12_interventions %}
+            <div class="d-flex flex-column align-items-center">
+                <div class="border border-white rounded-3 p-1 p-md-3 container-fluid bg-white d-flex flex-column align-items-center">
+                    <div class="d-flex flex-column p-1 p-md-3">
+                        {% if interventions_lvl == 1 %}
+                            {% include 'app4_ehpad_base/interventions_lvl1_minimal.html' %}
+                        {% elif interventions_lvl == 2 %}
+                            {% include 'app4_ehpad_base/interventions_lvl2_simplified.html' %}
+                        {% elif interventions_lvl == 3 %}
+                            {% include 'app4_ehpad_base/interventions_lvl3_full.html' %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <h2 class="text-center m-5 p-5">{% trans "No care data available" %}</h2>
+        {% endif %}
+    {% endif %}
+
+        {% if comment_of_the_week %}
+            <div class="mt-3 border border-white rounded-3 p-1 p-md-3 container-fluid bg-white d-flex flex-column align-items-center">
+                <h4 class="text-align mb-2">{% trans 'Free comments of the week' %}</h4>
+                {% for comment in comment_of_the_week %}
+                <div>
+                    <h6>{{comment.start}} <img src="{% if comment.nurse.profile.photo %}{{ comment.nurse.profile.photo.url }}{% else %}{% static 'app4_ehpad_base/img/homemade_svg/avatar.svg' %}{% endif %}" width="48px" class="resident_small_pic mx-2" title="{{ comment.nurse.first_name }} {{ comment.nurse.last_name }}">
+                        <button class='btn btn-perso' type="button" data-bs-toggle="modal" data-bs-target="#comment_modal{{ forloop.counter }}">{% trans 'READ' %}</button></h6>
+                    <div class="modal fade" id="comment_modal{{forloop.counter}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header bg-lightblue">
+                                    <h5 class="modal-title" id="exampleModalLabel2">
+                                        {% trans 'Comment written by' %} : {{ comment.nurse.first_name }} {{ comment.nurse.last_name }} <img src="{% if comment.nurse.profile.photo %}{{ comment.nurse.profile.photo.url }}{% else %}{% static 'app4_ehpad_base/img/homemade_svg/avatar.svg' %}{% endif %}" width="48px" class="resident_small_pic mx-2" title="{{ comment.nurse.first_name }} {{ comment.nurse.last_name }}"></h5>
+                                    <h5>{{ comment.start }}</h5>
+                                    <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">×</button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>{{comment.content}}</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-perso" data-bs-dismiss="modal">{% trans 'Close' %}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+
+
+    <!--CALENDAR SECTION-->
+    <div class="container-fluid bg-white p-2 p-sm-3 p-xl-5">
+            <div class="col-12 text-center">
+    <!--            <div class="col-12 d-none d-lg-block">-->
+                    {% include 'app15_calendar/calendar_widget.html' %}
+                <!--      ANCIEN CALENDRIER          -->
+    <!--                    {% include 'app4_ehpad_base/social_planning.html' %}-->
+    <!--                <div class="modal fade" id="calendar_frame_modal">-->
+    <!--                    <div class="modal-dialog modal-fullscreen-lg-down modal-lg">-->
+    <!--                        <div class="modal-content">-->
+    <!--                            <div class="modal-header">-->
+    <!--                                <h3 class="modal-title">{% trans "Calendar's details" %}</h3>-->
+    <!--                                <button class="btn-close btn-perso fi-align-right" data-bs-dismiss="modal"-->
+    <!--                                        aria-label="Close"-->
+    <!--                                        type="button">-->
+    <!--                                    <span aria-hidden="true"></span>-->
+    <!--                                </button>-->
+    <!--                            </div>-->
+    <!--                            <div class="modal-body">-->
+    <!--                                <iframe src="https://calendar.google.com/calendar/embed?height=450&amp;wkst=2&amp;bgcolor=%23c2ffc3&amp;ctz=Europe%2FParis&amp;src={{ cal_id }}&amp;color=%23F4511E&amp;color=%2333B679&amp;color=%230B8043&amp;showNav=1&amp;showTitle=1&amp;showDate=1&amp;showTabs=1&amp;showPrint=0&amp;showCalendars=1&amp;showTz=1&amp;mode=MONTH"-->
+    <!--                                        style="border:solid 1px #777" width="700" height="450"-->
+    <!--                                        frameborder="0"-->
+    <!--                                        scrolling="no"></iframe>-->
+    <!--                            </div>-->
+    <!--                            <div class="modal-footer">-->
+    <!--                            </div>-->
+    <!--                        </div>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+                <div class="col-12 d-inline-block">
+                    {% if perms.app0_access.view_family %}
+                        <button type="button" class="btn btn-perso m-2 p-4 border-3" data-bs-toggle="modal"
+                                data-bs-target="#new_event_modal">
+                            <p>
+                                <svg width="48px" viewbox="0 0 16 16" class="bi bi-calendar2-plus"
+                                    fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
+                                    <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
+                                    <path fill-rule="evenodd"
+                                        d="M8 8a.5.5 0 0 1 .5.5V10H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V11H6a.5.5 0 0 1 0-1h1.5V8.5A.5.5 0 0 1 8 8z"/>
+                                </svg>
+                            </p>
+                            {% trans 'Be a part of the schedule' %}
+                        </button>
+                        {% if cancellables %}
+                        <button type="button" class="btn btn-outline-warning m-2 p-4 border-1" data-bs-toggle="modal"
+                                data-bs-target="#delete_event_modal">
+                            <p>
+                                <svg width="48px" viewbox="0 0 16 16" class="bi bi-calendar2-x-fill" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 3.5c0-.276.244-.5.545-.5h10.91c.3 0 .545.224.545.5v1c0 .276-.244.5-.546.5H2.545C2.245 5 2 4.776 2 4.5v-1zm4.854 4.646a.5.5 0 1 0-.708.708L7.293 10l-1.147 1.146a.5.5 0 0 0 .708.708L8 10.707l1.146 1.147a.5.5 0 0 0 .708-.708L8.707 10l1.147-1.146a.5.5 0 0 0-.708-.708L8 9.293 6.854 8.146z"/>
+                                </svg>
+                            </p>
+                            Annuler
+                        </button>
+                        {% endif %}
+                    {% endif %}
+                    <a class="btn btn-perso m-2 p-4 border-3" href="{% url 'Contact selection' %}"
+                    role="button">
+                        <p>
+                            <svg width="48px" viewbox="0 0 16 16" class="bi bi-people-fill"
+                                fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+                            </svg>
+                        </p>
+                        {% trans 'Video Chat' %}
+                    </a>
+
+                    {% if perms.app0_access.view_family %}
+                        <button class="btn btn-perso m-2 p-4 border-3" data-bs-toggle="modal"
+                                data-bs-target="#meal_booking">
+                            <p>
+                                <svg
+                                    aria-hidden="true"
+                                    focusable="false"
+                                    data-prefix="fas"
+                                    data-icon="utensils"
+                                    class="bi svg-inline--fa fa-utensils fa-w-13"
+                                    role="img"
+                                    viewbox="0 0 416 512"
+                                    width="39px">
+                                    <path
+                                        fill="currentColor"
+                                        d="M207.9 15.2c.8 4.7 16.1 94.5 16.1 128.8 0 52.3-27.8 89.6-68.9 104.6L168 486.7c.7 13.7-10.2 25.3-24 25.3H80c-13.7 0-24.7-11.5-24-25.3l12.9-238.1C27.7 233.6 0 196.2 0 144 0 109.6 15.3 19.9 16.1 15.2 19.3-5.1 61.4-5.4 64 16.3v141.2c1.3 3.4 15.1 3.2 16 0 1.4-25.3 7.9-139.2 8-141.8 3.3-20.8 44.7-20.8 47.9 0 .2 2.7 6.6 116.5 8 141.8.9 3.2 14.8 3.4 16 0V16.3c2.6-21.6 44.8-21.4 48-1.1zm119.2 285.7l-15 185.1c-1.2 14 9.9 26 23.9 26h56c13.3 0 24-10.7 24-24V24c0-13.2-10.7-24-24-24-82.5 0-221.4 178.5-64.9 300.9z"
+                                    />
+                                </svg>
+                            </p>
+                            {% trans 'Book' %}
+                        </button>
+                        <div class="modal fade" id="meal_booking" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">{% trans 'Booking a meal' %}</h4>
+                                        <button class="btn-close btn-perso fi-align-right" data-bs-dismiss="modal" aria-label="Close"
+                                                type="button">
+                                            <span aria-hidden="true"></span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body d-flex flex-wrap py-3 justify-content-around bg-lightblue">
+                                        <form class="mb-0" action="{% url 'personal page' %}" method="post">{% csrf_token %}
+                                            <div class="d-flex flex-wrap align-items-center justify-content-center border border-darkblue rounded-3 py-3 px-3 bg-white">
+                                                <input class="text-center my-2 w-50" id="id_date" name="booking_date" value="{{ data_modal_booking.today }}" readonly>
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="btn-check" name="lunch" id="lunch-checkbox" checked>
+                                                    <label class="btn btn-perso" for="lunch-checkbox">{% trans 'Lunch' %}</label>
+                                                    <input type="checkbox" class="btn-check" name="dinner" id="dinner-checkbox">
+                                                    <label class="btn btn-perso" for="dinner-checkbox">{% trans 'Dinner' %}</label>
+                                                </div>
+                                                <hr class="w-75">
+                                                <div>
+                                                    <div>
+                                                        <b>{% trans 'You bring a guest ?' %}</b>
+                                                    </div>
+                                                    {% for guest in data_modal_booking.user_guests %}
+                                                    <div class="mt-1">
+                                                        <input id="guest{{ guest.id }}" class="btn-check" type="checkbox" value="{{ guest.id }}"
+                                                            name="guests">
+                                                        <label class="btn btn-perso" for="guest{{ guest.id }}">
+                                                            {{ guest.first_name }} {{ guest.last_name }}</label>
+                                                    </div>
+                                                    {% endfor %}
+                                                    <div class="mt-2">
+                                                        <label for="other_guests">{% if data_modal_booking.user_guests %}{% trans 'Other guests' %}{% else %}{% trans 'Guests' %}{% endif %} : </label>
+                                                        <input type="number" name="other" id="other_guests" value="0" min="0" required class="w-25 text-center">
+                                                    </div>
+                                                </div>
+                                                <hr class="w-75">
+                                                <div class="d-flex flex-wrap gap-3 justify-content-evenly">
+                                                    <div class="d-flex flex-column align-items-center">
+                                                        <h6>{% trans 'Private room ?' %}</h6>
+                                                        <div>
+                                                            <input type="checkbox" class="btn-check" name="private" id="private-checkbox"
+                                                                onclick="toggleprivatecheckbox()">
+                                                            <label class="btn btn-perso" for="private-checkbox" style="display: none"
+                                                                id="private-yes">{% trans 'Yes' %}</label>
+                                                            <label class="btn btn-perso" for="private-checkbox" id="private-no">{% trans 'No' %}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex flex-column align-items-center">
+                                                        <h6>{% trans 'Surprise visit ?' %}</h6>
+                                                        <div>
+                                                            <input type="checkbox" class="btn-check" name="surprise" id="surprise-checkbox"
+                                                                onclick="togglesurprisecheckbox()">
+                                                            <label class="btn btn-perso" for="surprise-checkbox" style="display: none"
+                                                                id="surprise-yes">{% trans 'Yes' %}</label>
+                                                            <label class="btn btn-perso" for="surprise-checkbox" id="surprise-no">{% trans 'No' %}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-outline-white">{% trans 'Save' %}
+                                                </button>
+                                            </div>
+                                            {% if data_modal_booking.bookinglist %}
+                                            <hr class="mt-0">
+                                            <div class="d-flex-row">
+                                                {% for booking in data_modal_booking.bookinglist %}
+                                                <div class="d-flex justify-content-center w-100">
+                                                    <p class="col-8">{{ booking.date }}{% if booking.lunch %} {% trans 'lunch' %}{% endif %}
+                                                        {% if booking.dinner %} {% trans 'dinner' %}{% endif %}</p>
+                                                    <button name="delete" class="btn-close btn-perso" value="{{ booking.id }}"
+                                                            type="submit"></button>
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                            {% endif %}
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+        <!-- Modal calendar -->
+        <div>
+            <div class="modal fade" id="new_event_modal">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">{% trans "I'm planning" %} :</h4>
+                            <button class="btn-close btn-perso fi-align-right"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                    type="button">
+                                <span aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <div class="modal-body bg-lightblue">
+                            <div class="form-control bg-light">
+                                <form class="input-group" action="{% url 'personal page' %}" method="post">
+                                    {% csrf_token %}
+                                    <div class="input-group-prepend d-flex flex-grow-1 justify-content-base m-2 overflow-auto">
+                                        <span class="input-group-text w-50">{% trans 'To' %} </span>{{ new_event.type }}
+                                    </div>
+                                    <div class="input-group-prepend d-flex flex-grow-1 justify-content-base m-2 overflow-auto">
+                                        <span class="input-group-text w-50">{% trans 'On the' %} </span>{{ new_event.start }}
+                                    </div>
+                                    <div class="input-group-prepend d-flex flex-grow-1 justify-content-base m-2 overflow-auto">
+                                        <span class="input-group-text w-50">{% trans 'For about' %} </span>{{ new_event.event_duration }}
+                                    </div>
+                                    <div class="input-group-append w-100 m-2 overflow-hidden">
+                                        {{ new_event.event_comment }}
+                                        <span class="input-group-text">{% trans 'Further comments' %}</span>
+                                    </div>
+                                    <div class="modal-footer d-flex flex-grow-1">
+                                        <button type="submit" class="btn btn-perso align-self-end overflow-auto text-wrap"
+                                                value="Submit">{% trans 'Submit my choices' %}
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="delete_event_modal">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content bg-warning">
+                        <div class="modal-header">
+                            <h1 class="modal-title">{% trans 'Cancel my event' %} :</h1>
+                            <button class="btn-close btn-outline-warning fi-align-right"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                    type="button">
+                                <span aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <div class="modal-body bg-warning d-flex flex-wrap text-center py-3 justify-content-around">
+                            <form method="post" name="cancelling_event">{% csrf_token %}
+                                {% for item in cancellables %}
+                                <button name="deleting_event" class="btn-outline-warning" value="{{ item.id }}"
+                                        onclick="this.form.submit()"><em><strong>
+                                    {{ item.type.task }} {% trans 'planned on' %} {{ item.start.date }}
+                                    {{ item.event_comment }}</strong></em></button>
+                                {% endfor %}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Display meal -->
+    <div class="container-fluid bg-lightblue">
+        <div class="rounded-3 p-2 p-sm-3 p-xl-5">
+            <div class="d-flex justify-content-center pb-4 pb-lg-5">
+                <div class="section-titre d-inline-flex px-5">
+                    <h2 class="text-center mb-0">{% trans "Regarding meals" %}</h2>
+                </div>
+            </div>
+            <div class="d-xl-flex justify-content-around align-items-center">
+                <div class="d-flex col-sm-12 col-md-12 col-lg-12 col-xl-5 col-xxl-4 flex-column justify-content-center align-items-center">
+                    {% include 'app4_ehpad_base/menu_carousel.html' %}
+                </div>
+                <div class="d-none d-sm-block col-xl-5 col-xxl-4 pt-3">
+                    {% include 'app4_ehpad_base/menu_of_the_day.html' %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if social_life_data %}
+        <!-- SOCIAL LIFE SECTION -->
+        <div class="container-fluid bg-white p-2 p-md-3 p-xl-5">
+            <div class="d-flex justify-content-center pb-4 pb-lg-5">
+                <div class="section-titre d-inline-flex px-5">
+                    <h2 class="text-center mb-0">{% trans "Last activities" %}</h2>
+                </div>
+            </div>
+            <div class="d-flex flex-wrap justify-content-evenly">
+                {% for data in social_life_data %}
+                    <div class="d-flex flex-column align-items-center pt-3 pt-lg-0">
+                        <h3>{{ data.activity.event.type }}</h3>
+                        <div class="d-flex justify-content-center align-items-center gap-3">
+                            <!--       détails activité         -->
+                            {% if data.activity.blog_post %}
+                            <a class="d-flex flex-column gap-2 align-items-center" href="{% url 'show_post' post_id=data.activity.blog_post.id %}">
+                                <img src="{{ data.img_url }}" class="social-life-thumbnail rounded-3">
+                                <span class="text-muted">{{ data.activity.start|date:"l j F" }} {{ data.activity.start|date:"H:i" }} / {{ data.activity.end|date:"H:i" }}</span>
+                            </a>
+                            {% else %}
+                            <div class="d-flex flex-column gap-2 align-items-center">
+                                <img src="{{ data.img_url }}" class="social-life-thumbnail rounded-3">
+                                <span class="text-muted">{{ data.activity.start|date:"l j F" }} {{ data.activity.start|date:"H:i" }} / {{ data.activity.end|date:"H:i" }}</span>
+                            </div>
+                            {% endif %}
+                            <!--         évaluation               -->
+                            {% if data.resident_eval or data.global %}
+                                <div class="d-flex flex-column align-items-center">
+                                    <h4>{% trans 'Evaluation' %}</h4>
+                                    <div class="d-flex flex-column align-items-center gap-2">
+                                        <!--       évaluation du résident         -->
+                                        {% if data.resident_eval %}
+                                            <div>
+                                                {% if data.resident_eval < 1.5 %}
+                                                    <img src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}" class="social-life-eval-face">
+                                                {% elif data.resident_eval < 2.5 %}
+                                                    <img src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}" class="social-life-eval-face">
+                                                {% elif data.resident_eval < 3.5 %}
+                                                    <img src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}" class="social-life-eval-face">
+                                                {% else %}
+                                                    <img src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}" class="social-life-eval-face">
+                                                {% endif %}
+                                            </div>
+                                        {% endif %}
+                                        <!--       évaluation globale         -->
+                                        {% if data.global %}
+                                            <div class="d-flex flex-column align-items-center gap-2">
+                                                <span>{% trans 'All participants' %}</span>
+                                                {% if data.global < 1.5 %}
+                                                    <img src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}" class="social-life-eval-face-global">
+                                                {% elif data.global < 2.5 %}
+                                                    <img src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}" class="social-life-eval-face-global">
+                                                {% elif data.global < 3.5 %}
+                                                    <img src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}" class="social-life-eval-face-global">
+                                                {% else %}
+                                                    <img src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}" class="social-life-eval-face-global">
+                                                {% endif %}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+
+    <!--BLOG SECTION MATE-->
+    <div class="container-fluid bg-lightblue pt-2 pt-sm-3 pt-xl-5">
+        <div class="d-flex justify-content-center pb-2">
+            <div class="section-titre d-inline-flex px-5">
+                <h2 class="text-center mb-0">{{ NOM_EHPAD }}</h2>
+            </div>
+        </div>
+        <h6 class="text-center">Blog</h6>
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                {% if blog %}
+                {% for post in blog %}
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="preview_blog">
+                        {% if post.cover.image_blog %}
+                        <figure class="preview__figure_blog" style="background-image: url('{% get_media_prefix %}{{post.cover.image_blog}}');">
+                            {% else %}
+                        <figure class="preview__figure_blog" style="background-image: url('{% get_static_prefix %}app4_ehpad_base/img/{{post.category}}.jpg');">
+                            {% endif %}
+                            <figcaption class="preview__details_blog">
+                                <a href="{% url 'show_post' post.id %}" class="preview__title_blog">
+                                    <h3 class="text-light text-uppercase">{{post.title}}</h3>
+                                    <div>
+                                        <h6 class="text-light text-capitalize">{{post.category}}</h6>
+                                    </div>
+                                </a>
+                                <div class="preview__meta_blog">
+                                    <p class="preview__published_blog">
+                                        {{post.created_on}} {% trans 'by' %} <span class="preview__author text-uppercase">{{post.author.first_name}} {{post.author.last_name}}</span>
+                                    </p>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <div class="d-flex justify-content-center align-items-center">
+                <a class="btn btn-lg btn-outline-white m-5 text-center text-uppercase" href="{% url 'blog' %}">{% trans "See more" %}</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+        function toggletext(button, short, long) {
+            var readmorebutton = document.getElementById(button);
+            var shorttext = document.getElementById(short);
+            var longtext = document.getElementById(long);
+
+            if (shorttext.style.display === "none") {
+                shorttext.style.display = "block";
+                longtext.style.display = "none";
+                readmorebutton.value = "Lire la suite";
+            } else {
+                shorttext.style.display = "none";
+                longtext.style.display = "block";
+                readmorebutton.value = "Lire moins";
+            }
+        }
+
+        function toggleprivatecheckbox() {
+            var yes = document.getElementById("private-yes");
+            var no = document.getElementById("private-no");
+            if (yes.style.display === "none") {
+                yes.style.display = "block";
+                no.style.display = "none";
+            } else {
+                yes.style.display = "none";
+                no.style.display = "block";
+            }
+        }
+</script>
+
+{% endblock content %}
+
+{% block datetimepicker %}
+<script>
+    $(function () {
+        jQuery.datetimepicker.setLocale('fr')
+        $("#event_date").datetimepicker({
+            timepicker: true,
+            datepicker: true,
+            format: 'd/m/Y H:i',
+            validateOnBlur:false,
+            weeks: true,
+            hours12: false,
+            step: 15,
+            allowTimes: ['07:00', '07:15', '07:30', '07:45', '08:00', '08:15', '08:30', '08:45', '09:00', '09:15',
+                '09:30', '09:45', '10:00', '10:15', '10:30', '10:45', '11:00', '11:15', '11:30', '11:45', '12:00',
+                '12:15', '12:30', '12:45', '13:00', '13:15', '13:30', '13:45', '14:00', '14:15', '14:30', '14:45',
+                '15:00', '15:15', '15:30', '15:45', '16:00', '16:15', '16:30', '16:45', '17:00', '17:15', '17:30',
+                '17:45', '18:00', '18:15', '18:30', '18:45', '19:00', '19:15', '19:30', '19:45', '20:00', '20:15',
+                '20:30', '20:45', '21:00', '21:15', '21:30', '21:45']
+        });
+    });
+
+
+
+</script>
+{% endblock datetimepicker %}
+
+{% block alexanav %}
+<script>
+        console.log("check for web socket");
+        let socket = new WebSocket('{{ ws_alexa_url_video_call }}');
+
+        socket.onmessage = function (event) {
+                console.log('connection ws Alexa opened');
+                let message = JSON.parse(event.data);
+                socket.send(JSON.stringify({'answer': true}));
+                console.log(message);
+                url = message.redirect;
+                socket.close()
+                window.location.href = url;
+        };
+
+        socket.onclose = function () {
+            console.log('connection ws Alexa closed');
+        };
+
+        function toggleprivatecheckbox(){
+            var yes = document.getElementById("private-yes");
+            var no = document.getElementById("private-no");
+            if (yes.style.display === "none") {
+                yes.style.display = "block";
+                no.style.display = "none";
+            } else {
+                yes.style.display = "none";
+                no.style.display = "block";
+            }
+        }
+
+        function togglesurprisecheckbox(){
+            var yes = document.getElementById("surprise-yes");
+            var no = document.getElementById("surprise-no");
+            if (yes.style.display === "none") {
+                yes.style.display = "block";
+                no.style.display = "none";
+            } else {
+                yes.style.display = "none";
+                no.style.display = "block";
+            }
+        }
+</script>
+{% endblock alexanav %}
+

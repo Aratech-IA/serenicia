@@ -1,0 +1,55 @@
+// import de bootstrap 5.2
+@import '../bootstrap/bootstrap';
+
+// 0. Mise en place du charset
+// @charset 'utf-8';
+
+// 1. Inclusion de nos abstracts
+@import
+    '../scss/abstracts';
+
+// 2. Inclusion de nos vendors
+// @import
+//     '~reset-css/sass/reset';
+
+// 3. Import de la base
+@import
+    '../scss/base';
+//     '../scss/typo';
+
+// 4. Import de nos layouts
+@import
+//     '../scss/header',
+//     '../scss/footer',
+//     '../scss/accueil',
+//     '../scss/domicile-ehpad',
+//     '../scss/mon-avis',
+//     '../scss/evalmenu',
+//     '../scss/contact',
+//     '../scss/ethique',
+//     '../scss/plan-du-site',
+//     '../scss/mentions-legales',
+//     '../scss/visite',
+//     '../scss/pyramide',
+    '../scss/password_reset';
+
+// 4. Import de nos apps
+@import
+    '../../../../app3_messaging/static/app3_messaging/scss/main_app3.scss',
+    '../../../../app4_ehpad_base/static/app4_ehpad_base/scss/main_app4.scss',
+    '../../../../app5_ehpad_messaging/static/app5_ehpad_messaging/scss/main_app5.scss',
+    '../../../../app6_care/static/app6_care/scss/main_app6.scss',
+    '../../../../app7_video/static/app7_video/scss/main_app7.scss',
+    '../../../../app11_quality/static/app11_quality/scss/main_app11.scss',
+    '../../../../app12_delivery/static/app12_delivery/scss/main_app12.scss',
+    '../../../../app13_resident/static/app13_resident/scss/main_app13.scss',
+    '../../../../app14_profile/static/app14_profile/scss/main_app14.scss',
+    '../../../../app16_portal/static/app16_portal/scss/main_app16.scss';
+
+// 6. Import de nos components
+
+// 7. Import page
+
+// 8. Thèmes
+
+

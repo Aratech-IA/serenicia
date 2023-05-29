@@ -1,0 +1,21 @@
+{% extends "app3_messaging/mails_base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<main class="container">
+    <form method="post" action="" class="d-flex flex-column align-items-center gap-2 border border-darkblue rounded-3 p-2">
+        {% csrf_token %}
+            {{ form.name }}
+            <div>
+                <button class="btn btn-perso" type="submit">{% trans 'Create' %}</button>
+            </div>
+        {% if invalid %}
+        <div class="border border-danger rounded-3 p-2 text-center">
+            <h5>{% trans 'A group with this name already exists' %}</h5>
+            <a href="{{ invalid }}">{% trans 'Click here to modify it' %}</a>
+        </div>
+        {% endif %}
+    </form>
+</main>
+{% endblock content %}

@@ -1,0 +1,21 @@
+{% extends "app4_ehpad_base/base.html" %}{% load i18n %}
+{% load static %}
+{% block content %}
+    <main class="d-flex flex-row">
+        <div>
+            {% include "./composant/navLeft.html" %}
+        </div>
+        <div class="container-fluid mt-2">
+        <div class="container mt-5">
+            {% for foo in user_for_delivery %}
+                <a class="row border-2 border w-100"
+                   href="{% url "listing_invoice" foo.id %}"><span>{% trans 'number' %} : {{ foo.number }}</span><span>{% trans 'first name' %} : {{ foo.user.first_name }}</span></a>
+            {% endfor %}
+            {% if is_empty %}
+                <h2>{% trans "Yours invoices isn't register yet." %}</h2>
+            {% endif%}
+        </div>
+        </div>
+    </main>
+
+{% endblock content %}

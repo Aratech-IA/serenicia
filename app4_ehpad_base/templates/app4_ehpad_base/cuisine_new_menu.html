@@ -1,0 +1,77 @@
+{% extends "app4_ehpad_base/base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+
+
+<main class="container p-3">
+    <div class="d-flex flex-wrap justify-content-evenly gap-3">
+        <div class="content-sizing">
+            <div class="border border-darkblue rounded-3 text-center">
+                <form action="{% url 'New menu' %}" method="post">{% csrf_token %}
+                    <input hidden name="displayed" value="{{ displayed }}">
+                    {% for field in menu_form %}
+                    <div class="mt-3 d-flex justify-content-center">
+                        <span class="fw-bold">{{ field.errors }}</span>
+                        <div class="d-flex flex-wrap gap-2 align-items-center justify-content-center">
+                            <span>{{ field.label_tag }}</span>
+                            <span>{{ field }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% if perms.app0_access.view_cuisineprice %}
+                    <div class="d-flex justify-content-evenly mt-2">
+                        <div class="d-flex flex-column rounded-3 border border-darkblue p-2 col-3">
+                            <p>{% trans 'Price to date' %}</p>
+                            <span>{{ menu_form.instance.get_price_to_date_display }}</span>
+                        </div>
+                        <div class="d-flex flex-column rounded-3 border border-darkblue p-2 col-3">
+                            <p>{% trans 'Price today' %}</p>
+                            <span>{{ menu_form.instance.get_price_today_display }}</span>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="d-flex justify-content-evenly align-items-center">
+                        <input class="arrow-nav-size img-fluid py-3" type="image" name="previous" src="{% static 'app4_ehpad_base/img/fleche_gauche.png' %}">
+                        <button type="submit" class="btn btn-perso" value="save" name="save">{% trans 'Save' %}</button>
+                        {% if not displayed %}
+                            <div class="arrow-nav-size"></div>
+                        {% else %}
+                            <input class="arrow-nav-size" type="image" name="next" src="{% static 'app4_ehpad_base/img/fleche_droite.png' %}">
+                        {% endif %}
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="content-sizing">
+            <div class="border border-darkblue rounded-3 p-3">
+            <h5 class="text-center">{% trans "Latest menu" %}</h5>
+            <form action="{% url 'New menu' %}" method="post" class="d-flex flex-column gap-2">{% csrf_token %}
+            {% for menu in menu_history %}
+                {% if menu.main_dish %}
+                    <button class="btn btn-perso btn-height d-flex align-items-center justify-content-between gap-3" name="history" value="{{ menu.id }}">
+                        <div>
+                            <span>{{ menu.date|date:"d/m" }} {% trans menu.type %}</span>
+                        </div>
+                        <div class="mx-auto">
+                            <span>{{ menu.main_dish }}{% if menu.substitution %} ({% trans 'substitution' %}){% endif %}</span>
+                        </div>
+                    </button>
+                {% else %}
+                    <button class="btn btn-warning btn-height d-flex align-items-center justify-content-between gap-3" name="history" value="{{ menu.id }}">
+                        <div>
+                            <span>{{ menu.date|date:"d/m" }} {% trans menu.type %}</span>
+                        </div>
+                        <div class="mx-auto">
+                            <span class="text-muted">{% trans 'Not specified' %}{% if menu.substitution %} ({% trans 'substitution' %}){% endif %}</span>
+                        </div>
+                    </button>
+                {% endif %}
+            {% endfor %}
+            </form>
+        </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}

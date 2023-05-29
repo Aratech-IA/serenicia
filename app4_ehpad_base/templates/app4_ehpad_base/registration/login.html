@@ -1,0 +1,230 @@
+{% extends "app1_base/base.html" %}
+
+{% block content %}
+{% load static %}
+{% load i18n %}
+
+<div id="connexionpage" class="d-flex flex-column align-items-center">
+    
+    <img class="d-md-none img-fluid text-center my-2" width="200px" height="auto" src="{{ IMG_LOGO }}" alt="{% trans 'Location logo' %}" style="border-radius: 10px;">
+
+    <div class="social__content mb-4 mt-md-4">
+        <div class="d-flex py-3 px-5 ps-md-0 justify-content-between align-items-center">
+            <img class="img-fluid d-none d-md-block ms-3 me-5" src="{{ IMG_LOGO }}" alt="{% trans 'Location logo' %}" style="border-radius: 10px;">
+
+            {% if FACEBOOK %}
+                <a href="{{ FACEBOOK }}" target="_blank" class="d-flex flex-column align-items-center me-5 mt-0 mb-0">
+                    <p>{% trans "Facebook" %}</p>
+                    <i class="fa fa-facebook fa-4x"  aria-hidden="true"></i>
+                </a>
+            {% endif %}
+            <a href="{% url 'blog' %}" class="d-flex flex-column align-items-center me-5 mt-0 mb-0">
+                <p>{% trans "Blog" %}</p>
+                <i class="fa fa-newspaper-o fa-4x" aria-hidden="true"></i>
+            </a>
+            <a href="{{ SITE_INTERNET }}" target="_blank" class="d-flex flex-column align-items-center mt-0 mb-0">
+                <p class="text-center">{% trans "Website" %}</p>
+                <i class="fa fa-globe fa-4x" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div>
+
+
+
+    <!-- Affichage Desktop -->
+
+    <div class="container-lg mb-4" id="container-lg">
+
+        <!-- CREATE ACCOUNT -->
+        <div class="form-container sign-up-container d-flex flex-column justify-content-around align-items-center">
+            <h3 class="text-center font-weight-bold">{% trans "What kind of account would you like to create" %} ?</h3>
+
+            <!-- ACCOUNT OPTION -->
+            <a class="btn btn-perso w-75" href="{% url 'register_user' mod='resident' %}">{% trans "Resident" %}</a>
+            <a class="btn btn-perso w-75" href="{% url 'register_user' mod='family' %}">{% trans "Family member" %}</a>
+            <a class="btn btn-perso w-75" href="{% url 'register_user' mod='employee' %}">{% trans "Employee / Collaborator" %}</a>
+
+        </div>
+
+        <!-- LOGIN -->
+        <div class="form-container sign-in-container">
+            <form method="post" action="{% url 'login' %}">
+
+                <h1 class="pb-4">{% trans "Login" %}</h1>
+
+                <!-- ERRORS -->
+                {% if form.errors %}
+                    <p class="text-center text-danger pb-3">{% trans "Your username and password didn't match. Please try again" %}.</p>
+                {% endif %}
+
+                {% if next %}
+                    {% if user.is_authenticated %}
+                        <p class="text-center text-danger pb-3">{% trans "Your account does not have access to this page. To continue, please log in with a valid account" %}.</p>
+                    {% else %}
+                        <p class="text-center text-danger pb-3">{% trans "Please login to see this page" %}.</p>
+                    {% endif %}
+                {% endif %}
+
+                {% csrf_token %}
+
+                {% trans 'Username' %}
+                {{ form.username }}
+
+                <div class="d-flex align-items-center">
+                    {% trans 'Password' %}
+                    <img class="btn ps-3" src="{% static 'app4_ehpad_base/img/bi/eye-fill.svg' %}" id="eye_icon" onclick="togglePassword()">
+                </div>
+                {{ form.password }}
+                
+
+                <a class="text-decoration-underline pt-2" href="{% url 'password_reset' %}">{% trans "Reset Password" %}</a>
+
+                <div class="d-inline pt-4">
+                    <button type="submit" class="btn btn-perso" name="valid_alert" value="ok">
+                        {% trans "Login" %}
+                    </button>
+
+                    <!-- FACE RECO -->
+                    <a href="{% url 'face reco login' %}" class="btn btn-perso disabled recobtn">
+                        <svg width="50px" height="50px" viewbox="0 0 16 16" class="bi bi-person-check" fill="currentColor">
+                            <path fill-rule="evenodd" d="M8 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 5c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10zm4.854-7.85a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                        </svg>
+                    </a>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="overlay-container">
+            <div class="overlay">
+
+                <div class="overlay-panel overlay-left">
+                    <h1>{% trans "Sign In" %}</h1>
+                    <p class="text-center">{% trans "Please login to stay connected with your family" %}</p>
+                    <button class="btn btn-perso" id="signIn">{% trans "Sign in" %}</button>
+                </div>
+
+                <div class="overlay-panel overlay-right">
+                    <h1>{% trans "Create an account" %}</h1>
+                    <button class="btn btn-perso" id="signUp">{% trans "Sign up" %}</button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <!-- Affichage phone / tablette -->
+
+    <div class="mb-3 sign-in-container" id="container-sm">
+
+        <form method="post" action="{% url 'login' %}" class="d-flex flex-column align-items-center justify-content-center">
+
+            <h1 class="pb-4">{% trans "Login" %}</h1>
+
+                {% if form.errors %}
+                    <p class="text-center">{% trans "Your username and password didn't match. Please try again" %}.</p>
+                {% endif %}
+
+                {% if next %}
+                    {% if user.is_authenticated %}
+                        <p class="text-center">{% trans "Your account does not have access to this page. To continue, please log in with a valid account" %}.</p>
+                    {% else %}
+                        <p class="text-center">{% trans "Please login to see this page" %}.</p>
+                    {% endif %}
+                {% endif %}
+
+            {% csrf_token %}
+
+            {% trans 'Username' %}
+            {{ form.username }}
+
+            <span>
+                {% trans 'Password' %}
+                <img class="btn ps-3" src="{% static 'app4_ehpad_base/img/bi/eye-fill.svg' %}" id="eye_icon" onclick="togglePassword()">
+            </span>
+            {{ form.password }}
+
+            <a class="text-decoration-underline disabled pt-2" href="">{% trans "Reset Password" %}</a>
+
+            <div class="d-inline pt-4">
+
+                <button class="btn btn-perso" type="submit" name="valid_alert" value="ok">{% trans "Login" %}</button>
+
+                <a href="{% url 'face reco login' %}" class="btn btn-perso disabled recobtn">
+                    <svg width="50px" height="50px" viewbox="0 0 16 16" class="bi bi-person-check" fill="currentColor">
+                        <path fill-rule="evenodd" d="M8 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 5c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10zm4.854-7.85a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                    </svg>
+                </a>
+
+            </div>
+            <button class="btn btn-perso mt-2" onclick="showOrHide()" type="button">{% trans "Sign Up" %}</button>
+        </form>
+
+        <div id="select">
+            <div class="d-flex flex-column justify-content-around align-items-center pt-4">
+                <h3 class="text-center font-weight-bold">
+                    {% trans "What kind of account would you like to create" %} ?
+                </h3>
+                <button class="btn btn-perso w-75 m-2">
+                    <a href="{% url 'register_user' mod='resident' %}">{% trans "Resident" %}</a>
+                </button>
+                <button class="btn btn-perso w-75 m-2">
+                    <a href="{% url 'register_user' mod='family' %}">{% trans "Family member" %}</a>
+                </button>
+                <button class="btn btn-perso w-75 m-2">
+                    <a href="{% url 'register_user' mod='employee' %}">{% trans "Employee / Collaborator" %}</a>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <img class="img-fluid pb-3"  width="400em" src="{% static 'app4_ehpad_base/img/serenicia.png' %}" alt="{% trans 'Serenicia logo' %}">
+
+</div>
+
+
+
+
+<script>
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const container = document.getElementById('container-lg');
+
+    signUpButton.addEventListener('click', () =>
+    container.classList.add('right-panel-active'));
+
+    signInButton.addEventListener('click', () =>
+    container.classList.remove('right-panel-active'));
+
+    function togglePassword() {
+        var pwdfield = document.getElementById("id_password");
+        var eyeicon = document.getElementById("eye_icon");
+        if (pwdfield.type === "password") {
+            eyeicon.src = "{% static 'app4_ehpad_base/img/bi/eye-slash-fill.svg' %}";
+            pwdfield.type = "text";
+        } else {
+            eyeicon.src = "{% static 'app4_ehpad_base/img/bi/eye-fill.svg' %}";
+            pwdfield.type = "password";
+        }
+    }
+
+    function showOrHide() {
+        var div = document.getElementById("select");
+        if (div.style.display === "block") {
+            div.style.display = "none";
+        } else {
+            div.style.display = "block";
+        }
+    }
+</script>
+    {% include 'app1_base/check_api_face_reco.html' %}
+
+{% endblock content %}
+
+{% block endscript %}
+
+
+{% endblock endscript %}

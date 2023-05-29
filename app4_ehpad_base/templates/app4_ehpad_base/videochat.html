@@ -1,0 +1,50 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+
+{% block content %}
+    <body>
+    <div class="ratio ratio-16x9 my-5" id="jitsimeet" style="max-height: 850px"></div>
+    </body>
+{% endblock content %}
+
+{% block scriptjitsi %}
+    <script src='https://meet.jit.si/external_api.js'></script>
+    <script>
+        const domain = 'meet.jit.si';
+        const options = {
+            roomName: '{{ roomname }}',
+            userInfo: {displayName: '{{ username }}'},
+            parentNode: document.querySelector('#jitsimeet'),
+            configOverwrite: {prejoinPageEnabled: false},
+        };
+        meetAPI = new JitsiMeetExternalAPI(domain, options);
+    </script>
+{% endblock scriptjitsi %}
+
+
+{% block alexanav %}
+
+<script>
+
+        console.log("check for web socket");
+        let socket = new WebSocket('{{ ws_alexa }}');
+
+        socket.onmessage = function (event) {
+                console.log('connection ws Alexa opened');
+                let message = JSON.parse(event.data);
+                socket.send(JSON.stringify({'answer': true}));
+                console.log(message);
+                url = message.redirect;
+                socket.close()
+                window.location.href = url;
+        };
+
+        socket.onclose = function () {
+            console.log('connection ws Alexa closed');
+        };
+
+
+
+</script>
+
+{% endblock alexanav %}
+

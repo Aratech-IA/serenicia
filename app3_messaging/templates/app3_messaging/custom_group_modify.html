@@ -1,0 +1,102 @@
+{% extends "app3_messaging/mails_base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+
+
+<main>
+    {% if customgroups %}
+       <div class="d-flex flex-wrap gap-2 container justify-content-center">
+           {% for group in customgroups %}
+            <a href="{% url 'custom group modify' selected=group.id %}" class="btn btn-perso group-card">
+                <h4>{{ group.name }}</h4>
+                <span>{{ group.get_members_id|length }} {% trans 'members' %}</span>
+            </a>
+           {% endfor %}
+       </div>
+    {% else %}
+        <form  action="" method="post" class="row mx-2">
+            {% csrf_token %}
+
+            <!-- VOLET GAUCHE -->
+            <div class="voletgauche col-sm-3">
+                <div>
+
+                    <!-- GROUPES -->
+                    <div class="style1 col-sm-12 d-flex flex-column align-items-center mb-3">
+                        <h1 class="style2 mb-4">{% trans 'Groups' %}:</h1>
+                        <div class="style3 w-100">
+                            {% for g in groups %}
+                            <label class="dropdown-item text-wrap pointer">
+                                <input class="group-{{forloop.counter}} form-check-input me-1 bg-lightblue border-lightblue pointer" id="grp{{ g.id }}" name="groups" type="checkbox" value="{{ g.id }}" onclick="activeRelatedUsers('{{ g.users }}', this.checked, true)" {% if g.id in groups_id %}checked{% endif %}>
+                                {{ g.name }}
+                            </label>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <!-- UTILISATEURS -->
+                    <div class="style1 col-sm-12 d-flex flex-column align-items-center">
+                        <h1 class="style2 mb-4">{% trans 'Users' %}:</h1>
+                        <input class="col-sm-12 mb-2 w-100 border border-lightblue rounded-3" type="text" id="searchnames" placeholder="{% trans 'Look up users...' %}">
+                        <div class="style3 w-100">
+                            {% for u in users %}
+                                <label class="dropdown-item {% if u.last_name and u.first_name %}text-wrap{% else %}text-truncate{% endif %} labelname" id="checkbox{{forloop.counter}}_label">
+                                    <input class="checkbox{{forloop.counter}} bg-lightblue border-lightblue form-check-input me-1 checkboxes-recipients recipientsmessage" id="user{{ u.id }}" type="checkbox" value="{{ u.id }}" name="users" onclick="activeRelatedUsers('[{{ u.id }}]', this.checked, false)" {% if u.id in disabled %}checked disabled{% elif u.id in checked %}checked{% endif %}>
+                                    <span id="name{{ u.id }}">
+                                        {% if u.last_name and u.first_name %}
+                                            {{ u.last_name }} {{ u.first_name }}
+                                        {% else %}
+                                            {{ u.username }}
+                                        {% endif %}
+                                    </span>
+                                </label>
+                                <input type="hidden" id="photo{{ u.id }}" value="{% if u.profile__photo %}{% get_media_prefix %}{{ u.profile__photo }}{% else %}{% static 'app1_base/img/bi/person-circle.svg' %}{% endif %}">
+                                <input type="hidden" id="grp{{ u.id }}" value="{{ u.groups__name }}">
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- VOLET DROIT -->
+            <div class="voletdroit col-sm-9">
+                <div class="container mt-4 mb-4">
+
+                    <!-- NOM DU GROUPE -->
+                    <div class="d-flex flex-wrap justify-content-between border border-darkblue mb-3 p-2 rounded-3 bg-custom-grey">
+                        <input type="text" name="name" value="{{ custom_grp_name }}" maxlength="120" required>
+                        <div class="d-flex flex-wrap gap-2">
+                            <button type="submit" name="save" value="save" class="btn btn-perso">{% trans 'Save' %}</button>
+                            <button type="submit" name="delete" value="delete" class="btn btn-outline-danger">{% trans 'Delete' %}</button>
+                        </div>
+                    </div>
+
+                    <!-- UTILISATEURS SELECTIONNES -->
+                    <div class="d-flex flex-wrap gap-2 justify-content-center">
+                        {% for user in custom_grp_users %}
+                            <div id="card{{ user.id }}" class="d-flex gap-2 align-items-center border border-darkblue rounded-3 p-2 user-card">
+                                <img class="user-photo" src="{% if user.profile__photo %}{% get_media_prefix %}{{ user.profile__photo }}{% else %}{% static 'app1_base/img/bi/person-circle.svg' %}{% endif %}">
+                                <div class="d-flex flex-column justify-content-center">
+                                    <span class="fw-bold">{% if user.last_name and user.first_name %}{{ user.last_name }} {{ user.first_name }}{% else %}{{ user.username }}{% endif %}</span>
+                                    <span class="text-muted">{% if user.groups__name %}{{ user.groups__name }}{% endif %}</span>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <div id="base-card" class="d-flex gap-2 align-items-center border border-darkblue rounded-3 p-2 user-card d-none">
+                            <img class="user-photo" src="">
+                            <div class="d-flex flex-column justify-content-center">
+                                <span class="fw-bold"></span>
+                                <span class="text-muted"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    {% endif %}
+</main>
+<script type="text/javascript" src="{% static 'app5/util_groups.js' %}"></script>
+{% endblock content %}

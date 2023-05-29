@@ -1,0 +1,237 @@
+{% extends "app4_ehpad_base/base.html" %}
+{% load i18n %}
+{% load static %}
+{% block content %}
+    <head>
+        <meta charset='utf-8'/>
+        <title>Tournée de livraison</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1'/>
+        <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+        <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet'/>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+            }
+
+            #map {
+                position: absolute;
+                top: 48px;
+                bottom: 0;
+                width: 100%;
+            }
+
+            #instructions {
+                position: absolute;
+                margin: 20px;
+                width: 20%;
+                height: 30vh;
+                overflow: auto;
+                border-radius: 3px;
+                top: 60px;
+                bottom: 65%;
+                padding: 20px;
+                background-color: #262424;
+                font-family: sans-serif;
+                color: #f0f0f0;
+                z-index: 999;
+            }
+
+            h1 {
+                margin-top: 80px;
+            }
+
+            .mapboxgl-popup {
+                max-width: 400px;
+                font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+    {% if have_not_delivery %}
+        <main class="mt-5 d-flex flex-row">
+            {% include "./composant/navLeft.html" %}
+            <h1>{{ have_not_delivery }}</h1>
+        </main>
+    {% else %}
+        <div>
+{#            <div id="instructions"></div>#}
+            <div id='map'></div>
+        </div>
+                <div style="height: 12vh;" class="fixed-bottom bg-lightblue d-flex flex-row">
+            <div class="btn-group dropup col py-auto">
+                <button type="button" class="btn dropdown-toggle" style="text-align: center;" data-bs-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                    <img
+                            class="img-fluid mx-auto"
+                            src="{% static 'app12_delivery/img/outline_directions_black_48dp.png' %}"></button>
+                <div class="dropdown-menu w-100 overflow-auto" id="instructions">
+
+                </div>
+            </div>
+            <a type="button py-auto" class="col" style="text-align: center;" href="{% url 'home_delivery' %}"><img
+                    class="img-fluid mx-auto" src="{% static 'app12_delivery/img/outline_reply.png' %}"></a>
+        </div>
+        <script>
+
+            let datagps = {{tourdelivery | safe}};
+            mapboxgl.accessToken = "{{KEY_API_MAPBOX | safe}}";
+            const map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/streets-v11',
+                center: ["{{entreprise_longitude | safe}}", "{{entreprise_latitude | safe}}"],
+                zoom: 12,
+            });
+            const userPosition = new mapboxgl.GeolocateControl({
+                positionOptions: {
+                    enableHighAccuracy: true
+                },
+                showAccuracyCircle: true,
+                trackUserLocation: true,
+                showUserHeading: true,
+            })
+            // map.addControl(userPosition);
+
+            let customerLayout = []
+            for (x in datagps.waypoints) {
+                let userInfo = datagps.waypoints[x].userInfo
+                customerLayout.push(
+                    {
+                        type: 'Feature',
+                        properties: {description: userInfo['last_name'] != "Entreprise" ? '<h1>{% trans 'Client' %} N°' + x + '</h1><p>{% trans 'Nom' %} : ' + userInfo['last_name'] + '</p><p>{% trans 'Adresse' %} : ' + userInfo['adress'] + ' ' + userInfo['city'] + ' ' + userInfo['cp'] + '</p>' : '<h1>{% trans 'Entreprise' %}</h1>'},
+                        geometry: {
+                            type: 'Point',
+                            coordinates: datagps.waypoints[x].location,
+                        },
+                    }
+                )
+            }
+
+            // create a function to make a directions request
+            function getRoute() {
+                // make a directions request using cycling profile
+                // an arbitrary start will always be the same
+                // only the end or destination will change
+
+                const data = datagps.routes[0];
+                const route = data.geometry.coordinates;
+                const geojson = {
+                    type: 'Feature',
+                    properties: {},
+                    geometry: {
+                        type: 'LineString',
+                        coordinates: route
+                    }
+                };
+                // if the route already exists on the map, we'll reset it using setData
+                if (map.getSource('route')) {
+                    map.getSource('route').setData(geojson);
+                }
+                // otherwise, we'll make a new request
+                else {
+                    map.addLayer({
+                        id: 'route',
+                        type: 'line',
+                        source: {
+                            type: 'geojson',
+                            data: geojson
+                        },
+                        layout: {
+                            'line-join': 'round',
+                            'line-cap': 'round'
+                        },
+                        paint: {
+                            'line-color': '#3887be',
+                            'line-width': 5,
+                            'line-opacity': 0.75
+                        }
+                    });
+                }
+                // add turn instructions here at the end
+            }
+
+            var strUrl;
+
+            async function start() {
+                strUrl = await Promise.resolve(await userPosition.on('trackuserlocationstart', (e) => {
+                    console.log("start ft")
+                    strUrl = e.coords.longitude + "," + e.coords.latitude + ";"
+                    for (x in datagps.waypoints) {
+                        console.log("geoFunction ft")
+                        strUrl += datagps.waypoints[x].location[0] + "," + datagps.waypoints[x].location[1] + ";"
+                    }
+                }));
+                return strUrl
+            }
+
+            map.on('load', () => {
+                // make an initial directions request that
+                // starts and ends at the same location
+
+                {#let start = ["{{entreprise_longitude | safe}}", "{{entreprise_latitude | safe}}"];#}
+                userPosition.trigger()
+                strUrl = start().then((result) => {
+                    console.log("ceci est le result" + result)
+                })
+                console.log(strUrl)
+                getRoute();
+
+                // Add starting point to the map
+                map.addLayer({
+                    id: 'patient',
+                    type: 'circle',
+                    source: {
+                        type: 'geojson',
+                        data: {
+                            type: 'FeatureCollection',
+                            features: customerLayout
+                        }
+                    },
+                    paint: {
+                        'circle-radius': 10,
+                        'circle-color': '#cecc52',
+                    },
+                });
+
+            });
+
+            map.on('click', 'patient', (e) => {
+                // Copy coordinates array.
+                const coordinates = e.features[0].geometry.coordinates.slice();
+                const description = e.features[0].properties.description;
+
+                // Ensure that if the map is zoomed out such that multiple
+                // copies of the feature are visible, the popup appears
+                // over the copy being pointed to.
+                while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                }
+                new mapboxgl.Popup()
+                    .setLngLat(coordinates)
+                    .setHTML(description)
+                    .addTo(map);
+                // Change the cursor to a pointer when the mouse is over the places layer.
+                map.on('mouseenter', 'patient', () => {
+                    map.getCanvas().style.cursor = 'pointer';
+                });
+
+                // Change it back to a pointer when it leaves.
+                map.on('mouseleave', 'patient', () => {
+                    map.getCanvas().style.cursor = '';
+                });
+            });
+            let listingAdress = " ";
+            for (i in datagps.waypoints.slice(0, datagps.waypoints.length)) {
+                listingAdress += `<a><p><strong>` + datagps.waypoints[i].userInfo['last_name'] + `</strong> - ` + datagps.waypoints[i].userInfo['adress'] + `, ` + datagps.waypoints[i].userInfo['city'] + `, ` + datagps.waypoints[i].userInfo['cp'] + `</p></a>`
+            }
+            const instructions = document.getElementById('instructions');
+            instructions.innerHTML = `<p class="overflow-auto"><strong>Temps de trajet: ${Math.floor(
+                datagps.routes[0].duration / 60
+            )} min 🚗 </strong></p><div>` + listingAdress + `</div>`;
+
+
+        </script>
+    {% endif %}
+
+{% endblock content %}
+

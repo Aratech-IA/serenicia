@@ -1,0 +1,61 @@
+{% load i18n %}
+{% load static %}
+<head>
+    <style>
+                    .btn-register {
+                border-radius: 3px 3px 0 0;
+            }
+    </style>
+</head>
+
+<nav class="nav flex-column col-2" style="left: 0; z-index: 999;">
+    <div class="card" style="width: 18rem; height: 100%;">
+        <div class="card-header">
+            {% trans 'Menu' %}
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><img style="height: 25px; width: 25px; margin-right: 5px;"
+                                             src="{% static "app12_delivery/img/outline_home.png" %}"><a
+                    href="{% url "home_delivery" %}">{% trans 'Home' %}</a></li>
+            <li class="list-group-item"><img style="height: 25px; width: 25px; margin-right: 5px;"
+                                             src="{% static "app12_delivery/img/outline_add_circle_black_24dp.png" %}"><a
+                    href="{% url "register_customer_delivery" %}">{% trans 'Create a new customer' %}</a></li>
+            <li class="list-group-item"><img style="height: 25px; width: 25px; margin-right: 5px;"
+                                             src="{% static "app12_delivery/img/outline_list.png" %}"><a
+                    href="{% url "list_account_delivery" %}">{% trans 'Listing customer' %}</a></li>
+            <li class="list-group-item"><img style="height: 25px; width: 25px; margin-right: 5px;"
+                                             src="{% static "app12_delivery/img/outline_list.png" %}"><a
+                    href="{% url "listing_tours" %}">{% trans 'Listing Tour Delivery' %}</a></li>
+        </ul>
+        <div class="card-header">
+            {% trans 'Today ' %}
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><a href="{% url "generate_tour" %}">{% trans 'Generate Tour' %}</a></li>
+            <li class="list-group-item"><a href="{% url "tourmap" %}">{% trans 'Map for tour today' %}</a></li>
+            <li class="list-group-item"><a href="{% url "detail_tour_today" %}"><img
+                    style="height: 25px; width: 25px; margin-right: 5px;"
+                    src="{% static "app12_delivery/img/checklist.svg" %}">{% trans 'State of tour today' %}</a></li>
+
+        </ul>
+            <div class="card-header">
+                {% trans 'Invoice ' %}
+            </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><a href="{% url "listing_invoice" %}">{% trans 'Invoices' %}</li>
+            <li class="list-group-item"><a href="{% url "listing_benefit" %}">{% trans 'Benefits' %}</li>
+            <li class="list-group-item"><a href="{% url "create_invoice" %}">{% trans 'Create invoice' %}</li>
+            <li class="list-group-item"><a href="{% url "benefit_create" %}">{% trans 'Create Benefit' %}</li>
+            {# <li class="list-group-item"><a href="{% url "info_user_create" %}">{% trans 'Feed Info User' %}</li> #}
+        </ul>
+        <ul class="list-group list-group-flush">
+                    <div class="card-header">
+            {% trans 'Settings' %}
+        </div>
+
+            <li class="list-group-item"><img style="height: 25px; width: 25px; margin-right: 5px;"
+                                             src="{% static "app12_delivery/img/outline_list.png" %}"><a
+                    href="{% url "setting_delivery_day_done" %}">{% trans 'Settings' %}</a></li>
+        </ul>
+    </div>
+</nav>

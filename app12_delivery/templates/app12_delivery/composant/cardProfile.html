@@ -1,0 +1,253 @@
+    {% load static %}
+        {% load i18n %}
+
+<link rel="stylesheet" href="{% static 'app9/css/profile.css' %}">
+
+<div class="container">
+    <div class="main-body mb-3">
+
+            <div class="row gutters-sm">
+
+                <div class="col-md-4 mb-3">
+                    <div class="card mb-3">
+
+                        <div class="card-body">
+
+                            <div class="d-flex flex-column align-items-center text-center">
+
+                                {% if request.user.profile.photo %}
+                                <img src="{{ request.user.profile.photo.url }}" alt="Admin" class="rounded-circle pic mt-2">
+                                {% else %}
+                                <img src="http://sarangglobaltours.com/wp-content/uploads/2014/02/team.png" alt="Admin" class="rounded-circle pic mt-2">
+                                {% endif %}
+
+                                    <div class="mt-3 mb-2">
+                                        <h4>
+                                            {% if user.profile.civility %} {{ user.profile.civility }} {% endif %} {{ user.last_name }}
+                                        </h4>
+                                        <p>{% trans "Username" %} : {{ user.username }}</p>
+
+                                            {% for card in national_card %}
+                                                {% if card.upload_card %}
+                                                    <a class="btn btn-perso mt-2" href="{{ card.upload_card.url }}">{% trans "Identity card" %}</a>
+                                                {% else %}
+                                                    <a class="btn btn-perso mt-2" data-bs-toggle="modal" data-bs-target="bd-edit-modal-lg">{% trans "Upload identity card" %}</a>
+                                                {% endif %}
+                                            {% endfor %}
+
+                                            {% if video == False %}
+                                                <a class="btn btn-perso mt-2" href="{% url 'app7_video index' myvideo='true' %}">{% trans "Create my video" %}</a>
+                                            {% endif %}
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if video %}
+                    <div class="card mt-2">
+                        <div class="d-flex flex-column align-items-center text-center my-3">
+                            <video controls width="300px"><source src="{{ video }}" type="video/mp4"></video>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                </div>
+
+                <div class="col-md-8">
+                    <div class="card mb-3">
+                        <div class="card-body mt-2 pt-4">
+
+                            <div class="row">
+                                <div class="col-sm-3"><h6 class="mb-0">{% trans "Full Name" %} :</h6></div>
+                                <div class="col-sm-9 text-secondary">
+                                    {% if user.last_name %} {{ user.last_name }} {% endif %}
+                                    {% if user.first_name %} {{ user.first_name }} {% endif %}
+                                </div>
+                            </div>
+                        <hr>
+                            <div class="row">
+                                <div class="col-sm-3"><h6 class="mb-0">{% trans "Email" %} :</h6></div>
+                                <div class="col-sm-9 text-secondary">
+                                    {% if user.email %} {{ user.email }} {% endif %}
+                                </div>
+                            </div>
+                        <hr>
+                            <div class="row">
+                                <div class="col-sm-3"><h6 class="mb-0">{% trans "Phone number" %} :</h6></div>
+                                <div class="col-sm-9 text-secondary">
+                                    {% if user.profile.phone_number %} {{ user.profile.phone_number }} {% endif %}
+                                </div>
+                            </div>
+                        <hr>
+                            <div class="row">
+                                <div class="col-sm-3"><h6 class="mb-0">{% trans "Address" %} :</h6></div>
+                                <div class="col-sm-9 text-secondary">
+                                    {% if user.profile.adress %} {{ user.profile.adress }} {% endif %}
+                                    {% if user.profile.cp %} {{ user.profile.cp }} {% endif %}
+                                    {% if user.profile.city %} {{ user.profile.city }} {% endif %}
+                                </div>
+                            </div>
+                        <hr>
+                            <div class="row">
+                                <div class="col-sm-3"><h6 class="mb-0">{% trans "Birth date" %} :</h6></div>
+                                <div class="col-sm-9 text-secondary">
+                                    {% if user.profileserenicia.birth_date %} {{ user.profileserenicia.birth_date }} {% endif %}
+                                </div>
+                            </div>
+                        <hr>
+                            <div class="row">
+                                <div class="col-sm-3"><h6 class="mb-0">{% trans "Birth city" %} :</h6></div>
+                                <div class="col-sm-9 text-secondary">
+                                    {% if user.profileserenicia.birth_city %} {{ user.profileserenicia.birth_city }} {% endif %}
+                                </div>
+                            </div>
+                        <hr>
+                            <div class="row pt-2 pb-2">
+                                <div class="col-sm-12">
+                                    <button class="btn btn-perso" data-bs-toggle="modal" data-bs-target=".bd-edit-modal-xl">{% trans "Edit profile" %}</button>
+                                    <a href="{% url 'change_password' %}" class="btn btn-perso" data-bs-toggle="modal">{% trans "Edit password" %}</a>
+                                </div>
+
+                            <!-- PROFILE USER FORM -->
+                            <div class="modal fade bd-edit-modal-xl" tabindex="-1" role="form" id="modal-edit" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+
+                                    <div class="modal-content">
+                                        <div class="modal-header green-body">
+                                            <h4 class="modal-title text-uppercase">{% trans "Edit information" %}</h4>
+                                            <button type="button" class="btn btn-perso" data-bs-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+
+                                        <form enctype="multipart/form-data" action="" method="post">
+                                        {% csrf_token %}
+
+                                            <div class="ps-2">
+                                                <div class="pt-3">
+                                                    <h6 class="text-uppercase grey-body">{% trans "About you" %}</h6>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-3">{% trans "Username" %} : </div>
+                                                    <div class="col-sm-9">{{ user_form.username }} </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-3">{% trans "Civility" %} : </div>
+                                                    <div class="col-sm-9">{{ profile_form.civility }} </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-3">{% trans "Last name" %} : </div>
+                                                    <div class="col-sm-9">{{ user_form.last_name }} </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-3">{% trans "First name" %} : </div>
+                                                    <div class="col-sm-9">{{ user_form.first_name }} </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-3">{% trans "Email" %} : </div>
+                                                    <div class="col-sm-9">{{ user_form.email }} </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-3">{% trans "Phone number" %} : </div>
+                                                    <div class="col-sm-9">{{ profile_form.phone_number }} </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-3">{% trans "Birth date" %} : </div>
+                                                    <div class="col-sm-9">{{ profile_serenicia_form.birth_date }} </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-3">{% trans "Birth city" %} : </div>
+                                                    <div class="col-sm-9">{{ profile_serenicia_form.birth_city }} </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-3">{% trans "Profile pic" %} : </div>
+                                                    <div class="col-sm-9">{{ profile_form.photo }} </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-3">
+                                                        <label for="type_card">
+                                                            <input id="type_card" name="type_card" value="national_card" hidden>
+                                                            {% trans "National card" %} :
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <label for="upload_card">
+                                                            <input id="upload_card" type="file" name="upload_card">
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <h6 class="text-uppercase grey-body">{% trans "Living location" %}</h6>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-3">{% trans "Adress" %} : </div>
+                                                    <div class="col-sm-9">{{ profile_form.adress }} </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-3">{% trans "Postcode" %} : </div>
+                                                    <div class="col-sm-9">{{ profile_form.cp }} </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-3">{% trans "City" %} : </div>
+                                                    <div class="col-sm-9">{{ profile_form.city }} </div>
+                                                </div>
+                                                <hr>
+                                            </div>
+
+                                            <div class="modal-footer d-flex justify-content-center">
+                                                <button type="submit" class="btn btn-perso">{% trans "Save changes" %}</button>
+                                                <button type="button" class="btn btn-perso" data-bs-dismiss="modal">{% trans "Cancel" %}</button>
+                                            </div>
+
+                                        </form>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                {% if payroll %}
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4>{% trans "My payslips" %}</h4>
+                                <div class="m-3 payslip-content">
+                                    {% for payslip in payroll %}
+                                        <div class="d-flex align-items-center">
+                                            <p>{% trans 'Payslip' %} - {{ payslip.date }}</p><a href="{{payslip.payslip}}" class="btn btn-perso ms-2" download target="_blank" >{% trans 'Download' %}</a>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+
+                                <h5>{% trans "A problem" %} ?</h5>
+                                <form class="d-flex flex-column flex-lg-row justify-content-lg-between justify-content-xl-evenly" action="{% url 'internal_emailing_family' %}" method="post">
+                                {% csrf_token %}
+                                    <input name="family_id" type="hidden" value="23053">
+                                    <button name="contact_ref" type="submit" value="view_one_family" class="btn btn-perso">{% trans "Contact HR" %}</button>
+                                </form>
+
+                        </div>
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+
+    </div>
+</div>

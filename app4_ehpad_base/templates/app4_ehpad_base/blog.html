@@ -1,0 +1,154 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+{% block content %}
+{% load static %}
+{% load i18n %}
+
+
+<div class="container my-5 rounded body-blog">
+
+  <div class="one mb-2" data-aos="fade-down" data-aos-duration="1500">
+    <h1>{{ NOM_EHPAD }}<span>{% trans "Serenicia Blog" %}</span></h1>
+  </div>
+
+  {% if not request.user.is_authenticated %}
+    <a href="{% url 'login' %}" class="btn btn-perso-p mb-2" data-aos="fade-right" data-aos-duration="1500">{% trans "Return" %}</a>
+  {% endif %}
+  <button class="btn btn-perso-p mb-2" id="filtersBtn" onclick="showFilters()" data-aos="fade-right" data-aos-duration="1500">{% trans "filters" %}</button>
+
+  <div id="filtersToHide">
+    <form action="{% url 'blog' %}" method="post" class="w-100">
+      {% csrf_token %}
+      
+      <div class="d-sm-flex">
+        {% for field in filters %}
+          <div class="pb-3 pe-sm-5">
+            <h6><small>{{ field.label_tag }}</small></h6>
+            <h6><small>{{ field.help_text }}</small></h6>
+            <h6><small>{{ field.errors }}</small></h6>
+            {{ field }}
+          </div>
+        {% endfor %}
+      </div>
+
+      <button type="submit" class="btn btn-perso-p text-uppercase">{% trans "Filtrer" %}</button>
+
+    </form>
+  </div>
+
+  <div class="row d-flex flex-wrap">
+    {% if page_obj %}
+      {% for post in page_obj %}
+        <div class="col-lg-4 col-md-6 col-sm-12 p-3" data-aos="zoom-out-up" data-aos-duration="1500">
+          <div class="preview">
+            {% if post.cover.image_blog %}
+              <figure class="preview__figure" style="background-image: url('{% get_media_prefix %}{{post.cover.image_blog}}');">
+            {% else %}
+              <figure class="preview__figure" style="background-image: url('{% get_static_prefix %}app4_ehpad_base/img/{{post.category}}.jpg');">
+            {% endif %}
+                <figcaption class="preview__details">
+                  <a href="{% url 'show_post' post.id %}" class="preview__title">
+                    <h3 class="text-light text-capitalize">
+                      {{post.title}}
+                    </h3>
+                    <div>
+                      <h6 class="text-light text-capitalize">
+                        {{post.category}}
+                      </h6>
+                    </div>
+                  </a>
+                  <div class="preview__meta">
+                    <p class="preview__published">
+                      {{post.created_on}} par <span class="preview__author text-uppercase">{{post.author.first_name}} {{post.author.last_name}}</span>
+                    </p>
+                  </div>
+                </figcaption>
+              </figure>
+          </div>
+        </div>
+      {% endfor %}
+
+    {% else %}
+      <h1 class="text-center mt-5">
+        {% trans "There is no article published this week yet" %}.
+      </h1>
+
+    {% endif %}
+  </div>
+
+  <!--PAGINATION from paginator !-->
+  <div class="pagination mt-3 mb-3" data-aos="fade-right" data-aos-duration="1500">
+    <span class="step-links text-center">
+      {% if page_obj.has_previous %}
+        <a class="btn btn-perso-p"  href="?page=1">
+          &laquo; {% trans "First" %}
+        </a>
+        <a class="btn btn-perso-p"  href="?page={{ page_obj.previous_page_number }}">
+          {% trans "Previous" %}
+        </a>
+      {% endif %}
+
+      <span class="current p-3">
+        {% trans "Page" %} {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+      </span>
+
+      {% if page_obj.has_next %}
+        <a class="btn btn-perso-p" href="?page={{ page_obj.next_page_number }}">
+          {% trans "Following" %}
+        </a>
+        <a class="btn btn-perso-p" href="?page={{ page_obj.paginator.num_pages }}">
+          {% trans "Latest" %} &raquo;
+        </a>
+      {% endif %}
+    </span>
+  </div>
+</div>
+
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script>
+  AOS.init();
+</script>
+
+<script>
+
+  // CAROUSEL SCRIPT
+
+  let items = document.querySelectorAll('.carousel .carousel-item')
+
+  items.forEach((el) => {
+    const minPerSlide = 4
+    let next = el.nextElementSibling
+    for (var i=1; i<minPerSlide; i++) {
+      if (!next) {
+        // wrap carousel by using first child
+        next = items[0]
+      }
+      let cloneChild = next.cloneNode(true)
+      el.appendChild(cloneChild.children[0])
+      next = next.nextElementSibling
+    }
+  })
+
+</script>
+
+ <script>
+  function showFilters() {
+    let filters = document.getElementById("filtersToHide");
+    let btn = document.getElementById("filtersBtn");
+    if (filters.style.display === "flex") {
+      filters.style.display = "none";
+      btn.classList.remove("active");
+    } else {
+      filters.style.display = "flex";
+      btn.classList.add("active");
+    }
+  }
+ </script>
+
+{% endblock content %}
+
+{% block endscript %}
+
+
+{% endblock endscript %}

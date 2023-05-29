@@ -1,0 +1,53 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block sticky-top-btn %}
+    <a href="{% url 'access index' %}" class="btn btn-perso d-none d-md-block sticky-top-btn">{% trans 'Home' %}</a>
+{% endblock sticky-top-btn %}
+
+{% block content %}
+<main class="container mt-2">
+    <div class="d-flex flex-column align-items-center">
+        <div class="w-75">
+            {% for user_type in list_types %}
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button btn-perso {% if user_type.codename == force_display %} show {% else %} collapsed {% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#type{{ forloop.counter }}" aria-expanded="true" aria-controls="panelchap{{ chapter.id }}">
+                            {{ user_type.name }} ({{ user_type.groups|length }})
+                        </button>
+                    </h2>
+                    <div id="type{{ forloop.counter }}" class="accordion-collapse {% if user_type.codename != force_display %} collapse {% endif %}" aria-labelledby="panelsStayOpen-headingOne">
+                        <div class="accordion-body">
+                            <span class="fw-bold">{{ app.description }}</span>
+                            <table class="table table-stripped table-hover">
+                                <tbody>
+                                    {% for group in user_type.groups %}
+                                        <tr>
+                                            <th class="text-center">
+                                                <a href="{% url 'modify rights group' grp_id=group.id %}">{{ group.name }}</a>
+                                            </th>
+                                            <td class="text-right">
+                                                <form action="" method="post">{% csrf_token %}
+                                                    <input hidden name="group" value="{{ group.id }}">
+                                                    <select name="user_type" onchange="this.form.submit()">
+                                                        <option value="none">{% trans 'Not defined' %}</option>
+                                                        {% for codename, name in user_types.items %}
+                                                            <option value="{{ codename }}" {% if user_type.codename == codename %}selected{% endif %}>{{ name }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</main>
+{% endblock content %}

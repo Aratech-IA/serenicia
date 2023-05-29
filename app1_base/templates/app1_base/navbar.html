@@ -1,0 +1,57 @@
+{% load static %}
+{% load i18n %}
+
+
+<style>
+        .head {
+            background-color: rgb(211, 211, 211);
+            z-index: 10;
+            height: 4em;
+        }
+        .nav-item > .btn {
+            height: 1.8em;
+            padding: 0;
+            font-size: 0.95em;
+        }
+</style>
+
+
+<nav class="navbar fixed-top navbar-expand-sm navbar-light
+             border-bottom border-darkblue py-0" style="background: rgba(211,211,211,1)">
+        <div class="head container-fluid px-1">
+
+            <!-- Logo de la société -->
+            <a class="navbar-brand" href="/selection/">
+                <img src="{% get_static_prefix %}app1_base/img/logo_protecia.jpg" class="rounded" alt="NNvision"
+                     width="60em"></a>
+
+            <!-- Affichage heure actuelle (refresh 30sec) -->
+            <div class="nav-item align-items-center text-center">
+                <b id="clock"></b>
+            </div>
+
+            <!-- Navigation -->
+            <div class="d-flex">
+                <div class="dropdown ms-1">
+                    <!-- Bouton pour écran small + medium -->
+                    <button class="btn btn-perso dropdown-toggle d-md-none" type="button"
+                            id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <!-- Bouton pour écran large -->
+                    <button class="btn btn-perso dropdown-toggle d-none d-md-block" type="button"
+                            id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ user.get_username }}
+                    </button>
+
+                    <!-- Liens dropdown -->
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" href="http://protecia.com" target="_blank">Protecia.com</a></li>
+                        <li><a class="dropdown-item" href="/admin/">{% trans 'Administration' %}</a></li>
+                        <li><a class="dropdown-item" href="/accounts/logout/">{% trans 'Logout' %}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>

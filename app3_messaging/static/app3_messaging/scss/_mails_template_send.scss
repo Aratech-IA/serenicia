@@ -1,0 +1,79 @@
+.form-check-input:checked{
+    background-color: $lightblue;
+    border-color: $lightblue;
+}
+
+ul.errorlist {
+display: none;
+}
+
+// .danger:checked{
+// background-color: red;
+// border-color: red;
+// }
+
+// .btn-danger:hover{
+// background-color: red !important;
+// color: white!important;
+// }
+
+.hover:hover {
+cursor: pointer;
+}
+
+#creation_campaign_check:checked ~ .creation_campaign_options{
+display: block !important;
+}
+
+.sendmail {
+    border: 1px solid $lightblue;
+}
+
+#envoicampagne {
+    .text-wrap {
+        overflow-wrap: break-word;
+    }
+}
+
+#envoimail {
+    .tab-content {
+        overflow: scroll;
+        height: 100%;
+        max-height: 300px; 
+    }
+
+    .text-wrap {
+        overflow-wrap: break-word;
+        padding-left: 5px;
+        padding-right: 0px;
+    }
+}
+
+.groups {
+    padding: 5px;
+    margin: 0px;
+    border: solid;
+    border-width: 1px;
+    border-color: $lightblue;background-color: $grey;
+}
+
+#names {
+    overflow: scroll;
+    padding-left: 2px;
+    height: 600px;
+}
+
+#aperçuenvoidemail {
+    .modal-footer {
+        .btn-outline-danger {
+            color: $black;
+            text-decoration: none;
+        }
+    }
+}
+
+#residentpicture {
+    .carousel-caption {
+        margin-bottom: -20px;
+    }
+}

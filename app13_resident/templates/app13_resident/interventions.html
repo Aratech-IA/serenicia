@@ -1,0 +1,186 @@
+{% extends "app13 _resident/base_app4.html" %}
+
+{% load static %}
+{% load i18n %}
+
+{#{% include 'app13 _resident/header_app4.html'%}#}
+
+{% block content%}
+
+ <style>
+        body {
+          background-image: -webkit-linear-gradient(left, #8de78d 0%,#80ce80 100%);
+          background-image: linear-gradient(to right, #8de78d 0%,#80ce80 100%);
+          width: auto;
+          overflow: hidden;
+          margin: 0;
+          padding: 0;
+          height: 100%;
+        }
+        .wrap {
+          overflow: hidden;
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          margin: auto;
+          height: 120px;
+        }
+        .bgWave {
+          position: absolute;
+          left: 0;
+          width: 200%;
+          height: 100%;
+          background-repeat: repeat;
+          background-position: left bottom;
+          transform-origin: left bottom;
+        }
+        .waveOne {
+          background-size: 50% 120px;
+          background-image: url(https://upload.cc/i1/2020/05/14/A2kBfn.png);
+          animation: wave 10s linear infinite;
+        }
+        .waveTwo {
+          background-size: 50% 120px;
+          background-image: url(https://upload.cc/i1/2020/05/14/A2kBfn.png);
+          animation: wave-reverse 20s linear infinite;
+          right: 0;
+          left: auto;
+        }
+        @keyframes wave {
+            0% {
+                transform: translateX(0)
+            }
+            50% {
+                transform: translateX(-25%)
+            }
+            100% {
+                transform: translateX(-50%)
+            }
+        }
+        @keyframes wave-reverse {
+            0% {
+                transform: translateX(0) scaleY(1)
+            }
+            50% {
+                transform: translateX(25%) scaleY(0.55)
+            }
+            100% {
+                transform: translateX(50%) scaleY(1)
+            }
+        }
+
+        li{
+            padding: 5px 0
+        }
+
+
+        .glass{
+            margin:1vh 0;
+            padding: 1vh 1vw;
+            background: rgba( 255, 255, 255, 0.40 );
+            box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.37);
+            backdrop-filter: blur( 11.0px );
+            -webkit-backdrop-filter: blur( 11.0px );
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        </style>
+
+
+<div class="container-fluid my-auto mx-auto">
+
+    <div class="row d-flex justify-content-center align-items-center">
+
+        <div class="col-7">
+
+            <div class="glass d-flex justify-content-center align-items-center flex-wrap">
+                    <div class="h-100 d-flex flex-column rounded-3 p-5 align-items-center justify-content-between">
+                        <img src="{% static 'app4_ehpad_base/img/homemade_svg/liquid_qtty_3_64x64.svg' %}" class="img-fluid my-auto rounded-3" style="max-height: 300px; max-width: 300px;">
+                        <h5>Urine</h5>
+                    </div>
+                    <div class="h-100 d-flex flex-column rounded-3 p-5 align-items-center justify-content-between">
+                        <img src="{% static 'app4_ehpad_base/img/homemade_svg/poop_64x64.svg' %}" class="img-fluid my-auto rounded-3" style="max-height: 300px; max-width: 300px;">
+                        <h5>Les selles</h5>
+                    </div>
+                    <div class="h-100 d-flex flex-column rounded-3 p-5 align-items-center justify-content-between">
+                        <img src="{% static 'app4_ehpad_base/img/homemade_svg/changing_diaper_64x64.svg' %}" class="img-fluid my-auto rounded-3" style="max-height: 300px; max-width: 300px;">
+                        <h5>Changé de protection</h5>
+                    </div>
+                    <div class="h-100 d-flex flex-column rounded-3 p-5 align-items-center justify-content-between">
+                        <img src="{% static 'app4_ehpad_base/img/homemade_svg/teeth_brushing.svg' %}" class="img-fluid my-auto rounded-3" style="max-height: 300px; max-width: 300px;">
+                        <h5>Brossé les dents</h5>
+                    </div>
+                    <div class="h-100 d-flex flex-column rounded-3 p-5 align-items-center justify-content-between">
+                        <img src="{% static 'app4_ehpad_base/img/homemade_svg/shower_64x64.svg' %}" class="img-fluid my-auto rounded-3" style="max-height: 300px; max-width: 300px;">
+                        <h5>Douche</h5>
+                    </div>
+                    <div class="h-100 d-flex flex-column  rounded-3 p-5 align-items-center justify-content-between">
+                        <img src="{% static 'app4_ehpad_base/img/homemade_svg/changing_clothes_64x64.svg' %}" class="img-fluid my-auto rounded-3" style="max-height: 300px; max-width: 300px;">
+                        <h5>Changé de vêtement</h5>
+                    </div>
+            </div>
+
+        </div>
+
+        <div class="col-5">
+
+            <div class="glass mx-auto my-auto p-5 w-100">
+
+                    <h2 class="pt-4 pb-2 text-center pb-5">Echo, démarre Fidèle,</h2>
+                    <ul>
+                        <li class="h5">retour à l'accueil</li>
+                        <li class="h5">Intervention soin, il/elle a uriné</li>
+                        <li class="h5">Intervention soin, il/elle est allé au selle</li>
+                        <li class="h5">Intervention soin, Je lui ai changé sa protection</li>
+                        <li class="h5">Intervention soin, il/elle a pris sa douche</li>
+                        <li class="h5">Intervention soin, il/elle s'est brossé les dents</li>
+                        <li class="h5">Intervention soin, il/elle a changé de vêtements</li>
+                    </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="wrap">
+
+    <div class="bgWave waveOne"></div>
+    <div class="bgWave waveTwo"></div>
+    <div class="d-flex justify-content-center align-item-center">
+        <img class="logo" height="50px" width="auto" src="{% static 'app4_ehpad_base/img/serenicia.png' %}">
+    </div>
+
+</div>
+
+
+{% block alexanav %}
+
+<script>
+
+        console.log("check for web socket");
+        let socket = new WebSocket('{{ ws_alexa }}');
+
+        socket.onmessage = function (event) {
+                console.log('connection ws Alexa opened');
+                let message = JSON.parse(event.data);
+                socket.send(JSON.stringify({'answer': true}));
+                console.log(message);
+                url = message.redirect;
+                socket.close()
+                window.location.href = url;
+        };
+
+        socket.onclose = function () {
+            console.log('connection ws Alexa closed');
+        };
+
+</script>
+
+{% endblock alexanav %}
+{% endblock content%}

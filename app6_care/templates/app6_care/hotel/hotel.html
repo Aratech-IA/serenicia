@@ -1,0 +1,305 @@
+{% extends "app4_ehpad_base/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'app6_care/css/style.css' %}">
+
+<div class="m-2 my-lg-4 mx-lg-5">
+    {% if task_level %}
+        <div class="my-3">
+            <a class="btn btn-perso mx-1" href="{% url 'hotel' %}">{% trans 'Hotel home' %}</a>
+            {% if request.session.resident_id and specific_to_a_resident %}
+                <div class="d-flex justify-content-center align-items-center fs-5">
+                        {% trans 'Room of' %} {{request.session.res_lastname}} - {{ room_number }}
+                        {% if request.session.profile_pic %}
+                            <img class="resident-small-pic mx-1" src="{{ request.session.profile_pic }}" alt="{trans 'resident profile pic' %}">
+                        {% endif %}
+                </div>
+            {% endif %}
+        </div>
+    {% else %}
+        <h4 class="text-center">{% trans 'Bookings' %}</h4>
+        <form class="d-flex justify-content-center align-items-center gap-2" action="" method="post">{% csrf_token %}
+            <button class="btn btn-perso" type="submit" name="date_control" value="previous">
+                <svg viewbox="0 0 16 16" class="bi bi-caret-left-fill ctrl-icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3.86 8.753l5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                </svg>
+            </button>
+            <input type="date" name="date_value" value="{{ date_value|date:'Y-m-d' }}" onchange="this.form.submit()">
+            <button class="btn btn-perso" type="submit" name="date_control" value="next">
+                <svg viewbox="0 0 16 16" class="bi bi-caret-right-fill ctrl-icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                </svg>
+            </button>
+        </form>
+        {% if bookings.guests or bookings.families %}
+            {% include "app6_care/hotel/booking.html" %}
+        {% endif %}
+    {% endif %}
+    <div class="mt-1">
+        {% if incomplete_interventions %}
+        <h5 class="text-center mt-5">{% trans 'Inputs that are being entered' %} :</h5>
+        <div class="d-flex justify-content-center">
+            <div class="app6-btn-icon d-flex flex-column align-items-center pe-auto border-0 bg-light" onclick="modal_incomplete_interventions.toggle()">
+                <img src="{% static 'app4_ehpad_base/img/bi/eye.svg' %}" class="app6-icon app6-width-60px mx-2 p-2 border border-darkblue" alt="{% trans 'My incomplete inputs' %}">
+                        <p class="text-center">{% trans 'My incomplete inputs' %}</p>
+            </div>
+        </div>
+        {% endif %}
+        <form action="{% url 'hotel' %}" method="post" class="border border-2 rounded-3 p-4 {% if cancel_mode %} border-danger{% elif comment_mode %} border-info{% else %} border-darkblue{% endif %}">{% csrf_token %}
+            {% if task_level == None %}
+            <div>
+                <h4 class="text-center">{% trans 'Enter new hotel intervention' %} :</h4>
+                <div class="d-flex justify-content-center">
+<!--                    <div class="app6_care-btn-icon d-flex flex-column align-items-center border-0 bg-light mt-2 mx-5">-->
+<!--                        <img src="{% static 'app4_ehpad_base/img/homemade_svg/health_check_64x64.svg' %}" alt="{% trans 'Hotel Plan' %}"-->
+<!--                                 class="app6_care-icon mx-2 p-2 border border-darkblue">-->
+<!--                        <p class="text-center">{% trans 'Hotel Plan' %}</p>-->
+<!--                    </div>-->
+                    <button class="app6-btn-icon d-flex flex-column align-items-center border-0 bg-light mt-2 mx-5" name="public_intervention" value="public_intervention">
+                        <img src="{% static 'app4_ehpad_base/img/homemade_svg/general_cleaning_64x64.svg' %}" alt="{% trans 'Hotel intervention' %}"
+                                 class="app6-icon mx-2 p-2 border border-darkblue">
+                        <p class="text-center">{% trans 'Communals' %}</p>
+                    </button>
+                    {% if request.session.resident_id %}
+                    <button class="app6-btn-icon d-flex flex-column align-items-center border-0 bg-light mt-2 mx-5" name="private_intervention" value="private_intervention">
+                        <img src="{% static 'app4_ehpad_base/img/homemade_svg/residents_room_64x64x.svg' %}" alt="{% trans 'Hotel intervention' %}"
+                                 class=" app6-icon mx-2 p-2 border border-darkblue">
+                        <p class="text-center">
+                            {% blocktrans with resident=request.session.res_lastname %}Room of {{ resident }}{% endblocktrans %}
+                        </p>
+                    </button>
+                    {% endif %}
+                    <button class="app6-btn-icon d-flex flex-column align-items-center border-0 bg-light mt-2 mx-5" name="free_comment" value="free_comment">
+                        <img src="{% static 'app4_ehpad_base/img/bi/chat-text.svg' %}" alt="{% trans 'Free comment' %}"
+                                 class="app6-icon mx-2 p-2 border border-darkblue">
+                        <p class="text-center">{% trans 'Free comment' %}</p>
+                    </button>
+                </div>
+            </div>
+            {% endif %}
+            {% if task_level %}
+            <div class="mb-1 d-flex {% if comment_mode and task_to_comment %} justify-content-end{% else %} justify-content-between{% endif%}">
+                <!-- /////////////////////////////////////// Navigation \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\-->
+                {% if intervention %}
+                {% if not task_to_comment %}
+                <!-- //////////////// Intervention's category small + medium + large screen \\\\\\\\\\\\\\\\\\\\\\\\\-->
+                <span class="d-xl-none mt-2 d-inline-block ">{% trans 'Category' %} : {{ intervention.type.name }}</span>
+                <!-- //////////////////Intervention's category & Navigation large XL screen \\\\\\\\\\\\\\\\\\\\\\\\-->
+                <div class="d-none d-xl-block d-flex">
+                    <span class=" mt-2 d-inline-block ">{% trans 'Category' %} : {{ intervention.type.name }}</span>
+                    {% if task_level == 3 or task_level == 4%}
+                    <button class="btn btn-perso mx-2" name="get_back_to_task_level_2" value="get_back_to_task_level_2">
+                        {% trans 'Come back to' %} <span class="me-1">{{ intervention.type.name }}</span><img src="{% static 'app4_ehpad_base/img/bi/arrow-left-short.svg' %}" alt="{% trans 'Come back' %}" class="app6-width-25px">
+                    </button>
+                    {% endif %}
+
+                    {% if intervention_details.task_level_2.name and task_level == 4 %}
+                    <button class="btn btn-perso mx-2" name="get_back_to_task_level_3" value="get_back_to_task_level_3">
+                        {% trans 'Come back to' %} <span class="me-1">{{ intervention_details.task_level_2.name }}</span><img src="{% static 'app4_ehpad_base/img/bi/arrow-left-short.svg' %}" alt="{% trans 'Come back' %}" class="app6-width-25px">
+                    </button>
+                    {% endif %}
+                </div>
+                {% endif %}
+                {% endif %}
+                {% if task_level == 2 or task_level == 3 or task_level == 4 %}
+                <div class="d-flex">
+                    <!-- /////////////////////////////////////// Cancel_mode button \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\-->
+                    {% if cancel_mode %}
+                    <button name="toggle_cancel_mode" value="{{ cancel_mode }}" class="btn btn-danger d-flex align-items-center mx-1">
+                        <img src="{% static 'app4_ehpad_base/img/bi/trash.svg' %}" alt="{% trans 'Cancel a pictogram mode' %}"
+                             class="app6-width-25px mx-1">
+                        <img src="{% static 'app4_ehpad_base/img/bi/toggle-on.svg' %}" alt="{% trans 'Cancel a pictogram mode' %}"
+                             class="app6-width-25px mx-1">
+                    </button>
+                    {% else %}
+                    <button name="toggle_cancel_mode" value="{{ cancel_mode }}" class="btn d-flex align-items-center mx-1 btn-perso app6-btn-red-hover{% if comment_mode %} disabled{% endif %}">
+                        <img src="{% static 'app4_ehpad_base/img/bi/trash.svg' %}" alt="{% trans 'Cancel a pictogram mode' %}"
+                             class="app6-width-25px mx-1">
+                        <img src="{% static 'app4_ehpad_base/img/bi/toggle-off.svg' %}" alt="{% trans 'Cancel a pictogram mode' %}"
+                             class="app6-width-25px mx-1">
+                     </button>
+                    {% endif %}
+                    <!-- ////////////////////////////////// Comment_mode button \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\-->
+                    {% if comment_mode %}
+                    <button name="toggle_comment_mode" value="{{ comment_mode }}" class="btn bg-info d-flex align-items-center mx-1">
+                        <img src="{% static 'app4_ehpad_base/img/bi/chat-text.svg' %}" alt="{% trans 'Leave a comment' %}" class="app6-width-25px mx-1">
+                        <img src="{% static 'app4_ehpad_base/img/bi/toggle-on.svg' %}" alt="{% trans 'Leave a comment' %}"
+                             class="app6-width-25px mx-1">
+                    </button>
+                    {% else %}
+                    <button name="toggle_comment_mode" value="{{ comment_mode }}" class="btn d-flex align-items-center mx-1 btn-perso app6-btn-blue-hover{% if cancel_mode %} disabled{% endif %}">
+                        <img src="{% static 'app4_ehpad_base/img/bi/chat-text.svg' %}" alt="{% trans 'Leave a comment' %}" class="app6-width-25px mx-1">
+                        <img src="{% static 'app4_ehpad_base/img/bi/toggle-off.svg' %}" alt="{% trans 'Leave a comment' %}"
+                             class="app6-width-25px mx-1">
+                     </button>
+                    {% endif %}
+                </div>
+                {% endif %}
+                {% endif %}
+            </div>
+            <!-- ////////////////////////// Navigation small + medium + large screen \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\-->
+            {% if intervention %}
+            {% if not task_to_comment %}
+            {% if task_level == 3 or task_level == 4%}
+            <div class="d-xl-none">
+                <button class="btn btn-perso my-1" name="get_back_to_task_level_2" value="get_back_to_task_level_2">
+                    {% trans 'Come back to' %} <span class="me-1">{{ intervention.type.name }}</span><img src="{% static 'app4_ehpad_base/img/bi/arrow-left-short.svg' %}" alt="{% trans 'Come back' %}" class="app6-width-25px">
+                </button>
+                {% if intervention_details.task_level_2.name and task_level == 4 %}
+                <button class="btn btn-perso my-1" name="get_back_to_task_level_3" value="get_back_to_task_level_3">
+                    {% trans 'Come back to' %} <span class="me-1">{{ intervention_details.task_level_2.name }}</span><img src="{% static 'app4_ehpad_base/img/bi/arrow-left-short.svg' %}" alt="{% trans 'Come back' %}" class="app6-width-25px">
+                </button>
+                {% endif %}
+            </div>
+            {% endif %}
+            {% endif %}
+            {% endif %}
+            {% if task_level %}
+            <div class="container-fluid">
+                <div class="text-center my_height3 h5{% if cancel_mode %} text-danger{% endif %}{% if comment_mode %} text-info{% endif %}">
+                    {% if cancel_mode %}{% trans 'Select the pictograms to cancel' %}{% endif %}
+                    {% if comment_mode and not task_to_comment %}{% trans 'Select the pictogram to comment' %}{% endif %}
+                    {% if comment_mode and task_to_comment %}
+                    {% trans 'Enter the comment' %} ({% trans 'voice input' %}<img src="{% static 'app4_ehpad_base/img/homemade_svg/mic-info.svg' %}" alt="{% trans 'Voice input' %}" class="app6-width-25px">{% trans 'is available on tablet' %})
+                    {% endif %}
+                    {% if task_level == 1 %}{% trans 'Choose a category' %} :{% endif %}
+                </div>
+                <!-- /////////////////////// List of task pictograms small + medium + large screen \\\\\\\\\\\\\\\\\\\\\\-->
+                <div class="d-xl-none">
+                    <div class="d-flex flex-wrap justify-content-center align-items-center py-1">
+                        {% for task in tasks %}
+                        {% if cancel_mode and task not in selected_tasks %}
+                        <div class="app6-btn-icon d-flex flex-column align-items-center m-2 p-0 border-0 bg-light my_height2 app6-green-text-hover position-relative">
+                            {% if task in commented_tasks %}
+                            <img src="{% static 'app4_ehpad_base/img/homemade_svg/chat-text-full-info.svg' %}" alt="{% trans 'Comment' %}" class="position-absolute top-0 end-0 app6-width-25px m-1">
+                            {% endif %}
+                            <img src="{% static task.get_svg_path %}" alt="{{ task.name }}"
+                                 class="app6-icon app6-width-60px p-2 border border-darkblue app6-white-bg-hover">
+                            <p class="text-center app6-green-text-hover">{{ task.name }}</p>
+                        </div>
+                        {% else %}
+                        <button class="app6-btn-icon d-flex flex-column align-items-center m-2 p-0 border-0 bg-light my_height2 position-relative{% if task in selected_tasks %} text-success{% endif %}" name="task_id" value="{{ task.id }}">
+                            {% if task in commented_tasks %}
+                            <img src="{% static 'app4_ehpad_base/img/homemade_svg/chat-text-full-info.svg' %}" alt="{% trans 'Comment' %}" class="position-absolute top-0 end-0 app6-width-25px m-1">
+                            {% endif %}
+                            <img src="{% static task.get_svg_path %}" alt="{{ task.name }}"
+                                 class="app6-icon app6-width-60px p-2 border border-darkblue {% if task in selected_tasks %}bg-lightblue{% endif %}">
+                            <p class="text-center{% if cancel_mode %} app6-green-text-hover{% endif %}">{{ task.name }}</p>
+                        </button>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- //////////////////////////// List of task pictograms large XL screen \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\-->
+                <div class="d-none d-xl-block">
+                    <div class="d-flex flex-wrap justify-content-center align-items-center py-1">
+                        {% for task in tasks %}
+                        {% if cancel_mode and task not in selected_tasks %}
+                        <div class="app6-btn-icon d-flex flex-column align-items-center m-2 mx-3 p-0 border-0 bg-light my_height app6-green-text-hover position-relative">
+                            {% if task in commented_tasks %}
+                            <img src="{% static 'app4_ehpad_base/img/homemade_svg/chat-text-full-info.svg' %}" alt="{% trans 'Comment' %}" class="position-absolute top-0 end-0 app6-width-25px m-1">
+                            {% endif %}
+                            <img src="{% static task.get_svg_path %}" alt="{{ task.name }}"
+                                 class="app6-icon p-2 border border-darkblue app6-white-bg-hover">
+                            <p class="text-center app6-green-text-hover">{{ task.name }}</p>
+
+                        </div>
+                        {% else %}
+                        <button class="app6-btn-icon d-flex flex-column align-items-center m-2 mx-3 p-0 border-0 bg-light my_height position-relative{% if task in selected_tasks %} text-success{% endif %}" name="task_id" value="{{ task.id }}">
+                            {% if task in commented_tasks %}
+                            <img src="{% static 'app4_ehpad_base/img/homemade_svg/chat-text-full-info.svg' %}" alt="{% trans 'Comment' %}" class="position-absolute top-0 end-0 app6-width-25px m-1">
+                            {% endif %}
+                            <img src="{% static task.get_svg_path %}" alt="{{ task.name }}"
+                                 class="app6-icon p-2 border border-darkblue {% if task in selected_tasks %}bg-lightblue{% endif %}">
+                            <p class="text-center{% if cancel_mode %} app6-green-text-hover{% endif %}">{{ task.name }}</p>
+
+                        </button>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- //////////////////////////////////// Leaving a comment \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\-->
+                {% if task_to_comment %}
+                {% if task_level == 2 or task_level == 3 or task_level == 4 %}
+                <div class="d-flex flex-column align-items-center mb-4">
+                    <div class="app6-btn-icon-no-hover d-flex flex-column align-items-center m-2 p-0 border-0 bg-light">
+                        <img src="{% static task_to_comment.get_svg_path %}" alt="{{ task_to_comment.name }}"
+                             class="app6-icon-no-hover app6-width-60px mx-2 p-2 border border-darkblue">
+                        <p class="text-center">{{ task_to_comment.name }}</p>
+                    </div>
+                    {{ task_comment_form }}
+                    <div class="my-2">
+                        <button class="btn btn-perso mx-2" name="confirm_comment" value="confirm_comment">{% trans 'Confirm comment' %}</button>
+                        <button class="btn btn-outline-dark mx-2" name="cancel_comment" value="cancel_comment">{% trans 'Cancel' %}</button>
+                    </div>
+                </div>
+                {% endif %}
+                {% endif %}
+                <!-- ////////////////////////////////////// Hidden inputs \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\-->
+                <input name="task_level" value="{{ task_level }}" hidden>
+                <input name="intervention_id" value="{{ intervention.id }}" hidden>
+                <input name="intervention_details_id" value="{{ intervention_details.id }}" hidden>
+                <input name="cancel_mode" value="{{ cancel_mode }}" hidden>
+                <input name="comment_mode" value="{{ comment_mode }}" hidden>
+                <input name="task_to_comment" value="{{ task_to_comment }}" hidden>
+                <input name="task_to_comment_id" value="{{ task_to_comment_id }}" hidden>
+                <input name="specific_to_a_resident" value="{{ specific_to_a_resident }}" hidden>
+                <input name="parent_task_level_3_id" value="{{ parent_task_level_3_id }}" hidden>
+                <!-- //////////////////////////////////// Save intervention \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\-->
+                {% if not task_to_comment %}
+                {% if task_level == 2 or task_level == 3 or task_level == 4 %}
+                <div>
+                    <h5 class="text-center"><p class="h6">{% trans 'Intervention that I am entering' %} : {{ intervention.type.name }} - {{ intervention.start }}</p></h5>
+                    <div class="d-flex justify-content-center mt-3">
+                        <button class="btn btn-perso mx-2 {% if no_selected_tasks %} disabled{% endif %}" name="done" value="True">{% trans 'Done' %}</button>
+                        <button class="btn btn-danger mx-2" name="delete" value="{{ intervention.id }}">{% trans 'Delete' %}</button>
+                    </div>
+                </div>
+                {% endif %}
+                {% endif %}
+            </div>
+            {% endif %}
+        </form>
+        <!-- ///////////////////////////// 1st modal : incomplete interventions \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\-->
+        {% if incomplete_interventions %}
+        <div class="modal fade" id="modal_incomplete_interventions" aria-hidden="true" aria-labelledby="modal_incomplete_label"
+             tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal_incomplete_label">{% trans 'Interventions that are being entered' %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        {% for intervention in incomplete_interventions %}
+                        <form action="{% url 'hotel' %}" method="post">{% csrf_token %}
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-8">
+                                        {{ intervention.start }} - {{ intervention.type.name }}
+                                    </div>
+                                    <div class="col-4 mt-1">
+                                        <button class="btn btn-perso mx-1" name="continue" value="{{ intervention.id }}">
+                                            {% trans 'Continue' %}
+                                        </button>
+                                        <button name="delete" value="{{intervention.id}}" class="btn btn-danger mx-1">{% trans 'Delete' %}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        {% endfor %}
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-outline-dark" id="next" data-bs-target="#modalinstructions2" data-bs-toggle="modal"
+                                data-bs-dismiss="modal">{% trans 'Ignore' %}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

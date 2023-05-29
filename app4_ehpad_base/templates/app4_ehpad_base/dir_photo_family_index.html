@@ -1,0 +1,17 @@
+{% load static %}
+{% load i18n %}
+
+<div class="d-flex justify-content-center">
+    <div class="d-flex flex-lg-column justify-content-lg-center align-items-lg-center mt-3 mt-lg-0">
+        {% if perms.app0_access.view_family %}
+            <a href="{% url 'new_photo_album' %}" class="d-flex flex-column justify-content-around align-items-center p-2  align-items-center justify-content-between btn btn-outline-white me-5 me-lg-0 mb-lg-5" style="width:7em; height:7em;">
+                <img src="{% static 'app4_ehpad_base/img/dossier-plus_200x177.png' %}" class="img-fluid" style="max-height: 3em;">
+                <h6 class="mb-0 text-center">{% trans 'See/create photo album' %}</h6>
+            </a>
+        {% endif %}
+        <a href="{% url 'Gallery' %}" class="d-flex flex-column justify-content-around align-items-center p-2 align-items-center justify-content-between btn btn-outline-white" style="width:7em; height:7em;">
+            <img src="{% static 'app4_ehpad_base/img/dossier_photos_200x166.png' %}" class="img-fluid" style="max-height: 3em;">
+            <h6 class="mb-0 text-center">{% trans 'See gallery' %}</h6>
+        </a>
+    </div>
+</div>

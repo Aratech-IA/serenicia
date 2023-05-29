@@ -1,0 +1,132 @@
+#myTabContent {
+
+    .accordion-body input {
+        opacity: 0;
+        position: absolute;
+        pointer-events: none;
+    }
+
+    .recipients_list {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .accordion-body input:checked ~ .showing, .accordion-body .recipients_list:not(.truncated) ~ .showing {
+        display: none;
+    }
+
+    .accordion-body input:checked ~ .hiding {
+        display: inline-block!important;
+    }
+
+    .accordion-button {
+        border-radius: 10px!important;
+        border: none;
+        padding: 0.25rem 1.25rem;
+    }
+
+    .accordion-collapse {
+        border-top: none;
+        border-bottom: none;
+        border-left: 1px solid rgba(0, 0, 0, 0.125);;
+        border-right: 1px solid rgba(0, 0, 0, 0.125);;
+    }
+
+    .accordion-button:focus {
+        border-color: $lightblue;
+        box-shadow: unset;
+    }
+
+    .accordion-button:not(.collapsed) {
+        color: $black;
+        background-color: white;
+        border-radius: 10px;
+    }
+
+    .accordion-body {
+        background-color: $white!important;
+        border-radius: 10px;
+    }
+
+    .accordion-collapse {
+        margin-bottom: 3em;
+    }
+
+    .accordion-button:not(.collapsed)::after {
+        color: $lightblue;
+    }
+
+    .accordion-header {
+        margin: 5px 0px;
+        border: solid 1px $lightblue;
+        border-radius: 10px;
+    }
+
+    .accordion-header:hover {
+        margin: 5px 0px;
+        border: solid 1px $lightblue;
+        transform: scale(1.005);
+    }
+
+    .accordion-collapse {
+        border: solid 1px $lightblue;
+        border-top: none;
+        border-radius: 10px;
+    }
+
+    .answered {
+        color: $lightblue;
+        border: solid 1px $lightblue;
+        border-radius: 10px;
+    }
+
+    @keyframes zoom {
+        20% {
+            transform: scale(0.4);
+        }
+        50% {
+            transform: scale(1.8);
+        }
+    }
+
+    .page-link.current {
+        background-color: $lightblue!important;
+        color: white;
+    }
+
+    .page-link {
+        color: $lightblue;
+        border: solid 1px $lightblue;
+    }
+
+    .page-link:hover {
+        color: white;
+        background-color: $lightblue!important;
+    }
+
+    .unopened-color {
+        background-color: $lightblue;
+    }
+
+    .alert-info {
+        width: 700px;
+    }
+
+    .style1 {
+        height: 50px;
+        width: 50px;
+        object-fit: cover;
+    }
+
+    .style2 {
+        font-size: 13px;
+        color: gray;
+    }
+
+    .style3 {
+        padding: 0px 42%; 
+    }
+}
+

@@ -1,0 +1,97 @@
+{% extends "app4_ehpad_base/base.html" %}{% load i18n %}
+{% load static %}
+{% block content %}
+    </head>
+    <main class="d-flex flex-row">
+        <div>
+            {% include "./composant/navLeft.html" %}
+        </div>
+        <div class="container mt-5">
+            <div class=" card ">
+                <div class="badge bg-lightblue text-wrap w-100">
+                    <h3>{% trans 'Last name of owner of contract' %} : {{ contract.profile.user.last_name }}</h3></div>
+                <div class="p-5">
+                    <form method="post" action="{% url 'contract_delivery' pkContract %}">{% csrf_token %}
+                        <div class="d-flex flex-column justify-content-center align-items-center gap-2">
+                            <div class="row">
+                                <div class="col-4">
+                                    <h2>{% trans 'Dates' %}</h2>
+                                    <div class="input-group mb-3">
+                                <span class="input-group-text"
+                                      id="{{ contractForm.date_start_contract.auto_id }}">{% trans contractForm.date_start_contract.label %}</span>
+                                        {{ contractForm.date_start_contract }}
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="input-group mb-3">
+                                 <span class="input-group-text"
+                                       id="{{ contractForm.date_end_contract.auto_id }}">{% trans contractForm.date_end_contract.label %}</span>
+                                        {{ contractForm.date_end_contract }}
+                                    </div>
+                                </div>
+                                <div class="col-3"></div>
+                                <div class="col-4">
+                                    <h2>{% trans 'Modality and payment' %}</h2>
+                                    <div class="input-group mb-3">
+                                 <span class="input-group-text"
+                                       id="{{ contractForm.type_housing.auto_id }}">{% trans contractForm.type_housing.label %}</span>
+                                        {{ contractForm.type_housing }}
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="input-group mb-3">
+                                 <span class="input-group-text"
+                                       id="{{ contractForm.comment_access.auto_id }}">{% trans contractForm.comment_access.label %}</span>
+                                        {{ contractForm.comment_access }}
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="input-group mb-3">
+                                 <span class="input-group-text"
+                                       id="{{ contractForm.payment_method.auto_id }}">{% trans contractForm.payment_method.label %}</span>
+                                        {{ contractForm.payment_method }}
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <h2>{% trans "Days allow for delivery" %}</h2>
+                                    <i>{% trans 'Select day of delivery for this contract' %}</i>
+                                    {{ week_of_contractForm.as_p }}
+                                    <h3 class="mt-3">{% trans 'Give number of meal per days' %}</h3>
+                                    <div class="d-flex flex-row justify-content-evenly mt-3">
+                                        {% for foo in meals_numberForm %}
+                                            <span class="mx-2"></span>
+
+                                            {% trans foo.label %}
+                                            <span class="mx-2"></span>
+                                            {{ foo }}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+
+                <button class="w-100 h-25 mt-3 btn btn-register bg-lightblue text-light">
+                    <h4>{% trans 'Save' %}</h4></button>
+
+
+                </form>
+                <form method="post" action="{% url "contract_delivery_delete" pkContract %}">{% csrf_token %}
+                    <button class="w-100 h-25 mt-3 btn btn-register bg-danger text-light">
+                        <h4>{% trans 'Delete' %}</h4></button>
+                </form>
+            </div>
+            <div class="mt-3">
+                <div>
+                    <a class="row btn btn-perso mb-3 ms-1 w-100"
+                       href="{% url "list_account_delivery" %}">{% trans 'Back to list of profile' %}</a>
+
+                </div>
+                <div>
+
+                    <a class="row btn btn-perso mb-5 ms-1 w-100"
+                       href="{% url "account_delivery" contract.profile.pk %}">{% trans 'Back to profile' %}</a>
+                </div>
+            </div>
+    </main>
+{% endblock content %}

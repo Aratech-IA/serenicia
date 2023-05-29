@@ -1,0 +1,19 @@
+{% load i18n %}
+{% load static %}
+<div class="btn-group dropup w-100">
+  <button type="button" class="btn dropdown-toggle" style="text-align: center;" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<img
+                    class="img-fluid mx-auto"
+                    src="{% static "app12_delivery/img/outline_checklist_black_48dp.png" %}">  </button>
+  <div class="dropdown-menu w-100 overflow-auto" style="background-color: #262424; color: #f0f0f0;">
+      {% for foo in delivery %}
+      {% if foo.finish %}
+          <a class="dropdown-item" type="button" style="background-color: #262424; color: #f0f0f0;" href="{% url "validate_delivery" foo.pk %}"><p>{% trans 'Client' %} : {{foo.profile.user.last_name}}</p>
+          <p><span class="ms-5">{% trans 'Delivred' %} :</span> <img src="{% static "app12_delivery/img/check_circle.svg" %}"></p></a>
+        {% else %}
+          <a class="dropdown-item" style="background-color: #262424; color: #f0f0f0;" type="button" href="{% url "validate_delivery" foo.pk %}"><p>{% trans 'Client' %} : {{foo.profile.user.last_name}}</p>
+             <p><span class="ms-5">{% trans 'Not Delivred' %} :</span> <img src="{% static "app12_delivery/img/highlight_off.svg" %}"></p></a>
+        {% endif %}
+      {% endfor %}
+  </div>
+</div>

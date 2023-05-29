@@ -1,0 +1,418 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+    {% block content %}
+        {% load static %}
+            {% load i18n %}
+
+
+<head>
+    <title>{% trans "User registration" %}</title>
+</head>
+
+
+
+<div class="register_user pb-5">
+
+    {% for message in messages %}
+        {% if "error" in message.tags %}
+            <div class="container-fluid mt-3 alert alert-danger alert-dismissible">
+                <div>
+                    <a href="" class="close--cross" data-bs-dismiss="alert" aria-label="close p-1">&times;</a>
+                </div>
+                <div class="mb-2 text-center" aria-label="close">
+                    <p>{{ message }}</p>
+                </div>
+            </div>
+        {% endif %}
+        {% if "success" in message.tags %}
+            <div class="container-fluid mt-3 alert alert-success alert-dismissible">
+                <div>
+                    <a href="" class="close--cross" data-bs-dismiss="success" aria-label="close p-1">&times;</a>
+                </div>
+                <div class="mb-2 text-center" aria-label="close">
+                    <p>{% trans "Thank you for your registration" %}</p>
+                    <p>{% trans "Your account has been created but is awaiting validation" %}</p>
+                    <p>{% trans "An email will be sent to you once this is done" %}</p>
+                    <a href="{% url 'access index' %}">{% trans "Return to the login page" %}</a>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+
+    {% if mod == 'resident' or mod == 'family' or mod == 'employee' %}
+        <form method="post" class="pt-3 was-validated" enctype="multipart/form-data" action="{% if mod == 'resident' %}{% url 'register_user' mod='resident' %}{% endif %}">
+
+        {% csrf_token %}
+
+            <div class="tabs">
+                <div class="row text-uppercase pb-2" style="display: flex;">
+                    <h2 class="col-sm-10 text-start">
+                        {% if mod == 'resident' %}
+                            {% trans "Creating an account for an resident" %}
+                        {% elif mod == 'family' %}
+                            {% trans "Creating an account for a family member" %}
+                        {% else %}
+                            {% trans "Creating an account for an employee" %}
+                        {% endif %}
+                    </h2>
+                    <div class="text-right col-sm-2">
+                        <img src="{% static 'app4_ehpad_base/img/serenicia.png' %}" width="100" height="40">
+                    </div>
+                </div>
+
+                <ul class="tab-links">
+                    {% if mod == 'resident' %} <!-- RESIDENT -->
+                        <li class="active">
+                            <a class="border border-darkblue rounded" href="#tab1">{% trans "About resident" %}</a>
+                        </li>
+                        <li>
+                            <a class="border border-darkblue rounded" href="#tab2">{% trans "Other information" %}</a>
+                        </li>
+
+                    {% else %} <!-- FAMILY and EMPLOYEE -->
+
+                        <li class="active">
+                            <a class="border border-darkblue rounded" href="#tab3">{% trans "About you" %}</a>
+                        </li>
+                        <li>
+                            <a class="border border-darkblue rounded" href="#tab4">{% trans "Login information" %}</a>
+                        </li>
+                        <li>
+                            <a class="border border-darkblue rounded" href="#tab5">{% trans "Contact information" %}</a>
+                        </li>
+
+                        {% if mod == 'family' %} <!-- FAMILY -->
+                            <li>
+                                <a class="border border-darkblue rounded" href="#tab6">{% trans "Relationship with the resident" %}</a>
+                            </li>
+                        {% else %} <!-- EMPLOYEE -->
+                            <li>
+                                <a class="border border-darkblue rounded" href="#tab6">{% trans "Your job" %}</a>
+                            </li>
+                        {% endif %}
+
+                    {% endif %}
+                </ul>
+
+                <div class="tab-content">
+                    <div id="{% if mod == 'resident' %}tab1{% else %}tab3{% endif %}" class="tab active">
+                    
+                        <h4 class="text-uppercase text-left pb-3">
+                            {% if mod == 'resident' %} <!-- RESIDENT -->
+                                {% trans "About resident" %}
+                            {% else %} <!-- FAMILY and EMPLOYEE -->
+                                {% trans "About you" %}
+                            {% endif %}
+                        </h4>
+                        
+                        <div class="field_container">
+                            {{ form_profile.civility.label_tag }} {{ form_profile.civility }}
+                            {{ form.first_name.label_tag }} {{ form.first_name }}
+                            {{ form.last_name.label_tag }} {{ form.last_name }}
+                            <hr>
+                            {{ form_profile_j.birth_date.label_tag }} {{ form_profile_j.birth_date }}
+                            {{ form_profile_j.birth_city.label_tag }} {{ form_profile_j.birth_city }}
+                        </div>
+
+                        <ul class="tab-links">
+                            <li>
+                                <a type="button" href="{% url 'login' %}" class="btn-green">{% trans "Cancel" %}</a>
+                                {% if mod == 'resident' %} <!-- RESIDENT -->
+                                    <a href="#next_tab2" class="btn-green nextButton">{% trans "Next" %}</a>
+                                {% else %} <!-- FAMILY and EMPLOYEE -->
+                                    <a href="#next_tab4" class="btn-green nextButton">{% trans "Next" %}</a>
+                                {% endif %}
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <div id="{% if mod == 'resident' %}tab2{% else %}tab4{% endif %}" class="tab">
+                    
+                        <h4 class="text-uppercase text-left pb-3">
+                            {% if mod == 'resident' %} <!-- RESIDENT -->
+                                {% trans "other informations" %}
+                                <span>
+                                    <h6 style="font-size: 15px;">
+                                        {% trans "You can skip by clicking save this step and complete it later" %}
+                                    </h6>
+                                </span>
+                            {% else %} <!-- FAMILY and EMPLOYEE -->
+                                {% trans "login information" %}
+                            {% endif %}
+                        </h4>
+
+                        <div class="field_container">
+                            {% if mod == 'resident' %} <!-- RESIDENT -->
+
+                                <div class="d-flex flex-column">
+                                    {{ form_profile_ehpad }}
+                                </div>
+
+                            {% else %} <!-- FAMILY and EMPLOYEE -->
+
+                                {{ form.email.label_tag }}
+                                {{ form.email }}
+                                <span>{{ form.password1.label_tag }} <img class="btn px-0" src="{% static 'app4_ehpad_base/img/bi/eye-slash-fill.svg' %}" id="eye_icon" onclick="togglePassword();"></span>
+                                {{ form.password1 }}
+                                <small id="respass1" class="text text-danger">{% trans 'Your password must contain at least 8 character and a minimum of one capital letter and one number.' %}</small>
+                                <span>{{ form.password2.label_tag }} <img class="btn px-0" src="{% static 'app4_ehpad_base/img/bi/eye-slash-fill.svg' %}" id="eye2_icon" onclick="togglePassword2();"></span>
+                                {{ form.password2 }}
+                                <small id="respass2" class="text text-danger">{% trans 'Your password must contain at least 8 character and a minimum of one capital letter and one number.' %}</small>
+
+                            {% endif %}
+                        </div>
+
+                        <ul class="tab-links">
+                            <li>
+                                <a type="button" href="{% url 'login' %}" class="btn-green">{% trans "Cancel" %}</a>
+                                {% if mod == 'resident' %} <!-- RESIDENT -->
+                                    <a href="#back_tab1" class="btn-green prevButton">{% trans "Previous" %}</a>
+                                    <button type="submit" class="btn-green">{% trans "Save" %}</button>
+                                {% else %} <!-- FAMILY and EMPLOYEE -->
+                                    <a href="#back_tab3" class="btn-green prevButton">{% trans "Previous" %}</a>
+                                    <a href="#next_tab5" class="btn-green nextButton">{% trans "Next" %}</a>
+                                {% endif %}
+                                
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    {% if mod == 'employee' or mod == 'family' %} <!-- FAMILY and EMPLOYEE -->
+                        <div id="tab5" class="tab">
+                            <h4 class="text-uppercase text-left pb-3">{% trans "Information to contact you" %}</h4>
+
+                            <div class="field_container">
+                                {{ form_profile.adress.label_tag }} {{ form_profile.adress }}
+                                {{ form_profile.cp.label_tag }} {{ form_profile.cp }}
+                                {{ form_profile.city.label_tag }} {{ form_profile.city }}
+                                <small id="rescp" class="text text-danger pb-3"></small>
+                                {{ form_profile.phone_number.label_tag }} {{ form_profile.phone_number }}
+                                <small id="resphonenumber" class="text text-danger pb-3"></small>
+                            </div>
+
+                            <ul class="tab-links">
+                                <li>
+                                    <a type="button" href="{% url 'login' %}" class="btn-green">{% trans "Cancel" %}</a>
+                                    <a href="#back_tab4" class="btn-green prevButton">{% trans "Previous" %}</a>
+                                    <a href="#next_tab6" class="btn-green nextButton">{% trans "Next" %}</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div id="tab6" class="tab">
+                            {% if mod == 'family' %} <!-- FAMILY -->
+
+                                <h4 class="text-uppercase text-left pb-3">{% trans "About your family member" %}</h4>
+
+                                {% if form_relation %}
+
+                                    {{ form_relation.first_name_of_resident.label_tag }}
+                                    {{ form_relation.first_name_of_resident }}
+                                    {{ form_relation.last_name_of_resident.label_tag }}
+                                    {{ form_relation.last_name_of_resident }}
+
+                                {% endif %}
+
+                                {{ form_profile_j.family_bond.label_tag }} {{ form_profile_j.family_bond }}
+
+                            {% else %} <!-- EMPLOYEE -->
+
+                                <h4 class="text-uppercase text-left pb-3">{% trans "About your job" %}</h4>
+
+                                {{ form.group.label_tag }}
+                                {{ form.group }}
+
+                            {% endif %}
+
+                                <ul class="tab-links">
+                                    <li>
+                                        <a type="button" href="{% url 'login' %}" class="btn-green">{% trans "Cancel" %}</a>
+                                        <a href="#back_tab5" class="btn-green prevButton">{% trans "Previous" %}</a>
+                                        <button type="submit" class="btn-green">{% trans "Save" %}</button>
+                                    </li>
+                                </ul>
+                        </div>
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </form>
+    {% endif %}
+</div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script>
+jQuery(document).ready(function() {
+    jQuery('.tabs .tab-links a').on('click', function(e)  {
+        var currentAttrValue = jQuery(this).attr('href');
+        jQuery('.tabs ' + currentAttrValue).show().siblings().hide();
+        jQuery(this).parent('li').addClass('active').siblings().removeClass('active');
+        e.preventDefault();
+    });
+    jQuery('.nextButton').on('click', function() {
+        var $activeTab = $('.tab-links li.active');
+        var $wrapper = jQuery(this).closest('.tabs');
+        var indexActive = $wrapper.find('li.active').index();
+        $wrapper.find('li').eq(indexActive + 1).find('a').click();
+    });
+    jQuery('.prevButton').on('click', function() {
+        var $activeTab = $('.tab-links li.active');
+        var $wrapper = jQuery(this).closest('.tabs');
+        var indexActive = $wrapper.find('li.active').index();
+        $wrapper.find('li').eq(indexActive - 1).find('a').click();
+    });
+});
+</script>
+
+<script type="text/javascript">
+
+    // Mot de passe 1 visible ou non visible
+    function togglePassword() {
+        let pwdfield = document.getElementById("id_password1");
+        let eyeicon = document.getElementById("eye_icon");
+        if (pwdfield.type === "password") {
+            eyeicon.src = "{% static 'app4_ehpad_base/img/bi/eye-fill.svg' %}";
+            pwdfield.type = "text";
+        } else {
+            eyeicon.src = "{% static 'app4_ehpad_base/img/bi/eye-slash-fill.svg' %}";
+            pwdfield.type = "password";
+        }
+    }
+
+    // Mot de passe 2 visible ou non visible
+    function togglePassword2() {
+        let pwdfield = document.getElementById("id_password2");
+        let eyeicon = document.getElementById("eye2_icon");
+        if (pwdfield.type === "password") {
+            eyeicon.src = "{% static 'app4_ehpad_base/img/bi/eye-fill.svg' %}";
+            pwdfield.type = "text";
+        } else {
+            eyeicon.src = "{% static 'app4_ehpad_base/img/bi/eye-slash-fill.svg' %}";
+            pwdfield.type = "password";
+        }
+    }
+
+    $(document).ready(function() {
+
+        // Vérification contraintes mot de passe 1
+        $('#id_password1').keyup(function() {
+            var strength = 1;
+            var result =  $('#id_password1');
+            var resulttext =  $('#respass1');
+            /*length 5 characters or more*/
+            if(this.value.length >= 8) {
+                strength++;
+            }
+            /*contains lowercase characters*/
+            if(this.value.match(/[a-z]+/)) {
+                strength++;
+            }
+            /*contains digits*/
+            if(this.value.match(/[0-9]+/)) {
+                strength++;
+            }
+            /*contains uppercase characters*/
+            if(this.value.match(/[A-Z]+/)) {
+                strength++;
+            }
+
+            if (strength == 5) {
+                result.addClass('form-control').removeClass('is-invalid invalide');
+                resulttext.removeClass('is-invalid').text('');
+            } else {
+                result.addClass('is-invalid invalide').removeClass('form-control');
+                resulttext.text("{% trans 'Your password must contain at least 8 characters, a capital letter and a number' %}");
+            }
+        });
+
+        // Vérification mot de passe 2 idem Mot de passe 1
+        $('#id_password2').on('keyup' ,function() {
+            var passwd =  $('#id_password1').val();
+            var confir =  $(this).val();
+            var result =  $('#id_password2');
+            var resulttext =  $('#respass2');
+            
+            if (passwd == confir) {
+                result.addClass('form-control').removeClass('is-invalid invalide');
+            } else {
+                result.addClass('is-invalid invalide').removeClass('form-control');
+            }
+            
+            if (passwd != confir) {
+                resulttext.text("{% trans 'Passwords are not the same' %}");
+            } else {
+                resulttext.text('');
+            }
+        });
+
+        // Vérification mot de passe 1 idem Mot de passe 2
+        $('#id_password1').on('keyup' ,function() {
+            var passwd =  $('#id_password2').val();
+            var confir =  $(this).val();
+            var result =  $('#id_password2');
+            var resulttext =  $('#respass2');
+            
+            if (passwd == confir) {
+                result.addClass('form-control').removeClass('is-invalid invalide');
+            } else {
+                result.addClass('is-invalid invalide').removeClass('form-control');
+            }
+            
+            if (passwd != confir) {
+                resulttext.text("{% trans 'Passwords are not the same' %}");
+            } else {
+                resulttext.text('');
+            }
+        });
+
+        // Vérification du code postal
+        $('#id_cp').keyup(function() {
+            var strength = 1;
+            var result =  $('#id_cp');
+            var resulttext =  $('#rescp');
+            /*contains digits*/
+            if(this.value.match(/^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$/)) {
+                strength++;
+            }
+            console.log(strength)
+
+            if (strength == 2) {
+                result.addClass('form-control').removeClass('is-invalid invalide')
+                resulttext.removeClass('is-invalid').text('');
+            } else {
+                result.addClass('is-invalid invalide').removeClass('form-control');
+                resulttext.text("{% trans 'Your Postal Code must contain 5 digits' %}");
+            }
+        });
+
+        // Vérification du numéro de téléphone
+        $('#id_phone_number').keyup(function() {
+            var strength = 1;
+            var result =  $('#id_phone_number');
+            var resulttext =  $('#resphonenumber');
+            /*contains digits*/
+            if(this.value.match(/^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$/)) {
+                strength++;
+            }
+
+            if (strength == 2) {
+                result.addClass('form-control').removeClass('is-invalid invalide')
+                resulttext.removeClass('is-invalid').text('');
+            } else {
+                result.addClass('is-invalid invalide').removeClass('form-control');
+
+                resulttext.text("{% trans 'Your number must contain 10 digits' %}");
+            }
+        });
+    });
+
+</script>
+
+
+{% endblock content %}

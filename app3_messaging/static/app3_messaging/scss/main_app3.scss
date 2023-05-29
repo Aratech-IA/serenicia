@@ -1,0 +1,44 @@
+// import de bootstrap 5.2
+// @import '../bootstrap/bootstrap';
+
+// 0. Mise en place du charset
+// @charset 'utf-8';
+
+// 1. Inclusion de nos abstracts
+// @import
+    // '../scss/abstracts';
+
+// 2. Inclusion de nos vendors
+// @import
+//     '~reset-css/sass/reset';
+
+// 3. Import de la base
+// @import
+    // '../scss/base';
+//     '../scss/typo';
+
+// 4. Import de nos layouts
+@import
+    '../scss/mails_base',
+    '../scss/registration/account_activation_email',
+    '../scss/registration/register_new_user',
+    '../scss/notifs_mailbox',
+    '../scss/mails_unsubscribe',
+    '../scss/internal_emailing',
+    '../scss/internal_emailing_mailbox_conv',
+    '../scss/internal_emailing_mailbox_sent',
+    '../scss/internal_emailing_mailbox',
+    '../scss/mails_template_mailbox',
+    '../scss/mails_template_create',
+    '../scss/custom_group_settings',
+    '../scss/custom_group_modify',
+    '../scss/mails_template_send',
+    '../scss/mails_template_manage';
+
+// 5. Import de nos components
+
+// 6. Import page
+
+// 7. Thèmes
+
+

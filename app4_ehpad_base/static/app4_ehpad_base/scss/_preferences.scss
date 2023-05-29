@@ -1,0 +1,17 @@
+#preference-content {
+    max-width: 800px;
+    font-weight: bold;
+
+    #id_interventions {
+        background-color: $white;
+        border-color: $lightblue;
+        color: $black;
+        border-radius: 1em;
+
+        &:hover {
+            background-color: $lightblue;
+            border-color: $lightblue;
+        }
+    }
+}
+

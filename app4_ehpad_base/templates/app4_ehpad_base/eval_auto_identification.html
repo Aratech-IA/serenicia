@@ -1,0 +1,201 @@
+{% extends "app4_ehpad_base/base.html" %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+
+    <body id="body">
+    <div class="container-fluid mx-0">
+        {#  affichage webcam  #}
+        <video id="video"></video>
+
+        {# saisie photo pour identification #}
+        <canvas id="canvas" hidden></canvas>
+
+        <div id="bottomdiv" class="d-flex justify-content-center align-items-end position-absolute w-100" style="height: 95%">
+            <div>
+                <div class="row justify-content-center">
+                    <div id="spinner" class="spinner-border spinner-border-xl text-success my-3" role="status" aria-hidden="true"></div>
+                    <div id="initial" class="btn btn-perso" style="display: block">{% trans "Connection to the server" %}</div>
+                    <div id="unknown" class="btn btn-perso" style="display: none">{% trans "Unknown face" %}</div>
+                    <div id="empty" class="btn btn-perso" style="display: none">{% trans "No face detected" %}</div>
+                    <div id="error" class="btn btn-warning" style="display: none">{% trans "Cannot connect to server" %}</div>
+                </div>
+                <div class="d-flex justify-content-center my-2">
+                    <input class="btn btn-perso" id="flip-btn" type="image"
+                           src="{% static 'app1_base/img/bi/arrow-repeat.svg' %}" height="60px" hidden>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+
+    <script>
+        window.onorientationchange = function() {
+        var orientation = window.orientation;
+            switch(orientation) {
+                case 0:
+                case 90:
+                case -90: window.location.reload();
+                break; }
+        };
+
+        // camera stream video element
+        let videoElm = document.querySelector('#video');
+        // flip button element
+        let flipBtn = document.querySelector('#flip-btn');
+
+        // default user media options
+        let defaultsOpts = { audio: false, video: true }
+        let shouldFaceUser = false;
+
+        // check whether we can use facingMode
+        if ((typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1)){
+          flipBtn.hidden = false;
+        }
+
+        let stream = null;
+
+        function capture() {
+          defaultsOpts.video = { facingMode: shouldFaceUser ? 'user' : 'environment' }
+          navigator.mediaDevices.getUserMedia(defaultsOpts)
+            .then(function(_stream) {
+              stream  = _stream;
+              videoElm.srcObject = stream;
+              videoElm.play();
+            })
+            .catch(function(err) {
+              console.log(err)
+            });
+        }
+
+        flipBtn.addEventListener('click', function(){
+          if( stream == null ) return
+          // we need to flip, stop everything
+          stream.getTracks().forEach(t => {
+            t.stop();
+          });
+          // toggle / flip
+          shouldFaceUser = !shouldFaceUser;
+          capture();
+        })
+
+        capture();
+
+        (function () {
+            function getPicture(){
+                canvas.width = 1024;
+                canvas.height = 768;
+                canvas.getContext('2d').drawImage(video, 0, 0, 1024, 768);
+                var img_string = canvas.toDataURL('image/jpeg');
+                img_string = img_string.replace("data:image/jpeg;base64,", "");
+                return img_string;
+            };
+
+            function changeMsg(message){
+                var unknown = document.getElementById("unknown");
+                var empty = document.getElementById("empty");
+                var errormsg = document.getElementById("error");
+                var spinner = document.getElementById("spinner");
+                if (message == 'unknown'){
+                    spinner.classList.remove("text-warning");
+                    spinner.classList.add("text-success");
+                    unknown.style.display='block';
+                    empty.style.display='none';
+                    errormsg.style.display='none';
+                } else if (message == 'None'){
+                    spinner.classList.remove("text-warning");
+                    spinner.classList.add("text-success");
+                    unknown.style.display='none';
+                    empty.style.display='block';
+                    errormsg.style.display='none';
+                } else if (message == 'error'){
+                    spinner.classList.remove("text-success");
+                    spinner.classList.add("text-warning");
+                    unknown.style.display='none';
+                    empty.style.display='none';
+                    errormsg.style.display='block';
+                }
+            };
+
+            async function fetchWithTimeout(resource, options) {
+                const { timeout = 5000 } = options;
+
+                const controller = new AbortController();
+                const id = setTimeout(() => controller.abort(), timeout);
+
+                const response = await fetch(resource, {
+                  ...options,
+                  signal: controller.signal
+                });
+                clearTimeout(id);
+
+                return response;
+            }
+
+            async function getUser(){
+                var initial = document.getElementById("initial");
+                var is_identified = false;
+                while(!is_identified){
+                    var formData = new FormData();
+                    var img_to_post = getPicture();
+                    formData.append('imgb64', img_to_post);
+                    await new Promise(r => setTimeout(r, 200));
+                    spinner.style.animationPlayState='';
+                    var result = await fetchWithTimeout('{{ FACIAL_RECO_IP }}', {
+                        method: 'POST',
+                        body: formData
+                        })
+                    .then(response => {
+                        return response.json();
+                        })
+                    .catch(error => {
+                        return 'error'
+                        })
+                    if (result == 'unknown' || result == 'None' || result == 'error'){
+                        changeMsg(result);
+                    } else {
+                        is_identified = true;
+                    }
+                    initial.style.display='none';
+                };
+            return result
+            };
+
+
+            async function sendpicture(_callback) {
+                var result = await getUser();
+                if (result){
+                    // création d'un formulaire pour l'envoi en post
+                    var formul = document.createElement('form');
+                    formul.setAttribute('method', 'POST');
+                    formul.setAttribute('action', "");
+
+                    var tokenhiddenfield = document.createElement('input');
+                    tokenhiddenfield.setAttribute('type', 'hidden');
+                    tokenhiddenfield.setAttribute('name', 'csrfmiddlewaretoken');
+                    tokenhiddenfield.setAttribute('value', '{{ csrf_token }}');
+                    formul.appendChild(tokenhiddenfield);
+
+                    // création du input pour l'envoi de la string
+                    var hiddenfield = document.createElement('input');
+                    hiddenfield.setAttribute('type', 'hidden');
+                    hiddenfield.setAttribute('name', 'identified_user');
+                    hiddenfield.setAttribute('value', result);
+                    formul.appendChild(hiddenfield);
+
+                    // envoi du formulaire
+                    document.body.appendChild(formul);
+                    formul.submit();
+                    _callback();
+                }
+                
+            }
+
+            sendpicture();             
+
+        })();
+    </script>
+{% endblock %}
+

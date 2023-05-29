@@ -1,0 +1,34 @@
+{% extends "app1_base/base.html" %}
+
+{% block content %}
+
+<div class="row">
+  <div class="columns text-center">
+    <h1 class="section-title">Images</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="columns">
+    <h3> Detail :{{cam.name}} &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	<a href="javascript:history.back()">  Back</a> </h3>
+	<div class="row">
+			<img src="{% url 'image' cam_id=cam.id %}" id="img" alt="real time"  width="{{ cam.max_width_rtime_HD }}" >
+	</div><br>
+  </div>
+</div>
+
+
+
+{% endblock content %}
+
+{% block scriptscamera %}
+<script>
+document.getElementById('img').src = "{% if DOMAIN == 'serenicia' %}/security{% endif %}/img/last/{{ cam.id }}?random="+new Date().getTime();
+window.setInterval(function()
+{
+    document.getElementById('img').src = "{% if DOMAIN == 'serenicia' %}/security{% endif %}/img/last/{{ cam.id }}?random="+new Date().getTime();
+}, 5000);
+
+</script>
+{% endblock scriptscamera %}

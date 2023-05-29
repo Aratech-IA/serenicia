@@ -1,0 +1,64 @@
+{% load static %}
+{% load i18n %}
+
+    <head>
+        <link href="{% static 'app4_ehpad_base/js/fullcalendar/main.css' %}" rel='stylesheet' />
+        <script src="{% static 'app4_ehpad_base/js/fullcalendar/main.js' %}"></script>
+        <script>
+        var calendar = null;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            calendar = new FullCalendar.Calendar(calendarEl, {
+              headerToolbar: {
+                start: 'title',
+                center: '',
+                end: 'today prev,next',
+              },
+              buttonText: {
+                  today: "{% trans 'Today' %}",
+              },
+              contentHeight: 'auto',
+              initialView: '{{ calendar.view }}',
+              editable: {{ calendar.editable }},
+              nowIndicator: true,
+              locale: '{{ request.LANGUAGE_CODE }}',
+              firstDay: 1,
+
+              dateClick: function(info) {
+                window.location.href = '/calendar/day/' + info.date.getFullYear() + '/' + info.date.getMonth() + '/' + info.date.getDate() + '/';
+              },
+
+              eventClick: function(info) {
+                window.location.href = '/calendar/day/' + info.event._instance.range.start.getFullYear() + '/' + info.event._instance.range.start.getMonth() + '/' + info.event._instance.range.start.getDate() + '/';
+              },
+
+              events: [
+                {% for data in calendar.events %}
+                    {
+                        title: "{{ data.event.type }}",
+                        start: '{{ data.start|date:"Y-m-d" }}',
+                        end: '{{ data.end|date:"Y-m-d" }}',
+                        {% if not data.end %}
+                            allDay: true,
+                        {% endif %}
+                        {% if data.event.is_visit %}
+                            backgroundColor: 'orange',
+                            borderColor: 'orange',
+                        {% elif data.event.is_activity %}
+                            backgroundColor: '#93a9d2',
+                            borderColor: '#93a9d2',
+                        {% elif data.event.is_birthday %}
+                            backgroundColor: 'purple',
+                            borderColor: 'purple',
+                        {% endif %}
+                    },
+                {% endfor %}
+                ],
+            });
+            calendar.render();
+        });
+        </script>
+    </head>
+
+    <div id='calendar'></div>

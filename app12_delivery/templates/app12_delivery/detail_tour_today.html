@@ -1,0 +1,68 @@
+{% extends "app4_ehpad_base/base.html" %}{% load i18n %}
+{% load static %}
+{% block content %}
+    <main class="d-flex flex-row">
+        <div>
+            {% include "./composant/navLeft.html" %}
+        </div>
+        <div class="container mt-5">
+{#        {% if tourDontExist %}#}
+{#            <h1>{% trans "You haven't tour for to day" %}</h1>#}
+{#        {% else %}#}
+{#            <h1>{% trans 'Delivery to' %} {{ tour.date_tour_delivery }}</h1><a class="btn btn-perso"#}
+{#                                                                                href="{% url 'tour_map_archive' tour.pk %}">{% trans 'See the map' %}</a>#}
+{#                            <div class="card p-3 mb-3">#}
+{#                    <h3> {% trans 'Info tour' %}</h3>#}
+{#                    <p>{% trans 'Time estimate' %} : {{ tour.time_estimate }}</p>#}
+{#                </div>#}
+{#            {% for foo in tourDetail %}#}
+{#                <span class="row border-2 border w-100"><h2> {{ foo.order }} </h2><a#}
+{#                        href="{% url "account_delivery" foo.profile.pk %}"><span>{% trans 'name' %} : {{ foo.profile.user.last_name }}</span><br><span>{% trans 'first name' %} : {{ foo.profile.user.first_name }}</span> <span>{% if foo.finish %}#}
+{#                    <img style="height: 25px; width: 25px; margin-right: 5px;"#}
+{#                         src="{% static "app12_delivery/img/done.svg" %}">{% else %} <img style="height: 25px; width: 25px; margin-right: 5px;"#}
+{#                         src="{% static "app12_delivery/img/block.svg" %}"> {% endif %}</span></a></span>#}
+{#            {% endfor %}#}
+{#        {% endif %}#}
+        <div class="list-group">
+                    {% if tourDetail %}
+                <div class="badge mb-3 bg-lightblue text-wrap w-100">
+                    <h3> {% trans 'Delivery to' %} {{ tour.date_tour_delivery }}</h3></div>
+{#                    <h3> {% trans 'Delivery to' %} {{ tour.get_nb_meals_per_tour }}</h3></div>#}
+                <div class="card p-3 mb-3">
+                    <h3> {% trans 'Info tour' %}</h3>
+                    <p>{% trans 'Time estimate' %} : {{ tour.time_estimate }}</p>
+                </div>
+                        {% for foo in tourDetail %}
+                            <a href="{% url "account_delivery" foo.profile.id %}"
+                               class="list-group-item list-group-item-action">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">{% trans 'Tour of' %}
+                                        : {{ foo.profile.user.last_name }} {{ foo.profile.user.first_name }} </h5>
+                                    <small class="text-muted">{% trans 'Sector ' %}</small>
+                                </div>
+                                <p class="mb-1">{% trans 'Number of delivery' %}</p>
+                                <small class="text-muted">Somme rapporté</small>
+                            </a>
+                        {% endfor %}
+                    {% else %}
+                        <div class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">{% trans 'Please register your first tour delivery' %}</h5>
+                            </div>
+                            <p class="mb-1">{% trans "This message is here because you havn't tour delivery register" %}</p>
+                        </div>
+
+                        </div>
+                    {% endif %}
+            </div>
+
+            <div class="w-100 mt-3">
+                <a class="btn btn-perso"
+                   href="{% url 'tour_map_archive' tour.pk %}">{% trans 'See The map of this day' %}</a>
+                <a type="button" class="btn btn-danger"
+                   href="{% url 'delete_tour' tour.pk %}">{% trans 'Delete this tour' %}
+                </a>
+            </div>
+        </div>
+    </main>
+{% endblock content %}

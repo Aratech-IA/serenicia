@@ -1,0 +1,164 @@
+{% extends "app1_base/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<style>
+        .menulink {
+            height: 60px;
+        }
+        .icon {
+            width: 60px;
+        }
+</style>
+
+    {% if message %}
+        <div class="modal" id="warning_msg" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">{{ category }}</h5>
+                        <button type="button" class="btn-close btn-perso" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h5>{{ message }}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    <br><br>
+    <main class="container">
+        <div class="d-grid gap-3 mx-auto" style="max-width: 450px">
+            {% if connected %}
+                {% if running %}
+                    <div class="btn btn-perso">
+                        <form action="{% url 'app1_base index' %}" method="post">{% csrf_token %}
+                            <input type='hidden' name='d_action' value='stop'/>
+                            <input type='hidden' name='client' value='{{client.id}}'/>
+                            <a href="#" onclick="$(this).closest('form').submit()" data-equalizer-watch>
+                                <h4 style="color: green">
+                                    <svg width="20px" height="20px" class="pp-icon pp-icon-stats">
+                                        <title>Protecia</title>
+                                        <use xlink:href="#pp-icon-stats"></use>
+                                    </svg>
+
+                                    <p>{% trans 'Protection is ON' %}</p></h4>
+
+                                <p style="color: green">>> {% trans 'click to stop the protection' %} <<</p>
+                            </a></form>
+                    </div>
+                {% endif %}
+                {% if not running %}
+                    <div class="btn btn-outline-danger">
+                        <form action="{% url 'app1_base index' %}" method="post">{% csrf_token %}
+                            <input type='hidden' name='d_action' value='start'/>
+                            <input type='hidden' name='client' value='{{client.id}}'/>
+                            <a href=#" onclick="$(this).closest('form').submit()" data-equalizer-watch>
+                                <h3 style="color: red">
+                                    <svg class="pp-icon pp-icon-stats">
+                                        <title>Protecia</title>
+                                        <use xlink:href="#pp-icon-stats"></use>
+                                    </svg>
+
+                                    <p>{% trans 'Protection is OFF' %}</p></h3>
+
+                                <p style="color: red">>> {% trans 'click to start the protection' %} <<</p>
+                            </a></form>
+                    </div>
+                {% endif %}
+            {% else %}
+                <div class="btn btn-outline-warning">
+                    <form action="{% url 'app1_base index' %}" method="post">{% csrf_token %}
+                        <input type='hidden' name='d_action' value='stop'/>
+                        <input type='hidden' name='client' value='{{client.id}}'/>
+                        <a href="#" data-equalizer-watch>
+                            <h4 style="color: orange">
+                                <svg class="pp-icon pp-icon-stats">
+                                    <title>Protecia</title>
+                                    <use xlink:href="#pp-icon-stats"></use>
+                                </svg>
+
+                                <p>{% trans 'Camera not connected' %}</p></h4>
+
+                            <p style="color: orange">>> {% trans 'Check your' %}
+                                {% if DOMAIN == "serenicia" %} Serenicia {% endif %}
+                                {% if DOMAIN == "protecia" %} Protecia {% endif %}
+                                {% trans 'box' %} <<</p>
+                        </a></form>
+                </div>
+            {% endif %}
+
+            <a href="{% url 'panel' alert=0 first=0 correction=0 %}" data-equalizer-watch class="btn btn-perso">
+                <div class="d-flex menulink">
+                    <div class="align-self-start ms-2">
+                        <img class="icon" src="{% static 'app4_ehpad_base/img/bi/images.svg' %}" alt="{% trans 'detection' %}">
+                    </div>
+                    <div class="d-flex mx-auto">
+                        <h2 class="align-self-center my-0">{% trans 'Image detection' %}</h2>
+                    </div>
+                </div>
+            </a>
+            <a href="{% url 'panel' alert=1 first=0 correction=0 %}" data-equalizer-watch class="btn btn-perso">
+                <div class="d-flex menulink">
+                    <div class="align-self-start ms-2">
+                        <img class="icon" src="{% static 'app4_ehpad_base/img/bi/exclamation-triangle.svg' %}" alt="{% trans 'alert' %}">
+                    </div>
+                    <div class="d-flex mx-auto">
+                        <h2 class="align-self-center my-0">{% trans 'Alert' %}</h2>
+                    </div>
+                </div>
+            </a>
+            <a href="{% url 'timeline' %}" data-equalizer-watch class="btn btn-perso">
+                <div class="d-flex menulink">
+                    <div class="align-self-start ms-2">
+                        <img class="icon" src="{% static 'app4_ehpad_base/img/bi/images.svg' %}" alt="{% trans 'detection' %}">
+                    </div>
+                    <div class="d-flex mx-auto">
+                        <h2 class="align-self-center my-0">{% trans 'Timeline' %}</h2>
+                    </div>
+                </div>
+            </a>
+            <a href="{% url 'camera' %}" data-equalizer-watch class="btn btn-perso">
+                <div class="d-flex menulink">
+                    <div class="align-self-start ms-2">
+                        <img class="icon" src="{% static 'app4_ehpad_base/img/bi/camera-video.svg' %}" alt="camera">
+                    </div>
+                    <div class="d-flex mx-auto">
+                        <h2 class="align-self-center my-0">{% trans 'Camera' %}</h2>
+                    </div>
+                </div>
+            </a>
+            <a href="{% url 'alert' %}" data-equalizer-watch class="btn btn-perso">
+                <div class="d-flex menulink">
+                    <div class="align-self-start ms-2">
+                        <img class="icon" src="{% static 'app4_ehpad_base/img/bi/gear.svg' %}" alt="alert">
+                    </div>
+                    <div class="d-flex mx-auto">
+                        <h2 class="align-self-center my-0">{% trans 'Configure alert' %}</h2>
+                    </div>
+                </div>
+            </a>
+            <a href="{% url 'archive' %}" data-equalizer-watch class="btn btn-perso">
+                <div class="d-flex menulink">
+                    <div class="align-self-start ms-2">
+                        <img class="icon" src="{% static 'app1_base/img/movie.svg' %}" alt="alert">
+                    </div>
+                    <div class="d-flex mx-auto">
+                        <h2 class="align-self-center my-0">{% trans 'View records' %}</h2>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </main>
+    <svg style="position: absolute; width: 0; height: 0;" width="0" height="0" version="1.1"
+         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <defs>
+            <symbol id="pp-icon-stats" viewbox="0 0 32 32">
+                <path class="path1"
+                      d="M30 0h-28c-1.104 0-2 0.896-2 2v20c0 1.104 0.896 2 2 2h8l-4 8h1l7.2-8h3.6l7.2 8h1l-4-8h8c1.104 0 2-0.896 2-2v-20c0-1.104-0.896-2-2-2zM30 21c0 0.553-0.447 1-1 1h-26c-0.553 0-1-0.447-1-1v-18c0-0.553 0.447-1 1-1h26c0.553 0 1 0.447 1 1v18zM20.878 15.631l-4.521-11.629-4.938 9.29-2.756-2.835-4.663 2.906 1.316 0.758 2.988-1.862 3.605 3.712 4.175-7.853 4.616 11.879 3.937-8.288 1.604 3.414 1.759-0.295-3.354-7.132-3.768 7.935z"></path>
+            </symbol>
+        </defs>
+    </svg>
+{% endblock content %}

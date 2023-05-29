@@ -1,0 +1,177 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+
+{% block content %}
+    {% load static %}
+    {% load i18n %}
+
+<style>
+.container{
+    background-color: white
+}
+
+.title {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  font-family: "Raleway", sans-serif;
+  font-weight: 300;
+}
+
+.title span {
+  display: block;
+  font-size: 0.5em;
+  line-height: 1.3;
+}
+.one h1 {
+  text-align:center;
+  font-size:50px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  font-family:"Playfair Display", serif;
+  font-weight:400;
+}
+.one h1 span {
+  margin-top: 5px;
+  font-size:15px; word-spacing:1px; letter-spacing:2px;
+  text-transform: uppercase;
+  font-family:"Raleway", sans-serif;
+  font-weight:500;
+  display: grid;
+  grid-template-columns: 1fr max-content 1fr;
+  grid-template-rows: 27px 0;
+  grid-gap: 20px;
+  align-items: center;
+}
+
+.one h1 span:after,.one h1 span:before {
+    content: " ";
+    display: block;
+    border-bottom: 1px solid #25CC88;
+    border-top: 1px solid #25CC88;
+    height: 5px;
+}
+
+.two .title {
+  text-transform: capitalize;
+}
+.two .title:before {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 60px;
+  height: 2px;
+  content: "";
+  background-color: #93a9d2;
+}
+
+.two .title span {
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  line-height: 3em;
+  padding-left: 0.25em;
+  color: rgba(0, 0, 0, 0.4);
+  padding-bottom: 10px;
+}
+
+
+.category::before{
+    content: "• Catégorie ◊ ";
+}
+.category::after{
+    content: " •";
+}
+
+object {
+    width:50%;
+    height:800px;
+}
+
+/*Shrinking for mobile*/
+@media (max-width: 800px) {
+    object {
+        width: 90%;
+        height:500px;
+    }
+}
+</style>
+
+<div class="container pt-5 mt-5 rounded">
+
+    <div class="row">
+        <div class="one pb-5" data-aos="fade-down" data-aos-duration="1500">
+            <h1> {{ post.title }} <span>{{ NOM_EHPAD }}</span></h1>
+        </div>
+        <p data-aos="fade-right" data-aos-duration="1500" class="written">Écrit par {{ post.author.first_name }} {{ post.author.last_name }}, </p>
+        <p data-aos="fade-right" data-aos-duration="1500">le {{ post.created_on }}</p>
+        <p data-aos="fade-up" data-aos-duration="1500" class="mt-2 mb-2 text-center category"> {{ post.category }} </p>
+
+        <p data-aos="fade-left" data-aos-duration="1500">{{ post.content|safe }}</p>
+
+
+        {% if file %}
+            <div class="text-center" data-aos="flip-right" data-aos-duration="1500">
+                {% if file.type_of_file == 'video' %}
+                    <video controls width="auto" height="auto">
+                        <source src="{{file.file}}" type="video/{{file.extension_of_file}}">
+                    </video>
+                {% elif file.type_of_file == 'application' %}
+                    <h6 class="pb-3">Voici le PDF :</h6>
+                    <object data='{{file.file}}' type="application/{{file.extension_of_file}}">
+
+                    </object>
+                {% elif file.type_of_file == 'audio' %}
+                    <audio controls src="{{file.file}}">
+                        <p>Your browser does not support the <code>audio</code> element.</p>
+                    </audio>
+                {% endif %}
+            </div>
+        {% endif %}
+
+
+         <div class="row my-auto mx-auto">
+             {% for img in img_list %}
+             <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center align-items-center" >
+
+                <form action="{% url 'show_post_picture' %}" method="post">
+                    {% csrf_token %}
+                    <input value="{{ img.url_full }}" name="full_url" hidden>
+                    <input value="{{ post.id }}" name="post_id" hidden>
+                    <input type="image" src="{{ img.url }}" class="img-fluid rounded-3">
+                </form>
+             </div>
+            {% endfor %}
+        </div>
+
+
+    </div>
+
+        <a data-aos="fade-up" data-aos-duration="1500" class="mt-5" href="{% url 'blog' %}"><button class="btn btn-lg btn-perso"> RETOUR </button></a>
+
+</div>
+
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+
+
+
+    let range = 1 / 400;
+    let vw = range * Math.min(window.innerWidth, window.innerHeight);
+
+    document.documentElement.style.setProperty('--vw-scale', `${vw}`);
+
+    window.addEventListener('resize', () => {
+      document.documentElement.style.setProperty('--vw-scale', `${range * Math.min(window.innerWidth, window.innerHeight)}`);
+    });
+
+</script>
+
+{% endblock content %}
+
+{% block endscript %}
+
+
+{% endblock endscript %}

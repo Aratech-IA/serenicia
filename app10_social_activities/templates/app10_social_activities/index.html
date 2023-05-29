@@ -1,0 +1,219 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block sticky-top-btn %}
+    <a href="{% url 'app10_social_activities index' %}" class="btn btn-perso sticky-top-btn d-none d-md-block m-2">{% trans 'Back' %}</a>
+{% endblock sticky-top-btn %}
+
+{% block content %}
+<head>
+    <style>
+        .choices-button{
+            height: 50px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
+        .choices-text{
+            margin-bottom: 0;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .img-size-large{
+            width: 150px;
+            height: 150px;
+        }
+        .location-image{
+            max-width: 160px;
+        }
+    </style>
+</head>
+{% if ask_validation %}
+    <div class="modal" id="warning_msg" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content border border-darkblue">
+                <div class="modal-header">
+                    <h5 class="modal-title">{% trans "To end this activity ?" %}</h5>
+                </div>
+                <div class="modal-body text-center">
+                    <h3>{{ activity.event.type }}</h3>
+                    <h5>{{ activity.attendance.count }} {% trans 'participants' %}</h5>
+                    <h5>{% trans 'Started at' %}: {{ activity.start|date:"H:i" }}</h5>
+                    <span class="text-muted">({% trans 'duration' %}: {% if duration.hour %}{{ duration.hour }}{% trans 'hour' %}{{ duration.hour|pluralize }} {% endif %}{{ duration.minute }}{% trans 'minute' %}{{ duration.minute|pluralize }})</span>
+
+                </div>
+                <div class="modal-footer">
+                    <div class="d-flex gap-2 justify-content-center">
+                        <button class="btn p-0" data-bs-dismiss="modal">
+                            <svg width="60px" height="60px" viewBox="0 0 16 16" class="bi bi-x-circle-fill" fill="red" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                        </svg>
+                        </button>
+                        <form method="post" action="{% url 'app10_social_activities activity index' %}">{% csrf_token %}
+                            <button class="btn p-0" name="ending_validation" value="1">
+                                <svg width="60px" height="60px" viewBox="0 0 16 16" class="bi bi-check-circle-fill" fill="green" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                            </svg>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+<!-- comment modal -->
+<div class="modal fade" id="comentModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{% trans 'Comment for' %} {{ activity.event.type }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{% url 'app10_social_activities activity index' %}" method="post">{% csrf_token %}
+                <div class="modal-body d-flex justify-content-center">
+                    {{ comment_form.event_comment }}
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-perso">{% trans 'Save' %}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<main class="mt-3 d-flex flex-column align-items-center gap-3">
+<!--  entête  -->
+    <div class="d-flex flex-wrap gap-3">
+        <div class="d-flex flex-column">
+            <span class="fs-3">{{ activity.event.type }}</span>
+            <span class="text-muted">{{ activity.event.location.name }} - {{ activity.event.organizer }}</span>
+            <span>{% trans 'Started at' %}: {{ activity.start|date:"H:i" }} - {% trans 'Finished at' %}: {{ activity.end|date:"H:i" }}</span>
+        </div>
+        <div class="my-auto">
+            <a href="{% url 'app10_social_activities index' %}" class="btn btn-perso fw-bold">{% trans 'Change activity' %}</a>
+        </div>
+    </div>
+<!--  boutons  -->
+    <div class="d-flex flex-wrap gap-3 justify-content-center">
+<!--    boutons photos / galerie    -->
+        <div class="d-flex flex-column gap-2 align-items-center">
+            {% if photo_activity %}
+            <form action="{% url 'app10_social_activities activity index' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+                {{ photo_activity.file }}
+                <label for="activity_photo_btn">
+                    <div class="btn btn-perso">
+                        <svg width="150px" height="150px" viewBox="0 0 16 16" class="bi bi-camera" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                          <path fill-rule="evenodd" d="M15 12V6a1 1 0 0 0-1-1h-1.172a3 3 0 0 1-2.12-.879l-.83-.828A1 1 0 0 0 9.173 3H6.828a1 1 0 0 0-.707.293l-.828.828A3 3 0 0 1 3.172 5H2a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z"/>
+                                                          <path fill-rule="evenodd" d="M8 11a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                                                          <path d="M3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
+                                    </svg>
+                    </div>
+                </label>
+            </form>
+            {% else %}
+            <div>
+                <div class="btn btn-perso disabled">
+                    <svg width="150px" height="150px" viewBox="0 0 16 16" class="bi bi-camera" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                              <path fill-rule="evenodd" d="M15 12V6a1 1 0 0 0-1-1h-1.172a3 3 0 0 1-2.12-.879l-.83-.828A1 1 0 0 0 9.173 3H6.828a1 1 0 0 0-.707.293l-.828.828A3 3 0 0 1 3.172 5H2a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z"/>
+                                                              <path fill-rule="evenodd" d="M8 11a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                                                              <path d="M3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
+                                        </svg>
+                </div>
+            </div>
+            {% endif %}
+            <form action="{% url 'app10_social_activities activity gallery' act_id=activity.id %}" method="post" class="w-100">{% csrf_token %}
+                <button class="btn btn-perso choices-button" name="illustration" value="1">
+                    <h5 class="choices-text">{% trans 'Select an illustration photo' %}</h5>
+                </button>
+            </form>
+            <a href="{% url 'app10_social_activities activity gallery' act_id=activity.id %}" class="btn btn-perso choices-button">
+                <h5 class="choices-text">{% trans 'See the pictures' %}</h5>
+            </a>
+        </div>
+<!--    boutons évaluation    -->
+        <div class="d-flex flex-column gap-2 align-items-center">
+                <a href="{% url 'app10_social_activities auto identification' %}" class="btn btn-perso {% if not access_to_rating %}disabled{% endif %}" id="auto-recobtn">
+                    <img src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}" class="img-size-large">
+                </a>
+                <a href="{% url 'app10_social_activities select voter' %}" class="btn btn-perso choices-button {% if not access_to_rating %}disabled{% endif %}">
+                    <h5 class="choices-text">{% trans 'Evaluation' %} ({{ voter_count }} / {{ activity.attendance.count }})</h5>
+                </a>
+                {% if activity.end > now and now > activity.start %}
+                    <form action="{% url 'app10_social_activities activity index' %}" method="post" class="w-100">{% csrf_token %}
+                        <button class="btn btn-perso choices-button" name="ending" value="1">
+                            <h5 class="choices-text">{% trans 'End' %}</h5>
+                        </button>
+                    </form>
+                {% else %}
+                    <div class="btn btn-perso choices-button disabled">
+                        <h5 class="choices-text">{% trans 'End' %}</h5>
+                    </div>
+                {% endif %}
+            </div>
+<!--    boutons présence / blog / commentaire    -->
+        <div class="d-flex flex-column align-items-center justify-content-start">
+        <div class="d-flex flex-column gap-2 align-items-center">
+            <a href="{% url 'app10_social_activities attendance' %}" class="btn btn-perso choices-button {% if not activity %}disabled{% endif %}">
+                <h5 class="choices-text">{% trans 'Attendance list' %} ({{ activity.attendance.count }} / {{ activity.participants.count }})</h5>
+            </a>
+            <!-- Button trigger modal -->
+            <button class="btn btn-perso choices-button {% if not activity %}disabled{% endif %}" data-bs-toggle="modal" data-bs-target="#comentModal">
+              <h5 class="choices-text">{% trans 'Comment' %}</h5>
+            </button>
+            {% if activity.blog_post %}
+                <a href="{% url 'show_post' post_id=activity.blog_post.id %}" class="btn btn-perso choices-button">
+                    <h5 class="choices-text">{% trans 'Blog post' %}</h5>
+                </a>
+            {% else %}
+                <a href="{% url 'create_post' act_id=activity.id %}" class="btn btn-perso choices-button">
+                    <h5 class="choices-text">{% trans 'Create blog post' %}</h5>
+                </a>
+            {% endif %}
+        </div>
+    </div>
+    </div>
+</main>
+{% if access_to_rating %}
+<script>
+    async function fetchWithTimeout(resource, options) {
+                const { timeout = 1000 } = options;
+
+                const controller = new AbortController();
+                const id = setTimeout(() => controller.abort(), timeout);
+
+                const response = await fetch(resource, {
+                  ...options,
+                  signal: controller.signal
+                });
+                clearTimeout(id);
+
+                return response;
+            }
+
+    async function try_connect(){
+        var result = await fetchWithTimeout('{{ FACIAL_RECO_IP }}', {
+                method: 'GET',
+                })
+            .then(response => {
+                return response.json();
+                })
+            .catch(error => {
+                return 'error'
+                });
+        var recobtn = document.getElementById("auto-recobtn");
+        if (result == 'None'){
+                recobtn.classList.remove("disabled");
+            }else{
+                recobtn.classList.add("disabled");
+            };
+    };
+    try_connect();
+</script>
+{% endif %}
+{% endblock content %}
+
+

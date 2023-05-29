@@ -1,0 +1,37 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+{% load static %}
+{% load i18n %}
+{% load app8_custom_filters %}
+
+{% block content %}
+<main class="container d-flex flex-column align-items-center pt-2">
+    {% if active %}
+        <div>
+            <h4 class="text-center">{% blocktranslate count counter=active.count %}Active poll{% plural %}Active polls{% endblocktranslate %}</h4>
+            <div class="d-flex flex-wrap gap-2">
+                {% for survey in active %}
+                    <a href="{% url 'app8_survey dashboard details' survey_id=survey.id %}" class="btn btn-perso d-flex flex-column align-items-center">
+                        <h3>{{ survey.title }} ({{ survey.year }})</h3>
+                        <span>{% trans 'Questionnaire' %} : {{ survey.type|display_type }}</span>
+                        <span>{% trans 'Target' %} : {{ survey.target|display_target }}</span>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+    {% if inactive %}
+        <div>
+            <h4 class="text-center">{% blocktranslate count counter=inactive.count %}Inactive poll{% plural %}Inactive polls{% endblocktranslate %}</h4>
+            <div class="d-flex flex-wrap gap-2">
+                {% for survey in inactive %}
+                    <a href="{% url 'app8_survey dashboard details' survey_id=survey.id %}" class="btn btn-perso d-flex flex-column align-items-center">
+                        <h3>{{ survey.title }} ({{ survey.year }})</h3>
+                        <span>{% trans 'Questionnaire' %} : {{ survey.type|display_type }}</span>
+                        <span>{% trans 'Target' %} : {{ survey.target|display_target }}</span>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+</main>
+{% endblock content %}

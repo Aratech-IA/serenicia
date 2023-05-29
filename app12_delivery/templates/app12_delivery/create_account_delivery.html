@@ -1,0 +1,198 @@
+{% extends "app4_ehpad_base/base.html" %}{% load i18n %}
+{% load static %}
+{% block content %}
+    <head>
+        <style>
+            .created {
+                max-width: 400px;
+            }
+
+            ul.errorlist {
+                display: none;
+            }
+
+            #geocoder {
+                z-index: 1;
+                margin: 20px;
+            }
+
+            .mapboxgl-ctrl-geocoder {
+                min-width: 100%;
+            }
+
+            .btn-register {
+                border-radius: 3px 3px 0 0;
+            }
+        </style>
+    </head>
+
+
+    <main class="d-flex flex-row">
+        <div>
+            {% include "./composant/navLeft.html" %}
+        </div>
+        <div class="container mt-5">
+            <div class="card">
+                <form method="post" action="{% url 'register_customer_delivery' %}">{% csrf_token %}
+                    <div class="d-flex flex-column justify-content-center align-items-center gap-2">
+                        <div class="badge bg-lightblue text-wrap w-100">
+                            <h3> {% trans 'Create a customer' %}</h3></div>
+                        <div class="row w-75">
+                            <div class="col">
+                                {{ UserRegisterDeliveryForm.first_name.label_tag }}
+                                {{ UserRegisterDeliveryForm.first_name }}
+                            </div>
+                            <div class="col">
+                                {{ UserRegisterDeliveryForm.last_name.label_tag }}
+                                {{ UserRegisterDeliveryForm.last_name }}
+
+                            </div>
+                        </div>
+                        <div class="row w-75">
+                            <div class="col">
+                                {{ UserRegisterDeliveryForm.email.label_tag }}
+                                {{ UserRegisterDeliveryForm.email }}
+                            </div>
+
+                            <div class="col-3">
+                                {{ ProfileRegisterDeliveryForm.phone_number.label_tag }}
+                                {{ ProfileRegisterDeliveryForm.phone_number }}
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row w-75">
+
+                            <div class="col">
+                                <div class="mb-3">
+                                    {{ ProfileRegisterDeliveryForm.city.label_tag }}
+                                    {{ ProfileRegisterDeliveryForm.city }}
+                                </div>
+                                <div class="mb-3">
+                                    {{ ProfileRegisterDeliveryForm.cp.label_tag }}
+                                    {{ ProfileRegisterDeliveryForm.cp }}
+                                </div>
+                                <div class="mb-3">
+                                    {{ ProfileRegisterDeliveryForm.adress.label_tag }}
+                                    {{ ProfileRegisterDeliveryForm.adress }}
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                    <button class="w-100 h-25 mt-3 btn btn-register bg-lightblue text-light"><h4>{% trans 'Save' %}</h4></button>
+
+                </form>
+            </div>
+            {% if created_user %}
+                <br>
+                <div class="d-flex flex-column justify-content-center align-items-center mb-5
+     border border-darkblue rounded-3 mx-auto py-3 created">
+                    <h4>{% trans 'User created' %}</h4>
+                    <div class="row w-100">
+                        <span class="col-auto justify-content-start">{% trans 'Username' %} :</span>
+                        <span class="col fw-bold"><a
+                                href="{% url "account_delivery" pkProfile %}">{{ username }}</a></span>
+                    </div>
+                    <div class="row w-100">
+                        <span class="col-auto justify-content-start">{% trans 'Password' %} :</span>
+                        <span class="col fw-bold">{% trans 'same as username' %}</span>
+                    </div>
+                </div>
+                {% elif UserRegisterDeliveryForm.errors or ProfileRegisterDeliveryForm.errors %}
+                {% for error in UserRegisterDeliveryForm.errors %}
+                    {% if error %}
+                        {{ error }}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                {% for error in ProfileRegisterDeliveryForm.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+                {% elif error %}
+                <div class="grid-x grid-margin-x grid-padding-x mt-5">
+                    <div class="cell text-center small-centered medium-centered large-centered">
+                        <h1>{% trans "User is already exist" %}</h1>
+                    </div>
+                </div>
+                {% elif error_adress %}
+                <div class="grid-x grid-margin-x grid-padding-x mt-5">
+                    <div class="cell text-center small-centered medium-centered large-centered">
+                        <h1>{% trans "adress of use is incorrect" %}</h1>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </main>
+    <script>
+        $("#{{ ProfileRegisterDeliveryForm.cp.auto_id }}").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "https://api-adresse.data.gouv.fr/search/?postcode=" + $("#{{ ProfileRegisterDeliveryForm.cp.auto_id }}").val(),
+                    data: {q: request.term},
+                    dataType: "json",
+                    success: function (data) {
+                        var postcodes = [];
+                        response($.map(data.features, function (item) {
+                            if ($.inArray(item.properties.postcode, postcodes) === -1) {
+                                postcodes.push(item.properties.postcode);
+                                return {
+                                    label: item.properties.postcode + " - " + item.properties.city,
+                                    city: item.properties.city,
+                                    value: item.properties.postcode
+                                };
+                            }
+                        }));
+                    }
+                });
+            },
+            select: function (event, ui) {
+                $('#{{ ProfileRegisterDeliveryForm.city.auto_id }}').val(ui.item.city);
+            }
+        });
+        $("#{{ ProfileRegisterDeliveryForm.city.auto_id }}").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "https://api-adresse.data.gouv.fr/search/?city=" + $("#{{ ProfileRegisterDeliveryForm.city.auto_id }}").val(),
+                    data: {q: request.term},
+                    dataType: "json",
+                    success: function (data) {
+                        var cities = [];
+                        response($.map(data.features, function (item) {
+                            if ($.inArray(item.properties.postcode, cities) === -1) {
+                                cities.push(item.properties.postcode);
+                                return {
+                                    label: item.properties.postcode + " - " + item.properties.city,
+                                    postcode: item.properties.postcode,
+                                    value: item.properties.city
+                                };
+                            }
+                        }));
+                    }
+                });
+            },
+            select: function (event, ui) {
+                $('#{{ ProfileRegisterDeliveryForm.cp.auto_id }}').val(ui.item.postcode);
+            }
+        });
+        $("#{{ ProfileRegisterDeliveryForm.adress.auto_id }}").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "https://api-adresse.data.gouv.fr/search/?postcode=" + $("#{{ ProfileRegisterDeliveryForm.cp.auto_id }}").val(),
+                    data: {q: request.term},
+                    dataType: "json",
+                    success: function (data) {
+                        response($.map(data.features, function (item) {
+                            return {label: item.properties.name, value: item.properties.name};
+                        }));
+                    }
+                });
+            }
+        });
+    </script>
+{% endblock content %}

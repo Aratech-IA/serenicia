@@ -1,0 +1,135 @@
+{% extends "app3_messaging/mails_base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+
+
+<main class="m-3">
+    <h1>{% trans 'Emailing App' %}</h1>
+    <div class="nav nav-tabs mb-3">
+        <ul class="nav" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a href="{% url 'mails_create' %}" data-equalizer-watch class="nav-link {% if '/create' in request.path %}active{% endif %}">
+                    <span>{% trans 'Create an email preset' %}</span>
+                </a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a href="{% url 'mails_send' %}" data-equalizer-watch class="nav-link {% if '/send' in request.path %}active{% endif %}">
+                    <span>{% trans 'Send an email' %}</span>
+                </a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a href="{% url 'mails_mailbox' %}" data-equalizer-watch class="nav-link {% if '/mailbox' in request.path %}active{% endif %}">
+                    <span>{% trans 'Sent campaigns' %}</span>
+                </a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a href="{% url 'mails_manage' %}" data-equalizer-watch class="nav-link {% if '/manage' in request.path %}active{% endif %}">
+                    <span>{% trans 'Settings' %}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <form  action="" method="post" name="managemail" class="row managemail mx-1" id="managemail">
+        {% csrf_token %}
+        <div class="modal fade" id="confirmCampaign" tabindex="-1" aria-labelledby="confirmCampaign" aria-hidden="true" role="dialog">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <div class="modal-body text-center m-3 p-0" role="alert">
+                        <h4 class="modal-title">{% trans 'Confirmation' %}</h4>
+                        <p id="resultemailshowtoobig">{% trans 'Are you sure that you want to make these changes' %} ?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" data-bs-dismiss="modal" aria-label="Close" class="btn btn-outline-danger">{% trans 'Cancel' %}</button>
+                        <button type="submit" name="managecampaign" class="btn btn-perso">{% trans 'Yes, I am sure' %}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 p-0 mb-3">
+            <ul class="list-group col-12">
+                <li>
+                    <p class="p-2 m-0 border border-darkblue bg-grey">
+                        {% trans 'Presets' %} :
+                    </p>
+                </li>
+                <li class="list-group list-group-item">
+                    {% if templates|length == 0 %}
+                        <div class="alert alert-info my-3 me-4">
+                        {% trans 'You have yet to create any preset' %}.
+                        </div>
+                    {% endif %}
+                    {% for key in templates %}
+                    <label class="dropdown-item text-wrap labelname">
+                        <input class="form-check-input me-1 checkboxes-templates_mail"
+                               type="checkbox" value="{{ key.NAME }}" name="templates_names[]">
+                        {{ key.NAME }}</label>
+                    {% endfor %}
+                </li>
+                <li>
+                    <p class="p-2 m-0 border border-darkblue bg-grey">
+                        {% trans 'Campaigns' %} :
+                    </p>
+                </li>
+                <li class="list-group list-group-item">
+                    {% if campaigns|length == 0 %}
+                        <div class="alert alert-info my-3 me-4" role="alert">
+                        {% trans 'No named campaign created yet' %}.
+                        </div>
+                    {% endif %}
+                    {% for campaign in campaigns %}
+                    <label class="dropdown-item text-wrap labelname">
+                        <input class="form-check-input me-1 checkboxes-templates_campaign"
+                               type="checkbox" value="{{ campaign.nom_de_la_campagne }}" name="campaigns_names[]">
+                        {{ campaign.nom_de_la_campagne }}</label>
+                    {% endfor %}
+                </li>
+            </ul>
+        </div>
+        <div class="form-group renametypemail col-sm-9 options_mail d-none mt-3 pe-0">
+            <div class="single_mail d-none">
+                <h2>{% trans 'Options for selected presets' %} :</h2>
+                <hr/>
+                <label for="rename_mail" >{% trans 'Rename the preset to' %} :</label>
+                    <input class="form-control mb-4" type="text" id="rename_mail" name="rename">
+                <label for="delete_mail">{% trans 'Delete preset' %} :</label>
+                    <input class="form-check-input me-1 danger" type="checkbox" id="delete_mail" name="delete">
+            </div>
+            <div class="multi_mail">
+                <h2>{% trans 'Options for selected presets' %} :</h2>
+                <hr/>
+                <label for="delete_multi_mail">{% trans 'Delete selected presets' %} :</label>
+                        <input class="form-check-input me-1 danger" type="checkbox" id="delete_multi_mail" name="delete">
+            </div>
+            <hr/>
+            <div class="mt-4">
+                <button type="submit" name="managemail" class="btn btn-perso me-3">{% trans 'Confirm changes' %}</button>
+            </div>
+        </div>
+        <div class="form-group renametypecampaign col-sm-9 options_campaign d-none mt-3 pe-0">
+            <div class="single_campaign d-none">
+                <h2>{% trans 'Options for the selected Campaign' %} :</h2>
+                <hr/>
+                <label for="rename_campaign" >{% trans 'Rename the campaign to' %} :</label>
+                    <input class="form-control mb-4" type="text" id="rename_campaign" name="rename_campaign">
+                <label for="delete">{% trans 'Delete the Campaign' %} :</label>
+                    <input class="form-check-input me-1 danger" type="checkbox" id="delete" name="delete_campaign">
+            </div>
+            <div class="multi_campaign">
+                <h2>{% trans 'Options for the selected Campaigns' %} :</h2>
+                <hr/>
+                <label for="delete_multi_campaign">{% trans 'Delete the selected Campaigns' %}</label>
+                        <input class="form-check-input me-1 danger" type="checkbox" id="delete_multi_campaign" name="delete_campaign">
+            </div>
+            <hr/>
+            <div class="mt-4">
+                <button type="button" id="confirmCampaignbutton" data-bs-toggle="modal"
+                            data-bs-target="#confirmCampaign" class="btn btn-perso buttonnumberemail">{% trans 'Confirm changes' %}</button>
+            </div>
+        </div>
+
+    </form>
+</main>
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% load static %}
+{% load i18n %}
+
+<nav class="nav flex-column col-2 position-relative end-0 ms-3">
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+                <a href="{% url "listing_tours" %}">{% trans 'Delivery' %}<img style="height: 15px; width: 15px;" src="{% static "app12_delivery/img/arrow_forward.png" %}"></a>
+            </div>
+            <ul class="list-group list-group-flush overflow-auto">
+            {% if delivery %}
+                {% for foo in delivery %}
+                    <li class="list-group-item"><span>{{ foo.tour_delivery.date_tour_delivery }}</span></li>
+                {% endfor %}
+            {% else %}
+                <li class="list-group-item"><span>{% trans 'Any delivery register' %}</span></li>
+            {% endif %}
+            </ul>
+        </div>
+        {#    <a href="{% url "setting_delivery_day_done" %}">{% trans 'Settings' %}</a>#}
+</nav>

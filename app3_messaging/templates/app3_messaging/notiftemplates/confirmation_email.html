@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+ <style>
+ .button{
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans',
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+     appearance: button;
+     margin-top:20px;
+     padding:10px;
+     text-decoration:
+     none;
+     background-color: rgb(255, 255, 255);
+     border-color: rgb(147, 169, 210); border-radius: 12px; border-style: solid; border-width: 1px; color:black !important;
+     }
+ .button:hover{
+     background-color: rgb(147, 169, 210); color: rgb(255, 255, 255);
+     }
+ </style>
+    </head>
+    <body>
+        <section style="margin:20px; color:black; padding:20px; background-color:white; box-shadow: -4px 2px 30px 1px rgba(0,0,0,0.4); width:70%;">
+            <img class="voila" src="[[ domain ]]#link#" alt="LinkOpening" style="display:none; opacity:0;">
+            <img class="voila" src="[[ domainstatic ]]app4_ehpad_base/img/serenicia.png" alt="Serenicia" style="width:100px; margin-bottom:10px;">
+            <div style="margin:20px 0px 20px 0px; padding-left: 20px;">
+                {% trans 'Hello' %}, %%variable0%% <br>
+                 {% trans "Thank you for registering on Serenicia, please click on the button to activate your account" %}:
+            </div>
+            <a href="[[ domain ]]/µactivatelinkµ" class="button" role="button" style="width:200px;">
+                {% trans 'Activate my account' %}</a><br><br>
+            <small>{% trans 'Or use this link' %}: [[ domain ]]/µactivatelinkµ</small><br>
+        </section>
+    </body>
+</html>

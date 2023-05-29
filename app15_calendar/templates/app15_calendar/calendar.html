@@ -1,0 +1,195 @@
+{% load static %}
+{% load i18n %}
+
+    <head>
+        <link href="{% static 'app4_ehpad_base/js/fullcalendar/main.css' %}" rel='stylesheet' />
+        <script src="{% static 'app4_ehpad_base/js/fullcalendar/main.js' %}"></script>
+        <script>
+        var calendar = null;
+
+        async function fetchCalendarWithTimeout(resource, options) {
+            const { timeout = 1000 } = options;
+
+            const controller = new AbortController();
+            const id = setTimeout(() => controller.abort(), timeout);
+
+            const response = await fetch(resource, {
+              ...options,
+              signal: controller.signal
+            }).then(response => {
+                if(response.ok){
+                    clearTimeout(id);
+                    return response;
+                } else {
+                    alert("{% trans 'An error has occurred, please try again later' %}");
+                    return 'error';
+                };
+            }).catch(error =>{
+                alert("{% trans 'An error has occurred, please try again later' %}");
+                return 'error';
+            });
+            return response;
+        }
+
+        async function updateEventDates(pl_event_id=0, start='0', end='0'){
+            var url = 'https://' + '{{ request.get_host }}' + '/calendar/update/';
+            await fetchCalendarWithTimeout(url + pl_event_id +'/' + start.toISOString() + '/' + end.toISOString() + '/', {method: 'GET'});
+        };
+
+        async function updateEventFromModal(button){
+            var start = new Date(document.getElementById('eventModalStartInput').value);
+            var end = new Date(document.getElementById('eventModalEndInput').value);
+            await updateEventDates(button.value, start, end);
+            calendar.getEventById(button.value).setStart(start);
+            calendar.getEventById(button.value).setEnd(end);
+        };
+
+        async function deleteEvent(button){
+            await fetchCalendarWithTimeout('https://' + '{{ request.get_host }}' + '/calendar/delete/' + button.value +'/', {method: 'GET'});
+            calendar.getEventById(button.value).remove();
+            $('#eventModal').modal('hide');
+        };
+
+        async function showEventModal(pl_event_id){
+            var url = 'https://' + '{{ request.get_host }}' + '/calendar/modal/';
+            var data = await fetchCalendarWithTimeout(url + pl_event_id + '/' + {{ calendar.editable }} + '/', {method: 'GET'})
+                .then(response => {
+                    if(response == 'error'){
+                        return;
+                    } else {
+                        return response.json();
+                    };
+                });
+            document.getElementById('eventModalTitle').innerHTML = data.title;
+            if({{ calendar.editable }}){
+                document.getElementById('eventModalDelete').value = pl_event_id;
+                document.getElementById('eventModalSave').value = pl_event_id;
+                document.getElementById('eventModalStartInput').value = data.start.split('+')[0];
+                document.getElementById('eventModalEndInput').value = data.end.split('+')[0];
+            } else {
+                document.getElementById('eventModalStart').innerHTML = data.start;
+                document.getElementById('eventModalEnd').innerHTML = data.end;
+            };
+            if(data.details_url){
+                var details = document.getElementById('eventModalDetails');
+                details.href = data.details_url;
+                details.style.display = 'block';
+            };
+            $('#eventModal').modal('show');
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            calendar = new FullCalendar.Calendar(calendarEl, {
+              headerToolbar: {
+                start: 'prev,next today',
+                center: 'title',
+                {% if calendar.change_view %}
+                    end: 'dayGridMonth,listMonth timeGridWeek,listWeek',
+                {% else %}
+                    end: false,
+                {% endif %}
+              },
+              buttonText: {
+                  today: "{% trans 'Today' %}",
+                  month: "{% trans 'Month' %}",
+                  week: "{% trans 'Week' %}",
+                  day: "{% trans 'Day' %}",
+                  list: "{% trans 'List' %}",
+              },
+              initialView: '{{ calendar.view }}',
+              editable: {{ calendar.editable }},
+              contentHeight: 'auto',
+              eventResizableFromStart: true,
+              weekNumbers: true,
+              nowIndicator: true,
+              weekText: '',
+              locale: '{{ request.LANGUAGE_CODE }}',
+              displayEventEnd: true,
+              eventDisplay: 'block',
+              allDaySlot: false,
+              slotMinTime: '07:00:00',
+              slotMaxTime: '22:00:00',
+              expandRows: true,
+              firstDay: 1,
+
+              eventClick: function(info) {
+                switch(info.view.type){
+                    case 'dayGridMonth':
+                        calendar.changeView('timeGridWeek', info.event._instance.range.start);
+                        break;
+                    case 'timeGridWeek':
+                        showEventModal(info.event._def.publicId);
+                        break;
+                };
+              },
+
+              eventDrop: function(info) {
+                updateEventDates(info.event._def.publicId, info.event.start, info.event.end);
+              },
+
+              eventResize: function(info) {
+                updateEventDates(info.event._def.publicId, info.event.start, info.event.end);
+              },
+
+              events: [
+                {% for data in calendar.events %}
+                    {
+                        title: "{{ data.event.type }}",
+                        start: '{{ data.start|date:"Y-m-d H:i" }}',
+                        end: '{{ data.end|date:"Y-m-d H:i" }}',
+                        id: '{{ data.id }}',
+                        {% if data.event.is_visit %}
+                            backgroundColor: 'orange',
+                            borderColor: 'orange',
+                        {% elif data.event.is_activity %}
+                            backgroundColor: '#93a9d2',
+                            borderColor: '#93a9d2',
+                        {% endif %}
+                    },
+                {% endfor %}
+                ],
+            });
+            calendar.render();
+        });
+        </script>
+    </head>
+
+    <div id='calendar'></div>
+
+    <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="eventModalTitle"></h5>
+            <a class="btn btn-perso ms-2" style="display:none;" id="eventModalDetails">{% trans 'Details' %}</a>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="eventModalBody">
+              {% if calendar.editable == 'true' %}
+                  <span>{% trans 'Beginning' %}</span>
+                  <h5><input id="eventModalStartInput" type="datetime-local" name="start-input"></h5>
+                  <span>{% trans 'End' %}</span>
+                  <h5><input id="eventModalEndInput" type="datetime-local" name="end-input"></h5>
+              {% else %}
+                  <span>{% trans 'Beginning' %}</span>
+                  <h5 class="my-0" id="eventModalStart"></h5>
+                  <span>{% trans 'End' %}</span>
+                  <h5 id="eventModalEnd"></h5>
+              {% endif %}
+          </div>
+          <div class="modal-footer d-flex justify-content-between">
+              {% if calendar.editable == 'true' %}
+                <button class="btn btn-danger" id="eventModalDelete" onclick="deleteEvent(this)">{% trans 'Delete' %}</button>
+              {% endif %}
+            <div class="d-flex gap-2">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'Close' %}</button>
+                {% if calendar.editable == 'true' %}
+                    <button type="button" class="btn btn-perso" id="eventModalSave" onclick="updateEventFromModal(this)">{% trans 'Save' %}</button>
+                {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+

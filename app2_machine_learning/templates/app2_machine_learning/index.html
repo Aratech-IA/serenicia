@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Roboticia Dataset</title>
+</head>
+<body>
+    <h1>Active dataset
+    
+    {% for dt in list_dataset %}
+    <a href="dataset/{{dt}}">
+      <p>{{ dt }}</p>
+    </a>
+  {% endfor %}
+</h1>
+
+</body>
+</html>

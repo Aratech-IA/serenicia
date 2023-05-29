@@ -1,0 +1,72 @@
+{% extends "app4_ehpad_base/base.html" %}{% load i18n %}
+{% load static %}
+{% block content %}
+    <main class="d-flex flex-row">
+        <div>
+            {% include "./composant/navLeft.html" %}
+        </div>
+        <div class="container-fluid mt-2">
+        <h3>{% trans 'Create a invoice' %}</h3>
+            <div class="container mt-5">
+{#            <h3>{{ price }}</h3> lalla#}
+                <form method="post" action="{% url 'create_build_invoice' pkInvoice %}">{% csrf_token %}
+                        {{ prod_form.management_form }}
+
+                    {{ inv_form.as_p }}
+                    <hr>
+                    <div>
+                        {% for foo in prod_form %}
+                        {{ foo }}
+
+                        {% endfor %}
+
+
+{#                    {{ prod_form.as_p }}#}
+                                    <div class="input-group-append">
+                <button class="btn btn-perso add-form-row">+</button>
+            </div>
+                        <button id="ajax-call" type="submit"
+                       class="btn btn-perso col-1 m-3 p-2" >+</button>
+                    </div>
+{#                    {{ formInvoice.as_p }}#}
+                    <p id="ajax">
+                    <div class="row card">
+                        {#                                            {{ formRowInvoice }}#}
+                        {#                        <label> Select your benefit : </label>#}
+                        {#                    <select>#}
+                        {#                        <option value="dog">Dog</option>#}
+                        {#                    </select>#}
+                        {#                        Number : <input type="number">#}
+                    </div>
+                    </p>
+
+
+                    <br>
+                    <button class="btn btn-perso">{% trans 'Save' %}</button>
+                </form>
+                {% if is_created %}
+                    <br>
+                    <div class="d-flex flex-column justify-content-center align-items-center mb-5
+     border border-darkblue rounded-3 mx-auto py-3 created">
+                        <h4>{% trans 'Invoice created' %}</h4>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+    <script>
+        let numberForm = 0
+        $("#ajax-call").click(() => {
+            let html =  `<div class="row card" id="item-${numberForm}">{{ formRowInvoice | safe}}<a type="button" id="item-${numberForm}" onclick='deleteItem($(this).parent())' class="btn btn-danger">X</a></div>`
+            $("#ajax").append(html)
+            numberForm++
+        })
+
+        function deleteItem(element) {
+            console.log($(element))
+            $(element).remove()
+            numberForm--
+        }
+    </script>
+
+{% endblock content %}

@@ -1,0 +1,127 @@
+{% load i18n %}
+{% load static %}
+<div class="d-flex justify-content-around align-items-center">
+    {% for meal in meal_list %}
+    <div class="d-flex flex-column ps-xl-3" style="width: 230px">
+        <div class="bg-light p-3 rounded-3" style="border: 1px solid black">
+            <div class="col text-center text-wrap position-relative">
+                {% if meal.type == 'noon' %}
+                    <h4>{% trans "Lunch" %}</h4>
+                {% elif meal.type == 'evening' %}
+                    <h4>{% trans "Dinner" %}</h4>
+                {% endif %}
+                {% if meal.date == today %}
+                   <h6 class="text-muted">{% trans 'Today' %}</h6>
+                {% else %}
+                    <h6 class="text-muted">{% trans 'Yesterday' %}</h6>
+                {% endif %}
+                <hr class="mx-auto" width="70%">
+                {% if meal.entree %}
+                    <h5>{% trans "Entree" %}</h5>
+                    <span>{{ meal.entree }}</span>
+                {% endif %}
+                {% if meal.main_dish %}
+                    <hr class="mx-auto" width="20%">
+                    <h5>{% trans "Main course" %}</h5>
+                    <span>{{ meal.main_dish }}</span>
+                    {% if meal.accompaniment %}
+                        <br><span>{{ meal.accompaniment }}</span>
+                    {% endif %}
+                {% endif %}
+                {% if meal.dessert %}
+                    <hr class="mx-auto" width="20%">
+                    <h5>{% trans "Dessert" %}</h5>
+                    <span>{{ meal.dessert }}</span>
+                {% endif %}
+                {% if meal.dry_cheese %}
+                    <span>{% trans "dry cheese" %}</span>
+                    <br>
+                {% endif %}
+                {% if meal.cottage_cheese %}
+                    <span>{% trans "cottage cheese" %}</span>
+                    <br>
+                {% endif %}
+            </div>
+            {% if meal.type == 'noon' %}
+            {% if notation.noon %}
+            <hr class="w-50 mx-auto">
+            <div class="d-flex flex-column align-items-center">
+                <span>{% trans 'Resident' %}</span>
+                {% if notation.noon == 1 %}
+                    <img src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}"
+                         alt="{% trans 'very bad' %}" class="w-50">
+                {% elif notation.noon == 2 %}
+                    <img src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}"
+                         alt="{% trans 'bad' %}" class="w-50">
+                {% elif notation.noon == 3 %}
+                    <img src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}"
+                         alt="{% trans 'good' %}" class="w-50">
+                {% elif notation.noon == 4 %}
+                    <img src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}"
+                         alt="{% trans 'very good' %}" class="w-50">
+                {% endif %}
+            </div>
+            {% endif %}
+            {% if notation.noon_global %}
+                <hr class="w-50 mx-auto">
+                <div class="d-flex flex-column align-items-center">
+                    <span>{% trans 'All the guests' %}</span>
+                    {% if notation.noon_global == 1 %}
+                        <img src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}"
+                             alt="{% trans 'very bad' %}" class="w-50">
+                    {% elif notation.noon_global == 2 %}
+                        <img src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}"
+                             alt="{% trans 'bad' %}" class="w-50">
+                    {% elif notation.noon_global == 3 %}
+                        <img src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}"
+                             alt="{% trans 'good' %}" class="w-50">
+                    {% elif notation.noon_global == 4 %}
+                        <img src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}"
+                             alt="{% trans 'very good' %}" class="w-50">
+                    {% endif %}
+                </div>
+            {% endif %}
+            {% elif meal.type == 'evening' %}
+            {% if notation.evening %}
+            <hr class="w-50 mx-auto">
+            <div class="d-flex flex-column align-items-center">
+                <span>{% trans 'Resident' %}</span>
+                {% if notation.evening == 1 %}
+                    <img src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}"
+                         alt="{% trans 'very bad' %}" class="w-50">
+                {% elif notation.evening == 2 %}
+                    <img src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}"
+                         alt="{% trans 'bad' %}" class="w-50">
+                {% elif notation.evening == 3 %}
+                    <img src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}"
+                         alt="{% trans 'good' %}" class="w-50">
+                {% elif notation.evening == 4 %}
+                    <img src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}"
+                         alt="{% trans 'very good' %}" class="w-50">
+                {% endif %}
+            </div>
+            {% endif %}
+            {% if notation.evening_global %}
+            <hr class="w-50 mx-auto">
+            <div class="d-flex flex-column align-items-center">
+                <span class="text-center">{% trans 'All the guests' %}</span>
+                {% if notation.evening_global == 1 %}
+                    <img src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}"
+                         alt="{% trans 'very bad' %}" class="w-50">
+                {% elif notation.evening_global == 2 %}
+                    <img src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}"
+                         alt="{% trans 'bad' %}" class="w-50">
+                {% elif notation.evening_global == 3 %}
+                    <img src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}"
+                         alt="{% trans 'good' %}" class="w-50">
+                {% elif notation.evening_global == 4 %}
+                    <img src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}"
+                         alt="{% trans 'very good' %}" class="w-50">
+                {% endif %}
+            </div>
+            {% endif %}
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>

@@ -1,0 +1,104 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block sticky-top-btn %}
+  <a href="{% if redirect %}{{ redirect }}{% else %}{{ request.META.HTTP_REFERER }}{% endif %}" class="btn btn-perso sticky-top-btn d-none d-md-block m-2">{% trans 'Back' %}</a>
+{% endblock sticky-top-btn %}
+
+{% block content %}
+<head>
+    <style>
+        .rounded-profile-pic-large{
+            overflow: hidden;
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+        .rounded-profile-pic-small{
+            overflow: hidden;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+        }
+        .btn-icon{
+            height: 40px;
+            width: 40px;
+        }
+    </style>
+</head>
+
+
+<main class="container mt-2 d-flex flex-column align-items-center gap-3">
+    <div class="d-flex border border-darkblue rounded-3 p-2 gap-3">
+        <div class="d-flex gap-3 align-items-center">
+            <img class="rounded-profile-pic-large" src="{{ selected_user.profile.get_photo_url }}" alt="{% trans 'profile pic' %}">
+            <form action="" method="post" class="d-flex flex-column">{% csrf_token %}
+                <h3>{{ selected_user.get_full_name }}</h3>
+                {% if selected_user.is_active %}
+                    <h5 class="text-success">{% trans 'Active user' %}</h5>
+                    <div>
+                        <button class="btn btn-sm btn-outline-danger" name="active" value="0">{% trans 'Deactivate' %}</button>
+                    </div>
+                {% else %}
+                    <h5 class="text-danger">{% trans 'Inactive user' %}</h5>
+                    <div>
+                        <button class="btn btn-sm btn-perso" name="active" value="1">{% trans 'Activate' %}</button>
+                    </div>
+                {% endif %}
+            </form>
+        </div>
+        {% if tmp_assign %}
+            {% if residents %}
+                <form action="" method="post" class="d-flex flex-column justify-content-end gap-2">{% csrf_token %}
+                    <div class="d-flex flex-column text-center">
+                        <span class="fw-bold">{% trans 'Association request pending' %}</span>
+                        <span class="text-muted">{% trans 'Select the resident to associate' %}</span>
+                    </div>
+                    {% for resident in residents %}
+                        <div class="d-flex gap-3 align-items-center">
+                            <img class="rounded-profile-pic-small" src="{{ resident.profile.get_photo_url }}">
+                            <h5 class="m-0">{{ resident.get_full_name }}</h5>
+                            <button class="btn btn-sm" name="choice" value="{{ resident.id }}">
+                                <svg viewbox="0 0 16 16" class="bi bi-check-circle-fill btn-icon" fill="green">
+                                <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    {% endfor %}
+                </form>
+            {% else %}
+                <div class="d-flex flex-column justify-content-end text-center">
+                    <span class="fw-bold">{% trans 'Association request pending' %}</span>
+                    <span class="text-muted">{% trans 'The requested resident was not found in the database' %}</span>
+                    <h5 class="mt-2">{{ tmp_assign.first_name }} {{ tmp_assign.last_name }}</h5>
+                </div>
+            {% endif %}
+        {% elif residents %}
+            <div class="d-flex flex-column justify-content-end">
+                {% for resident in residents %}
+                    <div class="d-flex gap-3 align-items-center">
+                        <img class="rounded-profile-pic-small" src="{{ resident.get_photo_url }}">
+                        <h5>{{ resident.user.get_full_name }}</h5>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    <form action="" method="post" class="d-flex flex-wrap gap-2">{% csrf_token %}
+        {% for group in groups %}
+            <div class="d-flex justify-content-center justify-content-md-end gap-2 col-md-5 col-12 align-items-center">
+                <a href="{% url 'modify rights group' grp_id=group.id %}" class="fw-bold">{{ group.name }}</a>
+                <input type="radio" name="group" value="{{ group.id }}" {% if group in selected_user.groups.all %}checked{% endif %}>
+            </div>
+        {% endfor %}
+        <div class="d-flex justify-content-center w-100">
+            <button class="btn btn-perso" type="submit">
+                {% trans 'Save' %}
+            </button>
+        </div>
+    </form>
+</main>
+{% endblock content %}

@@ -1,0 +1,51 @@
+.protocol {
+    background-color: $lightblue;
+    height: 4em;
+}
+
+.protocolName {
+    background-color: white;
+    border: solid;
+    border-width: 0.2em;
+    border-color: $darkblue;
+    border-radius: 0.5em;
+    top: -1em;
+    width: 105%;
+    box-shadow: 2px 5px 5px $grey;
+}
+  
+.titreproto {
+    box-shadow: inset 0 -0.5em 0 $lightblue;
+}
+
+.deletebtn {
+    padding-bottom: 0.1em;
+}
+
+#checkbox-toggle{
+    display: none;
+}
+
+.dropdownProtocol #dropbtn {
+    background-color: $lightblue;
+    font-size: 0.2em;
+}
+
+.dropdown-content {
+    display: none;
+    background-color: white;
+    min-width: 160px;
+    overflow: auto;
+    z-index: 1;
+}
+
+.dropdown-content ul {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.show {
+    display: block;
+}

@@ -1,0 +1,37 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+{% load i18n %}
+
+{% block content %}
+
+<main class="container mt-3">
+    <div>
+        <form action="" method="post" name="prefs" class="d-flex flex-column align-items-center">{% csrf_token %}
+
+            <div id="preference-content">
+                {% for field in prefs %}
+                    <div class="d-flex flex-column flex-sm-row align-items-center justify-content-sm-between border-bottom border-2">
+                        <p>{{ field.label }}</p>
+                        <p class="form-switch">{{ field }}</p>
+                    </div>
+                {% endfor %}
+                {% for field in prefs_j %}
+                    <div class="d-flex flex-column flex-sm-row align-items-center justify-content-sm-between border-bottom border-2 pt-3">
+                        <p class="text-center">{{ field.label }}</p>
+                        {% if field.name == 'interventions' and interventions_force_display %}
+                            <p class="text-muted">{{ interventions_force_display }}</p>
+                        {% else %}
+                            <p class="form-switch">{{ field }}</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="d-flex justify-content-center pt-3">
+                <button type="submit" name="prefs" class="btn btn-perso">
+                    {% trans 'Save' %}
+                </button>
+            </div>
+        </form>
+    </div>
+</main>
+{% endblock %}

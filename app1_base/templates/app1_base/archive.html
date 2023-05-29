@@ -1,0 +1,38 @@
+{% extends "app1_base/base.html" %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+
+{% if connected %}
+        <div class="container">
+
+            <div class="text-center">
+            <h2 class="section-title">{% trans 'Video' %}</h2>
+        </div>
+            <div class="text-center border border-darkblue rounded p-2">
+                <form action="{% url 'video' %}" method="post">{% csrf_token %}<input type="hidden"
+                                                                                                  name="type"
+                                                                                                  value="auto">
+                    <div class="container d-flex flex-column gap-3 mb-3">
+                        <div class="col">
+                            <label for="{{ archive_form.camera.label }}">Camera : </label>
+                            {{ archive_form.camera }}
+                        </div>
+                        <div class="col">
+                            <label for="{{ archive_form.hour.label }}">{% trans 'Horaire' %} : </label>
+                            {{ archive_form.hour }}
+                        </div>
+                        <div class="col">
+                            <label for="{{ archive_form.minute.label }}">{% trans 'Minute' %} : </label>
+                            {{ archive_form.minute }}
+                        </div>
+                        <div class="col">
+                            <button type="submit" name="valid_archive" value="ok"
+                                    class="btn btn-perso">{% trans 'Watch archive' %}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    {% endif %}
+{% endblock content %}

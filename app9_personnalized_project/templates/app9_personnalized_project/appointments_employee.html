@@ -1,0 +1,73 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+    <head>
+        <style>
+            .profile-pic{
+                height: 60px;
+                width: 60px;
+                object-fit: cover;
+                border-radius: 50%;
+            }
+            .svg-icon{
+                width: 20px;
+                height: 20px;
+            }
+        </style>
+    </head>
+
+    <main class="d-flex flex-wrap justify-content-center gap-3 mt-2">
+        {% for app in appointments %}
+            <div class="rounded-3 p-3 bg-lightblue">
+                <div class="d-flex flex-column align-items-center">
+                    <h5 class="d-flex flex-column align-items-center">
+                        <span>{{ app.start|date:"l j F" }}</span>
+                        <span>{{ app.start|date:"H:i" }} - {{ app.end|date:"H:i" }}</span>
+                    </h5>
+                    <div class="d-flex justify-content-between align-items-center">
+                        {% if app.resident.photo %}
+                            <img src="{{ app.resident.photo.url }}" class="profile-pic">
+                        {% endif %}
+                        <span>{{ app.resident.user.profile.civility }} {{ app.resident.user.first_name.0 }} {{ app.resident.user.last_name }}</span>
+                    </div>
+                    <hr class="w-75 mx-auto">
+                    <h5>{% trans 'Participant' %}{{ app.participants|pluralize }}</h5>
+                    <div class="d-flex flex-column align-items-center gap-2">
+                        {% for participant in app.participants %}
+                            <div class="d-flex flex-column align-items-center">
+                                <span class="fw-bold">{{ participant.profileserenicia.user.get_full_name }}</span>
+                                <div class="d-flex gap-2">
+                                {% if participant.by_video %}
+                                    <span>{% trans 'From a distance' %}</span>
+                                    <div>
+                                        <svg viewBox="0 0 16 16" class="bi bi-display svg-icon svg-icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5.75 13.5c.167-.333.25-.833.25-1.5h4c0 .667.083 1.167.25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75z"/>
+          <path fill-rule="evenodd" d="M13.991 3H2c-.325 0-.502.078-.602.145a.758.758 0 0 0-.254.302A1.46 1.46 0 0 0 1 4.01V10c0 .325.078.502.145.602.07.105.17.188.302.254a1.464 1.464 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.758.758 0 0 0 .254-.302 1.464 1.464 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.757.757 0 0 0-.302-.254A1.46 1.46 0 0 0 13.99 3zM14 2H2C0 2 0 4 0 4v6c0 2 2 2 2 2h12c2 0 2-2 2-2V4c0-2-2-2-2-2z"/>
+        </svg>
+                                    </div>
+                                {% else %}
+                                    <span>{% trans 'In the presence' %}</span>
+                                    <div>
+                                        <svg viewBox="0 0 16 16" class="bi bi-person-circle svg-icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
+          <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+          <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
+        </svg>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <form action="" method="post" class="d-flex justify-content-end mt-3">{% csrf_token %}
+                    <button class="btn btn-sm btn-outline-danger" name="delete" value="{{ app.planning_id }}">
+                        {% trans 'Delete' %}
+                    </button>
+                </form>
+            </div>
+        {% endfor %}
+    </main>
+{% endblock content %}

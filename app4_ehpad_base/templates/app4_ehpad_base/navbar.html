@@ -1,0 +1,226 @@
+{% load static %}
+{% load i18n %}
+
+<head>
+    <title>{% trans 'Navbar' %}</title>
+</head>
+
+
+<!-- Barre Navigation -->
+<nav class="navbar bg-light navbar-light bg-light py-1">
+    <div class="container-fluid px-2">
+        <div class="d-flex">
+            <!-- Bouton menu burger -->
+            <button onclick="togglenavbar()" id="burger" class=" bg-light border-0 p-0 ps-sm-2 d-lg-none" type="button">
+                <svg width="1.9em" height="1.9em" viewbox="0 0 40 40">
+                    <g>
+                        <line x1="8" y1="12" x2="32" y2="12" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="1.6"/>
+                        <line x1="8" y1="20" x2="32" y2="20" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="1.6"/>
+                        <line x1="8" y1="28" x2="20.8" y2="28" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="1.6"/>
+                    </g>
+                </svg>
+            </button>
+
+            <!-- Bouton "qui est-ce" "photos" -->
+            <div class="boutons_ronds d-flex justify-content-between ps-2 ps-lg-0">
+                
+                {% if not perms.app0_access.view_family %}
+                    {% if not perms.app0_access.view_synerpa %}
+                        <!-- Qui est-ce ? -->
+                        <a href="{% url 'face reco' %}" class="recobtn d-flex justify-content-center align-items-center disabled {% if '/identification/' in request.path %}active cerclenom{% endif %}">
+                            <p class="who">?</p>
+                            <span>{% trans 'Who is it' %} ?</span>
+                        </a>
+                    {% endif %}
+                {% endif %}
+
+                {% if perms.app0_access.view_photostaff %}
+                    <!-- Photos -->
+                    <div class="dropdown_photo dropdown d-flex justify-content-center align-items-center cerclenom ms-1 ms-lg-2">
+                        <ul class="navbar-nav mb-lg-0">
+                            <li class="nav-item">
+                                <!-- photo -->
+                                <a class="dropdown-toggle" type="button" id="dropdownPhoto" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="{% static 'app4_ehpad_base/img/camera-fill.svg' %}" alt="{% trans 'Camera icon' %}">
+                                    <span>{% trans "Take pictures" %} !</span>
+                                </a>
+                                <!-- Liens dropdown -->
+                                <ul class="dropdown-menu ms-4 mt-5" aria-labelledby="dropdownPhoto">
+                                    {% if form_photo %}
+                                        <form method="post" action="{% url 'personal page' %}" enctype="multipart/form-data">{% csrf_token %}
+                                            {% for field in form_photo %}{{ field }}{% endfor %}
+                                            <label for="id_photo_from_staff">
+                                                <li><span class="dropdown-item">{% trans 'Private photo' %}</span></li>
+                                            </label>
+                                        </form>
+                                    {% else %}
+                                        <li><span class="dropdown-item disabled">{% trans 'Private photo' %}</span></li>
+                                    {% endif %}
+                                    
+                                    {% if form_photo_sensitive %}
+                                        <form method="post" action="{% url 'personal page' %}" enctype="multipart/form-data">{% csrf_token %}
+                                            {% for field in form_photo_sensitive %}{{ field }}{% endfor %}
+                                            <label for="id_photo_sensitive">
+                                                <li><span class="dropdown-item">{% trans 'Sensitive photo' %}</span></li>
+                                            </label>
+                                        </form>
+                                    {% else %}
+                                        <li><span class="dropdown-item disabled">{% trans 'Sensitive photo' %}</span></li>
+                                    {% endif %}
+
+                                    <form method="post" action="{% url 'public photo form' %}" enctype="multipart/form-data">{% csrf_token %}
+                                        <input hidden name="redirect_url" value="{{ request.redirect_url }}">
+                                        {% for field in request.public_photo_form %}{{ field }}{% endfor %}
+                                        <label for="public_photo_nav_btn">
+                                            <li><span class="dropdown-item">{% trans 'Public photo' %}</span></li>
+                                        </label>
+                                    </form>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+        
+
+        <!-- Logo de la société -->
+        <div class="d-flex align-items-center ps-lg-2">
+            <a class="navbar-brand text-uppercase font-weight-bold p-0 m-0" href="{% url 'app4_ehpad_base index' %}">
+                {% if perms.app0_access.view_synerpa %}
+                    <img src="{% static 'app4_ehpad_base/img/Logo_Serenicia_Synerpa.svg' %}" class="navbar-brand-img">
+                {% else %}
+                    <img src="{% static 'app4_ehpad_base/img/serenicia.png' %}" class="navbar-brand-img">
+                {% endif %}
+            </a>
+        </div>
+
+        <!-- Bouton alert -->
+        {% if ALERT %}
+            {% if perms.app0_access.view_care %}
+                <form action="{% url 'select resident' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="rooms" value="alerts">
+                    <button type="submit" class="btn btn-danger px-2 py-1">
+                        <svg
+                            width="1.4em"
+                            height="1.4em"
+                            fill="currentColor"
+                            class="bi bi-exclamation-triangle-fill"
+                            viewbox="0 0 16 16">
+                            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                        </svg>
+                    </button>
+                </form>
+            {% endif %}
+        {% endif %}
+
+        <!-- prénom.nom de la personne connectée -->
+        <a onclick="togglenamemenu()" class="clicnom position-relative d-flex flex-column justify-content-center align-items-center mt-1">
+            {{ user.get_username }}
+            <img src="{% static 'app4_ehpad_base/img/angle-down-solid.svg' %}" alt="{% trans 'Arrow' %}" width="10em">
+            {% if request.session.unopened_messages > 0 or request.session.unopened_notifs > 0 %}
+                <span id="notif_unopened" class="position-absolute p-2 {% if request.session.urgent_msg %}bg-danger{% else %}bg-lightblue{% endif %} rounded-circle notif_unopened">
+                </span>
+            {% endif %}
+        </a>
+        
+    </div>
+</nav>
+
+
+<script>
+
+    // Menu clic nom.prénom qui apparait
+    function togglenamemenu() {
+        var menu_clicnom = document.getElementById("menu_clicnom");
+
+        if (menu_clicnom.classList.contains('menu_nom_transition')) {
+            menu_clicnom.classList.remove('menu_nom_transition');
+        } else {
+            menu_clicnom.classList.add('menu_nom_transition');
+        }
+    }
+
+
+    // Ouverture et fermeture du menu navbar
+    function togglenavbar() {
+
+        var sidebar = document.getElementById('menu_burger');
+        if (sidebar.classList.contains('visible')) {
+            sidebar.classList.remove('visible');
+            localStorage.setItem('sidebarVisible', 'false');
+        } else {
+            sidebar.classList.add('visible');
+            localStorage.setItem('sidebarVisible', 'true');
+        }
+    }
+
+
+    // Ouverture des sous-menus dans la barre de navigation burger
+
+    function togglesociallife() {
+        var social_life_menu = document.getElementById("social_life_menu");
+        if (social_life_menu.classList.contains('d-none')) {
+            social_life_menu.classList.remove('d-none');
+        } else {
+            social_life_menu.classList.add('d-none');
+        }
+    }
+
+    function togglecommunication() {
+        var communication_menu = document.getElementById("communication_menu");
+        if (communication_menu.classList.contains('d-none')) {
+            communication_menu.classList.remove('d-none');
+        } else {
+            communication_menu.classList.add('d-none');
+        }
+    }
+
+    function togglemyopinion() {
+        var myopinion_menu = document.getElementById("myopinion_menu");
+        if (myopinion_menu.classList.contains('d-none')) {
+            myopinion_menu.classList.remove('d-none');
+        } else {
+            myopinion_menu.classList.add('d-none');
+        }
+    }
+
+    function toggleproject() {
+        var project_menu = document.getElementById("project_menu");
+        if (project_menu.classList.contains('d-none')) {
+            project_menu.classList.remove('d-none');
+        } else {
+            project_menu.classList.add('d-none');
+        }
+    }
+
+    // function toggleadministrative() {
+    //     var administrative_menu = document.getElementById("administrative_menu");
+    //     if (administrative_menu.classList.contains('d-none')) {
+    //         administrative_menu.classList.remove('d-none');
+    //     } else {
+    //         administrative_menu.classList.add('d-none');
+    //     }
+    // }
+
+    function togglecare() {
+        var care_menu = document.getElementById("care_menu");
+        if (care_menu.classList.contains('d-none')) {
+            care_menu.classList.remove('d-none');
+        } else {
+            care_menu.classList.add('d-none');
+        }
+    }
+
+    function togglequality() {
+        var quality_menu = document.getElementById("quality_menu");
+        if (quality_menu.classList.contains('d-none')) {
+            quality_menu.classList.remove('d-none');
+        } else {
+            quality_menu.classList.add('d-none');
+        }
+    }
+    
+</script>

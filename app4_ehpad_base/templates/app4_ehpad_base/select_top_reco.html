@@ -1,0 +1,80 @@
+{% extends "app4_ehpad_base/base.html" %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+<style>
+    .none-pic{
+        width: 150px;
+        max-height: 200px;
+    }
+</style>
+
+<div class="container mt-2">
+    <div class="d-flex flex-wrap gap-2 justify-content-center">
+        {% for profileserenicia in list_prof %}
+            <button class="btn btn-perso" onclick="validation('modal{{ profileserenicia.id }}', '{{ profileserenicia.folder }}')">
+                <div>
+                    <div>
+                        {% if profileserenicia.user.profile.photo %}
+                            <img src="{{ profileserenicia.user.profile.photo.url }}" class="rounded-3">
+                        {% endif %}
+                    </div>
+                    <div>
+                        {% if profileserenicia.user.profile.civility %}{{ profileserenicia.user.profile.civility }}{% endif %} {{ profileserenicia.user.first_name.0 }}. {{ profileserenicia.user.last_name }}
+                    </div>
+                </div>
+            </button>
+            <div class="modal fade" id="modal{{ profileserenicia.id }}" tabindex="-1" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">{% trans 'Thanks for your help' %} !</h5>
+                  </div>
+                  <div class="modal-body">
+                    {% trans 'Your selection has been registered' %}
+                  </div>
+                  <div class="modal-footer">
+                    <a href="{% url 'app4_ehpad_base index' %}" class="btn btn-perso">{% trans 'Home' %}</a>
+                      <form action="" method="post">{% csrf_token %}
+                        <input type="hidden" name="user_id" value="{{ profileserenicia.user.id }}">
+                        <button type="submit" class="btn btn-perso">{% trans 'Ok' %}</button>
+                      </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+        {% endfor %}
+        <a href="{% url 'app4_ehpad_base index' %}" class="btn btn-outline-warning d-flex flex-column justify-content-between">
+            <div class="d-flex h-100 align-items-center">
+                <div class="none-pic">
+                    <svg viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
+                      <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                      <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
+                    </svg>
+                </div>
+            </div>
+            <span>{% trans 'None of them' %}</span>
+            <span>({% trans 'back to home' %})</span>
+        </a>
+    </div>
+</div>
+
+<script>
+async function validation(modal_id, folder){
+    var url_fetch = "{{ FACIAL_RECO_IP }}" + 'confirm_face/' + folder + '/' + '{{ unique_key }}' + '/';
+    var result = await fetchWithTimeout(url_fetch, {method: "GET",})
+           .then(response => {
+            return response.json();
+            })
+        .catch(error => {
+            return 'error';
+            });
+    var modal = new bootstrap.Modal(document.getElementById(modal_id), {keyboard: false, backdrop: 'static'});
+    modal.toggle();
+    console.log(result);
+};
+</script>
+{% endblock %}

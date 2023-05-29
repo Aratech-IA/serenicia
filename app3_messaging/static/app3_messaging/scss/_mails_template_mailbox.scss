@@ -1,0 +1,41 @@
+// .form-check-input:checked{
+//     background-color: #93a9d2;
+//     border-color: #93a9d2;
+// }
+// .danger:checked{
+// background-color: red;
+// border-color: red;
+// }
+// .btn-danger:hover{
+// background-color:red !important;
+// color:white!important;
+// }
+// .accordion-button:not(.collapsed) {
+// color: #93a9d2;
+// background-color: rgb(222, 226, 230);
+// }
+
+
+#accordionMailbox {
+    .alert-info {
+        width: 700px;
+        margin: auto;
+    }
+
+    .accordion-button {
+        cursor: pointer;
+    }
+
+    .infos {
+        font-size: 13px;
+        color: gray;
+        margin-left: 10px;
+        text-align: right;
+        margin-right: 10px;
+    }
+
+    .infos2 {
+        font-size: 13px;
+        text-align: center;
+    }
+}

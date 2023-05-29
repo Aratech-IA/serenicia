@@ -1,0 +1,72 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block sticky-top-btn %}
+    <a href="{% url 'support project answering' survey_id=survey %}" class="btn btn-perso sticky-top-btn d-none d-md-block m-2">{% trans 'Back' %}</a>
+{% endblock sticky-top-btn %}
+
+{% block content %}
+<style>
+    .bi-plus{
+        width: 30px;
+        height: auto;
+    }
+    .photo-resident{
+        height: 80px;
+        width: 80px;
+        border-radius: 100px;
+        object-fit: cover;
+        overflow: hidden;
+    }
+    .sticky-back-btn{
+        width: 160px;
+    }
+    .bg-deceased{
+        background-color: #d3d3d3;
+    }
+</style>
+
+<main class="container mt-5 mt-sm-2">
+    {% if preview %}
+    <div class="d-flex flex-column align-items-center gap-2 border border-darkblue rounded-3 p-2">
+            <div>
+                <img class="img-fluid" src="data:image/png;base64,{{ preview }}" alt="{% trans 'Preview' %}">
+            </div>
+            <a href="{% url 'download family' family=family %}" class="btn btn-perso">{% trans 'Download PDF' %}</a>
+        </div>
+    {% endif %}
+    <div class="d-flex flex-column gap-2 mt-2">
+        {% for list_person in list_generation %}
+            <div class="d-flex flex-wrap justify-content-center gap-2">
+                {% for person in list_person %}
+                    <div class="d-flex justify-content-center">
+                        <div class="d-inline-flex flex-column border border-darkblue rounded-3 p-2 person-card {% if person.deceased %}bg-deceased{% endif %}">
+                            <div class="d-flex flex-column text-center">
+                                <div>
+                                    <img src="{{ person.get_photo_url }}" class="photo-resident">
+                                </div>
+                                <h6>{{ person.get_full_name }}</h6>
+                                {% if person.birth %}
+                                    <span>{{ person.birth }}</span>
+                                {% endif %}
+                                {% if person.death %}
+                                    <span>{{ person.death }}</span>
+                                {% endif %}
+                            </div>
+                            <div class="d-flex justify-content-center align-items-end h-100">
+                                <a href="{% url 'person details' family=person.family.id person_id=person.id %}" class="btn btn-sm btn-perso">
+                                    {% trans 'Modify' %}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            {% if not forloop.last %}
+                <hr class="w-50 mx-auto">
+            {% endif %}
+        {% endfor %}
+    </div>
+</main>
+{% endblock content %}

@@ -1,0 +1,95 @@
+.thumb-modal {
+    max-width: 300px;
+    max-height: 300px;
+}
+.photo-full{
+    max-height: 100%;
+    max-width: 100%;
+}
+.photo-full-modal{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.modalface{
+    max-width: 60px;
+    height: auto;
+}
+.framed{
+    height: 112.5px;
+    min-width: 112.5px;
+}
+
+.noteselection {
+    background: none !important;
+    border: none;
+    font-family: arial, sans-serif;
+    color: black;
+}
+
+.nsverybad:hover {
+    text-decoration: underline overline;;
+    color: #dc3545;
+}
+
+.nsbad:hover {
+    text-decoration: underline overline;;
+    color: #ffc107;
+}
+
+.nsgood:hover {
+    text-decoration: underline overline;;
+    color: #0d6efd;
+}
+
+.nsverygood:hover {
+    text-decoration: underline overline;;
+    color: #93a9d2;
+}
+
+.sortby {
+    background: none;
+    border: none;
+    font-family: arial, sans-serif;
+    color: black;
+}
+
+.sortby:hover {
+    background-color: $darkblue;
+}
+
+.activesortby {
+    background-color: $lightblue;
+}
+
+.evalface{
+    width: 10%;
+}
+
+.hlface{
+    width: 12% !important;
+}
+
+.globalface{
+    width: 10%;
+}
+
+.eval_container{
+    width: 450px;
+}
+
+.staff-pic{
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.staff-pic-div{
+    max-width: 250px;
+}
+
+.staff-pic-full{
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+}

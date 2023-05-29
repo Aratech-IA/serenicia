@@ -1,0 +1,26 @@
+{% extends 'app4_ehpad_base/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+
+<div>
+    <h3 class="text-center">{% trans 'Reporting Panel' %}</h3>
+</div>
+
+{% for icon_bar in icon_bars %}
+<div>
+
+</div>
+    {% for icon in icon_bar %}
+<div>
+
+</div>
+    {% endfor %}
+{%endfor %}
+
+{% endblock content %}
+
+{% block endscript %}
+
+{% endblock endscript %}

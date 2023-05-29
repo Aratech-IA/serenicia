@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+{% load static %}
+{% load i18n %}
+{% load custom_filters_app13 %}
+<html>
+
+<head id="header">
+    <title>Serenicia</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="google" content="notranslate">
+    <!-- <link rel="stylesheet" href="{% static 'app1_base/css/bootstrap.css' %}"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="{% static 'app1_base/css/style.css' %}"> -->
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Roboto+Slab&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+
+    <!-- Bootstrap SCSS -->
+    <!-- {% load compress %}
+
+    {% compress css %} 
+        <link type="text/x-scss" href="{% static 'app10_social_activities/scss/main.scss' %}" rel="stylesheet" media="screen">
+    {% endcompress %} -->
+
+    {% include 'app13 _resident/css.html'%}
+
+</head>
+
+{% language request.user|check_language %}
+<body class="vh-100 pt-0 bg-lightgrey d-flex justify-content-center">
+    {% block content %}{% endblock content %}
+    {% endlanguage %}
+    <div class="d-flex vh-100 videochatrule">
+
+

@@ -1,0 +1,110 @@
+{% extends "app3_messaging/mails_base.html" %}
+{% load static %}
+{% load i18n %}
+{% load custom_filters %}
+
+{% block content %}
+
+<main class="m-3">
+<!--        CSRF IS NEEDED TO SEND COOKIE WHEN WE OPEN THE EMAIL, DONT TAKE IT OFF-->
+    {% csrf_token %}
+    <div class="tab-content" id="myTabContentSent">
+        <div class="tab-pane fade show active" id="sent" role="tabpanel" aria-labelledby="sent-tab">
+            <div class="list-group">
+                <div class="accordion" id="accordionsent">
+                    {% if page_obj_sent|length == 0 %}
+                        <div class="alert alert-info" role="alert">
+                        {% trans 'You have yet to send any Message' %}.
+                        </div>
+                    {% endif %}
+                    {% for mail in page_obj_sent %}
+                    <div class="accordion-item">
+                        <div class="accordion-header row" id="headingsent{{forloop.counter}}">
+                            <div class="accordion-button padding-sent collapsed d-flex cursorpointer" data-bs-toggle="collapse" data-bs-target="#collapsesent{{forloop.counter}}" aria-expanded="false" aria-controls="collapsesent{{forloop.counter}}">
+                                <p class="style1 col-2 mb-0 p-2">
+                                    &nbsp;&nbsp;{{ mail.date_sent }}
+                                </p>
+
+                                <p class="col-8 mb-0">
+                                    {{ mail.subject }}
+                                    {% for tag in mail.tags.all %}
+                                        <span class="badge rounded-pill bg-lightblue">{{tag.name}}</span>
+                                    {% endfor %}
+                                </p>
+
+                                <p class="style1 style2 col-2 mb-0">
+                                    {{mail.number_opened}} {% trans 'opened' %} /{% with number=mail.intermediate_set.all|length %}{{ number|add:'-1' }}{% endwith%} {% trans 'sent' %}
+                                </p>
+                            </div>
+                        </div>
+                        <div id="collapsesent{{forloop.counter}}" class="accordion-collapse collapse"
+                             aria-labelledby="headingsent{{forloop.counter}}" data-parent="#accordionsent">
+                            <div class="accordion-body bg-white">
+                                <input type="checkbox" id="expanded{{forloop.counter}}" onclick="clamping(this, recipients_list{{ forloop.parentloop.counter }})" hidden>
+                                <p class="reduced recipients_list" id="recipients_list{{ forloop.parentloop.counter }}">
+                                    <span class="fw-bold">
+                                        {% trans 'Sent to' %} :
+                                    </span>
+                                    {% for intermediate in mail.intermediate_set.all %}
+                                        {% if user.username != intermediate.recipient.username %}
+                                            <span class="senderrecipients"
+                                                  style="{% if intermediate.date_opened %}color:gray;{% endif %}{% if perms.app0_access.view_family and intermediate.recipient.email %}text-decoration: underline;{%endif%}"
+                                                  {% if intermediate.date_opened and perms.app0_access.view_family and intermediate.recipient.email %}
+                                                        title="{% trans 'Opened on' %} {{intermediate.date_opened}} | {% trans 'Notified by e-mail on' %} {{intermediate.recipient.email}}"
+                                                  {% else %}
+                                                      {% if intermediate.date_opened %}
+                                                        title="{% trans 'Opened on' %} {{intermediate.date_opened}}"
+                                                      {% elif perms.app0_access.view_family and intermediate.recipient.email %}
+                                                        title="{% trans 'Notified by e-mail on' %} {{intermediate.recipient.email}}"
+                                                      {% endif %}
+                                                  {% endif %}>
+
+                                                {% if intermediate.user_type != 'sender' and intermediate.user_type != 'default' %}
+                                                {{intermediate.user_type}} : {% endif %}{{intermediate.recipient.username}}
+
+                                            </span>
+                                            {% if forloop.last %}.{% else %}, {% endif %}
+                                        {%endif%}
+                                    {% endfor %}
+                                </p>
+                                <label for="expanded{{forloop.counter}}" role="button" class="btn btn-perso showing">{% trans 'See more' %}</label>
+                                <label for="expanded{{forloop.counter}}" role="button" class="btn btn-perso hiding d-none">{% trans 'See less' %}</label>
+                                <hr>
+                                <div class="style3">
+                                {{ mail.content|safe }}
+                                </div>
+                                {% if mail.intraemailattachment_set.all %}
+                                <hr>
+                                <span class="fw-bold">{% trans 'Attachments' %}:</span>
+                                {% for file in mail.intraemailattachment_set.all %}
+                                <a href="{{ file.attachment.url }}" class="text-center" download>
+                                    {% if file.name %}{{ file.name }}{% else %} {% trans 'Attachment' %} {{forloop.counter}}{% endif %}
+                                </a>{% if forloop.last %}.{% else %},{% endif %}&nbsp;{% endfor %}{% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="style4">
+                    <ul class="step-links pagination" >
+                        {% if page_obj_sent.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?page_sent=1">&laquo; </a></li>
+                        <li class="page-item"><a class="page-link" href="?page_sent={{ page_obj_sent.previous_page_number }}">{{ page_obj_sent.previous_page_number }}</a></li>
+                        {% endif %}
+                        <li class="page-item">
+                            <a href="" class="current page-link bg-grey">
+                                {{ page_obj_sent.number }}
+                            </a>
+                        </li>
+                        {% if page_obj_sent.has_next %}
+                        <li class="page-item"><a class="page-link" href="?page_sent={{ page_obj_sent.next_page_number }}">{{ page_obj_sent.next_page_number }}</a></li>
+                        <li class="page-item"><a class="page-link" href="?page_sent={{ page_obj_sent.paginator.num_pages }}"> &raquo;</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

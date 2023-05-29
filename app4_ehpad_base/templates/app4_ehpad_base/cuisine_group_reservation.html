@@ -1,0 +1,74 @@
+{% extends "app4_ehpad_base/base.html" %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+
+
+<div class="container">
+    <div id="maindiv" class="mx-auto">
+        <form action="{% url 'Meal booking group' %}" method="post" class="border border-darkblue rounded-3 py-3">{% csrf_token %}
+            {% if save_update %}
+                <input hidden name="save_update" value="{{ save_update }}">
+            {% endif %}
+            <div class="d-flex justify-content-center mx-auto">
+                {{ form.date }}
+            </div>
+            <div class="d-flex justify-content-evenly mt-3">
+                {{ form.lunch }}
+                <label class="btn btn-perso" for="{{ form.lunch.id_for_label }}">{% trans 'Lunch' %}</label>
+                {{ form.dinner }}
+                <label class="btn btn-perso" for="{{ form.dinner.id_for_label }}">{% trans 'Dinner' %}</label>
+            </div>
+            <hr class="w-50 mx-auto">
+            <div class="row text-center">
+                <span>{% trans 'Number of guest' %}</span>
+                <span class="text-muted">{% trans 'Exclude yourself' %}</span>
+            </div>
+            <div class="d-flex align-items-center justify-content-center mb-3">
+                {{ form.other_guests }}
+            </div>
+            <div class="d-flex justify-content-evenly">
+                <a href="{% url 'Meal booking employee' %}" class="btn btn-perso">{% trans 'Back' %}</a>
+                <button class="btn btn-perso">{% trans 'Save' %}</button>
+            </div>
+        </form>
+        <div class="border border-darkblue rounded-3 py-3">
+            {% for booking in next_booking|dictsort:'dinner'|dictsort:'date' %}
+                <a class="d-flex justify-content-center gap-3" href="#booking{{ booking.id }}" data-bs-toggle="modal">
+                    <span>{{ booking.date }} {% if booking.lunch %}{% trans 'Lunch' %} {% endif %}{% if booking.dinner %}{% trans 'Diner' %}{% endif %}</span>
+                    <span>{% trans 'Total' %} : {{ booking.other_guests|add:1 }}</span>
+                </a>
+                <!-- Modal booking -->
+                <div class="modal fade" id="booking{{ booking.id }}" tabindex="-1" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">{{ booking.date }} {% if booking.lunch %}{% trans 'Lunch' %} {% endif %}{% if booking.dinner %}{% trans 'Diner' %}{% endif %}</h5>
+                      </div>
+                      <div class="modal-body d-flex flex-column align-items-center">
+                          <div>
+                              {% trans ' Seized by' %} : <span class="fw-bold">{{ booking.owner.user.last_name }} {{ booking.owner.user.first_name }}</span>
+                          </div>
+                          <div>
+                              {% trans 'Total of guests' %}:  <span class="fw-bold">{{ booking.other_guests|add:1 }}</span>
+                          </div>
+
+                      </div>
+                      <form class="modal-footer" action="{% url 'Meal booking group' %}" method="post">{% csrf_token %}
+                          <button class="btn btn-outline-danger" name="delete" value="{{ booking.id }}">{% trans 'Delete' %}</button>
+                          <button class="btn btn-perso" name="update" value="{{ booking.id }}">{% trans 'Modify' %}</button>
+                          <button type="button" class="btn btn-perso" data-bs-dismiss="modal">{% trans 'Close' %}</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                {% if not forloop.last %}
+                    <hr class="mx-auto w-50">
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

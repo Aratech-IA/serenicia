@@ -1,0 +1,11 @@
+{% extends "app3_messaging/mails_base.html" %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+    <div class="alert alert-warning" role="alert"
+     style="width:700px; margin: 100px auto;text-align:center;">
+        <div>{% trans "Your choice has been saved with success." %}</div>
+    </div>
+{% endblock content%}

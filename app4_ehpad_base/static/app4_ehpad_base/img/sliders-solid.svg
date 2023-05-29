@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 512 480"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="sliders-solid.svg"
+   width="512"
+   height="480"
+   inkscape:export-filename="C:\Users\nico-\Google Drive (nicolas.lambert@serenicia.net)\Sérénicia\Icones\sliders-solid.png"
+   inkscape:export-xdpi="18.75"
+   inkscape:export-ydpi="18.75"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+  <metadata
+     id="metadata10">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs8" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     id="namedview6"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="0.5814296"
+     inkscape:cx="350.29732"
+     inkscape:cy="236.57047"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4" />
+  <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+  <path
+     d="m 0,400 c 0,-17.7 14.3,-32 32,-32 h 54.7 c 12.3,-28.3 40.5,-48 73.3,-48 32.8,0 61,19.7 73.3,48 H 480 c 17.7,0 32,14.3 32,32 0,17.7 -14.3,32 -32,32 H 233.3 C 221,460.3 192.8,480 160,480 127.2,480 99,460.3 86.7,432 H 32 C 14.3,432 0,417.7 0,400 Z m 192,0 c 0,-17.7 -14.3,-32 -32,-32 -17.7,0 -32,14.3 -32,32 0,17.7 14.3,32 32,32 17.7,0 32,-14.3 32,-32 z M 384,240 c 0,-17.7 -14.3,-32 -32,-32 -17.7,0 -32,14.3 -32,32 0,17.7 14.3,32 32,32 17.7,0 32,-14.3 32,-32 z m -32,-80 c 32.8,0 61,19.7 73.3,48 H 480 c 17.7,0 32,14.3 32,32 0,17.7 -14.3,32 -32,32 h -54.7 c -12.3,28.3 -40.5,48 -73.3,48 -32.8,0 -61,-19.7 -73.3,-48 H 32 C 14.3,272 0,257.7 0,240 0,222.3 14.3,208 32,208 H 278.7 C 291,179.7 319.2,160 352,160 Z M 192,48 c -17.7,0 -32,14.3 -32,32 0,17.7 14.3,32 32,32 17.7,0 32,-14.3 32,-32 0,-17.7 -14.3,-32 -32,-32 z m 73.3,0 H 480 c 17.7,0 32,14.3 32,32 0,17.7 -14.3,32 -32,32 H 265.3 c -12.3,28.3 -40.5,48 -73.3,48 -32.8,0 -61,-19.7 -73.3,-48 H 32 C 14.3,112 0,97.7 0,80 0,62.3 14.3,48 32,48 h 86.7 C 131,19.7 159.2,0 192,0 c 32.8,0 61,19.7 73.3,48 z"
+     id="path2" />
+</svg>

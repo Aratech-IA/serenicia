@@ -1,0 +1,24 @@
+{% extends "app4_ehpad_base/base.html" %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+
+<main class="main-size p-1">
+    <div class="d-flex justify-content-center h-100">
+        {% if '/resident/' in request.META.HTTP_REFERER %}
+            <form action="{% url 'personal page' %}" method="post" class="h-100">
+                {% csrf_token %}
+                <input hidden name="pic_url" value="{{ pic_url }}">
+                <input type="image" src="{{ pic_url }}" class="rounded-3 img-full">
+            </form>
+        {% else %}
+            <a href="{% url 'Gallery' %}#{{ anchor }}" class="h-100">
+                <img src="{{ pic_url }}" class="rounded-3 img-full">
+            </a>
+        {% endif %}
+    </div>
+</main>
+
+{% endblock content %}

@@ -1,0 +1,38 @@
+{% extends 'app4_ehpad_base/base.html' %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'app6_care/css/style.css' %}">
+
+<div class="container-fluid my-5">
+    <div class="my-3">
+        <a class="btn btn-perso mx-1" href="{% url 'hotel' %}">{% trans 'Hotel home' %}</a>
+        <div class="d-flex justify-content-center align-items-center fs-5">
+            {% if request.session.resident_id %}
+            {% trans 'Hotel' %} - {{request.session.res_lastname}}
+            {% if request.session.profile_pic %}
+                <img class="resident-small-pic mx-1" src="{{ request.session.profile_pic }}" alt="Photo de profil du résident">
+            {% endif %}
+            {% else %}
+            {% trans 'Hotel' %}
+            {% endif %}
+        </div>
+    </div>
+    <h4 class="text-center mt-5 mb-3">{% trans 'Free comment' %}</h4>
+    <div class="text-center h5">
+        ({% trans 'voice input' %}<img src="{% static 'app4_ehpad_base/img/bi/mic.svg' %}" alt="{% trans 'Voice input' %}" class="app6-width-25px">{% trans 'is available on tablet' %})
+    </div>
+    <form method="post" action="{% url 'hotel_free_comment' %}" class="d-flex flex-column align-items-center my-4">{% csrf_token %}
+        {{ form }}
+        <div class="my-4">
+            <input type="submit" value="{% trans 'Confirm comment' %}" class="btn btn-perso mx-2">
+            <a class="btn btn-outline-dark mx-2" href="{% url 'hotel' %}">{% trans 'Cancel' %}</a>
+        </div>
+    </form>
+
+
+</div>
+{% endblock %}

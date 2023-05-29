@@ -1,0 +1,88 @@
+{% extends "app3_messaging/mails_base.html" %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+
+<main id="notifsmailbox" class="m-3">
+    {% if DOMAIN == 'serenicia' %}
+    <h1>{% trans 'Notifications' %}</h1>
+    {{notifs}}
+    <div class="aside">
+        {% csrf_token %}
+        <div class="list-group">
+            <div class="accordion" id="accordionreceived">
+                {% if page_obj_received|length == 0 %}
+                    <div class="alert alert-info text-center" role="alert">
+                        {% trans 'You have yet to receive any Notifications' %}.
+                    </div>
+                {% endif %}
+                {% for notif in page_obj_received  %}
+                <div class="accordion-item">
+                    {% if not user in notif.list_opened.all %}
+                        <div class="accordion-header" id="headingX{{forloop.counter}}">
+                            <div class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseX{{forloop.counter}}"
+                                aria-expanded="true" aria-controls="collapseX{{forloop.counter}}" onclick="NotifRead('{% url 'notification read' notif_id=notif.id %}', 'unread{{ notif.id }}', 'headingX{{forloop.counter}}', {{ request.session.unopened_messages }})" id="button-{{forloop.counter}}">
+                                {{ notif.subject }}
+                                <div class="style1">
+                                    &nbsp;&nbsp;{{ notif.date_sent }}
+                                </div>
+                                {% if not user in notif.list_opened.all %}
+                                <div id="unread{{ notif.id }}" class=" style2 unread">
+                                    {% trans 'UNREAD' %}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="accordion-header" id="headingX{{forloop.counter}}" style="background-color:lightgray">
+                            <div class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseX{{forloop.counter}}"
+                                aria-expanded="true" aria-controls="collapseX{{forloop.counter}}" id="button-{{forloop.counter}}">
+                                {{ notif.subject }}
+                                <div style="font-size:13px;color:gray;position:relative;top:0;right:0;text-align:center;">
+                                    &nbsp;&nbsp;{{ notif.date_sent }}
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    <div id="collapseX{{forloop.counter}}" class="accordion-collapse collapse"
+                         aria-labelledby="headingX{{forloop.counter}}" data-parent="#accordionreceived">
+                        <div class="accordion-body bg-lightgrey">
+                            <span class="fw-bold">{% trans 'Sent on' %} {{notif.date_sent}}</span><br>
+                            <!--Affichage destinataires-->
+                            <input type="checkbox" id="expanded_convo{{forloop.counter}}" hidden>
+                            <hr class="style3">
+                            <!--Fin affichage destinataires-->
+                            <span class="fw-bold">{% trans 'Subject' %} : {{notif.subject}}</span><br>
+                            <div class="style4">
+                                {{ notif.content|safe }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+            <div class="style5">
+                <ul class="step-links pagination">
+                    {% if page_obj_received.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?page_received=1">&laquo; </a></li>
+                        <li class="page-item"><a class="page-link" href="?page_received={{ page_obj_received.previous_page_number }}">{{ page_obj_received.previous_page_number }}</a></li>
+                    {% endif %}
+                    <li class="page-item">
+                        <a href="" class="current page-link bg-grey">
+                            {{ page_obj_received.number }}
+                        </a>
+                    </li>
+                    {% if page_obj_received.has_next %}
+                        <li class="page-item"><a class="page-link" href="?page_received={{ page_obj_received.next_page_number }}">{{ page_obj_received.next_page_number }}</a></li>
+                        <li class="page-item"><a class="page-link" href="?page_received={{ page_obj_received.paginator.num_pages }}"> &raquo;</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% endif %}
+</main>
+{% endblock %}

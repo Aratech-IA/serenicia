@@ -1,0 +1,41 @@
+{% load i18n %}
+{% load static %}
+
+<div class="mx-auto my-auto">
+    <div id="residentpicture" class="carousel" data-ride="carousel">
+        <div class="carousel-inner rounded-3">
+            {% for image in images %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <div class="d-flex justify-content-center align-items-center taille-image">
+                    <input type="image" src="{{ image }}" class="img-fluid taille-image">
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% block alexanav %}
+
+<script>
+
+        console.log("check for web socket");
+        let socket = new WebSocket('{{ ws_alexa }}');
+
+        socket.onmessage = function (event) {
+                console.log('connection ws Alexa opened');
+                let message = JSON.parse(event.data);
+                socket.send(JSON.stringify({'answer': true}));
+                console.log(message);
+                url = message.redirect;
+                socket.close()
+                window.location.href = url;
+        };
+
+        socket.onclose = function () {
+            console.log('connection ws Alexa closed');
+        };
+
+</script>
+
+{% endblock alexanav %}

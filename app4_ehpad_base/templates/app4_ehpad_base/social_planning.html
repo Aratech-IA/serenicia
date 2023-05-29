@@ -1,0 +1,48 @@
+{% load i18n %}
+
+    <div class="d-flex justify-content-center pb-4 pb-lg-5">
+        <div class="section-titre d-inline-flex px-5">
+            <h2 class="text-center mb-0">{% trans "I plan my next videocall & live visits" %}</h2>
+        </div>
+    </div>
+
+    <div class="d-flex">
+        <p style="margin-right:10px; background-color: #93a9d2; padding: 10px 20px; border-radius: 15px;">{% trans 'Video / Visit' %}</p>
+        <p style="background-color: grey; padding: 10px 20px; border-radius: 15px;">{% trans 'Activity' %}</p>
+    </div>
+
+    <a data-bs-toggle="modal" class="modal-body d-flex justify-content-center align-items-center" data-bs-target="#calendar_frame_modal" style="padding:0;">
+        <table class="table" style="box-shadow: 0 14px 28px rgba(0, 0, 0, .2), 0 10px 10px rgba(0, 0, 0, .2); width: 100%; border-radius: 15px;">
+          <thead>
+            <tr>
+              <th scope="col" style="display: block;width: 200px; border-right: solid 1px white">Jours de la semaine</th>
+                {% for i in hours %}
+                    {% with h=i|date:'H' %}
+                        <th colspan="2" style="border-left: solid 1px white;">{{ h }}</th>
+                    {% endwith %}
+                {% endfor %}
+            </tr>
+          </thead>
+          <tbody>
+          {% for day, hour in planning.items %}
+                <tr>
+                    {% if forloop.counter == 1 %}
+                        <th scope="row">{% trans 'today' %}</th>
+                    {% else %}
+                        <th scope="row">{{ day }}</th>
+                    {% endif %}
+                    {% for slot in hour %}
+                        {% if not slot.0 and not slot.1  %}
+                            <td style="padding-right:20px;" class="slot"></td>
+                        {% elif slot.0 %}
+                            <td style="background-color: #93a9d2; padding-right:20px;" class="slot"></td>
+                        {% elif slot.1 and not slot.0 %}
+                            <td style="background-color: grey; padding-right:20px;" class="slot"></td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+    </a>
+

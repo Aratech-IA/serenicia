@@ -1,0 +1,38 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+
+{% block content %}
+{% load static %}
+{% load i18n %}
+{% load custom_filters_app13 %}
+
+{% block sticky-top-btn %}
+    <a href="{% url 'app4_ehpad_base index' %}" class="btn btn-perso sticky-top-btn d-none d-md-block">{% trans 'Back' %}</a>
+{% endblock sticky-top-btn %}
+
+
+<body>
+    <div class="container mt-5">
+        <div class="d-flex justify-content-center">
+            <form action="" method="post" class="d-flex flex-column">
+                {% csrf_token %}
+                {% for field in clean %}
+                    {% if field.name == 'client' %}
+                        {{ field }}
+                    {% else %}
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" name="{{ field.name }}" type="checkbox" role="switch" id="{{ field.id_for_label }}" {% if field.value %}checked{% endif %}>
+                            <label class="form-check-label" for="{{ field.id_for_label }}">{{ field.help_text }}</label>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                <button type="submit" class="btn btn-perso mt-3">{% trans 'Validate' %}</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+{% endblock content %}
+
+{% block endscript %}
+
+{% endblock endscript %}

@@ -1,0 +1,20 @@
+{% load i18n %}
+{% load static %}
+
+<nav class="nav flex-column col-2 position-relative end-0">
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+                <a href="{% url "listing_tours" %}">{% trans 'Delivery tour' %} <img style="height: 15px; width: 15px;" src="{% static "app12_delivery/img/arrow_forward.png" %}"></a>
+            </div>
+            <ul class="list-group list-group-flush overflow-auto">
+            {% if tour %}
+                {% for foo in tour %}
+                    <li class="list-group-item"><a href="{% url "tour_map_archive" foo.pk %}"> <img style="height: 25px; width: 25px; margin-right: 4px;" src="{% static "app12_delivery/img/outline_explore.png" %}">{{ foo.date_tour_delivery }}</a></li>
+                {% endfor %}
+            {% else %}
+                <li class="list-group-item"><span>{% trans 'Any tour delivery register' %}</span></li>
+            {% endif %}
+            </ul>
+        </div>
+        {#    <a href="{% url "setting_delivery_day_done" %}">{% trans 'Settings' %}</a>#}
+</nav>

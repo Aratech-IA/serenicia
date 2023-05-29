@@ -1,0 +1,23 @@
+{% extends 'app16_portal/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+<main class="p-5 bg-light-grey vh-100">
+    <div class="d-flex flex-column h-100 align-items-center p-5 bg-light rounded-3 border border-3 border-darkblue">
+        <img class="img-fluid mx-auto" width="550em" src="{% static 'app4_ehpad_base/img/logo_serenicia.svg' %}" alt="{% trans 'Serenicia logo' %}">
+        <div class="{% if error %}bg-danger{% endif %} py-2 px-3 rounded-3 my-4 error-msg-zone">
+            <span class="fw-bold">{{ error }}</span>
+        </div>
+        <form action="" method="post">{% csrf_token %}
+            <div class="d-flex flex-column border border-3 border-darkblue rounded-3 p-5 shadow-lg gap-3">
+                <input name="username" value="{{ username }}" placeholder="{% trans 'Username' %}" required>
+                <input name="password" placeholder="{% trans 'Password' %}" type="password" required>
+                <button class="btn btn-lg btn-perso">
+                    {% trans 'Connexion' %}
+                </button>
+            </div>
+        </form>
+    </div>
+</main>
+{% endblock content %}

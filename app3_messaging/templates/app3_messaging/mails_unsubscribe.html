@@ -1,0 +1,21 @@
+{% extends "app3_messaging/mails_base.html" %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+{% if unsubscribed %}
+    <div class="ifunsubscribed alert alert-warning" role="alert">
+        {% trans 'You have been unsubscribed with success' %}.
+    </div>
+{% else %}
+    <form  action="" method="post" name="unsubscribe" class="notifunsubscribed row unsubscribe" id="unsubscribe">
+        {% csrf_token %}
+        <div class="ifunsubscribed alert alert-warning" role="alert">
+            <div>{% trans "Are you sure that you no longer wish to receive emails from Serenicia or the home structure of a loved one" %} ?</div>
+            <button type="submit" name="unsubscribe" class="btn btn-perso col-sm-3 me-3">{% trans 'Yes' %}</button>
+            <a href="/" class="btn btn-danger col-sm-3 me-3">{% trans 'No' %}</a>
+        </div>
+    </form>
+{% endif %}
+{% endblock content%}

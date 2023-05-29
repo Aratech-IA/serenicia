@@ -1,2 +1,2 @@
-# Serenicia
-Application pour la gestion sociale des Ehpads.
+# serenicia
+Application pour la gestion sociale des EHPAD

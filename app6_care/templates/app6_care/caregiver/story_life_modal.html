@@ -1,0 +1,30 @@
+{% load i18n %}
+
+<div class="modal fade" id="storyModal" tabindex="-1" aria-labelledby="storyModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-between gap-5">
+        <button type="button" class="btn btn-perso" data-bs-dismiss="modal">{% trans 'Back' %}</button>
+        <h5 class="modal-title" id="storyModalLabel">{% trans 'Story life' %}</h5>
+      </div>
+      <div class="modal-body">
+        <div class="accordion">
+          {% for story in story_life %}
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button btn-perso collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelstory{{ story.id }}" aria-expanded="true" aria-controls="panelchap{{ chapter.id }}">
+                  {{ story.title.title }}
+                </button>
+              </h2>
+              <div id="panelstory{{ story.id }}" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
+                <div class="accordion-body">
+                    <p>{{ story.text|linebreaks }}</p>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

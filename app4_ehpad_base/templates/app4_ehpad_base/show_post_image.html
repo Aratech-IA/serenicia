@@ -1,0 +1,31 @@
+{% extends "app4_ehpad_base/base.html" %}
+
+{% block content %}
+    {% load static %}
+    {% load i18n %}
+
+<style>
+
+</style>
+
+<div class="container d-flex justify-content-center">
+
+    <form action="{% url 'show_post' post_id=post_id %}" method="post">
+        {% csrf_token %}
+        <p>{{post.id}}</p>
+        <input type="image" class="img-fluid mt-5" src="{{img}}">
+    </form>
+
+</div>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+
+{% endblock content %}
+
+{% block endscript %}
+
+
+{% endblock endscript %}

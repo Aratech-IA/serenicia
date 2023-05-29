@@ -1,0 +1,47 @@
+{% extends "app4_ehpad_base/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block datetimescript %}
+<script>
+    $(function () {
+            jQuery.datetimepicker.setLocale('fr')
+            $("#start").datetimepicker({
+                timepicker: false,
+                datepicker: true,
+                format: 'd/m/Y',
+                validateOnBlur:false,
+                weeks: true,
+                maxDate: 0,
+            });
+        });
+
+    $(function () {
+        jQuery.datetimepicker.setLocale('fr')
+        $("#end").datetimepicker({
+            timepicker: false,
+            datepicker: true,
+            format: 'd/m/Y',
+            validateOnBlur:false,
+            weeks: true,
+            maxDate: 0,
+        });
+    });
+</script>
+{% endblock datetimescript %}
+
+{% block content %}
+<main class="container">
+    <div class="d-flex border border-darkblue rounded-3 justify-content-center p-3">
+        <form action="{% url 'menu commission' %}" method="post" class="d-flex gap-3 m-0">{% csrf_token %}
+            <div class="d-flex align-items-center gap-1">
+                <span>{% trans 'From' %}</span>
+                <input id="start" class="text-center" name="start" value="{{ start }}" required readonly>
+                <span>{% trans 'To' %}</span>
+                <input id="end" class="text-center" name="end" value="{{ today }}" max="{{ today }}" required readonly>
+            </div>
+            <button class="btn btn-perso">{% trans 'Download docx document' %}</button>
+        </form>
+    </div>
+</main>
+{% endblock content %}

@@ -1,0 +1,93 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+    {% block content %}
+            {% load static %}
+                {% load i18n %}
+
+<style>
+.card {
+    display: flex;
+    position: relative;
+    word-wrap: break-word;
+    flex-direction: column;
+    box-shadow: 0 20px 20px -20px #a6a6a6;
+    background-color: white;
+    border: solid 1px black;
+    border-radius: 15px;
+}
+
+.dropdown-toggle {
+    background: #fff;
+    border: solid 1px grey;
+}
+</style>
+
+<div class="container">
+
+    <div class="pt-4">
+
+        <h5 class="text-center text-uppercase">
+            {% trans "modify/add the information of" %} {% if user_resident.profile.civility %} {{ user_resident.profile.civility }} {% endif %} {{ user_resident.last_name }} {{ user_resident.first_name }}
+        </h5>
+
+        <div class="row d-flex justify-content-center pt-4">
+
+            <div class="col-md-6">
+                <div class="p-3 card">
+
+                    <h6 class="text-uppercase text-start text-decoration-underline">{% trans "Information about resident" %}</h6>
+
+                    <form method="post" action="{% url 'resident_form' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                        <div class="row pt-3">
+                            <div class="col">{% trans "Civility" %} :</div>
+                            <div class="col">{{ p_resident.civility }}</div>
+                        </div>
+
+                        <div class="row pt-2">
+                            <div class="col">{% trans "First name" %} :</div>
+                            <div class="col">{{ u_resident.first_name }}</div>
+                        </div>
+
+                        <div class="row pt-2">
+                            <div class="col">{% trans "Last name" %} :</div>
+                            <div class="col">{{ u_resident.last_name }}</div>
+                        </div>
+
+                        <hr>
+
+                        <div class="row pt-2">
+                            <div class="col">{% trans "Birth date" %} :</div>
+                            <div class="col">{{ pf_resident.birth_date }}</div>
+                        </div>
+
+                        <div class="row pt-2">
+                            <div class="col">{% trans "Birth city" %} :</div>
+                            <div class="col">{{ pf_resident.birth_city }}</div>
+                        </div>
+
+                        <hr>
+
+                        <div class="row pt-2">
+                            <div class="col">{% trans "Add profile pic" %} :</div>
+                            <div class="col">{{ p_resident.photo }}</div>
+                        </div>
+
+                        <hr>
+
+                        <div class="pt-3 mb-3 mt-3">
+                            <button type="submit" class="btn btn-perso">{% trans "Save" %}</button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock content %}

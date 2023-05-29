@@ -1,0 +1,188 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+{% block content %}
+{% load static %}
+{% load i18n %}
+{% load custom_filters_app4 %}
+
+
+<div class="container mt-3">
+    <form action="{% url 'select resident' %}" method="post" class="d-flex flex-column align-items-center">
+        {% csrf_token %}
+        {% if can_view_all %}
+            <div class="d-flex flex-wrap justify-content-center align-items-center mb-2 gap-2">
+                    <select name="rooms" class="form-select-sm text-center btn btn-perso" onchange="this.form.submit()">
+                        <option {% if option == 'residents' %} selected {% endif %} value="residents">{% trans 'See all residents' %}</option>
+                        <option {% if option == 'myresidents' %} selected {% endif %} value="myresidents">{% trans 'See my residents' %}</option>
+                        <option {% if option == 'allrooms' %} selected {% endif %} value="allrooms">{% trans 'See all rooms' %}</option>
+                        <option {% if option == 'emptyrooms' %} selected {% endif %} value="emptyrooms">{% trans 'See the empty rooms' %}</option>
+                        <option {% if option == 'alerts' %} selected {% endif %} value="alerts">{% trans 'See alerts' %}</option>
+                    </select>
+                {{ formsector }}
+                {% if formsubsector %}{{ formsubsector }}{% endif %}
+                <label class="birthday d-flex justify-content-center align-items-center btn btn-perso top-label">
+                    <svg
+                    aria-hidden="true"
+                    focusable="false"
+                    data-prefix="fas"
+                    data-icon="birthday-cake"
+                    class="svg-inline--fa fa-birthday-cake fa-w-14"
+                    viewbox="0 0 448 512">
+                    <path
+                        fill="#f5f5f5"
+                        d="M448 384c-28.02 0-31.26-32-74.5-32-43.43 0-46.825 32-74.75 32-27.695 0-31.454-32-74.75-32-42.842 0-47.218 32-74.5 32-28.148 0-31.202-32-74.75-32-43.547 0-46.653 32-74.75 32v-80c0-26.5 21.5-48 48-48h16V112h64v144h64V112h64v144h64V112h64v144h16c26.5 0 48 21.5 48 48v80zm0 128H0v-96c43.356 0 46.767-32 74.75-32 27.951 0 31.253 32 74.75 32 42.843 0 47.217-32 74.5-32 28.148 0 31.201 32 74.75 32 43.357 0 46.767-32 74.75-32 27.488 0 31.252 32 74.5 32v96zM96 96c-17.75 0-32-14.25-32-32 0-31 32-23 32-64 12 0 32 29.5 32 56s-14.25 40-32 40zm128 0c-17.75 0-32-14.25-32-32 0-31 32-23 32-64 12 0 32 29.5 32 56s-14.25 40-32 40zm128 0c-17.75 0-32-14.25-32-32 0-31 32-23 32-64 12 0 32 29.5 32 56s-14.25 40-32 40z"
+                        id="path2"
+                        style="fill:#fff;fill-opacity:1" />
+                    </svg>
+                </label>
+                <label class="d-flex justify-content-center align-items-center btn btn-outline-warning border-2 top-label">BMR</label>
+            </div>
+        {% endif %}
+        
+        <div class="d-flex flex-wrap text-center justify-content-center">
+
+            {% for resident in residentlist %}
+                <div style="width: 310px">
+                    {% if resident.empty %}
+                        <a href="{% url 'room cleaned' room_id=resident.empty.id %}" class="carteresident caracteristiques btn btn-secondary m-1 position-relative d-flex justify-content-center align-items-center">
+                            <div>
+                                {% if resident.cleaned %}
+                                    <img src="{% static 'app4_ehpad_base/img/etiquette_ok.png' %}" alt="" class="position-absolute etiquetteok">
+                                {% endif %}
+
+                                <h5>{{ resident.empty.room_number }}</h5>
+                                <p>{% trans 'Shower' %} : {{ resident.empty.shower|showerdisplay }}</p>
+                                <p>{% trans 'Aid' %} : {{ resident.empty.helper|aidedisplay }}</p>
+                                {% if resident.empty.bed|beddisplay == None %}
+                                    <p>{% trans 'Bed' %} : {% trans 'To inform' %}</p>
+                                {% else %}
+                                    <p>{% trans 'Bed' %} : {{ resident.empty.bed|beddisplay }}</p>
+                                {% endif %}
+                                <p>{% trans 'Tariff' %} : {{ resident.empty.price }} Euros</p>
+                                {% if resident.empty.captch == True %}
+                                    <p>{% trans 'Sensor Chamber' %} : {% trans 'Yes' %}</p>
+                                {% else %}
+                                    <p>{% trans 'Sensor Chamber' %} : {% trans 'No' %}</p>
+                                {% endif %}
+                                {% if resident.empty.captsdb == true %}
+                                    <p>{% trans 'Sensor Bathroom' %} : {% trans 'Yes' %}</p>
+                                {% else %}
+                                    <p>{% trans 'Sensor Bathroom' %} : {% trans 'No' %}</p>
+                                {% endif %}
+                            </div>
+                            
+                        </a>                        
+
+                    {% else %}
+                        <!-- Affichage si en alerte -->
+                        <div id="alert{{ resident.resident.user.profile.client.id }}" class="d-none">
+                            <a href="{% url 'app1_base index' %}" class="carteresident btn d-flex justify-content-center align-items-center text-center btn-danger m-1">
+                                <div class="d-flex">
+                                    <div class="picresident my-auto">
+                                        {% if resident.profile_pic %}
+                                        <img class="img-fluid rounded-3 select-resident-pic" src="{{ resident.profile_pic }}">
+                                        {% else %}
+                                            <div id="no_reco" class="d-flex flex-column rounded-3 justify-content-center align-items-center">
+                                                <img class="img-fluid" src="{% static 'app4_ehpad_base/img/s.svg' %}" width="60px">
+                                                <span id="no_reco_txt">{% trans 'No facial recognition authorization yet' %}</span>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="ms-4 align-self-center">
+                                        <p class="my-auto">{% trans resident.resident.user.profile.civility %} {{ resident.resident.user.first_name.0 }}. {{ resident.resident.user.last_name }}</p>
+                                        <p>{{ resident.resident.user.profile.client.room_number }}</p>
+                                        {% if resident.age %}
+                                            <small class="{% if not resident.birthday %}text-muted{% endif %} age rounded-3 px-1">{{ resident.age }} {% trans 'years' %}</small>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Affichage si pas en alerte -->
+                        <button id="{{ resident.resident.user.profile.client.id }}" class="carteresident btn {% if resident.resident.bacterium %}btn-outline-warning border-2{% else %}btn-perso{% endif %} {% if resident.birthday %}birthday{% endif %} m-1 d-flex justify-content-center align-items-center" type="submit" name="res_id" value="{{ resident.resident.user.id }}">
+                            <div class="picresident">
+                                {% if resident.profile_pic %}
+                                <img class="img-fluid rounded-3 select-resident-pic" src="{{ resident.profile_pic }}">
+                                {% else %}
+                                    <div id="no_reco" class="d-flex flex-column rounded-3 justify-content-center align-items-center">
+                                        <img class="img-fluid" src="{% static 'app4_ehpad_base/img/s.svg' %}" width="60px">
+                                        <span id="no_reco_txt">{% trans 'No facial recognition authorization yet' %}</span>
+                                    </div>
+                                {% endif %}
+                                <div class="d-flex align-items-center justify-content-evenly pt-1">
+                                    <img class="img-fluid" src="{% static 'app4_ehpad_base/img/logo_eval-menu_80x32.png' %}" width="60px">
+                                    <span class="badge rounded-pill {{ resident.eval_data.badge_color }} border" title="{% trans '7 last days' %}">{{ resident.eval_data.vote_count }}</span>
+                                </div>
+                            </div>
+                            <div class="ms-4 align-self-center">
+                                <p class="my-auto">{% trans resident.resident.user.profile.civility %} {{ resident.resident.user.first_name.0 }}. {{ resident.resident.user.last_name }}</p>
+                                <p>{{ resident.resident.user.profile.client.room_number }}</p>
+                                <p class="text-muted my-auto">
+                                    <small  {% if resident.resident.entry_date %}
+                                                title="{% trans 'since' %} {{ resident.resident.entry_date }}"
+                                            {% endif %}>
+                                    {{ resident.since_entry }}
+                                    </small>
+                                </p>
+                                {% if resident.age %}
+                                    <small class="{% if not resident.birthday %}text-muted{% endif %} age rounded-3 px-1">{{ resident.resident.birth_date|date:'d/m/Y' }}<br>{{ resident.age }} {% trans 'years' %}</small>
+                                {% endif %}
+                                <p class="my-auto">
+                                    <small class="text-muted" title="{% trans '7 last days' %}">
+                                        {{ resident.resident.pics_total }} {% trans 'pic' %}{{ resident.resident.pics_total|pluralize }}<br>({{ resident.resident.pics_last }} {% trans 'recent' %}{{ resident.resident.pics_last|pluralize }})
+                                    </small>
+                                </p>
+                            </div>
+                        </button>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </form>
+</div>
+
+<script>
+
+    // console.log({{displaylist}});
+
+    let socket = new WebSocket("{{request.META|ws_url_client_in_alert:request.get_host}}");
+
+    let displaylist = {{displaylist}};
+    // console.log(displaylist);
+
+    socket.onopen = (event) => {
+        socket.send('{{displaylist}}');
+    };
+
+    socket.onmessage = function (event) {
+        // console.log(event);
+
+        let listalertclient = JSON.parse(event.data);
+        // console.log(listalertclient);
+
+        for (room in displaylist) {
+
+            room_id = displaylist[room];
+            // console.log(room_id);
+
+            if (listalertclient.includes(room_id)) {
+                var idalert = "alert" + room_id;
+                var alertid = document.getElementById(idalert);
+                alertid.classList.add("d-flex-important");
+
+                var id = document.getElementById(room_id);
+                id.classList.add("d-none-important");
+            } else {
+                var idalert = "alert" + room_id;
+                var alertid = document.getElementById(idalert);
+                alertid.classList.add("d-none-important");
+
+                var id = document.getElementById(room_id);
+                id.classList.add("d-flex-important");
+            }        
+        }
+    };
+
+</script>
+
+{% endblock content %}

@@ -1,0 +1,126 @@
+{% extends "app4_ehpad_base/base.html" %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+
+
+<div class="container pt-3">
+    <form action="{% url 'Meal booking employee' %}"
+          method="post">{% csrf_token %}
+        <div class="d-flex flex-column justify-content-center align-items-center flex-lg-row justify-content-xl-evenly pb-2">
+            <div class="d-flex flex-column flex-sm-row">
+                <div class="d-flex align-items-center gap-1">
+                    <button class="btn btn-perso arrow-btn" name="previous" value="previous">
+                        <svg viewbox="0 0 16 16" class="bi bi-caret-left-fill arrow-img" fill="currentColor">
+                        <path d="M3.86 8.753l5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                        </svg>
+                    </button>
+                    <select name="month" class="form-select-sm text-center" onchange="this.form.submit()">
+                        <option {% if option == 1 %} selected {% endif %} value="1">{% trans 'January' %}</option>
+                        <option {% if option == 2 %} selected {% endif %} value="2">{% trans 'February' %}</option>
+                        <option {% if option == 3 %} selected {% endif %} value="3">{% trans 'March' %}</option>
+                        <option {% if option == 4 %} selected {% endif %} value="4">{% trans 'April' %}</option>
+                        <option {% if option == 5 %} selected {% endif %} value="5">{% trans 'May' %}</option>
+                        <option {% if option == 6 %} selected {% endif %} value="6">{% trans 'June' %}</option>
+                        <option {% if option == 7 %} selected {% endif %} value="7">{% trans 'July' %}</option>
+                        <option {% if option == 8 %} selected {% endif %} value="8">{% trans 'August' %}</option>
+                        <option {% if option == 9 %} selected {% endif %} value="9">{% trans 'September' %}</option>
+                        <option {% if option == 10 %} selected {% endif %} value="10">{% trans 'October' %}</option>
+                        <option {% if option == 11 %} selected {% endif %} value="11">{% trans 'November' %}</option>
+                        <option {% if option == 12 %} selected {% endif %} value="12">{% trans 'December' %}</option>
+                    </select>
+                    <span>{{ year }}</span>
+                    <input name="year" value="{{ year }}" hidden>
+                    <button class="btn btn-perso arrow-btn" name="next" value="next">
+                        <svg viewbox="0 0 16 16" class="bi bi-caret-right-fill arrow-img" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                        </svg>
+                    </button>
+                </div>
+                <button name="save" class="btn btn-perso mt-2 mt-sm-0 ms-sm-4">{% trans 'Save' %}</button>
+            </div>
+            {% if perms.app0_access.view_groupreservation %}
+            <div class="py-2 py-lg-0 ps-lg-5 ps-xl-0">
+                <a href="{% url 'Meal booking group' %}" class="btn btn-perso">{% trans 'Group reservation' %}</a>
+            </div>
+            {% endif %}
+        </div>
+        <div class="d-flex justify-content-center">
+            <span class="text-muted">{% trans 'Click on the day to see the menus' %}.</span>
+        </div>
+            {% for week in booklist %}
+            <div class="d-flex text-center border border-darkblue rounded-3 py-2 my-3">
+                {% for day in week.week %}
+                    {% if forloop.first %}
+                        <div class="container-fluid">
+                            <div class="mb-1">
+                                <span>{% trans 'Week' %} : {{ week.week_number }}</span>
+                                <span class="text-muted">
+                                            {% with lastday=week.week|last firstday=week.week|first  %}
+                                                ({% trans 'From' %} {{ firstday.date.day }} {% trans 'to' %} {{ lastday.date.day }})
+                                            {% endwith %}
+                                </span>
+                            </div>
+                            <div class="btn-group-vertical pt-4">
+                                <span>{% trans 'Noon' %}</span>
+                                <span>{% trans 'Evening' %}</span>
+                            </div>
+                    {% endif %}
+                        <div class="btn-group-vertical btngroupday px-1">
+                            {% if day.menu %}
+                                <a class="align-self-center mb-1" href="#" onclick="toggleModal({{ day.menu.0.id }})">
+                                    {{ day.str_day }}
+                                </a>
+                            {% else %}
+                                <span class="align-self-center mb-1">{{ day.str_day }}</span>
+                            {% endif %}
+
+                            {{ day.other_guests }}
+                            <input id="noon{{ day.date.day }}" class="btn-check" type="checkbox" value="{{ day.date.day }}" name="noon" {% if day.noon %}checked{% endif %}>
+                            <label class="btn {% if day.date < today %}btn-oldday{% elif day.guests_lunch > 0 %}btn-outline-warning disabled{% else %}btn-perso{% endif %} labelinput" for="noon{{ day.date.day }}"></label>
+                            <input id="evening{{ day.date.day }}" class="btn-check" type="checkbox" value="{{ day.date.day }}" name="evening" {% if day.evening %}checked{% endif %}>
+                            <label class="btn {% if day.date < today %}btn-oldday{% elif day.guests_dinner > 0 %}btn-outline-warning disabled{% else %}btn-perso{% endif %} labelinput mb-1" for="evening{{ day.date.day }}"></label>
+                        </div>
+                        {% if day.menu %}
+                            <div class="modal" id="{{ day.menu.0.id }}" tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">{{ day.date }}</h5>
+                                            <button type="button" class="btn-close btn-perso" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            {% for menu in day.menu %}
+                                                {% if menu.type == 'noon' %}
+                                                    <h4>{% trans "Lunch" %}</h4>
+                                                {% elif menu.type == 'evening' %}
+                                                    <h4>{% trans "Dinner" %}</h4>
+                                                {% endif %}
+                                                <h5>{{ menu.entree }}</h5>
+                                                <h5>{{ menu.main_dish }}</h5>
+                                                <h5>{{ menu.dessert }}</h5>
+                                                {% if not forloop.last and forloop.first %}
+                                                    <hr class="w-75 mx-auto">
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                {% endfor %}
+                        </div>
+            </div>
+            {% endfor %}
+    </form>
+</div>
+<script>
+    function toggleModal(modal){
+        var myModal = new bootstrap.Modal(document.getElementById(modal))
+        myModal.toggle()
+    };
+</script>
+{% endblock %}

@@ -1,0 +1,16 @@
+#reservationpdf {
+    .dateselection {
+        width: 150px;
+    }
+
+    .dateselection:hover {
+        background: white;
+        cursor: text !important;
+        color: black;
+    }
+
+    .unselected {
+        min-width: 100px;
+    }
+}
+

@@ -1,0 +1,80 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<style>
+    .bg-lightblue {
+        background-color: #93a9d2;
+    }
+</style>
+<main class="d-flex flex-column gap-2 py-2">
+    {% for title in titles %}
+        <div class="d-flex flex-column align-items-center gap-1">
+            <h5>
+                <span class="mx-2">{{ title.object.title }}</span>
+                {% if title.object.example %}
+                    <button class="btn btn-sm btn-perso" data-bs-toggle="modal" data-bs-target="#example-{{ title.object.id }}">{% trans 'Example' %}</button>
+                {% endif %}
+            </h5>
+            <div class="modal" id="example-{{ title.object.id }}" tabindex="-1">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">{% trans "Example for" %} {{ title.object.title }}</h5>
+                            <button class="btn btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <p>{{ title.object.example|linebreaks }}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-perso" data-bs-dismiss="modal">{% trans 'Close' %}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form action="" method="post" class="d-flex flex-column align-items-center gap-1 w-75">{% csrf_token %}
+                <input hidden name="title" value="{{ title.object.id }}">
+                {{ title.form.text }}
+                <div class="d-flex justify-content-between w-100">
+                    <div>
+                        {{ title.form.cannot_answer }}
+                        {% trans "I don't know" %}
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-outline-danger" name="delete" value="{{ title.object.id }}" id="delete-{{ title.form.text.id_for_label }}" style="display: none;">
+                            {% trans 'Delete' %}
+                        </button>
+                        <button type="submit" class="btn btn-perso" name="save" value="{{ title.object.id }}" id="save-{{ title.form.text.id_for_label }}" style="display: none;">
+                            {% trans 'Save' %}
+                        </button>
+                        <button type="button" class="btn btn-outline-warning" onclick="modifyStoryLife('{{ title.form.text.id_for_label }}')" id="modify-{{ title.form.text.id_for_label }}">
+                        {% trans 'Modify' %}
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    {% endfor %}
+</main>
+<script>
+    function disableModifyBtn(){
+        var modifyButtons = document.getElementsByClassName('btn-outline-warning');
+        for(var index=0;index < modifyButtons.length;index++){
+            modifyButtons[index].classList.add('disabled');
+        }
+    }
+
+    function switchButtons(text_id){
+        document.getElementById('save-' + text_id).style.display = 'block';
+        document.getElementById('delete-' + text_id).style.display = 'block';
+        document.getElementById('modify-' + text_id).style.display = 'none';
+    }
+
+    function modifyStoryLife(text_id){
+        document.getElementById(text_id).readOnly = false;
+        switchButtons(text_id);
+        disableModifyBtn();
+    };
+</script>
+{% endblock content %}

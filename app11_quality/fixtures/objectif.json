@@ -1,0 +1,450 @@
+[
+{
+    "model": "app11_quality.objectif",
+    "pk": 1,
+    "fields": {
+        "number": 1,
+        "title": "La personne accompagnée s'exprime sur la bientraitance"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 2,
+    "fields": {
+        "number": 2,
+        "title": "La personne accompagnée est informée de ses droits de façon claire et adaptée. Sa compréhension est recherchée et favorisée"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 3,
+    "fields": {
+        "number": 3,
+        "title": "La personne accompagnée est associée à la révision des règles de vie collective ou des modalités de fonctionnement du service"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 4,
+    "fields": {
+        "number": 1,
+        "title": "Les professionnels contribuent aux questionnements éthiques"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 5,
+    "fields": {
+        "number": 4,
+        "title": "La personne accompagnée bénéficie d’un cadre de vie ou d'accompagnement adapté et respectueux de ses droits fondamentaux"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 6,
+    "fields": {
+        "number": 2,
+        "title": "Les professionnels favorisent l'exercice des droits fondamentaux et des libertés individuelles de la personne accompagnée"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 7,
+    "fields": {
+        "number": 3,
+        "title": "Les professionnels favorisent la participation sociale de la personne accompagnée"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 8,
+    "fields": {
+        "number": 4,
+        "title": "Les professionnels adaptent avec la personne, son projet d'accompagnement au regard des risques auxquels elle est confrontée"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 9,
+    "fields": {
+        "number": 5,
+        "title": "Les professionnels s'adaptent le projet d'accompagnement pour favoriser l'autonomie de la personne"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 10,
+    "fields": {
+        "number": 6,
+        "title": "Les professionnels adaptent le projet d'accompagnement en santé mentale de la personne"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 11,
+    "fields": {
+        "number": 7,
+        "title": "Les professionnels adaptent le projet d'accompagnement de fin de vie et du deuil de la personne"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 12,
+    "fields": {
+        "number": 8,
+        "title": "Les professionnels favorisent la continuité de l'accompagnement dans l'ESSMS"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 13,
+    "fields": {
+        "number": 9,
+        "title": "Les professionnels facilitent la fluidité du parcours de la personne accompagnée, en coordination avec les partenaires"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 14,
+    "fields": {
+        "number": 10,
+        "title": "Les professionnels partagent entre eux les informations nécessaires à la continuité de l'accompagnement de la personne"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 15,
+    "fields": {
+        "number": 5,
+        "title": "La personne accompagnée est actrice des instances collectives ou de toutes autres formes de participation. Sa participation effective est favorisée"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 16,
+    "fields": {
+        "number": 6,
+        "title": "L'expression de la personne est recueillie tout au long de son accompagnement"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 17,
+    "fields": {
+        "number": 7,
+        "title": "La personne accompagnée exprime son choix de manière éclairée"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 50,
+    "fields": {
+        "number": 8,
+        "title": "La personne accompagnée participe à la vie sociale"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 51,
+    "fields": {
+        "number": 9,
+        "title": "La personne accompagnée exerce sa citoyenneté et/ou bénéficie d'une éducation à la citoyenneté"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 52,
+    "fields": {
+        "number": 10,
+        "title": "La personne est actrice de la personnalisation de son projet d’accompagnement"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 53,
+    "fields": {
+        "number": 11,
+        "title": "L'entourage est associé dans l'accompagnement de la personne"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 54,
+    "fields": {
+        "number": 12,
+        "title": "La personne accompagnée bénéficie d'un accompagnement favorisant son autonomie"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 55,
+    "fields": {
+        "number": 13,
+        "title": "La personne est accompagnée pour accéder ou se maintenir dans son logement ou son hébergement"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 56,
+    "fields": {
+        "number": 14,
+        "title": "La personne accompagnée bénéficie d'un accompagnement en matière de prévention et d'éducation à la santé"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 57,
+    "fields": {
+        "number": 15,
+        "title": "La personne est actrice de ses choix sur son accompagnement en santé, la stratégie thérapeutique et les soins qui lui sont proposés"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 58,
+    "fields": {
+        "number": 16,
+        "title": "La personne accompagnée bénéficie d'une prise en charge de ses douleurs"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 59,
+    "fields": {
+        "number": 17,
+        "title": "La personne bénéficie d'un accompagnement favorisant la continuité et la fluidité de son parcours"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 64,
+    "fields": {
+        "number": 3,
+        "title": "L’ESSMS définit et déploie sa stratégie de préservation de l’autonomie et de prévention du risque d’isolement de la personne accompagné"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 65,
+    "fields": {
+        "number": 6,
+        "title": "L’ESSMS définit et déploie sa stratégie de préservation de l’autonomie et de prévention du risque d’isolement de la personne accompagnée"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 66,
+    "fields": {
+        "number": 10,
+        "title": "L’ESSMS définit et déploie sa démarche d’amélioration continue de la qualité et gestion des risques."
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 67,
+    "fields": {
+        "number": 9,
+        "title": "L’ESSMS met en œuvre une politique de qualité de vie au travail."
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 69,
+    "fields": {
+        "number": 15,
+        "title": "L’ESSMS s’inscrit dans une dynamique d’innovation et d’évolution sociétale"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 70,
+    "fields": {
+        "number": 4,
+        "title": "L’ESSMS est doté d’un plan de gestion de crise et de continuité de l’activité"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 72,
+    "fields": {
+        "number": 14,
+        "title": "L’ESSMS est doté d’un plan de gestion de crise et de continuité de l’activité."
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 73,
+    "fields": {
+        "number": 13,
+        "title": "L’ESSMS assure le recueil et le traitement des évènements indésirables."
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 77,
+    "fields": {
+        "number": 2,
+        "title": "L’ESSMS veille à ce que la personne accompagnée dispose d’un cadre de vie adapté et respectueux de ses droits fondamentaux"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 79,
+    "fields": {
+        "number": 4,
+        "title": "L’ESSMS coconstruit sa stratégie d’accompagnement et son inscription dans le territoire, dans une approche inclusive"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 80,
+    "fields": {
+        "number": 4,
+        "title": "Les professionnels adaptent avec la personne son projet d’accompagnement au regard des risques auxquels elle est confrontée"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 81,
+    "fields": {
+        "number": 5,
+        "title": "Les professionnels adaptent le projet d’accompagnement pour favoriser l’autonomie de la personne."
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 83,
+    "fields": {
+        "number": 7,
+        "title": "Les professionnels adaptent le projet d’accompagnement de fin de vie et du deuil de la personne."
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 85,
+    "fields": {
+        "number": 9,
+        "title": "Les professionnels facilitent la fluidité du parcours de la personne accompagnée, en coordination avec les partenaires."
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 86,
+    "fields": {
+        "number": 10,
+        "title": "Les professionnels partagent entre eux les informations nécessaires à la continuité de l’accompagnement de la personne."
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 87,
+    "fields": {
+        "number": 1,
+        "title": "L’ESSMS définit et déploie sa stratégie en matière de bientraitance"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 88,
+    "fields": {
+        "number": 2,
+        "title": "L’ESSMS veille à ce que la personne accompagnée dispose d’un cadre de vie adapté et respectueux de ses droits fondamentaux"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 89,
+    "fields": {
+        "number": 3,
+        "title": "L’ESSMS facilite la participation sociale de la personne accompagnée"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 91,
+    "fields": {
+        "number": 5,
+        "title": "L’ESSMS définit et déploie sa stratégie de préservation de l’autonomie et de prévention du risque d’isolement de la personne accompagnée"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 92,
+    "fields": {
+        "number": 6,
+        "title": "L’ESSMS définit et déploie sa stratégie de gestion du risque médicamenteux"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 93,
+    "fields": {
+        "number": 7,
+        "title": "L’ESSMS définit et déploie sa stratégie de prévention et de maîtrise du risque infectieux"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 94,
+    "fields": {
+        "number": 8,
+        "title": "L’ESSMS définit et déploie une politique ressources humaines au service de sa stratégie et de la qualité de l’accompagnement"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 95,
+    "fields": {
+        "number": 9,
+        "title": "L’ESSMS met en œuvre une politique de qualité de vie au travail"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 96,
+    "fields": {
+        "number": 10,
+        "title": "L’ESSMS définit et déploie sa démarche d’amélioration continue de la qualité et gestion des risques"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 97,
+    "fields": {
+        "number": 11,
+        "title": "L’ESSMS définit et déploie son plan de prévention des risques de maltraitance et de violence"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 98,
+    "fields": {
+        "number": 12,
+        "title": "L’ESSMS assure le recueil et le traitement des plaintes et des réclamations"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 99,
+    "fields": {
+        "number": 13,
+        "title": "L’ESSMS assure le recueil et le traitement des évènements indésirables"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 100,
+    "fields": {
+        "number": 14,
+        "title": "L’ESSMS est doté d’un plan de gestion de crise et de continuité de l’activité"
+    }
+},
+{
+    "model": "app11_quality.objectif",
+    "pk": 101,
+    "fields": {
+        "number": 15,
+        "title": "L’ESSMS s’inscrit dans une dynamique d’innovation et d’évolution sociétale"
+    }
+}
+]

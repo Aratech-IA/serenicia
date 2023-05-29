@@ -1,0 +1,111 @@
+{% extends "app4_ehpad_base/base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'app6_care/css/style.css' %}">
+<link href="{% static 'app6_care/external_library/fullcalendar/main.css' %}" rel='stylesheet'/>
+
+<script src="{% static 'app6_care/external_library/fullcalendar/main.js' %}"></script>
+<script src="{% static 'app6_care/external_library/fullcalendar/locales-all.js' %}"></script>
+<script>
+
+let events = {{ events|safe }}
+
+document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var Draggable = FullCalendar.Draggable;
+    var containerEl = document.getElementById('external-events');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        headerToolbar: {
+            right: 'dayGridMonth timeGridWeek timeGridDay listWeek',
+            center: 'saveButton',
+            left: 'prev next today',
+        },
+        draggable: true,
+        editable: true,
+        events: events,
+        initialView: 'timeGrid',
+        <!-- 2018-01-01 is the reference date because it is a Monday, reference date could be something else-->
+        <!-- it ends the 2018-01-29 to get exactly 4 weeks (28 days)-->
+        visibleRange: {
+            start: '2018-01-01',
+            end: '2018-01-29'
+        },
+        customButtons: {
+            saveButton: {
+                text: 'save',
+                click: function() {
+                    const events = calendar.getEvents();
+                    const url = ``;
+                    let post_data = [];
+                    events.map((event) => post_data.push(event))
+
+                    function getCookie(name) {
+                        let cookieValue = null;
+                        if (document.cookie && document.cookie !== '') {
+                            const cookies = document.cookie.split(';');
+                            for (let i = 0; i < cookies.length; i++) {
+                                const cookie = cookies[i].trim();
+                                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                    break;
+                                }
+                            }
+                        }
+                        return cookieValue;
+                    }
+
+                    fetch(url, {
+                        method: "POST",
+                        body: JSON.stringify(post_data),
+                        credentials: "same-origin",
+                        headers: {
+                            "X-CSRFToken": getCookie("csrftoken"),
+                            "Accept": "application/json",
+                            'Content-Type': 'application/json'
+                        },
+                    });
+                }
+            }
+        }
+
+        });
+
+        new Draggable(containerEl, {
+            itemSelector: '.fc-event',
+            eventData: function(eventEl) {
+                return {
+                    title: eventEl.innerText,
+                    id: eventEl.getAttribute('public-id'),
+                };
+            }
+        });
+
+        calendar.render();
+    });
+
+
+
+</script>
+<div class="container-fluid my-5">
+    <h1>{% trans 'Treatments plan creation' %} - {{request.session.res_lastname}}
+        {% if request.session.profile_pic %}
+        <img class="resident-small-pic mx-1" src="{{ request.session.profile_pic }}" alt="{trans 'resident profile pic' %}">
+        {% endif %}
+    </h1>
+    <div class="d-flex flex-row" id="external-events">
+        {% for task in tasks %}
+            <div class="d-flex flex-column fc-event app6-width-60px mx-2 cactus" id="draggable-el" data-event="{{ task.data_event }}" public-id="{{ task.id }}">
+                <img src="{% static task.get_svg_path %}" alt="{{ task.name }}"
+                                     class="app6-icon app6-width-60px p-2 border border-darkblue app6-white-bg-hover">
+                <p class="text-center app6-green-text-hover">{{ task.name }}</p>
+            </div>
+        {% endfor %}
+    </div>
+    <div id='calendar'></div>
+</div>
+{% endblock content %}

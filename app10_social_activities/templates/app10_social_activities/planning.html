@@ -1,0 +1,12 @@
+{% extends "app4_ehpad_base/base.html" %}
+{% load i18n %}
+
+{% block content %}
+<main class="container py-2">
+    <form action="" method="post" class="d-flex justify-content-center gap-2 my-3">{% csrf_token %}
+        <button class="btn btn-perso {% if activities == 'all' %}active{% endif %}" name="activities" value="all">{% trans 'Display all' %}</button>
+        <button class="btn btn-perso {% if activities == 'user' %}active{% endif %}" name="activities" value="user">{% trans 'My activities only' %}</button>
+    </form>
+    {% include 'app15_calendar/calendar.html' %}
+</main>
+{% endblock content %}

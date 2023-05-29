@@ -1,0 +1,44 @@
+[
+{
+    "model": "app11_quality.champapplicationpublic",
+    "pk": 2,
+    "fields": {
+        "public": "pa"
+    }
+},
+{
+    "model": "app11_quality.champapplicationpublic",
+    "pk": 3,
+    "fields": {
+        "public": "pha"
+    }
+},
+{
+    "model": "app11_quality.champapplicationpublic",
+    "pk": 4,
+    "fields": {
+        "public": "phe"
+    }
+},
+{
+    "model": "app11_quality.champapplicationpublic",
+    "pk": 5,
+    "fields": {
+        "public": "pds"
+    }
+},
+{
+    "model": "app11_quality.champapplicationpublic",
+    "pk": 6,
+    "fields": {
+        "public": "pe-pjj"
+    }
+},
+{
+    "model": "app11_quality.champapplicationpublic",
+    "pk": 7,
+    "fields": {
+        "public": "ahi"
+    }
+}
+]

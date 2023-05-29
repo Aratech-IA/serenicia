@@ -1,0 +1,400 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+    {% block content %}
+        {% load static %}
+            {% load i18n %}
+
+
+<style>
+.card {
+    display: flex;
+    position: relative;
+    word-wrap: break-word;
+    flex-direction: column;
+    box-shadow: 0 20px 20px -20px #a6a6a6;
+    background-color: white;
+    border: solid 1px #000;
+    border-radius: 15px;
+}
+
+.alert-success {
+    font-size: 20px;
+    border-color: #000;
+    background: #93a9d2;
+    text-align: justify;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.accordion-button-1:hover {
+    color: #000;
+    background: #93a9d2;
+    border-top-left-radius: 15px !important;
+    border-top-right-radius: 15px !important;
+}
+
+.accordion-button-1:not(.collapsed) {
+    color: #000;
+    background: #93a9d2;
+    border-top-left-radius: 15px !important;
+    border-top-right-radius: 15px !important;
+}
+
+.accordion-button-2:hover {
+    color: #000;
+    background: #93a9d2;
+    border-bottom-left-radius: 15px !important;
+    border-bottom-right-radius: 15px !important;
+}
+
+.accordion-button-2:not(.collapsed) {
+    color: #000;
+    background: #93a9d2;
+}
+
+.accordion-button-2:not(.collapsed):hover {
+    color: #000;
+    background: #93a9d2;
+    border-bottom-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}
+
+.accordion-button-20:hover {
+    color: #000;
+    background: #93a9d2;
+}
+
+.accordion-button-20:not(.collapsed) {
+    color: #000;
+    background: #93a9d2;
+}
+
+.accordion-button-3:hover {
+    background: #93a9d2;
+    border-radius: 15px !important;
+    border-top-left-radius: 15px !important;
+    border-top-right-radius: 15px !important;
+}
+
+.accordion-button-3:not(.collapsed) {
+    color: #000;
+    background: #93a9d2;
+    border-top-left-radius: 15px !important;
+    border-top-right-radius: 15px !important;
+}
+
+.accordion-button-3:not(.collapsed):hover {
+    color: #000;
+    background: #93a9d2;
+    border-top-left-radius: 15px !important;
+    border-top-right-radius: 15px !important;
+    border-bottom-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}
+
+ol {
+    counter-reset: item;
+}
+
+ol li {
+    display: block;
+}
+
+ol li:before {
+    padding-left: 6px;
+    padding-right: 6px;
+    border-radius: 50px;
+    background: #93a9d2;
+    counter-increment: item;
+    border: solid 1px #93a9d2;
+    content: counter(item) "";
+}
+
+.ti {
+    background: #d3d3d3;
+}
+
+</style>
+
+<div class="container">
+
+{% for message in messages %}
+    {% if "success" in message.tags %}
+        <div class="container-fluid mt-3 alert alert-success alert-dismissible">
+        <div><a href="" class="close--cross" data-bs-dismiss="alert" aria-label="close p-1">&times;</a></div>
+            <div class="mb-2 text-center green--line" aria-label="close">
+                {{ message }}
+            </div>
+        </div>
+    {% endif %}
+{% endfor %}
+
+</div>
+
+<div class="container-fluid pt-3 pb-5">
+
+        <div class="pt-1 pb-1 text-uppercase">
+            <h3 class="text-center text-decoration-underline pt-2 pb-4">
+            {% trans "Inventory" %} {% trans "of" %} {{ user_resident.profile.civility }} {{ user_resident.last_name }} {{ user_resident.first_name }}
+            </h3>
+        </div>
+
+    <div class="row">
+
+        <div class="col-sm-3 pt-3">
+
+            <div class="accordion-item card">
+
+                <div class="accordion-header" id="flush-heading1">
+                    <button class="accordion-button accordion-button-3 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse1" aria-expanded="false" aria-controls="flush-collapse1">
+                        <h6 class="text-uppercase">{% trans "Distribution of objects in the room" %}</h6>
+                    </button>
+                </div>
+
+                <div id="flush-collapse1" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+
+                        <div class="col me-2 ms-2 mb-3">
+
+                            <ul class="list-group">
+                                <li class="text-uppercase text-decoration-underline h6 pb-2 pt-2">{% trans "Closet shelf" %} :</li>
+                                <li class="list-group-item list-group-item-secondary">{% trans "Covers" %}</li>
+                                <li class="list-group-item">{% trans "Pull" %}</li>
+
+                                {% if user_resident.profile.civility == 'Mme' or user_resident.profile.civility == 'Mrs' %}
+                                    <li class="list-group-item list-group-item-secondary">{% trans "Skirts & dresses" %}</li>
+                                    <li class="list-group-item">{% trans "Nightdress & Dressing gown" %}</li>
+                                    <li class="list-group-item list-group-item-secondary"> {% trans "Bath towels" %}</li>
+                                    <li class="list-group-item">{% trans "Towels" %}</li>
+                                {% else %}
+                                    <li class="list-group-item list-group-item-secondary">{% trans "Nightdress & Dressing gown" %}</li>
+                                    <li class="list-group-item"> {% trans "Bath towels" %}</li>
+                                    <li class="list-group-item list-group-item-secondary">{% trans "Towels" %}</li>
+                                {% endif %}
+
+                            </ul>
+
+                        </div>
+
+                        <div class="col me-2 ms-2 mb-3">
+                            <div class="mt-2 pt-1">
+
+                                <ul class="list-group">
+                                    <li class="text-uppercase text-decoration-underline h6 pb-2 pt-2">{% trans "Closet wardrobe" %} :</li>
+                                    <li class="list-group-item list-group-item-secondary">{% trans "Suitcase" %}</li>
+                                    <li class="list-group-item">{% trans "Jacket" %}</li>
+                                    <li class="list-group-item list-group-item-secondary">{% trans "Pants" %}</li>
+                                    <li class="list-group-item">{% trans "Shirt" %}</li>
+                                    <li class="list-group-item list-group-item-secondary">{% trans "Shoes & slippers" %}</li>
+                                </ul>
+
+                            </div>
+                        </div>
+
+                        <div class="col me-2 ms-2 mb-3">
+                            <div class="mt-2 pt-1">
+
+                                <ul class="list-group">
+                                    <li class="text-uppercase text-decoration-underline h6 pb-2 pt-2">{% trans "Cupboard drawer" %} :</li>
+                                    <li class="list-group-item list-group-item-secondary">{% trans "Underwear" %}</li>
+                                    {% if user_resident.profile.civility == 'Mme' or user_resident.profile.civility == 'Mrs'%}
+                                        <li class="list-group-item">{% trans "Bra" %}</li>
+                                        <li class="list-group-item list-group-item-secondary">{% trans "Socks" %}</li>
+                                    {% else %}
+                                        <li class="list-group-item">{% trans "Socks" %}</li>
+                                    {% endif %}
+                                </ul>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-sm-9 pt-3">
+
+            <div class="accordion accordion-flush card" id="accordionFlushExample">
+
+
+                <div class="accordion-item">
+
+                {% for user_inventory in user_inventory %}
+
+                    <div class="accordion-header border-bottom" id="flush-headingOne">
+                        <button class="accordion-button accordion-button-1 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+
+                            <div class="col pt-0 pb-0 d-flex justify-content-start">
+                                <h6 class="text-uppercase">
+                                    {% trans "Inventory" %} {% trans "create the" %} {{ user_inventory.creation_date }}
+                                    {% trans "by" %}
+                                    {{ user_inventory.nurses.profile.civility }} {{ user_inventory.nurses.last_name }} {{ user_inventory.nurses.first_name }}
+                                </h6>
+                            </div>
+
+                        </button>
+                    </div>
+
+                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+
+                                <div class="container row">
+                                <div class="col">
+
+                                    <h6 class="text-start text-uppercase text-decoration-underline ti">{% trans "linen" %} :</h6>
+
+                                        <div class="row">
+                                            <div class="col">{% trans "Laundry washing option" %} : {{ user_inventory.laundry_washed }}</div>
+                                            <div class="col">{% trans "Laundry marking option" %} : {{ user_inventory.laundry_labeled }}</div>
+                                        </div>
+
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="container row">
+                                <div class="col">
+
+                                     <h6 class="text-start text-uppercase text-decoration-underline ti">{% trans "Equipment" %} :</h6>
+
+                                    <div class="row">
+                                        <div class="col">{% trans "Hearing equipment" %} : {{ user_inventory.hearing_equipment }}</div>
+                                        <div class="col">{% trans "Dental equipment" %} : {{ user_inventory.dental_equipment }}</div>
+                                    </div>
+
+                                    <div class="row pt-3">
+                                        <div class="col">{% trans "Cane" %} : {{ user_inventory.cane }}</div>
+                                        <div class="col">{% trans "Wheelchair" %} : {{ user_inventory.wheelchair }}</div>
+                                        <div class="col">{% trans "Walker" %} : {{ user_inventory.walker }}</div>
+                                        <div class="col">{% trans "Glasses" %} : {{ user_inventory.glasses }}</div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <hr>
+
+                             <div class="container row">
+                                <div class="col">
+
+                                     <h6 class="text-start text-uppercase text-decoration-underline ti">{% trans "Outside" %} :</h6>
+
+                                    <div class="row">
+                                        <div class="col">{% trans "Summer shoe" %} : {{ user_inventory.summer_shoe }}</div>
+                                        <div class="col">{% trans "Winter shoe" %} : {{ user_inventory.winter_shoe }}</div>
+                                        <div class="col">{% trans "Jacket" %} : {{ user_inventory.jacket }}</div>
+                                        <div class="col">{% trans "Head cover" %} : {{ user_inventory.head_cover }}</div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <hr>
+
+                             <div class="container row">
+                                <div class="col">
+
+                                    <h6 class="text-start text-uppercase text-decoration-underline ti">{% trans "Days clothing" %} :</h6>
+
+                                    <div class="row">
+                                        <div class="col">{% trans "Pants" %} : {{ user_inventory.pants }}</div>
+                                        <div class="col">{% trans "Pull" %} : {{ user_inventory.pull }}</div>
+                                        <div class="col">{% trans "Long sleeve t-shirt" %} : {{ user_inventory.t_shirt_long }}</div>
+                                        <div class="col">{% trans "Short sleeve t-shirt" %} : {{ user_inventory.t_shirt_short }}</div>
+                                    </div>
+
+                                    <div class="row pt-3">
+                                        <div class="col">{% trans "Long sleeve sweater" %} : {{ user_inventory.sweater_long }}</div>
+                                        <div class="col">{% trans "Short sleeve sweater" %} : {{ user_inventory.sweater_short }}</div>
+
+                                        {% if user_resident.profile.civility == 'Mme' or user_resident.profile.civility == 'Mrs' %}
+                                            <div class="col">{% trans "Skirt dress" %} : {{ user_inventory.skirt_dress }}</div>
+                                        {% endif %}
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <hr>
+
+                             <div class="container row">
+                                <div class="col">
+
+                                    <h6 class="text-start text-uppercase text-decoration-underline ti">{% trans "Night clothing" %} :</h6>
+
+                                    <div class="row">
+                                        <div class="col">{% trans "Nightdress" %} : {{ user_inventory.nightdress }}</div>
+                                        <div class="col">{% trans "Dressing gown" %} : {{ user_inventory.dressing_gown }}</div>
+                                        <div class="col">{% trans "Slipper" %} : {{ user_inventory.slipper }}</div>
+                                        <div class="col">{% trans "Short sleeve t-shirt" %} : {{ user_inventory.t_shirt_short }}</div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <hr>
+
+                             <div class="container row">
+                                <div class="col">
+
+                                    <h6 class="text-start text-uppercase text-decoration-underline ti">{% trans "Underwear" %} :</h6>
+
+                                    <div class="row">
+                                        <div class="col">{% trans "Underwear" %} : {{ user_inventory.underwear }}</div>
+                                        {% if user_resident.profile.civility == 'Mme' or user_resident.profile.civility == 'Mrs' %}
+                                            <div class="col">{% trans "Bra" %} : {{ user_inventory.bra }}</div>
+                                        {% endif %}
+                                        <div class="col">{% trans "Socks" %} : {{ user_inventory.socks }}</div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+                </div>
+
+                <div class="accordion-item">
+
+                    <div class="accordion-header" id="flush-heading3">
+                        <button class="accordion-button accordion-button-2 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse3" aria-expanded="false" aria-controls="flush-collapse3">
+
+                            <div class="col pt-0 pb-0 d-flex justify-content-start">
+                                <h6 class="text-uppercase">{% trans "Complementary information" %}</h6>
+                            </div>
+
+                        </button>
+                    </div>
+
+                    <div id="flush-collapse3" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+
+                        <ol class="list-group text-justify" style="list-style: decimal inside;">
+                            <li class="pt-4 list-group-items">{% trans "Ensure that all clothing provided to the residence goes to the residents" %}.</li>
+                            <li class="pt-4 list-group-items">{% trans "At each change of season, please remove all linen unsuitable for the season" %}.</li>
+                            <li class="pt-4 list-group-items">{% trans "This may be an opportunity to check the sizes and wear of clothes and possibly complete the inventory" %}.</li>
+                            <li class="pt-4 list-group-items">{% trans "Faced with the workload, the nursing staff often go to the fastest and may tend to offer the same clothes to the resident. Do not hesitate when you come, to place clothes often worn below the pile of laundry to promote rotation" %}.</li>
+                            <li class="pt-4 list-group-items">{% trans "If you want to renew or complete laundry in your inventory. Or simply if you received a garment as a gift, be sure to mark it before bringing it. If this service is provided by the residence, the linen must be left at reception, which will forward it to the sewing department." %}.</li>
+                            <li class="pt-4 list-group-items">{% trans "If wearing braces: Adhesive paste and box to store the dentures. Effervescent tablets are ineffective. We don't use them" %}.</li>
+                        </ol>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+{% endblock content %}

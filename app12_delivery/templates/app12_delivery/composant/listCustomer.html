@@ -1,0 +1,21 @@
+{% load i18n %}
+{% if user_for_delivery %}
+<div class="container overflow-auto">
+{% for foo in user_for_delivery %}
+                    <a href="{% url "account_delivery" foo.id %}" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{ foo.user.last_name }} {{ foo.user.first_name }}</h5>
+                            <small class="text-muted">{{ foo.user.profile.city }}</small>
+                        </div>
+                        <p class="mb-1"></p>
+                        <small class="text-muted">Somme rapporté</small>
+                    </a>
+{% endfor %}
+{% else %}
+    <ul class="list-group list-group-flush overflow-auto">
+
+                <li class="list-group-item"><span>Aucun client enregistré</span></li>
+
+            </ul>
+{% endif %}
+</div>

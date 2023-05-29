@@ -1,0 +1,131 @@
+{% extends "app3_messaging/mails_base.html" %}
+{% load static %}
+{% load i18n %}
+{% load custom_filters %}
+
+{% block content %}
+
+<main id="mailboxconv" class="m-3">
+<!--        CSRF IS NEEDED TO SEND COOKIE WHEN WE OPEN THE EMAIL, DONT TAKE IT OFF-->
+    {% csrf_token %}
+    <div class="accordion-body bg-white rounded-3">
+        {% for msg in page_obj_received%}
+            {% with inter=msg|get_inter_of_x:user sender=msg|get_inter_of_x:'sender' %}
+                <div id="message{{forloop.counter}}" style="{% if forloop.counter > 1 %} padding-left:{{forloop.counter}}vw; {% endif %}">
+                {% if not forloop.first %}
+                    <hr class="w-100 border-bottom border-dark">
+                {% endif %}
+                {% if inter.user_type != 'sender' %}
+                    <span class="fw-bold">{% trans 'Message from' %} {{ sender.username }}:</span><br>
+                {% endif %}
+
+                <span class="fw-bold">{% trans 'Sent on' %} {{msg.date_sent}}</span><br>
+                {% if msg.intermediate_set.all|length > 1 or inter.user_type == 'sender' %}
+                    <!--Affichage destinataires-->
+                    <input type="checkbox" id="expanded_convo{{ forloop.parentloop.counter }}-{{ forloop.counter }}" onclick="clamping(this, recipients_list{{ forloop.parentloop.counter }}_{{ forloop.counter }})" hidden>
+                    <p class="reduced recipients_list" id="recipients_list{{ forloop.parentloop.counter }}_{{ forloop.counter }}">
+                        <span
+                            class="fw-bold">
+                            {% if inter.user_type == 'sender' %}
+                            {% trans 'Message to' %}:
+                            {% else %}
+                            {% trans 'Also sent to:' %}
+                            {% endif %}
+                        </span>
+                        {% for intermediate in msg.intermediate_set.all %}
+                            {% if user.username != intermediate.recipient.username and intermediate.user_type != 'sender' and intermediate.user_type != 'CCI' %}
+                                <span class="senderrecipients"
+                                      style="{% if intermediate.date_opened %}color:gray;{% endif %}{% if perms.app0_access.view_family and intermediate.recipient.email %}text-decoration: underline;{%endif%}"
+                                      {% if intermediate.date_opened and perms.app0_access.view_family and intermediate.recipient.email %}
+                                            title="{% trans 'Opened on' %} {{intermediate.date_opened}} | {% trans 'Notified by e-mail on' %} {{intermediate.recipient.email}}"
+                                      {% else %}
+                                          {% if intermediate.date_opened %}
+                                            title="{% trans 'Opened on' %} {{intermediate.date_opened}}"
+                                          {% elif perms.app0_access.view_family and intermediate.recipient.email %}
+                                            title="{% trans 'Notified by e-mail on' %} {{intermediate.recipient.email}}"
+                                          {% endif %}
+                                      {% endif %}>
+
+                                    {% if intermediate.user_type != 'sender' and intermediate.user_type != 'default' %}
+                                    {{intermediate.user_type}}: {% endif %}{{intermediate.recipient.username}}
+
+                                </span>
+                                {% if forloop.last %}.{% else %}, {% endif %}
+                            {%endif%}
+                        {% endfor %}
+                    </p>
+                    <label for="expanded_convo{{ forloop.parentloop.counter }}-{{ forloop.counter }}" role="button" class="btn btn-perso showing">{% trans 'See more' %}</label>
+                    <label for="expanded_convo{{ forloop.parentloop.counter }}-{{ forloop.counter }}" role="button" class="btn btn-perso hiding d-none">{% trans 'See less' %}</label>
+                    <hr class="style1">
+                    <!--Fin affichage destinataires-->
+                {% endif %}
+                <span class="fw-bold">{% trans 'Subject' %} : {{msg.subject}}</span><br>
+                <div class="style2">
+                    {{msg.content|safe}}
+                </div>
+                    {% if msg.intraemailattachment_set.all %}
+                        <span class="fw-bold">{% trans 'Attachments' %}:</span>
+                        {% for file in msg.intraemailattachment_set.all %}
+                            <a href="{{ file.attachment.url }}" class="text-center" download>
+                                {% if file.name %}{{ file.name }}{% else %} {% trans 'Attachment' %} {{forloop.counter}}{% endif %}
+                            </a>{% if forloop.last %}.{% else %},{% endif %}&nbsp;
+                        {% endfor %}
+                    {% endif %}
+                    <div class="row">
+                        {% if inter.user_type != 'sender' %}
+                        <form action="" method="post" name="repondre" class="row repondre col-sm-4 col-lg-2" id="repondre{{ forloop.counter}}-{{ forloop.parentloop.counter}}">{% csrf_token %}
+                            <input type="hidden" name="convo_id" value="{{msg.message_conversation.id}}">
+                            <input type="hidden" name="message_id" value="{{msg.id}}">
+                            <button type="submit" name="repondre" class="btn btn-perso mt-3">
+                                {% trans 'Answer' %}
+                            </button>
+                        </form>
+                        {% endif %}
+
+                        <form action="" method="post" name="delete" class="row delete col-sm-4 col-lg-2" id="delete{{ forloop.counter}}-{{ forloop.parentloop.counter}}">{% csrf_token %}
+                            <input type="hidden" name="inter_id" value="{{inter.id}}">
+                            <div class="modal fade" id="confirmDelete{{ forloop.counter}}-{{ forloop.parentloop.counter}}" tabindex="-1" aria-labelledby="confirmDelete" aria-hidden="true" role="dialog">
+                                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-body text-center m-3 p-0" role="alert">
+                                            <h4 class="modal-title">{% trans 'Confirmation' %}</h4>
+                                            <p>{% trans 'Are you sure that you want to delete this message' %}?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" data-bs-dismiss="modal" aria-label="Close" class="btn btn-outline-danger">{% trans 'Cancel' %}</button>
+                                            <button type="submit" name="delete" class="btn btn-perso">{% trans 'Yes, I am sure' %}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="button" id="repondrebutton" data-bs-toggle="modal" data-bs-target="#confirmDelete{{ forloop.counter}}-{{ forloop.parentloop.counter}}"
+                                    class="btn btn-outline-danger white mt-3 ms-3">
+                                {% trans 'Delete' %}
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            {% endwith %}
+        {% endfor %}
+    </div>
+    <div class="style3">
+        <ul class="step-links pagination">
+            {% if page_obj_received.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page_received=1">&laquo; </a></li>
+                <li class="page-item"><a class="page-link" href="?page_received={{ page_obj_received.previous_page_number }}">{{ page_obj_received.previous_page_number }}</a></li>
+            {% endif %}
+            <li class="page-item">
+                <a href="" class="current page-link bg-white">
+                    {{ page_obj_received.number }}
+                </a>
+            </li>
+            {% if page_obj_received.has_next %}
+                <li class="page-item"><a class="page-link" href="?page_received={{ page_obj_received.next_page_number }}">{{ page_obj_received.next_page_number }}</a></li>
+                <li class="page-item"><a class="page-link" href="?page_received={{ page_obj_received.paginator.num_pages }}"> &raquo;</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</main>
+
+{% endblock %}

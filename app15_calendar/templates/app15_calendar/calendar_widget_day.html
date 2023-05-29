@@ -1,0 +1,73 @@
+{% extends "app4_ehpad_base/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+    <head>
+        <link href="{% static 'app4_ehpad_base/js/fullcalendar/main.css' %}" rel='stylesheet' />
+        <script src="{% static 'app4_ehpad_base/js/fullcalendar/main.js' %}"></script>
+        <script>
+        var calendar = null;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            calendar = new FullCalendar.Calendar(calendarEl, {
+              headerToolbar: {
+                start: 'title',
+                center: '',
+                end: 'prev,next',
+              },
+              buttonText: {
+                  today: "{% trans 'Today' %}",
+              },
+              allDayText: "",
+              contentHeight: 'auto',
+              initialView: 'timeGridDay',
+              editable: false,
+              nowIndicator: true,
+              locale: '{{ request.LANGUAGE_CODE }}',
+              allDaySlot: true,
+              slotMinTime: '07:00:00',
+              slotMaxTime: '22:00:00',
+              initialDate: "{{ initial }}",
+
+
+              events: [
+                {% for data in events %}
+                    {
+                        title: "{{ data.event.type }}",
+                        {% if not data.end %}
+                            start: '{{ data.start|date:"Y-m-d" }}',
+                            allDay: true,
+                        {% else %}
+                            start: '{{ data.start|date:"Y-m-d H:i" }}',
+                            end: '{{ data.end|date:"Y-m-d H:i" }}',
+                        {% endif %}
+                        {% if data.event.is_visit %}
+                            backgroundColor: 'orange',
+                            borderColor: 'orange',
+                        {% elif data.event.is_activity %}
+                            backgroundColor: '#93a9d2',
+                            borderColor: '#93a9d2',
+                        {% elif data.event.is_birthday %}
+                            backgroundColor: 'purple',
+                            borderColor: 'purple',
+                        {% endif %}
+                    },
+                {% endfor %}
+                ],
+            });
+
+            calendar.render();
+        });
+        </script>
+    </head>
+
+<div class="sticky-top-btn d-none d-lg-block">
+    <button class="btn btn-perso" onclick="history.back()">{% trans 'Back' %}</button>
+</div>
+
+<main class="container">
+    <div id='calendar'></div>
+</main>
+{% endblock content %}

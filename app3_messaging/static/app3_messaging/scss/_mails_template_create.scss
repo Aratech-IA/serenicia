@@ -1,0 +1,32 @@
+.maincreate {
+    margin: 10px 10px 15px 10px;
+    font-size:18px;
+
+    .modal1 {
+        .modal-content {
+            border: 1px solid #93a9d2;
+        }
+    }
+}
+
+#creationdemail {
+    .fileoptions1 {
+        border: solid;
+        border-color: lightgray;
+        border-width: 1px;
+        display: none;
+        overflow: scroll;
+        height: 100%;
+        max-height: 700px;
+    }
+
+    .fileoptions2 {
+        display: none;
+        width: 100%;
+        border: 1px solid green;
+        padding: 10px;
+        background: lightgray;
+        margin-bottom: 15px;
+        margin-top: 15px;
+    }
+}

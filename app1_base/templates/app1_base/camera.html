@@ -1,0 +1,58 @@
+{% extends "app1_base/base.html" %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+    <div class="container">
+        <div class="text-center">
+            <h1 class="section-title">Camera</h1>
+        </div>
+    </div>
+    <div class="container">
+        <div class="">
+            <div class="col-auto">
+                <div class="col-auto">
+                    {% for row in camera %}
+                        <div class="col-auto row justify-content-center">
+                            {% for res in row %}
+                                <div class="col-sm-4 col-md-4 col-lg-4 text-center">
+                                    <code id="robot-state" class="accesslog hljs"><h6>{{ res.0.name }}<small> -
+                                        {% if res.0.stream %}{{ res.1.secure_rtsp }}{% else %}
+                                            {{ res.1.secure_url }}{% endif %}</small></h6><br>
+                                        {% if connected %}
+                                            <a href="{% url 'last image' cam=res.0.id %}">
+                                                <img src="{% url 'image' cam_id=res.0.id %}" id="img{{ res.0.id }}"
+                                                     width="{{ res.0.max_width_rtime }}" ></a>
+                                        {% else %}  <img src="{% static 'app1_base/img/no_play_medium.png' %}"
+                                                         width="{{ res.0.max_width_rtime }}">
+                                        {% endif %}
+                                    </code>&nbsp;
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="col-auto align-right">
+            {% trans 'To add new camera please go to' %} <a href='/app1_base/admin/'>admin</a>
+        </div>
+    </div>
+    <meta http-equiv="refresh" content="{{ refresh }};URL=/">
+{% endblock content %}
+
+{% block scriptscamera %}
+    <script>
+        {% for row in camera %}
+            {% for res in row %}
+                document.getElementById('img{{ res.0.id }}').src = "{% url 'image' cam_id=res.0.id %}?random=" + new Date().getTime();
+                window.setInterval(function () {
+                    document.getElementById('img{{ res.0.id }}').src = "{% url 'image' cam_id=res.0.id %}?random=" + new Date().getTime();
+                }, 3000);
+            {% endfor %}
+        {% endfor %}
+
+    </script>
+{% endblock scriptscamera %}

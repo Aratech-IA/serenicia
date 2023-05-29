@@ -1,0 +1,236 @@
+.logopetit {
+    width: 7.5em;
+}
+
+@media only screen and (min-width: 650px) {
+    .logopetit {
+        width: 12em;
+    }
+}
+
+.myHeight11 {
+    height: 95%;
+}
+
+.myHeight12 {
+    height: 15em;
+}
+
+@media only screen and (min-width: 700px) {
+    .myHeight12 {
+        height: 22em;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .myHeight12 {
+        height: 18em;
+    }
+}
+
+@media only screen and (min-width: 1300px) {
+    .myHeight12 {
+        height: 25em;
+    }
+}
+
+.resident_large_pic {
+    overflow:hidden;
+    -webkit-border-radius:50px;
+    -moz-border-radius:50px;
+    border-radius:150px;
+    width:150px;
+    height:150px;
+    object-fit: cover;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.resident_small_pic {
+    overflow:hidden;
+    -webkit-border-radius:50px;
+    -moz-border-radius:50px;
+    border-radius:50px;
+    width:48px;
+    height:48px;
+    object-fit: cover;
+}
+
+.carousel-border {
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+// pour app4_ehpad_base/social_planning.html uniquement
+// table {
+//     max-width: 15em;
+// }
+
+.carouprevrepas {
+    left: -1.5em;
+}
+
+.carounextrepas {
+    right: -1.5em;
+}
+
+.preview_blog {
+   margin: 2.5rem;
+}
+
+.preview__figure_blog {
+    position: relative;
+    padding-top: 140%;
+    transition: padding-top 275ms cubic-bezier(.2,.3,.4,.9);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+.preview__figure_blog:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 33%;
+    background-image: linear-gradient(180deg,rgba(10,9,8,.33),transparent);
+}
+
+.preview__details_blog {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.preview__title_blog {
+    display: block;
+    height: 100%;
+    padding: .75rem;
+    padding-right: 0.75rem;
+    color: #fcfdff;
+    background-color: rgba(10,9,8,0);
+    transition: background-color 500ms cubic-bezier(.4,.25,.3,1);
+}
+
+.preview__title_blog div {
+    position:absolute;
+    bottom:0;
+    display: block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.preview__meta_blog {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: .5rem 0;
+    font-size: .9rem;
+}
+
+.preview__author_blog {
+    white-space: nowrap;
+    font-weight: bold
+}
+
+.preview__title_blog:hover {
+    background-color: rgba(10,9,8,.65);
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(100%);
+}
+
+.btn-outline-white {
+    background-color: white;
+    border: solid 2px #93a9d2;
+    color: black;
+}
+
+.btn-outline-white:hover {
+    background-color: #93a9d2;
+    color: black;
+    border: solid 2px black;
+}
+
+.social-life-eval-face {
+    width: 60px;
+    height: auto;
+}
+
+.social-life-eval-face-global {
+    width: 30px;
+    height: auto;
+}
+
+.social-life-thumbnail {
+    max-width: 220px;
+    max-height: 170px;;
+}
+
+.progress {
+    width: 100%;
+    height: 25px;
+    border-radius: 5px;
+    background-color: #fff;
+    border: solid 1.5px black;
+}
+
+@media only screen and (min-width: 500px) {
+    .progress {
+        width: 80%;
+    }
+}
+
+.progress-bar {
+    color: black;
+    padding-top: 8px;
+    text-align: center;
+    background-color: $darkblue;
+}
+
+.modal-title {
+    text-transform: uppercase;
+}
+
+.modal-body p {
+   font-size: 14px;
+   text-align: center;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+footer {
+    background-color: #93a9d2;
+}
+
+.slot {
+    border: solid 1px white;
+}
+
+.slot:hover {
+    border: solid 1px black;
+}

@@ -1,0 +1,43 @@
+{% extends "app4_ehpad_base/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+
+
+<div class="container">
+    <form action="{% url 'display reservation' %}" method="post">{% csrf_token %}
+            {% if menu %}
+            <div class="text-center my-4">
+                <h4>{{ menu.date }} : {{ menu.entree.name }} / {{ menu.main_dish.name }}{% if menu.accompaniment %} {{ menu.accompaniement.name }}{% endif %} / {{ menu.dessert.name }}</h4>
+            </div>
+            {% endif %}
+            {% for booking in bookinglist %}
+                <div class="d-flex border border-darkblue rounded-3 justify-content-evenly personnalcard py-2 mt-2">
+                    <div class="d-flex w-50 justify-content-around">
+                        <div class="d-flex w-25 justify-content-center">
+                            <img class="img-fluid profilepic rounded-3 mx-3"
+                                 src="{{ booking.booking.owner.user.profile.get_photo_url }}">
+                        </div>
+                        <div class="d-flex w-50 justify-content-center">
+                            <h4 class="align-self-center">
+                                {{ booking.booking.owner.user.first_name }}
+                                {{ booking.booking.owner.user.last_name }}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="d-flex w-50 justify-content-evenly">
+                        <button class="btn {% if booking.ready %}btn-perso{% else %}btn-perso{% endif %}
+                         userbtn" name="ready" value="{{ booking.booking.id }}">
+                        {% trans 'Ready' %}
+                        </button>
+                        <button class="btn btn-perso userbtn" name="is_served" value="{{ booking.booking.id }}"
+                                id="btn{{ booking.booking.id }}" {% if not booking.ready %}disabled{% endif %}>
+                            {% trans 'Collected' %}
+                        </button>
+                    </div>
+                </div>
+            {% endfor %}
+    </form>
+</div>
+{% endblock content %}

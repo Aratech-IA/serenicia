@@ -1,0 +1,16 @@
+{% extends "app1_base/base.html" %}
+
+{% block extralink %}
+
+   <!--To get the data AOS, used mainly in blog -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+{% endblock extralink %}
+
+{% block extrastyle %}
+    <style>
+        .icon-sm-md{
+            height:24px;
+        }
+    </style>
+    {% block styleapp5 %}{% endblock styleapp5 %}
+{% endblock extrastyle %}

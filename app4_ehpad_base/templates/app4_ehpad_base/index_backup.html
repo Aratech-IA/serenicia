@@ -1,0 +1,696 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+
+{% block content %}
+{% load static %}
+{% load i18n %}
+
+
+<div id="zooming" class="container-fluid p-4">
+    <img id="popup_fullscreen" class="img-fluid rounded-3" onclick="close_zoom()">
+</div>
+<div id="page_contents" class="container bg-light mt-4">
+    <div class="d-flex flex-row flex-wrap justify-content-around align-items-center">
+        <div class="col-12 col-md-8 text-center mt-5 p-3 position-relative">
+            <div class="d-flex">
+                {% if profile_pic %}
+                    <div class="myWidth"></div>
+                {% endif %}
+                <div class="myZIndex2 d-flex flex-column justify-centent-center align-items-center w-100 mx-1 my-3 me-0">
+                    <h4 class="m-0">{{ request.session.res_lastname }}{% if main_resident_informations %} {% trans 'Housing' %} {{ main_resident_informations.room_number }}{% endif %}</h4>
+                    {% if main_resident_informations %}
+                    {% if main_resident_informations.got_multi_resistant_bacteria %}<label class="orange my_radius m-1 p-1">BMR</label>{% endif%}
+<!--                    <p>{{ important_warning_pictogram }} {{ important_warning_pictogram }} {{ important_warning_pictogram }}</p>-->
+<!--                <p>{% trans 'referrers' %} : {{ referrer_avatar }} {{ referrer_avatar }} {{ referrer_avatar }}</p>-->
+<!--                    <div class="progress w-100">-->
+<!--                        <div class="progress-bar" role="progressbar" style="width: {{ main_resident_informations.administrative_files_completeness }}%" aria-valuenow="{{ main_resident_informations.administrative_files_completeness }}" aria-valuemin="0" aria-valuemax="100">{{ main_resident_informations.administrative_files_completeness }}</div>-->
+<!--                    </div>-->
+                    <div class="progress w-100">
+                        <div class="progress-bar grey" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">dossier administratif complété à 75%</div>
+                    </div>
+                    {% endif %}
+                </div>
+                {% if profile_pic %}
+                <span class="myZIndex position-absolute top-0 start-0">
+                    <img src="{{ profile_pic }}" class="d-none d-md-block resident_large_pic" alt="{% trans 'Profile pic' %}">
+                    <img src="{{ profile_pic }}" class="d-lg-none d-md-none d-xl-none d-xxl-none resident_large_pic" alt="{% trans 'Profile pic' %}">
+                </span>
+                {% endif %}
+            </div>
+            <!-- Carousel  -->
+            <div id="residentpicture" class="carousel" data-ride="carousel">
+                <div class="carousel-inner rounded-3">
+                    {% for image in images %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %} bg-lightblue myHeight2">
+                            <div class="d-flex justify-content-center align-items-center h-100">
+                                <input type="image" src="{{ image }}" class="img-fluid mx-auto my-auto d-block myHeight1" alt="alt" onclick="open_zoom('{{ image }}')">
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <a class="carousel-control-prev" href="#residentpicture" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#residentpicture" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </a>
+            </div>
+        </div>
+        <div class="col-2 d-none d-md-block">
+            <!-- Logo + link client -->
+            <div class="row">
+                <a href="{{ SITE_INTERNET }}">
+                    <img src="{{ IMG_LOGO }} " width="100%"
+                    alt="brand logo">
+                </a>
+            </div>
+            <br>
+            <!-- Meteo -->
+            <div class="row">
+                <iframe id="widget_autocomplete_preview" width="150" height="320" frameborder="0" scrolling="no"
+                        src="https://meteofrance.com/widget/prevision/260490"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Photos famille -->
+<div class="m-3">
+    {% include 'app4_ehpad_base/dir_photo_family_index.html' %}
+</div>
+
+<div class="bloc_referent" style="display:flex;flex-direction:column;padding:5px;background-color:lightgray;max-width:40%;">
+    <form class="input-group" action="{% url 'internal_emailing_family' %}" method="post">
+        {% csrf_token %}
+        <div class="bloc_title" style="display:flex">
+            <h4>Vos Référents:</h4>
+        </div>
+        <div class="sub_section_title">
+            <span style="font-weight:bold">Agent de Service Hôtelier</span>
+            <div class="desc">Entretien des locaux et service des repas</div>
+            <div class="referent ASH" style="display:flex;margin:5px;">
+                {% for ref in ref_ash %}
+                <div class="{{forloop.counter}}ref bouton btn btn-perso">{{ref.first_name}} {{ref.last_name}}</div>
+                {% endfor %}
+                <button name="contact_ref" type="submit" value="view_ash" class="{{forloop.counter}}ref_contact bouton btn btn-perso">Contacter le Service Hôtelier</button>
+            </div>
+        </div>
+        <div class="sub_section_title">
+            <span style="font-weight:bold">Aide Soignant(e) AS/AMP/AES</span>
+            <div class="desc">Soins de nursing, gestion du linge</div>
+            <div class="referent AS" style="display:flex;margin:5px;">
+                {% for ref in ref_as %}
+                <div class="{{forloop.counter}}ref bouton btn btn-perso">{{ref.first_name}} {{ref.last_name}}</div>
+                {% endfor %}
+                <button name="contact_ref" type="submit" value="view_as" class="{{forloop.counter}}ref_contact bouton btn btn-perso">Contacter les Aide Soignant(e)s</button>
+            </div>
+        </div>
+        <div class="sub_section_title">
+            <span style="font-weight:bold">Infirmier(e) IDE</span>
+            <div class="desc">Soins médicaux</div>
+            <div class="referent IDE" style="display:flex;margin:5px;">
+                {% for ref in ref_ide %}
+                <div class="{{forloop.counter}}ref bouton btn btn-perso">{{ref.first_name}} {{ref.last_name}}</div>
+                {% endfor %}
+                <button name="contact_ref" type="submit" value="view_ide" class="{{forloop.counter}}ref_contact bouton btn btn-perso">Contacter les Infirmier(e)s</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- Care interventions -->
+{% if last_12_interventions %}
+<div class="d-flex flex-column align-items-center">
+    <div class="border border-darkblue rounded-3 p-3 mt-5 {% if last_12_interventions|length <= 6 %}w-75{% else %}container-fluid{% endif %}">
+            <h4 class="text-center">{% trans 'I keep up to date with the latest treatments in real time' %} :</h4>
+            <div class="d-flex flex-column flex-wrap p-3 myHeight4 {% if last_12_interventions|length <= 6 %}align-items-center{% endif %}">
+                {% for last_intervention in last_12_interventions %}
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#last_intervention_modal{{ forloop.counter }}" class="overflow-auto d-flex flex-nowrap align-items-center mx-2 mt-3 border-0 bg-light {% if last_12_interventions|length > 6 %}w-50{% endif %}">
+                        <div class="fa fa-chevron-circle-right text-success me-1"></div>
+                        <div>{{ last_intervention.date }}</div>
+                        <img src="{% if last_intervention.nurse_avatar %}{{ last_intervention.nurse_avatar }}{% else %}{% static 'app4_ehpad_base/img/picto_doctor.png'%}{% endif %}" width="48px" class="resident_small_pic ms-1" title="{{ last_intervention.nurse.first_name }} {{ last_intervention.nurse.last_name }}">
+                        <!-- pour écran small + medium + large -->
+                        <div class="d-xl-none overflow-auto d-flex flex-nowrap align-items-center">
+                        {% for task in last_intervention.tasks_short_list %}
+                            <img src="{% static task.pictogram %}" width="48px" title="{{ last_intervention.date }}: {{ task.name }} {% trans 'realized by'%} {{ last_intervention.nurse.first_name }} {{ last_intervention.nurse.last_name }}">
+                        {% endfor %}
+                        {% if last_intervention.undisplayed_tasks == 1 %}
+                            <img src="{% static last_intervention.tasks.2.pictogram %}" width="48px" title="{{ last_intervention.tasks.2.date }}: {{ last_intervention.tasks.2.name }} {% trans 'realized by'%} {{ last_intervention.tasks.2.nurse.first_name }} {{ last_intervention.tasks.2.nurse.last_name }}">
+                        {% endif %}
+                        {% if last_intervention.undisplayed_tasks >= 2 %}
+                        <div class="border border-dark rounded-circle p-1 bg-white">
+                            + {{ last_intervention.undisplayed_tasks }}
+                        </div>
+                        {% endif %}
+                        </div>
+                        <!-- pour écran large XL -->
+                        <div class="d-none d-xl-block">
+                            <div class="overflow-auto d-flex flex-nowrap">
+                                {% for task in last_intervention.tasks %}
+                                <img src="{% static task.pictogram %}" width="48px" title="{{ last_intervention.date }}: {{ task.name }} {% trans 'realized by'%} {{ last_intervention.nurse.first_name }} {{ last_intervention.nurse.last_name }}">
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="last_intervention_modal{{forloop.counter}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header bg-lightblue">
+                                    <h5 class="modal-title" id="exampleModalLabel">
+                                        {% trans 'Treatments realized by' %} : {{ last_intervention.nurse.first_name }} {{ last_intervention.nurse.last_name }} <img src="{% if last_intervention.nurse_avatar %}{{ last_intervention.nurse_avatar }}{% else %}{% static 'app4_ehpad_base/img/picto_doctor.png'%}{% endif %}" width="48px" class="resident_small_pic" title="{{ last_intervention.nurse.first_name }} {{ last_intervention.nurse.last_name }}"></h5>
+                                    <h5>{{ last_intervention.date }}</h5>
+                                    <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">×</button>
+                                </div>
+                                <div class="modal-body">
+                                    {% for task in last_intervention.tasks %}
+                                    <div class="d-flex flex-direction-row align-items-center mt-2">
+                                        <img src="{% static task.pictogram %}" width="48px">
+                                        <div class="ms-2">{{ task.name }}</div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-perso" data-bs-dismiss="modal">{% trans 'Close' %}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Calendar -->
+<div class="container">
+    <div class="col-12 text-center">
+        <div class="col-12">
+            <a data-bs-toggle="modal" class="modal-body" data-bs-target="#calendar_frame_modal">
+                {% include 'app4_ehpad_base/social_planning.html' %}</a>
+            <div class="modal fade" id="calendar_frame_modal">
+                <div class="modal-dialog modal-fullscreen-lg-down modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">{% trans "Calendar's details" %}</h3>
+                            <button class="btn-close btn-perso fi-align-right" data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                    type="button">
+                                <span aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <iframe src="https://calendar.google.com/calendar/embed?height=450&amp;wkst=2&amp;bgcolor=%2378de8d&amp;ctz=Europe%2FParis&amp;src={{ cal_id }}&amp;color=%23F4511E&amp;color=%2333B679&amp;color=%230B8043&amp;showNav=1&amp;showTitle=1&amp;showDate=1&amp;showTabs=1&amp;showPrint=0&amp;showCalendars=1&amp;showTz=1&amp;mode=MONTH"
+                                    style="border:solid 1px #777" width="700" height="450"
+                                    frameborder="0"
+                                    scrolling="no"></iframe>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 d-inline-block">
+            {% if perms.app0_access.view_family %}
+                <button type="button" class="btn btn-perso m-2 p-4 border-3" data-bs-toggle="modal"
+                        data-bs-target="#new_event_modal">
+                    <p>
+                        <svg width="48px" viewbox="0 0 16 16" class="bi bi-calendar2-plus"
+                             fill="currentColor"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                  d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
+                            <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
+                            <path fill-rule="evenodd"
+                                  d="M8 8a.5.5 0 0 1 .5.5V10H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V11H6a.5.5 0 0 1 0-1h1.5V8.5A.5.5 0 0 1 8 8z"/>
+                        </svg>
+                    </p>
+                    {% trans 'Be a part of the schedule' %}
+                </button>
+                {% if cancellables %}
+                <button type="button" class="btn btn-outline-warning m-2 p-4 border-1" data-bs-toggle="modal"
+                        data-bs-target="#delete_event_modal">
+                    <p>
+                        <svg width="48px" viewbox="0 0 16 16" class="bi bi-calendar2-x-fill" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 3.5c0-.276.244-.5.545-.5h10.91c.3 0 .545.224.545.5v1c0 .276-.244.5-.546.5H2.545C2.245 5 2 4.776 2 4.5v-1zm4.854 4.646a.5.5 0 1 0-.708.708L7.293 10l-1.147 1.146a.5.5 0 0 0 .708.708L8 10.707l1.146 1.147a.5.5 0 0 0 .708-.708L8.707 10l1.147-1.146a.5.5 0 0 0-.708-.708L8 9.293 6.854 8.146z"/>
+                        </svg>
+                    </p>
+                    Annuler
+                </button>
+                {% endif %}
+            {% endif %}
+            <a class="btn btn-perso m-2 p-4 border-3" href="{% url 'Contact selection' %}"
+               role="button">
+                <p>
+                    <svg width="48px" viewbox="0 0 16 16" class="bi bi-people-fill"
+                         fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+                    </svg>
+                </p>
+                {% trans 'Video Chat' %}
+            </a>
+
+            {% if perms.app0_access.view_family %}
+            <button class="btn btn-perso m-2 p-4 border-3" data-bs-toggle="modal"
+                    data-bs-target="#meal_booking">
+                <p>
+                    <svg aria-hidden="true"
+                         focusable="false"
+                         data-prefix="fas"
+                         data-icon="utensils"
+                         class="bi svg-inline--fa fa-utensils fa-w-13"
+                         role="img"
+                         viewbox="0 0 416 512"
+                         version="1.1"
+                         width="39px"
+                         id="svg4"
+                         sodipodi:docname="HotelResto.svg"
+                         inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+                        <metadata
+                                id="metadata10">
+                            <rdf:RDF>
+                                <cc:Work
+                                        rdf:about="">
+                                    <dc:format>image/svg+xml</dc:format>
+                                    <dc:type
+                                            rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+                                </cc:Work>
+                            </rdf:RDF>
+                        </metadata>
+                        <defs
+                                id="defs8"/>
+                        <sodipodi:namedview
+                                pagecolor="#ffffff"
+                                bordercolor="#666666"
+                                borderopacity="1"
+                                objecttolerance="10"
+                                gridtolerance="10"
+                                guidetolerance="10"
+                                inkscape:pageopacity="0"
+                                inkscape:pageshadow="2"
+                                inkscape:window-width="1920"
+                                inkscape:window-height="1017"
+                                id="namedview6"
+                                showgrid="false"
+                                inkscape:zoom="1.1278375"
+                                inkscape:cx="250.50218"
+                                inkscape:cy="261.47071"
+                                inkscape:window-x="-8"
+                                inkscape:window-y="-8"
+                                inkscape:window-maximized="1"
+                                inkscape:current-layer="svg4"/>
+                        <path
+                                fill="currentColor"
+                                d="M207.9 15.2c.8 4.7 16.1 94.5 16.1 128.8 0 52.3-27.8 89.6-68.9 104.6L168 486.7c.7 13.7-10.2 25.3-24 25.3H80c-13.7 0-24.7-11.5-24-25.3l12.9-238.1C27.7 233.6 0 196.2 0 144 0 109.6 15.3 19.9 16.1 15.2 19.3-5.1 61.4-5.4 64 16.3v141.2c1.3 3.4 15.1 3.2 16 0 1.4-25.3 7.9-139.2 8-141.8 3.3-20.8 44.7-20.8 47.9 0 .2 2.7 6.6 116.5 8 141.8.9 3.2 14.8 3.4 16 0V16.3c2.6-21.6 44.8-21.4 48-1.1zm119.2 285.7l-15 185.1c-1.2 14 9.9 26 23.9 26h56c13.3 0 24-10.7 24-24V24c0-13.2-10.7-24-24-24-82.5 0-221.4 178.5-64.9 300.9z"
+                                id="path2"
+                        />
+                    </svg>
+                </p>
+                {% trans 'Book' %}
+            </button>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Modal calendar -->
+<div>
+    <div class="modal fade" id="new_event_modal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-lightblue">
+                <div class="modal-header">
+                    <h1 class="modal-title">{% trans "I'm planning" %} :</h1>
+                    <button class="btn-close btn-perso fi-align-right"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                            type="button">
+                        <span aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="modal-body bg-lightblue">
+                    <div class="form-control bg-light">
+                        <form class="input-group" action="{% url 'personal page' %}" method="post">
+                            {% csrf_token %}
+                            <div class="input-group-prepend d-flex flex-grow-1 justify-content-base m-2 overflow-auto">
+                                <span class="input-group-text w-50">{% trans 'To' %} </span>{{ new_event.type }}
+                            </div>
+                            <div class="input-group-prepend d-flex flex-grow-1 justify-content-base m-2 overflow-auto">
+                                <span class="input-group-text w-50">{% trans 'On the' %} </span>{{ new_event.start }}
+                            </div>
+                            <div class="input-group-prepend d-flex flex-grow-1 justify-content-base m-2 overflow-auto">
+                                <span class="input-group-text w-50">{% trans 'For about' %} </span>{{ new_event.event_duration }}
+                            </div>
+                            <div class="input-group-append w-100 m-2 overflow-hidden">
+                                {{ new_event.event_comment }}
+                                <span class="input-group-text">{% trans 'Further comments' %}</span>
+                            </div>
+                            <div class="modal-footer d-flex flex-grow-1">
+                                <button type="submit" class="btn btn-perso align-self-end overflow-auto text-wrap"
+                                        value="Submit"
+                                        style="border: 2px solid darkgreen">{% trans 'Submit my choices' %}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="delete_event_modal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-warning">
+                <div class="modal-header">
+                    <h1 class="modal-title">{% trans 'Cancel my event' %} :</h1>
+                    <button class="btn-close btn-outline-warning fi-align-right"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                            type="button">
+                        <span aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="modal-body bg-warning d-flex flex-wrap text-center py-3 justify-content-around">
+                    <form method="post" name="cancelling_event">{% csrf_token %}
+                        {% for item in cancellables %}
+                        <button name="deleting_event" class="btn-outline-warning" value="{{ item.id }}"
+                                onclick="this.form.submit()"><em><strong>
+                            {{ item.type.task }} {% trans 'planned on' %} {{ item.start.date }}
+                            {{ item.event_comment }}</strong></em></button>
+                        {% endfor %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal meal booking -->
+<div class="modal fade" id="meal_booking" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{% trans 'Booking a meal' %}</h5>
+                <button class="btn-close btn-perso fi-align-right" data-bs-dismiss="modal" aria-label="Close"
+                        type="button">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="modal-body d-flex flex-wrap text-center py-3 justify-content-around">
+                <form class="mb-0" action="{% url 'personal page' %}" method="post" name="booking">{% csrf_token %}
+                    <div class="d-flex flex-wrap align-items-center justify-content-center border border-darkblue rounded-3 py-3 px-3">
+                        <input class="text-center my-2 w-50" id="id_date" name="booking_date" readonly="True"
+                               value="{% trans 'Select a date' %}">
+                        <div class="form-check">
+                            <input type="checkbox" class="btn-check" name="lunch" id="lunch-checkbox">
+                            <label class="btn btn-perso" for="lunch-checkbox">{% trans 'Lunch' %}</label>
+                            <input type="checkbox" class="btn-check" name="dinner" id="dinner-checkbox">
+                            <label class="btn btn-perso" for="dinner-checkbox">{% trans 'Dinner' %}</label>
+                        </div>
+                        <hr class="w-75">
+                        <div>
+                            <div>
+                                <b>{% trans 'You bring a guest ?' %}</b>
+                            </div>
+                            {% for guest in user_guests %}
+                                <div class="mt-1">
+                                    <input id="guest{{ guest.id }}" class="btn-check" type="checkbox" value="{{ guest.id }}"
+                                           name="guests">
+                                    <label class="btn btn-perso" for="guest{{ guest.id }}">
+                                        {{ guest.first_name }} {{ guest.last_name }}</label>
+                                </div>
+                            {% endfor %}
+                            <div class="mt-2">
+                                <label for="other_guests">{% trans 'Other' %} : </label>
+                                <input type="number" name="other" id="other_guests" value="0" class="w-25 text-center">
+                            </div>
+                        </div>
+                        <hr class="w-75">
+                        <div class="w-100">
+                            <b>{% trans 'Private room ?' %}</b>
+                        </div>
+                        <div class="mt-1">
+                            <input type="checkbox" class="btn-check" name="private" id="private-checkbox"
+                                   onclick="toggleprivatecheckbox()">
+                            <label class="btn btn-perso" for="private-checkbox" style="display: none"
+                                   id="private-yes">{% trans 'Yes' %}</label>
+                            <label class="btn btn-perso" for="private-checkbox" id="private-no">{% trans 'No' %}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-perso" onclick="this.form.submit()">{% trans 'Save' %}
+                        </button>
+                    </div>
+                    {% if bookinglist %}
+                    <hr class="mt-0">
+                    <div class="d-flex-row">
+                        {% for booking in bookinglist %}
+                        <div class="d-flex justify-content-center w-100">
+                            <p class="col-8">{{ booking.date }}{% if booking.lunch %} {% trans 'lunch' %}{% endif %}
+                                {% if booking.dinner %} {% trans 'dinner' %}{% endif %}</p>
+                            <button name="delete" class="btn-close btn-perso" value="{{ booking.id }}"
+                                    onclick="this.form.submit()"></button>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<!-- Display meal -->
+<div class="container-fluid">
+    <div class="d-lg-flex flex-wrap bg-lightblue rounded-3 p-3 justify-content-center align-items-center">
+        <div class="d-flex flex-wrap col-sm-12 col-md-12 col-lg-12 col-xl-5 col-xxl-4 justify-content-center align-items-center">
+            {% include 'app4_ehpad_base/menu_carousel.html' %}
+        </div>
+        <div class="d-none d-sm-block col-xl-5 col-xxl-4">
+            {% include 'app4_ehpad_base/menu_of_the_day.html' %}
+        </div>
+    </div>
+</div>
+
+<!-- Les mots de... -->
+<div class="d-md-flex pt-3 px-1">
+    <!--Le mot de la direction-->
+    <div class="col-md-3">
+        <div class="pb-2 pt-4">
+            <h3 class="text-center">{% trans 'Direction'%}</h3>
+        </div>
+        {% for mot in communication.motsdirection %}
+        <div class="d-flex justify-content-center align-items-center flex-column">
+            <button type="button" class="btn btn-perso mb-2" data-bs-toggle="modal" data-bs-target="#mot{{mot.id}}">
+                {{mot.object}}
+            </button>
+            <div class="modal fade" id="mot{{mot.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-center" id="title">{{mot.object}}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            {{mot.text}}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-perso" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {%endfor%}
+    </div>
+
+    <!--Le mot de polesoins-->
+    <div class="col-md-3 px-1">
+        <div class="pb-2 pt-4">
+            <h3 class="text-center">{% trans 'Care Pole' %}</h3>
+        </div>
+        {% for mot in communication.motspolesoins %}
+        <div class="d-flex justify-content-center align-items-center flex-column">
+            <button type="button" class="btn btn-perso mb-2" data-bs-toggle="modal" data-bs-target="#soin{{mot.id}}">
+                {{mot.object}}
+            </button>
+            <div class="modal fade" id="soin{{mot.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-center" id="soin">{{mot.object}}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                    <div class="modal-body">
+                        {{mot.text}}
+                    </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-perso" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!--Le mot de hotelresto-->
+    <div class="col-md-3 px-1">
+        <div class="pb-2 pt-4">
+            <h3 class="text-center">{% trans 'Hotel and catering service'%}</h3>
+        </div>
+        {% for mot in communication.motshotelresto %}
+        <div class="d-flex justify-content-center align-items-center flex-column">
+            <button type="button" class="btn btn-perso mb-2" data-bs-toggle="modal" data-bs-target="#hotel{{mot.id}}">
+                {{mot.object}}
+            </button>
+            <div class="modal fade" id="hotel{{mot.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-center" id="hotel">{{mot.object}}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            {{mot.text}}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-perso" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!--Le mot de la cvs-->
+    <div class="col-md-3 px-1">
+        <div class="pb-2 pt-4">
+            <h3 class="text-center">{%trans 'Social Life Council' %}</h3>
+        </div>
+        {% for mot in communication.motscvs %}
+        <div class="d-flex justify-content-center align-items-center flex-column">
+            <button type="button" class="btn btn-perso mb-2" data-bs-toggle="modal" data-bs-target="#vie{{mot.id}}">
+                {{mot.object}}
+            </button>
+            <div class="modal fade" id="vie{{mot.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-center" id="vie">{{mot.object}}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            {{mot.text}}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-perso" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+        function toggletext(button, short, long) {
+            var readmorebutton = document.getElementById(button);
+            var shorttext = document.getElementById(short);
+            var longtext = document.getElementById(long);
+
+            if (shorttext.style.display === "none") {
+                shorttext.style.display = "block";
+                longtext.style.display = "none";
+                readmorebutton.value = "Lire la suite";
+            } else {
+                shorttext.style.display = "none";
+                longtext.style.display = "block";
+                readmorebutton.value = "Lire moins";
+            }
+        }
+
+        function open_zoom(thumbnail_url) {
+            file_type = thumbnail_url.split('.').pop();
+            zoom = document.getElementById("zooming")
+            page = document.getElementById("page_contents")
+            let full_image = thumbnail_url.replace("/thumbnails", "");
+            full_image = full_image.replace(file_type, "");
+            full_image = (full_image.substring(0, thumbnail_url.lastIndexOf('.'))).concat(file_type)
+            zoom.style.display = "block";
+            page.style.display = "none";
+            document.getElementById('zooming').setAttribute('class', "container-fluid d-block text-center");
+            document.getElementById('popup_fullscreen').setAttribute('src', full_image);
+        }
+
+        function close_zoom() {
+            zoom = document.getElementById("zooming")
+            page = document.getElementById("page_contents")
+            document.getElementById('zooming').setAttribute('class', "container-fluid d-none");
+            page.style.display = "block";
+        }
+
+        function toggleprivatecheckbox(){
+            var yes = document.getElementById("private-yes");
+            var no = document.getElementById("private-no");
+            if (yes.style.display === "none") {
+                yes.style.display = "block";
+                no.style.display = "none";
+            } else {
+                yes.style.display = "none";
+                no.style.display = "block";
+            }
+        }
+</script>
+
+{% endblock content %}
+
+{% block datetimepicker %}
+<script>
+    $(function () {
+        jQuery.datetimepicker.setLocale('fr')
+        $("#event_date").datetimepicker({
+            timepicker: true,
+            datepicker: true,
+            format: 'd/m/Y H:i',
+            validateOnBlur:false,
+            weeks: true,
+            hours12: false,
+            step: 15,
+            allowTimes: ['07:00', '07:15', '07:30', '07:45', '08:00', '08:15', '08:30', '08:45', '09:00', '09:15',
+                '09:30', '09:45', '10:00', '10:15', '10:30', '10:45', '11:00', '11:15', '11:30', '11:45', '12:00',
+                '12:15', '12:30', '12:45', '13:00', '13:15', '13:30', '13:45', '14:00', '14:15', '14:30', '14:45',
+                '15:00', '15:15', '15:30', '15:45', '16:00', '16:15', '16:30', '16:45', '17:00', '17:15', '17:30',
+                '17:45', '18:00', '18:15', '18:30', '18:45', '19:00', '19:15', '19:30', '19:45', '20:00', '20:15',
+                '20:30', '20:45', '21:00', '21:15', '21:30', '21:45']
+        });
+    });
+</script>
+{% endblock datetimepicker %}
+
+{% block alexanav %}
+<script>
+        console.log("check for web socket");
+        let socket = new WebSocket('{{ ws_alexa_url_video_call }}');
+
+        socket.onmessage = function (event) {
+                console.log('connection ws Alexa opened');
+                let message = JSON.parse(event.data);
+                socket.send(JSON.stringify({'answer': true}));
+                console.log(message);
+                url = message.redirect;
+                socket.close()
+                window.location.href = url;
+        };
+
+        socket.onclose = function () {
+            console.log('connection ws Alexa closed');
+        };
+</script>
+{% endblock alexanav %}

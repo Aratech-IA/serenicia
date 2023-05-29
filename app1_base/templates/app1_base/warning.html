@@ -1,0 +1,79 @@
+{% extends "app1_base/base.html" %}
+
+{% block content %}
+    {% load static %}
+    {% load i18n %}
+
+{% load tz %}
+{% timezone client.time_zone %}
+<head>
+    <style>
+        .thumbnailwarning{
+            border: 5px solid;
+            border-color: red;
+        }
+        .imglink:hover{
+            color: red;
+        }
+        .imglink{
+            color: black;
+        }
+    </style>
+</head>
+
+<div class="container d-flex flex-column">
+    <div class="d-flex flex-column border border-darkblue rounded-3 gap-2 p-1">
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <img src="{% static 'app1_base/img/warning-2.png' %}">
+            <h2 class="text-center">{% trans 'The location is under Alert' %}.
+                {% trans 'Check carefully the images and call the police' %}. {% trans 'If you think it is a fake alarm, cancel it' %}
+                ! </h2>
+            <div class="align-self-center">
+                {% if first_alert >= 9 %}
+                <a href="{% url 'warning' first_alert=first_alert|add:-9 key=key %}" class="btn btn-sm btn-perso">&laquo; {% trans 'previous' %}</a>
+                {% endif %}
+                <a href="{% url 'warning' first_alert=first_alert|add:9 key=key %}" class="btn btn-sm btn-perso">{% trans 'next' %} &raquo;</a>
+            </div>
+        </div>
+        <div class="d-flex flex-wrap justify-content-center gap-2 text-center">
+            {% for row_alert in img_alert_array %}
+                {% for img_alert in row_alert %}
+                    <div>
+                        <a class="imglink d-flex flex-column" href="{% url 'warning_detail' id=img_alert.id key=key %}">
+                            <img class='img-fluid thumbnailwarning rounded-3'
+                                 src="{% url 'thumbnail' im=img_alert.id key=key w=client.image_panel_max_width h=client.image_panel_max_hight %}"
+                                 alt="">
+                            {{ img_alert.time|date:'Y-m-d H:i:s' }}
+                        </a>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <div class="align-self-center">
+            {% if first_alert >= 9 %}
+            <a href="{% url 'warning' first_alert=first_alert|add:-9 key=key %}" class="btn btn-sm btn-perso">&laquo;
+                {% trans 'previous' %}</a>
+            {% endif %}
+            <a href="{% url 'warning' first_alert=first_alert|add:9 key=key %}" class="btn btn-sm btn-perso">{% trans 'next' %} &raquo;</a>
+        </div>
+    </div>
+    <div class="align-self-center my-2">
+        <form action="" method="post">
+            <input type='hidden' name='alert' value='cancel'/>{% csrf_token %}
+            <button class="btn btn-perso">
+                <div class="d-flex flex-column align-items-center">
+                    <span class="btn-close"></span>
+                    {% trans 'Stop Alarm' %}
+                </div>
+            </button>
+        </form>
+    </div>
+</div>
+
+{% endtimezone %}
+
+{% endblock content %}
+
+{% block endscript %}
+
+{% endblock endscript %}

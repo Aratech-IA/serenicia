@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+ <style>
+ .unsubscribe:hover {
+    text-decoration: underline;
+ }
+ .button{
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans',
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+     appearance: button;
+     margin-top:20px;
+     padding:10px;
+     text-decoration:
+     none;
+     background-color: rgb(255, 255, 255);
+     border-color: rgb(147, 169, 210); border-radius: 12px; border-style: solid; border-width: 1px; color:black !important;
+     }
+ .button:hover{
+     background-color: rgb(147, 169, 210); color: rgb(255, 255, 255);
+     }
+ </style>
+    </head>
+    <body>
+        <section style="margin:20px; color:black; padding:20px; background-color:white; box-shadow: -4px 2px 30px 1px rgba(0,0,0,0.4); width:70%;">
+            <img class="voila" src="[[ domain ]]#link#" alt="LinkOpening" style="display:none; opacity:0;">
+            <img class="voila" src="[[ domainstatic ]]app4_ehpad_base/img/serenicia.png" alt="Serenicia" style="width:100px; margin-bottom:10px;">
+            <div style="margin:20px 0px 20px 0px; padding-left: 20px;">
+                Bonjour %%variable0%%, <br>
+                ¤var1¤ ¤var2¤.<br>
+
+                Sujet: ¤var3¤ <br>
+
+            </div>
+            <p>
+                <a href="[[ domain ]]#link_click#/µlien_siteµ" class="button" role="button" style="width:200px;">
+                    Aller voir le message</a>
+            </p>
+            <br>
+            <p>
+                <a href="[[ domain ]]#link_unsubscribe#" class="unsubscribe" style="color:lightgray;font-size:12px;">
+                    Ne plus reçevoir d'email de Serenicia</a>
+            </p>
+        </section>
+    </body>
+</html>

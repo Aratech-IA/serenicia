@@ -1,0 +1,93 @@
+{% extends "app3_messaging/mails_base.html" %}
+{% load static %}
+{% load i18n %}
+{% load custom_filters %}
+
+{% block content %}
+<main id="select_receiver">
+    <form action="" method="post" class="m-3">
+        {% csrf_token %}
+        <h2 class="text-center py-4">{% trans "Select receiver" %}</h2>
+
+        <!--    SELECTION PAR GROUPE    -->
+        <div class="d-flex justify-content-between mb-2">
+            <div class="d-flex align-items-center">
+                <h4 class="me-5">{% trans "Groups" %}</h4>
+                <!--    RECHERCHE    -->
+                <div class="d-flex">
+                    <input type="text" name="search-grp" placeholder="{% trans 'Search by name' %}" value="{{ searching_grp }}">
+                    <button type="submit" class="btn btn-perso-inverse ms-3">{% trans 'Search' %}</button>
+                </div>
+            </div>
+            
+            <!--    VALIDATION SELECTION    -->
+            <button class="btn btn-perso-inverse fs-5" name="validate" value="1" type="submit">{% trans 'Validate' %}</button>
+        </div>
+        
+        
+        <!--    AFFICHAGE DES GROUPES    -->
+        <div class="d-flex flex-wrap justify-content-start gap-1">
+            {% for group in groups %}
+                {% if group.members.count > 0 %}
+                    <input type="checkbox" id="grp{{ group.id }}" name="group" value="{{ group.id }}" class="btn-check" onclick="usersInGroup({{ group.members.all|get_ids|safe }}, this.checked)" {% if group.id in request.session.selected_groups %}checked{% endif %}>
+                    <label class="btn btn-perso {% if group.members.count < 1 %}disabled{% endif %}" for="grp{{ group.id }}">
+                        <p>{{ group.name }}</p>
+                        <!-- <p>{{ group.members.count }} {% trans "member" %}{{ group.members.count|pluralize }}</p> -->
+                    </label>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <!--    SELECTION PAR UTILISATEUR    -->
+        <div class="d-flex justify-content-between pt-4 mb-2">
+            <div class="d-flex align-items-center">
+                <h4 class="me-5">{% trans "Users" %}</h4>
+                <!--    RECHERCHE    -->
+                <div class="d-flex">
+                    <input type="text" name="search-user" placeholder="{% trans 'Search by name' %}" value="{{ searching_user }}">
+                    <button type="submit" class="btn btn-perso-inverse ms-3">{% trans 'Search' %}</button>
+                </div>
+            </div>
+            
+            <!--    VALIDATION SELECTION    -->
+            <button class="btn btn-perso-inverse fs-5" name="validate" value="1" type="submit">{% trans 'Validate' %}</button>
+        </div>
+        
+        <!--    AFFICHAGE DES UTILISATEURS    -->
+        <div class="d-flex flex-wrap justify-content-start gap-1">
+            {% for user in users %}
+                <input type="checkbox" id="user{{ user.id }}" name="user" value="{{ user.id }}" class="btn-check" {% if user.id in request.session.selected_receiver %}checked{% endif %}>
+                <label class="btn btn-perso" for="user{{ user.id }}" id="label{{ user.id }}">
+                    <p>{{ user.last_name|upper }} {{ user.first_name }}</p>
+                </label>
+            {% endfor %}
+        </div>
+
+        <!--    VALIDATION SELECTION    -->
+        <div class="d-flex justify-content-center pt-4">
+            <button class="btn btn-perso-inverse fs-5" name="validate" value="1" type="submit">{% trans 'Validate' %}</button>
+        </div>
+        
+    </form>
+</main>
+
+<script>
+    <!--  SELECTION AUTO DES UTILISATEURS LORS DE LA SELECTION DE GROUPE  -->
+    function usersInGroup(ids, checked){
+        console.log(checked);
+        if (checked){
+            for(const id of ids){
+                document.getElementById('label' + id).classList.add('active')
+                document.getElementById('user' + id).checked = true;
+            }
+        }else{
+            for(const id of ids){
+                document.getElementById('label' + id).classList.remove('active')
+                document.getElementById('user' + id).checked = false;
+            }
+        };
+    };
+</script>
+{% endblock content %}
+
+

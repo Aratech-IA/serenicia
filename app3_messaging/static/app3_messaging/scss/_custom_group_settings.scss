@@ -1,0 +1,12 @@
+.new:hover .plus{
+    animation: zoom 1.3s 10;
+}
+
+@keyframes zoom {
+    20% {
+    transform: scale(0.4);
+    }
+    50% {
+    transform: scale(1.8);
+    }
+}

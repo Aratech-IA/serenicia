@@ -1,0 +1,79 @@
+{% extends "app4_ehpad_base/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<style>
+    .resident-pic{
+    overflow:hidden;
+    -webkit-border-radius:50px;
+    -moz-border-radius:50px;
+    border-radius:50px;
+    width:90px;
+    height:90px;
+    object-fit: cover;
+}
+</style>
+<div class="container">
+    <a class="btn btn-lg btn-perso mt-5" href="{% url 'plan_de_soin' patient_id=patient_id%}">RETOUR</a>
+
+    <div class="d-flex justify-content-center align-items-center m-5">
+
+                <h3>Soin du {% if day_id == 1 %} Lundi {% elif day_id == 2 %} Mardi {% elif day_id == 3 %} Mercredi {% elif day_id == 4 %} Jeudi {% elif day_id == 5 %} Vendredi {% elif day_id == 6 %} Samedi {% elif day_id == 7 %} Dimanche {% endif %}- {{request.session.res_lastname}}</h3>
+                {% if request.session.profile_pic %}<img class="resident-pic" src="{{ request.session.profile_pic }}" alt="{% trans 'resident profile pic' %}">{% endif %}
+    </div>
+
+    <div class="mt-5" style="border:solid 5px #93a9d2; border-radius:15px;">
+        {% if tasks_list %}
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Nom du soin</th>
+              <th scope="col">heure du soin</th>
+              <th scope="col">Fait ?</th>
+              <th scope="col">Supprimer</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for task in tasks_list %}
+                <tr>
+                    <td>{{ task.name }}</td>
+                    <td>{{ task.time }}</td>
+                    <td>{% if task.finished == 'no' %}<span class="text-warning">Pas Aujourd'hui</span>{% elif task.finished %}<span class="text-success">FAIT</span>{%else%}<span class="text-danger">NON</span>{%endif%}</td>
+                    <td>
+                        <form action="{% url 'plan_de_soin_jour' patient_id=patient_id day_id=day_id %}" method="post">{% csrf_token %}
+                            <input type="hidden" name="delete" value="{{task.id}}">
+                            <input class="btn btn-danger text-center" type="submit" value="X">
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% else %}
+            <h3>Aucune tache n'a été attribué pour ce patient ce jour-ci.</h3>
+        {% endif %}
+    </div>
+
+    <h2 class="mt-5">Ajouter de nouveaux soins</h2>
+
+    <form action="{% url 'plan_de_soin_jour' patient_id=patient_id day_id=day_id %}" method="post">
+        {% csrf_token %}
+        <label class="form-label" for="care">Choisissez un soin :</label>
+        <select class='form-control w-25' name="task_level_2" id="care" required>
+            {% for care in care_list %}
+            <option value="{{care.id}}">{{care.name}}</option>
+            {% endfor %}
+        </select>
+        <label class="form-label" for="time_to_care">L'heure du soin :</label>
+        <input class="form-control w-25" type="time" id="time_to_care" name="start_time" required>
+
+        <input type="hidden" name='day_in_cycle' value="{{day_id}}" required>
+        <input class="btn btn-perso mt-3" type="submit" value="Ajouter">
+    </form>
+
+
+</div>
+{% endblock %}
+{% block scriptcaregiver %}
+{% endblock scriptcaregiver %}

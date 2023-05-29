@@ -1,0 +1,24 @@
+{% extends "app4_ehpad_base/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<head>
+    <style>
+        .img-full{
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .main-size{
+            height: 95vh;
+        }
+    </style>
+</head>
+<main class="main-size p-1">
+    <div class="d-flex justify-content-center h-100">
+        <a href="{{ redirect_url }}" class="h-100">
+            <img src="{{ pic_url }}" class="rounded-3 img-full">
+        </a>
+    </div>
+</main>
+{% endblock content %}

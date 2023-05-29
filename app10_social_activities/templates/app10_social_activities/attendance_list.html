@@ -1,0 +1,83 @@
+{% load static %}
+{% load i18n %}
+{% load custom_filters_app1 %}
+
+{% block sticky-top-btn %}
+    <a href="{% url 'app10_social_activities activity index' %}" class="btn btn-perso sticky-top-btn d-none d-md-block m-2">{% trans 'Back' %}</a>
+{% endblock sticky-top-btn %}
+
+{% block content %}
+<head>
+  <style>
+    .img-size{
+      height: 80px;
+      width: 80px;
+    }
+    .status-text{
+        width: 100px;
+    }
+    .sticky-top-btn{
+        position: fixed;
+        margin: 0.5rem !important;
+    }
+  </style>
+</head>
+
+<main class="mt-2">
+    <div class="d-flex flex-column align-items-center gap-3">
+        <div class="d-flex">
+            <a href="{% url 'app10_social_activities select resident' %}" class="btn btn-perso d-flex flex-column">
+                <svg width="120px" height="120px" viewBox="0 0 16 16" class="bi bi-person-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" d="M8 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 5c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10zM13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+    </svg>
+                {% trans 'Add resident' %}
+            </a>
+        </div>
+      <form method="post" action="{% url 'app10_social_activities attendance' %}" class="d-flex flex-column justify-content-evenly gap-3">{% csrf_token %}
+      {% for participant in activity.participants.all|sort_by_last_name:'profileserenicia' %}
+          <div class="d-flex flex-wrap align-items-center gap-3">
+              <div class="d-flex gap-2 mx-3">
+                  <button class="btn p-0 {% if participant.id in has_voted %}disabled{% endif %}" name="remove" value="{{ participant.id }}">
+                      <svg width="60px" height="60px" viewBox="0 0 16 16" class="bi bi-x-circle-fill" fill="red" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+    </svg>
+                  </button>
+                  <button class="btn p-0 {% if participant.id in has_voted %}disabled{% endif %}" name="add" value="{{ participant.id }}">
+                      <svg width="60px" height="60px" viewBox="0 0 16 16" class="bi bi-check-circle-fill" fill="green" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+    </svg>
+                  </button>
+              </div>
+                {% if participant in activity.attendance.all %}
+                    <div class="rounded-3 bg-lightblue p-2 text-center status-text">
+                        {% if participant.id in has_voted %}
+                            {% trans 'Recorded vote' %}
+                        {% else %}
+                            {% trans 'Present' %}
+                        {% endif %}
+                    </div>
+                {% else %}
+                    <div class="rounded-3 bg-warning p-2 text-center status-text">
+                        {% trans 'Absent' %}
+                    </div>
+                {% endif %}
+                <div class="img-size d-flex justify-content-center align-items-center">
+                  {% if participant.user.profile.photo %}
+                    <img src="{{ participant.user.profile.photo.url }}" class="h-100 rounded-3">
+                  {% else %}
+                    <img src="{% static 'app4_ehpad_base/img/no_picture.png' %}" class="h-100 rounded-3">
+                  {% endif %}
+                </div>
+                <div>
+                  <h4>{{ participant.user.profile.civility }} {{ participant.user.first_name.0 }}. {{ participant.user.last_name }}</h4>
+                  <span class="text-muted">{% trans 'Room' %} {{ participant.user.profile.client.room_number }}</span>
+                </div>
+              {% if saved == participant.id %}
+                <span>{% trans 'Saved' %} !</span>
+              {% endif %}
+          </div>
+      {% endfor %}
+      </form>
+    </div>
+</main>
+{% endblock content %}

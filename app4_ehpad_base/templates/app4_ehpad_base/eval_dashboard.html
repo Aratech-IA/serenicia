@@ -1,0 +1,1149 @@
+{% extends "app4_ehpad_base/base.html" %}
+{% load static %}
+{% load i18n %}
+{% load custom_filters_app1 %}
+
+
+{% block content %}
+<head>
+    <title>{% trans "Dashboard Eval'menu" %}</title>
+</head>
+
+<body id="body">
+    <div class="container">
+        <div class="d-flex justify-content-center gap-2 mt-2">
+            <form class="d-flex align-items-center justify-content-center mb-0" action="" method="post">{% csrf_token %}
+                <input name="previous" type="image" src="{% static 'app4_ehpad_base/img/fleche_gauche.png' %}" width="24em" class="img-fluid me-2">
+                <input class="text-center" id="id_date" name="date" readonly="True" onchange="this.form.submit()"
+                       value="{{ date_value }}">
+                <input name="next" type="image" src="{% static 'app4_ehpad_base/img/fleche_droite.png' %}" width="24em" class="img-fluid ms-2 me-4">
+                <button class="{% if sortby == 'day' %}activesortby{% endif %} sortby" name="sortby" value="day">{% trans 'Daily' %}</button>
+                <button class="{% if sortby == 'week' %}activesortby{% endif %} sortby mx-1" name="sortby" id="sortby" value="week">{% trans 'Weekly' %}</button>
+                <button class="{% if sortby == 'month' %}activesortby{% endif %} sortby" name="sortby" value="month">{% trans 'Monthly' %}</button>
+                <input name="lastsort" value="{{ sortby }}" hidden>
+            </form>
+            <div class="d-flex align-items-center">
+                <button type="button" class="btn btn-perso dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{ active_select }}
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" href="{% url 'Dashboard evaluation' res_id=0 %}">{% trans 'All residents' %}</a>
+                    </li>
+                {% for resident in list_residents %}
+                    <li>
+                        <a class="dropdown-item" href="{% url 'Dashboard evaluation' res_id=resident.id %}">{{ resident.get_full_name }}</a>
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% if date_range %}
+            <h4 class="text-center pt-4">{{ date_range.start }} - {{ date_range.end }}</h4>
+        {% endif %}
+        <div class="d-flex flex-wrap text-center py-3 justify-content-around">
+            {% if menu_noon %}
+            <div class="border {{ eval_avg_noon }} rounded-3 py-3 px-4 mb-4">
+                <div class="eval_container">
+                    <h3>{% trans 'Lunch' %}</h3>
+                    <hr class="w-100 my-3 mx-auto">
+                    <!--    affichage de l'entrée    -->
+                    {% if sortby == 'day' %}
+                        <h4 class="fw-bold">{{ menu_noon.entree }}
+                            {% if eval_noon_global_entry.1 %}
+                                <img src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}" class="globalface">
+                            {% elif eval_noon_global_entry.2 %}
+                                <img src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}" class="globalface">
+                            {% elif eval_noon_global_entry.3 %}
+                                <img src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}" class="globalface">
+                            {% elif eval_noon_global_entry.4 %}
+                                <img src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}" class="globalface">
+                            {% endif %}
+                        </h4>
+                    {% else %}
+                        <h4 class="fw-bold">{% trans 'Entree' %}</h4>
+                    {% endif %}
+                    <div class="d-flex justify-content-evenly align-items-center">
+                        {% if sortby == 'day' %}
+                            <div class="col-3 my-auto">
+                                <button class="btn btn-perso {% if not pics_noon.entree %}disabled{% endif %}" data-bs-toggle="modal" data-bs-target="#modalnoonentree">
+                                    {% trans 'See the pictures' %}
+                                </button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="modalnoonentree" tabindex="-1" aria-hidden="true">
+                                  <div class="modal-dialog modal-fullscreen">
+                                      <div class="modal-content">
+                                          <div class="modal-header">
+                                              <button data-bs-dismiss="modal" class="btn btn-perso">{% trans 'Back' %}</button>
+                                              <h4>{{ menu_noon.entree }}
+                                              {% if eval_noon_rounded_entry.1 %}
+                                                <img class="modalface" src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}">
+                                              {% elif eval_noon_rounded_entry.2 %}
+                                                <img class="modalface" src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}">
+                                              {% elif eval_noon_rounded_entry.3 %}
+                                                <img class="modalface" src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}">
+                                              {% elif eval_noon_rounded_entry.4 %}
+                                                <img class="modalface" src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}">
+                                              {% endif %}
+                                              </h4>
+                                              <span>{{ menu_noon.date }}</span>
+                                          </div>
+                                          <div class="modal-body d-flex flex-column gap-2">
+                                             {% for mp in pics_noon.entree %}
+                                                {% if forloop.first %}
+                                                    <div class="d-flex flex-column align-items-center">
+                                                        <h4>{{ mp.presentation.type }}</h4>
+                                                        <div>
+                                                            <input class="thumb-modal rounded-3" type="image" src="{{ mp.photo.url }}" data-bs-toggle="modal" data-bs-target="#modalnoonentree{{ mp.id }}">
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="d-flex flex-wrap justify-content-center gap-3">
+                                                {% else %}
+                                                        <div class="d-flex flex-column align-items-center gap-1">
+                                                            <h5>{{ mp.presentation.type }}</h5>
+                                                            <input class="thumb-modal rounded-3" type="image" src="{{ mp.photo.url }}" data-bs-toggle="modal" data-bs-target="#modalnoonentree{{ mp.id }}">
+                                                        </div>
+                                                {% endif %}
+                                                        <div class="modal fade photo-full-modal" id="modalnoonentree{{ mp.id }}" tabindex="-1" aria-hidden="true">
+                                                            <div class="modal-dialog modal-fullscreen">
+                                                                <div class="modal-body vh-100 d-flex align-items-center justify-content-center">
+                                                                    <img class="photo-full rounded-3" src="{{ mp.photo.url }}">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                {% if forloop.last %}
+                                                    </div>
+                                                {% endif %}
+                                            {% endfor %}
+                                          </div>
+                                      </div>
+                                  </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        <div class="d-flex flex-column justify-content-center align-items-center p-2 border border-darkblue rounded-3 framed">
+                            <h3 class="mb-0">{{ eval_noon.voter.entry }}</h3>
+                            <h3>{% trans 'Evaluation' %}{{ eval_noon.voter.entry|pluralize }}</h3>
+                        </div>
+                        <div class="d-flex flex-column justify-content-center align-items-center p-2 border rounded-3 framed
+                                                {% if eval_noon_rounded_entry.4 %}border-darkblue{% elif eval_noon_rounded_entry.3 %}border-primary
+                                                {% elif eval_noon_rounded_entry.2 %}border-warning{% elif eval_noon_rounded_entry.1 %}border-danger{% endif %}">
+                            <h3>{% trans 'Average' %}</h3>
+                            <h3 class="mb-0">{{ eval_noon.notation.entry }} /4</h3>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center mt-2">
+                        <input class="evalface {% if eval_noon_rounded_entry.1 %}hlface{% endif %} me-1" type="image" src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}"
+                                    onclick="toggleEval('noonentreeverybad')">
+                        <input class="evalface {% if eval_noon_rounded_entry.2 %}hlface{% endif %} me-1" type="image" src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}"
+                                    onclick="toggleEval('noonentreebad')">
+                        <input class="evalface {% if eval_noon_rounded_entry.3 %}hlface{% endif %} me-1" type="image" src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}"
+                                    onclick="toggleEval('noonentreegood')">
+                        <input class="evalface {% if eval_noon_rounded_entry.4 %}hlface{% endif %}" type="image" src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}"
+                                    onclick="toggleEval('noonentreeverygood')">
+                    </div>
+                    <div id="noonentreeverybad" style="display: none" class="border border-danger mt-3 rounded-3 listvoter py-1">
+                        {% for eval in note_noon.very_bad.entree %}
+                            {% if sortby == 'day' %}
+                                <h4>{{ eval.voter.last_name }} {{ eval.voter.first_name }}</h4>
+                            {% else %}
+                                <button class="noteselection nsverybad" onclick="selectMenu({{ eval.id }})">
+                                    {{ eval.menu.date }} - {{ eval.voter.last_name }} {{ eval.voter.first_name }}
+                                </button>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div id="noonentreebad" style="display: none" class="border border-warning mt-3 rounded-3 listvoter py-1">
+                        {% for eval in note_noon.bad.entree %}
+                            {% if sortby == 'day' %}
+                                <h4>{{ eval.voter.last_name }} {{ eval.voter.first_name }}</h4>
+                            {% else %}
+                                <button class="noteselection nsbad" onclick="selectMenu({{ eval.id }})">
+                                    {{ eval.menu.date }} - {{ eval.voter.last_name }} {{ eval.voter.first_name }}
+                                </button>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div id="noonentreegood" style="display: none" class="border border-primary mt-3 rounded-3 listvoter py-1">
+                        {% for eval in note_noon.good.entree %}
+                            {% if sortby == 'day' %}
+                                <h4>{{ eval.voter.last_name }} {{ eval.voter.first_name }}</h4>
+                            {% else %}
+                                <button class="noteselection nsgood" onclick="selectMenu({{ eval.id }})">
+                                    {{ eval.menu.date }} - {{ eval.voter.last_name }} {{ eval.voter.first_name }}
+                                </button>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div id="noonentreeverygood" style="display: none" class="border border-darkblue mt-3 rounded-3 listvoter py-1">
+                        {% for eval in note_noon.very_good.entree %}
+                            {% if sortby == 'day' %}
+                                <h4>{{ eval.voter.last_name }} {{ eval.voter.first_name }}</h4>
+                            {% else %}
+                                <button class="noteselection nsverygood" onclick="selectMenu({{ eval.id }})">
+                                    {{ eval.menu.date }} - {{ eval.voter.last_name }} {{ eval.voter.first_name }}
+                                </button>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <hr class="w-75 my-3 mx-auto">
+                    <!--    affichage du plat principal    -->
+                    {% if sortby == 'day' %}
+                        <h4 class="fw-bold">{{ menu_noon.main_dish }} {% if menu_noon.accompaniment %}{{ menu_noon.accompaniment }}{% endif %}
+                        {% if eval_noon_global_main_dish.1 %}
+                        <img src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}" class="globalface">
+                        {% elif eval_noon_global_main_dish.2 %}
+                        <img src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}" class="globalface">
+                        {% elif eval_noon_global_main_dish.3 %}
+                        <img src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}" class="globalface">
+                        {% elif eval_noon_global_main_dish.4 %}
+                        <img src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}" class="globalface">
+                        {% endif %}</h4>
+                    {% else %}
+                        <h4 class="fw-bold">{% trans 'Main dish' %}</h4>
+                    {% endif %}
+                    <div class="d-flex justify-content-evenly align-items-center">
+                        {% if sortby == 'day' %}
+                            <div class="col-3 my-auto">
+                                <button class="btn btn-perso {% if not pics_noon.main_dish %}disabled{% endif %}" data-bs-toggle="modal" data-bs-target="#modalnoonmain">
+                                    {% trans 'See the pictures' %}
+                                </button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="modalnoonmain" tabindex="-1" aria-hidden="true">
+                                  <div class="modal-dialog modal-fullscreen">
+                                      <div class="modal-content">
+                                          <div class="modal-header">
+                                              <button data-bs-dismiss="modal" class="btn btn-perso">{% trans 'Back' %}</button>
+                                              <h4>{{ menu_noon.main_dish }} {% if menu_noon.accompaniment %}{{ menu_noon.accompaniment }}{% endif %}
+                                              {% if eval_noon_rounded_main_dish.1 %}
+                                                <img class="modalface" src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}">
+                                              {% elif eval_noon_rounded_main_dish.2 %}
+                                                <img class="modalface" src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}">
+                                              {% elif eval_noon_rounded_main_dish.3 %}
+                                                <img class="modalface" src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}">
+                                              {% elif eval_noon_rounded_main_dish.4 %}
+                                                <img class="modalface" src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}">
+                                              {% endif %}
+                                              </h4>
+                                              <span>{{ menu_noon.date }}</span>
+                                          </div>
+                                          <div class="modal-body d-flex flex-column gap-2">
+                                             {% for mp in pics_noon.main_dish %}
+                                                {% if forloop.first %}
+                                                    <div class="d-flex flex-column align-items-center">
+                                                        <h4>{{ mp.presentation.type }}</h4>
+                                                        <div>
+                                                            <input class="thumb-modal rounded-3" type="image" src="{{ mp.photo.url }}" data-bs-toggle="modal" data-bs-target="#modalnoonmain{{ mp.id }}">
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="d-flex flex-wrap justify-content-center gap-3">
+                                                {% else %}
+                                                        <div class="d-flex flex-column align-items-center gap-1">
+                                                            <h5>{{ mp.presentation.type }}</h5>
+                                                            <input class="thumb-modal rounded-3" type="image" src="{{ mp.photo.url }}" data-bs-toggle="modal" data-bs-target="#modalnoonmain{{ mp.id }}">
+                                                        </div>
+                                                {% endif %}
+                                                        <div class="modal fade photo-full-modal" id="modalnoonmain{{ mp.id }}" tabindex="-1" aria-hidden="true">
+                                                            <div class="modal-dialog modal-fullscreen">
+                                                                <div class="modal-body vh-100 d-flex align-items-center justify-content-center">
+                                                                    <img class="photo-full rounded-3" src="{{ mp.photo.url }}">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                {% if forloop.last %}
+                                                    </div>
+                                                {% endif %}
+                                            {% endfor %}
+                                          </div>
+                                      </div>
+                                  </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        <div class="d-flex flex-column justify-content-center align-items-center p-2 border border-darkblue rounded-3 framed">
+                            <h3 class="mb-0">{{ eval_noon.voter.main_dish }}</h3>
+                            <h3>{% trans 'Evaluation' %}{{ eval_noon.voter.main_dish|pluralize }}</h3>
+                        </div>
+                        <div class="d-flex flex-column justify-content-center align-items-center p-2 border rounded-3 framed
+                                                {% if eval_noon_rounded_main_dish.4 %}border-darkblue{% elif eval_noon_rounded_main_dish.3 %}border-primary
+                                                {% elif eval_noon_rounded_main_dish.2 %}border-warning{% elif eval_noon_rounded_main_dish.1 %}border-danger{% endif %}">
+                            <h3>{% trans 'Average' %}</h3>
+                            <h3 class="mb-0">{{ eval_noon.notation.main_dish }} /4</h3>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center mt-2">
+                        <input class="evalface {% if eval_noon_rounded_main_dish.1 %}hlface{% endif %} me-1" type="image" src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}"
+                                    onclick="toggleEval('noonmaindishverybad')">
+                        <input class="evalface {% if eval_noon_rounded_main_dish.2 %}hlface{% endif %} me-1" type="image" src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}"
+                                    onclick="toggleEval('noonmaindishbad')">
+                        <input class="evalface {% if eval_noon_rounded_main_dish.3 %}hlface{% endif %} me-1" type="image" src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}"
+                                    onclick="toggleEval('noonmaindishgood')">
+                        <input class="evalface {% if eval_noon_rounded_main_dish.4 %}hlface{% endif %}" type="image" src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}"
+                                    onclick="toggleEval('noonmaindishverygood')">
+                    </div>
+                    <div id="noonmaindishverybad" style="display: none" class="border border-danger mt-3 rounded-3 listvoter py-1">
+                        {% for eval in note_noon.very_bad.main_dish %}
+                            {% if sortby == 'day' %}
+                                <h4>{{ eval.voter.last_name }} {{ eval.voter.first_name }}</h4>
+                            {% else %}
+                                <button class="noteselection nsverybad" onclick="selectMenu({{ eval.id }})">
+                                    {{ eval.menu.date }} - {{ eval.voter.last_name }} {{ eval.voter.first_name }}
+                                </button>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div id="noonmaindishbad" style="display: none" class="border border-warning mt-3 rounded-3 listvoter py-1">
+                        {% for eval in note_noon.bad.main_dish %}
+                            {% if sortby == 'day' %}
+                                <h4>{{ eval.voter.last_name }} {{ eval.voter.first_name }}</h4>
+                            {% else %}
+                                <button class="noteselection nsbad" onclick="selectMenu({{ eval.id }})">
+                                    {{ eval.menu.date }} - {{ eval.voter.last_name }} {{ eval.voter.first_name }}
+                                </button>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div id="noonmaindishgood" style="display: none" class="border border-primary mt-3 rounded-3 listvoter py-1">
+                        {% for eval in note_noon.good.main_dish %}
+                            {% if sortby == 'day' %}
+                                <h4>{{ eval.voter.last_name }} {{ eval.voter.first_name }}</h4>
+                            {% else %}
+                                <button class="noteselection nsgood" onclick="selectMenu({{ eval.id }})">
+                                    {{ eval.menu.date }} - {{ eval.voter.last_name }} {{ eval.voter.first_name }}
+                                </button>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div id="noonmaindishverygood" style="display: none" class="border border-darkblue mt-3 rounded-3 listvoter py-1">
+                        {% for eval in note_noon.very_good.main_dish %}
+                            {% if sortby == 'day' %}
+                                <h4>{{ eval.voter.last_name }} {{ eval.voter.first_name }}</h4>
+                            {% else %}
+                                <button class="noteselection nsverygood" onclick="selectMenu({{ eval.id }})">
+                                    {{ eval.menu.date }} - {{ eval.voter.last_name }} {{ eval.voter.first_name }}
+                                </button>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <hr class="w-75 my-3 mx-auto">
+                    <!--   affichage du dessert   -->
+                    {% if sortby == 'day' %}
+                        <h4 class="fw-bold">{{ menu_noon.dessert }}
+                        {% if eval_noon_global_dessert.1 %}
+                        <img src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}" class="globalface">
+                        {% elif eval_noon_global_dessert.2 %}
+                        <img src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}" class="globalface">
+                        {% elif eval_noon_global_dessert.3 %}
+                        <img src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}" class="globalface">
+                        {% elif eval_noon_global_dessert.4 %}
+                        <img src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}" class="globalface">
+                        {% endif %}</h4>
+                    {% else %}
+                        <h4 class="fw-bold">{% trans 'Dessert' %}</h4>
+                    {% endif %}
+                    <div class="d-flex justify-content-evenly align-items-center">
+                        {% if sortby == 'day' %}
+                            <div class="col-3 my-auto">
+                                <button class="btn btn-perso {% if not pics_noon.dessert %}disabled{% endif %}" data-bs-toggle="modal" data-bs-target="#modalnoondessert">
+                                    {% trans 'See the pictures' %}
+                                </button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="modalnoondessert" tabindex="-1" aria-hidden="true">
+                                  <div class="modal-dialog modal-fullscreen">
+                                      <div class="modal-content">
+                                          <div class="modal-header">
+                                              <button data-bs-dismiss="modal" class="btn btn-perso">{% trans 'Back' %}</button>
+                                              <h4>{{ menu_noon.dessert }}
+                                              {% if eval_noon_rounded_dessert.1 %}
+                                                <img class="modalface" src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}">
+                                              {% elif eval_noon_rounded_dessert.2 %}
+                                                <img class="modalface" src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}">
+                                              {% elif eval_noon_rounded_dessert.3 %}
+                                                <img class="modalface" src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}">
+                                              {% elif eval_noon_rounded_dessert.4 %}
+                                                <img class="modalface" src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}">
+                                              {% endif %}
+                                              </h4>
+                                              <span>{{ menu_noon.date }}</span>
+                                          </div>
+                                          <div class="modal-body d-flex flex-column gap-2">
+                                             {% for mp in pics_noon.dessert %}
+                                                {% if forloop.first %}
+                                                    <div class="d-flex flex-column align-items-center">
+                                                        <h4>{{ mp.presentation.type }}</h4>
+                                                        <div>
+                                                            <input class="thumb-modal rounded-3" type="image" src="{{ mp.photo.url }}" data-bs-toggle="modal" data-bs-target="#modalnoondessert{{ mp.id }}">
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="d-flex flex-wrap justify-content-center gap-3">
+                                                {% else %}
+                                                        <div class="d-flex flex-column align-items-center gap-1">
+                                                            <h5>{{ mp.presentation.type }}</h5>
+                                                            <input class="thumb-modal rounded-3" type="image" src="{{ mp.photo.url }}" data-bs-toggle="modal" data-bs-target="#modalnoondessert{{ mp.id }}">
+                                                        </div>
+                                                {% endif %}
+                                                        <div class="modal fade photo-full-modal" id="modalnoondessert{{ mp.id }}" tabindex="-1" aria-hidden="true">
+                                                            <div class="modal-dialog modal-fullscreen">
+                                                                <div class="modal-body vh-100 d-flex align-items-center justify-content-center">
+                                                                    <img class="photo-full rounded-3" src="{{ mp.photo.url }}">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                {% if forloop.last %}
+                                                    </div>
+                                                {% endif %}
+                                            {% endfor %}
+                                          </div>
+                                      </div>
+                                  </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        <div class="d-flex flex-column justify-content-center align-items-center p-2 border border-darkblue rounded-3 framed">
+                            <h3 class="mb-0">{{ eval_noon.voter.dessert }}</h3>
+                            <h3>{% trans 'Evaluation' %}{{ eval_noon.voter.dessert|pluralize }}</h3>
+                        </div>
+                        <div class="d-flex flex-column justify-content-center align-items-center p-2 border rounded-3 framed
+                                                {% if eval_noon_rounded_dessert.4 %}border-darkblue{% elif eval_noon_rounded_dessert.3 %}border-primary
+                                                {% elif eval_noon_rounded_dessert.2 %}border-warning{% elif eval_noon_rounded_dessert.1 %}border-danger{% endif %}">
+                            <h3>{% trans 'Average' %}</h3>
+                            <h3 class="mb-0">{{ eval_noon.notation.dessert }} /4</h3>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center mt-2">
+                        <input class="evalface {% if eval_noon_rounded_dessert.1 %}hlface{% endif %} me-1" type="image" src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}"
+                                    onclick="toggleEval('noondessertverybad')">
+                        <input class="evalface {% if eval_noon_rounded_dessert.2 %}hlface{% endif %} me-1" type="image" src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}"
+                                    onclick="toggleEval('noondessertbad')">
+                        <input class="evalface {% if eval_noon_rounded_dessert.3 %}hlface{% endif %} me-1" type="image" src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}"
+                                    onclick="toggleEval('noondessertgood')">
+                        <input class="evalface {% if eval_noon_rounded_dessert.4 %}hlface{% endif %}" type="image" src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}"
+                                    onclick="toggleEval('noondessertverygood')">
+                    </div>
+                    <div id="noondessertverybad" style="display: none" class="border border-danger mt-3 rounded-3 listvoter py-1">
+                        {% for eval in note_noon.very_bad.dessert %}
+                            {% if sortby == 'day' %}
+                                <h4>{{ eval.voter.last_name }} {{ eval.voter.first_name }}</h4>
+                            {% else %}
+                                <button class="noteselection nsverybad" onclick="selectMenu({{ eval.id }})">
+                                    {{ eval.menu.date }} - {{ eval.voter.last_name }} {{ eval.voter.first_name }}
+                                </button>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div id="noondessertbad" style="display: none" class="border border-warning mt-3 rounded-3 listvoter py-1">
+                        {% for eval in note_noon.bad.dessert %}
+                            {% if sortby == 'day' %}
+                                <h4>{{ eval.voter.last_name }} {{ eval.voter.first_name }}</h4>
+                            {% else %}
+                                <button class="noteselection nsbad" onclick="selectMenu({{ eval.id }})">
+                                    {{ eval.menu.date }} - {{ eval.voter.last_name }} {{ eval.voter.first_name }}
+                                </button>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div id="noondessertgood" style="display: none" class="border border-primary mt-3 rounded-3 listvoter py-1">
+                        {% for eval in note_noon.good.dessert %}
+                            {% if sortby == 'day' %}
+                                <h4>{{ eval.voter.last_name }} {{ eval.voter.first_name }}</h4>
+                            {% else %}
+                                <button class="noteselection nsgood" onclick="selectMenu({{ eval.id }})">
+                                    {{ eval.menu.date }} - {{ eval.voter.last_name }} {{ eval.voter.first_name }}
+                                </button>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div id="noondessertverygood" style="display: none" class="border border-darkblue mt-3 rounded-3 listvoter py-1">
+                        {% for eval in note_noon.very_good.dessert %}
+                            {% if sortby == 'day' %}
+                                <h4>{{ eval.voter.last_name }} {{ eval.voter.first_name }}</h4>
+                            {% else %}
+                                <button class="noteselection nsverygood" onclick="selectMenu({{ eval.id }})">
+                                    {{ eval.menu.date }} - {{ eval.voter.last_name }} {{ eval.voter.first_name }}
+                                </button>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <hr class="w-75 my-3 mx-auto">
+                    <!--   affichage du service   -->
+                    <h4>{{ menu_noon.service }}</h4>
+                    <div class="d-flex justify-content-around">
+                        {% if sortby == 'day' and menu_noon.photo_service.all %}
+                            <div class="my-auto">
+                                <button class="btn btn-perso d-flex flex-wrap justify-content-evenly gap-1 staff-pic-div" data-bs-toggle="modal" data-bs-target="#modalservicenoon">
+                                    {% for staff in menu_noon.photo_service.all|sort_by_last_name:'user' %}
+                                        <div class="d-flex justify-content-center">
+                                            <img class="staff-pic" src="{{ staff.profile.get_photo_url }}">
+                                        </div>
+                                    {% endfor %}
+                                </button>
+                            </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="modalservicenoon" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">{% trans 'Lunch service team from' %} : {{ menu_noon.date }}</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body mx-auto w-50">
+                                            {% for staff in menu_noon.photo_service.all|sort_by_last_name:'user' %}
+                                                <div class="d-flex align-items-center justify-content-between my-1">
+                                                    <div class="d-flex justify-content-center">
+                                                        <img class="staff-pic-full" src="{{ staff.profile.get_photo_url }}">
+                                                    </div>
+                                                    <h4>{{ staff.get_full_name }}</h4>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-perso" data-bs-dismiss="modal">{% trans 'Close' %}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        <div class="d-flex flex-column justify-content-center align-items-center p-2 px-4 border rounded-3 framed my-auto
+                                                {% if eval_noon_rounded_service.4 %}border-darkblue{% elif eval_noon_rounded_service.3 %}border-primary
+                                                {% elif eval_noon_rounded_service.2 %}border-warning{% elif eval_noon_rounded_service.1 %}border-danger{% endif %}">
+                            <h3>{% trans 'Service' %}</h3>
+                            <h3 class="mb-0">{{ eval_noon.notation.service }}</h3>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center mt-2">
+                        <input class="evalface {% if eval_noon_rounded_service.1 %}hlface{% endif %} me-1" type="image" src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}"
+                                    onclick="toggleEval('noonserviceverybad')">
+                        <input class="evalface {% if eval_noon_rounded_service.2 %}hlface{% endif %} me-1" type="image" src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}"
+                                    onclick="toggleEval('noonservicebad')">
+                        <input class="evalface {% if eval_noon_rounded_service.3 %}hlface{% endif %} me-1" type="image" src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}"
+                                    onclick="toggleEval('noonservicegood')">
+                        <input class="evalface {% if eval_noon_rounded_service.4 %}hlface{% endif %}" type="image" src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}"
+                                    onclick="toggleEval('noonserviceverygood')">
+                    </div>
+                    <div id="noonserviceverybad" style="display: none" class="border border-danger mt-3 rounded-3 listvoter py-1">
+                        {% for eval in note_noon.very_bad.service %}
+                            {% if sortby == 'day' %}
+                                <h4>{{ eval.voter.last_name }} {{ eval.voter.first_name }}</h4>
+                            {% else %}
+                                <button class="noteselection nsverybad" onclick="selectMenu({{ eval.id }})">
+                                    {{ eval.menu.date }} - {{ eval.voter.last_name }} {{ eval.voter.first_name }}
+                                </button>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div id="noonservicebad" style="display: none" class="border border-warning mt-3 rounded-3 listvoter py-1">
+                        {% for eval in note_noon.bad.service %}
+                            {% if sortby == 'day' %}
+                                <h4>{{ eval.voter.last_name }} {{ eval.voter.first_name }}</h4>
+                            {% else %}
+                                <button class="noteselection nsbad" onclick="selectMenu({{ eval.id }})">
+                                    {{ eval.menu.date }} - {{ eval.voter.last_name }} {{ eval.voter.first_name }}
+                                </button>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div id="noonservicegood" style="display: none" class="border border-primary mt-3 rounded-3 listvoter py-1">
+                        {% for eval in note_noon.good.service %}
+                            {% if sortby == 'day' %}
+                                <h4>{{ eval.voter.last_name }} {{ eval.voter.first_name }}</h4>
+                            {% else %}
+                                <button class="noteselection nsgood" onclick="selectMenu({{ eval.id }})">
+                                    {{ eval.menu.date }} - {{ eval.voter.last_name }} {{ eval.voter.first_name }}
+                                </button>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div id="noonserviceverygood" style="display: none" class="border border-darkblue mt-3 rounded-3 listvoter py-1">
+                        {% for eval in note_noon.very_good.service %}
+                            {% if sortby == 'day' %}
+                                <h4>{{ eval.voter.last_name }} {{ eval.voter.first_name }}</h4>
+                            {% else %}
+                                <button class="noteselection nsverygood" onclick="selectMenu({{ eval.id }})">
+                                    {{ eval.menu.date }} - {{ eval.voter.last_name }} {{ eval.voter.first_name }}
+                                </button>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% if menu_evening %}
+                <div class="border {{ eval_avg_evening }} rounded-3 py-3 px-4 mb-4">
+                    <div class="eval_container">
+                        <h3>{% trans 'Dinner' %}</h3>
+                        <hr class="w-100 my-3 mx-auto">
+                        <!--    affichage de l'entrée    -->
+                        {% if sortby == 'day' %}
+                            <h4 class="fw-bold">{{ menu_evening.entree }}
+                                {% if eval_evening_global_entry.1 %}
+                                    <img src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}" class="globalface">
+                                {% elif eval_evening_global_entry.2 %}
+                                    <img src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}" class="globalface">
+                                {% elif eval_evening_global_entry.3 %}
+                                    <img src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}" class="globalface">
+                                {% elif eval_evening_global_entry.4 %}
+                                    <img src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}" class="globalface">
+                                {% endif %}
+                            </h4>
+                        {% else %}
+                            <h4 class="fw-bold">{% trans 'Entree' %}</h4>
+                        {% endif %}
+                        <div class="d-flex justify-content-evenly align-items-center">
+                            {% if sortby == 'day' %}
+                                <div class="col-3 my-auto">
+                                    <button class="btn btn-perso {% if not pics_evening.entree %}disabled{% endif %}" data-bs-toggle="modal" data-bs-target="#modaleveningentree">
+                                        {% trans 'See the pictures' %}
+                                    </button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="modaleveningentree" tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog modal-fullscreen">
+                                      <div class="modal-content">
+                                          <div class="modal-header">
+                                              <button data-bs-dismiss="modal" class="btn btn-perso">{% trans 'Back' %}</button>
+                                              <h4>{{ menu_evening.entree }}
+                                              {% if eval_evening_rounded_entry.1 %}
+                                                <img class="modalface" src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}">
+                                              {% elif eval_evening_rounded_entry.2 %}
+                                                <img class="modalface" src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}">
+                                              {% elif eval_evening_rounded_entry.3 %}
+                                                <img class="modalface" src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}">
+                                              {% elif eval_evening_rounded_entry.4 %}
+                                                <img class="modalface" src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}">
+                                              {% endif %}
+                                              </h4>
+                                              <span>{{ menu_evening.date }}</span>
+                                          </div>
+                                          <div class="modal-body d-flex flex-column gap-2">
+                                             {% for mp in pics_evening.entree %}
+                                                {% if forloop.first %}
+                                                    <div class="d-flex flex-column align-items-center">
+                                                        <h4>{{ mp.presentation.type }}</h4>
+                                                        <div>
+                                                            <input class="thumb-modal rounded-3" type="image" src="{{ mp.photo.url }}" data-bs-toggle="modal" data-bs-target="#modaleveningentree{{ mp.id }}">
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="d-flex flex-wrap justify-content-center gap-3">
+                                                {% else %}
+                                                        <div class="d-flex flex-column align-items-center gap-1">
+                                                            <h5>{{ mp.presentation.type }}</h5>
+                                                            <input class="thumb-modal rounded-3" type="image" src="{{ mp.photo.url }}" data-bs-toggle="modal" data-bs-target="#modaleveningentree{{ mp.id }}">
+                                                        </div>
+                                                {% endif %}
+                                                        <div class="modal fade photo-full-modal" id="modaleveningentree{{ mp.id }}" tabindex="-1" aria-hidden="true">
+                                                            <div class="modal-dialog modal-fullscreen">
+                                                                <div class="modal-body vh-100 d-flex align-items-center justify-content-center">
+                                                                    <img class="photo-full rounded-3" src="{{ mp.photo.url }}">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                {% if forloop.last %}
+                                                    </div>
+                                                {% endif %}
+                                            {% endfor %}
+                                          </div>
+                                      </div>
+                                  </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            <div class="d-flex flex-column justify-content-center align-items-center p-2 border border-darkblue rounded-3 framed">
+                                <h3 class="mb-0">{{ eval_evening.voter.entry }}</h3>
+                                <h3>{% trans 'Evaluation' %}{{ eval_evening.voter.entry|pluralize }}</h3>
+                            </div>
+                            <div class="d-flex flex-column justify-content-center align-items-center p-2 border rounded-3 framed
+                                                    {% if eval_evening_rounded_entry.4 %}border-darkblue{% elif eval_evening_rounded_entry.3 %}border-primary
+                                                    {% elif eval_evening_rounded_entry.2 %}border-warning{% elif eval_evening_rounded_entry.1 %}border-danger{% endif %}">
+                                <h3>{% trans 'Average' %}</h3>
+                                <h3 class="mb-0">{{ eval_evening.notation.entry }} /4</h3>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center mt-2">
+                            <input class="evalface {% if eval_evening_rounded_entry.1 %}hlface{% endif %} me-1" type="image" src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}"
+                                        onclick="toggleEval('eveningentreeverybad')">
+                            <input class="evalface {% if eval_evening_rounded_entry.2 %}hlface{% endif %} me-1" type="image" src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}"
+                                        onclick="toggleEval('eveningentreebad')">
+                            <input class="evalface {% if eval_evening_rounded_entry.3 %}hlface{% endif %} me-1" type="image" src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}"
+                                        onclick="toggleEval('eveningentreegood')">
+                            <input class="evalface {% if eval_evening_rounded_entry.4 %}hlface{% endif %}" type="image" src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}"
+                                        onclick="toggleEval('eveningentreeverygood')">
+                        </div>
+                        <div id="eveningentreeverybad" style="display: none" class="border border-danger mt-3 rounded-3 listvoter py-1">
+                            {% for eval in note_evening.very_bad.entree %}
+                                {% if sortby == 'day' %}
+                                    <h4>{{ eval.voter.last_name }} {{ eval.voter.first_name }}</h4>
+                                {% else %}
+                                    <button class="noteselection nsverybad" onclick="selectMenu({{ eval.id }})">
+                                        {{ eval.menu.date }} - {{ eval.voter.last_name }} {{ eval.voter.first_name }}
+                                    </button>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div id="eveningentreebad" style="display: none" class="border border-warning mt-3 rounded-3 listvoter py-1">
+                            {% for eval in note_evening.bad.entree %}
+                                {% if sortby == 'day' %}
+                                    <h4>{{ eval.voter.last_name }} {{ eval.voter.first_name }}</h4>
+                                {% else %}
+                                    <button class="noteselection nsbad" onclick="selectMenu({{ eval.id }})">
+                                        {{ eval.menu.date }} - {{ eval.voter.last_name }} {{ eval.voter.first_name }}
+                                    </button>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div id="eveningentreegood" style="display: none" class="border border-primary mt-3 rounded-3 listvoter py-1">
+                            {% for eval in note_evening.good.entree %}
+                                {% if sortby == 'day' %}
+                                    <h4>{{ eval.voter.last_name }} {{ eval.voter.first_name }}</h4>
+                                {% else %}
+                                    <button class="noteselection nsgood" onclick="selectMenu({{ eval.id }})">
+                                        {{ eval.menu.date }} - {{ eval.voter.last_name }} {{ eval.voter.first_name }}
+                                    </button>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div id="eveningentreeverygood" style="display: none" class="border border-darkblue mt-3 rounded-3 listvoter py-1">
+                        {% for eval in note_evening.very_good.entree %}
+                            {% if sortby == 'day' %}
+                                <h4>{{ eval.voter.last_name }} {{ eval.voter.first_name }}</h4>
+                            {% else %}
+                                <button class="noteselection nsverygood" onclick="selectMenu({{ eval.id }})">
+                                    {{ eval.menu.date }} - {{ eval.voter.last_name }} {{ eval.voter.first_name }}
+                                </button>
+                            {% endif %}
+                        {% endfor %}
+                        </div>
+                        <hr class="w-75 my-3 mx-auto">
+                        <!--    affichage du plat principal    -->
+                        {% if sortby == 'day' %}
+                            <h4 class="fw-bold">{{ menu_evening.main_dish }}
+                                {% if eval_evening_global_main_dish.1 %}
+                                    <img src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}" class="globalface">
+                                {% elif eval_evening_global_main_dish.2 %}
+                                    <img src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}" class="globalface">
+                                {% elif eval_evening_global_main_dish.3 %}
+                                    <img src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}" class="globalface">
+                                {% elif eval_evening_global_main_dish.4 %}
+                                    <img src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}" class="globalface">
+                                {% endif %}
+                            </h4>
+                        {% else %}
+                            <h4 class="fw-bold">{% trans 'Main dish' %}</h4>
+                        {% endif %}
+                        <div class="d-flex justify-content-evenly align-items-center">
+                            {% if sortby == 'day' %}
+                                <div class="col-3 my-auto">
+                                    <button class="btn btn-perso {% if not pics_evening.main_dish %}disabled{% endif %}" data-bs-toggle="modal" data-bs-target="#modaleveningmain">
+                                        {% trans 'See the pictures' %}
+                                    </button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="modaleveningmain" tabindex="-1" aria-hidden="true">
+                                      <div class="modal-dialog modal-fullscreen">
+                                          <div class="modal-content">
+                                              <div class="modal-header">
+                                                  <button data-bs-dismiss="modal" class="btn btn-perso">{% trans 'Back' %}</button>
+                                                  <h4>{{ menu_evening.main_dish }} {% if menu_evening.accompaniment %}{{ menu_evening.accompaniment }}{% endif %}
+                                                      {% if eval_evening_rounded_main_dish.1 %}
+                                                        <img class="modalface" src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}">
+                                                      {% elif eval_evening_rounded_main_dish.2 %}
+                                                        <img class="modalface" src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}">
+                                                      {% elif eval_evening_rounded_main_dish.3 %}
+                                                        <img class="modalface" src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}">
+                                                      {% elif eval_evening_rounded_main_dish.4 %}
+                                                        <img class="modalface" src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}">
+                                                      {% endif %}
+                                                  </h4>
+                                                  <span>{{ menu_evening.date }}</span>
+                                              </div>
+                                              <div class="modal-body d-flex flex-column gap-2">
+                                                 {% for mp in pics_evening.main_dish %}
+                                                    {% if forloop.first %}
+                                                        <div class="d-flex flex-column align-items-center">
+                                                            <h4>{{ mp.presentation.type }}</h4>
+                                                            <div>
+                                                                <input class="thumb-modal rounded-3" type="image" src="{{ mp.photo.url }}" data-bs-toggle="modal" data-bs-target="#modaleveningmain{{ mp.id }}">
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="d-flex flex-wrap justify-content-center gap-3">
+                                                    {% else %}
+                                                            <div class="d-flex flex-column align-items-center gap-1">
+                                                                <h5>{{ mp.presentation.type }}</h5>
+                                                                <input class="thumb-modal rounded-3" type="image" src="{{ mp.photo.url }}" data-bs-toggle="modal" data-bs-target="#modaleveningmain{{ mp.id }}">
+                                                            </div>
+                                                    {% endif %}
+                                                            <div class="modal fade photo-full-modal" id="modaleveningmain{{ mp.id }}" tabindex="-1" aria-hidden="true">
+                                                                <div class="modal-dialog modal-fullscreen">
+                                                                    <div class="modal-body vh-100 d-flex align-items-center justify-content-center">
+                                                                        <img class="photo-full rounded-3" src="{{ mp.photo.url }}">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                    {% if forloop.last %}
+                                                        </div>
+                                                    {% endif %}
+                                                {% endfor %}
+                                              </div>
+                                          </div>
+                                      </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            <div class="d-flex flex-column justify-content-center align-items-center p-2 border border-darkblue rounded-3 framed">
+                                <h3 class="mb-0">{{ eval_evening.voter.main_dish }}</h3>
+                                <h3>{% trans 'Evaluation' %}{{ eval_evening.voter.main_dish|pluralize }}</h3>
+                            </div>
+                            <div class="d-flex flex-column justify-content-center align-items-center p-2 border rounded-3 framed
+                                                    {% if eval_evening_rounded_main_dish.4 %}border-darkblue{% elif eval_evening_rounded_main_dish.3 %}border-primary
+                                                    {% elif eval_evening_rounded_main_dish.2 %}border-warning{% elif eval_evening_rounded_main_dish.1 %}border-danger{% endif %}">
+                                <h3>{% trans 'Average' %}</h3>
+                                <h3 class="mb-0">{{ eval_evening.notation.main_dish }} /4</h3>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center mt-2">
+                            <input class="evalface {% if eval_evening_rounded_main_dish.1 %}hlface{% endif %} me-1" type="image" src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}"
+                                        onclick="toggleEval('eveningmaindishverybad')">
+                            <input class="evalface {% if eval_evening_rounded_main_dish.2 %}hlface{% endif %} me-1" type="image" src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}"
+                                        onclick="toggleEval('eveningmaindishbad')">
+                            <input class="evalface {% if eval_evening_rounded_main_dish.3 %}hlface{% endif %} me-1" type="image" src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}"
+                                        onclick="toggleEval('eveningmaindishgood')">
+                            <input class="evalface {% if eval_evening_rounded_main_dish.4 %}hlface{% endif %}" type="image" src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}"
+                                        onclick="toggleEval('eveningmaindishverygood')">
+                        </div>
+                        <div id="eveningmaindishverybad" style="display: none" class="border border-danger mt-3 rounded-3 listvoter py-1">
+                            {% for eval in note_evening.very_bad.main_dish %}
+                                {% if sortby == 'day' %}
+                                    <h4>{{ eval.voter.last_name }} {{ eval.voter.first_name }}</h4>
+                                {% else %}
+                                    <button class="noteselection nsverybad" onclick="selectMenu({{ eval.id }})">
+                                        {{ eval.menu.date }} - {{ eval.voter.last_name }} {{ eval.voter.first_name }}
+                                    </button>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div id="eveningmaindishbad" style="display: none" class="border border-warning mt-3 rounded-3 listvoter py-1">
+                            {% for eval in note_evening.bad.main_dish %}
+                                {% if sortby == 'day' %}
+                                    <h4>{{ eval.voter.last_name }} {{ eval.voter.first_name }}</h4>
+                                {% else %}
+                                    <button class="noteselection nsbad" onclick="selectMenu({{ eval.id }})">
+                                        {{ eval.menu.date }} - {{ eval.voter.last_name }} {{ eval.voter.first_name }}
+                                    </button>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div id="eveningmaindishgood" style="display: none" class="border border-primary mt-3 rounded-3 listvoter py-1">
+                        {% for eval in note_evening.good.main_dish %}
+                            {% if sortby == 'day' %}
+                                <h4>{{ eval.voter.last_name }} {{ eval.voter.first_name }}</h4>
+                            {% else %}
+                                <button class="noteselection nsgood" onclick="selectMenu({{ eval.id }})">
+                                    {{ eval.menu.date }} - {{ eval.voter.last_name }} {{ eval.voter.first_name }}
+                                </button>
+                            {% endif %}
+                        {% endfor %}
+                        </div>
+                        <div id="eveningmaindishverygood" style="display: none" class="border border-darkblue mt-3 rounded-3 listvoter py-1">
+                            {% for eval in note_evening.very_good.main_dish %}
+                                {% if sortby == 'day' %}
+                                    <h4>{{ eval.voter.last_name }} {{ eval.voter.first_name }}</h4>
+                                {% else %}
+                                    <button class="noteselection nsverygood" onclick="selectMenu({{ eval.id }})">
+                                        {{ eval.menu.date }} - {{ eval.voter.last_name }} {{ eval.voter.first_name }}
+                                    </button>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <hr class="w-75 my-3 mx-auto">
+                        <!--   affichage du dessert   -->
+                        {% if sortby == 'day' %}
+                            <h4 class="fw-bold">{{ menu_evening.dessert }}
+                                {% if eval_evening_global_dessert.1 %}
+                                    <img src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}" class="globalface">
+                                {% elif eval_evening_global_dessert.2 %}
+                                    <img src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}" class="globalface">
+                                {% elif eval_evening_global_dessert.3 %}
+                                    <img src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}" class="globalface">
+                                {% elif eval_evening_global_dessert.4 %}
+                                    <img src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}" class="globalface">
+                                {% endif %}
+                            </h4>
+                        {% else %}
+                            <h4 class="fw-bold">{% trans 'Dessert' %}</h4>
+                        {% endif %}
+                        <div class="d-flex justify-content-evenly align-items-center">
+                            {% if sortby == 'day' %}
+                                <div class="col-3 my-auto">
+                                    <button class="btn btn-perso {% if not pics_evening.dessert %}disabled{% endif %}" data-bs-toggle="modal" data-bs-target="#modaleveningdessert">
+                                        {% trans 'See the pictures' %}
+                                    </button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="modaleveningdessert" tabindex="-1" aria-hidden="true">
+                                      <div class="modal-dialog modal-fullscreen">
+                                          <div class="modal-content">
+                                              <div class="modal-header">
+                                                  <button data-bs-dismiss="modal" class="btn btn-perso">{% trans 'Back' %}</button>
+                                                  <h4>{{ menu_evening.dessert }}
+                                                      {% if eval_evening_rounded_dessert.1 %}
+                                                        <img class="modalface" src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}">
+                                                      {% elif eval_evening_rounded_dessert.2 %}
+                                                        <img class="modalface" src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}">
+                                                      {% elif eval_evening_rounded_dessert.3 %}
+                                                        <img class="modalface" src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}">
+                                                      {% elif eval_evening_rounded_dessert.4 %}
+                                                        <img class="modalface" src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}">
+                                                      {% endif %}
+                                                  </h4>
+                                                  <span>{{ menu_evening.date }}</span>
+                                              </div>
+                                              <div class="modal-body d-flex flex-column gap-2">
+                                                 {% for mp in pics_evening.dessert %}
+                                                    {% if forloop.first %}
+                                                        <div class="d-flex flex-column align-items-center">
+                                                            <h4>{{ mp.presentation.type }}</h4>
+                                                            <div>
+                                                                <input class="thumb-modal rounded-3" type="image" src="{{ mp.photo.url }}" data-bs-toggle="modal" data-bs-target="#modaleveningdessert{{ mp.id }}">
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="d-flex flex-wrap justify-content-center gap-3">
+                                                    {% else %}
+                                                            <div class="d-flex flex-column align-items-center gap-1">
+                                                                <h5>{{ mp.presentation.type }}</h5>
+                                                                <input class="thumb-modal rounded-3" type="image" src="{{ mp.photo.url }}" data-bs-toggle="modal" data-bs-target="#modaleveningdessert{{ mp.id }}">
+                                                            </div>
+                                                    {% endif %}
+                                                            <div class="modal fade photo-full-modal" id="modaleveningdessert{{ mp.id }}" tabindex="-1" aria-hidden="true">
+                                                                <div class="modal-dialog modal-fullscreen">
+                                                                    <div class="modal-body vh-100 d-flex align-items-center justify-content-center">
+                                                                        <img class="photo-full rounded-3" src="{{ mp.photo.url }}">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                    {% if forloop.last %}
+                                                        </div>
+                                                    {% endif %}
+                                                {% endfor %}
+
+                                              </div>
+                                          </div>
+                                      </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            <div class="d-flex flex-column justify-content-center align-items-center p-2 border border-darkblue rounded-3 framed">
+                                <h3 class="mb-0">{{ eval_evening.voter.dessert }}</h3>
+                                <h3>{% trans 'Evaluation' %}{{ eval_evening.voter.dessert|pluralize }}</h3>
+                            </div>
+                            <div class="d-flex flex-column justify-content-center align-items-center p-2 border rounded-3 framed
+                                                    {% if eval_evening_rounded_dessert.4 %}border-darkblue{% elif eval_evening_rounded_dessert.3 %}border-primary
+                                                    {% elif eval_evening_rounded_dessert.2 %}border-warning{% elif eval_evening_rounded_dessert.1 %}border-danger{% endif %}">
+                                <h3>{% trans 'Average' %}</h3>
+                                <h3 class="mb-0">{{ eval_evening.notation.dessert }} /4</h3>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center mt-2">
+                        <input class="evalface {% if eval_evening_rounded_dessert.1 %}hlface{% endif %} me-1" type="image" src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}"
+                                    onclick="toggleEval('eveningdessertverybad')">
+                        <input class="evalface {% if eval_evening_rounded_dessert.2 %}hlface{% endif %} me-1" type="image" src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}"
+                                    onclick="toggleEval('eveningdessertbad')">
+                        <input class="evalface {% if eval_evening_rounded_dessert.3 %}hlface{% endif %} me-1" type="image" src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}"
+                                    onclick="toggleEval('eveningdessertgood')">
+                        <input class="evalface {% if eval_evening_rounded_dessert.4 %}hlface{% endif %}" type="image" src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}"
+                                    onclick="toggleEval('eveningdessertverygood')">
+                    </div>
+                        <div id="eveningdessertverybad" style="display: none" class="border border-danger mt-3 rounded-3 listvoter py-1">
+                        {% for eval in note_evening.very_bad.dessert %}
+                            {% if sortby == 'day' %}
+                                <h4>{{ eval.voter.last_name }} {{ eval.voter.first_name }}</h4>
+                            {% else %}
+                                <button class="noteselection nsverybad" onclick="selectMenu({{ eval.id }})">
+                                    {{ eval.menu.date }} - {{ eval.voter.last_name }} {{ eval.voter.first_name }}
+                                </button>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                        <div id="eveningdessertbad" style="display: none" class="border border-warning mt-3 rounded-3 listvoter py-1">
+                        {% for eval in note_evening.bad.dessert %}
+                            {% if sortby == 'day' %}
+                                <h4>{{ eval.voter.last_name }} {{ eval.voter.first_name }}</h4>
+                            {% else %}
+                                <button class="noteselection nsbad" onclick="selectMenu({{ eval.id }})">
+                                    {{ eval.menu.date }} - {{ eval.voter.last_name }} {{ eval.voter.first_name }}
+                                </button>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                        <div id="eveningdessertgood" style="display: none" class="border border-primary mt-3 rounded-3 listvoter py-1">
+                        {% for eval in note_evening.good.dessert %}
+                            {% if sortby == 'day' %}
+                                <h4>{{ eval.voter.last_name }} {{ eval.voter.first_name }}</h4>
+                            {% else %}
+                                <button class="noteselection nsgood" onclick="selectMenu({{ eval.id }})">
+                                    {{ eval.menu.date }} - {{ eval.voter.last_name }} {{ eval.voter.first_name }}
+                                </button>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                        <div id="eveningdessertverygood" style="display: none" class="border border-darkblue mt-3 rounded-3 listvoter py-1">
+                        {% for eval in note_evening.very_good.dessert %}
+                            {% if sortby == 'day' %}
+                                <h4>{{ eval.voter.last_name }} {{ eval.voter.first_name }}</h4>
+                            {% else %}
+                                <button class="noteselection nsverygood" onclick="selectMenu({{ eval.id }})">
+                                    {{ eval.menu.date }} - {{ eval.voter.last_name }} {{ eval.voter.first_name }}
+                                </button>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                        <hr class="w-75 my-3 mx-auto">
+                        <!--   affichage du service   -->
+                        <h4>{{ menu_evening.service }}</h4>
+                        <div class="d-flex justify-content-around">
+                            {% if sortby == 'day' and menu_evening.photo_service.all %}
+                                <div class="my-auto">
+                                    <button class="btn btn-perso d-flex flex-wrap justify-content-evenly gap-1 staff-pic-div" data-bs-toggle="modal" data-bs-target="#modalserviceevening">
+                                        {% for staff in menu_evening.photo_service.all|sort_by_last_name:'user' %}
+                                            <div class="d-flex justify-content-center">
+                                                <img class="staff-pic" src="{{ staff.profile.get_photo_url }}">
+                                            </div>
+                                        {% endfor %}
+                                    </button>
+                                </div>
+                                <!-- Modal -->
+                                <div class="modal fade" id="modalserviceevening" tabindex="-1" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">{% trans 'Dinner service team from' %} : {{ menu_evening.date }}</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body mx-auto w-50">
+                                                {% for staff in menu_evening.photo_service.all|sort_by_last_name:'user' %}
+                                                    <div class="d-flex align-items-center justify-content-between my-1">
+                                                        <div class="d-flex justify-content-center">
+                                                            <img class="staff-pic-full" src="{{ staff.profile.get_photo_url }}">
+                                                        </div>
+                                                        <h4>{{ staff.get_full_name }}</h4>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-perso" data-bs-dismiss="modal">{% trans 'Close' %}</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            <div class="d-flex flex-column justify-content-center align-items-center p-2 px-4 border rounded-3 framed my-auto
+                                                {% if eval_evening_rounded_service.4 %}border-darkblue{% elif eval_evening_rounded_service.3 %}border-primary
+                                                {% elif eval_evening_rounded_service.2 %}border-warning{% elif eval_evening_rounded_service.1 %}border-danger{% endif %}">
+                                <h3>{% trans 'Service' %}</h3>
+                                <h3 class="mb-0">{{ eval_evening.notation.service }}</h3>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center mt-2">
+                        <input class="evalface {% if eval_evening_rounded_service.1 %}hlface{% endif %} me-1" type="image" src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}"
+                                    onclick="toggleEval('eveningserviceverybad')">
+                        <input class="evalface {% if eval_evening_rounded_service.2 %}hlface{% endif %} me-1" type="image" src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}"
+                                    onclick="toggleEval('eveningservicebad')">
+                        <input class="evalface {% if eval_evening_rounded_service.3 %}hlface{% endif %} me-1" type="image" src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}"
+                                    onclick="toggleEval('eveningservicegood')">
+                        <input class="evalface {% if eval_evening_rounded_service.4 %}hlface{% endif %}" type="image" src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}"
+                                    onclick="toggleEval('eveningserviceverygood')">
+                    </div>
+                        <div id="eveningserviceverybad" style="display: none" class="border border-danger mt-3 rounded-3 listvoter py-1">
+                        {% for eval in note_evening.very_bad.service %}
+                            {% if sortby == 'day' %}
+                                <h4>{{ eval.voter.last_name }} {{ eval.voter.first_name }}</h4>
+                            {% else %}
+                                <button class="noteselection nsverybad" onclick="selectMenu({{ eval.id }})">
+                                    {{ eval.menu.date }} - {{ eval.voter.last_name }} {{ eval.voter.first_name }}
+                                </button>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                        <div id="eveningservicebad" style="display: none" class="border border-warning mt-3 rounded-3 listvoter py-1">
+                        {% for eval in note_evening.bad.service %}
+                            {% if sortby == 'day' %}
+                                <h4>{{ eval.voter.last_name }} {{ eval.voter.first_name }}</h4>
+                            {% else %}
+                                <button class="noteselection nsbad" onclick="selectMenu({{ eval.id }})">
+                                    {{ eval.menu.date }} - {{ eval.voter.last_name }} {{ eval.voter.first_name }}
+                                </button>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                        <div id="eveningservicegood" style="display: none" class="border border-primary mt-3 rounded-3 listvoter py-1">
+                        {% for eval in note_evening.good.service %}
+                            {% if sortby == 'day' %}
+                                <h4>{{ eval.voter.last_name }} {{ eval.voter.first_name }}</h4>
+                            {% else %}
+                                <button class="noteselection nsgood" onclick="selectMenu({{ eval.id }})">
+                                    {{ eval.menu.date }} - {{ eval.voter.last_name }} {{ eval.voter.first_name }}
+                                </button>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                        <div id="eveningserviceverygood" style="display: none" class="border border-darkblue mt-3 rounded-3 listvoter py-1">
+                            {% for eval in note_evening.very_good.service %}
+                                {% if sortby == 'day' %}
+                                    <h4>{{ eval.voter.last_name }} {{ eval.voter.first_name }}</h4>
+                                {% else %}
+                                    <button class="noteselection nsverygood" onclick="selectMenu({{ eval.id }})">
+                                        {{ eval.menu.date }} - {{ eval.voter.last_name }} {{ eval.voter.first_name }}
+                                    </button>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+<script>
+        function toggleEval(div_id) {
+            var lists = document.getElementsByClassName('listvoter');
+            for (let listvoter of lists){
+                if (listvoter.id != div_id){
+                    listvoter.style.display = "none";
+                };
+            };
+            var selected_div = document.getElementById(div_id);
+            if (selected_div.style.display === "none") {
+                selected_div.style.display = "block";
+            } else {
+                selected_div.style.display = "none";
+            };
+        }
+        function selectMenu(evalid, _callback) {
+            // création d'un formulaire pour l'envoi en post
+            var formul = document.createElement('form');
+            formul.setAttribute('method', 'POST');
+            formul.setAttribute('action', "");
+
+            var tokenhiddenfield = document.createElement('input');
+            tokenhiddenfield.setAttribute('type', 'hidden');
+            tokenhiddenfield.setAttribute('name', 'csrfmiddlewaretoken');
+            tokenhiddenfield.setAttribute('value', '{{ csrf_token }}');
+            formul.appendChild(tokenhiddenfield);
+
+            // création du input pour l'envoi de l'id de l'évaluation selectionnée'
+            var hiddenfield = document.createElement('input');
+            hiddenfield.setAttribute('type', 'hidden');
+            hiddenfield.setAttribute('name', 'id_eval');
+            hiddenfield.setAttribute('value', evalid);
+            formul.appendChild(hiddenfield);
+
+            // envoi du formulaire
+            document.body.appendChild(formul);
+            formul.submit();
+            _callback();
+        }
+
+</script>
+{% endblock %}

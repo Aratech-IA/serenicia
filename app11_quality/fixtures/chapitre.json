@@ -1,0 +1,26 @@
+[
+{
+    "model": "app11_quality.chapitre",
+    "pk": 1,
+    "fields": {
+        "number": 1,
+        "title": "La personne"
+    }
+},
+{
+    "model": "app11_quality.chapitre",
+    "pk": 2,
+    "fields": {
+        "number": 2,
+        "title": "Les professionnels"
+    }
+},
+{
+    "model": "app11_quality.chapitre",
+    "pk": 3,
+    "fields": {
+        "number": 3,
+        "title": "L'ESSMS"
+    }
+}
+]

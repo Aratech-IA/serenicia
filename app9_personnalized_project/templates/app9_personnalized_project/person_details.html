@@ -1,0 +1,183 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+{% load static %}
+{% load i18n %}
+{% load custom_filters_app9 %}
+
+{% block sticky-top-btn %}
+    <a href="{% url 'genosociogram' family=person.family.id %}" class="btn btn-perso sticky-top-btn d-none d-md-block m-2">{% trans 'Back' %}</a>
+{% endblock sticky-top-btn %}
+
+{% block content %}
+<style>
+    .photo-person{
+        height: 100px;
+        width: 100px;
+        border-radius: 100px;
+        object-fit: cover;
+        overflow: hidden;
+    }
+    .sticky-back-btn      width: 160px;
+    }
+</style>
+{% if modif_rel_modal %}
+    <div class="modal" tabindex="-1" id="warning_msg">
+      <div class="modal-dialog">
+        <form action="" method="post" class="modal-content">{% csrf_token %}
+          <div class="modal-header">
+            <h5 class="modal-title">{% trans 'Modify relationship' %}</h5>
+          </div>
+          <div class="modal-body text-center">
+              {% if not modif_rel_modal.relation.other %}
+              <p>
+                  {% blocktranslate with from_person=modif_rel_modal.relation.from_person.get_full_name %}
+                  {{ from_person }} is the
+                  {% endblocktranslate %}
+                  {{ modif_rel_modal.relation.type|relation_type_trad }}
+                  {% blocktranslate with to_person=modif_rel_modal.relation.to_person.get_full_name %}
+                  of {{ to_person }}
+                  {% endblocktranslate %}
+              </p>
+              {% else %}
+              <p>
+                  {% trans 'Between' %} {{ modif_rel_modal.relation.from_person.get_full_name }} {% trans 'and' %} {{ modif_rel_modal.relation.to_person.get_full_name }}
+              </p>
+              {{ modif_rel_modal.form }}
+              {% endif %}
+          </div>
+          <div class="modal-footer d-flex justify-content-between">
+                <button type="submit" name="delete_rel" value="{{ modif_rel_modal.relation.id }}" class="btn btn-outline-danger">{% trans 'Delete' %}</button>
+              {% if not modif_rel_modal.relation.other %}
+                  <button type="button" class="btn btn-perso" data-bs-dismiss="modal">{% trans 'Close' %}</button>
+              {% else %}
+                <div>
+                  <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal">{% trans 'Cancel' %}</button>
+                    <button type="submit" name="update_rel" value="{{ modif_rel_modal.relation.id }}" class="btn btn-perso">{% trans 'Save' %}</button>
+                </div>
+              {% endif %}
+          </div>
+        </form>
+      </div>
+    </div>
+{% elif new_rel %}
+    <div class="modal" tabindex="-1" id="warning_msg">
+      <div class="modal-dialog">
+        <form action="" method="post" class="modal-content">{% csrf_token %}
+          <div class="modal-header">
+            <h5 class="modal-title">{% trans 'Add new relative' %}</h5>
+          </div>
+          <div class="modal-body d-flex flex-column gap-2 text-center">
+              <span>{{ new_rel.from_person.get_full_name }}</span>
+              <span>{% trans 'Is the' %} {{ new_rel.form.type }}</span>
+              <span>{% trans 'of' %} {{ new_rel.form.to_person }} <a href="{% url 'create person' family=family from_person=person.id relation='relation' %}" class="btn btn-sm btn-perso">{% trans 'Add' %}</a></span>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal">{% trans 'Cancel' %}</button>
+            <button type="submit" name="new_rel" value="1" class="btn btn-perso">{% trans 'Save' %}</button>
+          </div>
+        </form>
+      </div>
+    </div>
+{% elif new_entente %}
+    <div class="modal" tabindex="-1" id="warning_msg">
+      <div class="modal-dialog">
+        <form action="" method="post" class="modal-content">{% csrf_token %}
+          <div class="modal-header">
+            <h5 class="modal-title">{% trans 'Add new entente' %}</h5>
+          </div>
+          <div class="modal-body d-flex flex-column gap-2 text-center">
+              <span>{% trans 'Between' %} {{ new_entente.from_person.get_full_name }}</span>
+              <span>{% trans 'and' %} {{ new_entente.form.to_person }} <a href="{% url 'create person' family=family from_person=person.id relation='entente' %}" class="btn btn-sm btn-perso">{% trans 'Add' %}</a></span>
+              <span>{% trans 'Entente' %} : {{ new_entente.form.quality }}</span>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal">{% trans 'Cancel' %}</button>
+            <button type="submit" name="new_entente" value="1" class="btn btn-perso">{% trans 'Save' %}</button>
+          </div>
+        </form>
+      </div>
+    </div>
+{% endif %}
+<main class="container mt-5 mt-sm-2 d-flex flex-column gsticky-back-btnv class="d-flex flex-wrap justify-content-center gap-4">
+        <form action="" method="post" enctype="multipart/form-data" class="person_form">{% csrf_token %}
+            <div class="d-flex flex-column gap-1 border border-darkblue rounded-3 p-2">
+                <div class="d-flex justify-content-between align-items-center">
+                    <img class="photo-person" src="{{ person.get_photo_url }}" alt="{{ person }}">
+                    <label for="person_photo">
+                        <div class="btn btn-perso">
+                            {% trans 'Change photo' %}
+                        </div>
+                    </label>
+                </div>
+                {% for field in person_form %}
+                    <div class="d-flex justify-content-between">
+                        {% if field.name != 'photo' %}
+                            <span>{{ field.label }}</span>
+                            <span>{{ field.errors }}</span>
+                        {% endif %}
+                        {{ field }}
+                    </div>
+                {% endfor %}
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-outline-danger" type="button" data-bs-toggle="modal" data-bs-target="#confirmationModal">
+                        {% trans 'Delete' %}
+                    </button>
+                    <button class="btn btn-perso" name="save_person" value="1" type="submit">
+                        {% trans 'Save' %}
+                    </button>
+                </div>
+                <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">{% trans 'Delete person' %}</h5>
+                      </div>
+                      <div class="modal-body">
+                        {% trans "All the person's data will be erased, do you want to continue?" %}
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal">{% trans 'Cancel' %}</button>
+                        <button type="submit" name="delete_person" value="{{ person.id }}" class="btn btn-perso">{% trans 'Continue' %}</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </form>
+        <div>
+            <div class="border border-darkblue rounded-3 p-2">
+                <form action="" method="post">{% csrf_token %}
+                    <table class="table table-sm table-hover align-middle">
+                        <thead>
+                            <tr>
+                                <th><h5 class="mx-auto">{% trans 'Relationship management' %}</h5></th>
+                                <th colspan="2">
+                                    <button class="btn btn-sm btn-perso" name="new_rel" value="new_rel">{% trans 'Add a relative' %}</button>
+                                    <button class="btn btn-sm btn-perso" name="new_entente" value="new_entente">{% trans 'Add entente' %}</button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for relation in relations %}
+                                <tr>
+                                  <td>{{ relation.from_person.get_full_name }}</td>
+                                  <td>{{ relation.to_person.get_full_name }}</td>
+                                  <td>
+                                      <button class="btn btn-sm btn-perso" name="modif_rel" value="{{ relation.id }}">{% trans 'Modify' %}</button>
+                                  </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% if preview %}
+        <div class="d-flex justify-content-center">
+            <div class="p-2 border border-darkblue rounded-3">
+                <img class="img-fluid" src="data:image/png;base64,{{ preview }}" alt="{% trans 'Preview' %}">
+            </div>
+        </div>
+    {% endif %}
+</main>
+{% endblock content %}

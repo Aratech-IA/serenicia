@@ -1,0 +1,53 @@
+{% extends "app10_social_activities/evaluate_base.html" %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+    <head>
+        <style>
+            #body{
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: auto 100%;
+                height: 100%;
+            }
+        </style>
+    </head>
+
+    <body id="body" class="bg-light pt-0" style="background-image: url('{{ background_img }}')">
+        <div class="d-flex flex-column justify-content-between py-2 h-100 text-center">
+            <div class="d-flex flex-wrap text-top justify-content-evenly align-items-center gap-2">
+                <div class="border border-darkblue rounded-3 bg-light p-2">
+                    <h3 class="fw-bold">{{ activity.event.type }}</h3>
+                </div>
+                <div class="border border-darkblue rounded-3 bg-light p-2">
+                    <h3 class="fw-bold">{{ question.text }}</h3>
+                </div>
+            </div>
+            {% if question.subject == 'organizer' %}
+            <div class="d-flex justify-content-center gap-3">
+                <div class="p-3 border border-darkblue rounded-3">
+                    {% if activity.event.organizer.user.profile.photo %}
+                    <img src="{{ activity.event.organizer.user.profile.photo.url }}" class="img-fluid rounded-3" style="max-height: 400px;">
+                    {% else %}
+                    <img src="{% static 'app4_ehpad_base/img/no_picture.png' %}" class="img-fluid rounded-3" style="max-height: 400px;">
+                    {% endif %}
+                </div>
+                <div class="d-flex align-items-center">
+                    <h3>{{ activity.event.organizer.user.get_full_name }}</h3>
+                </div>
+            </div>
+            {% endif %}
+            <form method="post" action="{% url 'app10_social_activities evaluate' question=question.order %}">{% csrf_token %}
+                <input type="hidden" name="vote" value="1">
+                <div class="d-flex justify-content-evenly">
+                    <input type="image" src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}" name="1">
+                    <input type="image" src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}" name="2">
+                    <input type="image" src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}" name="3">
+                    <input type="image" src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}" name="4">
+                </div>
+            </form>
+        </div>
+    </body>
+{% endblock content %}

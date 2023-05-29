@@ -1,0 +1,197 @@
+
+.one h1 {
+  text-align:center;
+  font-size:50px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  font-family:"Playfair Display", serif;
+  font-weight:400;
+}
+.one h1 span {
+  margin-top: 5px;
+  font-size:15px; word-spacing:1px; letter-spacing:2px;
+  text-transform: uppercase;
+  font-family:"Raleway", sans-serif;
+  font-weight:500;
+  display: grid;
+  grid-template-columns: 1fr max-content 1fr;
+  grid-template-rows: 27px 0;
+  grid-gap: 20px;
+  align-items: center;
+}
+
+.one h1 span:after,.one h1 span:before {
+    content: " ";
+}
+
+.two .title {
+  text-transform: capitalize;
+}
+
+.two .title:before {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 60px;
+  height: 2px;
+  content: "";
+  background-color: #93a9d2;
+}
+
+.two .title span {
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  line-height: 3em;
+  padding-left: 0.25em;
+  color: rgba(0, 0, 0, 0.4);
+  padding-bottom: 10px;
+}
+
+.date {
+  color: black !important ;
+}
+
+.card-article {
+  padding: 20px;
+  border-radius: 5px;
+  width:fit-content;
+  width:-webkit-fit-content; width:-moz-fit-content;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  transition: all 0.3s ease-in-out;
+}
+
+.card-article:hover {
+  transform: scale(1.1, 1.1);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  backdrop-filter: none;
+}
+
+.body-blog {
+    background-color: transparent;
+}
+
+#toHide {
+  display: none;
+}
+
+#filtersToHide {
+  display: none;
+}
+
+#filtersToHide select {
+  width: 100%;
+}
+
+hr {
+  color: #93a9d2;
+  height: 12px;
+  border: none;
+}
+
+
+
+/* CSS APPLIED TO BLOG POSTS */
+
+.preview {
+  margin: 2.5rem;
+}
+
+.preview__figure {
+  position: relative;
+  padding-top: 140%;
+  transition: padding-top 275ms cubic-bezier(.2,.3,.4,.9);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+
+.preview__figure:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background-image: linear-gradient(180deg,rgba(10,9,8,.5),transparent);
+}
+
+.preview__details {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.preview__title {
+  display: block;
+  height: 100%;
+  padding: .75rem;
+  padding-right: 0.75rem;
+  color: #fcfdff;
+  background-color: rgba(10,9,8,0);
+  transition: background-color 500ms cubic-bezier(.4,.25,.3,1);
+}
+
+.preview__title div {
+  position:absolute;
+  bottom:0;
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.preview__meta {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding: .5rem 0;
+  font-size: .9rem;
+}
+
+.preview__author {
+  white-space: nowrap;
+  font-weight: bold
+}
+
+.preview__title:hover {
+  background-color: rgba(10,9,8,.65);
+}
+
+
+
+/* CSS APPLIED MINIATURES */
+
+.miniature {
+  width: 50%;
+  padding-bottom: 50%;
+  margin: 10% auto;
+  position: relative;
+  overflow: hidden;
+  word-wrap: break-word;
+  text-align: center;
+}
+
+.miniature:hover{
+  transform: scale(1.1, 1.1);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  backdrop-filter: none;
+  transition: 0.5s;
+}
+
+.miniature img {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+
+.miniature h6 {
+  position: absolute;
+  top: 0;
+  text-shadow: 1px 0 0 #fff, -1px 0 0 #fff, 0 1px 0 #fff, 0 -1px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+}

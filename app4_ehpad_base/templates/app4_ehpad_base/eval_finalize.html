@@ -1,0 +1,64 @@
+{% extends "app4_ehpad_base/eval_base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+
+
+<body class="pt-0">
+    <div class="d-flex flex-column justify-content-between py-2" style="height: 100%">
+    {# affichage du texte supérieur #}
+        <div class="d-flex flex-wrap text-top">
+            <h3 class="fw-bold border border-darkblue rounded-3 bg-light p-2 mx-auto">
+        {% blocktranslate with date=menu.date|date:'l d F' %}{{ date }} at{% endblocktranslate %} {% trans menu.type %}
+        </h3>
+        <h3 class="fw-bold border border-darkblue rounded-3 bg-light p-2 mx-auto">{% trans 'The team that served you' %}</h3>
+    </div>
+    {# affichage de la fleche recommencer #}
+          <div class="d-flex flex-wrap justify-content-center gap-2">
+            {% for staff in menu.photo_service.all %}
+                <div class="d-flex justify-content-center staff-pic">
+                    <img class="img-fluid rounded-3" src="{{ staff.profile.get_photo_url }}">
+                </div>
+            {% endfor %}
+            </div>
+    {# affihage des smiley de vote #}
+        <div class="d-flex justify-content-evenly">
+             <input type="image" src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}" onclick="vote(1)">
+            <input type="image" src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}" onclick="vote(2)">
+            <input type="image" src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}" onclick="vote(3)">
+            <input type="image" src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}" onclick="vote(4)">
+        </div>
+    </div>
+</body>
+
+<script>
+        function vote(note, _callback) {
+            // création d'un formulaire pour l'envoi en post
+            var formul = document.createElement('form');
+            formul.setAttribute('method', 'POST');
+            formul.setAttribute('action', "");
+
+            var tokenhiddenfield = document.createElement('input');
+            tokenhiddenfield.setAttribute('type', 'hidden');
+            tokenhiddenfield.setAttribute('name', 'csrfmiddlewaretoken');
+            tokenhiddenfield.setAttribute('value', '{{ csrf_token }}');
+            formul.appendChild(tokenhiddenfield);
+
+            // création du input pour l'envoi de la note
+            var hiddenfield = document.createElement('input');
+            hiddenfield.setAttribute('type', 'hidden');
+            hiddenfield.setAttribute('name', 'notation');
+            hiddenfield.setAttribute('value', note);
+            formul.appendChild(hiddenfield);
+
+            // envoi du formulaire
+            document.body.appendChild(formul);
+            formul.submit();
+            _callback();
+        }
+    </script>
+
+
+
+{% endblock %}

@@ -1,0 +1,139 @@
+{% extends "app1_base/base.html" %}
+
+{% block content %}
+{% load static %}
+{% load i18n %}
+
+{% load tz %}
+{% timezone client.time_zone %}
+
+<head>
+    {% if alert == 1 %}
+    <style>
+        .thumbnailwarning{
+            border: 5px solid;
+            border-color: red;
+        }
+        .imglink:hover{
+            color: red;
+        }
+        .imglink{
+            color: black;
+        }
+        .noplay{
+            max-width: 50px;
+        }
+        .filter-card{
+            max-width: 280px;
+        }
+    </style>
+    {% else %}
+    <style>
+        .imglink{
+            color: black;
+        }
+        .noplay{
+            max-width: 50px;
+        }
+        .filter-card{
+            max-width: 280px;
+        }
+    </style>
+    {% endif %}
+</head>
+<br>
+<div class="container d-flex flex-column gap-3 mb-3">
+    <div class="text-center row justify-content-center">
+        {% if alert %}
+        <h2>{% trans 'Alert' %}</h2>
+        {% else %}
+        <h2>{% trans 'Detection' %}</h2>
+        {% endif %}
+
+        <div class="border border-darkblue rounded-3 p-2 filter-card">
+            <div class="d-flex justify-content-center gap-2">
+                <h5 class="text-muted">{% trans 'Filter' %}:</h5><h5>{{ class }}</h5>
+            </div>
+            <form class="my-0"  action="{% url 'panel' alert=alert first=first correction=correction %}" method="post">
+                {% csrf_token %}
+                <div class="my-2">
+                    <label>{% trans 'Select display object' %}
+                        {{ form.stuffs_char_foreign }}
+                    </label>
+                </div>
+                <div class="text-right">
+                    <div>
+                        <button type="submit" name="valid_filter" value="del"
+                                class="btn btn-perso">{% trans 'Reset' %}
+                        </button>
+                        <button type="submit" name="valid_filter" value="ok"
+                                class="btn btn-perso">{% trans 'Apply' %}
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="text-center border border-darkblue rounded-3 p-2 userzone">
+        {% if alert %}
+        <h4>{% trans 'Last alert' %} : </h4>
+        {% else %}
+        <h4>{% trans 'Last detection' %} : </h4>
+        {% endif %}
+
+
+        <div class="text-center mb-2">
+            {% if first >= 60 %}
+            <a href="{% url 'panel' alert=alert first=first|add:-60 correction=correction %}#detection"
+               class="btn btn-perso btn-sm">&laquo; &laquo; {% trans 'very recent' %}</a>{% endif %}
+            {% if first >= 12 %}
+            <a href="{% url 'panel' alert=alert first=first|add:-12 correction=correction %}#detection"
+               class="btn btn-perso btn-sm">&laquo; {% trans 'recent' %}</a>{% endif %}
+
+            <a href="{% url 'panel' alert=alert first=first|add:12 correction=correction %}#detection"
+               class="btn btn-perso btn-sm">{% trans 'older' %} &raquo;</a>
+            <a href="{% url 'panel' alert=alert first=first|add:60 correction=correction %}#detection"
+               class="btn btn-perso btn-sm">{% trans 'very older' %} &raquo; &raquo;</a>
+        </div>
+        <div class="d-flex flex-wrap justify-content-center align-items-center gap-2">
+        {% for row in img_array %}
+            {% for img in row %}
+            <div>
+                <a class="imglink d-flex flex-column"  href="{% url 'detail' id=img.id %}">
+                    <img class="img-fluid {% if alert %}thumbnailwarning{% endif %} rounded-3"
+                     src="{% url 'thumbnail' im=img.id key=0 w=client.image_panel_max_width h=client.image_panel_max_hight %}"
+                     alt="">
+                    {{ img.video_time|date:'Y-m-d H:i:s' }}
+                </a>&nbsp;&nbsp;
+                {% if client.video_authorize %}
+                <a href="{% url 'video' result=img.id get_back=alert first=first %}">
+                    <img src="{% static 'app1_base/img/play_small.png' %}">
+                </a>
+                {% else %}
+                <img class='noplay' src="{% static 'app1_base/img/no_play_small.png' %}">
+                {% endif %}
+            </div>
+            {% endfor %}
+        {% endfor %}
+        </div>
+        <div class="cell text-center">
+            {% if first >= 60 %}
+            <a href="{% url 'panel' alert=alert first=first|add:-60 correction=correction %}#detection"
+               class="btn btn-perso btn-sm">&laquo; &laquo; {% trans 'very recent' %}</a>{% endif %}
+            {% if first >= 12 %}
+            <a href="{% url 'panel' alert=alert first=first|add:-12 correction=correction %}#detection"
+               class="btn btn-perso btn-sm">&laquo; {% trans 'recent' %}</a>{% endif %}
+            <a href="{% url 'panel' alert=alert first=first|add:12 correction=correction %}#detection"
+               class="btn btn-perso btn-sm">{% trans 'older' %} &raquo;</a>
+            <a href="{% url 'panel' alert=alert first=first|add:60 correction=correction %}#detection"
+               class="btn btn-perso btn-sm">{% trans 'very older' %} &raquo; &raquo; </a>
+        </div>
+    </div>
+</div>
+{% endtimezone %}
+
+{% endblock content %}
+
+{% block endscript %}
+
+{% endblock endscript %}

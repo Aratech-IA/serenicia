@@ -1,0 +1,476 @@
+{% extends "app4_ehpad_base/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+
+<div class="p-3">
+
+    {% if not support_project.pdf %}
+        {% include 'app6_care/caregiver/support_project_modal.html' %}
+    {% endif %}
+
+    {% include 'app6_care/caregiver/story_life_modal.html' %}
+
+
+    <div>
+        {% if task_level %}
+        <div class="my-3">
+            <a class="btn btn-perso mx-1" href="{% url 'caregiver' %}">{% trans 'Treatment home' %}</a>
+            <div class="d-flex justify-content-center align-items-center fs-5">
+                {% trans 'Treatment' %} - {{request.session.res_lastname}}
+                {% if request.session.profile_pic %}
+                    <img class="resident-small-pic mx-1" src="{{ request.session.profile_pic }}" alt="{trans 'resident profile pic' %}">
+                {% endif %}
+                <button class="btn btn-perso d-flex flex-column justify-content-center align-items-center {% if not support_project %}disabled{% endif %}" data-bs-toggle="modal" data-bs-target="#projectModal">
+                    <svg height="50px" viewbox="0 0 16 16" class="bi bi-file-earmark-medical" fill="currentColor">
+                    <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"/>
+                    <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z"/>
+                    <path fill-rule="evenodd" d="M7 5a.5.5 0 0 1 .5.5v.634l.549-.317a.5.5 0 1 1 .5.866L8 7l.549.317a.5.5 0 1 1-.5.866L7.5 7.866V8.5a.5.5 0 0 1-1 0v-.634l-.549.317a.5.5 0 1 1-.5-.866L6 7l-.549-.317a.5.5 0 0 1 .5-.866l.549.317V5.5A.5.5 0 0 1 7 5zm-2 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        {% else %}
+        <a class="btn btn-perso mx-1" href="{% url 'app4_ehpad_base index' %}">{% trans 'Home' %}</a>
+        <div class="d-flex justify-content-between align-items-center">
+            <form method="post" action="{% url 'caregiver' %}">
+                {% csrf_token %}
+                <input type="hidden" id="previous-res" name="previous-res" value="request.session">
+                <button class="btn btn-perso p-1" type="submit">
+                    <svg
+                        width="4em"
+                        height="4em"
+                        viewbox="0 0 41.989807 69.608582">
+                        <g
+                            transform="translate(-20.717067,-80.841869)">
+                            <g
+                            transform="translate(7.5595195,0.75595243)"
+                            style="fill:#93a9d2;fill-opacity:1">
+                            <path
+                                style="fill:#93a9d2;fill-opacity:1;stroke-width:0.264583"
+                                d="m 53.597021,148.63914 c 0.493655,-0.50933 0.957086,-0.92604 1.029846,-0.92604 0.07276,0 -0.271608,0.41671 -0.765262,0.92604 -0.493655,0.50932 -0.957085,0.92604 -1.029846,0.92604 -0.07276,0 0.271608,-0.41672 0.765262,-0.92604 z m -7.557269,-2.57969 -0.777105,-0.8599 0.859895,0.77711 c 0.472943,0.42741 0.859896,0.81436 0.859896,0.85989 0,0.20441 -0.218315,0.0245 -0.942686,-0.7771 z m 9.008234,-31.15469 c 0,-17.389738 0.03166,-24.503722 0.07035,-15.808852 0.03869,8.694872 0.03869,22.922842 0,31.617712 -0.03869,8.69487 -0.07035,1.58088 -0.07035,-15.80886 z m -10.860318,29.56719 -0.777105,-0.8599 0.859896,0.77711 c 0.472943,0.42741 0.859896,0.81436 0.859896,0.85989 0,0.20441 -0.218316,0.0245 -0.942687,-0.7771 z m -1.852083,-1.5875 -0.777105,-0.8599 0.859896,0.77711 c 0.472942,0.42741 0.859896,0.81436 0.859896,0.85989 0,0.20441 -0.218316,0.0245 -0.942687,-0.7771 z m -6.485673,-5.68854 -0.641432,-0.72761 0.727604,0.64144 c 0.680056,0.59951 0.84894,0.81377 0.641432,0.81377 -0.04739,0 -0.374814,-0.32742 -0.727604,-0.7276 z m -1.71641,-1.45521 -0.777105,-0.8599 0.859895,0.77711 c 0.472943,0.42741 0.859896,0.81436 0.859896,0.85989 0,0.20441 -0.218315,0.0245 -0.942686,-0.7771 z m -1.852084,-1.5875 -0.777105,-0.8599 0.859896,0.77711 c 0.472943,0.42741 0.859896,0.81436 0.859896,0.85989 0,0.20441 -0.218316,0.0245 -0.942687,-0.7771 z m -6.614583,-5.82083 -0.777105,-0.8599 0.859896,0.77711 c 0.472943,0.4274 0.859896,0.81436 0.859896,0.85989 0,0.20441 -0.218316,0.0245 -0.942687,-0.7771 z m -1.723173,-1.45521 -0.641432,-0.72761 0.727604,0.64144 c 0.400183,0.35279 0.727604,0.68021 0.727604,0.7276 0,0.20751 -0.214259,0.0386 -0.813776,-0.64143 z m -6.35,-5.55625 -0.641432,-0.72761 0.727604,0.64144 c 0.680056,0.59951 0.84894,0.81377 0.641432,0.81377 -0.04739,0 -0.374814,-0.32742 -0.727604,-0.7276 z m -2.503461,-2.24896 -1.312971,-1.38906 1.389063,1.31297 c 1.29074,1.22003 1.5104,1.46515 1.312971,1.46515 -0.04185,0 -0.66693,-0.62508 -1.389063,-1.38906 z m -1.932654,-3.37344 c 0,-0.3638 0.06006,-0.51263 0.133453,-0.33073 0.0734,0.1819 0.0734,0.47956 0,0.66146 -0.0734,0.1819 -0.133453,0.0331 -0.133453,-0.33073 z m 0,-1.5875 c 0,-0.3638 0.06006,-0.51263 0.133453,-0.33073 0.0734,0.1819 0.0734,0.47956 0,0.66146 -0.0734,0.1819 -0.133453,0.0331 -0.133453,-0.33073 z m 1.281142,-3.01031 c 0,-0.0549 0.208359,-0.2633 0.46302,-0.46302 0.419645,-0.32911 0.429004,-0.31975 0.0999,0.0999 -0.345643,0.44073 -0.562916,0.58089 -0.562916,0.36313 z m 1.058333,-0.77665 c 0,-0.0455 0.386953,-0.43248 0.859896,-0.85989 l 0.859896,-0.77711 -0.777106,0.8599 c -0.72437,0.80154 -0.942686,0.98151 -0.942686,0.7771 z m 1.852083,-1.5875 c 0,-0.0455 0.386953,-0.43248 0.859896,-0.85989 l 0.859896,-0.77711 -0.777105,0.8599 c -0.724371,0.80154 -0.942687,0.98151 -0.942687,0.7771 z m 7.14375,-6.3995 c 0.341776,-0.3638 0.68094,-0.66145 0.7537,-0.66145 0.07276,0 -0.147341,0.29765 -0.489117,0.66145 -0.341775,0.36381 -0.680939,0.66146 -0.7537,0.66146 -0.07276,0 0.147342,-0.29765 0.489117,-0.66146 z m 1.058333,-0.74425 c 0,-0.0455 0.386954,-0.43248 0.859896,-0.85989 l 0.859896,-0.777106 -0.777105,0.859896 c -0.724371,0.80154 -0.942687,0.98151 -0.942687,0.7771 z m 1.852084,-1.5875 c 0,-0.04553 0.386953,-0.432483 0.859896,-0.859891 l 0.859895,-0.777105 -0.777105,0.859896 c -0.724371,0.80154 -0.942686,0.98151 -0.942686,0.7771 z m 5.159375,-4.679705 c 0.26339,-0.291041 0.538421,-0.529166 0.611182,-0.529166 0.07276,0 -0.08321,0.238125 -0.346599,0.529166 -0.26339,0.291042 -0.538422,0.529167 -0.611182,0.529167 -0.07276,0 0.08321,-0.238125 0.346599,-0.529167 z m 1.190625,-0.87654 c 0,-0.04554 0.386953,-0.432488 0.859895,-0.859896 l 0.859896,-0.777105 -0.777105,0.859895 c -0.724371,0.801545 -0.942686,0.981512 -0.942686,0.777106 z m 1.852083,-1.5875 c 0,-0.04554 0.386953,-0.432488 0.859896,-0.859896 l 0.859896,-0.777105 -0.777105,0.859896 c -0.724371,0.801544 -0.942687,0.981511 -0.942687,0.777105 z m 7.14375,-6.399501 c 0.341775,-0.363802 0.680939,-0.661459 0.7537,-0.661459 0.07276,0 -0.147341,0.297657 -0.489117,0.661459 -0.341775,0.363802 -0.680939,0.661458 -0.7537,0.661458 -0.07276,0 0.147341,-0.297656 0.489117,-0.661458 z m 1.058333,-0.744249 c 0,-0.04554 0.386953,-0.432488 0.859896,-0.859896 l 0.859896,-0.777105 -0.777105,0.859895 c -0.724371,0.801545 -0.942687,0.981512 -0.942687,0.777106 z m 2.38125,-2.166168 c 0.341776,-0.363802 0.68094,-0.661458 0.7537,-0.661458 0.07276,0 -0.147341,0.297656 -0.489116,0.661458 -0.341776,0.363802 -0.68094,0.661458 -0.7537,0.661458 -0.07276,0 0.147341,-0.297656 0.489116,-0.661458 z m 6.845417,-2.976563 c -0.329108,-0.419645 -0.319749,-0.429003 0.0999,-0.0999 0.440729,0.345644 0.580887,0.562917 0.363124,0.562917 -0.05494,0 -0.2633,-0.208359 -0.46302,-0.463021 z" />
+                            <path
+                                style="fill:#93a9d2;fill-opacity:1;stroke-width:0.264583"
+                                d="m 50.28973,149.46273 c -0.436563,-0.19396 -1.646158,-1.14438 -2.687987,-2.11204 -1.041831,-0.96766 -3.797247,-3.39534 -6.123143,-5.39484 -10.239164,-8.8023 -13.763728,-11.88271 -15.00137,-13.11095 l -1.322917,-1.31287 1.455209,1.2519 c 8.912529,7.66737 10.752603,9.26352 10.980208,9.52465 0.145521,0.16695 1.99099,1.78055 4.101042,3.58578 2.110052,1.80523 4.729427,4.10506 5.820833,5.11073 3.128097,2.88239 4.465886,3.14139 6.2166,1.20356 0.509931,-0.56444 0.92715,-0.931 0.92715,-0.8146 0,0.4654 -2.033836,2.12672 -2.778125,2.26929 -0.436563,0.0836 -1.150938,-0.007 -1.5875,-0.20061 z m 4.493741,-34.55797 c 0,-17.680779 0.03163,-24.913826 0.07028,-16.073436 0.03866,8.840396 0.03866,23.306486 0,32.146876 -0.03866,8.84039 -0.07028,1.60734 -0.07028,-16.07344 z m -33.333324,9.69089 c -1.891771,-1.64312 -4.392083,-3.91124 -5.55625,-5.04027 -1.494454,-1.44935 -1.222238,-1.24823 0.926042,0.68418 1.673489,1.50533 4.203567,3.72905 5.622395,4.94161 2.232793,1.90818 2.808727,2.46103 2.513542,2.41278 -0.03638,-0.006 -1.613958,-1.35518 -3.505729,-2.9983 z m -7.904813,-7.71674 c -0.09074,-0.23646 -0.154745,-0.62855 -0.142238,-0.87131 0.01252,-0.24276 0.127635,-0.0902 0.255836,0.33907 0.249413,0.83509 0.161206,1.24836 -0.113598,0.53224 z m -0.137896,-2.97947 c -0.02619,-0.5883 0.64076,-2.16968 0.915061,-2.16968 0.07414,0 -0.0091,0.26789 -0.185028,0.59531 -0.175911,0.32743 -0.406037,0.9525 -0.511395,1.38907 -0.15654,0.64866 -0.196506,0.68253 -0.218638,0.1853 z m 1.692709,-3.09308 c 0.436562,-0.39258 1.74625,-1.57149 2.910417,-2.61979 1.164166,-1.0483 4.181959,-3.68626 6.706205,-5.86213 2.524247,-2.17588 6.235946,-5.384886 8.248219,-7.131136 2.012273,-1.74625 5.721511,-4.950413 8.242752,-7.120364 2.521241,-2.169948 5.179386,-4.510312 5.90699,-5.200806 1.441725,-1.368192 3.209742,-2.630329 3.674943,-2.623436 0.161595,0.0024 -0.140816,0.270285 -0.672023,0.595312 -0.851273,0.520867 -4.329528,3.432829 -9.336267,7.816231 -0.882285,0.772441 -3.271028,2.842834 -5.30832,4.600877 -2.037291,1.75804 -4.239948,3.691112 -4.894791,4.295714 -0.654844,0.604605 -3.256315,2.879988 -5.781043,5.056418 -2.524731,2.17643 -5.441762,4.70684 -6.482291,5.62315 -1.040533,0.91631 -2.368124,2.03 -2.950208,2.47488 -0.818967,0.62593 -0.878808,0.64743 -0.264583,0.0951 z M 54.27549,82.173986 c -0.143584,-0.377084 -0.113194,-0.407474 0.148114,-0.148114 0.180821,0.179478 0.262114,0.39297 0.180652,0.474433 -0.08146,0.08146 -0.229407,-0.06538 -0.328766,-0.326319 z m -0.973516,-1.095544 c -0.347046,-0.268851 -0.972465,-0.572302 -1.389819,-0.674336 -0.916871,-0.224152 -0.835642,-0.4309 0.09737,-0.247819 0.363803,0.07139 1.018646,0.41747 1.455209,0.769072 0.922022,0.742585 0.775771,0.880144 -0.162756,0.153083 z" />
+                            <path
+                                style="fill:#93a9d2;fill-opacity:1;stroke-width:0.264583"
+                                d="m 50.28973,149.19185 c -0.436563,-0.19743 -1.686719,-1.18162 -2.778125,-2.18711 -1.091406,-1.00548 -3.710781,-3.30515 -5.820833,-5.11038 -2.110052,-1.80523 -3.955521,-3.41883 -4.101042,-3.58578 -0.244533,-0.28055 -2.497799,-2.23265 -13.993058,-12.12276 -2.344756,-2.01734 -5.468395,-4.78136 -6.941418,-6.14226 -2.311252,-2.13532 -2.720271,-2.64133 -2.985061,-3.6929 -0.341728,-1.35713 -0.176779,-2.7245 0.487664,-4.04256 0.432377,-0.85772 1.244052,-1.59738 10.638724,-9.69485 2.525085,-2.17643 5.126847,-4.451813 5.781691,-5.056418 0.654843,-0.604602 2.8575,-2.537674 4.894791,-4.295714 2.037292,-1.758043 4.426035,-3.828436 5.30832,-4.600877 8.808709,-7.71203 9.873723,-8.503724 11.095847,-8.248269 0.928203,0.194022 1.982681,0.960792 2.438019,1.772825 0.247041,0.440563 0.323522,8.024685 0.330729,32.796353 l 0.0094,32.22327 -0.992188,1.0293 c -1.130284,1.17257 -2.216846,1.48118 -3.373437,0.95813 z" />
+                            </g>
+                        </g>
+                    </svg>
+                </button>
+            </form>
+
+            <!-- Barre résident -->
+            <div class="py-3 my-3 d-flex flex-column flex-lg-row align-items-center justify-lg-content-center gap-3">
+                <div class="d-flex flex-column align-items-center">
+                    <h3>{% trans 'Treatment' %} - {{room_number}}</h3>
+                    <h3>{{request.session.res_lastname}}</h3>
+                </div>
+
+                {% if request.session.profile_pic %}
+                    <img class="resident-pic" src="{{ request.session.profile_pic }}" alt="{% trans 'resident profile pic' %}">
+                {% endif %}
+
+                {% if support_project.pdf %}
+                    <a href="{% url 'old project pdf' import_id=support_project.project.id %}" class="btn btn-perso d-flex flex-column justify-content-center align-items-center">
+                        <svg height="70px" viewbox="0 0 16 16" class="bi bi-file-earmark-medical" fill="currentColor">
+                        <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"/>
+                        <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z"/>
+                        <path fill-rule="evenodd" d="M7 5a.5.5 0 0 1 .5.5v.634l.549-.317a.5.5 0 1 1 .5.866L8 7l.549.317a.5.5 0 1 1-.5.866L7.5 7.866V8.5a.5.5 0 0 1-1 0v-.634l-.549.317a.5.5 0 1 1-.5-.866L6 7l-.549-.317a.5.5 0 0 1 .5-.866l.549.317V5.5A.5.5 0 0 1 7 5zm-2 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+                        </svg>
+                        <span>{% trans 'Support project' %}</span>
+                    </a>
+                {% else %}
+                    <button class="btn btn-perso d-flex flex-column justify-content-center align-items-center {% if not support_project %}disabled{% endif %}" data-bs-toggle="modal" data-bs-target="#projectModal">
+                        <svg height="70px" viewbox="0 0 16 16" class="bi bi-file-earmark-medical" fill="currentColor">
+                        <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"/>
+                        <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z"/>
+                        <path fill-rule="evenodd" d="M7 5a.5.5 0 0 1 .5.5v.634l.549-.317a.5.5 0 1 1 .5.866L8 7l.549.317a.5.5 0 1 1-.5.866L7.5 7.866V8.5a.5.5 0 0 1-1 0v-.634l-.549.317a.5.5 0 1 1-.5-.866L6 7l-.549-.317a.5.5 0 0 1 .5-.866l.549.317V5.5A.5.5 0 0 1 7 5zm-2 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+                        </svg>
+                        <a>{% trans 'Support project' %}</a>
+                    </button>
+                {% endif %}
+                <button class="btn btn-perso d-flex flex-column justify-content-center align-items-center {% if not story_life %}disabled{% endif %}" data-bs-toggle="modal" data-bs-target="#storyModal">
+                    <svg height="70px" viewbox="0 0 16 16" class="bi bi-card-text" fill="currentColor">
+                    <path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+                    <path fill-rule="evenodd" d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
+                    </svg>
+                    <a>{% trans 'Life story' %}</a>
+                </button>
+            </div>
+
+            <form method="post" action="{% url 'caregiver' %}">
+                {% csrf_token %}
+                <input type="hidden" id="next-res" name="next-res" value="request.session">
+                <button class="btn btn-perso p-1" type="submit">
+                    <svg
+                        width="4em"
+                        height="4em"
+                        viewbox="0 0 41.906399 69.669373">
+                        <g
+                            transform="translate(-142.24709,-80.865764)">
+                            <g
+                            transform="translate(-15.119048,0.75595233)"
+                            style="fill:#93a9d2;fill-opacity:1">
+                            <path
+                                style="fill:#93a9d2;fill-opacity:1;stroke-width:0.264583"
+                                d="m 158.54677,148.57299 -0.9118,-0.99219 0.99218,0.9118 c 0.54571,0.50149 0.99219,0.94797 0.99219,0.99219 0,0.20204 -0.22389,0.0117 -1.07257,-0.9118 z m 6.8934,-1.73644 c 0,-0.0455 0.38696,-0.43249 0.8599,-0.8599 l 0.8599,-0.7771 -0.77711,0.8599 c -0.72437,0.80154 -0.94269,0.98151 -0.94269,0.7771 z m -8.07403,-31.93179 c 0,-17.389742 0.0317,-24.503726 0.0703,-15.808856 0.0387,8.694866 0.0387,22.922836 0,31.617706 -0.0387,8.69487 -0.0703,1.58089 -0.0703,-15.80885 z m 9.92612,30.34429 c 0,-0.0455 0.38695,-0.43249 0.85989,-0.8599 l 0.8599,-0.7771 -0.77711,0.8599 c -0.72437,0.80154 -0.94268,0.98151 -0.94268,0.7771 z m 1.85208,-1.5875 c 0,-0.0455 0.38695,-0.43249 0.8599,-0.8599 l 0.85989,-0.7771 -0.7771,0.8599 c -0.72437,0.80154 -0.94269,0.98151 -0.94269,0.7771 z m 7.14375,-6.3995 c 0.34178,-0.3638 0.68094,-0.66146 0.7537,-0.66146 0.0728,0 -0.14734,0.29766 -0.48912,0.66146 -0.34177,0.3638 -0.68093,0.66146 -0.7537,0.66146 -0.0728,0 0.14735,-0.29766 0.48912,-0.66146 z m 1.05833,-0.74425 c 0,-0.0455 0.38696,-0.43249 0.8599,-0.8599 l 0.8599,-0.7771 -0.77711,0.8599 c -0.72437,0.80154 -0.94269,0.98151 -0.94269,0.7771 z m 1.85209,-1.5875 c 0,-0.0455 0.38695,-0.43249 0.85989,-0.8599 l 0.8599,-0.7771 -0.77711,0.8599 c -0.72437,0.80154 -0.94268,0.98151 -0.94268,0.7771 z m 5.29166,-4.812 c 0.34178,-0.3638 0.68094,-0.66146 0.7537,-0.66146 0.0728,0 -0.14734,0.29766 -0.48911,0.66146 -0.34178,0.3638 -0.68094,0.66146 -0.7537,0.66146 -0.0728,0 0.14734,-0.29766 0.48911,-0.66146 z m 1.32292,-1.00883 c 0,-0.0455 0.38695,-0.43249 0.8599,-0.8599 l 0.85989,-0.7771 -0.7771,0.85989 c -0.72437,0.80155 -0.94269,0.98151 -0.94269,0.77711 z m 2.38125,-2.16617 c 0.34178,-0.3638 0.68094,-0.66146 0.7537,-0.66146 0.0728,0 -0.14734,0.29766 -0.48912,0.66146 -0.34177,0.3638 -0.68094,0.66146 -0.7537,0.66146 -0.0728,0 0.14735,-0.29766 0.48912,-0.66146 z m 5.82083,-4.97758 c 0,-0.0455 0.38696,-0.43249 0.8599,-0.8599 l 0.8599,-0.7771 -0.77711,0.85989 c -0.72437,0.80155 -0.94269,0.98151 -0.94269,0.77711 z m 3.04271,-2.82763 c 0.71667,-0.7276 1.36256,-1.32292 1.43532,-1.32292 0.0728,0 -0.45407,0.59532 -1.17073,1.32292 -0.71667,0.72761 -1.36256,1.32292 -1.43532,1.32292 -0.0728,0 0.45407,-0.59531 1.17073,-1.32292 z m 2.02615,-3.43958 c 0,-0.3638 0.0601,-0.51263 0.13346,-0.33073 0.0734,0.1819 0.0734,0.47956 0,0.66146 -0.0734,0.1819 -0.13346,0.0331 -0.13346,-0.33073 z m 0,-1.5875 c 0,-0.3638 0.0601,-0.51263 0.13346,-0.33073 0.0734,0.1819 0.0734,0.47956 0,0.66146 -0.0734,0.1819 -0.13346,0.0331 -0.13346,-0.33073 z m -1.66302,-3.37344 c -0.32911,-0.41964 -0.31975,-0.429 0.0999,-0.0999 0.25467,0.19973 0.46302,0.40808 0.46302,0.46303 0,0.21776 -0.21727,0.0776 -0.56291,-0.36313 z m -1.43811,-1.19062 -0.7771,-0.8599 0.8599,0.7771 c 0.47294,0.42741 0.85989,0.81437 0.85989,0.8599 0,0.20441 -0.21831,0.0245 -0.94269,-0.7771 z m -1.59599,-1.32292 -0.50403,-0.59531 0.59532,0.50402 c 0.32742,0.27722 0.59531,0.54511 0.59531,0.59532 0,0.21173 -0.21294,0.0554 -0.6866,-0.50403 z m -6.74176,-5.95313 -0.64143,-0.7276 0.7276,0.64143 c 0.40018,0.35279 0.7276,0.68021 0.7276,0.72761 0,0.2075 -0.21426,0.0386 -0.81377,-0.64144 z m -1.71641,-1.4552 -0.77711,-0.8599 0.8599,0.7771 c 0.47294,0.42741 0.85989,0.81437 0.85989,0.8599 0,0.20441 -0.21831,0.0245 -0.94268,-0.7771 z m -6.48567,-5.688546 -0.64144,-0.727604 0.72761,0.641432 c 0.68005,0.599516 0.84894,0.813776 0.64143,0.813776 -0.0474,0 -0.37481,-0.327422 -0.7276,-0.727604 z m -1.71642,-1.455209 -0.7771,-0.859895 0.8599,0.777105 c 0.47294,0.427408 0.85989,0.814361 0.85989,0.859896 0,0.204406 -0.21831,0.02445 -0.94269,-0.777106 z m -1.85208,-1.5875 -0.7771,-0.859895 0.85989,0.777105 c 0.47294,0.427408 0.8599,0.814361 0.8599,0.859896 0,0.204406 -0.21832,0.02445 -0.94269,-0.777106 z m -6.48567,-5.688541 -0.64143,-0.727604 0.7276,0.641432 c 0.68006,0.599516 0.84894,0.813776 0.64143,0.813776 -0.0474,0 -0.37481,-0.327422 -0.7276,-0.727604 z m -1.71641,-1.455208 -0.77711,-0.859896 0.8599,0.777105 c 0.47294,0.427408 0.85989,0.814361 0.85989,0.859896 0,0.204406 -0.21831,0.02445 -0.94268,-0.777105 z m -1.72317,-1.455209 -0.64144,-0.727604 0.72761,0.641432 c 0.68005,0.599517 0.84894,0.813776 0.64143,0.813776 -0.0474,0 -0.37481,-0.327422 -0.7276,-0.727604 z m -7.12373,-2.547292 c 0,-0.05494 0.20836,-0.2633 0.46302,-0.463021 0.41965,-0.329107 0.42901,-0.319749 0.0999,0.0999 -0.34565,0.440729 -0.56292,0.580887 -0.56292,0.363124 z" />
+                            <path
+                                style="fill:#93a9d2;fill-opacity:1;stroke-width:0.264583"
+                                d="m 160.25562,149.6484 c -0.30489,-0.0601 -1.01926,-0.5854 -1.5875,-1.16731 l -1.03315,-1.05801 -0.0761,-31.80343 c -0.0419,-17.491888 -0.007,-32.189786 0.0779,-32.661993 0.19076,-1.063408 1.71607,-2.593859 2.80149,-2.810942 1.08823,-0.217646 2.46294,0.519245 4.53029,2.428389 0.91427,0.844293 3.72866,3.314406 6.2542,5.489138 2.52555,2.174732 6.65243,5.739995 9.17084,7.922808 2.51842,2.182812 6.28612,5.43863 8.37268,7.23516 2.08656,1.79652 4.38906,3.82106 5.11666,4.49898 0.72761,0.67791 1.96044,1.76723 2.73963,2.42071 1.32057,1.10752 2.42424,2.70412 2.41634,3.49555 -0.002,0.18769 -0.26976,-0.22888 -0.59531,-0.92571 -0.39326,-0.84179 -1.22621,-1.81853 -2.48196,-2.91042 -16.16423,-14.05511 -18.85221,-16.387632 -24.74671,-21.474183 -2.52124,-2.175658 -5.3321,-4.645771 -6.24637,-5.489138 -2.0588,-1.899161 -3.44401,-2.643958 -4.5179,-2.429179 -1.05259,0.210515 -2.36786,1.53507 -2.55357,2.571593 -0.0824,0.459693 -0.11549,15.146473 -0.0736,32.637287 l 0.0761,31.80149 0.9118,0.9407 c 0.50149,0.51739 1.0968,0.94252 1.32292,0.94475 0.22611,0.002 0.58971,0.11947 0.80799,0.26053 0.40527,0.26191 0.29031,0.27585 -0.68664,0.0832 z m 1.87737,-0.44991 c 0.43661,-0.19029 0.97068,-0.55906 1.18682,-0.81948 0.21613,-0.26042 2.75446,-2.51109 5.64074,-5.00148 2.88627,-2.49039 6.95391,-6.01626 9.03919,-7.83527 2.08528,-1.81901 5.85722,-5.09028 8.38208,-7.26948 8.98626,-7.75603 11.65266,-10.24889 12.16217,-11.3706 0.26765,-0.58926 0.48926,-0.91664 0.49246,-0.72751 0.0197,1.16786 -2.0927,3.27751 -10.79758,10.78335 -2.52213,2.17471 -6.33213,5.47854 -8.46667,7.34183 -4.74829,4.14488 -14.1069,12.29685 -16.0821,14.00855 -0.79763,0.69123 -1.6529,1.25212 -1.9006,1.24642 -0.26158,-0.006 -0.1176,-0.15538 0.34349,-0.35633 z" />
+                            <path
+                                style="fill:#93a9d2;fill-opacity:1;stroke-width:0.264583"
+                                d="m 160.25368,149.38836 c -0.30596,-0.0629 -0.96081,-0.53168 -1.45521,-1.04176 l -0.89892,-0.92741 -0.0761,-31.80149 c -0.0419,-17.490814 -0.009,-32.177594 0.0736,-32.637287 0.18571,-1.036523 1.50098,-2.361078 2.55357,-2.571593 1.07389,-0.214779 2.4591,0.530018 4.5179,2.429179 0.91427,0.843367 3.72513,3.31348 6.24637,5.489138 5.8945,5.086551 8.58248,7.419073 24.74671,21.474183 2.87841,2.50283 3.67545,4.69446 2.58241,7.10086 -0.50951,1.12171 -3.17591,3.61457 -12.16217,11.3706 -2.52486,2.1792 -6.29754,5.45047 -8.38374,7.26948 -10.97741,9.5715 -14.78157,12.87502 -15.29645,13.28337 -0.64044,0.50794 -1.61954,0.73301 -2.44795,0.56273 z" />
+                            </g>
+                        </g>
+                    </svg>
+                </button>
+            </form>
+
+        </div>
+        {% endif %}
+        <div class="mt-1">
+            {% if incomplete_interventions %}
+            <h5 class="text-center mt-5">{% trans 'Inputs that are being entered' %} :</h5>
+            <div class="d-flex justify-content-center">
+                <div class="app6-btn-icon d-flex flex-column align-items-center pe-auto border-0 bg-light" onclick="modal_incomplete_interventions.toggle()">
+                    <img src="{% static 'app4_ehpad_base/img/bi/eye.svg' %}" class="app6-icon app6-width-60px mx-2 p-2 border border-darkblue" alt="{% trans 'My incomplete inputs' %}">
+                    <p class="text-center">{% trans 'My incomplete inputs' %}</p>
+                </div>
+            </div>
+            {% endif %}
+            <form action="{% url 'caregiver' %}" method="post" class="border border-2 rounded-3 p-2 pb-4{% if cancel_mode %} border-danger{% elif comment_mode %} border-info{% else %} border-darkblue{% endif %}">{% csrf_token %}
+                {% if task_level == None %}
+                <div class=" mt-5">
+                    <h4 class="text-center">{% trans 'Enter new treatment' %} :</h4>
+                    <div class="d-flex justify-content-evenly">
+                        <a href="{% url 'care plan' %}" class="app6-btn-icon d-flex flex-column align-items-center border-0 bg-light mt-2">
+                            <img src="{% static 'app4_ehpad_base/img/homemade_svg/health_check_64x64.svg' %}" alt="{% trans 'Care plan' %}" class="app6-icon mx-2 p-2 border border-darkblue">
+                            <p class="text-center">{% trans 'Care plan' %}</p>
+                        </a>
+
+                        <button class="app6-btn-icon d-flex flex-column align-items-center border-0 bg-light mt-2" name="punctual_treatment" value="punctual_plan">
+                            <img src="{% static 'app4_ehpad_base/img/homemade_svg/contention_band_64x64.svg' %}" alt="{% trans 'Punctual treatment' %}"
+                                    class="app6-icon mx-2 p-2 border border-darkblue">
+                            <p class="text-center">{% trans 'Punctual treatment' %}</p>
+                        </button>
+                        <button class="app6-btn-icon d-flex flex-column align-items-center border-0 bg-light mt-2" name="free_comment" value="free_comment">
+                            <img src="{% static 'app4_ehpad_base/img/bi/chat-text.svg' %}" alt="{% trans 'Free comment' %}"
+                                    class="app6-icon mx-2 p-2 border border-darkblue">
+                            <p class="text-center">{% trans 'Free comment' %}</p>
+                        </button>
+                    </div>
+
+                    {% if free_comments %}
+                    <div>
+                        <h4 class="pt-5 pb-3 text-center">{% trans 'Last 10 free comments :' %}</h4>
+                        {% for comment in free_comments %}
+                        <div class="text-center">
+                            <h6>{{comment.start}} <img src="{% if comment.nurse.profile.photo %}{{ comment.nurse.profile.photo.url }}{% else %}{% static 'app4_ehpad_base/img/homemade_svg/avatar.svg' %}{% endif %}" width="48px" class="resident_small_pic mx-2" style="object-fit: cover; border-radius: 50%; height: 50px; width: 50px;" title="{{ comment.nurse.first_name }} {{ comment.nurse.last_name }}">
+                                <button class="btn btn-perso" type="button" data-bs-toggle="modal" data-bs-target="#comment_modal{{ forloop.counter }}">{% trans 'READ' %}</button></h6>
+                            <div class="modal fade" id="comment_modal{{forloop.counter}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-lightblue">
+                                            <h5 class="modal-title" id="exampleModalLabel2">
+                                                {% trans 'Comment written by' %} : {{ comment.nurse.first_name }} {{ comment.nurse.last_name }} <img src="{% if comment.nurse.profile.photo %}{{ comment.nurse.profile.photo.url }}{% else %}{% static 'app4_ehpad_base/img/homemade_svg/avatar.svg' %}{% endif %}" style="object-fit: cover; border-radius: 50%; height: 50px; width: 50px;" class="resident_small_pic mx-2" title="{{ comment.nurse.first_name }} {{ comment.nurse.last_name }}"></h5>
+                                            <h5>{{ comment.start }}</h5>
+                                            <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">×</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>{{comment.content}}</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-perso" data-bs-dismiss="modal">{% trans 'Close' %}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                </div>
+                {% endif %}
+                {% if task_level %}
+                <div class="mb-1 d-flex{% if comment_mode and task_to_comment %} justify-content-end{% else %} justify-content-between{% endif%}">
+                    <!-- /////////////////////////////////////// Navigation \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\-->
+                    {% if intervention %}
+                    {% if not task_to_comment %}
+                    <!-- //////////////// Intervention's category small + medium + large screen \\\\\\\\\\\\\\\\\\\\\\\\\-->
+                    <span class="d-xl-none mt-2 d-inline-block ">{% trans 'Category' %} : {{ intervention.type.name }}</span>
+                    <!-- //////////////////Intervention's category & Navigation large XL screen \\\\\\\\\\\\\\\\\\\\\\\\-->
+                    <div class="d-none d-xl-block d-flex">
+                        <span class=" mt-2 d-inline-block ">{% trans 'Category' %} : {{ intervention.type.name }}</span>
+                        {% if task_level == 3 or task_level == 4%}
+                        <button class="btn btn-perso mx-2" name="get_back_to_task_level_2" value="get_back_to_task_level_2">
+                            {% trans 'Come back to' %} <span class="me-1">{{ intervention.type.name }}</span><img src="{% static 'app4_ehpad_base/img/bi/arrow-left-short.svg' %}" alt="{% trans 'Come back' %}" class="app6-width-25px">
+                        </button>
+                        {% endif %}
+
+                        {% if intervention_details.task_level_2.name and task_level == 4 %}
+                        <button class="btn btn-perso mx-2" name="get_back_to_task_level_3" value="get_back_to_task_level_3">
+                            {% trans 'Come back to' %} <span class="me-1">{{ intervention_details.task_level_2.name }}</span><img src="{% static 'app4_ehpad_base/img/bi/arrow-left-short.svg' %}" alt="{% trans 'Come back' %}" class="app6-width-25px">
+                        </button>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    {% endif %}
+                    {% if task_level == 2 or task_level == 3 or task_level == 4 %}
+                    <div class="d-flex">
+                        <!-- /////////////////////////////////////// Cancel_mode button \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\-->
+                        {% if cancel_mode %}
+                        <button name="toggle_cancel_mode" value="{{ cancel_mode }}" class="btn btn-danger d-flex align-items-center mx-1">
+                            <img src="{% static 'app4_ehpad_base/img/bi/trash.svg' %}" alt="{% trans 'Cancel a pictogram mode' %}"
+                                class="app6-width-25px mx-1">
+                            <img src="{% static 'app4_ehpad_base/img/bi/toggle-on.svg' %}" alt="{% trans 'Cancel a pictogram mode' %}"
+                                class="app6-width-25px mx-1">
+                        </button>
+                        {% else %}
+                        <button name="toggle_cancel_mode" value="{{ cancel_mode }}" class="btn d-flex align-items-center mx-1 btn-perso app6-btn-red-hover"{% if comment_mode %} disabled{% endif %}>
+                            <img src="{% static 'app4_ehpad_base/img/bi/trash.svg' %}" alt="{% trans 'Cancel a pictogram mode' %}"
+                                class="app6-width-25px mx-1">
+                            <img src="{% static 'app4_ehpad_base/img/bi/toggle-off.svg' %}" alt="{% trans 'Cancel a pictogram mode' %}"
+                                class="app6-width-25px mx-1">
+                        </button>
+                        {% endif %}
+                        <!-- ////////////////////////////////// Comment_mode button \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\-->
+                        {% if comment_mode %}
+                        <button name="toggle_comment_mode" value="{{ comment_mode }}" class="btn bg-info d-flex align-items-center mx-1 mx-2">
+                            <img src="{% static 'app4_ehpad_base/img/bi/chat-text.svg' %}" alt="{% trans 'Leave a comment' %}" class="app6-width-25px mx-1">
+                            <img src="{% static 'app4_ehpad_base/img/bi/toggle-on.svg' %}" alt="{% trans 'Leave a comment' %}"
+                                class="app6-width-25px mx-1">
+                        </button>
+                        {% else %}
+                        <button name="toggle_comment_mode" value="{{ comment_mode }}" class="btn d-flex align-items-center mx-1 btn-perso app6-btn-blue-hover{% if cancel_mode or nappies_related_to_resident %} disabled{% endif %}">
+                            <img src="{% static 'app4_ehpad_base/img/bi/chat-text.svg' %}" alt="{% trans 'Leave a comment' %}" class="app6-width-25px mx-1">
+                            <img src="{% static 'app4_ehpad_base/img/bi/toggle-off.svg' %}" alt="{% trans 'Leave a comment' %}"
+                                class="app6-width-25px mx-1">
+                        </button>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    {% endif %}
+                </div>
+                <!-- ////////////////////////// Navigation small + medium + large screen \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\-->
+                {% if intervention %}
+                {% if not task_to_comment %}
+                {% if task_level == 3 or task_level == 4%}
+                <div class="d-xl-none">
+                    <button class="btn btn-perso my-1" name="get_back_to_task_level_2" value="get_back_to_task_level_2">
+                        {% trans 'Come back to' %} <span class="me-1">{{ intervention.type.name }}</span><img src="{% static 'app4_ehpad_base/img/bi/arrow-left-short.svg' %}" alt="{% trans 'Come back' %}" class="app6-width-25px">
+                    </button>
+                    {% if intervention_details.task_level_2.name and task_level == 4 %}
+                    <button class="btn btn-perso my-1" name="get_back_to_task_level_3" value="get_back_to_task_level_3">
+                        {% trans 'Come back to' %} <span class="me-1">{{ intervention_details.task_level_2.name }}</span><img src="{% static 'app4_ehpad_base/img/bi/arrow-left-short.svg' %}" alt="{% trans 'Come back' %}" class="app6-width-25px">
+                    </button>
+                    {% endif %}
+                </div>
+                {% endif %}
+                {% endif %}
+                {% endif %}
+                {% if task_level %}
+                <div class="container-fluid">
+                    <div class="text-center my_height3 h5{% if cancel_mode %} text-danger{% endif %}{% if comment_mode %} text-info{% endif %}">
+                        {% if cancel_mode %}{% trans 'Select the pictograms to cancel' %}{% endif %}
+                        {% if comment_mode and not task_to_comment %}{% trans 'Select the pictogram to comment' %}{% endif %}
+                        {% if comment_mode and task_to_comment %}
+                        {% trans 'Enter the comment' %} ({% trans 'voice input' %}<img src="{% static 'app4_ehpad_base/img/homemade_svg/mic-info.svg' %}" alt="{% trans 'Voice input' %}" class="app6-width-25px">{% trans 'is available on tablet' %})
+                        {% endif %}
+                        {% if task_level == 1 %}{% trans 'Choose a category' %} :{% endif %}
+                    </div>
+                    <!-- //////////////////////////////// small + medium + large screen \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\-->
+                    <div class="d-xl-none">
+                        <div class="d-flex flex-wrap justify-content-center align-items-center py-1">
+                            <!-- ///////////// List of task pictograms (small + medium + large screen) \\\\\\\\\\\\\\\\\\-->
+                            {% for task in tasks %}
+                            {% if cancel_mode and task not in selected_tasks %}
+                            <div class="app6-btn-icon d-flex flex-column align-items-center m-2 p-0 border-0 bg-light my_height2 app6-green-text-hover position-relative">
+                                {% if task in commented_tasks %}
+                                <img src="{% static 'app4_ehpad_base/img/homemade_svg/chat-text-full-info.svg' %}" alt="{% trans 'Comment' %}" class="position-absolute top-0 end-0 app6-width-25px m-1">
+                                {% endif %}
+                                <img src="{% static task.get_svg_path %}" alt="{{ task.name }}"
+                                    class="app6-icon app6-width-60px p-2 border border-darkblue app6-white-bg-hover">
+                                <p class="text-center app6-green-text-hover">{{ task.name }}</p>
+                            </div>
+                            {% else %}
+                            <div class="task&protocols">
+                                <button class="app6-btn-icon d-flex flex-column align-items-center m-2 p-0 border-0 bg-light my_height2 position-relative{% if task in selected_tasks %} text-success{% endif %}" name="task_id" value="{{ task.id }}">
+                                    {% if task in commented_tasks %}
+                                    <img src="{% static 'app4_ehpad_base/img/homemade_svg/chat-text-full-info.svg' %}" alt="{% trans 'Comment' %}" class="position-absolute top-0 end-0 app6-width-25px m-1">
+                                    {% endif %}
+                                    <img src="{% static task.get_svg_path %}" alt="{{ task.name }}"
+                                        class="app6-icon app6-width-60px p-2 border border-darkblue {% if task in selected_tasks %}bg-lightblue{% endif %}">
+                                    <p class="text-center{% if cancel_mode %} app6-green-text-hover{% endif %} taskname">{{ task.name }}</p>
+                                </button>
+                                {% if task.protocol %}
+                                    <a target="_blank" href=" {%url 'app6_care dlProtocol' protocol_id=task.protocol.id %} "> <p class="text-center app6-green-text-hover protocol"><i class="protocol_icon fa-solid fa-file-pdf"></i></p> </a>
+                                    {% else %}
+                                        <p class="text-center app6-green-text-hover protocol protocolHidden">{{ task.protocol }}</p>
+                                {% endif %}
+
+                            {% endif %}
+                            </div>
+                            {% endfor %}
+
+                            <!-- /////////////////// List of nappies (small + medium + large screen) \\\\\\\\\\\\\\\\\\\\\\-->
+                            {% for nappy in nappies_related_to_resident %}
+                            {% if cancel_mode and nappy not in selected_nappy%}
+                            <div class="app6-btn-icon d-flex flex-column align-items-center m-2 mx-3 p-0 border-0 bg-light my_height app6-green-text-hover position-relative">
+                                <img src="{% static nappy.get_svg_path %}" alt="{{ nappy.name }}"
+                                    class="app6-icon p-2 border border-darkblue app6-white-bg-hover">
+                                <p class="text-center app6-green-text-hover">{{ nappy.name }}</p>
+
+                            </div>
+                            {% else %}
+                            <button class="app6-btn-icon d-flex flex-column align-items-center m-2 mx-3 p-0 border-0 bg-light my_height position-relative{% if nappy in selected_nappies %} text-success{% endif %}" name="nappy_id" value="{{ nappy.id }}">
+                                <img src="{% static nappy.get_svg_path %}" alt="{{ nappy.name }}"
+                                    class="app6-icon p-2 border border-darkblue {% if nappy in selected_nappies %}bg-lightblue{% endif %}">
+                                <p class="text-center{% if cancel_mode %} app6-green-text-hover{% endif %}">{{ nappy.name }}</p>
+                            </button>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!-- /////////////////////////////////// large XL screen \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\-->
+                    <div class="d-none d-xl-block">
+                        <div class="d-flex flex-wrap justify-content-center align-items-center py-1">
+                            <!-- //////////////////////// List of task pictograms (XL screen) \\\\\\\\\\\\\\\\\\\\\\\\\-->
+                            {% for task in tasks %}
+                            {% if cancel_mode and task not in selected_tasks %}
+                            <div class="app6-btn-icon d-flex flex-column align-items-center m-2 mx-3 p-0 border-0 bg-light my_height app6-green-text-hover position-relative">
+                                {% if task in commented_tasks %}
+                                <img src="{% static 'app4_ehpad_base/img/homemade_svg/chat-text-full-info.svg' %}" alt="{% trans 'Comment' %}" class="position-absolute top-0 end-0 app6-width-25px m-1">
+                                {% endif %}
+                                <img src="{% static task.get_svg_path %}" alt="{{ task.name }}"
+                                    class="app6-icon p-2 border border-darkblue app6-white-bg-hover">
+                                <p class="text-center app6-green-text-hover ">{{ task.name }}</p>
+
+                            </div>
+                            {% else %}
+                            <div class="task&protocols">
+                                <button class="app6-btn-icon d-flex flex-column align-items-center m-2 mx-3 p-0 border-0 bg-light my_height position-relative{% if task in selected_tasks %} text-success{% endif %}" name="task_id" value="{{ task.id }}">
+                                    {% if task in commented_tasks %}
+                                    <img src="{% static 'app4_ehpad_base/img/homemade_svg/chat-text-full-info.svg' %}" alt="{% trans 'Comment' %}" class="position-absolute top-0 end-0 app6-width-25px m-1">
+                                    {% endif %}
+                                    <img src="{% static task.get_svg_path %}" alt="{{ task.name }}"
+                                        class="app6-icon p-2 border border-darkblue {% if task in selected_tasks %}bg-lightblue{% endif %}">
+                                    <p class="text-center{% if cancel_mode %} app6-green-text-hover{% endif %} taskname">{{ task.name }}</p>
+
+                                </button>
+                                {% if task.protocol %}
+                                    <a target="_blank" href=" {%url 'app6_care dlProtocol' protocol_id=task.protocol.id %} "> <p class="text-center app6-green-text-hover protocol"><i class="protocol_icon fa-solid fa-file-pdf"></i></p> </a>
+                                    {% else %}
+                                        <p class="text-center app6-green-text-hover protocol protocolHidden">{{ task.protocol }}</p>
+                                {% endif %}
+                            {% endif %}
+                            </div>
+                            {% endfor %}
+
+                            <!-- ///////////////////////////// List of nappies (XL screen) \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\-->
+                            <!-- toggle comment should be disabled for nappy ?-->
+
+                            {% for nappy in nappies_related_to_resident %}
+                            {% if cancel_mode and nappy not in selected_nappy%}
+                            <div class="app6-btn-icon d-flex flex-column align-items-center m-2 mx-3 p-0 border-0 bg-light my_height app6-green-text-hover position-relative">
+                                <img src="{% static nappy.get_svg_path %}" alt="{{ nappy.name }}"
+                                    class="app6-icon p-2 border border-darkblue app6-white-bg-hover">
+                                <p class="text-center app6-green-text-hover">{{ nappy.name }}</p>
+
+                            </div>
+                            {% else %}
+                            <button class="app6-btn-icon d-flex flex-column align-items-center m-2 mx-3 p-0 border-0 bg-light my_height position-relative{% if nappy in selected_nappies %} text-success{% endif %}" name="nappy_id" value="{{ nappy.id }}">
+                                <img src="{% static nappy.get_svg_path %}" alt="{{ nappy.name }}"
+                                    class="app6-icon p-2 border border-darkblue {% if nappy in selected_nappies %}bg-lightblue{% endif %}">
+                                <p class="text-center{% if cancel_mode %} app6-green-text-hover{% endif %}">{{ nappy.name }}</p>
+                            </button>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!-- //////////////////////////////////// Leaving a comment \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\-->
+                    {% if task_to_comment %}
+                    {% if task_level == 2 or task_level == 3 or task_level == 4 %}
+                    <div class="d-flex flex-column align-items-center mb-4">
+                        <div class="app6-btn-icon-no-hover d-flex flex-column align-items-center m-2 p-0 border-0 bg-light">
+                            <img src="{% static task_to_comment.get_svg_path %}" alt="{{ task_to_comment.name }}"
+                                class="app6-icon-no-hover app6-width-60px mx-2 p-2 border border-darkblue">
+                            <p class="text-center">{{ task_to_comment.name }}</p>
+                        </div>
+                        {{ task_comment_form }}
+                        <div class="my-2">
+                            <button class="btn btn-perso mx-2" name="confirm_comment" value="confirm_comment">{% trans 'Confirm comment' %}</button>
+                            <button class="btn btn-outline-dark mx-2" name="cancel_comment" value="cancel_comment">{% trans 'Cancel' %}</button>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endif %}
+                    <!-- ////////////////////////////////////// Hidden inputs \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\-->
+                    <input name="task_level" value="{{ task_level }}" hidden>
+                    <input name="intervention_id" value="{{ intervention.id }}" hidden>
+                    <input name="intervention_details_id" value="{{ intervention_details.id }}" hidden>
+                    <input name="cancel_mode" value="{{ cancel_mode }}" hidden>
+                    <input name="comment_mode" value="{{ comment_mode }}" hidden>
+                    <input name="task_to_comment" value="{{ task_to_comment }}" hidden>
+                    <input name="task_to_comment_id" value="{{ task_to_comment_id }}" hidden>
+                    <input name="parent_task_level_3_id" value="{{ parent_task_level_3_id }}" hidden>
+                    <!-- //////////////////////////////////// Save intervention \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\-->
+                    {% if not task_to_comment %}
+                    {% if task_level == 2 or task_level == 3 or task_level == 4 %}
+                    <div>
+                        <h5 class="text-center"><p class="h6">{% trans 'Intervention that I am entering' %} : {{ intervention.type.name }} - {{ intervention.start }}</p></h5>
+                        <div class="d-flex justify-content-center mt-3">
+                            <button class="btn btn-perso mx-2" name="done" value="True"{% if no_selected_tasks %} disabled{% endif %}>{% trans 'Done' %}</button>
+                            <button class="btn btn-danger mx-2" name="delete" value="{{ intervention.id }}">{% trans 'Delete' %}</button>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endif %}
+                </div>
+                </div>
+                {% endif %}
+            </form>
+            <!-- ///////////////////////////// modal : incomplete interventions \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\-->
+            {% if incomplete_interventions %}
+            <div class="modal fade" id="modal_incomplete_interventions" aria-hidden="true" aria-labelledby="modal_incomplete_label"
+                tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="modal_incomplete_label">{% trans 'Interventions that are being entered' %}</h4>
+                        </div>
+                        <div class="modal-body">
+                            {% for intervention in incomplete_interventions %}
+                            <form action="{% url 'caregiver' %}" method="post">{% csrf_token %}
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            {{ intervention.start }} - {{ intervention.type.name }}
+                                        </div>
+                                        <div class="col-4 mt-1">
+                                            <button class="btn btn-perso mx-1" name="continue" value="{{ intervention.id }}">
+                                                {% trans 'Continue' %}
+                                            </button>
+                                            <button name="delete" value="{{intervention.id}}" class="btn btn-danger mx-1">{% trans 'Delete' %}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            {% endfor %}
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-outline-dark" id="next" data-bs-target="#modalinstructions2" data-bs-toggle="modal"
+                                    data-bs-dismiss="modal">{% trans 'Ignore' %}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

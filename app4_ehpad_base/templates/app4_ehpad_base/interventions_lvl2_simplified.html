@@ -1,0 +1,11 @@
+{% load static %}
+{% load i18n %}
+
+{% for last_intervention in last_12_interventions %}
+    <div class="overflow-auto d-flex flex-nowrap align-items-center border-0 bg-light">
+        <div class="fa fa-chevron-circle-right text-success me-1"></div>
+        <div>{{ last_intervention.date }}</div>
+        <img src="{% if last_intervention.nurse_avatar %}{{ last_intervention.nurse_avatar }}{% else %}{% static 'app4_ehpad_base/img/homemade_svg/avatar.svg'%}{% endif %}" class="resident_small_pic mx-2" title="{{ last_intervention.nurse.first_name }} {{ last_intervention.nurse.last_name }}">
+        <span>{{ last_intervention.simplified_name }}</span>
+    </div>
+{% endfor %}

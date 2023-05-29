@@ -1,0 +1,138 @@
+{% extends "app3_messaging/mails_base.html" %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+
+<main class="maincreate">
+    
+    <!-- top right bottom left   -->
+    {% if sent %}
+    <div class="modal modal1 hide fade" tabindex="-1" role="dialog" id="notif">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content text-center pt-2">
+                <div class="modal-body text-center m-2 p-0" role="alert">
+                    {% trans 'Your preset has been saved successfully' %} !
+                </div>
+                <button type="button" data-bs-dismiss="modal" aria-label="Close" class="btn btn-perso col-sm-3">{% trans 'Close' %}</button>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <h1>{% trans 'Emailing App' %}</h1>
+    <div class="modal" tabindex="-1" role="dialog" id="help">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">{% trans 'Help' %}</h2>
+                    <button type="button" data-bs-dismiss="modal" aria-label="Close" class="btn btn-perso">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h3>{% trans 'Inside the templates' %} :</h3>
+                    <ul>
+                        <li>
+                            - "¤" {% trans 'Is used to signify customizable information, via free field, valid for all recipients of the mail. A header is always present. This header is defined between two' %} "¤".
+                            
+                        </li>
+                        <li class="pt-2">
+                            - "%%" {% trans 'Is used to signify the location of variables. These variables must, like the' %} "¤", {% trans 'have a header. This header is defined between two' %} "%%". {% trans 'The options for these variables are limited, and predetermined. possible values' %} :
+
+                            <ul class="ps-4">
+                               <li>- {% trans 'Last name of the recipient' %}</li>
+                               <li>- {% trans 'First name of the recipient' %}</li>
+                               <li>- {% trans 'Email of the recipient' %}</li>
+                               <li>- {% trans 'Groups of the recipient' %}</li>
+                               <li>- {% trans 'Username of the recipient' %}</li>
+                               <li>- {% trans 'Other options could emerge' %}</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-bs-dismiss="modal" aria-label="Close" class="btn btn-perso">
+                        {% trans 'Close' %}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="nav nav-tabs mb-2">
+        <ul class="nav" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a href="{% url 'mails_create' %}" data-equalizer-watch class="nav-link {% if '/create' in request.path %}active{% endif %}">
+                    <span>{% trans 'Create an email preset' %}</span>
+                </a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a href="{% url 'mails_send' %}" data-equalizer-watch class="nav-link {% if '/send' in request.path %}active{% endif %}">
+                    <span>{% trans 'Send an email' %}</span>
+                </a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a href="{% url 'mails_mailbox' %}" data-equalizer-watch class="nav-link {% if '/mailbox' in request.path %}active{% endif %}">
+                    <span>{% trans 'Sent campaigns' %}</span>
+                </a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a href="{% url 'mails_manage' %}" data-equalizer-watch class="nav-link {% if '/manage' in request.path %}active{% endif %}">
+                    <span>{% trans 'Settings' %}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <form  action="" method="post" name="creationdemail" class="row creationdemail mx-1" id="creationdemail"
+           style="{% if content %} display: none; opacity: 0; {% endif %}">
+        {% csrf_token %}
+        {% for key in dicofilesymbname %}
+        <div class="col-sm-3 fileoptions fileoptions1 {{key.NAME}}options pe-1 ps-3 mb-3">
+            <p class="fw-bold">{% trans 'Create a preset with' %} {{key.NAME}} {% trans 'as a base' %} :</p>
+            <div class="form-group">
+                {% for value in key.LIST %}
+                <label for="itera{{forloop.counter}}">{{value}} : </label>
+                <textarea class="form-control"  id="itera{{forloop.counter}}" name="nomsymb[]"></textarea>
+                {% endfor %}
+                {% for value in key.LIST3 %}
+                <label for="itera{{forloop.counter}}">{% trans 'Redirect link' %} {{value}} : </label>
+                <input type="url" class="form-control"  placeholder="https://example/link.fr" id="iteraredirect{{forloop.counter}}" name="linkredirect[]">
+                {% endfor %}
+                {% for value in key.LIST2 %}
+                <label for="itera{{forloop.counter}}django">{% trans 'Select the content of the django variable named' %} {{ value }} : </label>
+                <select class="form-control form-select mb-5" id="itera{{forloop.counter}}django" name="nomsymbdjango[]">
+                    <option value="" selected>-- -- {% trans 'Empty variable' %} -- --</option>
+                    {% for key in djangovar %}
+                    <option id="{{key}}" value="{{key}}">{{key}}</option>
+                    {% endfor %}
+                </select>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+        <div class="form-group col-sm-9 mt-3 pr-0">
+            {{ form }}
+            <label for="FileSelect">{% trans 'Select a template' %} :</label>
+            <select class="form-control form-select selectfilename" id="FileSelect" name="templatefilename">
+                <option selected>-- {% trans 'Please choose an option' %} --</option>
+                {% for key in dicofilesymbname %}
+                <option id="{{key.NAME}}" value="{{key.NAME}}" class="mt-5">{{key.NAME}}</option>
+                {% endfor %}
+            </select>
+            {% for key in filedata %}
+            <div class="{{key.NAME}}options fileoptions fileoptions2 col-sm-8">
+                 {{ key.LIST|safe }}
+            </div>
+            {% endfor%}
+            <div class="mt-4 me-2">
+                <button type="button" class="btn btn-perso" data-bs-toggle="modal" data-bs-target="#help">
+                    ?
+                </button>
+                <button type="submit" name="creationdemail" class="btn btn-perso">
+                    {% trans 'Save' %}
+                </button>
+            </div>
+        </div>
+    </form>
+</main>
+{% endblock %}

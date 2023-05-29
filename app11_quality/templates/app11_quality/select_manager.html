@@ -1,0 +1,42 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+{% load static %}
+{% load i18n %}
+{% load custom_filters_app1 %}
+
+
+{% block content %}
+<head>
+    
+</head>
+
+
+<main class="container mt-2">
+    <h3 class="text-center">{% trans 'Select a manager' %}</h3>
+    {% if perms.app0_access.view_rightsmanagement %}
+        <div class="d-flex justify-content-center gap-2 mb-2">
+            <span>{% trans "Users with access to the Quality module" %}.</span>
+            <a href="{% url 'select user' 0 %}">{% trans "User not found ?" %}</a>
+        </div>
+    {% endif %}
+    <form action="" method="post" class="d-flex flex-wrap justify-content-center gap-2">
+        {% csrf_token %}
+        {% for profileserenicia in pjs|sort_by_last_name:'profileserenicia' %}
+            <button class="btn btn-perso pj-card d-flex justify-content-between" name="profileserenicia" value="{{ profileserenicia.id }}">
+                <div class="d-flex justify-content-center align-items-center">
+                    <img src="{{ profileserenicia.user.profile.get_photo_url }}" class="photoresponsable rounded-circle" width="100px" height="100px">
+                </div>
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                    <p class="fw-bold">{{ profileserenicia }}</p>
+                    <div class="d-flex flex-column">
+                        <span>{% trans 'Group' %}{{ profileserenicia.user.groups.count|pluralize }} :</span>
+                        {% for group in profileserenicia.user.groups.all|sort_groups_by_name %}
+                            {{ group.name }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </button>
+        {% endfor %}
+    </form>
+</main>
+
+{% endblock content %}

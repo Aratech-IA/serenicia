@@ -1,0 +1,100 @@
+{% extends "app4_ehpad_base/base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'app6_care/css/style.css' %}">
+
+<div class="container-fluid my-5">
+        <h1>{% trans 'Treatments plan' %} - {{request.session.res_lastname}}
+        {% if request.session.profile_pic %}
+        <img class="resident-small-pic mx-1" src="{{ request.session.profile_pic }}" alt="{trans 'resident profile pic' %}">
+        {% endif %}
+    </h1>
+    {% if events|length == 0 %}
+    <p>{% trans 'Empty treatments plan' %}</p>
+    <a href="{% url 'caregiver_treatments_plan_creation' patient_id=patient_id profession=profession %}">
+        {% trans 'Click here to create one !' %}
+    </a>
+    {% else %}
+
+    <link href="{% static 'app6_care/external_library/fullcalendar/main.css' %}" rel='stylesheet'/>
+    <script src="{% static 'app6_care/external_library/fullcalendar/main.js' %}"></script>
+    <script src="{% static 'app6_care/external_library/fullcalendar/locales-all.js' %}"></script>
+    <script>
+
+    const socket = new WebSocket('{{ websocket_url }}')
+
+    const profession =  '{{profession}}'
+    const patient_id = '{{patient_id}}'
+    let events = {{ events|safe }}
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            headerToolbar: {
+                    left: 'prev next today',
+                    center: 'title',
+                    right: 'dayGridMonth timeGridWeek timeGridDay listWeek'
+            },
+            initialView: 'timeGridDay',
+            editable: false,
+            nowIndicator: true,
+            events: events,
+            eventClick: function(info) {
+                const url = ``;
+                const post_data = {
+                    'id': info.event.id,
+                    'start': info.event.start
+                };
+                socket.onmessage = (event) => {
+                    const message = JSON.parse(event.data);
+                    if (info.event.id === String(message.id) && new Date(info.event.start).getTime() === new Date(message.start).getTime()) {
+                        info.el.style.backgroundColor = message.isDone ? '#93a9d2' : 'orange';
+                    }
+                }
+
+                function getCookie(name) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].trim();
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+                }
+                fetch(url, {
+                    method: "POST",
+                    body: JSON.stringify(post_data),
+                    credentials: "same-origin",
+                    headers: {
+                        "X-CSRFToken": getCookie("csrftoken"),
+                        "Accept": "application/json",
+                        'Content-Type': 'application/json'
+                    },
+                });
+            }
+        });
+
+    calendar.setOption('locale', '{{ user_language }}');
+    calendar.render();
+    });
+    </script>
+    <a href="{% url 'caregiver_treatments_plan_creation' patient_id=patient_id profession=profession %}">
+        <div class="app6-btn-icon d-flex flex-column align-items-center pe-auto border-0 bg-light">
+            <img src="{% static 'app4_ehpad_base/img/bi/pencil-square.svg' %}" class="app6-icon app6-width-60px mx-2 p-2 border border-darkblue" alt="{% trans 'Edit' %}">
+            <p class="text-center">{% trans 'Edit' %}</p>
+        </div>
+    </a>
+    <div id='calendar'></div>
+    {% endif %}
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,29 @@
+{% extends "app4_ehpad_base/base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+
+<div class="container-fluid mt-3 d-flex flex-column align-items-center">
+    <h3 class="mb-5">{% trans 'Showers taken since Monday report' %}</h3>
+    <div class="d-flex flex-row">
+        <div class="d-flex flex-column align-items center mx-5">
+            <h4>{% trans 'Taken' %} ({% trans 'residents' %} : {{ residents_who_took_a_shower_since_monday|length }})</h4>
+            <ol class="p-0">
+                {% for resident in residents_who_took_a_shower_since_monday %}
+                <li>{{ resident.last_name }} - {% trans 'Room' %} : {{ resident.profile.client.room_number }}</li>
+                {% endfor %}
+            </ol>
+        </div>
+        <div class="mx-5">
+            <h4>{% trans 'Not taken' %} ({% trans 'residents' %} : {{ others|length }})</h4>
+            <ol class="p-0">
+                {% for resident in others %}
+                <li>{{ resident.last_name }} - {% trans 'Room' %} : {{ resident.profile.client.room_number }}</li>
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+
+{% block content %}
+    {% load static %}
+    {% load i18n %}
+    <div class="container">
+
+        <div class="mx-2 px-2">
+            <div class="section-title text-center">
+                <h3>Liste de présence des résidents <small>{{ date }}</small></h3>
+            </div>
+        </div>
+
+        <form action="{% url 'Attendance list' %}" method="post">{% csrf_token %}
+            <div class="d-flex justify-content-center gap-0 gap-sm-2">
+                <div>
+                    {{ form }}
+                </div>
+                <div>
+                    <select id="orderby" name="orderby" onchange="this.form.submit()">
+                        <option {% if option == "0" %} selected {% endif %}value="0">Tous</option>
+                        <option {% if option == "1" %} selected {% endif %}value="1">Présents</option>
+                        <option {% if option == "2" %} selected {% endif %}value="2">Absents</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+
+        <div class="text-center row justify-content-center p-2 border-top border-bottom border-darkblue">
+            {% for room in roomlist %}
+                <div class="col-3">
+                    N° {{ room.camera.client.clientsserenicia.room_number }}
+                </div>
+                <div class="col-3">
+                    {{ room.camera.client.name }} {{ room.camera.client.first_name }}
+                </div>
+                <div class="col-3 align-right">
+                    <div class="col-5">
+                        {% if room.camera.client.clientsserenicia.status == '2' %}
+                            <img width="25" height="25" src="{% static 'app4_ehpad_base/img/hospital.png' %}"
+                                 data-interchange="[{% static 'app4_ehpad_base/img/hospital.png' %}, retina]"
+                                 src="{% static 'app4_ehpad_base/img/hospital.png' %}" alt="Hospitalisé"/>
+                        {% elif room.camera.client.clientsserenicia.status == '3' %}
+                            <img width="25" height="25" src="{% static 'app4_ehpad_base/img/exit_logo.png' %}"
+                                 data-interchange="[{% static 'app4_ehpad_base/img/exit_logo.png' %}, retina]"
+                                 src="{% static 'app4_ehpad_base/img/exit_logo.png' %}" alt="Vacance"/>
+                        {% endif %}
+
+                    </div>
+                    <div class="col-5">
+                        {% if room.presence %}
+                            <img width="25" height="25" src="{% static 'app4_ehpad_base/img/blue_button.png' %}"
+                                 data-interchange="[{% static 'app4_ehpad_base/img/blue_button.png' %}, retina]"
+                                 src="{% static 'app4_ehpad_base/img/blue_button.png' %}" alt="Présent"/>
+                        {% else %}
+                            <img width="25" height="25" src="{% static 'app4_ehpad_base/img/black_button.png' %}"
+                                 data-interchange="[{% static 'app4_ehpad_base/img/black_button.png' %}, retina]"
+                                 src="{% static 'app4_ehpad_base/img/black_button.png' %}" alt="Absent"/>
+                        {% endif %}
+                    </div>
+                </div>
+                <hr style="width: 80%" class="my-2">
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}
+
+{% block endscript %}
+
+{% endblock endscript %}

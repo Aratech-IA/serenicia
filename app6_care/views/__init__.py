@@ -1,0 +1,1 @@
+from .views_rela_table import resident_employee, resident_employee_manual

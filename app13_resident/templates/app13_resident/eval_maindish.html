@@ -1,0 +1,185 @@
+{% extends "app13 _resident/base_app4.html" %}
+
+{% load static %}
+{% load i18n %}
+
+{#{% include 'app13 _resident/header_app4.html'%}#}
+
+
+{% block content%}
+
+<div class="col-10">
+    {% include 'app4_ehpad_base/eval_maindish.html' %}
+</div>
+
+
+<div class="tv-right col-2 h-100 d-flex justify-content-center align-item-center bg-grey">
+    <div class="text-center my-auto">
+    
+        <h5 class="pb-3 pb-2"><u>Echo Démarre Fidèle</u></h5>
+
+        <div class="cadreblanc d-flex p-2 mb-2">
+            <svg
+                width="6em"
+                height="6em"
+                viewbox="0 0 132 132">
+                <g
+                    transform="translate(-9.8790354,-10.155067)">
+                    <circle
+                    style="fill:#93a9d2;fill-opacity:1;"
+                    cx="75.879036"
+                    cy="76.155067"
+                    r="66" />
+                    <path
+                    style="fill:none;stroke:#000000;stroke-width:5.66929;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+                    d="m 26.640296,57.789159 c 11.304185,-9.546955 15.304852,-9.641046 24,0.6875" />
+                    <path
+                    style="fill:none;stroke:#000000;stroke-width:5.66929;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+                    d="m 77.494496,57.324962 c 9.35246,-12.242085 16.96347,-7.737473 24.000004,0.687501" />
+                    <path
+                    style="fill:none;stroke:#000000;stroke-width:5.66929;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 37.890306,83.53937 c 4.91737,11.203613 11.47866,18.02583 22.5625,20.56292 4.15763,0.51111 9.87982,0.41368 13.87499,-0.37501 C 94.584386,98.020844 109.4633,85.145699 126.3903,73.414163" />
+                </g>
+            </svg>
+            <h5 class="mx-auto my-auto">Très bon</h5>    
+        </div>
+        
+        <div class="cadreblanc d-flex p-2 mb-2">
+            <svg
+                width="6em"
+                height="6em"
+                viewbox="0 0 132 132">
+                <g
+                    transform="translate(-9.8790354,-10.155067)">
+                    <circle
+                    style="fill:#22abd7;fill-opacity:1;"
+                    cx="75.879036"
+                    cy="76.155067"
+                    r="66" />
+                    <path
+                    style="fill:none;stroke:#000000;stroke-width:5.66929;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+                    d="m 26.640296,57.789159 c 11.304185,-9.546955 15.304852,-9.641046 24,0.6875" />
+                    <path
+                    style="fill:none;stroke:#000000;stroke-width:5.66929;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+                    d="m 77.494496,57.324962 c 9.35246,-12.242085 16.96347,-7.737473 24.000004,0.687501" />
+                    <path
+                    style="fill:none;stroke:#000000;stroke-width:3.99329;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 37.890306,94.059471 c 4.91737,5.558553 11.47866,8.943329 22.5625,10.202079 4.15763,0.25357 9.87982,0.20524 13.87499,-0.18605 20.25659,-2.83119 35.135504,-9.219066 52.062504,-15.039545" />
+                </g>
+            </svg>
+            <h5 class="mx-auto my-auto">Bon</h5>    
+        </div>
+
+        <div class="cadreblanc d-flex p-2 mb-2">
+            <svg
+                width="6em"
+                height="6em"
+                viewbox="0 0 132 132" >
+                <g
+                    transform="translate(-9.8790354,-10.155067)">
+                    <circle
+                    style="fill:#ff7f00;fill-opacity:1;"
+                    cx="75.879036"
+                    cy="76.155067"
+                    r="66" />
+                    <path
+                    style="fill:none;stroke:#000000;stroke-width:5.669;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+                    d="m 77.494496,57.324962 c 8.10246,0.0079 14.21347,-9.737473 23.500004,-10.062499" />
+                    <path
+                    style="fill:none;stroke:#000000;stroke-width:3.99329;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 37.890306,99.397222 c 4.91737,-5.558553 11.47866,-8.943329 22.5625,-10.202079 4.15763,-0.25357 9.87982,-0.20524 13.87499,0.18605 20.25659,2.83119 35.135504,9.219066 52.062504,15.039547" />
+                    <path
+                    style="fill:none;stroke:#000000;stroke-width:5.669;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+                    d="m 50.640296,58.476659 c -8.10246,0.0079 -14.21347,-9.737473 -23.500004,-10.062499" />
+                </g>
+            </svg>
+            <h5 class="mx-auto my-auto">Moyen</h5>    
+        </div>
+
+        <div class="cadreblanc d-flex p-2 mb-2">
+            <svg
+                width="6em"
+                height="6em"
+                viewbox="0 0 132 132">
+                <g
+                    transform="translate(-9.8790354,-10.155067)">
+                    <circle
+                    style="fill:#d50100;fill-opacity:1;"
+                    cx="75.879036"
+                    cy="76.155067"
+                    r="66" />
+                    <path
+                    style="fill:none;stroke:#000000;stroke-width:5.66929;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 37.890306,94.305921 c 4.91737,-11.203613 11.47866,-18.025834 22.5625,-20.562924 4.15763,-0.51111 9.87982,-0.41368 13.87499,0.37501 20.25659,5.70644 35.135504,18.581585 52.062504,30.313113" />
+                    <path
+                    style="fill:none;stroke:#000000;stroke-width:5.669;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+                    d="m 77.494496,57.324962 c 8.10246,0.0079 14.21347,-9.737473 23.500004,-10.062499" />
+                    <path
+                    style="fill:none;stroke:#000000;stroke-width:5.669;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+                    d="m 50.640296,58.476659 c -8.10246,0.0079 -14.21347,-9.737473 -23.500005,-10.062499" />
+                </g>
+            </svg>
+            <h5 class="mx-auto my-auto">Pas bon</h5>    
+        </div>
+
+        <div class="cadreblanc d-flex p-2">
+            <div class="">
+                <img src="{% static 'app13 _resident/images/right_green-recadre-sansfond.png' %}" alt="Next" class="img-fluid ps-3" width="72em">
+            </div>
+            <h5 class="mx-auto my-auto">Suivant</h5>    
+        </div>
+
+        <h5 class="pt-4">Retour à l'accueil</h5>
+    
+        <h5 class="text-white">Echo, éteins la TV</h5>
+    
+    </div>
+</div>
+
+
+{% include 'app13 _resident/footer_app4.html'%}
+
+
+{% block alexanav %}
+
+<script>
+
+        console.log("check for web socket");
+        let socket = new WebSocket('{{ ws_alexa }}');
+
+        socket.onmessage = function (event) {
+                console.log('connection ws Alexa opened');
+                let message = JSON.parse(event.data);
+                socket.send(JSON.stringify({'answer': true}));
+                console.log(message);
+                if (message.redirect != 'empty'){
+                    url = message.redirect;
+                    socket.close();
+                    window.location.href = url;
+                } else {
+                    score = message.score;
+                    if (score == 'pas bon' || score == 'pas bien' || score == 'rouge' || score == 'horrible' || score == 'dégueulasse'){
+                        vote(1)
+                    } else if (score == 'moyen' || score == 'orange' || score == 'bof'){
+                        vote(2)
+                    } else if (score == 'bon' || score == 'bleu' || score == 'bien'){
+                        vote(3)
+                    } else if (score == 'très bon' || score == 'très bien' || score == 'vert' || score == 'délicieux'){
+                        vote(4)
+                    }  else if (score == 'suivant'){
+                        vote(0)
+                    }
+                    socket.close()
+                }
+        };
+
+        socket.onclose = function () {
+            console.log('connection ws Alexa closed');
+        };
+
+
+
+</script>
+
+{% endblock alexanav %}
+{% endblock content%}

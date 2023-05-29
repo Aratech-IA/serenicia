@@ -1,0 +1,47 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<style>
+    .location-image{
+        max-width: 160px;
+        max-height: 110px;
+    }
+</style>
+<main>
+    <form action="{% url 'app10_social_activities index' %}" method="post">{% csrf_token %}
+        <div class="d-flex flex-wrap justify-content-center gap-2 mt-2">
+            {% for activity in list_act %}
+                <button class="btn btn-perso d-flex flex-column justify-content-between gap-1" name="selected" value="{{ activity.id }}">
+                    <div class="d-flex flex-column">
+                        <span class="fs-3">{{ activity.event.type }}</span>
+                        <span class="text-muted">{{ activity.event.location.name }}</span>
+                        {% if activity.start < now and now < activity.end %}
+                            <span class="fw-bold bg-lightblue rounded-3 border border-white">{% trans 'In progress' %}</span>
+                        {% endif %}
+                    </div>
+                    <div class="d-flex justify-content-evenly">
+                        <div class="align-self-center">
+                            <div>
+                                {% if activity.thumbnail_url %}
+                                    <img src="{{ activity.thumbnail_url }}" class="img-fluid location-image rounded-3">
+                                {% elif activity.event.location.photo %}
+                                    <img src="{{ activity.event.location.photo.url }}" class="img-fluid location-image rounded-3">
+                                {% else %}
+                                    <img src="{% static 'app4_ehpad_base/img/no_picture.png' %}" class="img-fluid location-image rounded-3">
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column align-self-center">
+                            <span class="text-muted">{{ activity.event.organizer }}</span>
+                            <span>{{ activity.start|date:"H:i" }} - {{ activity.end|date:"H:i" }}</span>
+                            <span class="fw-bold">{{ activity.attendance.count }} / {{ activity.participants.count }} {% trans 'participants' %}</span>
+                        </div>
+                    </div>
+                </button>
+            {% endfor %}
+        </div>
+    </form>
+</main>
+{% endblock content %}

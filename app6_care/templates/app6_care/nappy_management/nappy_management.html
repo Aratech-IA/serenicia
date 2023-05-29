@@ -1,0 +1,50 @@
+{% extends "app4_ehpad_base/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<link rel="stylesheet" href=" {% static 'app6_care/css/style.css' %}">
+
+<div class="m-5">
+    <div class="d-flex flex-column align-items-center m-5">
+        <h2 class="mt-3">{% trans 'Nappies management' %}</h2>
+        <div class="d-flex justify-content-center mt-5">
+            {% if perms.app0_access.view_manager %}
+            <a href="{% url 'nappy_order' %}">
+                <div class="app6-btn-icon d-flex flex-column align-items-center m-3">
+                    <img src="{% static 'app1_base/img/bi/cart4.svg' %}" alt="cart" class="app6-icon p-2 border border-darkblue">
+                    <p class="text-center">{% trans 'Place an order' %}</p>
+                </div>
+            </a>
+            {% endif %}
+            <a href="{% url 'nappy_delivery' %}">
+                <div class="app6-btn-icon d-flex flex-column align-items-center m-3">
+                    <img src="{% static 'app1_base/img/bi/truck.svg' %}" alt="truck" class="app6-icon p-2 border border-darkblue">
+                    <p class="text-center">{% trans 'Delivery receipt' %}</p>
+                </div>
+            </a>
+            <a href="{% url 'nappy_inventory' %}">
+                <div class="app6-btn-icon d-flex flex-column align-items-center m-3">
+                    <img src="{% static 'app4_ehpad_base/img/bi/check2-square.svg' %}" alt="check" class="app6-icon p-2 border border-darkblue">
+                    <p class="text-center">{% trans 'Inventory' %}</p>
+                </div>
+            </a>
+            <a href="{% url 'nappy_restock' %}">
+                <div class="app6-btn-icon d-flex flex-column align-items-center m-3">
+                    <img src="{% static 'app4_ehpad_base/img/homemade_svg/changing_diaper_64x64.svg' %}" alt="changing diaper"
+                         class="app6-icon p-2 border border-darkblue">
+                    <p class="text-center">{% trans 'Restock' %}</p>
+                </div>
+            </a>
+            <a href="/admin/app6_care/usernappy/">
+                <div class="app6-btn-icon d-flex flex-column align-items-center m-3">
+                    <img src="{% static 'app4_ehpad_base/img/bi/person.svg' %}" alt="Daily provision"
+                         class="app6-icon p-2 border border-darkblue">
+                    <p class="text-center">{% trans 'Daily provision' %}</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

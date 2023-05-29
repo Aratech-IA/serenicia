@@ -1,0 +1,62 @@
+{% extends "app1_base/base.html" %}
+
+{% block content %}
+
+<div class="row">
+  <div class="columns">
+    <h1 class="section-title">DARKNET</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <h3> Server state :  </h3>
+	
+	<div class="row">
+		<div class="large-8 columns">
+			<code id="darknet-state" class="accesslog hljs"></code>
+		</div>
+		<div class="large-2 columns">
+			<form action="/darknet/" method="post"><input type='hidden' name='d_action' value='stop' />{% csrf_token %}
+			<button type = "submit" id="stop-rest" type="button" class="button">Stop the server</button>
+		 	</form>
+                </div>  
+		<div class="large-2 columns">
+			<form action="/darknet/" method="post"><input type='hidden' name='d_action' value='start' />{% csrf_token %}
+			<button type = "submit" id="stop-rest" type="button" class="button">Start the server</button>
+			</form>
+		</div>
+	</div>
+  </div>
+</div>
+
+
+
+
+{% endblock content %}
+
+{% block endscript %}
+<script>
+
+var timeOut;
+
+function refreshLogs() {
+  $.get('{{url_state}}', function(rawLogs) {
+    var stateElement = document.getElementById('darknet-state');
+
+    stateElement.innerHTML = rawLogs;
+    hljs.highlightBlock(stateElement);  
+  });
+  startTimeout();
+}
+
+
+function startTimeout() {
+  timeOut = window.setTimeout(refreshLogs, 2000);
+}
+
+
+startTimeout();
+
+</script>
+{% endblock endscript %}
