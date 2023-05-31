@@ -10,7 +10,7 @@ ENV LC_ALL en_US.UTF-8
 
 RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y \
      tzdata wget mlocate build-essential git python3 python3-dev nano cron libpq-dev \
-     python3-opencv software-properties-common curl mailutils opendkim opendkim-tools zbar-tools
+     python3-opencv software-properties-common curl mailutils opendkim opendkim-tools zbar-tools gettext
 
 RUN curl https://bootstrap.pypa.io/pip/3.6/get-pip.py -o get-pip.py && python3 get-pip.py
 
