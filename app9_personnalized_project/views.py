@@ -18,10 +18,11 @@ from app9_personnalized_project.models import Survey, SurveyResponse, Question, 
 @login_required
 @permission_required('app0_access.view_supportproject')
 def index(request):
-    try:
-        request.session.pop('resident_id')
-    except KeyError:
-        pass
+    if not request.user.has_perm('app0_access.view_family'):
+        try:
+            request.session.pop('resident_id')
+        except KeyError:
+            pass
     # get all last available survey for each resident
     query = Survey.objects.select_related('target',
                                           'target__user',
