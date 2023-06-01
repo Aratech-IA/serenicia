@@ -20,10 +20,11 @@ from app4_ehpad_base.models import Card, PayRoll
 
 @login_required
 def profile(request):
-    try:
-        request.session.pop('resident_id')
-    except KeyError:
-        pass
+    if not request.user.has_perm('app0_access.view_family'):
+        try:
+            request.session.pop('resident_id')
+        except KeyError:
+            pass
     video = False
 
     national_card = Card.objects.filter(type_card='national_card', user_resident=User.objects.get(pk=request.user.id))

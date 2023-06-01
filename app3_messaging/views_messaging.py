@@ -185,10 +185,11 @@ def internal_emailing(request):
 
 @login_required
 def internal_emailing_mailbox(request):
-    try:
-        request.session.pop('resident_id')
-    except KeyError:
-        pass
+    if not request.user.has_perm('app0_access.view_family'):
+        try:
+            request.session.pop('resident_id')
+        except KeyError:
+            pass
     # total = time.time()
     if "reponsemessage" in request.POST:
         return internal_emailing(request)

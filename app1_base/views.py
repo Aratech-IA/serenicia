@@ -614,10 +614,11 @@ def timeline(request):
 
 @login_required
 def set_preferences(request):
-    try:
-        request.session.pop('resident_id')
-    except KeyError:
-        pass
+    if not request.user.has_perm('app0_access.view_family'):
+        try:
+            request.session.pop('resident_id')
+        except KeyError:
+            pass
     connected_user = User.objects.get(pk=request.user.id)
     context = {}
     if "serenicia" in settings.DOMAIN.lower():

@@ -38,10 +38,11 @@ else:
 
 @login_required
 def notifs_mailbox(request):
-    try:
-        request.session.pop('resident_id')
-    except KeyError:
-        pass
+    if not request.user.has_perm('app0_access.view_family'):
+        try:
+            request.session.pop('resident_id')
+        except KeyError:
+            pass
     # send_notif_doctor()
     connected_user = ''
     if request.user.is_authenticated:
