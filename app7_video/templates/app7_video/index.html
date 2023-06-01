@@ -13,9 +13,9 @@
                 <div class="row justify-content-center">
                     <div id="recording" class="spinner-grow text-danger my-3" role="status" aria-hidden="true" style="display: none"></div>
                     <div id="spinner" class="spinner-border spinner-border-xl text-warning my-3" role="status" aria-hidden="true" style="display: none"></div>
-                    <div id="record-msg" class="btn btn-outline-danger" style="display: none">{% trans "Recording..." %}</div>
-                    <div id="finish-msg" class="btn btn-perso" style="display: none">{% trans "Done, you will be redirect." %}</div>
-                    <div id="wait-msg" class="btn btn-outline-warning" style="display: none">{% trans "Downloading..." %}</div>
+                    <div id="record-msg" class="btn btn-outline-danger" style="display: none">{% trans "Recording" %}...</div>
+                    <div id="finish-msg" class="btn btn-perso" style="display: none">{% trans "Done, you will be redirect" %}.</div>
+                    <div id="wait-msg" class="btn btn-outline-warning" style="display: none">{% trans "Downloading" %}...</div>
                 </div>
             </div>
         </div>
@@ -25,13 +25,13 @@
   <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalinstructionsvideolabel">{% trans 'How to be recognized ?' %}</h5>
+        <h5 class="modal-title" id="modalinstructionsvideolabel">{% trans 'How to be recognized' %} ?</h5>
         <a href="{% url 'app4_ehpad_base index' %}" type="button" class="btn-close btn-perso"></a>
       </div>
       <div class="modal-body">
-          <p>{% blocktranslate %}Welcome to the facial recognization page !{% endblocktranslate %}</p>
-          <p>{% blocktranslate %}you will be able to be recognized by Fidèle thanks to your video.{% endblocktranslate %}</p>
-          <p>{% blocktranslate %}Firstly we need to access your webcam, please click the button bellow and allow authorization{% endblocktranslate %}</p>
+          <p>{% blocktranslate %}Welcome to the facial recognization page{% endblocktranslate %} !</p>
+          <p>{% blocktranslate %}Thanks to this video, you will be able to be recognized on Sérénicia{% endblocktranslate %}.</p>
+          <p>{% blocktranslate %}Firstly we need to access your webcam, please click the button bellow and allow authorization{% endblocktranslate %}.</p>
       </div>
         <button class="btn btn-perso mx-auto mb-3" id="start">{% trans 'Access webcam' %}</button>
       <div class="modal-footer">
@@ -53,10 +53,10 @@
               <input class="btn btn-perso" id="flip-btn" type="image"
                    src="{% static 'app1_base/img/bi/arrow-repeat.svg' %}" height="60px" hidden>
           </div></p>
-          <p>{% blocktranslate %}We are going to make a video of about 20 seconds (the record will shut automatically).{% endblocktranslate %}</p>
-          <p>{% blocktranslate %}Make sure you are alone in front of the camera and well lit.{% endblocktranslate %}</p>
-            <p>{% blocktranslate %}If you usually wear glasses, wear them.{% endblocktranslate %}</p>
-          <p>{% blocktranslate %}Everything is ready ? There is one last instruction left, click next !{% endblocktranslate %}</p>
+          <p>{% blocktranslate %}We are going to make a video of about 20 seconds (the record will shut automatically){% endblocktranslate %}.</p>
+          <p>{% blocktranslate %}Make sure you are alone in front of the camera and well lit{% endblocktranslate %}.</p>
+            <p>{% blocktranslate %}If you usually wear glasses, wear them{% endblocktranslate %}.</p>
+          <p>{% blocktranslate %}Everything is ready ? There is one last instruction left, click next{% endblocktranslate %} !</p>
       </div>
       <div class="modal-footer">
         <button class="btn btn-perso" type="button" id="next2">{% trans 'Next' %}</button>
@@ -68,13 +68,13 @@
   <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalinstructionsvideo3label">{% trans 'Have you seen this man ?' %}</h5>
+        <h5 class="modal-title" id="modalinstructionsvideo3label">{% trans 'Have you seen this man' %} ?</h5>
         <a href="{% url 'app4_ehpad_base index' %}" type="button" class="btn-close btn-perso"></a>
       </div>
       <div class="modal-body">
           <video src="{% static 'app7_video/videos/demo.mp4' %}" autoplay muted loop class="img-fluid"></video>
-          <p>{% blocktranslate %}Here are the movements you will need to perform.{% endblocktranslate %}</p>
-            <p>{% blocktranslate %}You are ready ? Click Start to start recording !{% endblocktranslate %}</p>
+          <p>{% blocktranslate %}Here are the movements you will need to perform{% endblocktranslate %}.</p>
+            <p>{% blocktranslate %}You are ready ? Click Start to start recording{% endblocktranslate %} !</p>
       </div>
       <div class="modal-footer">
         <button class="btn btn-perso" type="button" id="record">{% trans 'Start' %}</button>

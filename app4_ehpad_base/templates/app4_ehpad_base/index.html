@@ -34,7 +34,7 @@
 
                 <!--Nom, logement, complétion du dossier-->
                 <div class="col-lg-10 d-flex flex-column justify-content-center align-items-center">
-                    <h4 class="text-center mt-5">{{ civility }} {{firstname}}. {{lastname}} {% if main_resident_informations %} {% trans 'Housing' %} {{ main_resident_informations.room_number }}{% endif %}</h4>
+                    <h4 class="text-center mt-5">{{ civility }} {{firstname}} {{lastname}} {% if main_resident_informations %} {% trans 'Housing' %} {{ main_resident_informations.room_number }}{% endif %}</h4>
 
                     {% if main_resident_informations %}
                         {% if main_resident_informations.got_multi_resistant_bacteria %}<label class="orange my_radius m-1 p-1">BMR</label>{% endif%}

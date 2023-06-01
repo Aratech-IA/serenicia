@@ -358,7 +358,7 @@
                                     </a>
                                 </li>
                             {% else %}
-                                <li class="nav-item dropdown py-1 py-lg-0">
+                                <!-- <li class="nav-item dropdown py-1 py-lg-0">
                                     <a href="{% url 'select location' %}" class="d-flex align-items-center my-2 my-lg-3 px-2 {% if '/security/' in request.path %}active{% endif %}">
                                         <svg
                                             fill="currentColor"
@@ -368,7 +368,7 @@
                                         </svg>
                                         <p class="text-uppercase ps-2">{% trans 'Security' %}</p>
                                     </a>
-                                </li>
+                                </li> -->
                             {% endif %}
                         {% endif %}
 
@@ -458,13 +458,19 @@
                                 {% if perms.app0_access.view_family %}
                                     <li class="nav-item pb-5 pt-1 py-lg-0">
                                         <a class="d-flex align-items-center my-2 my-lg-3 px-2" href="/invoice/">
-                                            <img src="{% static 'app4_ehpad_base/img/envelope-open-text-solid.svg' %}" alt="{% trans 'Open envelope icon' %}" width="25em">
+                                            <img src="{% static 'app4_ehpad_base/img/file-invoice-solid.svg' %}" alt="{% trans 'Invoice icon' %}" width="25em">
                                             <p class="text-uppercase ps-2">{% trans 'Invoices' %}</p>
                                         </a>
                                     </li>
                                     <li class="nav-item py-1 py-lg-0">
                                         <a class="d-flex align-items-center my-2 my-lg-3 px-2" href="/documents/">
-                                            <img src="{% static 'app4_ehpad_base/img/envelope-open-text-solid.svg' %}" alt="{% trans 'Open envelope icon' %}" width="25em">
+                                            <svg
+                                                fill="currentColor"
+                                                viewbox="0 0 576 448"
+                                                width="1.6em">
+                                                <path d="m 208,224 c 35.35,0 64,-28.65 64,-64 0,-35.35 -28.65,-64 -64,-64 -35.35,0 -64,28.65 -64,64 0,35.3 28.7,64 64,64 z m 256,-24 h -96 c -13.25,0 -24,10.75 -24,24 0,13.25 10.75,24 24,24 h 96 c 13.25,0 24,-10.75 24,-24 0,-13.25 -10.7,-24 -24,-24 z m -224,56 h -64 c -44.2,0 -80,35.8 -80,80 0,8.8 7.2,16 16,16 h 192 c 8.836,0 16,-7.164 16,-16 0,-44.2 -35.8,-80 -80,-80 z M 464,120 h -96 c -13.25,0 -24,10.75 -24,24 0,13.25 10.75,24 24,24 h 96 c 13.25,0 24,-10.75 24,-24 0,-13.25 -10.7,-24 -24,-24 z M 512,0 H 64 C 28.65,0 0,28.65 0,64 v 320 c 0,35.35 28.65,64 64,64 h 448 c 35.35,0 64,-28.65 64,-64 V 64 C 576,28.65 547.3,0 512,0 Z m 16,384 c 0,8.822 -7.178,16 -16,16 H 64 c -8.822,0 -16,-7.178 -16,-16 V 64 c 0,-8.822 7.178,-16 16,-16 h 448 c 8.822,0 16,7.178 16,16 z"></path>
+                                            </svg>
+                                            <!-- <img src="{% static 'app4_ehpad_base/img/envelope-open-text-solid.svg' %}" alt="{% trans 'Open envelope icon' %}" width="25em"> -->
                                             <p class="text-uppercase ps-2">{% trans 'Profile' %}</p>
                                         </a>
                                     </li>
@@ -623,13 +629,13 @@
                                 {% trans 'Care plan' %}
                             </a>
                         </li>
-                        {% if perms.app0_access.view_registerfacereco %}
+                        <!-- {% if perms.app0_access.view_registerfacereco %}
                             <li class="ps-3 ps-lg-4">
                                 <a href="{% url 'app7_video index' myvideo='false' %}">
                                     {% trans "Video" %}
                                 </a>
                             </li>
-                        {% endif %}
+                        {% endif %} -->
                     {% endif %}
         
                     <!-- Menu mon avis -->
@@ -659,14 +665,14 @@
                             </li>
                     {% endif %}
         
-                    <!-- Soins -->
-                    {% if perms.app0_access.view_care %}
+                    <!-- Soins inventaire -->
+                    <!-- {% if perms.app0_access.view_care %}
                         <li class="ps-3 ps-lg-4">
                             <a href="{% url 'create_inventory' %}">
                                 {% trans 'Create inventory' %}
                             </a>
                         </li>
-                    {% endif %}
+                    {% endif %} -->
                 </ul>
             {% endif %}
 

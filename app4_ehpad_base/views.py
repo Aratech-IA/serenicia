@@ -205,7 +205,7 @@ def personal_page(request):
     connected_user = User.objects.get(id=request.user.id)
     resident = User.objects.select_related('profileserenicia').get(pk=request.session['resident_id'])
     civility = _(resident.profile.civility)
-    firstname = _(resident.first_name[0])
+    firstname = _(resident.first_name)
     lastname = _(resident.last_name)
     carousel_images = show_images(resident.profileserenicia.folder)
     carousel_active_pic = None
