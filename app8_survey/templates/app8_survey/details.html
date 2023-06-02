@@ -79,7 +79,7 @@
                             </div>
                         </div>
                     </div>
-                    <button class="btn btn-perso m-2" data-bs-toggle="modal" data-bs-target="#comment-{{ chapter.id }}">{% count counter=comments.count %}View comment{% plural %}{% trans 'View' %} {{ counter }} {% trans 'comments' %}</button>
+                    <button class="btn btn-perso m-2" data-bs-toggle="modal" data-bs-target="#comment-{{ chapter.id }}">{{ comments.count }} {% trans 'Comment' %}{{ comments.count|pluralize }}</button>
                 {% endif %}
             </div>
         </div>
