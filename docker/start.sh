@@ -7,4 +7,5 @@ python3 /App/Serenicia/app4_ehpad_base/batch/install_cron.py > /App/log_install_
 #python3 /NNvision/django/app1_base/check_client_connection.py &
 python3 /App/Serenicia/manage.py migrate > /App/log_migrate-$(date +"%Y_%m_%d_%T").log
 python3 /App/Serenicia/manage.py collectstatic --noinput > /App/log_collect_static-$(date +"%Y_%m_%d_%T").log
+env >> /etc/environment
 cd Serenicia && /App/Serenicia/asgi.sh
