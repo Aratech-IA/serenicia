@@ -218,6 +218,7 @@ class SecurityProfileInline(admin.StackedInline):
     verbose_name_plural = 'security profiles'
 
 
+# The connected user must be in a group with the access view_manager to manage the user_list from admin
 class Userapp4_ehpad_baseAdmin(MyUserAdmin):
     # readonly_fields = ('groups',)
     search_fields = ('last_name', 'first_name', 'username', 'groups__name', 'profile__client__room_number', 'email')
