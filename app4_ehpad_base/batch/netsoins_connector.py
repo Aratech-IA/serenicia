@@ -1,6 +1,5 @@
 import sys
 import os
-
 # Because this script have to be run in a separate process from manage.py
 # you need to set up a Django environnement to use the Class defined in
 # the Django models. It is necesssary to interact witht the Django database
@@ -20,10 +19,15 @@ django.setup()
 
 from app4_ehpad_base.api_netsoins import cron_netsoins_resident, cron_netsoins_staff, cron_netsoins_family, \
     update_staff_permissions, cron_post_all_cards
+from time import sleep
 
 if __name__ == '__main__':
     cron_netsoins_resident()
+    sleep(1)
     cron_netsoins_staff()
+    sleep(1)
     cron_netsoins_family()
+    sleep(1)
     update_staff_permissions()
+    sleep(1)
     #cron_post_all_cards()
