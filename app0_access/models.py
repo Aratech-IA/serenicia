@@ -101,7 +101,7 @@ if settings.DOMAIN.lower() == 'serenicia':
                                                                               'location']}],
                            'description': _('Can access to Social Life administration')},
         'view_cuisine': {'perms': [{'app_label': 'app4_ehpad_base', 'models': ['presentationtype']},
-                                   {'app_label': 'access', 'models': ['cuisineprice']}],
+                                   {'app_label': 'app0_access', 'models': ['cuisineprice']}],
                          'description': _('Can access cuisine administration and view the prices in the interface')},
         'view_quality': {'perms': [{'app_label': 'app11_quality', 'models': ['critere']}],
                          'description': _('Can choose people to answer the criteria')},
