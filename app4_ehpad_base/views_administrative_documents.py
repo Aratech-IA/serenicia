@@ -46,8 +46,10 @@ def invoice(request):
     # User information -> need to check to avoid mistakes
     if user_resident.profile.civility and user_resident.last_name and user_resident.first_name:
         user_resident_info = {
+            'civility':
+                user_resident.profile.civility,
             'complete_name':
-                user_resident.profile.civility + ' ' + user_resident.last_name + ' ' + user_resident.first_name,
+                user_resident.first_name + ' ' + user_resident.last_name,
             'entry_date': user_resident.profileserenicia.entry_date,
         }
 
@@ -84,10 +86,10 @@ def documents(request):
     diet_result = Diet.objects.filter(user_resident=user_resident)
 
     # User information -> need to check to avoid mistakes
-    if user_resident.profile.civility and user_resident.last_name and user_resident.first_name:
+    if user_resident.profile.civility and user_resident.first_name and user_resident.last_name:
         user_resident_info = {
             'complete_name':
-                user_resident.profile.civility + ' ' + user_resident.last_name + ' ' + user_resident.first_name,
+                user_resident.profile.civility + ' ' + user_resident.first_name + ' ' + user_resident.last_name,
             'entry_date': user_resident.profileserenicia.entry_date,
         }
 

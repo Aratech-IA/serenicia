@@ -102,13 +102,17 @@
 
         <div class="green--body text-center text-uppercase title">
             <div>
-                {% trans "Bills of" %} {{ user_resident_info.complete_name }}
-                    {% if request.session.profile_pic %}
+                {% trans "Bills of" %}
+                {% if user_resident_info.civility == 'Mr' or user_resident_info.civility == 'Mrs' %} {% if user_resident_info.civility == 'Mr' %} {% trans "Mr" %} {% else %} {% trans "Mrs" %} {% endif %} {% endif %}
+                <!-- {{ user_resident_info.civility }} -->
+                {{ user_resident_info.complete_name }}
+
+                {% if request.session.profile_pic %} 
                     <img class="resident-small-pic mx-1" src="{{ request.session.profile_pic }}" alt="Photo de profile resident">
-                    {% endif %}
+                {% endif %}
             </div>
 
-             <h6>{% trans "You have access to the invoices and can download them" %}</h6>
+            <h6>{% trans "You have access to the invoices and can download them" %}</h6>
 
         </div>
 

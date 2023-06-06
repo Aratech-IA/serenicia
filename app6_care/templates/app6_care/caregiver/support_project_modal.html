@@ -14,6 +14,7 @@
                 <div class="accordion">
                     {% for chapter in support_project.project.survey.chapters.all %}
                         <div class="accordion-item">
+
                             {% if chapter|show_by_default:request.user %}
                                 <h2 class="accordion-header">
                                     <button class="accordion-button btn-perso" type="button" data-bs-toggle="collapse" data-bs-target="#panelchap{{ chapter.id }}" aria-expanded="true" aria-controls="panelchap{{ chapter.id }}">
@@ -29,7 +30,7 @@
                                 </h2>
                                 <div id="panelchap{{ chapter.id }}" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
                             {% endif %}
-
+                            
                                     <div class="accordion-body d-flex justify-content-between">
                                         {% if chapter.select_meal_type and support_project.project.survey.target.meal_type %}
                                             <div class="d-flex flex-column">
@@ -66,7 +67,6 @@
                                         {% endif %}
                                     </div>
                                 </div>
-                            </div>
                         </div>
                     {% endfor %}
                 </div>

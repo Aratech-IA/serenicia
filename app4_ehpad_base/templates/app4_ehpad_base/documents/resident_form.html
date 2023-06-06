@@ -15,10 +15,10 @@
     border-radius: 15px;
 }
 
-.dropdown-toggle {
+/* .dropdown-toggle {
     background: #fff;
     border: solid 1px grey;
-}
+} */
 </style>
 
 <div class="container">
@@ -26,7 +26,10 @@
     <div class="pt-4">
 
         <h5 class="text-center text-uppercase">
-            {% trans "modify/add the information of" %} {% if user_resident.profile.civility %} {{ user_resident.profile.civility }} {% endif %} {{ user_resident.last_name }} {{ user_resident.first_name }}
+            {% trans "modify/add the information of" %}
+            {% if user_resident.profile.civility == 'Mr' %}{% trans "Mr" %} {% elif user_resident.profile.civility == 'Mrs' %}{% trans "Mrs" %}  {% else %}{% endif %}
+            {{ user_resident.first_name }}
+            {{ user_resident.last_name }}
         </h5>
 
         <div class="row d-flex justify-content-center pt-4">

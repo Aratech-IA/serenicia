@@ -56,7 +56,7 @@
 
 .navigation {
 
-    overflow-y: scroll;
+    overflow-y: auto;
     
     p, .dropdown-toggle::after {
         @media screen and (min-width: $tablette-media-rupture) {

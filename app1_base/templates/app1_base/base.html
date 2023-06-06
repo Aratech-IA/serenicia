@@ -597,7 +597,7 @@
 
                         {% if perms.app0_access.view_evalmenu %}
                             <!-- Eval'Menu -->
-                            <li class="evalmenu nav-item pt-1 pb-4 py-lg-0">
+                            <li class="evalmenu nav-item pt-1 pb-5 pb-4 py-lg-0">
                                 <a href="{% url 'identification evaluation' %}" class="d-flex align-items-center my-2 my-lg-3 px-2 disabled {% if '/evaluation/identification/' in request.path %}active{% endif %}">
                                     <img src="{% static 'app4_ehpad_base/img/4_visages_satisfaction_en_carre.svg' %}" alt="{% trans 'Open envelope icon' %}" width="26em">
                                     <p class="text-uppercase ps-2">{% trans "Eval'Menu" %}</p>

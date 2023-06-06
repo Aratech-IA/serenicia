@@ -178,9 +178,9 @@ ol {
 
                                <div class="col-sm-6 text-center"><h6 class="mb-0">{% trans "Full Name" %} :</h6></div>
                                    <div class="col-sm-6 text-secondary text-center">
-                                       {% if user_resident.profile.civility %} {{ user_resident.profile.civility }} {% endif %}
-                                       {% if user_resident.last_name %} {{ user_resident.last_name }} {% endif %}
+                                       <!-- {% if user_resident.profile.civility %} {% if user_resident.profile.civility == 'Mr' %} {% trans "Mr" %} {% else %} {% trans "Mrs" %} {% endif %} {% endif %} -->
                                        {% if user_resident.first_name %} {{ user_resident.first_name }} {% endif %}
+                                       {% if user_resident.last_name %} {{ user_resident.last_name }} {% endif %}
                                    </div>
                            </div>
 

@@ -100,7 +100,7 @@
 
                         <!-- Affichage si pas en alerte -->
                         <button id="{{ resident.resident.user.profile.client.id }}" class="carteresident btn {% if resident.resident.bacterium %}btn-outline-warning border-2{% else %}btn-perso{% endif %} {% if resident.birthday %}birthday{% endif %} m-1 d-flex justify-content-center align-items-center" type="submit" name="res_id" value="{{ resident.resident.user.id }}">
-                            <div class="picresident">
+                            <div class="picresident col-5 d-flex flex-column align-items-center">
                                 {% if resident.profile_pic %}
                                 <img class="img-fluid rounded-3 select-resident-pic" src="{{ resident.profile_pic }}">
                                 {% else %}
@@ -114,7 +114,7 @@
                                     <span class="badge rounded-pill {{ resident.eval_data.badge_color }} border" title="{% trans '7 last days' %}">{{ resident.eval_data.vote_count }}</span>
                                 </div>
                             </div>
-                            <div class="ms-4 align-self-center">
+                            <div class="col-7 align-self-center">
                                 <p class="my-auto">{% trans resident.resident.user.profile.civility %} {{ resident.resident.user.first_name.0 }}. {{ resident.resident.user.last_name }}</p>
                                 <p>{{ resident.resident.user.profile.client.room_number }}</p>
                                 <p class="text-muted my-auto">
