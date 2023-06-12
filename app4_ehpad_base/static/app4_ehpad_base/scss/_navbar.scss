@@ -200,10 +200,14 @@
         font-size: 1.2em;
     }
 
+    img {
+        z-index: 10;
+    }
+
     span {
         bottom: -5%;
-        left: 44%;
-        z-index: -1;
+        left: 37%;
+        z-index: 9;
     }
 }
 
