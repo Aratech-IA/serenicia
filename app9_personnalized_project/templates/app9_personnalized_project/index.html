@@ -40,7 +40,7 @@
                             <img src="{% static 'app4_ehpad_base/img/no_picture.png' %}" class="profile-pic mx-auto" style="max-width:100px;">
                         {% endif %}
                     </div>
-                    <span>{{ data.survey.target.user.profile.civility }} {{ data.survey.target.user.first_name.0 }}. {{ data.survey.target.user.last_name }}</span>
+                    <span>{% if data.survey.target.user.profile.civility == 'Mr' %} {% trans "Mr" %} {% else %} {% trans "Mrs" %} {% endif %} {{ data.survey.target.user.first_name.0 }}. {{ data.survey.target.user.last_name }}</span>
                 </div>
                 <div class="d-flex flex-column justify-content-around">
                     <div class="d-flex flex-column">

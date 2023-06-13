@@ -130,7 +130,11 @@
                         {% endif %}
                     </div>
                     <div class="text-center w-100">
-                        <span>{{ participant.profilej.user.profile.civility }} {{ participant.profilej.user.first_name.0 }}. {{ participant.profilej.user.last_name }}</span>
+                        <span>
+                            {% if participant.profilej.user.profile.civility == 'Mr' %}{% trans "Mr" %} {% elif participant.profilej.user.profile.civility == 'Mrs' %}{% trans "Mrs" %}  {% else %}{% endif %}
+                            <!-- {{ participant.profilej.user.profile.civility }} -->
+                            {{ participant.profilej.user.first_name.0 }}.
+                            {{ participant.profilej.user.last_name }}</span>
                     </div>
                     <div>
                         {% if participant.is_present %}

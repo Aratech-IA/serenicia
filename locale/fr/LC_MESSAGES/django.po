@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-31 15:20+0200\n"
+"POT-Creation-Date: 2023-06-06 11:57+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -426,7 +426,7 @@ msgid "Active"
 msgstr "Actif"
 
 #: app0_access/templates/app0_access/modify_group.html:69
-#: app10_social_activities/templates/app10_social_activities/details.html:167
+#: app10_social_activities/templates/app10_social_activities/details.html:171
 #: app11_quality/templates/app11_quality/protocols_list.html:150
 #: app15_calendar/templates/app15_calendar/calendar.html:186
 #: app16_portal/templates/app16_portal/index.html:93
@@ -445,8 +445,8 @@ msgstr "Actif"
 #: app5_ehpad_messaging/templates/app5_ehpad_messaging/internal_emailing_family.html:54
 #: app6_care/templates/app6_care/caregiver/care_plan.html:137
 #: app6_care/templates/app6_care/caregiver/care_plan.html:155
-#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:344
-#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:371
+#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:348
+#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:375
 #: app6_care/templates/app6_care/caregiver/caregiver.html:186
 #: app6_care/templates/app6_care/caregiver/interventions_report.html:81
 #: app8_survey/templates/app8_survey/details.html:77
@@ -487,7 +487,7 @@ msgstr "Type d'utilisateur"
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/documents.html:453
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/documents.html:465
 #: app4_ehpad_base/templates/app4_ehpad_base/gallery.html:63
-#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:343
+#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:347
 #: app6_care/templates/app6_care/caregiver/caregiver.html:426
 #: app6_care/templates/app6_care/caregiver/caregiver.html:456
 #: app6_care/templates/app6_care/hotel/hotel.html:258
@@ -561,7 +561,7 @@ msgstr "Annuler"
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:42
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:197
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/diet.html:53
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:79
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:82
 #: app4_ehpad_base/templates/app4_ehpad_base/index.html:505
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:443
 #: app4_ehpad_base/templates/app4_ehpad_base/preferences.html:31
@@ -682,10 +682,10 @@ msgstr "Un groupe avec ce nom existe déjà"
 #: app0_access/views.py:69 app0_access/views.py:145 app0_access/views.py:209
 #: app10_social_activities/templates/app10_social_activities/attendance_list.html:76
 #: app10_social_activities/templates/app10_social_activities/gallery.html:29
-#: app1_base/views.py:632 app1_base/views.py:655
-#: app3_messaging/views_messaging.py:397 app4_ehpad_base/views.py:680
-#: app9_personnalized_project/views.py:345
-#: app9_personnalized_project/views.py:350
+#: app1_base/views.py:633 app1_base/views.py:656
+#: app3_messaging/views_messaging.py:398 app4_ehpad_base/views.py:680
+#: app9_personnalized_project/views.py:346
+#: app9_personnalized_project/views.py:351
 msgid "Saved"
 msgstr "Sauvegardé"
 
@@ -898,7 +898,7 @@ msgid "Details"
 msgstr "Détails"
 
 #: app10_social_activities/templates/app10_social_activities/details.html:54
-#: app10_social_activities/templates/app10_social_activities/details.html:175
+#: app10_social_activities/templates/app10_social_activities/details.html:179
 #: app4_ehpad_base/views_cuisine_commission.py:74
 msgid "Evaluations"
 msgstr "Évaluations"
@@ -940,24 +940,44 @@ msgstr "Créer l'article du blog"
 msgid "Registered / present"
 msgstr "Inscrits / présents"
 
-#: app10_social_activities/templates/app10_social_activities/details.html:157
+#: app10_social_activities/templates/app10_social_activities/details.html:134
+#: app1_base/models.py:263
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/documents.html:181
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:106
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:30
+#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:294
+#: app9_personnalized_project/templates/app9_personnalized_project/index.html:43
+msgid "Mr"
+msgstr "M."
+
+#: app10_social_activities/templates/app10_social_activities/details.html:134
+#: app1_base/models.py:264
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/documents.html:181
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:106
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:30
+#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:294
+#: app9_personnalized_project/templates/app9_personnalized_project/index.html:43
+msgid "Mrs"
+msgstr "Mme"
+
+#: app10_social_activities/templates/app10_social_activities/details.html:161
 msgid "Survey for"
 msgstr "Sondage pour"
 
-#: app10_social_activities/templates/app10_social_activities/details.html:162
-#: app10_social_activities/templates/app10_social_activities/details.html:230
+#: app10_social_activities/templates/app10_social_activities/details.html:166
+#: app10_social_activities/templates/app10_social_activities/details.html:234
 msgid "Question N°"
 msgstr "Question N°"
 
-#: app10_social_activities/templates/app10_social_activities/details.html:176
+#: app10_social_activities/templates/app10_social_activities/details.html:180
 msgid "See survey"
 msgstr "Voir sondage"
 
-#: app10_social_activities/templates/app10_social_activities/details.html:180
+#: app10_social_activities/templates/app10_social_activities/details.html:184
 msgid "Overall rating"
 msgstr "Note globale"
 
-#: app10_social_activities/templates/app10_social_activities/details.html:214
+#: app10_social_activities/templates/app10_social_activities/details.html:218
 #: app4_ehpad_base/templates/app4_ehpad_base/eval_dashboard.html:132
 #: app4_ehpad_base/templates/app4_ehpad_base/eval_dashboard.html:272
 #: app4_ehpad_base/templates/app4_ehpad_base/eval_dashboard.html:412
@@ -1138,6 +1158,7 @@ msgstr "Liste de présence"
 #: app6_care/templates/app6_care/hotel/hotel.html:203
 #: app6_care/templates/app6_care/hotel/hotel.html:213
 #: app8_survey/templates/app8_survey/details.html:65
+#: app8_survey/templates/app8_survey/details.html:82
 #: app8_survey/templates/app8_survey/survey.html:81
 #: app9_personnalized_project/forms.py:66
 #: app9_personnalized_project/templates/app9_personnalized_project/survey.html:283
@@ -1722,7 +1743,7 @@ msgstr "coordonnées"
 #: app12_delivery/admin.py:29 app12_delivery/admin.py:58 app1_base/admin.py:276
 #: app1_base/admin_superuser.py:122 app3_messaging/admin.py:44
 #: app3_messaging/admin.py:69 app3_messaging/admin.py:82
-#: app4_ehpad_base/admin.py:242
+#: app4_ehpad_base/admin.py:243
 msgid "Personal info"
 msgstr "Info Personnelle"
 
@@ -1857,7 +1878,7 @@ msgstr "Sélectionnez son moyen de paiement"
 #: app12_delivery/models.py:84 app15_calendar/models.py:46
 #: app1_base/models.py:21 app4_ehpad_base/models.py:69
 #: app4_ehpad_base/views_cuisine_eval.py:849
-#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:360
+#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:364
 #: app9_personnalized_project/models.py:152
 #: app9_personnalized_project/signals.py:15
 msgid "Monday"
@@ -1867,7 +1888,7 @@ msgstr "Lundi"
 #: app12_delivery/models.py:85 app15_calendar/models.py:47
 #: app1_base/models.py:22 app4_ehpad_base/models.py:70
 #: app4_ehpad_base/views_cuisine_eval.py:849
-#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:361
+#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:365
 #: app9_personnalized_project/models.py:153
 #: app9_personnalized_project/signals.py:15
 msgid "Tuesday"
@@ -1877,7 +1898,7 @@ msgstr "Mardi"
 #: app12_delivery/models.py:86 app15_calendar/models.py:48
 #: app1_base/models.py:23 app4_ehpad_base/models.py:71
 #: app4_ehpad_base/views_cuisine_eval.py:849
-#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:362
+#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:366
 #: app9_personnalized_project/models.py:154
 #: app9_personnalized_project/signals.py:15
 msgid "Wednesday"
@@ -1887,7 +1908,7 @@ msgstr "Mercredi"
 #: app12_delivery/models.py:87 app15_calendar/models.py:49
 #: app1_base/models.py:24 app4_ehpad_base/models.py:72
 #: app4_ehpad_base/views_cuisine_eval.py:849
-#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:363
+#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:367
 #: app9_personnalized_project/models.py:155
 #: app9_personnalized_project/signals.py:15
 msgid "Thursday"
@@ -1897,7 +1918,7 @@ msgstr "Jeudi"
 #: app12_delivery/models.py:88 app15_calendar/models.py:50
 #: app1_base/models.py:25 app4_ehpad_base/models.py:73
 #: app4_ehpad_base/views_cuisine_eval.py:850
-#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:364
+#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:368
 #: app9_personnalized_project/models.py:156
 #: app9_personnalized_project/signals.py:15
 msgid "Friday"
@@ -1907,7 +1928,7 @@ msgstr "Vendredi"
 #: app12_delivery/models.py:89 app15_calendar/models.py:51
 #: app1_base/models.py:26 app4_ehpad_base/models.py:74
 #: app4_ehpad_base/views_cuisine_eval.py:850
-#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:365
+#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:369
 #: app9_personnalized_project/models.py:157
 #: app9_personnalized_project/signals.py:15
 msgid "Saturday"
@@ -1917,7 +1938,7 @@ msgstr "Samedi"
 #: app12_delivery/models.py:90 app15_calendar/models.py:52
 #: app1_base/models.py:27 app4_ehpad_base/models.py:75
 #: app4_ehpad_base/views_cuisine_eval.py:850
-#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:366
+#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:370
 #: app9_personnalized_project/models.py:158
 #: app9_personnalized_project/signals.py:16
 msgid "Sunday"
@@ -2266,7 +2287,7 @@ msgstr "Email"
 #: app14_profile/templates/app14_profile/profile.html:221
 #: app4_ehpad_base/models.py:167
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/documents.html:188
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:60
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:63
 #: app9_personnalized_project/forms.py:60
 msgid "Birth date"
 msgstr "Date de naissance"
@@ -2277,7 +2298,7 @@ msgstr "Date de naissance"
 #: app14_profile/templates/app14_profile/profile.html:226
 #: app4_ehpad_base/models.py:166
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/documents.html:195
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:65
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:68
 msgid "Birth city"
 msgstr "Ville de naissance"
 
@@ -2305,21 +2326,21 @@ msgstr "A propos de vous"
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:137
 #: app14_profile/templates/app14_profile/profile.html:176
 #: app1_base/models.py:278
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:43
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:46
 #: app5_ehpad_messaging/forms.py:183
 msgid "Civility"
 msgstr "Civilité"
 
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:142
 #: app14_profile/templates/app14_profile/profile.html:181
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:53
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:56
 #: app9_personnalized_project/models.py:221
 msgid "Last name"
 msgstr "Nom de famille"
 
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:147
 #: app14_profile/templates/app14_profile/profile.html:186
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:48
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:51
 #: app9_personnalized_project/models.py:222
 msgid "First name"
 msgstr "Prénom"
@@ -2884,7 +2905,7 @@ msgstr "Lien familial"
 msgid "Download icon"
 msgstr "Icone Télécharger"
 
-#: app14_profile/views.py:68
+#: app14_profile/views.py:69
 msgid "Your information has been change"
 msgstr "Vos informations ont été modifiées"
 
@@ -2974,13 +2995,13 @@ msgstr "Mois"
 
 #: app15_calendar/templates/app15_calendar/calendar.html:96
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:59
-#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:314
-#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:317
+#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:318
+#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:321
 msgid "Week"
 msgstr "Semaine"
 
 #: app15_calendar/templates/app15_calendar/calendar.html:98
-#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:320
+#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:324
 msgid "List"
 msgstr "Liste"
 
@@ -3124,13 +3145,13 @@ msgid "Wrong password"
 msgstr "Mot de passe invalide"
 
 #: app1_base/admin.py:277 app1_base/admin_superuser.py:123
-#: app3_messaging/admin.py:86 app4_ehpad_base/admin.py:245
+#: app3_messaging/admin.py:86 app4_ehpad_base/admin.py:246
 msgid "Permissions"
 msgstr "Permissions"
 
 #: app1_base/admin.py:278 app1_base/admin_superuser.py:124
 #: app3_messaging/admin.py:45 app3_messaging/admin.py:70
-#: app3_messaging/admin.py:83 app4_ehpad_base/admin.py:243
+#: app3_messaging/admin.py:83 app4_ehpad_base/admin.py:244
 msgid "Important dates"
 msgstr "Dates importantes"
 
@@ -3265,14 +3286,6 @@ msgstr "Anglais"
 #: app1_base/models.py:245 projet/settings/settings.py:124
 msgid "French"
 msgstr "Français"
-
-#: app1_base/models.py:263
-msgid "Mr"
-msgstr "M"
-
-#: app1_base/models.py:264
-msgid "Mrs"
-msgstr "Mme"
 
 #: app1_base/models.py:271 app9_personnalized_project/forms.py:56
 msgid "Photo"
@@ -4177,12 +4190,12 @@ msgid "Your Protecia box is not connected, you can not see the video"
 msgstr ""
 "Votre box Protecia n'est pas connectée, vous ne pouvez pas voir les vidéos"
 
-#: app1_base/views.py:632 app3_messaging/views_messaging.py:397
-#: app9_personnalized_project/views.py:350
+#: app1_base/views.py:633 app3_messaging/views_messaging.py:398
+#: app9_personnalized_project/views.py:351
 msgid "The modifications has been saved"
 msgstr "Vos modifications ont été enregistrées"
 
-#: app1_base/views.py:655
+#: app1_base/views.py:656
 msgid "The modifications has been registered"
 msgstr "Vos modifications ont été enregistrées"
 
@@ -4988,11 +5001,11 @@ msgstr ""
 msgid "Your message has been sent"
 msgstr "Votre message à été envoyé"
 
-#: app3_messaging/views_messaging.py:381
+#: app3_messaging/views_messaging.py:382
 msgid "The group has been successfully deleted"
 msgstr "Le groupe à été supprimé"
 
-#: app3_messaging/views_messaging.py:381 app4_ehpad_base/views.py:668
+#: app3_messaging/views_messaging.py:382 app4_ehpad_base/views.py:668
 msgid "Deleting"
 msgstr "Suppression"
 
@@ -5062,11 +5075,11 @@ msgstr "par"
 msgid "has been canceled"
 msgstr "a été annulé"
 
-#: app4_ehpad_base/admin.py:385
+#: app4_ehpad_base/admin.py:386
 msgid "Empty"
 msgstr "Vide"
 
-#: app4_ehpad_base/admin.py:388
+#: app4_ehpad_base/admin.py:389
 msgid "Multiple affectation"
 msgstr "Affectation multiple"
 
@@ -5220,7 +5233,7 @@ msgid "Granddaughter"
 msgstr "Petite-fille"
 
 #: app4_ehpad_base/models.py:144 app4_ehpad_base/models.py:237
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:175
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:179
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:425
 #: app8_survey/models.py:72
 msgid "Other"
@@ -6749,31 +6762,31 @@ msgstr ""
 msgid "Bills of"
 msgstr "Les factures de"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:111
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:115
 msgid "You have access to the invoices and can download them"
 msgstr "Vous avez accès aux factures et pouvez les télécharger"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:118
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:122
 msgid "Accommodation Bill"
 msgstr "Facture d'hébergement"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:125
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:129
 msgid "See all of my invoice"
 msgstr "Voir toutes mes factures"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:132
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:136
 msgid "My invoice since"
 msgstr "Mes facture depuis le"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:148
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:152
 msgid "Pharmacy"
 msgstr "Pharmacie"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:157
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:161
 msgid "Hairdresser"
 msgstr "Coiffeur"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:166
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:170
 msgid "Pedicure"
 msgstr "Pédicure"
 
@@ -6797,11 +6810,11 @@ msgstr "liste des résidents dont le linge est marqué par la maison de repos"
 msgid "modify/add the information of"
 msgstr "modifier/ajouter les informations de"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:37
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:40
 msgid "Information about resident"
 msgstr "Informations sur le résident"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:72
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:75
 msgid "Add profile pic"
 msgstr "Ajouter une photo de profil"
 
@@ -7632,11 +7645,11 @@ msgstr ""
 msgid "It did not work ?"
 msgstr "Cela n'a pas fonctionné ?"
 
-#: app4_ehpad_base/views_administrative_documents.py:74
+#: app4_ehpad_base/views_administrative_documents.py:76
 msgid "Card uploaded successfully. Thank you."
 msgstr "Votre carte a bien été téléchargée. Merci"
 
-#: app4_ehpad_base/views_administrative_documents.py:75
+#: app4_ehpad_base/views_administrative_documents.py:77
 msgid ""
 "Your administrative file is completed, you can consult each document as well "
 "and download them."
@@ -7644,7 +7657,7 @@ msgstr ""
 "Votre dossier administratif est complété, vous pouvez consulter chaque "
 "document et les télécharger."
 
-#: app4_ehpad_base/views_administrative_documents.py:77
+#: app4_ehpad_base/views_administrative_documents.py:79
 msgid ""
 "The button below allows you to sign all your documents at once, Serenicia "
 "uses DocuSign to sign your administrative file online. This device allows "
@@ -7656,28 +7669,28 @@ msgstr ""
 "Ce dispositif vous permet de donner une valeur juridique à votre signature "
 "tout en respectant la réglementation générale sur la protection des données."
 
-#: app4_ehpad_base/views_administrative_documents.py:123
+#: app4_ehpad_base/views_administrative_documents.py:125
 msgid "Card downloaded"
 msgstr "Carte téléchargée"
 
-#: app4_ehpad_base/views_administrative_documents.py:126
+#: app4_ehpad_base/views_administrative_documents.py:128
 msgid "All your residents cards have been downloaded"
 msgstr "Toutes vos cartes de résidents ont été téléchargées"
 
-#: app4_ehpad_base/views_administrative_documents.py:163
+#: app4_ehpad_base/views_administrative_documents.py:165
 msgid "Card deleted successfully."
 msgstr "Votre carte a été supprimée avec succès"
 
-#: app4_ehpad_base/views_administrative_documents.py:182
-#: app4_ehpad_base/views_administrative_documents.py:443
+#: app4_ehpad_base/views_administrative_documents.py:184
+#: app4_ehpad_base/views_administrative_documents.py:445
 msgid "click here"
 msgstr "cliquez ici"
 
-#: app4_ehpad_base/views_administrative_documents.py:184
+#: app4_ehpad_base/views_administrative_documents.py:186
 msgid "No documents need to be signed."
 msgstr "Aucun document à signer."
 
-#: app4_ehpad_base/views_administrative_documents.py:185
+#: app4_ehpad_base/views_administrative_documents.py:187
 msgid ""
 "For more security we ask you to download your ID card to sign your "
 "documents. If not, please"
@@ -7685,7 +7698,7 @@ msgstr ""
 "Pour plus de sécurité, nous vous demandons de télécharger votre carte "
 "d'identité pour signer vos documents. Si ce n'est pas fait, veuillez"
 
-#: app4_ehpad_base/views_administrative_documents.py:186
+#: app4_ehpad_base/views_administrative_documents.py:188
 msgid ""
 "A problem has occurred. Did you fill in your email correctly? If you don't, "
 "you won't be able to sign your document."
@@ -7693,7 +7706,7 @@ msgstr ""
 "Un problème est survenu. Avez-vous bien rempli votre email ? Si vous ne le "
 "faites pas, vous ne pourrez pas signer votre document."
 
-#: app4_ehpad_base/views_administrative_documents.py:187
+#: app4_ehpad_base/views_administrative_documents.py:189
 msgid ""
 "A problem has occurred. Please try again later or contact us for more "
 "information"
@@ -7701,7 +7714,7 @@ msgstr ""
 "Un problème est survenu. Veuillez réessayer plus tard ou contactez-nous pour "
 "plus d'informations."
 
-#: app4_ehpad_base/views_administrative_documents.py:242
+#: app4_ehpad_base/views_administrative_documents.py:244
 #: app4_ehpad_base/views_personalized_documents.py:85
 msgid ""
 "A problem has occurred. Please try again later or contact us for more "
@@ -7710,7 +7723,7 @@ msgstr ""
 "Un problème est survenu. Veuillez réessayer plus tard ou nous contacter pour "
 "plus d'informations."
 
-#: app4_ehpad_base/views_administrative_documents.py:243
+#: app4_ehpad_base/views_administrative_documents.py:245
 msgid ""
 "Your document has been successfully signed and updated. You can read and "
 "download it whenever you want."
@@ -7718,44 +7731,44 @@ msgstr ""
 "Votre document a été signé et mis à jour avec succès. Vous pouvez le lire et "
 "le télécharger quand vous le souhaitez."
 
-#: app4_ehpad_base/views_administrative_documents.py:300
+#: app4_ehpad_base/views_administrative_documents.py:302
 msgid "has been created successfully"
 msgstr "as été crée avec succès"
 
-#: app4_ehpad_base/views_administrative_documents.py:301
+#: app4_ehpad_base/views_administrative_documents.py:303
 msgid "Arrival inventory of"
 msgstr "Inventaire d'arrivée"
 
-#: app4_ehpad_base/views_administrative_documents.py:302
+#: app4_ehpad_base/views_administrative_documents.py:304
 msgid "You do not have the rights to access this page"
 msgstr "Vous n'avez pas la permission d'accéder à cette page."
 
-#: app4_ehpad_base/views_administrative_documents.py:366
-#: app4_ehpad_base/views_administrative_documents.py:401
+#: app4_ehpad_base/views_administrative_documents.py:368
+#: app4_ehpad_base/views_administrative_documents.py:403
 msgid "Information has been added"
 msgstr "Des informations ont été ajoutés"
 
-#: app4_ehpad_base/views_administrative_documents.py:444
+#: app4_ehpad_base/views_administrative_documents.py:446
 msgid "File completed at"
 msgstr "Dossier complété à"
 
-#: app4_ehpad_base/views_administrative_documents.py:453
+#: app4_ehpad_base/views_administrative_documents.py:455
 msgid "Some cards about the resident are missing"
 msgstr "Il manque des cartes concernant le résident"
 
-#: app4_ehpad_base/views_administrative_documents.py:464
+#: app4_ehpad_base/views_administrative_documents.py:466
 msgid "It is important to sign your documents"
 msgstr "Il est important de signer vos documents"
 
-#: app4_ehpad_base/views_administrative_documents.py:507
+#: app4_ehpad_base/views_administrative_documents.py:509
 msgid "Some information about your resident is missing"
 msgstr "Certains renseignements sur votre résident manquent"
 
-#: app4_ehpad_base/views_administrative_documents.py:517
+#: app4_ehpad_base/views_administrative_documents.py:519
 msgid "To create your video"
 msgstr "Pour créer votre vidéo"
 
-#: app4_ehpad_base/views_administrative_documents.py:518
+#: app4_ehpad_base/views_administrative_documents.py:520
 msgid "and Create my video"
 msgstr "et Enregistrer ma vidéo"
 
@@ -8305,19 +8318,19 @@ msgstr "Finaliser intervention"
 msgid "Thank you for making the care plan on tablet or computer"
 msgstr "Merci de faire le plan de soins sur tablette ou ordinateur"
 
-#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:297
+#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:301
 msgid "Copy the week"
 msgstr "Copier la Semaine"
 
-#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:298
+#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:302
 msgid "Empty one day"
 msgstr "Vider un jour"
 
-#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:355
+#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:359
 msgid "Select a day to empty"
 msgstr "Selectionnez un jour à vider"
 
-#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:370
+#: app6_care/templates/app6_care/caregiver/care_plan_creation.html:374
 msgid "Empty the day"
 msgstr "Vider ce jour"
 
@@ -8551,7 +8564,7 @@ msgstr "Histoire de vie"
 msgid "Personnalized support project"
 msgstr "Projet d'accompagnement personnalisé"
 
-#: app6_care/templates/app6_care/caregiver/support_project_modal.html:36
+#: app6_care/templates/app6_care/caregiver/support_project_modal.html:37
 #: app9_personnalized_project/templates/app9_personnalized_project/survey.html:195
 #: app9_personnalized_project/templates/app9_personnalized_project/survey.html:204
 msgid "Meal type"
@@ -8934,14 +8947,6 @@ msgstr "Télécharger le rapport"
 msgid "Response"
 msgstr "Réponse"
 
-#: app8_survey/templates/app8_survey/details.html:82
-msgid "View"
-msgstr "Voir"
-
-#: app8_survey/templates/app8_survey/details.html:82
-msgid "comments"
-msgstr "les commentaires"
-
 #: app8_survey/templates/app8_survey/index.html:16
 msgid "chapter"
 msgstr "chapitre"
@@ -8990,8 +8995,8 @@ msgid "Add comment"
 msgstr "Ajouter un commentaire"
 
 #: app8_survey/views.py:28 app8_survey/views.py:45 app8_survey/views.py:99
-#: app9_personnalized_project/views.py:51
-#: app9_personnalized_project/views.py:106
+#: app9_personnalized_project/views.py:52
+#: app9_personnalized_project/views.py:107
 msgid "No survey available"
 msgstr "Pas de sondage disponible"
 
@@ -9456,26 +9461,32 @@ msgstr "époux/se"
 msgid "ex spouse"
 msgstr "ex époux/se"
 
-#: app9_personnalized_project/views.py:293
-#: app9_personnalized_project/views.py:324
+#: app9_personnalized_project/views.py:294
+#: app9_personnalized_project/views.py:325
 msgid "Appointment"
 msgstr "Rendez-vous"
 
-#: app9_personnalized_project/views.py:293
+#: app9_personnalized_project/views.py:294
 msgid "Your appointment has been registered"
 msgstr "Votre rendez-vous a été enregistrée"
 
-#: app9_personnalized_project/views.py:324
+#: app9_personnalized_project/views.py:325
 msgid "The appointment has been deleted"
 msgstr "Votre rendez-vous a été supprimé"
 
-#: app9_personnalized_project/views.py:330
+#: app9_personnalized_project/views.py:331
 msgid "You don't have any appointment yet."
 msgstr "Vous n'avez pas encore de rendez-vous."
 
-#: app9_personnalized_project/views.py:345
+#: app9_personnalized_project/views.py:346
 msgid "The story life has been deleted"
 msgstr "L'histoire de vie a été supprimée"
+
+#~ msgid "View"
+#~ msgstr "Voir"
+
+#~ msgid "comments"
+#~ msgstr "les commentaires"
 
 #~ msgid "Recording..."
 #~ msgstr "Enregistrement..."
