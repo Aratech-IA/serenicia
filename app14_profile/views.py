@@ -44,7 +44,7 @@ def profile(request):
 
     if request.method == 'POST':
         user_form = UserForm(request.POST, instance=request.user)
-        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
         profile_serenicia_form = ProfileSereniciaForm(
             request.POST, request.FILES, instance=request.user.profileserenicia
         )

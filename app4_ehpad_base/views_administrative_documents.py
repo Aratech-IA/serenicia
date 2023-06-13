@@ -371,7 +371,7 @@ def resident_form(request):
     if request.method == 'POST':
 
         u_resident = ResidentForm(request.POST, instance=user_resident)
-        p_resident = ProfileResidentForm(request.POST, instance=user_resident.profile)
+        p_resident = ProfileResidentForm(request.POST, request.FILES, instance=user_resident.profile)
         pf_resident = ProfileSereniciaForm(request.POST, instance=user_resident.profileserenicia)
 
         # Resident profile (name, birth date ect ...)
