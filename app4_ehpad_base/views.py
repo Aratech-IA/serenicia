@@ -204,7 +204,10 @@ def personal_page(request):
     ws_alexa = 'wss://' + request.get_host() + ':' + request.META.get('SERVER_PORT') + '/ws_alexa/'
     connected_user = User.objects.get(id=request.user.id)
     resident = User.objects.select_related('profileserenicia').get(pk=request.session['resident_id'])
-    civility = _(resident.profile.civility)
+    if resident.profile.civility:
+        civility = _(resident.profile.civility)
+    else:
+        civility = ''
     firstname = _(resident.first_name)
     lastname = _(resident.last_name)
     carousel_images = show_images(resident.profileserenicia.folder)

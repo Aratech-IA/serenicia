@@ -88,7 +88,7 @@
                                         {% endif %}
                                     </div>
                                     <div class="ms-4 align-self-center">
-                                        <p class="my-auto">{% trans resident.resident.user.profile.civility %} {{ resident.resident.user.first_name.0 }}. {{ resident.resident.user.last_name }}</p>
+                                        <p class="my-auto">{% if resident.resident.user.profile.civility %}{% trans resident.resident.user.profile.civility %}{% endif %} {{ resident.resident.user.first_name.0 }}. {{ resident.resident.user.last_name }}</p>
                                         <p>{{ resident.resident.user.profile.client.room_number }}</p>
                                         {% if resident.age %}
                                             <small class="{% if not resident.birthday %}text-muted{% endif %} age rounded-3 px-1">{{ resident.age }} {% trans 'years' %}</small>
@@ -115,7 +115,7 @@
                                 </div>
                             </div>
                             <div class="col-7 align-self-center">
-                                <p class="my-auto">{% trans resident.resident.user.profile.civility %} {{ resident.resident.user.first_name.0 }}. {{ resident.resident.user.last_name }}</p>
+                                <p class="my-auto">{% if resident.resident.user.profile.civility %}{% trans resident.resident.user.profile.civility %}{% endif %} {{ resident.resident.user.first_name.0 }}. {{ resident.resident.user.last_name }}</p>
                                 <p>{{ resident.resident.user.profile.client.room_number }}</p>
                                 <p class="text-muted my-auto">
                                     <small  {% if resident.resident.entry_date %}
