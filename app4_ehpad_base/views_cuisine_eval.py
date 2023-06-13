@@ -203,7 +203,7 @@ def new_menu(request):
                 menu_form = NewMenuForm(instance=context.get('menu_history')[menu_index])
                 displayed = context.get('menu_history')[menu_index].id
     if not menu_form:
-        menu_form = NewMenuForm(initial={'type': daytime, 'date': now.date()})
+        menu_form = NewMenuForm(initial={'type': daytime, 'date': now.date().isoformat()})
     context['menu_form'] = menu_form
     context['displayed'] = displayed
     return render(request, 'app4_ehpad_base/cuisine_new_menu.html', context)

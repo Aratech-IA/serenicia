@@ -66,7 +66,7 @@ class Sector2Selector(forms.Form):
 
 class NewMenuForm(forms.ModelForm):
     date = forms.DateField(input_formats=['%Y-%m-%d', '%d/%m/%Y'], label="",
-                           widget=forms.DateInput(attrs={'class': 'text-center', 'readonly': 'true'}))
+                           widget=forms.DateInput(attrs={'class': 'text-center', 'type': 'date'}))
     entree = forms.ModelChoiceField(Entree.objects.filter(active=True).order_by(Lower('name')), required=False,
                                     widget=forms.Select(attrs={'class': 'text-center'}), label=_('Entree'))
     main_dish = forms.ModelChoiceField(MainDish.objects.filter(active=True).order_by(Lower('name')), required=False,
