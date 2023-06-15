@@ -294,6 +294,8 @@ def new_dish(request):
             selected_dish = get_selected_dish(option, dish_id)
             selected_dish.active = False
             selected_dish.save()
+            removed = _('removed from the list')
+            msg = {'message': f'{selected_dish.name} {removed}', 'category': _('Success')}
         elif 'register_data' in request.POST:
             dish_form = get_form_selected_dish(request, option)
             if dish_form.is_valid():
@@ -303,7 +305,9 @@ def new_dish(request):
         known_dish = get_list_selected_dish(option, sorting)
     if not dish_form:
         dish_form = get_new_form_dish(option)
-    context = {'option': option, 'dish_form': dish_form, 'known_dish': known_dish, 'msg': msg, 'sorting': sorting}
+    context = {'option': option, 'dish_form': dish_form, 'known_dish': known_dish, 'sorting': sorting}
+    if msg:
+        context.update(msg)
     return render(request, 'app4_ehpad_base/cuisine_new_dish.html', context)
 
 

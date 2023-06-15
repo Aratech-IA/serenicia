@@ -124,25 +124,28 @@ class NewEntreeForm(forms.ModelForm):
 
     def save(self):
         if self.cleaned_data.get('id'):
-            entree = Entree.objects.get(name=self.cleaned_data.get('name'))
+            entree = Entree.objects.get(id=self.cleaned_data.get('id'))
             if entree.id != int(self.cleaned_data.get('id')):
-                return {'txt': _('This name already exist'), 'type': 'err'}
+                exist = _('already exist')
+                return {'message': f'{entree.name} {exist}', 'category': _('Error')}
             else:
                 price_cents = float_to_cent(self.cleaned_data.get('price_cents'))
                 Entree.objects.filter(id=self.cleaned_data.get('id')).update(name=self.cleaned_data.get('name'),
                                                                              price_cents=price_cents)
-                return {'txt': _('Entry updated'), 'type': 'ok'}
+                updated = _('updated')
+                return {'message': f'{entree.name} {updated}', 'category': _('Success')}
         elif self.cleaned_data.get('name'):
             try:
-                Entree.objects.get(name=self.cleaned_data.get('name'))
-                return {'txt': _('This name already exist'), 'type': 'err'}
+                entree = Entree.objects.get(name=self.cleaned_data.get('name'))
+                entree.active = True
             except ObjectDoesNotExist:
                 entree, is_created = Entree.objects.get_or_create(name=self.cleaned_data.get('name'))
                 if not is_created:
                     entree.active = True
                 entree.price_cents = float_to_cent(self.cleaned_data.get('price_cents'))
-                entree.save()
-                return {'txt': _('Entry updated'), 'type': 'ok'}
+            entree.save()
+            added = _('has been added to the list')
+            return {'message': f'{entree.name} {added}', 'category': _('Success')}
 
 
 class NewMainDishForm(forms.ModelForm):
@@ -162,25 +165,28 @@ class NewMainDishForm(forms.ModelForm):
 
     def save(self):
         if self.cleaned_data.get('id'):
-            meal = MainDish.objects.get(name=self.cleaned_data.get('name'))
+            meal = MainDish.objects.get(id=self.cleaned_data.get('id'))
             if meal.id != int(self.cleaned_data.get('id')):
-                return {'txt': _('This name already exist'), 'type': 'err'}
+                exist = _('already exist')
+                return {'message': f'{meal.name} {exist}', 'category': _('Error')}
             else:
                 price_cents = float_to_cent(self.cleaned_data.get('price_cents'))
                 MainDish.objects.filter(id=self.cleaned_data.get('id')).update(name=self.cleaned_data.get('name'),
                                                                                price_cents=price_cents)
-                return {'txt': _('Meal updated'), 'type': 'ok'}
+                updated = _('updated')
+                return {'message': f'{meal.name} {updated}', 'category': _('Success')}
         elif self.cleaned_data.get('name'):
             try:
-                MainDish.objects.get(name=self.cleaned_data.get('name'))
-                return {'txt': _('This name already exist'), 'type': 'err'}
+                meal = MainDish.objects.get(name=self.cleaned_data.get('name'))
+                meal.active = True
             except ObjectDoesNotExist:
                 meal, is_created = MainDish.objects.get_or_create(name=self.cleaned_data.get('name'))
                 if not is_created:
                     meal.active = True
                 meal.price_cents = float_to_cent(self.cleaned_data.get('price_cents'))
-                meal.save()
-                return {'txt': _('Meal updated'), 'type': 'ok'}
+            meal.save()
+            added = _('has been added to the list')
+            return {'message': f'{meal.name} {added}', 'category': _('Success')}
 
 
 class NewDessertForm(forms.ModelForm):
@@ -200,25 +206,28 @@ class NewDessertForm(forms.ModelForm):
 
     def save(self):
         if self.cleaned_data.get('id'):
-            dessert = Dessert.objects.get(name=self.cleaned_data.get('name'))
+            dessert = Dessert.objects.get(id=self.cleaned_data.get('id'))
             if dessert.id != int(self.cleaned_data.get('id')):
-                return {'txt': _('This name already exist'), 'type': 'err'}
+                exist = _('already exist')
+                return {'message': f'{dessert.name} {exist}', 'category': _('Error')}
             else:
                 price_cents = float_to_cent(self.cleaned_data.get('price_cents'))
                 Dessert.objects.filter(id=self.cleaned_data.get('id')).update(name=self.cleaned_data.get('name'),
                                                                               price_cents=price_cents)
-                return {'txt': _('Dessert updated'), 'type': 'ok'}
+                updated = _('updated')
+                return {'message': f'{dessert.name} {updated}', 'category': _('Success')}
         elif self.cleaned_data.get('name'):
             try:
-                Dessert.objects.get(name=self.cleaned_data.get('name'))
-                return {'txt': _('This name already exist'), 'type': 'err'}
+                dessert = Dessert.objects.get(name=self.cleaned_data.get('name'))
+                dessert.active = True
             except ObjectDoesNotExist:
                 dessert, is_created = Dessert.objects.get_or_create(name=self.cleaned_data.get('name'))
                 if not is_created:
                     dessert.active = True
                 dessert.price_cents = float_to_cent(self.cleaned_data.get('price_cents'))
-                dessert.save()
-                return {'txt': _('Dessert updated'), 'type': 'ok'}
+            dessert.save()
+            added = _('has been added to the list')
+            return {'message': f'{dessert.name} {added}', 'category': _('Success')}
 
 
 class NewAccompanimentForm(forms.ModelForm):
@@ -238,25 +247,28 @@ class NewAccompanimentForm(forms.ModelForm):
 
     def save(self):
         if self.cleaned_data.get('id'):
-            acc = Accompaniment.objects.get(name=self.cleaned_data.get('name'))
+            acc = Accompaniment.objects.get(id=self.cleaned_data.get('id'))
             if acc.id != int(self.cleaned_data.get('id')):
-                return {'txt': _('This name already exist'), 'type': 'err'}
+                exist = _('already exist')
+                return {'message': f'{acc.name} {exist}', 'category': _('Error')}
             else:
                 price_cents = float_to_cent(self.cleaned_data.get('price_cents'))
                 Accompaniment.objects.filter(id=self.cleaned_data.get('id')).update(name=self.cleaned_data.get('name'),
                                                                                     price_cents=price_cents)
-                return {'txt': _('Accompaniment updated'), 'type': 'ok'}
+                updated = _('updated')
+                return {'message': f'{acc.name} {updated}', 'category': _('Success')}
         elif self.cleaned_data.get('name'):
             try:
-                Accompaniment.objects.get(name=self.cleaned_data.get('name'))
-                return {'txt': _('This name already exist'), 'type': 'err'}
+                acc = Accompaniment.objects.get(name=self.cleaned_data.get('name'))
+                acc.active = True
             except ObjectDoesNotExist:
                 acc, is_created = Accompaniment.objects.get_or_create(name=self.cleaned_data.get('name'))
                 if not is_created:
                     acc.active = True
                 acc.price_cents = float_to_cent(self.cleaned_data.get('price_cents'))
-                acc.save()
-                return {'txt': _('Accompaniment updated'), 'type': 'ok'}
+            acc.save()
+            added = _('has been added to the list')
+            return {'message': f'{acc.name} {added}', 'category': _('Success')}
 
 
 class PhotoForm(forms.ModelForm):
