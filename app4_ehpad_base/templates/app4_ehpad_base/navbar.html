@@ -23,6 +23,12 @@
 
             <!-- Bouton "qui est-ce" "photos" -->
             <div class="boutons_ronds d-flex justify-content-between ps-2 ps-lg-0">
+
+                <!-- Qui est-ce ? -->
+                <!-- <a href="{% url 'face reco' %}" class="recobtn d-flex justify-content-center align-items-center disabled {% if '/identification/' in request.path %}active cerclenom{% endif %}">
+                    <p class="who">?</p>
+                    <span>{% trans 'Who is it' %} ?</span>
+                </a> -->
                 
                 {% if not perms.app0_access.view_family %}
                     {% if not perms.app0_access.view_synerpa %}

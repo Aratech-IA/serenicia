@@ -38,7 +38,7 @@
         {% if DOMAIN == "protecia" %}
             {% include 'app1_base/navbar.html' %}
         {% endif %}
-        {% if DOMAIN == "serenicia"%}
+        {% if DOMAIN == "serenicia" and not no_navbar %}
             {% if request.user.is_authenticated %}
                 {% include 'app4_ehpad_base/navbar.html' %}
             {% endif %}
@@ -47,8 +47,8 @@
     </header>
 
 
-    {% if request.user.is_authenticated %}
-        <!-- menu clic sur nom.prénom -->
+    {% if request.user.is_authenticated and not no_navbar %}
+        <!-- menu clic sur prénom.nom -->
         <div id="menu_clicnom" class="menu_nom bg-light p-2">
 
             <!-- Messagerie -->
@@ -233,7 +233,7 @@
 
     <div class="d-flex">
 
-        {% if request.user.is_authenticated %}
+        {% if request.user.is_authenticated and not no_navbar %}
             <!-- navbar burger -->
             <div id="menu_burger" class="menu_burger d-flex flex-column justify-content-start align-items-center">
                 <div class="w-100 d-flex justify-content-between align-items-center d-md-none p-2">
@@ -613,7 +613,7 @@
             
         <div class="contenus w-100">
     
-            {% if request.session.resident_id and not perms.app0_access.view_family %}
+            {% if request.session.resident_id and not perms.app0_access.view_family and not no_navbar %}
                 <!-- menu personnalisé pour gestion résident -->
                 <ul id="menuperso" class="d-flex text-uppercase justify-content-center align-items-center text-center flex-wrap px-2 mb-0 py-1 border-bottom border-darkblue">
                     

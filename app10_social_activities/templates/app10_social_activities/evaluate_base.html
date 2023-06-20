@@ -1,25 +1,8 @@
+{% extends "app1_base/base.html" %}
 {% load static %}
-<html>
-<head id="header">
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="apple-mobile-web-app-capable" content="yes"> <!-- authorize full screen on iOS -->
-    <title>Serenicia</title>
-    <link rel="shortcut icon" href="{% get_static_prefix %}app4_ehpad_base/img/favicon.ico">
-
-    <!-- <link rel="stylesheet" href="{% static 'app1_base/css/github.css' %}">
-    <link rel="stylesheet" href="{% static 'app1_base/css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'app1_base/css/style.css' %}"> -->
-
-    <!-- Bootstrap SCSS -->
-    {% load compress %}
-
-    {% compress css %} 
-        <link type="text/x-scss" href="{% static 'app10_social_activities/scss/main.scss' %}" rel="stylesheet" media="screen">
-    {% endcompress %}
 
 
+<head>
     <style>
         #body {
             background-color: #f8f9fa;
@@ -41,4 +24,3 @@
 {% block content %}
 {% endblock content %}
 
-</html>
