@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 512 512"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="head-side-virus-solid.svg"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)">
+  <defs
+     id="defs8" />
+  <sodipodi:namedview
+     id="namedview6"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="1.1449053"
+     inkscape:cx="439.33764"
+     inkscape:cy="263.77727"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="-8"
+     inkscape:window-y="1072"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4" />
+  <path
+     d="M 0,224.2 C 0,100.6 100.2,0 224,0 h 24 c 95.2,0 181.2,69.3 197.3,160.2 2.3,13 6.8,25.7 15.1,36 l 42,52.6 c 6.2,7.8 9.6,17.4 9.6,27.4 0,24.2 -19.6,43.8 -43.8,43.8 H 448 v 64 c 0,35.3 -28.7,64 -64,64 h -64 v 32 c 0,17.7 -14.3,32 -32,32 H 96 C 78.3,512 64,497.7 64,480 V 407.3 C 64,390.6 57.1,374.8 46.9,361.5 16.6,322.4 0,274.1 0,224.2 Z"
+     id="path2"
+     sodipodi:nodetypes="ssscccsscsscssssscs" />
+  <text
+     xml:space="preserve"
+     style="font-size:400px;fill:#ffffff"
+     x="158.10857"
+     y="379.83112"
+     id="text372"><tspan
+       x="158.10857"
+       y="379.83112"
+       sodipodi:role="line"
+       id="tspan476">?</tspan></text>
+</svg>

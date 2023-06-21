@@ -24,17 +24,33 @@
             <!-- Bouton "qui est-ce" "photos" -->
             <div class="boutons_ronds d-flex justify-content-between ps-2 ps-lg-0">
 
-                <!-- Qui est-ce ? -->
-                <!-- <a href="{% url 'face reco' %}" class="recobtn d-flex justify-content-center align-items-center disabled {% if '/identification/' in request.path %}active cerclenom{% endif %}">
-                    <p class="who">?</p>
-                    <span>{% trans 'Who is it' %} ?</span>
-                </a> -->
+                <!-- Aide -->
+                <a href="{% url 'app17_help index' %}" class="cerclenom d-flex justify-content-center align-items-center">
+                    <p class="help">?</p>
+                    <span>{% trans 'Help' %} ?</span>
+                </a>
                 
                 {% if not perms.app0_access.view_family %}
                     {% if not perms.app0_access.view_synerpa %}
                         <!-- Qui est-ce ? -->
-                        <a href="{% url 'face reco' %}" class="recobtn d-flex justify-content-center align-items-center disabled {% if '/identification/' in request.path %}active cerclenom{% endif %}">
-                            <p class="who">?</p>
+                        <a href="{% url 'face reco' %}" class="recobtn d-flex justify-content-center align-items-center disabled {% if '/identification/' in request.path %}active cerclenom{% endif %} ms-1 ms-lg-2">
+                            <svg
+                                width="1.5em"
+                                viewBox="0 0 512 512">
+                                <path
+                                    d="M 0,224.2 C 0,100.6 100.2,0 224,0 h 24 c 95.2,0 181.2,69.3 197.3,160.2 2.3,13 6.8,25.7 15.1,36 l 42,52.6 c 6.2,7.8 9.6,17.4 9.6,27.4 0,24.2 -19.6,43.8 -43.8,43.8 H 448 v 64 c 0,35.3 -28.7,64 -64,64 h -64 v 32 c 0,17.7 -14.3,32 -32,32 H 96 C 78.3,512 64,497.7 64,480 V 407.3 C 64,390.6 57.1,374.8 46.9,361.5 16.6,322.4 0,274.1 0,224.2 Z" />
+                                <text
+                                    style="font-size:400px;fill:#ffffff"
+                                    x="158.10857"
+                                    y="379.83112"
+                                    id="text372">
+                                    <tspan
+                                        x="158.10857"
+                                        y="379.83112">
+                                        ?
+                                    </tspan>
+                                </text>
+                            </svg>
                             <span>{% trans 'Who is it' %} ?</span>
                         </a>
                     {% endif %}

@@ -42,6 +42,7 @@ elif "serenicia" in settings.DOMAIN.lower():
         path('management/', include('app0_access.urls')),
         path('calendar/', include('app15_calendar.urls')),
         path('portal/', include('app16_portal.urls')),
+        path('help/', include('app17_help.urls')),
         # path('__debug__/', include('debug_toolbar.urls')),
     ]
     # try:
