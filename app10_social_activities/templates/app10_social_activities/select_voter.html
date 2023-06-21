@@ -2,46 +2,53 @@
 {% load static %}
 {% load i18n %}
 
-{% block sticky-top-btn %}
-    <a href="{% url 'app10_social_activities activity index' %}" class="btn btn-perso sticky-top-btn d-none d-md-block m-2">{% trans 'Back' %}</a>
-{% endblock sticky-top-btn %}
 
 {% block content %}
 <head>
     <style>
-        .img-size{
+        .img-size {
           height: 100px;
           width: 100px;
         }
-        .voter-btn{
-            width: 350px;
+
+        .voter-btn {
+          width: 350px;
         }
-        .list-main-div{
-            max-width: 1200px;
+
+        .list-main-div {
+          max-width: 1200px;
         }
     </style>
 </head>
 
-<main class="d-flex flex-column align-items-center">
-  <h2>{% trans 'Select a voter' %}</h2>
+<main class="pt-3">
+
+  <a href="{% url 'app10_social_activities activity index' %}" class="btn btn-perso sticky-top-btn d-none d-md-inline m-2">{% trans 'Back' %}</a>
+  
+  <div class="d-flex flex-column align-items-center">
+    <h2 class="pb-2">{% trans 'Select a voter' %}</h2>
+      
     <form action="{% url 'app10_social_activities start evaluation' %}" method="post" class="d-flex flex-wrap gap-2 list-main-div justify-content-center align-items-center">{% csrf_token %}
-        <input hidden name="valid.x" value="true">
-        {% for user in list_att %}
-            <button class="btn btn-perso d-flex justify-content-center voter-btn {% if user.has_voted %}disabled{% endif %}" name="voter" value="{{ user.participant.folder }}">
-                <div class="d-flex w-100">
-                    <div class="img-size d-flex justify-content-center align-items-center">
-                      {% if user.participant.user.profile.photo %}
-                        <img src="{{ user.participant.user.profile.photo.url }}" class="h-100 rounded-3">
-                      {% else %}
-                        <img src="{% static 'app4_ehpad_base/img/no_picture.png' %}" class="h-100 rounded-3">
-                      {% endif %}
-                    </div>
-                    <div class="col-auto d-flex align-items-center">
-                      <h4>{{ user.participant.user.profile.civility }} {{ user.participant.user.first_name.0 }}. {{ user.participant.user.last_name }}</h4>
-                    </div>
-                </div>
-            </button>
-        {% endfor %}
+      <input hidden name="valid.x" value="true">
+      {% for user in list_att %}
+        <button class="btn btn-perso d-flex justify-content-center voter-btn {% if user.has_voted %}disabled{% endif %}" name="voter" value="{{ user.participant.folder }}">
+          <div class="d-flex w-100">
+            <div class="img-size d-flex justify-content-center align-items-center">
+              {% if user.participant.user.profile.photo %}
+                <img src="{{ user.participant.user.profile.photo.url }}" class="h-100 rounded-3">
+              {% else %}
+                <img src="{% static 'app4_ehpad_base/img/no_picture.png' %}" class="h-100 rounded-3">
+              {% endif %}
+            </div>
+            <div class="col-auto d-flex align-items-center">
+              <h4>{{ user.participant.user.profile.civility }} {{ user.participant.user.first_name.0 }}. {{ user.participant.user.last_name }}</h4>
+            </div>
+          </div>
+        </button>
+      {% endfor %}
     </form>
+  </div>
+  
+
 </main>
 {% endblock content %}

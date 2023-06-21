@@ -2,9 +2,6 @@
 {% load static %}
 {% load i18n %}
 
-{% block sticky-top-btn %}
-    <a href="{{ redirect_url }}" class="btn btn-perso sticky-top-btn d-none d-md-block m-2">{% trans 'Back' %}</a>
-{% endblock sticky-top-btn %}
 
 {% block content %}
 <head>
@@ -19,50 +16,57 @@
     </style>
 </head>
 
-<main class="d-flex justify-content-center">
-    {% if selection_mod %}
-        {% if save_message %}
+<main class="pt-3">
+
+    <a href="{{ redirect_url }}" class="btn btn-perso sticky-top-btn d-none d-md-inline m-2">{% trans 'Back' %}</a>
+    
+    <div class="d-flex justify-content-center">
+        {% if selection_mod %}
+            {% if save_message %}
             <div class="modal" id="warning_msg" tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content border border-darkblue">
-                    <div class="modal-header">
-                        <h5 class="modal-title">{% trans "Saved" %}</h5>
-                    </div>
-                    <div class="modal-body text-center">
-                        <h3>{{ save_message }}</h3>
-                    </div>
-                    <div class="modal-footer">
-                            <button class="btn btn-perso" data-bs-dismiss="modal">{% trans 'OK' %}</button>
+                <div class="modal-dialog">
+                    <div class="modal-content border border-darkblue">
+                        <div class="modal-header">
+                            <h5 class="modal-title">{% trans "Saved" %}</h5>
+                        </div>
+                        <div class="modal-body text-center">
+                            <h3>{{ save_message }}</h3>
+                        </div>
+                        <div class="modal-footer">
+                                <button class="btn btn-perso" data-bs-dismiss="modal">{% trans 'OK' %}</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        {% endif %}
-        <form method="post" action="{% url 'app10_social_activities activity gallery' act_id=activity.id %}">{% csrf_token %}
+            
+            {% endif %}
+            <form method="post" action="{% url 'app10_social_activities activity gallery' act_id=activity.id %}">{% csrf_token %}
+                <div class="d-flex flex-wrap justify-content-center align-items-center gap-2 max-w-main-div">
+                    {% for pic_url in list_url %}
+                        <button class="btn btn-perso {% if pic_url.thumb == activity.thumbnail_url %}active{% endif %}" name="selected" value="{{ pic_url.thumb }}">
+                            <img src="{{ pic_url.thumb }}" class="activity-pic rounded-3">
+                        </button>
+                    {% endfor %}
+                </div>
+            </form>
+                
+            {% else %}
             <div class="d-flex flex-wrap justify-content-center align-items-center gap-2 max-w-main-div">
                 {% for pic_url in list_url %}
-                    <button class="btn btn-perso {% if pic_url.thumb == activity.thumbnail_url %}active{% endif %}" name="selected" value="{{ pic_url.thumb }}">
-                        <img src="{{ pic_url.thumb }}" class="activity-pic rounded-3">
-                    </button>
+                    {% if '/historic/' in redirect_url %}
+                        <form method="post" action="{% url 'app10_social_activities historic gallery details' act_id=activity.id %}">
+                    {% else %}
+                        <form method="post" action="{% url 'app10_social_activities activity gallery details' act_id=activity.id %}">
+                    {% endif %}
+                        {% csrf_token %}
+                        <input class="activity-pic rounded-3" type="image" src="{{ pic_url.thumb }}">
+                        <input hidden name="pic_url" value="{{  pic_url.full }}">
+                        <input hidden name="redirect_url" value="{{ redirect_url }}">
+                    </form>
                 {% endfor %}
             </div>
-        </form>
-    {% else %}
-
-    <div class="d-flex flex-wrap justify-content-center align-items-center gap-2 max-w-main-div">
-        {% for pic_url in list_url %}
-            {% if '/historic/' in redirect_url %}
-                <form method="post" action="{% url 'app10_social_activities historic gallery details' act_id=activity.id %}">
-            {% else %}
-                <form method="post" action="{% url 'app10_social_activities activity gallery details' act_id=activity.id %}">
-            {% endif %}
-                {% csrf_token %}
-                <input class="activity-pic rounded-3" type="image" src="{{ pic_url.thumb }}">
-                <input hidden name="pic_url" value="{{  pic_url.full }}">
-                <input hidden name="redirect_url" value="{{ redirect_url }}">
-            </form>
-        {% endfor %}
+        {% endif %}
     </div>
-    {% endif %}
+    
 </main>
 {% endblock content %}

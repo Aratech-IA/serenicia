@@ -2,9 +2,6 @@
 {% load static %}
 {% load i18n %}
 
-{% block sticky-top-btn %}
-    <a href="{% url 'app10_social_activities index' %}" class="btn btn-perso sticky-top-btn d-none d-md-block m-2">{% trans 'Back' %}</a>
-{% endblock sticky-top-btn %}
 
 {% block content %}
 <head>
@@ -29,6 +26,8 @@
         }
     </style>
 </head>
+
+
 {% if ask_validation %}
     <div class="modal" id="warning_msg" tabindex="-1">
         <div class="modal-dialog">
@@ -85,59 +84,88 @@
 </div>
 
 
-<main class="mt-3 d-flex flex-column align-items-center gap-3">
-<!--  entête  -->
-    <div class="d-flex flex-wrap gap-3">
-        <div class="d-flex flex-column">
-            <span class="fs-3">{{ activity.event.type }}</span>
-            <span class="text-muted">{{ activity.event.location.name }} - {{ activity.event.organizer }}</span>
-            <span>{% trans 'Started at' %}: {{ activity.start|date:"H:i" }} - {% trans 'Finished at' %}: {{ activity.end|date:"H:i" }}</span>
-        </div>
-        <div class="my-auto">
-            <a href="{% url 'app10_social_activities index' %}" class="btn btn-perso fw-bold">{% trans 'Change activity' %}</a>
-        </div>
-    </div>
-<!--  boutons  -->
-    <div class="d-flex flex-wrap gap-3 justify-content-center">
-<!--    boutons photos / galerie    -->
-        <div class="d-flex flex-column gap-2 align-items-center">
-            {% if photo_activity %}
-            <form action="{% url 'app10_social_activities activity index' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
-                {{ photo_activity.file }}
-                <label for="activity_photo_btn">
-                    <div class="btn btn-perso">
-                        <svg width="150px" height="150px" viewBox="0 0 16 16" class="bi bi-camera" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                          <path fill-rule="evenodd" d="M15 12V6a1 1 0 0 0-1-1h-1.172a3 3 0 0 1-2.12-.879l-.83-.828A1 1 0 0 0 9.173 3H6.828a1 1 0 0 0-.707.293l-.828.828A3 3 0 0 1 3.172 5H2a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z"/>
-                                                          <path fill-rule="evenodd" d="M8 11a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                                                          <path d="M3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
-                                    </svg>
-                    </div>
-                </label>
-            </form>
-            {% else %}
-            <div>
-                <div class="btn btn-perso disabled">
-                    <svg width="150px" height="150px" viewBox="0 0 16 16" class="bi bi-camera" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                              <path fill-rule="evenodd" d="M15 12V6a1 1 0 0 0-1-1h-1.172a3 3 0 0 1-2.12-.879l-.83-.828A1 1 0 0 0 9.173 3H6.828a1 1 0 0 0-.707.293l-.828.828A3 3 0 0 1 3.172 5H2a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z"/>
-                                                              <path fill-rule="evenodd" d="M8 11a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                                                              <path d="M3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
-                                        </svg>
-                </div>
+<main class="mt-3">
+    
+    <a href="{% url 'app10_social_activities index' %}" class="btn btn-perso sticky-top-btn d-none d-md-inline m-2">{% trans 'Back' %}</a>
+
+    <div class=" d-flex flex-column align-items-center gap-3">
+        <!--  entête  -->
+        <div class="d-flex flex-wrap gap-3">
+            <div class="d-flex flex-column">
+                <span class="fs-3">{{ activity.event.type }}</span>
+                <span class="text-muted">{{ activity.event.location.name }} - {{ activity.event.organizer }}</span>
+                <span>{% trans 'Started at' %}: {{ activity.start|date:"H:i" }} - {% trans 'Finished at' %}: {{ activity.end|date:"H:i" }}</span>
             </div>
-            {% endif %}
-            <form action="{% url 'app10_social_activities activity gallery' act_id=activity.id %}" method="post" class="w-100">{% csrf_token %}
-                <button class="btn btn-perso choices-button" name="illustration" value="1">
-                    <h5 class="choices-text">{% trans 'Select an illustration photo' %}</h5>
-                </button>
-            </form>
-            <a href="{% url 'app10_social_activities activity gallery' act_id=activity.id %}" class="btn btn-perso choices-button">
-                <h5 class="choices-text">{% trans 'See the pictures' %}</h5>
-            </a>
+            <div class="my-auto">
+                <a href="{% url 'app10_social_activities index' %}" class="btn btn-perso fw-bold">{% trans 'Change activity' %}</a>
+            </div>
         </div>
-<!--    boutons évaluation    -->
-        <div class="d-flex flex-column gap-2 align-items-center">
+
+        <!--  boutons  -->
+        <div class="d-flex flex-wrap gap-3 justify-content-center">
+
+            <!--    boutons photos / galerie    -->
+            <div class="d-flex flex-column gap-2 align-items-center">
+                {% if photo_activity %}
+                <form action="{% url 'app10_social_activities activity index' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+                    {{ photo_activity.file }}
+                    <label for="activity_photo_btn">
+                        <div class="btn btn-perso">
+                            <svg width="150px" height="150px" viewBox="0 0 16 16" class="bi bi-camera" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M15 12V6a1 1 0 0 0-1-1h-1.172a3 3 0 0 1-2.12-.879l-.83-.828A1 1 0 0 0 9.173 3H6.828a1 1 0 0 0-.707.293l-.828.828A3 3 0 0 1 3.172 5H2a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z"/>
+                                <path fill-rule="evenodd" d="M8 11a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                                <path d="M3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
+                            </svg>
+                        </div>
+                    </label>
+                </form>
+                {% else %}
+                <div>
+                    <div class="btn btn-perso disabled">
+                        <svg width="150px" height="150px" viewBox="0 0 16 16" class="bi bi-camera" fill="currentColor">
+                            <path fill-rule="evenodd" d="M15 12V6a1 1 0 0 0-1-1h-1.172a3 3 0 0 1-2.12-.879l-.83-.828A1 1 0 0 0 9.173 3H6.828a1 1 0 0 0-.707.293l-.828.828A3 3 0 0 1 3.172 5H2a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z"/>
+                            <path fill-rule="evenodd" d="M8 11a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                            <path d="M3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
+                        </svg>
+                    </div>
+                </div>
+                {% endif %}
+
+                <form action="{% url 'app10_social_activities activity gallery' act_id=activity.id %}" method="post" class="w-100">
+                    {% csrf_token %}
+                    <button class="btn btn-perso choices-button" name="illustration" value="1">
+                        <h5 class="choices-text">{% trans 'Select an illustration photo' %}</h5>
+                    </button>
+                </form>
+
+                <a href="{% url 'app10_social_activities activity gallery' act_id=activity.id %}" class="btn btn-perso choices-button">
+                    <h5 class="choices-text">{% trans 'See the pictures' %}</h5>
+                </a>
+            </div>
+
+            <!--    boutons évaluation    -->
+            <div class="d-flex flex-column gap-2 align-items-center">
                 <a href="{% url 'app10_social_activities auto identification' %}" class="btn btn-perso {% if not access_to_rating %}disabled{% endif %}" id="auto-recobtn">
-                    <img src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}" class="img-size-large">
+                    <svg
+                        class="img-size-large"
+                        width="1.75em"
+                        viewBox="0 0 1052 1052">
+                        <g
+                            transform="translate(1085.9226,-695.622)">
+                            <path
+                            d="m -829.92261,1747.622 c 141.40001,0 256.00001,-114.6 256.00001,-256 0,-141.4 -114.6,-256 -256.00001,-256 -141.40001,0 -255.99999,114.6 -255.99999,256 0,141.4 114.59998,256 255.99999,256 z m -91.9,-186.5 c 17.9,20.7 48.5,42.5 91.9,42.5 43.40001,0 74.00001,-21.8 91.90001,-42.5 5.8,-6.7 15.9,-7.4 22.6,-1.6 6.7,5.8 7.4,15.9 1.6,22.6 -22.3,25.6 -61,53.5 -116.10001,53.5 -55.1,0 -93.8,-27.9 -116.10001,-53.5 -5.8,-6.7 -5.1,-16.8 1.6,-22.6 6.7,-5.8 16.8,-5.1 22.60001,1.6 z m 44.3,-117.5 c 0,17.7 -14.3,32 -32,32 -17.70001,0 -32.00001,-14.3 -32.00001,-32 0,-17.7 14.3,-32 32.00001,-32 17.7,0 32,14.3 32,32 z m 128.00001,32 c -17.7,0 -32,-14.3 -32,-32 0,-17.7 14.3,-32 32,-32 17.7,0 32,14.3 32,32 0,17.7 -14.3,32 -32,32 z"
+                            style="fill:#6eff90;fill-opacity:1" />
+                            <path
+                            d="m -829.92261,1207.622 c 141.4,0 255.99999,-114.6 255.99999,-256.00001 0,-141.4 -114.59999,-255.99999 -255.99999,-255.99999 -141.4,0 -255.99999,114.59999 -255.99999,255.99999 0,141.40001 114.59999,256.00001 255.99999,256.00001 z m -96.7,-123.3 c -2.6,8.4 -11.6,13.2 -20,10.5 -8.4,-2.7 -13.2,-11.6 -10.5,-20 16.4,-53.1 67.5,-91.20001 127.2,-91.20001 59.7,0 110.8,38.10001 127.3,91.30001 2.6,8.4 -2.1,17.4 -10.5,20 -8.4,2.6 -17.4,-2.1 -20,-10.5 -12.3,-39.4 -50.7,-68.8 -96.8,-68.8 -46.1,0 -84.5,29.4 -96.7,68.7 z m 49.1,-180.70001 c 0,17.7 -14.3,32 -32,32 -17.7,0 -32,-14.3 -32,-32 0,-17.7 14.3,-32 32,-32 17.7,0 32,14.3 32,32 z m 128,32 c -17.7,0 -32,-14.3 -32,-32 0,-17.7 14.3,-32 32,-32 17.7,0 32,14.3 32,32 0,17.7 -14.3,32 -32,32 z"
+                            style="fill:#ff0000;fill-opacity:1" />
+                            <path
+                            d="m -289.9226,1235.622 c -141.4,0 -256,114.6 -256,256 0,141.4 114.6,256 256,256 141.4,0 256,-114.6 256,-256 0,-141.4 -114.6,-256 -256,-256 z m 96.7,315.3 c 2.6,-8.4 11.6,-13.2 20,-10.5 8.4,2.7 13.2,11.6 10.5,20 -16.4,53.1 -67.5,91.2 -127.2,91.2 -59.7,0 -110.8,-38.1 -127.3,-91.3 -2.6,-8.4 2.1,-17.4 10.5,-20 8.4,-2.6 17.4,2.1 20,10.5 12.3,39.4 50.7,68.8 96.8,68.8 46.1,0 84.5,-29.4 96.7,-68.7 z m -49.1,-107.3 c 0,-17.7 14.3,-32 32,-32 17.7,0 32,14.3 32,32 0,17.7 -14.3,32 -32,32 -17.7,0 -32,-14.3 -32,-32 z m -128,-32 c 17.7,0 32,14.3 32,32 0,17.7 -14.3,32 -32,32 -17.7,0 -32,-14.3 -32,-32 0,-17.7 14.3,-32 32,-32 z"
+                            style="fill:#16b84e;fill-opacity:1" />
+                            <path
+                            d="m -289.92262,695.622 c -141.40001,0 -256.00001,114.6 -256.00001,256 0,141.4 114.6,256 256.00001,256 141.40001,0 256.000019,-114.6 256.000019,-256 0,-141.4 -114.600009,-256 -256.000019,-256 z m 91.9,378.5 c -17.9,-20.7 -48.5,-42.5 -91.9,-42.5 -43.40001,0 -74.00001,21.8 -91.90001,42.5 -5.8,6.7 -15.9,7.4 -22.6,1.6 -6.7,-5.8 -7.4,-15.9 -1.6,-22.6 22.3,-25.6 61,-53.5 116.10001,-53.5 55.1,0 93.8,27.9 116.10001,53.5 5.8,6.7 5.1,16.8 -1.6,22.6 -6.7,5.8 -16.8,5.1 -22.60001,-1.6 z m -44.3,-170.5 c 0,-17.7 14.3,-32 32,-32 17.70001,0 32.00001,14.3 32.00001,32 0,17.7 -14.3,32 -32.00001,32 -17.7,0 -32,-14.3 -32,-32 z m -128.00001,-32 c 17.7,0 32,14.3 32,32 0,17.7 -14.3,32 -32,32 -17.7,0 -32,-14.3 -32,-32 0,-17.7 14.3,-32 32,-32 z"
+                            style="fill:#ff8000;fill-opacity:1" />
+                        </g>
+                    </svg>
                 </a>
                 <a href="{% url 'app10_social_activities select voter' %}" class="btn btn-perso choices-button {% if not access_to_rating %}disabled{% endif %}">
                     <h5 class="choices-text">{% trans 'Evaluation' %} ({{ voter_count }} / {{ activity.attendance.count }})</h5>
@@ -154,28 +182,33 @@
                     </div>
                 {% endif %}
             </div>
-<!--    boutons présence / blog / commentaire    -->
-        <div class="d-flex flex-column align-items-center justify-content-start">
-        <div class="d-flex flex-column gap-2 align-items-center">
-            <a href="{% url 'app10_social_activities attendance' %}" class="btn btn-perso choices-button {% if not activity %}disabled{% endif %}">
-                <h5 class="choices-text">{% trans 'Attendance list' %} ({{ activity.attendance.count }} / {{ activity.participants.count }})</h5>
-            </a>
-            <!-- Button trigger modal -->
-            <button class="btn btn-perso choices-button {% if not activity %}disabled{% endif %}" data-bs-toggle="modal" data-bs-target="#comentModal">
-              <h5 class="choices-text">{% trans 'Comment' %}</h5>
-            </button>
-            {% if activity.blog_post %}
-                <a href="{% url 'show_post' post_id=activity.blog_post.id %}" class="btn btn-perso choices-button">
-                    <h5 class="choices-text">{% trans 'Blog post' %}</h5>
-                </a>
-            {% else %}
-                <a href="{% url 'create_post' act_id=activity.id %}" class="btn btn-perso choices-button">
-                    <h5 class="choices-text">{% trans 'Create blog post' %}</h5>
-                </a>
-            {% endif %}
+
+            <!--    boutons présence / blog / commentaire    -->
+            <div class="d-flex flex-column align-items-center justify-content-start">
+                <div class="d-flex flex-column gap-2 align-items-center">
+                    <a href="{% url 'app10_social_activities attendance' %}" class="btn btn-perso choices-button {% if not activity %}disabled{% endif %}">
+                        <h5 class="choices-text">{% trans 'Attendance list' %} ({{ activity.attendance.count }} / {{ activity.participants.count }})</h5>
+                    </a>
+                    
+                    <!-- Button trigger modal -->
+                    <button class="btn btn-perso choices-button {% if not activity %}disabled{% endif %}" data-bs-toggle="modal" data-bs-target="#comentModal">
+                    <h5 class="choices-text">{% trans 'Comment' %}</h5>
+                    </button>
+
+                    {% if activity.blog_post %}
+                        <a href="{% url 'show_post' post_id=activity.blog_post.id %}" class="btn btn-perso choices-button">
+                            <h5 class="choices-text">{% trans 'Blog post' %}</h5>
+                        </a>
+                    {% else %}
+                        <a href="{% url 'create_post' act_id=activity.id %}" class="btn btn-perso choices-button">
+                            <h5 class="choices-text">{% trans 'Create blog post' %}</h5>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
         </div>
     </div>
-    </div>
+    
 </main>
 {% if access_to_rating %}
 <script>
