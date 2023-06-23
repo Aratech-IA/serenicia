@@ -1,0 +1,41 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+
+{% block content %}
+{% load static %}
+{% load i18n %}
+
+
+<div class="p-2">
+    <a class="btn btn-perso" href="{% url 'app17_help index' %}">{% trans "Return" %}</a>
+    <h4 class="text-center text-uppercase pb-3 pb-md-4">{% trans "Help module Social life" %}</h4>
+    <div>
+
+        <div class="d-flex flex-column flex-md-row align-items-center pb-5">
+            <p class="col-11 col-md-3 text-center pb-2 pb-md-0">{% trans "Activity page presentation" %}</p>
+            <img src="{% static 'app17_help/images/vie_sociale-page_evenement-explications.png' %}" alt="{% trans 'Social life page screenshot' %}" class="col-11 col-md-8">
+        </div>
+
+        <div class="d-flex flex-column flex-md-row align-items-center pb-5">
+            <p class="col-11 col-md-3 text-center pb-2 pb-md-0">{% trans "Create a place" %}</p>
+            <video controls class="col-11 col-md-8">
+                <source src="{% static 'app17_help/videos/vie_sociale-Creation_lieu.mp4' %}" type="video/mp4">
+                {% trans "Your browser does not support the HTML video tag" %}.
+                
+            </video>
+        </div>
+        
+        <div class="d-flex flex-column flex-md-row align-items-center pb-5">
+            <p class="col-11 col-md-3 text-center pb-2 pb-md-0">{% trans "Create an activity" %}</p>
+            <video controls class="col-11 col-md-8">
+                <source src="{% static 'app17_help/videos/vie_sociale-Creation_activite.mp4' %}" type="video/mp4">
+                {% trans "Your browser does not support the HTML video tag" %}.
+            </video>
+        </div>
+        
+    </div>
+</div>
+
+
+{% endblock content %}
+
+

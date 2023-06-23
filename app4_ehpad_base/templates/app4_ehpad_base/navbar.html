@@ -21,13 +21,13 @@
                 </svg>
             </button>
 
-            <!-- Bouton "qui est-ce" "photos" -->
-            <div class="boutons_ronds d-flex justify-content-between ps-2 ps-lg-0">
+            <!-- Bouton "Help" "qui est-ce" "photos" -->
+            <div class="position-relative boutons_ronds d-flex justify-content-between ps-2 ps-lg-0">
 
                 <!-- Aide -->
-                <a href="{% url 'app17_help index' %}" class="cerclenom d-flex justify-content-center align-items-center">
+                <a href="{% url 'app17_help index' %}" class= "cerclenom d-flex justify-content-center align-items-center">
                     <p class="help">?</p>
-                    <span>{% trans 'Help' %} ?</span>
+                    <span class="span_help text-center">{% trans 'Help' %}</span>
                 </a>
                 
                 {% if not perms.app0_access.view_family %}
@@ -51,7 +51,7 @@
                                     </tspan>
                                 </text>
                             </svg>
-                            <span>{% trans 'Who is it' %} ?</span>
+                            <span class="span_who text-center">{% trans 'Who is it' %} ?</span>
                         </a>
                     {% endif %}
                 {% endif %}
@@ -64,7 +64,7 @@
                                 <!-- photo -->
                                 <a class="dropdown-toggle" type="button" id="dropdownPhoto" data-bs-toggle="dropdown" aria-expanded="false">
                                     <img src="{% static 'app4_ehpad_base/img/camera-fill.svg' %}" alt="{% trans 'Camera icon' %}">
-                                    <span>{% trans "Take pictures" %} !</span>
+                                    <span class="span_photo text-center">{% trans "Take pictures" %}</span>
                                 </a>
                                 <!-- Liens dropdown -->
                                 <ul class="dropdown-menu ms-4 mt-5" aria-labelledby="dropdownPhoto">

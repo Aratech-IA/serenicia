@@ -2,6 +2,7 @@ from django.conf import settings
 from django.conf.urls import include
 
 from django.urls import path
+from django.utils.translation import gettext_lazy as _
 from django.shortcuts import redirect
 
 from django.views.generic.base import RedirectView
