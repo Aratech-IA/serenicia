@@ -11,3 +11,7 @@ def social_life(request):
 # Page Cuisine help
 def cuisine(request):
     return render(request, 'app17_help/cuisine.html')
+    
+# Page Quality help
+def quality(request):
+    return render(request, 'app17_help/quality.html')

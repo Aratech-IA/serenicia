@@ -575,6 +575,9 @@ class Invoice(models.Model):
     added_by = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('Added by'), related_name='staff',
                                  null=True)
 
+    class Meta:
+        verbose_name = _('Invoice')
+
     def __str__(self):
         return '{} - {} - {}'.format(self.user_resident, self.type, self.pub_date)
 
@@ -861,6 +864,9 @@ class PayRoll(models.Model):
     date_of_payslip = models.DateField(default=date_payroll,
                                        help_text='Chose a date with correct month of payslip, dont mind the day')
     payslip = models.FileField(upload_to='payroll/', null=True, blank=True)
+
+    class Meta:
+        verbose_name = _('Payroll')
 
     class Meta:
         constraints = [
