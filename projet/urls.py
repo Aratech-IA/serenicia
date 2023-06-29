@@ -2,6 +2,7 @@ from django.conf import settings
 from django.conf.urls import include
 
 from django.urls import path
+from django.utils.translation import gettext_lazy as _
 from django.shortcuts import redirect
 
 from django.views.generic.base import RedirectView
@@ -42,6 +43,7 @@ elif "serenicia" in settings.DOMAIN.lower():
         path('management/', include('app0_access.urls')),
         path('calendar/', include('app15_calendar.urls')),
         path('portal/', include('app16_portal.urls')),
+        path('help/', include('app17_help.urls')),
         # path('__debug__/', include('debug_toolbar.urls')),
     ]
     # try:

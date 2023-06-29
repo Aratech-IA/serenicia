@@ -223,7 +223,7 @@ def evaluate(request, question):
         image_url = settings.STATIC_URL + 'app4_ehpad_base/img/no_picture.png'
     return render(request, 'app10_social_activities/evaluate.html', {'activity': activity,
                                                    'question': question,
-                                                   'background_img': image_url})
+                                                   'background_img': image_url, 'no_navbar': True})
 
 
 @login_required

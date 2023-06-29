@@ -38,7 +38,7 @@
         {% if DOMAIN == "protecia" %}
             {% include 'app1_base/navbar.html' %}
         {% endif %}
-        {% if DOMAIN == "serenicia"%}
+        {% if DOMAIN == "serenicia" and not no_navbar %}
             {% if request.user.is_authenticated %}
                 {% include 'app4_ehpad_base/navbar.html' %}
             {% endif %}
@@ -47,8 +47,8 @@
     </header>
 
 
-    {% if request.user.is_authenticated %}
-        <!-- menu clic sur nom.prénom -->
+    {% if request.user.is_authenticated and not no_navbar %}
+        <!-- menu clic sur prénom.nom -->
         <div id="menu_clicnom" class="menu_nom bg-light p-2">
 
             <!-- Messagerie -->
@@ -233,7 +233,7 @@
 
     <div class="d-flex">
 
-        {% if request.user.is_authenticated %}
+        {% if request.user.is_authenticated and not no_navbar %}
             <!-- navbar burger -->
             <div id="menu_burger" class="menu_burger d-flex flex-column justify-content-start align-items-center">
                 <div class="w-100 d-flex justify-content-between align-items-center d-md-none p-2">
@@ -599,7 +599,25 @@
                             <!-- Eval'Menu -->
                             <li class="evalmenu nav-item pt-1 pb-5 pb-4 py-lg-0">
                                 <a href="{% url 'identification evaluation' %}" class="d-flex align-items-center my-2 my-lg-3 px-2 disabled {% if '/evaluation/identification/' in request.path %}active{% endif %}">
-                                    <img src="{% static 'app4_ehpad_base/img/4_visages_satisfaction_en_carre.svg' %}" alt="{% trans 'Open envelope icon' %}" width="26em">
+                                    <svg
+                                        width="1.75em"
+                                        viewBox="0 0 1052 1052">
+                                        <g
+                                            transform="translate(1085.9226,-695.622)">
+                                            <path
+                                            d="m -829.92261,1747.622 c 141.40001,0 256.00001,-114.6 256.00001,-256 0,-141.4 -114.6,-256 -256.00001,-256 -141.40001,0 -255.99999,114.6 -255.99999,256 0,141.4 114.59998,256 255.99999,256 z m -91.9,-186.5 c 17.9,20.7 48.5,42.5 91.9,42.5 43.40001,0 74.00001,-21.8 91.90001,-42.5 5.8,-6.7 15.9,-7.4 22.6,-1.6 6.7,5.8 7.4,15.9 1.6,22.6 -22.3,25.6 -61,53.5 -116.10001,53.5 -55.1,0 -93.8,-27.9 -116.10001,-53.5 -5.8,-6.7 -5.1,-16.8 1.6,-22.6 6.7,-5.8 16.8,-5.1 22.60001,1.6 z m 44.3,-117.5 c 0,17.7 -14.3,32 -32,32 -17.70001,0 -32.00001,-14.3 -32.00001,-32 0,-17.7 14.3,-32 32.00001,-32 17.7,0 32,14.3 32,32 z m 128.00001,32 c -17.7,0 -32,-14.3 -32,-32 0,-17.7 14.3,-32 32,-32 17.7,0 32,14.3 32,32 0,17.7 -14.3,32 -32,32 z"
+                                            style="fill:#6eff90;fill-opacity:1" />
+                                            <path
+                                            d="m -829.92261,1207.622 c 141.4,0 255.99999,-114.6 255.99999,-256.00001 0,-141.4 -114.59999,-255.99999 -255.99999,-255.99999 -141.4,0 -255.99999,114.59999 -255.99999,255.99999 0,141.40001 114.59999,256.00001 255.99999,256.00001 z m -96.7,-123.3 c -2.6,8.4 -11.6,13.2 -20,10.5 -8.4,-2.7 -13.2,-11.6 -10.5,-20 16.4,-53.1 67.5,-91.20001 127.2,-91.20001 59.7,0 110.8,38.10001 127.3,91.30001 2.6,8.4 -2.1,17.4 -10.5,20 -8.4,2.6 -17.4,-2.1 -20,-10.5 -12.3,-39.4 -50.7,-68.8 -96.8,-68.8 -46.1,0 -84.5,29.4 -96.7,68.7 z m 49.1,-180.70001 c 0,17.7 -14.3,32 -32,32 -17.7,0 -32,-14.3 -32,-32 0,-17.7 14.3,-32 32,-32 17.7,0 32,14.3 32,32 z m 128,32 c -17.7,0 -32,-14.3 -32,-32 0,-17.7 14.3,-32 32,-32 17.7,0 32,14.3 32,32 0,17.7 -14.3,32 -32,32 z"
+                                            style="fill:#ff0000;fill-opacity:1" />
+                                            <path
+                                            d="m -289.9226,1235.622 c -141.4,0 -256,114.6 -256,256 0,141.4 114.6,256 256,256 141.4,0 256,-114.6 256,-256 0,-141.4 -114.6,-256 -256,-256 z m 96.7,315.3 c 2.6,-8.4 11.6,-13.2 20,-10.5 8.4,2.7 13.2,11.6 10.5,20 -16.4,53.1 -67.5,91.2 -127.2,91.2 -59.7,0 -110.8,-38.1 -127.3,-91.3 -2.6,-8.4 2.1,-17.4 10.5,-20 8.4,-2.6 17.4,2.1 20,10.5 12.3,39.4 50.7,68.8 96.8,68.8 46.1,0 84.5,-29.4 96.7,-68.7 z m -49.1,-107.3 c 0,-17.7 14.3,-32 32,-32 17.7,0 32,14.3 32,32 0,17.7 -14.3,32 -32,32 -17.7,0 -32,-14.3 -32,-32 z m -128,-32 c 17.7,0 32,14.3 32,32 0,17.7 -14.3,32 -32,32 -17.7,0 -32,-14.3 -32,-32 0,-17.7 14.3,-32 32,-32 z"
+                                            style="fill:#16b84e;fill-opacity:1" />
+                                            <path
+                                            d="m -289.92262,695.622 c -141.40001,0 -256.00001,114.6 -256.00001,256 0,141.4 114.6,256 256.00001,256 141.40001,0 256.000019,-114.6 256.000019,-256 0,-141.4 -114.600009,-256 -256.000019,-256 z m 91.9,378.5 c -17.9,-20.7 -48.5,-42.5 -91.9,-42.5 -43.40001,0 -74.00001,21.8 -91.90001,42.5 -5.8,6.7 -15.9,7.4 -22.6,1.6 -6.7,-5.8 -7.4,-15.9 -1.6,-22.6 22.3,-25.6 61,-53.5 116.10001,-53.5 55.1,0 93.8,27.9 116.10001,53.5 5.8,6.7 5.1,16.8 -1.6,22.6 -6.7,5.8 -16.8,5.1 -22.60001,-1.6 z m -44.3,-170.5 c 0,-17.7 14.3,-32 32,-32 17.70001,0 32.00001,14.3 32.00001,32 0,17.7 -14.3,32 -32.00001,32 -17.7,0 -32,-14.3 -32,-32 z m -128.00001,-32 c 17.7,0 32,14.3 32,32 0,17.7 -14.3,32 -32,32 -17.7,0 -32,-14.3 -32,-32 0,-17.7 14.3,-32 32,-32 z"
+                                            style="fill:#ff8000;fill-opacity:1" />
+                                        </g>
+                                    </svg>
                                     <p class="text-uppercase ps-2">{% trans "Eval'Menu" %}</p>
                                 </a>
                             </li>
@@ -613,7 +631,7 @@
             
         <div class="contenus w-100">
     
-            {% if request.session.resident_id and not perms.app0_access.view_family %}
+            {% if request.session.resident_id and not perms.app0_access.view_family and not no_navbar %}
                 <!-- menu personnalisé pour gestion résident -->
                 <ul id="menuperso" class="d-flex text-uppercase justify-content-center align-items-center text-center flex-wrap px-2 mb-0 py-1 border-bottom border-darkblue">
                     

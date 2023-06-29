@@ -125,7 +125,7 @@
     }
 
     a:hover span, a:focus span {
-        transform: scale(1) rotate(0);
+        transform: scale(1) rotate(-18deg);
         opacity: 1;
     }
 
@@ -135,16 +135,29 @@
         z-index: 5;
         font-size: 0.9em;
         font-weight: bold;
-        margin-top: 25px;
-        margin-left: -80px;
         color: $darkblue;
         background: rgba(0,0,0,.9);
         padding: 0.5em;
         border-radius: 3px;
         box-shadow: 0 0 2px rgba(0,0,0,.5);
-        transform: scale(0) rotate(-12deg);
+        transform: scale(0) rotate(0);
         transition: all.25s;
         opacity: 0;
+    }
+
+    .span_help {
+        margin-top: 72px;
+        margin-left: 10px;
+    }
+
+    .span_who {
+        margin-top: 95px;
+        margin-left: 10px;
+    }
+
+    .span_photo {
+        margin-top: 28px;
+        margin-left: -70px;
     }
 
     .disabled {

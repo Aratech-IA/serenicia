@@ -31,14 +31,19 @@
 {% endblock datetimescript %}
 
 {% block content %}
-<main class="container">
+<main class="container pt-3 pt-md-4">
     <div class="d-flex border border-darkblue rounded-3 justify-content-center p-3">
-        <form action="{% url 'menu commission' %}" method="post" class="d-flex gap-3 m-0">{% csrf_token %}
-            <div class="d-flex align-items-center gap-1">
-                <span>{% trans 'From' %}</span>
-                <input id="start" class="text-center" name="start" value="{{ start }}" required readonly>
-                <span>{% trans 'To' %}</span>
-                <input id="end" class="text-center" name="end" value="{{ today }}" max="{{ today }}" required readonly>
+        <form action="{% url 'menu commission' %}" method="post" class="d-flex gap-1 gap-sm-2 gap-md-3 m-0">
+            {% csrf_token %}
+            <div class="d-md-flex align-items-center gap-2">
+                <div>
+                    <span>{% trans 'From' %}</span>
+                    <input id="start" class="text-center" name="start" value="{{ start }}" required readonly>
+                </div>
+                <div>
+                    <span>{% trans 'to' %}</span>
+                    <input id="end" class="text-center" name="end" value="{{ today }}" max="{{ today }}" required readonly>
+                </div>
             </div>
             <button class="btn btn-perso">{% trans 'Download docx document' %}</button>
         </form>

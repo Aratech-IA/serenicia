@@ -350,7 +350,7 @@ def evaluate_entree(request, evaltype, template='app4_ehpad_base/eval_entree.htm
         evaluation.entry = request.POST.get('notation')
         evaluation.save()
         return redirect(redir_url, evaltype)
-    return render(request, template, {'menu': evaluation.menu, 'ws_alexa': ws_alexa, 'mp': mp})
+    return render(request, template, {'menu': evaluation.menu, 'ws_alexa': ws_alexa, 'mp': mp, 'no_navbar': True})
 
 
 @login_required
@@ -367,7 +367,7 @@ def evaluate_main_dish(request, evaltype, template='app4_ehpad_base/eval_maindis
         evaluation.main_dish = request.POST.get('notation')
         evaluation.save()
         return redirect(redir_url, evaltype)
-    return render(request, template, {'menu': evaluation.menu, 'ws_alexa': ws_alexa, 'mp': mp})
+    return render(request, template, {'menu': evaluation.menu, 'ws_alexa': ws_alexa, 'mp': mp, 'no_navbar': True})
 
 
 @login_required
@@ -384,7 +384,7 @@ def evaluate_dessert(request, evaltype, template='app4_ehpad_base/eval_dessert.h
         evaluation.dessert = request.POST.get('notation')
         evaluation.save()
         return redirect(redir_url, evaltype)
-    return render(request, template, {'menu': evaluation.menu, 'ws_alexa': ws_alexa, 'mp': mp})
+    return render(request, template, {'menu': evaluation.menu, 'ws_alexa': ws_alexa, 'mp': mp, 'no_navbar': True})
 
 
 @login_required
@@ -398,7 +398,7 @@ def finalize_evaluation(request, evaltype, template='app4_ehpad_base/eval_finali
         evaluation.service = notation
         evaluation.save()
         return redirect(redir_url)
-    return render(request, template, {'menu': evaluation.menu, 'ws_alexa': ws_alexa})
+    return render(request, template, {'menu': evaluation.menu, 'ws_alexa': ws_alexa, 'no_navbar': True})
 
 
 def get_guest_count(date_value):

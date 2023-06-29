@@ -1,0 +1,22 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+
+{% block content %}
+{% load static %}
+{% load i18n %}
+
+<div class="pt-3 pt-md-4">
+    <h4 class="text-center text-uppercase">{% trans "Welcome to Serenicia Help" %} !</h4>
+    <h5 class="text-center pt-3 pt-md-4 pb-2 pb-md-3">{% trans "Click on the module button where you need help" %}</h5>
+    <div class="d-flex justify-content-evenly align-items-center">
+        <a href="{% url 'app17_help social_life' %}" class="btn btn-perso">{% trans "Social life" %}</a>
+        <a href="{% url 'app17_help cuisine' %}" class="btn btn-perso">{% trans "Cuisine" %}</a>
+        <a href="{% url 'app17_help quality' %}" class="btn btn-perso">{% trans "Quality" %}</a>
+    </div>
+    <div class="d-flex flex-column flex-md-row align-items-center py-5">
+        <p class="col-11 col-md-3 text-center pb-2 pb-md-0">{% trans "Understanding Navigation Bars" %}</p>
+        <img src="{% static 'app17_help/images/Barres_de_navigation-explications.png' %}" alt="{% trans 'Navbars screenshot' %}" class="col-11 col-md-8">
+    </div>
+</div>
+
+
+{% endblock content %}

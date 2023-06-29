@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'compressor',
     'app15_calendar.apps.CalendarConfig',
+    'app17_help.apps.App17HelpConfig',
 ]
 
 AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend', 'app1_base.utils.SuperadminAuth']

@@ -1,0 +1,22 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+
+{% block content %}
+{% load static %}
+{% load i18n %}
+
+<div class="p-2">
+    <a class="btn btn-perso" href="{% url 'app17_help index' %}">{% trans "Return" %}</a>
+    <h4 class="text-center text-uppercase pb-3 pb-md-4">{% trans "Help module Quality" %}</h4>
+    <div class="container-xl">
+
+        <p class="pb-1">1- {% trans "Choose a criterion" %}.</p>
+        <p class="pb-1">2- {% trans "If you have the rights, choose a manager for this criterion" %}.</p>
+        <p class="pb-1">3- {% trans "Each manager will then have the opportunity to respond to each of their criteria by logging in with their account." %}.</p>
+        <p class="pb-1">4- {% trans "Each manager can attach to the response a pdf protocol to be created on the 'Protocols' page" %}.</p>
+        <p>5- {% trans "Once a protocol has been created, you can add one or more tags to each protocol to be able to classify them and find them more easily" %}.</p>
+        
+    </div>
+</div>
+
+
+{% endblock content %}
