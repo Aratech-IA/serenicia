@@ -413,17 +413,16 @@ class CreatePostForm(forms.ModelForm):
         model = BlogPost
         fields = ["title", "content", "category", "is_public", "files"]
         help_texts = {'is_public': _('Uncheck if this post should not be visible by families'), }
-        labels = {'is_public': _('is public'),
-                  'category': _('Category')}
+        labels = {'is_public': _('is public'), 'category': _('Category')}
 
 
 class FilterBlog(forms.ModelForm):
-    created_on = forms.DateField(required=False,
-                                 widget=forms.DateInput(attrs={'type': 'date'}))
+    created_on = forms.DateField(required=False, widget=forms.DateInput(attrs={'type': 'date'}))
 
     class Meta:
         model = BlogPost
         fields = ["category", "created_on"]
+        labels = {'category': _('Category'), 'created_on': _('Created the')}
 
 
 class PublicPhoto(forms.ModelForm):

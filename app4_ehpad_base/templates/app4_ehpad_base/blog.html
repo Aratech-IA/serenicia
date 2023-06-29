@@ -13,13 +13,14 @@
   {% if not request.user.is_authenticated %}
     <a href="{% url 'login' %}" class="btn btn-perso-p mb-2" data-aos="fade-right" data-aos-duration="1500">{% trans "Return" %}</a>
   {% endif %}
-  <button class="btn btn-perso-p mb-2" id="filtersBtn" onclick="showFilters()" data-aos="fade-right" data-aos-duration="1500">{% trans "filters" %}</button>
 
-  <div id="filtersToHide">
-    <form action="{% url 'blog' %}" method="post" class="w-100">
+  <div class="blog_filter mb-2" data-aos="fade-right" data-aos-duration="1500">
+    <form action="{% url 'blog' %}" method="post" class=" d-flex flex-column flex-md-row justify-content-center align-items-center">
       {% csrf_token %}
       
-      <div class="d-sm-flex">
+      {{ filters }}
+      
+      <!-- <div class="d-flex">
         {% for field in filters %}
           <div class="pb-3 pe-sm-5">
             <h6><small>{{ field.label_tag }}</small></h6>
@@ -28,12 +29,13 @@
             {{ field }}
           </div>
         {% endfor %}
-      </div>
+      </div> -->
 
-      <button type="submit" class="btn btn-perso-p text-uppercase">{% trans "Filtrer" %}</button>
+      <button type="submit" class="btn btn-perso text-uppercase">{% trans "Validate the filter" %}</button>
 
     </form>
   </div>
+  
 
   <div class="row d-flex flex-wrap">
     {% if page_obj %}
@@ -75,32 +77,35 @@
     {% endif %}
   </div>
 
-  <!--PAGINATION from paginator !-->
-  <div class="pagination mt-3 mb-3" data-aos="fade-right" data-aos-duration="1500">
-    <span class="step-links text-center">
-      {% if page_obj.has_previous %}
-        <a class="btn btn-perso-p"  href="?page=1">
-          &laquo; {% trans "First" %}
+  <!--PAGINATION-->
+  <div class="mt-4 mb-3 d-flex flex-column flex-md-row justify-content-center justify-content-evenly align-items-center">
+    {% if page_obj.has_previous %}
+      <div>
+        <a class="btn btn-perso-p" href="?page=1">
+          <p><< {% trans "first" %}</p>
         </a>
-        <a class="btn btn-perso-p"  href="?page={{ page_obj.previous_page_number }}">
-          {% trans "Previous" %}
+        <a class="btn btn-perso-p" href="?page={{ page_obj.previous_page_number }}">
+          <p>< {% trans "previous" %}</p>
         </a>
-      {% endif %}
+      </div>
+    {% endif %}
 
-      <span class="current p-3">
-        {% trans "Page" %} {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-      </span>
+    <div class="current">
+      <p>{% trans "Page" %} {{ page_obj.number }} {% trans "of" %} {{ page_obj.paginator.num_pages }}</p>
+    </div>
 
-      {% if page_obj.has_next %}
+    {% if page_obj.has_next %}
+      <div>
         <a class="btn btn-perso-p" href="?page={{ page_obj.next_page_number }}">
-          {% trans "Following" %}
+          <p>{% trans "next" %} ></p>
         </a>
         <a class="btn btn-perso-p" href="?page={{ page_obj.paginator.num_pages }}">
-          {% trans "Latest" %} &raquo;
+          <p>{% trans "last" %} >></p>
         </a>
-      {% endif %}
-    </span>
+      </div>
+    {% endif %}
   </div>
+  
 </div>
 
 
@@ -131,20 +136,6 @@
   })
 
 </script>
-
- <script>
-  function showFilters() {
-    let filters = document.getElementById("filtersToHide");
-    let btn = document.getElementById("filtersBtn");
-    if (filters.style.display === "flex") {
-      filters.style.display = "none";
-      btn.classList.remove("active");
-    } else {
-      filters.style.display = "flex";
-      btn.classList.add("active");
-    }
-  }
- </script>
 
 {% endblock content %}
 

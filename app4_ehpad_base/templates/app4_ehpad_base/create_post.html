@@ -1,197 +1,214 @@
 {% extends "app4_ehpad_base/base_footer.html" %}
 
 {% block content %}
-    {% load static %}
-    {% load i18n %}
+{% load static %}
+{% load i18n %}
+
+
 <style>
-    .one h1 {
-      text-align:center;
-      font-size:35px;
-      text-transform:uppercase;
-      letter-spacing:1px;
-      font-family:"Playfair Display", serif;
-      font-weight:400;
-    }
-    .one h1 span {
-      margin-top: 5px;
-      font-size:15px; word-spacing:1px; letter-spacing:2px;
-      text-transform: uppercase;
-      font-family:"Raleway", sans-serif;
-      font-weight:500;
-      display: grid;
-      grid-template-columns: 1fr max-content 1fr;
-      grid-template-rows: 27px 0;
-      grid-gap: 20px;
-      align-items: center;
-    }
+  /* .one h1 {
+    text-align:center;
+    font-size:35px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    font-family:"Playfair Display", serif;
+    font-weight:400;
+  }
+  .one h1 span {
+    margin-top: 5px;
+    font-size:15px; word-spacing:1px; letter-spacing:2px;
+    text-transform: uppercase;
+    font-family:"Raleway", sans-serif;
+    font-weight:500;
+    display: grid;
+    grid-template-columns: 1fr max-content 1fr;
+    grid-template-rows: 27px 0;
+    grid-gap: 20px;
+    align-items: center;
+  }
 
-    .one h1 span:after,.one h1 span:before {
-        content: " ";
-    }
+  .one h1 span:after,.one h1 span:before {
+      content: " ";
+  }
 
-    input, select, .tox-tinymce{
-        background: #eee;
-        border: solid 1px #93a9d2;
-        border-radius: 20px;
-        padding: 12px 15px;
-        margin: 8px 0;
-    }
+  input, select, .tox-tinymce{
+      background: #eee;
+      border: solid 1px #93a9d2;
+      border-radius: 20px;
+      padding: 12px 15px;
+      margin: 8px 0;
+  }
 
-    .img-to-delete {
-      position: relative;
-      width: 300px;
-    }
+  .img-to-delete {
+    position: relative;
+    width: 300px;
+  }
 
-    .image {
-      width: 300px;
-      height: auto;
-    }
+  .image {
+    width: 300px;
+    height: auto;
+  }
 
-    .delete-text {
-      color: white;
-      font-weight: bold;
-      font-size: 20px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      -webkit-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%);
-      text-align: center;
-    }
+  .delete-text {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
 
-    .overlay_delete-text {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      opacity: 0;
-      transition: .5s ease;
-      background-color: rgb(249, 49, 84);
-    }
+  .overlay_delete-text {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: rgb(249, 49, 84);
+  }
 
-    .img-to-delete:hover .overlay_delete-text {
-      opacity: 0.8;
-    }
+  .img-to-delete:hover .overlay_delete-text {
+    opacity: 0.8;
+  } */
 </style>
 
-<div class="container pt-2">
+<div class="container-xl pt-2 pt-md-3">
 
-    <div class="row">
-        {% if new_post %}
-            <div class="one pb-2">
-                <h1>{% trans 'Create a new post' %}</h1>
-            </div>
-            <form action="{% url 'create_post' act_id=act_id %}" method="post" enctype="multipart/form-data">
-        {% else %}
-            <div class="one pb-2">
-                <h1>{% trans 'Modification of the post' %} "{{ post_name }}"</h1>
-            </div>
-            <form action="{% url 'edit_post' post_id=post_id %}" method="post" enctype="multipart/form-data">
-        {% endif %}
-            {% csrf_token %}
-            {% for field in form %}
-                {% if not field.id_for_label == 'files__pdf' and not field.id_for_label == 'from_device' %}
-                  <div class="form-group mb-3">
-                        <h6>{{ field.label_tag }}</h6>
-                        <h6><small>{{ field.help_text }}  {{ field }}</small></h6>
-                        {% if field.errors%}
-                            <h6>{{ field.errors }}</h6>
-                        {%endif%}
-                  </div>
-                {% else %}
-                    {{ field }}
-                {% endif %}
-            {% endfor %}
+  <div class="d-flex flex-column align-items-center">
+    {% if new_post %}
+      <div class="pb-2 text-center">
+        <h3>{% trans 'Create a new post' %}</h3>
+      </div>
+      <form action="{% url 'create_post' act_id=act_id %}" method="post" enctype="multipart/form-data">
+    {% else %}
+      <div class="pb-2 text-center">
+          <h3>{% trans 'Modification of the post' %} "{{ post_name }}"</h3>
+      </div>
+      <form action="{% url 'edit_post' post_id=post_id %}" method="post" enctype="multipart/form-data">
+    {% endif %}
 
+        {% csrf_token %}
+
+        <!-- formulaire titre, contenu, catégorie, is public -->
+        {% for field in form %}
+          {% if not field.id_for_label == 'files__pdf' and not field.id_for_label == 'from_device' %}
             <div class="form-group mb-3">
-                <!-- Button trigger modal -->
-                <h6>{% trans 'Add photos' %}</h6>
-                <button type="button" class="btn btn-perso" data-bs-toggle="modal" data-bs-target="#select_pictures">
-                  {% trans 'From public photo gallery' %}
-                </button>
+              <div class="d-md-flex align-items-center">
+                <h6>{{ field.label_tag }}</h6>
+                <h6 class="ps-md-4">{{ field.help_text }}  {{ field }}</h6>
+              </div>
+              
+              {% if field.errors%}
+                <h6>{{ field.errors }}</h6>
+              {%endif%}
+            </div>
+          {% else %}
+              {{ field }}
+          {% endif %}
+        {% endfor %}
 
-                <label for="from_device">
-                    <div class="btn btn-perso">
-                        {% trans 'From my device' %}
-                    </div>
-                </label>
+        <!-- Ajout de photos -->
+        <div class="form-group mb-3 d-md-flex align-items-center pt-3">
+          <!-- Button trigger modal -->
+          <h6>{% trans 'Add photos' %}</h6>
 
-                <!-- Modal -->
-                <div class="modal fade" id="select_pictures" tabindex="-1" aria-labelledby="select_pictures_label" aria-hidden="true">
-                  <div class="modal-dialog modal-fullscreen">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="select_pictures_label">{% trans 'Select your photos' %}</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                        <div class="row">
-                            {% if list_pictures %}
-                                {% for picture in list_pictures %}
-                                <div class="col-md-3">
-                                    <div class="custom-control custom-checkbox image-checkbox">
-                                        <input type="checkbox" class="custom-control-input"
-                                               value="{{picture}}"
-                                               id="{{picture}}" name="pics_list"
-                                               {% if check_all %}checked{% endif %}>
-                                        <label class="custom-control-label" for="{{picture}}">
-                                            <img src="{{picture}}" alt="#" class="img-fluid">
-                                        </label>
-                                    </div>
-                                </div>
-                                {% endfor %}
-                            {% else %}
-                                <h1>{% trans 'There are no public photos available yet' %}</h1>
-                                <h4>{% trans 'please add photos from the public photos button in the navigation bar to select them on this page' %}</h4>
-                            {% endif %}
+          <button type="button" class="btn btn-perso-inverse ms-md-4" data-bs-toggle="modal" data-bs-target="#select_pictures">
+            {% trans 'From public photo gallery' %}
+          </button>
+
+          <label for="from_device">
+              <div class="btn btn-perso-inverse ms-md-4 mt-2 mt-md-0">
+                  {% trans 'From my device' %}
+              </div>
+          </label>
+
+          <!-- Modal -->
+          <div class="modal fade" id="select_pictures" tabindex="-1" aria-labelledby="select_pictures_label" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="select_pictures_label">{% trans 'Select your photos' %}</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                    {% if list_pictures %}
+                      {% for picture in list_pictures %}
+                        <div class="col-md-3">
+                          <div class="custom-control custom-checkbox image-checkbox">
+                            <input type="checkbox" class="custom-control-input"
+                                  value="{{picture}}"
+                                  id="{{picture}}" name="pics_list"
+                                  {% if check_all %}checked{% endif %}>
+                            <label class="custom-control-label" for="{{picture}}">
+                              <img src="{{picture}}" alt="#" class="img-fluid">
+                            </label>
+                          </div>
                         </div>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-perso" data-bs-dismiss="modal">{% trans 'OK' %}</button>
-                      </div>
-                    </div>
+                      {% endfor %}
+                      
+                    {% else %}
+                      <h1>{% trans 'There are no public photos available yet' %}</h1>
+                      <h4>{% trans 'please add photos from the public photos button in the navigation bar to select them on this page' %}</h4>
+                    {% endif %}
                   </div>
                 </div>
-            </div>
 
-            <div class="form-group pb-5">
-                <h6>{% trans 'Other file' %}</h6>
-                <label for="files__pdf">
-                    <div class="btn btn-perso">
-                        {% trans 'Add a file' %}
-                    </div>
-                </label>
-                {% if not new_post %}
-                    <h6 class="text-muted">{% trans 'Warning' %}: {% trans 'adding a new file will delete the existing one' %}</h6>
-                {% endif %}
-            </div>
-
-            <div>
-                <button type="submit" class="btn btn-perso-p pt-2 pb-2">{% trans 'Save' %}</button>
-        </form>
-                <a class="btn btn-outline-danger" href="{% url 'public_photo' %}">{% trans 'Back' %}</a>
-            </div>
-            {% if pictures_already_put %}
-                <h3 class="mt-2">Photos déja présentes dans l'article :</h3>
-                <p class="text-danger">Cliquez sur la photo pour supprimer celle-ci de l'article</p>
-                <div class="d-flex flex-wrap justify-content-center align-items-center">
-                    {% for img in pictures_already_put %}
-                            <a href=" {% url 'delete_picture' img.id %}" class="img-to-delete">
-                                <img src="{% get_media_prefix %}{{ img.image_blog }}" alt="pictureToDelete" class="p-5 image">
-                                  <div class="overlay-delete-text">
-                                      <div class="delete-text">{% trans 'Delete' %}</div>
-                                  </div>
-                            </a>
-                    {% endfor %}
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-perso-inverse" data-bs-dismiss="modal">{% trans 'OK' %}</button>
                 </div>
-            {% endif %}
-    </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ajout d'un autre fichier -->
+        <div class="form-group pb-4 pt-3">
+          <div class="d-md-flex align-items-center">
+            <h6>{% trans 'Other file' %}</h6>
+            <label for="files__pdf">
+              <div class="btn btn-perso-inverse ms-md-4">
+                {% trans 'Add a file' %}
+              </div>
+            </label>
+          </div>
+          {% if not new_post %}
+            <p class="text-danger">{% trans 'Warning' %} : {% trans 'adding a new file will delete the existing one' %}</p>
+          {% endif %}
+        </div>
+
+        <!-- Boutons enregistrer et retour -->
+        <div class="mb-2">
+          <button type="submit" class="btn btn-perso py-2">{% trans 'Save' %}</button>
+          <a class="btn btn-outline-danger ms-3" href="{% url 'public_photo' %}">{% trans 'Back' %}</a>
+        </div>
+      </form>
+
+      <!-- Photos présentes dans l'article qui peuvent être effacées -->
+      {% if pictures_already_put %}
+        <h3 class="mt-4">{% trans "Photos already present in the article" %} :</h3>
+        <p class="text-danger">{% trans "Click on a photo to remove it from the article" %}</p>
+        <div class="d-flex flex-wrap justify-content-center align-items-center">
+          {% for img in pictures_already_put %}
+            <a href=" {% url 'delete_picture' img.id %}" class="img-to-delete">
+              <img src="{% get_media_prefix %}{{ img.image_blog }}" alt="pictureToDelete" class="p-3 image">
+            </a>
+          {% endfor %}
+        </div>
+      {% endif %}
+  </div>
 </div>
 
 
 <script src="https://cdn.tiny.cloud/1/{% if tinymce_key %}{{tinymce_key}}{% else %}no-api-key{% endif %}/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
 <script type="text/javascript">
       tinymce.init({
         selector: '#id_content',
@@ -208,9 +225,10 @@
         contextmenu: false,
       });
 </script>
+
 {% endblock content %}
 
-{% block endscript %}
 
+<!-- {% block endscript %}
 
-{% endblock endscript %}
+{% endblock endscript %} -->

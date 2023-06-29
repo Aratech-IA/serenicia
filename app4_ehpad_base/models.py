@@ -488,16 +488,16 @@ class BlogImage(models.Model):
 
 class BlogPost(models.Model):
     CATEGORIES = [
-        ('direction', _('Post from the Direction')),
-        ('social_life', _('Post from Communication and Social Life section')),
-        ('care', _('Post from Care section')),
-        ('hospitality', _('Post from Hospitality section')),
-        ('activities', _('Activities Post')),
+        ('direction', _('Direction')), # Direction
+        ('social_life', _('Social life')), # Vie sociale
+        ('care', _('Care')), # Soins
+        ('hospitality', _('Hotel')), # Hotellerie
+        ('News', _('News')), # Actualité
     ]
-    title = models.CharField(max_length=120, verbose_name="Titre")
-    content = models.TextField(blank=True, verbose_name="Contenu")
-    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
-    created_on = models.DateField(null=True, blank=True, verbose_name=_("Created the"))
+    title = models.CharField(max_length=120, verbose_name=_('Title'))
+    content = models.TextField(blank=True, verbose_name=_('Content'))
+    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_('Author'))
+    created_on = models.DateField(null=True, blank=True, verbose_name=_('Created the'))
     images = models.ManyToManyField(BlogImage, blank=True)
     cover = models.ForeignKey(BlogImage, on_delete=models.SET_NULL, null=True, related_name='cover_image')
     files = models.FileField(upload_to='blog_doc/', null=True, blank=True)

@@ -132,6 +132,7 @@ def edit_post(request, post_id):
         post = BlogPost.objects.get(pk=post_id)
     except ObjectDoesNotExist:
         return redirect('public_photo')
+    
     if request.method == 'POST':
         if request.FILES.get('files') or request.POST.get('files-clear'):
             post.files.delete()
@@ -144,6 +145,7 @@ def edit_post(request, post_id):
                 list_img.append(BlogImage.objects.create(image=img_url))
             post.images.add(*list_img)
             post = BlogPost.objects.get(pk=post_id)
+            return redirect('public_photo')
     form = CreatePostForm(instance=post)
     tinymce_key = settings.TINYMCE_KEY
     path = f'{settings.MEDIA_ROOT}/common/thumbnails/'
