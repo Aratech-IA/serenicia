@@ -21,10 +21,6 @@ def get_guests_details(date):
 
 @login_required
 def views_hotel(request):
-    try:
-        request.session.pop('resident_id')
-    except KeyError:
-        pass
     context = {}
     if request.POST.get('date_value'):
         date = datetime.datetime.strptime(request.POST.get('date_value'), "%Y-%m-%d")
