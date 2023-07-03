@@ -634,10 +634,19 @@
             {% if request.session.resident_id and not perms.app0_access.view_family and not no_navbar %}
                 <!-- menu personnalisé pour gestion résident -->
                 <ul id="menuperso" class="d-flex text-uppercase justify-content-center align-items-center text-center flex-wrap px-2 mb-0 py-1 border-bottom border-darkblue">
+
+                    {% if perms.app0_access.view_hotel %}
+                        <!-- Hôtellerie -->
+                        <li>
+                            <a href="{% url 'hotel' %}">
+                                {% trans 'Hotel' %}
+                            </a>
+                        </li>
+                    {% endif %}
                     
                     {% if perms.app0_access.view_care %}
                         <!-- Menu Care -->
-                        <li>
+                        <li class="ps-3 ps-lg-4">
                             <a href="{% url 'caregiver' %}">
                                 {% trans 'Cares input' %}
                             </a>

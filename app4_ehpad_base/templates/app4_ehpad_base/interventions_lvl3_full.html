@@ -9,10 +9,10 @@
         <!--  small + medium + large -->
         <div class="d-lg-none overflow-auto d-flex flex-nowrap align-items-center">
         {% for task in last_intervention.tasks_short_list %}
-            <img src="{% static task.pictogram %}" class="mx-1" width="48px" title="{{ last_intervention.date }}: {{ task.name }} {% trans 'realized by'%} {{ last_intervention.nurse.first_name }} {{ last_intervention.nurse.last_name }}">
+            <img src="{% static task.pictogram %}" class="mx-1" width="48px" title="{{ last_intervention.date }} : {{ task.name }} {% trans 'realized by'%} {{ last_intervention.nurse.first_name }} {{ last_intervention.nurse.last_name }}">
         {% endfor %}
         {% if last_intervention.undisplayed_tasks == 1 %}
-            <img src="{% static last_intervention.tasks.2.pictogram %}" width="48px" title="{{ last_intervention.tasks.2.date }}: {{ last_intervention.tasks.2.name }} {% trans 'realized by'%} {{ last_intervention.tasks.2.nurse.first_name }} {{ last_intervention.tasks.2.nurse.last_name }}">
+            <img src="{% static last_intervention.tasks.2.pictogram %}" width="48px" title="{{ last_intervention.tasks.2.date }} : {{ last_intervention.tasks.2.name }} {% trans 'realized by'%} {{ last_intervention.tasks.2.nurse.first_name }} {{ last_intervention.tasks.2.nurse.last_name }}">
         {% endif %}
         {% if last_intervention.undisplayed_tasks >= 2 %}
             <div class="border border-dark rounded-circle p-1 bg-white">
@@ -24,7 +24,7 @@
         <div class="d-none d-lg-block">
             <div class="overflow-auto d-flex flex-nowrap">
                 {% for task in last_intervention.tasks %}
-                <img src="{% static task.pictogram %}" width="60px" title="{{ last_intervention.date }}: {{ task.name }} {% trans 'realized by'%} {{ last_intervention.nurse.first_name }} {{ last_intervention.nurse.last_name }}">
+                <img src="{% static task.pictogram %}" width="60px" title="{{ last_intervention.date }} : {{ task.name }} {% trans 'realized by'%} {{ last_intervention.nurse.first_name }} {{ last_intervention.nurse.last_name }}">
                 {% endfor %}
             </div>
         </div>
@@ -33,11 +33,13 @@
     <div class="modal fade" id="last_intervention_modal{{forloop.counter}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-header bg-lightblue">
-                    <h5 class="modal-title" id="exampleModalLabel">
-                        {% trans 'Treatments realized by' %} : {{ last_intervention.nurse.first_name }} {{ last_intervention.nurse.last_name }} <img src="{% if last_intervention.nurse_avatar %}{{ last_intervention.nurse_avatar }}{% else %}{% static 'app4_ehpad_base/img/homemade_svg/avatar.svg' %}{% endif %}" width="48px" class="resident_small_pic mx-2" title="{{ last_intervention.nurse.first_name }} {{ last_intervention.nurse.last_name }}"></h5>
-                    <h5>{{ last_intervention.date }}</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">×</button>
+                <div class="modal-header bg-lightblue p-1 p-md-2">
+                    <div class="modal-title d-md-flex align-items-center" id="exampleModalLabel">
+                        <h5>{% trans 'Intervention of' %}</h5>
+                        <h5 class="px-md-2">{{ last_intervention.nurse.first_name }} {{ last_intervention.nurse.last_name }}</h5>
+                        <img src="{% if last_intervention.nurse_avatar %}{{ last_intervention.nurse_avatar }}{% else %}{% static 'app4_ehpad_base/img/homemade_svg/avatar.svg' %}{% endif %}" width="48px" class="resident_small_pic mx-2" title="{{ last_intervention.nurse.first_name }} {{ last_intervention.nurse.last_name }}">
+                    </div>
+                    <h5 class="text-center">{{ last_intervention.date }}</h5>
                 </div>
                 <div class="modal-body">
                     {% for task in last_intervention.tasks %}

@@ -23,13 +23,13 @@
         <h4 class="text-center">{% trans 'Bookings' %}</h4>
         <form class="d-flex justify-content-center align-items-center gap-2" action="" method="post">{% csrf_token %}
             <button class="btn btn-perso" type="submit" name="date_control" value="previous">
-                <svg viewbox="0 0 16 16" class="bi bi-caret-left-fill ctrl-icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <svg viewbox="0 0 16 16" class="bi bi-caret-left-fill ctrl-icon" fill="currentColor">
                   <path d="M3.86 8.753l5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
                 </svg>
             </button>
             <input type="date" name="date_value" value="{{ date_value|date:'Y-m-d' }}" onchange="this.form.submit()">
             <button class="btn btn-perso" type="submit" name="date_control" value="next">
-                <svg viewbox="0 0 16 16" class="bi bi-caret-right-fill ctrl-icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <svg viewbox="0 0 16 16" class="bi bi-caret-right-fill ctrl-icon" fill="currentColor">
                   <path d="M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
                 </svg>
             </button>
@@ -41,10 +41,10 @@
     <div class="mt-1">
         {% if incomplete_interventions %}
         <h5 class="text-center mt-5">{% trans 'Inputs that are being entered' %} :</h5>
-        <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-center mb-5">
             <div class="app6-btn-icon d-flex flex-column align-items-center pe-auto border-0 bg-light" onclick="modal_incomplete_interventions.toggle()">
-                <img src="{% static 'app4_ehpad_base/img/bi/eye.svg' %}" class="app6-icon app6-width-60px mx-2 p-2 border border-darkblue" alt="{% trans 'My incomplete inputs' %}">
-                        <p class="text-center">{% trans 'My incomplete inputs' %}</p>
+                <img src="{% static 'app4_ehpad_base/img/bi/eye.svg' %}" class="app6-icon app6-width-60px m-1 m-md-2 p-2 border border-darkblue" alt="{% trans 'My incomplete inputs' %}">
+                <p class="text-center">{% trans 'My incomplete inputs' %}</p>
             </div>
         </div>
         {% endif %}
@@ -254,7 +254,7 @@
                 <div>
                     <h5 class="text-center"><p class="h6">{% trans 'Intervention that I am entering' %} : {{ intervention.type.name }} - {{ intervention.start }}</p></h5>
                     <div class="d-flex justify-content-center mt-3">
-                        <button class="btn btn-perso mx-2 {% if no_selected_tasks %} disabled{% endif %}" name="done" value="True">{% trans 'Done' %}</button>
+                        <button class="btn btn-perso mx-2 {% if no_selected_tasks %}disabled{% endif %}" name="done" value="True">{% trans 'Done' %}</button>
                         <button class="btn btn-danger mx-2" name="delete" value="{{ intervention.id }}">{% trans 'Delete' %}</button>
                     </div>
                 </div>

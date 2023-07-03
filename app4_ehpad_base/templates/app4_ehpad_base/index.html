@@ -321,14 +321,17 @@
                     <div class="modal fade" id="comment_modal{{forloop.counter}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                             <div class="modal-content">
-                                <div class="modal-header bg-lightblue">
-                                    <h5 class="modal-title" id="exampleModalLabel2">
-                                        {% trans 'Comment written by' %} : {{ comment.nurse.first_name }} {{ comment.nurse.last_name }} <img src="{% if comment.nurse.profile.photo %}{{ comment.nurse.profile.photo.url }}{% else %}{% static 'app4_ehpad_base/img/homemade_svg/avatar.svg' %}{% endif %}" width="48px" class="resident_small_pic mx-2" title="{{ comment.nurse.first_name }} {{ comment.nurse.last_name }}"></h5>
-                                    <h5>{{ comment.start }}</h5>
-                                    <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">×</button>
+                                <div class="modal-header bg-lightblue p-1 p-md-2">
+                                    <div class="modal-title d-md-flex align-items-center" id="exampleModalLabel2">
+                                        <h5>{% trans 'Comment written by' %}</h5>
+                                        <h5 class="px-md-2">{{ comment.nurse.first_name }} {{ comment.nurse.last_name }}</h5>
+                                        <img src="{% if comment.nurse.profile.photo %}{{ comment.nurse.profile.photo.url }}{% else %}{% static 'app4_ehpad_base/img/homemade_svg/avatar.svg' %}{% endif %}" width="48px" class="resident_small_pic mx-2" title="{{ comment.nurse.first_name }} {{ comment.nurse.last_name }}">
+                                    </div>
+                                    <h5 class="text-center">{{ comment.start }}</h5>
+                                    <!-- <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">×</button> -->
                                 </div>
                                 <div class="modal-body">
-                                    <p>{{comment.content}}</p>
+                                    <h6 class="text-center mb-0">{{comment.content}}</h6>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-perso" data-bs-dismiss="modal">{% trans 'Close' %}</button>
