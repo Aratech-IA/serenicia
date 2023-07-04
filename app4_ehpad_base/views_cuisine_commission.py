@@ -1,12 +1,14 @@
 import calendar
 from datetime import datetime, timedelta
 from io import BytesIO
+from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
 from django.contrib.auth.decorators import login_required, permission_required
 from django.http import FileResponse
 from django.shortcuts import render
+from django.templatetags.static import static
 from docx import Document
 from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
 from docx.enum.style import WD_BUILTIN_STYLE
@@ -68,8 +70,8 @@ def build_evaluation_count_graph(date_value):
     fig, ax = plt.subplots(figsize=(8, 8))
     ind = np.arange(len(x_axis))
     width = 0.9
-    p1 = ax.bar(ind, y_axis1, width, label=_('Noon'), color='#93a9d2')
-    p2 = ax.bar(ind, y_axis2, width, bottom=y_axis1, label=_('Evening'), color='#5285e3')
+    p1 = ax.bar(ind, y_axis1, width, label=str(_('Noon')), color='#93a9d2')
+    p2 = ax.bar(ind, y_axis2, width, bottom=y_axis1, label=str(_('Evening')), color='#5285e3')
     ax.axhline(0, color='grey', linewidth=0.8)
     ax.set_ylabel(_('Evaluations'))
     ax.set_title(_('Total evaluations per month') + ' (' + date_value.strftime('%B') + '/' + str(year - 1)
@@ -323,7 +325,7 @@ def get_commission_document(start, end):
     paragraph.paragraph_format.space_after = Inches(0)
     paragraph.paragraph_format.left_indent = Inches(0)
     logo_run = paragraph.add_run()
-    logo_run.add_picture(settings.STATIC_ROOT,
+    logo_run.add_picture(settings.STATIC_ROOT + "/app4_ehpad_base/img/" + settings.IMG_LOGO_NAME,
                          width=Inches(8.25))
     add_cover_page(document, end)
     document.add_picture(build_evaluation_count_graph(end),
