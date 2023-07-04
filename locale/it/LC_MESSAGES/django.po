@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-04 16:04+0200\n"
+"POT-Creation-Date: 2023-07-04 16:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1773,6 +1773,7 @@ msgstr ""
 #: app17_help/templates/app17_help/cuisine.html:8
 #: app17_help/templates/app17_help/hotel.html:8
 #: app17_help/templates/app17_help/quality.html:8
+#: app17_help/templates/app17_help/referrers.html:8
 #: app17_help/templates/app17_help/social_life.html:9
 #: app4_ehpad_base/templates/app4_ehpad_base/blog.html:14
 msgid "Return"
@@ -3756,6 +3757,7 @@ msgstr "Creare un nuovo piatto"
 #: app17_help/templates/app17_help/cuisine.html:29
 #: app17_help/templates/app17_help/hotel.html:25
 #: app17_help/templates/app17_help/hotel.html:42
+#: app17_help/templates/app17_help/referrers.html:26
 #: app17_help/templates/app17_help/social_life.html:22
 #: app17_help/templates/app17_help/social_life.html:31
 msgid "Your browser does not support the HTML video tag"
@@ -3855,11 +3857,17 @@ msgstr "Selezione il giorno per vedere i menu"
 msgid "Quality"
 msgstr "Video qualità"
 
-#: app17_help/templates/app17_help/index.html:17
+#: app17_help/templates/app17_help/index.html:15
+#, fuzzy
+#| msgid "referrers"
+msgid "Referrers"
+msgstr "referenti"
+
+#: app17_help/templates/app17_help/index.html:18
 msgid "Understanding Navigation Bars"
 msgstr ""
 
-#: app17_help/templates/app17_help/index.html:18
+#: app17_help/templates/app17_help/index.html:19
 msgid "Navbars screenshot"
 msgstr ""
 
@@ -3895,6 +3903,53 @@ msgstr ""
 msgid ""
 "Once a protocol has been created, you can add one or more tags to each "
 "protocol to be able to classify them and find them more easily"
+msgstr ""
+
+#: app17_help/templates/app17_help/referrers.html:9
+#, fuzzy
+#| msgid "referrers"
+msgid "Help referrer attribution"
+msgstr "referenti"
+
+#: app17_help/templates/app17_help/referrers.html:15
+msgid "Add, remove or modify referrers"
+msgstr ""
+
+#: app17_help/templates/app17_help/referrers.html:16
+msgid ""
+"Go to the administration (accessible from the first name.last name menu)"
+msgstr ""
+
+#: app17_help/templates/app17_help/referrers.html:17
+#, fuzzy
+#| msgid "Leave a comment"
+msgid "Click on 'user'"
+msgstr "Lasciare un commento"
+
+#: app17_help/templates/app17_help/referrers.html:18
+msgid ""
+"Search for the referent concerned by the allocation of residents (in the "
+"menu on the right, it is possible to sort by profession (AS, ASH, ...))"
+msgstr ""
+
+#: app17_help/templates/app17_help/referrers.html:19
+msgid "In 'profile Sérénicia', choose the residents to assign"
+msgstr ""
+
+#: app17_help/templates/app17_help/referrers.html:20
+#, fuzzy
+#| msgid "Already registered"
+msgid "Register"
+msgstr "Già registrato"
+
+#: app17_help/templates/app17_help/referrers.html:21
+msgid ""
+"PLEASE NOTE, for a referrer to be assigned, he must have already logged in "
+"with his profile. Login can take place after assignment."
+msgstr ""
+
+#: app17_help/templates/app17_help/referrers.html:22
+msgid "Find the referents on the resident's personal page"
 msgstr ""
 
 #: app17_help/templates/app17_help/social_life.html:10

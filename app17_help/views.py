@@ -19,3 +19,7 @@ def hotel(request):
 # Page Quality help
 def quality(request):
     return render(request, 'app17_help/quality.html')
+    
+# Page referrers help
+def referrers(request):
+    return render(request, 'app17_help/referrers.html')
