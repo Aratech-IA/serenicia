@@ -7,7 +7,7 @@ from django.utils import timezone
 
 from app1_base.models import User
 from app4_ehpad_base.models import MealBooking
-from app6_care.models import FreeComment
+from app6_care.models import FreeComment, TaskLevel1
 from app6_care.forms.forms_intervention import FreeCommentForm
 from app6_care.views.intervention import intervention
 
@@ -65,3 +65,11 @@ def views_hotel_free_comment(request):
     else:
         form = FreeCommentForm()
     return render(request, 'app6_care/hotel/free_comment.html', {'form': form})
+
+
+@login_required
+def personal_index(request):
+    specific_to_a_resident = True
+    request.POST = {'task_level': 1}
+    context = intervention(request, 'ASH', specific_to_a_resident)
+    return render(request, 'app6_care/hotel/hotel.html', context)

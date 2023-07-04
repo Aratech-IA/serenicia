@@ -11,7 +11,7 @@ from app6_care.views.views_caregiver import views_caregiver, views_caregiver_tre
 from app6_care.websocket import app6_websocket
 
 from app6_care.views.views_rela_table import table_relations
-from app6_care.views.views_hotel import views_hotel, views_hotel_free_comment
+from app6_care.views.views_hotel import views_hotel, views_hotel_free_comment, personal_index
 
 urlpatterns = [
     path('relat_table/', table_relations, name="table_relations"),
@@ -57,5 +57,6 @@ urlpatterns = [
     # -----------------------  related to hotel -----------------------
     path('hotel/', views_hotel, name='hotel'),
     path('hotel/free_comment/', views_hotel_free_comment, name='hotel_free_comment'),
+    path('hotel/index/', personal_index, name='personal index hotel'),
     path('dlProtocol/<int:protocol_id>/', dlProtocol, name='app6_care dlProtocol'),
 ]
