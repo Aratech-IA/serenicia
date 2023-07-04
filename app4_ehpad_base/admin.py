@@ -193,7 +193,7 @@ class ProfileInlineSerenicia(ProfileInline):
                'email_8', 'email_9', 'phone_number_2',
                'phone_number_3', 'phone_number_4', 'phone_number_5',
                'phone_number_6', 'phone_number_7', 'phone_number_8',
-               'phone_number_9', 'tracking_number', 'tracking_site',
+               'phone_number_9', 'tracking_number', 'tracking_site', 'advanced_user',
                )
     model = Profile
     form = AlwaysChangedModelForm
