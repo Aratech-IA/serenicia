@@ -233,11 +233,15 @@
                         {% for ref in family_list %}
                             <form class="input-group d-flex flex-column flex-lg-row justify-content-lg-between justify-content-xl-evenly" action="{% url 'internal_emailing_family' %}" method="post">
                                 {% csrf_token %}
-                                <tr>
-                                    <th class="text-center" scope="row">{{ref.first_name}}</th>
-                                    <td class="text-center">{{ref.last_name}}</td>
+                                <tr class="d-flex align-items-center">
+                                    <th class="text-center p-3" scope="row">{{ref.first_name}}</th>
+                                    <td class="text-center p-3">{{ref.last_name}}</td>
                                     <input name="family_id" type="hidden" value="{{ref.id}}">
-                                    <td><button name="contact_ref" type="submit" value="view_one_family" class="{{forloop.counter}}ref_contact bouton btn btn-perso">{% trans "Contact" %}</button></td>
+                                    <td>
+                                        <button name="contact_ref" type="submit" value="view_one_family" class="{{forloop.counter}}ref_contact bouton btn btn-perso">
+                                            {% trans "Contact" %}
+                                        </button>
+                                    </td>
                                 </tr>
                             </form>
                         {% endfor %}

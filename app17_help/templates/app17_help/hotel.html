@@ -1,0 +1,50 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+
+{% block content %}
+{% load static %}
+{% load i18n %}
+
+<div class="p-2">
+    <a class="btn btn-perso" href="{% url 'app17_help index' %}">{% trans "Return" %}</a>
+    <h4 class="text-center text-uppercase pb-3 pb-md-4">{% trans "Help module Hotel" %}</h4>
+    <div class="container-xl">
+
+        <!-- Entrer une tâche effectuée -->
+        <div class="d-flex flex-column flex-md-row align-items-center pb-5">
+            <div class="col-12 col-md-4 pb-2 pb-md-0">
+                <h5 class="pb-3">{% trans "Enter a completed task" %}</h5>
+                <p class="pb-1">1- {% trans "Choose a resident" %}</p>
+                <p class="pb-1">2- {% trans "Click on 'Hotel'" %}</p>
+                <p class="pb-1">3- {% trans "Choose the task(s) performed and validate" %}</p>
+                <p class="pb-1">4- {% trans "If necessary, you can leave a comment on a task carried out" %}</p>
+                <p class="pb-1">5- {% trans "To validate" %}</p>
+                <p class="pb-1">5- {% trans "Find the tasks on the resident's personal page" %}</p>
+            </div>
+            <video controls class="col-12 col-md-8">
+                <source src="{% static 'app17_help/videos/Validation_tache.mp4' %}" type="video/mp4">
+                {% trans "Your browser does not support the HTML video tag" %}.
+            </video>
+        </div>
+        
+        <!-- Entrer un commentaire sur un résident -->
+        <div class="d-flex flex-column flex-md-row align-items-center pb-5">
+            <div class="col-12 col-md-4 pb-2 pb-md-0">
+                <h5 class="pb-3">{% trans "Enter a comment about a resident" %}</h5>
+                <p class="pb-1">1- {% trans "Choose a resident" %}</p>
+                <p class="pb-1">2- {% trans "Click on 'Hotel'" %}</p>
+                <p class="pb-1">3- {% trans "Click on 'send a comment'" %}</p>
+                <p class="pb-1">4- {% trans "Enter the comment" %}</p>
+                <p class="pb-1">5- {% trans "To validate" %}</p>
+                <p class="pb-1">5- {% trans "Find the comments on the resident's personal page" %}</p>
+            </div>
+            <video controls class="col-12 col-md-8">
+                <source src="{% static 'app17_help/videos/Commentaire_sur_résident.mp4' %}" type="video/mp4">
+                {% trans "Your browser does not support the HTML video tag" %}.
+            </video>
+        </div>
+        
+    </div>
+</div>
+
+
+{% endblock content %}

@@ -665,8 +665,8 @@
                         {% endif %} -->
                     {% endif %}
         
-                    <!-- Menu mon avis -->
                     {% if perms.app0_access.view_monavis %}
+                        <!-- Menu mon avis -->
                         <li class="ps-3 ps-lg-4">
                             <a href="{% url 'satisfaction survey resident' %}">
                                 {% trans 'Satisfaction survey' %}
@@ -674,22 +674,22 @@
                         </li>
                     {% endif %}
         
-                    <!-- Administratif -->
                     {% if perms.app0_access.view_documents %}
-                            <li class="ps-3 ps-lg-4">
-                                <a class="d-flex align-items-center" href="/invoice/">
-                                    <span>
-                                        {% trans 'Invoices' %}
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="ps-3 ps-lg-4">
-                                <a class="d-flex align-items-center" href="/documents/">
-                                    <span>
-                                        {% trans 'Profile' %}
-                                    </span>
-                                </a>
-                            </li>
+                        <!-- Administratif -->
+                        <li class="ps-3 ps-lg-4">
+                            <a class="d-flex align-items-center" href="/invoice/">
+                                <span>
+                                    {% trans 'Invoices' %}
+                                </span>
+                            </a>
+                        </li>
+                        <li class="ps-3 ps-lg-4">
+                            <a class="d-flex align-items-center" href="/documents/">
+                                <span>
+                                    {% trans 'Profile' %}
+                                </span>
+                            </a>
+                        </li>
                     {% endif %}
         
                     <!-- Soins inventaire -->

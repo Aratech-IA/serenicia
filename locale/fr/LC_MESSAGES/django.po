@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-29 16:15+0200\n"
+"POT-Creation-Date: 2023-07-04 15:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -229,8 +229,9 @@ msgstr "Reconnaissance faciale"
 msgid "Can create facial recognition videos for residents"
 msgstr "Peut créer les vidéos de reconnaissance faciale pour les résidents"
 
-#: app0_access/models.py:69 app1_base/templates/app1_base/base.html:539
-#: app4_ehpad_base/models.py:494
+#: app0_access/models.py:69 app17_help/templates/app17_help/index.html:13
+#: app1_base/templates/app1_base/base.html:539
+#: app1_base/templates/app1_base/base.html:642 app4_ehpad_base/models.py:494
 #: app6_care/templates/app6_care/hotel/free_comment.html:15
 #: app6_care/templates/app6_care/hotel/free_comment.html:20
 msgid "Hotel"
@@ -409,9 +410,9 @@ msgstr "Actif"
 #: app4_ehpad_base/templates/app4_ehpad_base/eval_dashboard.html:503
 #: app4_ehpad_base/templates/app4_ehpad_base/eval_dashboard.html:1034
 #: app4_ehpad_base/templates/app4_ehpad_base/gallery.html:68
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:334
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:341
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:174
-#: app4_ehpad_base/templates/app4_ehpad_base/interventions_lvl3_full.html:51
+#: app4_ehpad_base/templates/app4_ehpad_base/interventions_lvl3_full.html:53
 #: app5_ehpad_messaging/templates/app5_ehpad_messaging/internal_emailing_family.html:54
 #: app6_care/templates/app6_care/caregiver/care_plan.html:137
 #: app6_care/templates/app6_care/caregiver/care_plan.html:155
@@ -531,7 +532,7 @@ msgstr "Annuler"
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:197
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/diet.html:53
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:82
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:505
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:512
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:443
 #: app4_ehpad_base/templates/app4_ehpad_base/preferences.html:31
 #: app4_ehpad_base/templates/app4_ehpad_base/record_passphrase.html:76
@@ -1103,7 +1104,7 @@ msgstr "Sélectionner une photo d'illustration"
 #: app4_ehpad_base/templates/app4_ehpad_base/eval_dashboard.html:655
 #: app4_ehpad_base/templates/app4_ehpad_base/eval_dashboard.html:796
 #: app4_ehpad_base/templates/app4_ehpad_base/eval_dashboard.html:938
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:648
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:655
 msgid "Evaluation"
 msgstr "Évaluation"
 
@@ -1256,8 +1257,8 @@ msgstr "Spécifique"
 msgid "Content of the protocol"
 msgstr "Contenu du protocole"
 
-#: app11_quality/models.py:31 app4_ehpad_base/forms.py:417
-#: app4_ehpad_base/models.py:505
+#: app11_quality/models.py:31 app4_ehpad_base/forms.py:416
+#: app4_ehpad_base/forms.py:425 app4_ehpad_base/models.py:505
 #: app6_care/templates/app6_care/caregiver/caregiver.html:203
 #: app6_care/templates/app6_care/caregiver/caregiver.html:206
 #: app6_care/templates/app6_care/hotel/hotel.html:89
@@ -1519,6 +1520,7 @@ msgstr "Fiche critères"
 
 #: app11_quality/templates/app11_quality/fiche-critere.html:18
 #: app17_help/templates/app17_help/cuisine.html:8
+#: app17_help/templates/app17_help/hotel.html:8
 #: app17_help/templates/app17_help/quality.html:8
 #: app17_help/templates/app17_help/social_life.html:9
 #: app4_ehpad_base/templates/app4_ehpad_base/blog.html:14
@@ -2053,7 +2055,7 @@ msgstr ""
 
 #: app12_delivery/templates/app12_delivery/account_delivery.html:26
 #: app1_base/templates/app1_base/base.html:474
-#: app1_base/templates/app1_base/base.html:680
+#: app1_base/templates/app1_base/base.html:689
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/documents.html:177
 msgid "Profile"
 msgstr "Profil"
@@ -2437,7 +2439,7 @@ msgstr "Facture "
 
 #: app12_delivery/templates/app12_delivery/composant/navLeft.html:45
 #: app1_base/templates/app1_base/base.html:462
-#: app1_base/templates/app1_base/base.html:673
+#: app1_base/templates/app1_base/base.html:682
 msgid "Invoices"
 msgstr "Factures"
 
@@ -2742,7 +2744,7 @@ msgstr "l'adresse de l'utilisateur est "
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_group_reservation.html:48
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:98
 #: app4_ehpad_base/templates/app4_ehpad_base/eval_dashboard.html:48
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:456
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:463
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:407
 #: app4_ehpad_base/templates/app4_ehpad_base/menu_of_the_day.html:9
 msgid "Lunch"
@@ -2752,7 +2754,7 @@ msgstr "Déjeuner"
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_group_reservation.html:22
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:100
 #: app4_ehpad_base/templates/app4_ehpad_base/eval_dashboard.html:576
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:458
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:465
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:409
 #: app4_ehpad_base/templates/app4_ehpad_base/menu_of_the_day.html:11
 msgid "Dinner"
@@ -3147,6 +3149,8 @@ msgstr "Créer un plat"
 
 #: app17_help/templates/app17_help/cuisine.html:21
 #: app17_help/templates/app17_help/cuisine.html:29
+#: app17_help/templates/app17_help/hotel.html:25
+#: app17_help/templates/app17_help/hotel.html:42
 #: app17_help/templates/app17_help/social_life.html:22
 #: app17_help/templates/app17_help/social_life.html:31
 msgid "Your browser does not support the HTML video tag"
@@ -3157,6 +3161,60 @@ msgstr "Votre navigateur ne prend pas en charge la balise vidéo HTML"
 msgid "Create new menu"
 msgstr "Créer un nouveau menu"
 
+#: app17_help/templates/app17_help/hotel.html:9
+msgid "Help module Hotel"
+msgstr "Aide module Hôtellerie"
+
+#: app17_help/templates/app17_help/hotel.html:15
+msgid "Enter a completed task"
+msgstr "Entrer une tâche effectuée"
+
+#: app17_help/templates/app17_help/hotel.html:16
+#: app17_help/templates/app17_help/hotel.html:33
+msgid "Choose a resident"
+msgstr "Choisir un résident"
+
+#: app17_help/templates/app17_help/hotel.html:17
+#: app17_help/templates/app17_help/hotel.html:34
+msgid "Click on 'Hotel'"
+msgstr "Cliquer sur 'Hotellerie'"
+
+#: app17_help/templates/app17_help/hotel.html:18
+msgid "Choose the task(s) performed and validate"
+msgstr "Choisir la/les tâche(s) effectuée et valider"
+
+#: app17_help/templates/app17_help/hotel.html:19
+msgid "If necessary, you can leave a comment on a task carried out"
+msgstr ""
+"Si nécessaire, vous pouvez laisser un commentaire sur une tâche effectuée"
+
+#: app17_help/templates/app17_help/hotel.html:20
+#: app17_help/templates/app17_help/hotel.html:37
+msgid "To validate"
+msgstr "Valider"
+
+#: app17_help/templates/app17_help/hotel.html:21
+msgid "Find the tasks on the resident's personal page"
+msgstr "Retrouvez les tâches sur la page personnelle du résident"
+
+#: app17_help/templates/app17_help/hotel.html:32
+msgid "Enter a comment about a resident"
+msgstr "Saisir un commentaire sur un résident"
+
+#: app17_help/templates/app17_help/hotel.html:35
+msgid "Click on 'send a comment'"
+msgstr "Cliquez sur 'envoyer un commentaire'"
+
+#: app17_help/templates/app17_help/hotel.html:36
+#: app6_care/templates/app6_care/caregiver/caregiver.html:280
+#: app6_care/templates/app6_care/hotel/hotel.html:166
+msgid "Enter the comment"
+msgstr "Saisissez votre commentaire"
+
+#: app17_help/templates/app17_help/hotel.html:38
+msgid "Find the comments on the resident's personal page"
+msgstr "Retrouvez les commentaires sur la page personnelle du résident"
+
 #: app17_help/templates/app17_help/index.html:8
 msgid "Welcome to Serenicia Help"
 msgstr "Bienvenue dans l'aide de Sérénicia"
@@ -3165,16 +3223,16 @@ msgstr "Bienvenue dans l'aide de Sérénicia"
 msgid "Click on the module button where you need help"
 msgstr "Cliquez sur le bouton du module où vous avez besoin d'aide"
 
-#: app17_help/templates/app17_help/index.html:13
+#: app17_help/templates/app17_help/index.html:14
 #: app1_base/templates/app1_base/base.html:577
 msgid "Quality"
 msgstr "Qualité"
 
-#: app17_help/templates/app17_help/index.html:16
+#: app17_help/templates/app17_help/index.html:17
 msgid "Understanding Navigation Bars"
 msgstr "Comprendre les barres de navigation"
 
-#: app17_help/templates/app17_help/index.html:17
+#: app17_help/templates/app17_help/index.html:18
 msgid "Navbars screenshot"
 msgstr "Capture d'écran des barres de navigation"
 
@@ -3315,8 +3373,8 @@ msgstr "Filtre"
 #: app4_ehpad_base/models.py:90
 #: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:64
 #: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:69
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:487
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:498
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:494
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:505
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:438
 #: app9_personnalized_project/models.py:55
 msgid "No"
@@ -3700,8 +3758,8 @@ msgid "Action"
 msgstr "Action"
 
 #: app1_base/templates/app1_base/alert.html:68
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:240
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:273
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:242
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:277
 msgid "Contact"
 msgstr "Contact"
 
@@ -3768,7 +3826,7 @@ msgid "Add automat"
 msgstr "Ajouter un automatisme"
 
 #: app1_base/templates/app1_base/archive.html:10
-#: app1_base/templates/app1_base/base.html:653
+#: app1_base/templates/app1_base/base.html:662
 msgid "Video"
 msgstr "Vidéo"
 
@@ -3912,21 +3970,21 @@ msgstr "Protocoles"
 msgid "Eval'Menu"
 msgstr "Eval'Menu"
 
-#: app1_base/templates/app1_base/base.html:642
+#: app1_base/templates/app1_base/base.html:651
 msgid "Cares input"
 msgstr "Saisie soins"
 
-#: app1_base/templates/app1_base/base.html:647
+#: app1_base/templates/app1_base/base.html:656
 #: app6_care/templates/app6_care/caregiver/caregiver.html:150
 #: app6_care/templates/app6_care/caregiver/caregiver.html:151
 msgid "Care plan"
 msgstr "Plan soins"
 
-#: app1_base/templates/app1_base/base.html:663
+#: app1_base/templates/app1_base/base.html:672
 msgid "Satisfaction survey"
 msgstr "Enquête de satisfaction"
 
-#: app1_base/templates/app1_base/base.html:690
+#: app1_base/templates/app1_base/base.html:699
 msgid "Create inventory"
 msgstr "Créer un inventaire"
 
@@ -4057,14 +4115,14 @@ msgstr "Si vous pensez que c'est une alarme injustifiée, annulez là"
 
 #: app1_base/templates/app1_base/warning.html:33
 #: app1_base/templates/app1_base/warning.html:55
-#: app4_ehpad_base/templates/app4_ehpad_base/blog.html:86
+#: app4_ehpad_base/templates/app4_ehpad_base/blog.html:88
 #: app4_ehpad_base/templates/app4_ehpad_base/public_photo.html:99
 msgid "previous"
 msgstr "précédent"
 
 #: app1_base/templates/app1_base/warning.html:35
 #: app1_base/templates/app1_base/warning.html:57
-#: app4_ehpad_base/templates/app4_ehpad_base/blog.html:98
+#: app4_ehpad_base/templates/app4_ehpad_base/blog.html:100
 #: app4_ehpad_base/templates/app4_ehpad_base/public_photo.html:111
 msgid "next"
 msgstr "suivant"
@@ -4515,7 +4573,7 @@ msgstr "Notifié par e-mail le"
 #: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:105
 #: app3_messaging/templates/app3_messaging/internal_emailing_mailbox_conv.html:57
 #: app3_messaging/templates/app3_messaging/internal_emailing_mailbox_sent.html:70
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:729
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:736
 msgid "See more"
 msgstr "Voir plus"
 
@@ -5025,8 +5083,8 @@ msgstr ""
 #: app4_ehpad_base/models.py:91
 #: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:62
 #: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:67
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:486
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:497
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:493
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:504
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:437
 #: app9_personnalized_project/models.py:56
 msgid "Yes"
@@ -5111,13 +5169,13 @@ msgid "meal"
 msgstr "repas"
 
 #: app4_ehpad_base/admin.py:72 app4_ehpad_base/admin.py:94
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:513
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:520
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:451
 msgid "lunch"
 msgstr "déjeuner"
 
 #: app4_ehpad_base/admin.py:74 app4_ehpad_base/admin.py:96
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:514
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:521
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:452
 msgid "dinner"
 msgstr "dîner"
@@ -5150,7 +5208,7 @@ msgstr "réservé pour"
 #: app4_ehpad_base/admin.py:99
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/documents.html:364
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:231
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:718
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:725
 msgid "by"
 msgstr "par"
 
@@ -5260,6 +5318,10 @@ msgstr "Décochez si cette article ne doit pas être visible pour les familles"
 #: app4_ehpad_base/forms.py:416
 msgid "is public"
 msgstr "Public ?"
+
+#: app4_ehpad_base/forms.py:425 app4_ehpad_base/models.py:500
+msgid "Created the"
+msgstr "Créé le"
 
 #: app4_ehpad_base/models.py:92
 msgid "Presentation"
@@ -5493,10 +5555,6 @@ msgstr "Actualités"
 #: app4_ehpad_base/models.py:499
 msgid "Author"
 msgstr "Auteur"
-
-#: app4_ehpad_base/models.py:500
-msgid "Created the"
-msgstr "Créé le"
 
 #: app4_ehpad_base/models.py:560 app4_ehpad_base/models.py:579
 msgid "Invoice"
@@ -6145,36 +6203,32 @@ msgstr "Quel jour souhaitez-vous venir ?"
 msgid "Serenicia Blog"
 msgstr "Blog Sérénicia"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/blog.html:16
-msgid "filters"
-msgstr "Filtres"
-
-#: app4_ehpad_base/templates/app4_ehpad_base/blog.html:33
+#: app4_ehpad_base/templates/app4_ehpad_base/blog.html:34
 msgid "Validate the filter"
 msgstr "Valider le filtre"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/blog.html:72
+#: app4_ehpad_base/templates/app4_ehpad_base/blog.html:74
 msgid "There is no article published this week yet"
 msgstr "Il n'y a pas encore d'article publié cette semaine"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/blog.html:83
+#: app4_ehpad_base/templates/app4_ehpad_base/blog.html:85
 #: app4_ehpad_base/templates/app4_ehpad_base/public_photo.html:96
 msgid "first"
 msgstr "premier"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/blog.html:92
+#: app4_ehpad_base/templates/app4_ehpad_base/blog.html:94
 #: app4_ehpad_base/templates/app4_ehpad_base/public_photo.html:105
 msgid "Page"
 msgstr "Page"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/blog.html:92
+#: app4_ehpad_base/templates/app4_ehpad_base/blog.html:94
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:137
 #: app4_ehpad_base/templates/app4_ehpad_base/public_photo.html:105
 #: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:71
 msgid "of"
 msgstr "de"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/blog.html:101
+#: app4_ehpad_base/templates/app4_ehpad_base/blog.html:103
 #: app4_ehpad_base/templates/app4_ehpad_base/public_photo.html:114
 msgid "last"
 msgstr "dernier"
@@ -6413,7 +6467,7 @@ msgstr "Employés"
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_index.html:63
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_index.html:75
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_index.html:93
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:474
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:481
 #: app6_care/templates/app6_care/hotel/booking.html:27
 msgid "Guests"
 msgstr "Invités"
@@ -7097,129 +7151,129 @@ msgstr "Contacter le Service Hôtelier"
 msgid "My Family"
 msgstr "Ma famille"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:248
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:252
 msgid "Contact all your family"
 msgstr "Contactez toute votre famille"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:259
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:263
 msgid "Liberal speakers"
 msgstr "Intervenants libéraux"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:291
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:295
 msgid "I keep up to date with the latest supports in real time"
 msgstr "Je me tiens au courant des dernieres prises en charge en temps réel"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:310
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:314
 msgid "No care data available"
 msgstr "Aucune donnée de soin disponible"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:316
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:320
 msgid "Free comments of the week"
 msgstr "Commentaire libre"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:320
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:324
 #: app6_care/templates/app6_care/caregiver/caregiver.html:172
 msgid "READ"
 msgstr "LIRE"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:326
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:330
 #: app6_care/templates/app6_care/caregiver/caregiver.html:178
 msgid "Comment written by"
 msgstr "Commentaire écrit par"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:358
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:365
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:195
 msgid "Calendar's details"
 msgstr "Détails du calendrier"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:392
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:399
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:229
 msgid "Be a part of the schedule"
 msgstr "M'inscrire sur le planning"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:416
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:423
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:253
 msgid "Video Chat"
 msgstr "Appel visio"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:438
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:445
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:312
 msgid "Book"
 msgstr "Réserver"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:444
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:451
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:394
 msgid "Booking a meal"
 msgstr "Réserver un repas"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:463
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:470
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:414
 msgid "You bring a guest ?"
 msgstr "Vous venez accompagné(e) ?"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:474
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:481
 #: app6_care/templates/app6_care/hotel/booking.html:63
 msgid "Other guests"
 msgstr "Autres invités"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:481
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:488
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:431
 msgid "Private room ?"
 msgstr "Salle privative ?"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:492
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:499
 msgid "Surprise visit ?"
 msgstr "Visite surprise ?"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:536
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:543
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:325
 msgid "I'm planning"
 msgstr "Je m'organise"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:549
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:556
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:338
 msgid "To"
 msgstr "Pour"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:552
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:559
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:341
 msgid "On the"
 msgstr "Le"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:555
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:562
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:344
 msgid "For about"
 msgstr "Pour environ"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:559
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:566
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:348
 msgid "Further comments"
 msgstr "Commentaires éventuels"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:563
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:570
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:353
 msgid "Submit my choices"
 msgstr "Je valide mes choix dans l'agenda"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:576
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:583
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:366
 msgid "Cancel my event"
 msgstr "J'annule mon évènement"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:589
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:596
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:379
 msgid "planned on"
 msgstr "prévu(e) le"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:606
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:613
 msgid "Regarding meals"
 msgstr "Concernant les repas"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:625
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:632
 msgid "Last activities"
 msgstr "Dernières activités"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:667
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:674
 msgid "All participants"
 msgstr "Tous les participants"
 
@@ -7241,7 +7295,6 @@ msgid "realized by"
 msgstr "réalisé par"
 
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:161
-#: app4_ehpad_base/templates/app4_ehpad_base/interventions_lvl3_full.html:38
 msgid "Treatments realized by"
 msgstr "Soins réalisés par"
 
@@ -7261,6 +7314,10 @@ msgstr "Service hôtelier et restauration"
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:574
 msgid "Social Life Council"
 msgstr "Conseil de Vie Sociale"
+
+#: app4_ehpad_base/templates/app4_ehpad_base/interventions_lvl3_full.html:38
+msgid "Intervention of"
+msgstr "Intervention de"
 
 #: app4_ehpad_base/templates/app4_ehpad_base/menu_carousel.html:18
 #: app4_ehpad_base/templates/app4_ehpad_base/menu_carousel.html:43
@@ -8514,11 +8571,6 @@ msgid "Select the pictogram to comment"
 msgstr "Sélectionnez le pictogramme à commenter"
 
 #: app6_care/templates/app6_care/caregiver/caregiver.html:280
-#: app6_care/templates/app6_care/hotel/hotel.html:166
-msgid "Enter the comment"
-msgstr "Saisissez votre commentaire"
-
-#: app6_care/templates/app6_care/caregiver/caregiver.html:280
 #: app6_care/templates/app6_care/caregiver/free_comment.html:22
 #: app6_care/templates/app6_care/hotel/free_comment.html:26
 #: app6_care/templates/app6_care/hotel/hotel.html:166
@@ -9555,35 +9607,4 @@ msgstr "Vous n'avez pas encore de rendez-vous."
 msgid "The story life has been deleted"
 msgstr "L'histoire de vie a été supprimée"
 
-#~ msgid "Filtrer"
-#~ msgstr "Filtre"
 
-#~ msgid "First"
-#~ msgstr "premier"
-
-#~ msgid "Following"
-#~ msgstr "Suivant"
-
-#~ msgid "Latest"
-#~ msgstr "Dernier"
-
-#~ msgid "Public post"
-#~ msgstr "Publication publique"
-
-#~ msgid "Are you sure you want to delete the article"
-#~ msgstr "Êtes-vous sûr de vouloir supprimer l'article"
-
-#~ msgid "Post from the Direction"
-#~ msgstr "Message de la direction"
-
-#~ msgid "Post from Communication and Social Life section"
-#~ msgstr "Message de la section Communication et Vie Sociale "
-
-#~ msgid "Post from Care section"
-#~ msgstr "Message de la section soins"
-
-#~ msgid "Post from Hospitality section"
-#~ msgstr "Message de la section hospitalité"
-
-#~ msgid "Activities Post"
-#~ msgstr "Messages Activités"
