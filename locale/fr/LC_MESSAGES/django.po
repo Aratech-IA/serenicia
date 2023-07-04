@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-04 15:53+0200\n"
+"POT-Creation-Date: 2023-07-04 16:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,7 +52,7 @@ msgstr "Praticien"
 #: app4_ehpad_base/templates/app4_ehpad_base/menu_of_the_day.html:88
 #: app4_ehpad_base/templates/app4_ehpad_base/registration/login.html:43
 #: app4_ehpad_base/templates/app4_ehpad_base/registration/login.html:172
-#: app4_ehpad_base/views_cuisine_eval.py:1166 app6_care/filters.py:34
+#: app4_ehpad_base/views_cuisine_eval.py:1167 app6_care/filters.py:34
 #: app6_care/forms/forms_intervention.py:28
 #: app6_care/templates/app6_care/caregiver/interventions_report.html:58
 #: app8_survey/models.py:76
@@ -691,7 +691,7 @@ msgid "Planning"
 msgstr "Plannification"
 
 #: app10_social_activities/admin.py:58
-#: app4_ehpad_base/views_cuisine_commission.py:128
+#: app4_ehpad_base/views_cuisine_commission.py:130
 msgid "Recurrence"
 msgstr "Récurrence"
 
@@ -895,7 +895,7 @@ msgstr "Détails"
 
 #: app10_social_activities/templates/app10_social_activities/details.html:54
 #: app10_social_activities/templates/app10_social_activities/details.html:178
-#: app4_ehpad_base/views_cuisine_commission.py:74
+#: app4_ehpad_base/views_cuisine_commission.py:76
 msgid "Evaluations"
 msgstr "Évaluations"
 
@@ -1287,7 +1287,7 @@ msgstr "Flag"
 #: app4_ehpad_base/forms.py:237
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:44
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:68
-#: app4_ehpad_base/views_cuisine_eval.py:1101
+#: app4_ehpad_base/views_cuisine_eval.py:1102
 #: app9_personnalized_project/signals.py:54
 msgid "Name"
 msgstr "Nom"
@@ -1859,7 +1859,7 @@ msgstr "Sélectionnez son moyen de paiement"
 #: app12_delivery/models.py:15 app12_delivery/models.py:26
 #: app12_delivery/models.py:84 app15_calendar/models.py:46
 #: app1_base/models.py:21 app4_ehpad_base/models.py:69
-#: app4_ehpad_base/views_cuisine_eval.py:853
+#: app4_ehpad_base/views_cuisine_eval.py:854
 #: app6_care/templates/app6_care/caregiver/care_plan_creation.html:364
 #: app9_personnalized_project/models.py:152
 #: app9_personnalized_project/signals.py:15
@@ -1869,7 +1869,7 @@ msgstr "Lundi"
 #: app12_delivery/models.py:16 app12_delivery/models.py:28
 #: app12_delivery/models.py:85 app15_calendar/models.py:47
 #: app1_base/models.py:22 app4_ehpad_base/models.py:70
-#: app4_ehpad_base/views_cuisine_eval.py:853
+#: app4_ehpad_base/views_cuisine_eval.py:854
 #: app6_care/templates/app6_care/caregiver/care_plan_creation.html:365
 #: app9_personnalized_project/models.py:153
 #: app9_personnalized_project/signals.py:15
@@ -1879,7 +1879,7 @@ msgstr "Mardi"
 #: app12_delivery/models.py:17 app12_delivery/models.py:30
 #: app12_delivery/models.py:86 app15_calendar/models.py:48
 #: app1_base/models.py:23 app4_ehpad_base/models.py:71
-#: app4_ehpad_base/views_cuisine_eval.py:853
+#: app4_ehpad_base/views_cuisine_eval.py:854
 #: app6_care/templates/app6_care/caregiver/care_plan_creation.html:366
 #: app9_personnalized_project/models.py:154
 #: app9_personnalized_project/signals.py:15
@@ -1889,7 +1889,7 @@ msgstr "Mercredi"
 #: app12_delivery/models.py:18 app12_delivery/models.py:32
 #: app12_delivery/models.py:87 app15_calendar/models.py:49
 #: app1_base/models.py:24 app4_ehpad_base/models.py:72
-#: app4_ehpad_base/views_cuisine_eval.py:853
+#: app4_ehpad_base/views_cuisine_eval.py:854
 #: app6_care/templates/app6_care/caregiver/care_plan_creation.html:367
 #: app9_personnalized_project/models.py:155
 #: app9_personnalized_project/signals.py:15
@@ -1899,7 +1899,7 @@ msgstr "Jeudi"
 #: app12_delivery/models.py:19 app12_delivery/models.py:34
 #: app12_delivery/models.py:88 app15_calendar/models.py:50
 #: app1_base/models.py:25 app4_ehpad_base/models.py:73
-#: app4_ehpad_base/views_cuisine_eval.py:854
+#: app4_ehpad_base/views_cuisine_eval.py:855
 #: app6_care/templates/app6_care/caregiver/care_plan_creation.html:368
 #: app9_personnalized_project/models.py:156
 #: app9_personnalized_project/signals.py:15
@@ -1909,7 +1909,7 @@ msgstr "Vendredi"
 #: app12_delivery/models.py:20 app12_delivery/models.py:36
 #: app12_delivery/models.py:89 app15_calendar/models.py:51
 #: app1_base/models.py:26 app4_ehpad_base/models.py:74
-#: app4_ehpad_base/views_cuisine_eval.py:854
+#: app4_ehpad_base/views_cuisine_eval.py:855
 #: app6_care/templates/app6_care/caregiver/care_plan_creation.html:369
 #: app9_personnalized_project/models.py:157
 #: app9_personnalized_project/signals.py:15
@@ -1919,7 +1919,7 @@ msgstr "Samedi"
 #: app12_delivery/models.py:21 app12_delivery/models.py:38
 #: app12_delivery/models.py:90 app15_calendar/models.py:52
 #: app1_base/models.py:27 app4_ehpad_base/models.py:75
-#: app4_ehpad_base/views_cuisine_eval.py:854
+#: app4_ehpad_base/views_cuisine_eval.py:855
 #: app6_care/templates/app6_care/caregiver/care_plan_creation.html:370
 #: app9_personnalized_project/models.py:158
 #: app9_personnalized_project/signals.py:16
@@ -2399,7 +2399,7 @@ msgstr "Registre de livraison de tournée"
 
 #: app12_delivery/templates/app12_delivery/composant/navLeft.html:14
 #: app1_base/templates/app1_base/base.html:240 app4_ehpad_base/forms.py:85
-#: app4_ehpad_base/views_cuisine_commission.py:258
+#: app4_ehpad_base/views_cuisine_commission.py:260
 msgid "Menu"
 msgstr "Menu"
 
@@ -2683,7 +2683,7 @@ msgstr "Pourcentage Vat"
 #: app4_ehpad_base/forms.py:153 app4_ehpad_base/forms.py:194
 #: app4_ehpad_base/forms.py:235
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:45
-#: app4_ehpad_base/views_cuisine_commission.py:257
+#: app4_ehpad_base/views_cuisine_commission.py:259
 msgid "Price"
 msgstr "Prix"
 
@@ -3175,7 +3175,6 @@ msgid "Choose a resident"
 msgstr "Choisir un résident"
 
 #: app17_help/templates/app17_help/hotel.html:17
-#: app17_help/templates/app17_help/hotel.html:34
 msgid "Click on 'Hotel'"
 msgstr "Cliquer sur 'Hotellerie'"
 
@@ -3200,6 +3199,10 @@ msgstr "Retrouvez les tâches sur la page personnelle du résident"
 #: app17_help/templates/app17_help/hotel.html:32
 msgid "Enter a comment about a resident"
 msgstr "Saisir un commentaire sur un résident"
+
+#: app17_help/templates/app17_help/hotel.html:34
+msgid "Click on 'Hospitality' in the left navigation bar"
+msgstr "Cliquer sur 'Hotellerie' dans la barre de navigation de gauche"
 
 #: app17_help/templates/app17_help/hotel.html:35
 msgid "Click on 'send a comment'"
@@ -6440,7 +6443,7 @@ msgstr "Tableau d'évaluation des menus"
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_index.html:59
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_index.html:100
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:67
-#: app4_ehpad_base/views_cuisine_commission.py:71
+#: app4_ehpad_base/views_cuisine_commission.py:73
 msgid "Noon"
 msgstr "Midi"
 
@@ -6475,7 +6478,7 @@ msgstr "Invités"
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_index.html:71
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_index.html:114
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:68
-#: app4_ehpad_base/views_cuisine_commission.py:72
+#: app4_ehpad_base/views_cuisine_commission.py:74
 msgid "Evening"
 msgstr "Soir"
 
@@ -6543,12 +6546,12 @@ msgid "Click on the day to see the menus"
 msgstr "Cliquez sur le jour pour voir les menus"
 
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_pdf.html:33
-#: app4_ehpad_base/views_cuisine_eval.py:1168
+#: app4_ehpad_base/views_cuisine_eval.py:1169
 msgid "Staff"
 msgstr "Employés"
 
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_pdf.html:37
-#: app4_ehpad_base/views_cuisine_eval.py:1170
+#: app4_ehpad_base/views_cuisine_eval.py:1171
 msgid "Discovery training"
 msgstr "Stage découverte"
 
@@ -7006,7 +7009,7 @@ msgid "Monthly"
 msgstr "Mensuel"
 
 #: app4_ehpad_base/templates/app4_ehpad_base/eval_dashboard.html:31
-#: app4_ehpad_base/views_cuisine_eval.py:796
+#: app4_ehpad_base/views_cuisine_eval.py:797
 msgid "All residents"
 msgstr "Tous les résidents"
 
@@ -7102,8 +7105,8 @@ msgid "Location logo"
 msgstr "Logo du lieu"
 
 #: app4_ehpad_base/templates/app4_ehpad_base/index.html:59
-#: app4_ehpad_base/views_cuisine_eval.py:947
-#: app4_ehpad_base/views_cuisine_eval.py:951
+#: app4_ehpad_base/views_cuisine_eval.py:948
+#: app4_ehpad_base/views_cuisine_eval.py:952
 msgid "Missing information"
 msgstr "Information manquante"
 
@@ -7918,97 +7921,97 @@ msgstr "Date déjà pleine"
 msgid "Can not add event"
 msgstr "Ajout d'évènement impossible"
 
-#: app4_ehpad_base/views_cuisine_commission.py:75
+#: app4_ehpad_base/views_cuisine_commission.py:77
 msgid "Total evaluations per month"
 msgstr "Total des évaluations par mois"
 
-#: app4_ehpad_base/views_cuisine_commission.py:126
-#: app4_ehpad_base/views_cuisine_commission.py:201
-#: app4_ehpad_base/views_cuisine_commission.py:256 app8_survey/models.py:27
+#: app4_ehpad_base/views_cuisine_commission.py:128
+#: app4_ehpad_base/views_cuisine_commission.py:203
+#: app4_ehpad_base/views_cuisine_commission.py:258 app8_survey/models.py:27
 #: app9_personnalized_project/models.py:32
 msgid "Notation"
 msgstr "Note"
 
-#: app4_ehpad_base/views_cuisine_commission.py:127
-#: app4_ehpad_base/views_cuisine_commission.py:212
+#: app4_ehpad_base/views_cuisine_commission.py:129
+#: app4_ehpad_base/views_cuisine_commission.py:214
 msgid "Voter"
 msgstr "Votant"
 
-#: app4_ehpad_base/views_cuisine_commission.py:129
+#: app4_ehpad_base/views_cuisine_commission.py:131
 msgid "Meal"
 msgstr "Repas"
 
-#: app4_ehpad_base/views_cuisine_commission.py:138
-#: app4_ehpad_base/views_cuisine_commission.py:289
+#: app4_ehpad_base/views_cuisine_commission.py:140
+#: app4_ehpad_base/views_cuisine_commission.py:291
 msgid "Not documented"
 msgstr "Non renseigné"
 
-#: app4_ehpad_base/views_cuisine_commission.py:143
+#: app4_ehpad_base/views_cuisine_commission.py:145
 msgid "Best"
 msgstr "Meilleures"
 
-#: app4_ehpad_base/views_cuisine_commission.py:146
+#: app4_ehpad_base/views_cuisine_commission.py:148
 msgid "Less good"
 msgstr "Moins bon"
 
-#: app4_ehpad_base/views_cuisine_commission.py:164
+#: app4_ehpad_base/views_cuisine_commission.py:166
 msgid "Entry's notation"
 msgstr "Notes des entrées"
 
-#: app4_ehpad_base/views_cuisine_commission.py:166
+#: app4_ehpad_base/views_cuisine_commission.py:168
 msgid "Main course's notation"
 msgstr "Notes des plats principaux"
 
-#: app4_ehpad_base/views_cuisine_commission.py:168
+#: app4_ehpad_base/views_cuisine_commission.py:170
 msgid "Dessert's notation"
 msgstr "Notes des desserts"
 
-#: app4_ehpad_base/views_cuisine_commission.py:200
+#: app4_ehpad_base/views_cuisine_commission.py:202
 msgid "Average notation"
 msgstr "Moyenne des notes"
 
-#: app4_ehpad_base/views_cuisine_commission.py:211
+#: app4_ehpad_base/views_cuisine_commission.py:213
 msgid "Average voter"
 msgstr "Moyenne des votants"
 
-#: app4_ehpad_base/views_cuisine_commission.py:236
+#: app4_ehpad_base/views_cuisine_commission.py:238
 msgid "Menu commission from"
 msgstr "Commission menu du"
 
-#: app4_ehpad_base/views_cuisine_commission.py:241
+#: app4_ehpad_base/views_cuisine_commission.py:243
 msgid "Meeting start"
 msgstr "Début de session"
 
-#: app4_ehpad_base/views_cuisine_commission.py:242
+#: app4_ehpad_base/views_cuisine_commission.py:244
 msgid "Meeting end"
 msgstr "Fin de session"
 
-#: app4_ehpad_base/views_cuisine_commission.py:244
+#: app4_ehpad_base/views_cuisine_commission.py:246
 msgid "Attendees"
 msgstr "Personnes présentes"
 
-#: app4_ehpad_base/views_cuisine_commission.py:246
+#: app4_ehpad_base/views_cuisine_commission.py:248
 #: app8_survey/report_factory.py:122
 msgid "Comments"
 msgstr "Commentaires"
 
-#: app4_ehpad_base/views_cuisine_commission.py:268
+#: app4_ehpad_base/views_cuisine_commission.py:270
 msgid "Best note with lower price"
 msgstr "Meilleures note avec prix faible"
 
-#: app4_ehpad_base/views_cuisine_commission.py:271
+#: app4_ehpad_base/views_cuisine_commission.py:273
 msgid "Less good note with higher price"
 msgstr "Moins bonnes notes avec prix élevés"
 
-#: app4_ehpad_base/views_cuisine_commission.py:302
+#: app4_ehpad_base/views_cuisine_commission.py:304
 msgid "Incoherence table - Entry"
 msgstr "Tableau d'incohérence - Entrée"
 
-#: app4_ehpad_base/views_cuisine_commission.py:304
+#: app4_ehpad_base/views_cuisine_commission.py:306
 msgid "Incoherence table - Main dish"
 msgstr "Tableau d'incohérence - Plat principal"
 
-#: app4_ehpad_base/views_cuisine_commission.py:306
+#: app4_ehpad_base/views_cuisine_commission.py:308
 msgid "Incoherence table - Dessert"
 msgstr "Tableau d'incohérence - Dessert"
 
@@ -8028,53 +8031,53 @@ msgstr "Aucun utilisateur connecté à cette date"
 msgid "The service team has been registered"
 msgstr "L'équipe de service à bien été enregistrée"
 
-#: app4_ehpad_base/views_cuisine_eval.py:816
+#: app4_ehpad_base/views_cuisine_eval.py:817
 msgid "An error has occured"
 msgstr "Une erreur est survenue"
 
-#: app4_ehpad_base/views_cuisine_eval.py:844
+#: app4_ehpad_base/views_cuisine_eval.py:845
 msgid "Your booking for the "
 msgstr "Votre réservation pour le "
 
-#: app4_ehpad_base/views_cuisine_eval.py:844
+#: app4_ehpad_base/views_cuisine_eval.py:845
 msgid ", for a total of"
 msgstr ", pour un total de"
 
-#: app4_ehpad_base/views_cuisine_eval.py:845
+#: app4_ehpad_base/views_cuisine_eval.py:846
 msgid "guests"
 msgstr "invités"
 
-#: app4_ehpad_base/views_cuisine_eval.py:846
+#: app4_ehpad_base/views_cuisine_eval.py:847
 msgid "has been registered !"
 msgstr "a été enregistrée !"
 
-#: app4_ehpad_base/views_cuisine_eval.py:849
-#: app4_ehpad_base/views_cuisine_eval.py:1045
+#: app4_ehpad_base/views_cuisine_eval.py:850
+#: app4_ehpad_base/views_cuisine_eval.py:1046
 msgid "Meal booking"
 msgstr "Réservation de repas"
 
-#: app4_ehpad_base/views_cuisine_eval.py:944
+#: app4_ehpad_base/views_cuisine_eval.py:945
 msgid "Your modification has been registered"
 msgstr "Votre modification a été enregistrée"
 
-#: app4_ehpad_base/views_cuisine_eval.py:944
+#: app4_ehpad_base/views_cuisine_eval.py:945
 msgid "Booking updated"
 msgstr "Réservation mise à jour"
 
-#: app4_ehpad_base/views_cuisine_eval.py:945
+#: app4_ehpad_base/views_cuisine_eval.py:946
 msgid "Your booking has been registered"
 msgstr "Votre réservation a été enregistrée"
 
-#: app4_ehpad_base/views_cuisine_eval.py:945
+#: app4_ehpad_base/views_cuisine_eval.py:946
 msgid "Booking saved"
 msgstr "Réservation enregistrée"
 
-#: app4_ehpad_base/views_cuisine_eval.py:946
+#: app4_ehpad_base/views_cuisine_eval.py:947
 msgid "Please specify if this is a reservation for lunch or dinner"
 msgstr ""
 "Veuillez préciser s'il s'agit d'une réservation pour le déjeuner ou le dîner"
 
-#: app4_ehpad_base/views_cuisine_eval.py:949
+#: app4_ehpad_base/views_cuisine_eval.py:950
 msgid ""
 "Booking not possible, please check your reservation schedule (group and "
 "individual)"
@@ -8082,41 +8085,41 @@ msgstr ""
 "Réservation impossible, merci de vérifier votre planning de réservation "
 "(groupe et individuel)"
 
-#: app4_ehpad_base/views_cuisine_eval.py:950
+#: app4_ehpad_base/views_cuisine_eval.py:951
 msgid "Registeration not possible"
 msgstr "Inscription impossible"
 
-#: app4_ehpad_base/views_cuisine_eval.py:951
+#: app4_ehpad_base/views_cuisine_eval.py:952
 msgid "Please specifiy the number of guests"
 msgstr "Merci de préciser le nombre d'invités"
 
-#: app4_ehpad_base/views_cuisine_eval.py:1014
+#: app4_ehpad_base/views_cuisine_eval.py:1015
 msgid "Meal with"
 msgstr "Repas avec"
 
-#: app4_ehpad_base/views_cuisine_eval.py:1017
+#: app4_ehpad_base/views_cuisine_eval.py:1018
 #: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:42
 #: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:89
 msgid "and"
 msgstr "et"
 
-#: app4_ehpad_base/views_cuisine_eval.py:1022
+#: app4_ehpad_base/views_cuisine_eval.py:1023
 msgid "other guests"
 msgstr "autres invités"
 
-#: app4_ehpad_base/views_cuisine_eval.py:1044
+#: app4_ehpad_base/views_cuisine_eval.py:1045
 msgid "Your reservation has been successfully deleted"
 msgstr "Votre réservation a été supprimée avec succès"
 
-#: app4_ehpad_base/views_cuisine_eval.py:1101
+#: app4_ehpad_base/views_cuisine_eval.py:1102
 msgid "Quantity"
 msgstr "Quantité"
 
-#: app4_ehpad_base/views_cuisine_eval.py:1178
+#: app4_ehpad_base/views_cuisine_eval.py:1179
 msgid "Reservations"
 msgstr "Réservations"
 
-#: app4_ehpad_base/views_cuisine_eval.py:1194
+#: app4_ehpad_base/views_cuisine_eval.py:1195
 msgid "Totals"
 msgstr "Totaux"
 
@@ -9606,5 +9609,3 @@ msgstr "Vous n'avez pas encore de rendez-vous."
 #: app9_personnalized_project/views.py:346
 msgid "The story life has been deleted"
 msgstr "L'histoire de vie a été supprimée"
-
-
