@@ -713,6 +713,7 @@ def get_global_notation(list_eval, option):
 @login_required
 @permission_required('app0_access.view_cuisine')
 def dashboard_eval(request, res_id):
+    print(request.POST)
     res_id = int(res_id)
     context = {}
     if request.method == 'POST':
@@ -724,7 +725,7 @@ def dashboard_eval(request, res_id):
             date_value = MenuEvaluation.objects.get(pk=selectedeval).menu.date
             sortby = 'day'
         else:
-            date_value = datetime.strptime(request.POST.get('date'), '%d/%m/%Y').date()
+            date_value = datetime.strptime(request.POST.get('date'), '%Y-%m-%d').date()
         if 'previous.x' in request.POST:
             date_value = get_change_by_sortby(date_value, sortby, "previous")
         elif 'next.x' in request.POST:
@@ -783,7 +784,7 @@ def dashboard_eval(request, res_id):
             context['pics_evening'] = {item[0]: pics_evening.filter(item=item[0]).order_by('presentation__default',
                                                                                            'presentation__type')
                                        for loop, item in enumerate(MealPresentation.ITEM_CHOICES)}
-    context['date_value'] = date_value.strftime('%d/%m/%Y')
+    context['date_value'] = date_value.isoformat()
     context['sortby'] = sortby
     context['note_noon'] = note_noon
     context['note_evening'] = note_evening

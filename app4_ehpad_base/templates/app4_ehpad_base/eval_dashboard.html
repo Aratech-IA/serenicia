@@ -14,7 +14,7 @@
         <div class="d-flex justify-content-center gap-2 mt-2">
             <form class="d-flex align-items-center justify-content-center mb-0" action="" method="post">{% csrf_token %}
                 <input name="previous" type="image" src="{% static 'app4_ehpad_base/img/fleche_gauche.png' %}" width="24em" class="img-fluid me-2">
-                <input class="text-center" id="id_date" name="date" readonly="True" onchange="this.form.submit()"
+                <input class="text-center" type="date" name="date" onchange="this.form.submit()"
                        value="{{ date_value }}">
                 <input name="next" type="image" src="{% static 'app4_ehpad_base/img/fleche_droite.png' %}" width="24em" class="img-fluid ms-2 me-4">
                 <button class="{% if sortby == 'day' %}activesortby{% endif %} sortby" name="sortby" value="day">{% trans 'Daily' %}</button>
