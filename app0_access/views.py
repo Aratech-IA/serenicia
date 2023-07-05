@@ -271,9 +271,3 @@ def user_types(request):
                       'codename': 'none'})
     context['list_types'] = result
     return render(request, 'app0_access/user_types.html', context)
-
-
-@login_required
-@permission_required('app0_access.view_rightsmanagement')
-def help_doc(request):
-    return FileResponse(open(settings.STATIC_ROOT + '/app0_access/doc/user_group_fr.pdf', 'rb'))

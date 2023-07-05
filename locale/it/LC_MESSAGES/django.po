@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-04 16:46+0200\n"
+"POT-Creation-Date: 2023-07-05 07:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -563,8 +563,8 @@ msgstr "Utenti"
 #: app6_care/templates/app6_care/caregiver/care_plan_creation.html:347
 #: app6_care/templates/app6_care/caregiver/caregiver.html:426
 #: app6_care/templates/app6_care/caregiver/caregiver.html:456
-#: app6_care/templates/app6_care/hotel/hotel.html:258
-#: app6_care/templates/app6_care/hotel/hotel.html:287
+#: app6_care/templates/app6_care/hotel/hotel.html:260
+#: app6_care/templates/app6_care/hotel/hotel.html:289
 #: app9_personnalized_project/templates/app9_personnalized_project/appointments.html:123
 #: app9_personnalized_project/templates/app9_personnalized_project/appointments_employee.html:67
 #: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:48
@@ -597,7 +597,7 @@ msgstr "Cancellare"
 #: app6_care/templates/app6_care/caregiver/caregiver.html:405
 #: app6_care/templates/app6_care/caregiver/free_comment.html:28
 #: app6_care/templates/app6_care/hotel/free_comment.html:32
-#: app6_care/templates/app6_care/hotel/hotel.html:236
+#: app6_care/templates/app6_care/hotel/hotel.html:238
 #: app8_survey/templates/app8_survey/survey.html:100
 #: app9_personnalized_project/templates/app9_personnalized_project/appointments.html:125
 #: app9_personnalized_project/templates/app9_personnalized_project/create_person.html:38
@@ -1321,10 +1321,10 @@ msgstr "Lista di presenze"
 #: app6_care/templates/app6_care/caregiver/caregiver.html:345
 #: app6_care/templates/app6_care/caregiver/caregiver.html:356
 #: app6_care/templates/app6_care/caregiver/interventions_report.html:72
-#: app6_care/templates/app6_care/hotel/hotel.html:177
-#: app6_care/templates/app6_care/hotel/hotel.html:186
-#: app6_care/templates/app6_care/hotel/hotel.html:203
-#: app6_care/templates/app6_care/hotel/hotel.html:213
+#: app6_care/templates/app6_care/hotel/hotel.html:179
+#: app6_care/templates/app6_care/hotel/hotel.html:188
+#: app6_care/templates/app6_care/hotel/hotel.html:205
+#: app6_care/templates/app6_care/hotel/hotel.html:215
 #: app8_survey/templates/app8_survey/details.html:65
 #: app8_survey/templates/app8_survey/details.html:82
 #: app8_survey/templates/app8_survey/survey.html:81
@@ -1480,8 +1480,8 @@ msgstr ""
 #: app4_ehpad_base/forms.py:425 app4_ehpad_base/models.py:505
 #: app6_care/templates/app6_care/caregiver/caregiver.html:203
 #: app6_care/templates/app6_care/caregiver/caregiver.html:206
-#: app6_care/templates/app6_care/hotel/hotel.html:89
-#: app6_care/templates/app6_care/hotel/hotel.html:92
+#: app6_care/templates/app6_care/hotel/hotel.html:91
+#: app6_care/templates/app6_care/hotel/hotel.html:94
 msgid "Category"
 msgstr "Categoria"
 
@@ -3830,7 +3830,7 @@ msgstr "Lasciare un commento"
 
 #: app17_help/templates/app17_help/hotel.html:36
 #: app6_care/templates/app6_care/caregiver/caregiver.html:280
-#: app6_care/templates/app6_care/hotel/hotel.html:166
+#: app6_care/templates/app6_care/hotel/hotel.html:168
 #, fuzzy
 #| msgid "Further comments"
 msgid "Enter the comment"
@@ -8252,7 +8252,7 @@ msgstr ""
 
 #: app4_ehpad_base/templates/app4_ehpad_base/gallery.html:86
 #: app6_care/templates/app6_care/caregiver/caregiver.html:454
-#: app6_care/templates/app6_care/hotel/hotel.html:285
+#: app6_care/templates/app6_care/hotel/hotel.html:287
 #: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:139
 msgid "Continue"
 msgstr "Continuare"
@@ -9855,7 +9855,7 @@ msgid "Life story"
 msgstr ""
 
 #: app6_care/templates/app6_care/caregiver/caregiver.html:136
-#: app6_care/templates/app6_care/hotel/hotel.html:43
+#: app6_care/templates/app6_care/hotel/hotel.html:45
 #, fuzzy
 #| msgid "Treatments that are being entered"
 msgid "Inputs that are being entered"
@@ -9863,8 +9863,8 @@ msgstr "Trattamenti in elaborazione"
 
 #: app6_care/templates/app6_care/caregiver/caregiver.html:139
 #: app6_care/templates/app6_care/caregiver/caregiver.html:140
-#: app6_care/templates/app6_care/hotel/hotel.html:46
-#: app6_care/templates/app6_care/hotel/hotel.html:47
+#: app6_care/templates/app6_care/hotel/hotel.html:48
+#: app6_care/templates/app6_care/hotel/hotel.html:49
 #, fuzzy
 #| msgid "My incomplete treatments"
 msgid "My incomplete inputs"
@@ -9883,8 +9883,8 @@ msgstr "Trattamento puntuale"
 #: app6_care/templates/app6_care/caregiver/caregiver.html:162
 #: app6_care/templates/app6_care/caregiver/free_comment.html:20
 #: app6_care/templates/app6_care/hotel/free_comment.html:24
-#: app6_care/templates/app6_care/hotel/hotel.html:76
 #: app6_care/templates/app6_care/hotel/hotel.html:78
+#: app6_care/templates/app6_care/hotel/hotel.html:80
 #, fuzzy
 #| msgid "Further comments"
 msgid "Free comment"
@@ -9900,10 +9900,10 @@ msgstr "Altri commenti"
 #: app6_care/templates/app6_care/caregiver/caregiver.html:215
 #: app6_care/templates/app6_care/caregiver/caregiver.html:263
 #: app6_care/templates/app6_care/caregiver/caregiver.html:267
-#: app6_care/templates/app6_care/hotel/hotel.html:95
-#: app6_care/templates/app6_care/hotel/hotel.html:101
-#: app6_care/templates/app6_care/hotel/hotel.html:149
-#: app6_care/templates/app6_care/hotel/hotel.html:153
+#: app6_care/templates/app6_care/hotel/hotel.html:97
+#: app6_care/templates/app6_care/hotel/hotel.html:103
+#: app6_care/templates/app6_care/hotel/hotel.html:151
+#: app6_care/templates/app6_care/hotel/hotel.html:155
 msgid "Come back to"
 msgstr "Tornare a"
 
@@ -9911,10 +9911,10 @@ msgstr "Tornare a"
 #: app6_care/templates/app6_care/caregiver/caregiver.html:215
 #: app6_care/templates/app6_care/caregiver/caregiver.html:263
 #: app6_care/templates/app6_care/caregiver/caregiver.html:267
-#: app6_care/templates/app6_care/hotel/hotel.html:95
-#: app6_care/templates/app6_care/hotel/hotel.html:101
-#: app6_care/templates/app6_care/hotel/hotel.html:149
-#: app6_care/templates/app6_care/hotel/hotel.html:153
+#: app6_care/templates/app6_care/hotel/hotel.html:97
+#: app6_care/templates/app6_care/hotel/hotel.html:103
+#: app6_care/templates/app6_care/hotel/hotel.html:151
+#: app6_care/templates/app6_care/hotel/hotel.html:155
 msgid "Come back"
 msgstr "Tornare"
 
@@ -9922,10 +9922,10 @@ msgstr "Tornare"
 #: app6_care/templates/app6_care/caregiver/caregiver.html:228
 #: app6_care/templates/app6_care/caregiver/caregiver.html:233
 #: app6_care/templates/app6_care/caregiver/caregiver.html:235
-#: app6_care/templates/app6_care/hotel/hotel.html:112
 #: app6_care/templates/app6_care/hotel/hotel.html:114
-#: app6_care/templates/app6_care/hotel/hotel.html:119
+#: app6_care/templates/app6_care/hotel/hotel.html:116
 #: app6_care/templates/app6_care/hotel/hotel.html:121
+#: app6_care/templates/app6_care/hotel/hotel.html:123
 #, fuzzy
 #| msgid "Cancel a treatment mode"
 msgid "Cancel a pictogram mode"
@@ -9935,22 +9935,22 @@ msgstr "Cancellare il modalità di trattamento"
 #: app6_care/templates/app6_care/caregiver/caregiver.html:243
 #: app6_care/templates/app6_care/caregiver/caregiver.html:248
 #: app6_care/templates/app6_care/caregiver/caregiver.html:249
-#: app6_care/templates/app6_care/hotel/hotel.html:128
-#: app6_care/templates/app6_care/hotel/hotel.html:129
-#: app6_care/templates/app6_care/hotel/hotel.html:134
-#: app6_care/templates/app6_care/hotel/hotel.html:135
+#: app6_care/templates/app6_care/hotel/hotel.html:130
+#: app6_care/templates/app6_care/hotel/hotel.html:131
+#: app6_care/templates/app6_care/hotel/hotel.html:136
+#: app6_care/templates/app6_care/hotel/hotel.html:137
 msgid "Leave a comment"
 msgstr "Lasciare un commento"
 
 #: app6_care/templates/app6_care/caregiver/caregiver.html:277
-#: app6_care/templates/app6_care/hotel/hotel.html:163
+#: app6_care/templates/app6_care/hotel/hotel.html:165
 #, fuzzy
 #| msgid "Select the treatments to cancel "
 msgid "Select the pictograms to cancel"
 msgstr "Selezionare i trattamenti per cancellare"
 
 #: app6_care/templates/app6_care/caregiver/caregiver.html:278
-#: app6_care/templates/app6_care/hotel/hotel.html:164
+#: app6_care/templates/app6_care/hotel/hotel.html:166
 #, fuzzy
 #| msgid "Select the treatments to cancel "
 msgid "Select the pictogram to comment"
@@ -9959,7 +9959,7 @@ msgstr "Selezionare i trattamenti per cancellare"
 #: app6_care/templates/app6_care/caregiver/caregiver.html:280
 #: app6_care/templates/app6_care/caregiver/free_comment.html:22
 #: app6_care/templates/app6_care/hotel/free_comment.html:26
-#: app6_care/templates/app6_care/hotel/hotel.html:166
+#: app6_care/templates/app6_care/hotel/hotel.html:168
 #, fuzzy
 #| msgid "Cares input"
 msgid "voice input"
@@ -9968,7 +9968,7 @@ msgstr "Entrata di cura"
 #: app6_care/templates/app6_care/caregiver/caregiver.html:280
 #: app6_care/templates/app6_care/caregiver/free_comment.html:22
 #: app6_care/templates/app6_care/hotel/free_comment.html:26
-#: app6_care/templates/app6_care/hotel/hotel.html:166
+#: app6_care/templates/app6_care/hotel/hotel.html:168
 #, fuzzy
 #| msgid "Cares input"
 msgid "Voice input"
@@ -9977,41 +9977,41 @@ msgstr "Entrata di cura"
 #: app6_care/templates/app6_care/caregiver/caregiver.html:280
 #: app6_care/templates/app6_care/caregiver/free_comment.html:22
 #: app6_care/templates/app6_care/hotel/free_comment.html:26
-#: app6_care/templates/app6_care/hotel/hotel.html:166
+#: app6_care/templates/app6_care/hotel/hotel.html:168
 msgid "is available on tablet"
 msgstr ""
 
 #: app6_care/templates/app6_care/caregiver/caregiver.html:282
-#: app6_care/templates/app6_care/hotel/hotel.html:168
+#: app6_care/templates/app6_care/hotel/hotel.html:170
 msgid "Choose a category"
 msgstr "Scegliere una categoria "
 
 #: app6_care/templates/app6_care/caregiver/caregiver.html:404
 #: app6_care/templates/app6_care/caregiver/free_comment.html:27
 #: app6_care/templates/app6_care/hotel/free_comment.html:31
-#: app6_care/templates/app6_care/hotel/hotel.html:235
+#: app6_care/templates/app6_care/hotel/hotel.html:237
 #, fuzzy
 #| msgid "Confirm password"
 msgid "Confirm comment"
 msgstr "Conferma il password"
 
 #: app6_care/templates/app6_care/caregiver/caregiver.html:423
-#: app6_care/templates/app6_care/hotel/hotel.html:255
+#: app6_care/templates/app6_care/hotel/hotel.html:257
 msgid "Intervention that I am entering"
 msgstr "Intervenzioni che inserico"
 
 #: app6_care/templates/app6_care/caregiver/caregiver.html:425
-#: app6_care/templates/app6_care/hotel/hotel.html:257
+#: app6_care/templates/app6_care/hotel/hotel.html:259
 msgid "Done"
 msgstr "Fatto"
 
 #: app6_care/templates/app6_care/caregiver/caregiver.html:442
-#: app6_care/templates/app6_care/hotel/hotel.html:273
+#: app6_care/templates/app6_care/hotel/hotel.html:275
 msgid "Interventions that are being entered"
 msgstr "Intervenzioni che sono state inseriche"
 
 #: app6_care/templates/app6_care/caregiver/caregiver.html:465
-#: app6_care/templates/app6_care/hotel/hotel.html:296
+#: app6_care/templates/app6_care/hotel/hotel.html:298
 msgid "Ignore"
 msgstr "Ignorare"
 
@@ -10148,35 +10148,39 @@ msgstr "Camera"
 
 #: app6_care/templates/app6_care/hotel/hotel.html:23
 #, fuzzy
-#| msgid "Booking a meal"
-msgid "Bookings"
-msgstr "Prenotazione di un pasto"
+#| msgid "Reporting Panel"
+msgid "Reserved meals"
+msgstr "Pannello Rapporti"
 
-#: app6_care/templates/app6_care/hotel/hotel.html:54
+#: app6_care/templates/app6_care/hotel/hotel.html:40
+msgid "No meals were booked that day"
+msgstr ""
+
+#: app6_care/templates/app6_care/hotel/hotel.html:56
 #, fuzzy
 #| msgid "Enter new treatment"
 msgid "Enter new hotel intervention"
 msgstr "Entra un nuovo trattamento"
 
-#: app6_care/templates/app6_care/hotel/hotel.html:57
 #: app6_care/templates/app6_care/hotel/hotel.html:59
+#: app6_care/templates/app6_care/hotel/hotel.html:61
 msgid "Hotel Plan"
 msgstr ""
 
-#: app6_care/templates/app6_care/hotel/hotel.html:62
-#: app6_care/templates/app6_care/hotel/hotel.html:68
+#: app6_care/templates/app6_care/hotel/hotel.html:64
+#: app6_care/templates/app6_care/hotel/hotel.html:70
 #, fuzzy
 #| msgid "Service"
 msgid "Hotel intervention"
 msgstr "Servizio"
 
-#: app6_care/templates/app6_care/hotel/hotel.html:64
+#: app6_care/templates/app6_care/hotel/hotel.html:66
 #, fuzzy
 #| msgid "Communication"
 msgid "Communals"
 msgstr "Communicazione"
 
-#: app6_care/templates/app6_care/hotel/hotel.html:71
+#: app6_care/templates/app6_care/hotel/hotel.html:73
 #, fuzzy, python-format
 #| msgid "residents"
 msgid "Room of %(resident)s"
@@ -11264,6 +11268,11 @@ msgstr "Non hai ancora una video"
 #| msgid "Ok you are registered"
 msgid "The story life has been deleted"
 msgstr "Ok, sei registrato"
+
+#, fuzzy
+#~| msgid "Booking a meal"
+#~ msgid "Bookings"
+#~ msgstr "Prenotazione di un pasto"
 
 #, fuzzy
 #~| msgid "Further comments"
