@@ -109,8 +109,7 @@ def float_to_cent(price):
 
 class NewEntreeForm(forms.ModelForm):
     id = forms.CharField(widget=forms.HiddenInput, required=False)
-    price_cents = forms.FloatField(required=False, min_value=0.00, initial=0.00, label=_('Price'),
-                                   widget=forms.NumberInput(attrs={'step': '0.01'}))
+    price_cents = forms.FloatField(required=False, min_value=0.00, initial=0.00, label=_('Price'), widget=forms.NumberInput(attrs={'step': '0.01', 'class': 'w-100'}))
     name = forms.CharField(required=False, label=_('Name'))
 
     def __init__(self, *args, **kwargs):

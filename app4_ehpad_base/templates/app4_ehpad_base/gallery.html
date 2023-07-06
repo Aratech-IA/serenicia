@@ -2,98 +2,102 @@
 {% load static %}
 {% load i18n %}
 
-{% block sticky-top-btn %}
-    <a href="{% url 'personal page' %}" class="btn btn-perso sticky-top-btn d-none d-md-block m-2">{% trans 'Back' %}</a>
-{% endblock sticky-top-btn %}
-
 {% block content %}
 
+
 <div class="container-fluid text-center d-flex justify-content-center align-items-center">
-    <div class="align-self-start container-fluid">
-        <table>
-            <tbody>
-                <tr class="d-flex flex-row flex-wrap w-100 h-100 align-items-center justify-content-center">
-                    {% for pic_url in list_url %}
-                        <td class="d-flex border-3 {% cycle 'border-darkblue' 'border-secondary' %} m-1 rounded-3 div-h-custom" id="{{ forloop.counter }}">
-                            <input type="image" src="{{ pic_url.image }}" class="img-fluid mx-auto my-auto img-mh-custom" data-bs-toggle="modal" data-bs-target="#choices{{ forloop.counter }}">
-                            <!-- Modal -->
-                            <div class="modal fade" id="choices{{ forloop.counter }}" tabindex="-1" aria-hidden="true">
-                              <div class="modal-dialog">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h5 class="modal-title">{% trans 'Options' %}</h5>
-                                    <span>{% if pic_url.sensitive %}({% trans 'Sensitive photo' %}){% endif %}</span>
-                                  </div>
-                                  <div class="modal-body d-flex flex-wrap justify-content-center align-items-center gap-2">
-                                    <form action="{% url 'app4_ehpad_base gallery details' %}" method="post">{% csrf_token %}
-                                        <button type="submit" class="btn btn-perso d-flex flex-column align-items-center">
-                                            <svg viewBox="0 0 17 16" class="bi bi-image-fill icon-modal" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                              <path fill-rule="evenodd" d="M.002 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-12a2 2 0 0 1-2-2V3zm1 9l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094L15.002 9.5V13a1 1 0 0 1-1 1h-12a1 1 0 0 1-1-1v-1zm5-6.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-                                            </svg>
-                                            {% trans 'See the photo' %}
-                                        </button>
-                                        <input hidden name="pic_url" value="{{ pic_url.image_full }}">
-                                        <input hidden name="anchor" value="{{ forloop.counter }}">
-                                    </form>
-                                    <form action="" method="post">{% csrf_token %}
-                                        <input hidden name="selected" value="{{ pic_url.image }}">
-                                        <button hidden type="submit" name="delete" value="1" id="deletebtn{{ forloop.counter }}"></button>
-                                        {% if pic_url.sensitive %}
-                                            <button type="submit" class="btn btn-outline-warning d-flex flex-column align-items-center" name="not-sensitive" value="1">
-                                                <svg viewBox="0 0 16 16" class="bi bi-x-circle icon-modal" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                  <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                                  <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                                                </svg>
-                                                {% trans 'Flag as non sensitive' %}
-                                            </button>
-                                        {% else %}
-                                            <button type="submit" class="btn btn-outline-warning d-flex flex-column align-items-center" name="sensitive" value="1">
-                                                    <svg viewBox="0 0 16 16" class="bi bi-exclamation-circle-fill icon-modal" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                      <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
-                                                    </svg>
-                                                    {% trans 'Flag as sensitive' %}
-                                            </button>
-                                        {% endif %}
-                                    </form>
-                                    {% if perms.app0_access.view_photostaff %}
-                                    <button type="button" class="btn btn-outline-danger d-flex flex-column align-items-center" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#delete{{ forloop.counter }}">
-                                            <svg viewBox="0 0 16 16" class="bi bi-trash-fill icon-modal" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                              <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
-                                            </svg>
-                                            {% trans 'Delete' %}
+   <div class="container-fluid d-flex flex-column">
+
+      <div class="d-inline-flex">
+         <a href="{% url 'personal page' %}" class="btn btn-perso sticky-top-btn d-none d-md-block mt-3">{% trans 'Back' %}</a>
+      </div>
+
+      <table>
+         <tbody>
+            <tr class="d-flex flex-row flex-wrap w-100 h-100 align-items-center justify-content-center">
+               {% for pic_url in list_url %}
+                  <td class="d-flex border-3 {% cycle 'border-darkblue' 'border-secondary' %} m-1 rounded-3 div-h-custom" id="{{ forloop.counter }}">
+                     <input type="image" src="{{ pic_url.image }}" class="img-fluid mx-auto my-auto img-mh-custom" data-bs-toggle="modal" data-bs-target="#choices{{ forloop.counter }}">
+                     <!-- Modal -->
+                     <div class="modal fade" id="choices{{ forloop.counter }}" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                           <div class="modal-header">
+                              <h5 class="modal-title">{% trans 'Options' %}</h5>
+                              <span>{% if pic_url.sensitive %}({% trans 'Sensitive photo' %}){% endif %}</span>
+                           </div>
+                           <div class="modal-body d-flex flex-wrap justify-content-center align-items-center gap-2">
+                              <form action="{% url 'app4_ehpad_base gallery details' %}" method="post">{% csrf_token %}
+                                 <button type="submit" class="btn btn-perso d-flex flex-column align-items-center">
+                                    <svg viewBox="0 0 17 16" class="bi bi-image-fill icon-modal" fill="currentColor">
+                                       <path fill-rule="evenodd" d="M.002 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-12a2 2 0 0 1-2-2V3zm1 9l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094L15.002 9.5V13a1 1 0 0 1-1 1h-12a1 1 0 0 1-1-1v-1zm5-6.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                                    </svg>
+                                    {% trans 'See the photo' %}
+                                 </button>
+                                 <input hidden name="pic_url" value="{{ pic_url.image_full }}">
+                                 <input hidden name="anchor" value="{{ forloop.counter }}">
+                              </form>
+                              <form action="" method="post">{% csrf_token %}
+                                 <input hidden name="selected" value="{{ pic_url.image }}">
+                                 <button hidden type="submit" name="delete" value="1" id="deletebtn{{ forloop.counter }}"></button>
+                                 {% if pic_url.sensitive %}
+                                    <button type="submit" class="btn btn-outline-warning d-flex flex-column align-items-center" name="not-sensitive" value="1">
+                                       <svg viewBox="0 0 16 16" class="bi bi-x-circle icon-modal" fill="currentColor">
+                                          <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                          <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                       </svg>
+                                       {% trans 'Flag as non sensitive' %}
                                     </button>
-                                    {% endif %}
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn-perso" data-bs-dismiss="modal">{% trans 'Close' %}</button>
-                                  </div>
-                                </div>
+                                 {% else %}
+                                    <button type="submit" class="btn btn-outline-warning d-flex flex-column align-items-center" name="sensitive" value="1">
+                                       <svg viewBox="0 0 16 16" class="bi bi-exclamation-circle-fill icon-modal" fill="currentColor">
+                                          <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                                       </svg>
+                                       {% trans 'Flag as sensitive' %}
+                                    </button>
+                                 {% endif %}
+                              </form>
+                              {% if perms.app0_access.view_photostaff %}
+                              <button type="button" class="btn btn-outline-danger d-flex flex-column align-items-center" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#delete{{ forloop.counter }}">
+                                 <svg viewBox="0 0 16 16" class="bi bi-trash-fill icon-modal" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
+                                 </svg>
+                                 {% trans 'Delete' %}
+                              </button>
+                              {% endif %}
+                           </div>
+                           <div class="modal-footer">
+                              <button type="button" class="btn btn-perso" data-bs-dismiss="modal">{% trans 'Close' %}</button>
+                           </div>
+                        </div>
+                        </div>
+                     </div>
+                     {% if perms.app0_access.view_photostaff %}
+                        <!-- Modal -->
+                        <div class="modal fade" id="delete{{ forloop.counter }}" tabindex="-1" aria-hidden="true">
+                           <div class="modal-dialog">
+                              <div class="modal-content">
+                              <div class="modal-header">
+                                 <h5 class="modal-title">{% trans 'Warning' %}</h5>
                               </div>
-                            </div>
-                            {% if perms.app0_access.view_photostaff %}
-                                <!-- Modal -->
-                                <div class="modal fade" id="delete{{ forloop.counter }}" tabindex="-1" aria-hidden="true">
-                                  <div class="modal-dialog">
-                                    <div class="modal-content">
-                                      <div class="modal-header">
-                                        <h5 class="modal-title">{% trans 'Warning' %}</h5>
-                                      </div>
-                                      <div class="modal-body">
-                                        {% trans 'Deleting a photo is irreversible, do you want to continue ?' %}
-                                      </div>
-                                      <div class="modal-footer">
-                                        <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal">{% trans 'Cancel' %}</button>
-                                        <button type="button" class="btn btn-perso" onclick="document.getElementById('deletebtn{{ forloop.counter }}').click()">{% trans 'Continue' %}</button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                            {% endif %}
-                        </td>
-                    {% endfor %}
-                </tr>
-            </tbody>
-        </table>
-    </div>
+                              <div class="modal-body">
+                                 {% trans 'Deleting a photo is irreversible, do you want to continue ?' %}
+                              </div>
+                              <div class="modal-footer">
+                                 <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal">{% trans 'Cancel' %}</button>
+                                 <button type="button" class="btn btn-perso" onclick="document.getElementById('deletebtn{{ forloop.counter }}').click()">{% trans 'Continue' %}</button>
+                              </div>
+                              </div>
+                           </div>
+                        </div>
+                     {% endif %}
+                  </td>
+               {% endfor %}
+            </tr>
+         </tbody>
+      </table>
+   </div>
 </div>
+
+
 {% endblock content %}

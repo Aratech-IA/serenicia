@@ -167,85 +167,63 @@
         </div>
         
         <div class="mt-4 mt-lg-5">
-            <form class="input-group d-flex flex-column flex-lg-row justify-content-lg-between justify-content-xl-evenly" action="{% url 'internal_emailing_family' %}" method="post">
-            {% csrf_token %}
+            <form class="d-flex flex-column flex-lg-row justify-content-lg-between justify-content-xl-evenly" action="{% url 'internal_emailing_family' %}" method="post">
+                {% csrf_token %}
                 <div class="d-flex flex-column align-items-center pb-4 pb-lg-0">
-                    <h4 class="text-center">{% trans "IDE nurse" %}</h4>
-                    <p class="text-center">{% trans "Medical care" %}</p>
-                    <table class="table table-hover">
-                            {% for ref in ref_ide %}
-                            <tr>
-                                <th class="text-center" scope="row">{{ref.first_name}}</th>
-                                <td class="text-center">{{ref.last_name}}</td>
-                            </tr>
-                            {% endfor %}
-                    </table>
-                    <div class="d-flex justify-content-center">
+                    <h4 class="text-center mb-0">{% trans "IDE nurse" %}</h4>
+                    <p class="text-center pb-2">{% trans "Medical care" %}</p>
+                    {% for ref in ref_ide %}
+                        <p class="text-center mb-1">{{ref.first_name}} {{ref.last_name}}</p>
+                    {% endfor %}
+                    <div class="d-flex justify-content-center pt-2">
                         <button name="contact_ref" type="submit" value="view_ide" class="{{forloop.counter}}ref_contact bouton btn btn-perso">{% trans "Contact the Nurses" %}</button>
                     </div>
                 </div>
 
                 <div class="d-flex flex-column align-items-center pb-4 pb-lg-0">
-                    <h4 class="text-center">{% trans "Caregiver Assistant AS / AMP / AES" %}</h4>
-                    <p class="text-center">{% trans "Nursing care, linen management" %}</p>
-                    <table class="table table-hover">
-                            {% for ref in ref_as %}
-                            <tr>
-                                <th class="text-center" scope="row">{{ref.first_name}}</th>
-                                <td class="text-center">{{ref.last_name}}</td>
-                            </tr>
-                            {% endfor %}
-                    </table>
-                    <div class="d-flex justify-content-center">
+                    <h4 class="text-center mb-0">{% trans "Caregiver Assistant AS / AMP / AES" %}</h4>
+                    <p class="text-center pb-2">{% trans "Nursing care, linen management" %}</p>
+                    {% for ref in ref_as %}
+                        <p class="text-center mb-1">{{ref.first_name}} {{ref.last_name}}</p>
+                    {% endfor %}
+                    <div class="d-flex justify-content-center pt-2">
                         <button name="contact_ref" type="submit" value="view_as" class="{{forloop.counter}}ref_contact bouton btn btn-perso">{% trans "Contact Caregivers" %}</button>
                     </div>
                 </div>
 
                 <div class="d-flex flex-column align-items-center pb-4 pb-lg-0">
-                    <h4 class="text-center">{% trans "Hotel Service Agent" %}</h4>
-                    <p class="text-center">{% trans "Maintenance of premises and meal service" %}</p>
-                    <table class="table table-hover" >
-                            {% for ref in ref_ash %}
-                            <tr>
-                                <th class="text-center" scope="row">{{ref.first_name}}</th>
-                                <td class="text-center">{{ref.last_name}}</td>
-                            </tr>
-                            {% endfor %}
-                    </table>
-                    <div class="d-flex justify-content-center">
+                    <h4 class="text-center mb-0">{% trans "Hotel Service Agent" %}</h4>
+                    <p class="text-center pb-2">{% trans "Maintenance of premises and meal service" %}</p>
+                    {% for ref in ref_ash %}
+                        <p class="text-center mb-1">{{ref.first_name}} {{ref.last_name}}</p>
+                    {% endfor %}
+                    <div class="d-flex justify-content-center pt-2">
                         <button name="contact_ref" type="submit" value="view_ash" class="{{forloop.counter}}ref_contact bouton btn btn-perso">{% trans "Contact the Hotel Service" %}</button>
                     </div>
                 </div>
             </form>
         </div>
 
-        <div class="d-flex flex-column flex-lg-row justify-content-lg-between justify-content-xl-evenly">
-            <div>
+        <div class="d-flex flex-column flex-lg-row justify-content-lg-evenly">
             {% if family_list %}
+            <div>
                 <div class="d-flex justify-content-center mt-5 mb-4">
                     <div class="section-titre d-inline-flex px-5">
-                        <h2 class="text-center mb-0">{% trans "My Family" %}</h2>
+                        <h2 class="text-center mb-0">{% trans "Family" %}</h2>
                     </div>
                 </div>
 
                 <div class="d-flex flex-column align-items-center pb-4 pb-lg-0">
-                    <table class="table table-hover">
-                        {% for ref in family_list %}
-                            <form class="input-group d-flex flex-column flex-lg-row justify-content-lg-between justify-content-xl-evenly" action="{% url 'internal_emailing_family' %}" method="post">
-                                {% csrf_token %}
-                                <tr class="d-flex align-items-center">
-                                    <th class="text-center p-3" scope="row">{{ref.first_name}}</th>
-                                    <td class="text-center p-3">{{ref.last_name}}</td>
-                                    <input name="family_id" type="hidden" value="{{ref.id}}">
-                                    <td>
-                                        <button name="contact_ref" type="submit" value="view_one_family" class="{{forloop.counter}}ref_contact bouton btn btn-perso">
-                                            {% trans "Contact" %}
-                                        </button>
-                                    </td>
-                                </tr>
-                            </form>
-                        {% endfor %}
-                    </table>
+                    {% for ref in family_list %}
+                        <form class="d-flex justify-content-between align-items-center mb-2" action="{% url 'internal_emailing_family' %}" method="post">
+                            {% csrf_token %}
+                            <p class="text-center me-3">{{ref.first_name}} {{ref.last_name}}</p>
+                            <input name="family_id" type="hidden" value="{{ref.id}}">
+                            <button name="contact_ref" type="submit" value="view_one_family" class="{{forloop.counter}}ref_contact bouton btn btn-perso">
+                                {% trans "Contact" %}
+                            </button>
+                        </form>
+                    {% endfor %}
                     <div class="d-flex justify-content-center">
                         <form class="d-flex flex-column flex-lg-row justify-content-lg-between justify-content-xl-evenly" action="{% url 'internal_emailing_family' %}" method="post">
                             {% csrf_token %}
@@ -253,11 +231,11 @@
                         </form>
                     </div>
                 </div>
-            {% endif %}
             </div>
+            {% endif %}
 
-            <div>
             {% if praticiens %}
+            <div>
                 <div class="d-flex justify-content-center mt-5 mb-4">
                     <div class="section-titre d-inline-flex px-5">
                         <h2 class="text-center mb-0">{% trans "Liberal speakers" %}</h2>
@@ -265,23 +243,20 @@
                 </div>
 
                 <div class="d-flex flex-column align-items-center pb-4 pb-lg-0">
-                    <table class="table table-hover">
-                        {% for praticien in praticiens %}
-                            <form class="input-group d-flex flex-column flex-lg-row justify-content-lg-between justify-content-xl-evenly" action="{% url 'internal_emailing_family' %}" method="post">
-                                {% csrf_token %}
-                                <tr>
-                                    <th class="text-center" scope="row">{{praticien.groups.first.name}}</th>
-                                    <th class="text-center">{{praticien.first_name}}</th>
-                                    <td class="text-center">{{praticien.last_name}}</td>
-                                    <input name="family_id" type="hidden" value="{{praticien.id}}">
-                                    <td><button name="contact_ref" type="submit" value="view_one_family" class="{{forloop.counter}}ref_contact bouton btn btn-perso">{% trans "Contact" %}</button></td>
-                                </tr>
-                            </form>
-                        {% endfor %}
-                    </table>
+                    {% for praticien in praticiens %}
+                        <form class="d-flex justify-content-between align-items-center mb-2" action="{% url 'internal_emailing_family' %}" method="post">
+                            {% csrf_token %}
+                            <p class="text-center fw-bolder me-3">{{praticien.groups.first.name}}</p>
+                            <p class="text-center me-3">{{praticien.first_name}} {{praticien.last_name}}</p>
+                            <input name="family_id" type="hidden" value="{{praticien.id}}">
+                            <button name="contact_ref" type="submit" value="view_one_family" class="{{forloop.counter}}ref_contact bouton btn btn-perso">
+                                {% trans "Contact" %}
+                            </button>
+                        </form>
+                    {% endfor %}
                 </div>
-            {% endif %}
             </div>
+            {% endif %}
 
         </div>
 
@@ -311,14 +286,14 @@
                 </div>
             </div>
         {% else %}
-            <h2 class="text-center m-5 p-5">{% trans "No care data available" %}</h2>
+            <h2 class="text-center m-5 p-md-5">{% trans "No care data available" %}</h2>
         {% endif %}
     {% endif %}
 
-        {% if comment_of_the_week %}
-            <div class="mt-3 border border-white rounded-3 p-1 p-md-3 container-fluid bg-white d-flex flex-column align-items-center">
-                <h4 class="text-align mb-2">{% trans 'Free comments of the week' %}</h4>
-                {% for comment in comment_of_the_week %}
+    {% if comment_of_the_week %}
+        <div class="mt-3 border border-white rounded-3 p-1 p-md-3 container-fluid bg-white d-flex flex-column align-items-center">
+            <h4 class="text-align mb-2">{% trans 'Free comments of the week' %}</h4>
+            {% for comment in comment_of_the_week %}
                 <div>
                     <h6>{{comment.start}} <img src="{% if comment.nurse.profile.photo %}{{ comment.nurse.profile.photo.url }}{% else %}{% static 'app4_ehpad_base/img/homemade_svg/avatar.svg' %}{% endif %}" width="48px" class="resident_small_pic mx-2" title="{{ comment.nurse.first_name }} {{ comment.nurse.last_name }}">
                         <button class='btn btn-perso' type="button" data-bs-toggle="modal" data-bs-target="#comment_modal{{ forloop.counter }}">{% trans 'READ' %}</button></h6>
@@ -332,7 +307,6 @@
                                         <img src="{% if comment.nurse.profile.photo %}{{ comment.nurse.profile.photo.url }}{% else %}{% static 'app4_ehpad_base/img/homemade_svg/avatar.svg' %}{% endif %}" width="48px" class="resident_small_pic mx-2" title="{{ comment.nurse.first_name }} {{ comment.nurse.last_name }}">
                                     </div>
                                     <h5 class="text-center">{{ comment.start }}</h5>
-                                    <!-- <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">×</button> -->
                                 </div>
                                 <div class="modal-body">
                                     <h6 class="text-center mb-0">{{comment.content}}</h6>
@@ -344,10 +318,10 @@
                         </div>
                     </div>
                 </div>
-                {% endfor %}
-            </div>
-        {% endif %}
-    </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
 
 
 
@@ -627,14 +601,14 @@
     {% if social_life_data %}
         <!-- SOCIAL LIFE SECTION -->
         <div class="container-fluid bg-white p-2 p-md-3 p-xl-5">
-            <div class="d-flex justify-content-center pb-4 pb-lg-5">
+            <div class="d-flex justify-content-center pb-3 pb-lg-4">
                 <div class="section-titre d-inline-flex px-5">
                     <h2 class="text-center mb-0">{% trans "Last activities" %}</h2>
                 </div>
             </div>
             <div class="d-flex flex-wrap justify-content-evenly">
                 {% for data in social_life_data %}
-                    <div class="d-flex flex-column align-items-center pt-3 pt-lg-0">
+                    <div class="d-flex flex-column align-items-center border rounded-5 border-darkblue p-3 mt-3">
                         <h3>{{ data.activity.event.type }}</h3>
                         <div class="d-flex justify-content-center align-items-center gap-3">
                             <!--       détails activité         -->

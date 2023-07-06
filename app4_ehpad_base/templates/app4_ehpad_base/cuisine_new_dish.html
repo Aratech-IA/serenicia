@@ -5,7 +5,7 @@
 
 
 {% block content %}
-<main class="mx-3 pt-2">
+<main class="mx-3 pt-3">
     <div class="d-flex flex-column text-center">
     <form action="{% url 'New dish' %}" method="post" class="d-flex flex-column align-items-center my-0">{% csrf_token %}
         <div>
@@ -21,7 +21,7 @@
         {% if option != '0' %}
             {% if perms.app0_access.view_cuisineprice %}
             <div class="d-flex flex-column gap-2">
-                <div class="d-flex flex-column">
+                <div class="d-flex flex-column align-items-center">
                     {{ dish_form }}
                 </div>
                 <div>

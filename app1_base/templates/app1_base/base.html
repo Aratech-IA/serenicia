@@ -62,7 +62,7 @@
                 </svg>
                 <p class="ps-2">{% trans 'Messaging' %}</p>
                 {% if request.session.unopened_messages > 0 %}
-                    <span id="unopened_msg_count" class="badge rounded-pill {% if request.session.urgent_msg %}bg-danger{% else %}bg-darkblue{% endif %} notif_unopened">
+                    <span id="unopened_msg_count" class="badge rounded-pill {% if request.session.urgent_msg %}bg-danger{% else %}bg-darkblue{% endif %} notif_unopened ms-1">
                         {{request.session.unopened_messages}}
                     </span>
                 {% endif %}
@@ -79,7 +79,7 @@
                 </svg>
                 <p class="ps-2">{% trans 'Notifications' %}</p>
                 {% if request.session.unopened_notifs > 0 %}
-                    <span id="unopened_notif_count" class="badge rounded-pill bg-darkblue notif_unopened">
+                    <span id="unopened_notif_count" class="badge rounded-pill bg-darkblue notif_unopened ms-1">
                         {{request.session.unopened_notifs}}
                     </span>
                 {% endif %}
@@ -180,7 +180,7 @@
                         {% if perms.app0_access.view_family %}
                             <span>{% trans 'Housing' %} {{ client.room_number }}</span>
                         {% else %}
-                            <div class="d-flex align-item-center">
+                            <div class="d-flex align-items-center">
                                 <p class="my-auto">{{ client.cp }}</p>
                             </div>
                             <div class="ms-1 d-none d-md-block">
@@ -577,7 +577,7 @@
                                         <p class="text-uppercase ps-2">{% trans 'Quality' %}</p>
                                     </a>
                                     <!-- Menu qualité -->
-                                    <ul id="quality_menu" class="d-none align-item-center pe-2 ps-4">
+                                    <ul id="quality_menu" class="d-none align-items-center pe-2 ps-4">
                                         <!-- Qualité -->
                                         <li>
                                             <a href="{% url 'app11_quality index-fiche-critere' %}">

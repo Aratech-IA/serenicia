@@ -3,6 +3,8 @@
 {% load i18n %}
 
 {% block content %}
+
+
 <style>
     .thumbnail-image{
         height: 110px;
@@ -25,8 +27,11 @@
         height: auto;
     }
 </style>
-<main>
-    <form class="d-flex justify-content-center align-items-center pt-2" action="{% url 'app10_social_activities historic' %}" method="post">{% csrf_token %}
+
+
+<main class="py-3">
+
+    <form class="d-flex justify-content-center align-items-center" action="{% url 'app10_social_activities historic' %}" method="post">{% csrf_token %}
         <input name="previous" type="image" src="{% static 'app4_ehpad_base/img/fleche_gauche.png' %}" width="24em" class="img-fluid me-2">
         <select name="month" class="form-select-sm text-center" onchange="this.form.submit()">
             <option {% if option == 1 %} selected {% endif %} value="1">{% trans 'January' %}</option>
@@ -46,7 +51,8 @@
         <input name="year" value="{{ year }}" hidden>
         <input name="next" type="image" src="{% static 'app4_ehpad_base/img/fleche_droite.png' %}" width="24em" class="img-fluid ms-2">
     </form>
-    <div class="container d-flex flex-wrap justify-content-center gap-2">
+
+    <div class="container d-flex flex-wrap justify-content-center gap-2 pt-3">
         {% for activity in list_act %}
             <a href="{% url 'app10_social_activities historic details' act_id=activity.object.id %}" class="btn btn-perso d-flex flex-column justify-content-between gap-1 activity-main-div">
                 <div class="my-auto d-flex flex-column">
@@ -54,48 +60,50 @@
                     <span class="text-muted">{{ activity.object.event.location.name }}</span>
                     <span class="text-muted">{{ activity.object.event.organizer }}</span>
                 </div>
-                    <div class="d-flex justify-content-evenly align-items-center">
-                        <div>
-                            {% if activity.object.thumbnail_url %}
-                                <img src="{{ activity.object.thumbnail_url }}" class="rounded-3 illustration-pic">
-                            {% elif activity.object.event.location.photo %}
-                                <img src="{{ activity.object.event.location.photo.url }}" class="rounded-3 illustration-pic">
-                            {% else %}
-                                <img src="{% static 'app4_ehpad_base/img/no_picture.png' %}" class="rounded-3 illustration-pic">
-                            {% endif %}
-                        </div>
-                        <div>
-                            {% if activity.object.event.organizer.user.profile.photo %}
-                                <img src="{{ activity.object.event.organizer.user.profile.photo.url }}" class="thumbnail-image">
-                            {% else %}
-                                <img src="{% static 'app4_ehpad_base/img/no_picture.png' %}" class="thumbnail-image">
-                            {% endif %}
-                        </div>
+                <div class="d-flex justify-content-evenly align-items-center">
+                    <div>
+                        {% if activity.object.thumbnail_url %}
+                            <img src="{{ activity.object.thumbnail_url }}" class="rounded-3 illustration-pic">
+                        {% elif activity.object.event.location.photo %}
+                            <img src="{{ activity.object.event.location.photo.url }}" class="rounded-3 illustration-pic">
+                        {% else %}
+                            <img src="{% static 'app4_ehpad_base/img/no_picture.png' %}" class="rounded-3 illustration-pic">
+                        {% endif %}
                     </div>
-                    <div class="d-flex justify-content-around">
-                        <div class="d-flex flex-column align-self-center">
-                            <span class="fw-bold">{{ activity.object.start|date:"l j F" }}</span>
-                            <span>{{ activity.object.start|date:"H:i" }} - {{ activity.object.end|date:"H:i" }}</span>
-                            <span>{{ activity.object.attendance.count }} / {{ activity.object.participants.count }} {% trans 'participants' %}</span>
-                        </div>
-                        <div class="my-auto">
-                            {% if activity.note %}
-                                {% if activity.note < 1.5 %}
-                                    <img src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}" class="eval-face">
-                                {% elif activity.note < 2.5 %}
-                                    <img src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}" class="eval-face">
-                                {% elif activity.note < 3.5 %}
-                                    <img src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}" class="eval-face">
-                                {% else %}
-                                    <img src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}" class="eval-face">
-                                {% endif %}
-                            {% else %}
-                                <div class="eval-face"></div>
-                            {% endif %}
-                        </div>
+                    <div>
+                        {% if activity.object.event.organizer.user.profile.photo %}
+                            <img src="{{ activity.object.event.organizer.user.profile.photo.url }}" class="thumbnail-image">
+                        {% else %}
+                            <img src="{% static 'app4_ehpad_base/img/no_picture.png' %}" class="thumbnail-image">
+                        {% endif %}
                     </div>
+                </div>
+                <div class="d-flex justify-content-around">
+                    <div class="d-flex flex-column align-self-center">
+                        <span class="fw-bold">{{ activity.object.start|date:"l j F" }}</span>
+                        <span>{{ activity.object.start|date:"H:i" }} - {{ activity.object.end|date:"H:i" }}</span>
+                        <span>{{ activity.object.attendance.count }} / {{ activity.object.participants.count }} {% trans 'participants' %}</span>
+                    </div>
+                    <div class="my-auto">
+                        {% if activity.note %}
+                            {% if activity.note < 1.5 %}
+                                <img src="{% static 'app4_ehpad_base/img/visage_rouge.svg' %}" class="eval-face">
+                            {% elif activity.note < 2.5 %}
+                                <img src="{% static 'app4_ehpad_base/img/visage_orange.svg' %}" class="eval-face">
+                            {% elif activity.note < 3.5 %}
+                                <img src="{% static 'app4_ehpad_base/img/visage_vert_clair.svg' %}" class="eval-face">
+                            {% else %}
+                                <img src="{% static 'app4_ehpad_base/img/visage_vert_fonce.svg' %}" class="eval-face">
+                            {% endif %}
+                        {% else %}
+                            <div class="eval-face"></div>
+                        {% endif %}
+                    </div>
+                </div>
             </a>
         {% endfor %}
     </div>
 </main>
+
+
 {% endblock content %}

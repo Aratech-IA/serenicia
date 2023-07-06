@@ -3,6 +3,8 @@
 {% load i18n %}
 
 {% block content %}
+
+
 <head>
     <style>
         .profile-pic {
@@ -11,7 +13,9 @@
         }
     </style>
 </head>
-<main class="container mt-2">
+
+
+<main class="container my-3">
     {% if not perms.app0_access.view_family %}
         <div class="d-flex justify-content-center mb-2">
             <form action="" method="post">{% csrf_token %}
@@ -64,4 +68,6 @@
         {% endfor %}
     </div>
 </main>
+
+
 {% endblock content %}

@@ -22,3 +22,7 @@ def get_face_reco_status(request):
     return {'FACE_RECO': settings.FACE_RECO}
 
 
+def registration_access(request):
+    return {'REGISTRATION_ACCESS': settings.REGISTRATION_ACCESS}
+
+

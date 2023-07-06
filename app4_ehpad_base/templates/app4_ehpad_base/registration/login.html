@@ -35,22 +35,25 @@
 
     <div class="container-lg mb-4" id="container-lg">
 
-        <!-- CREATE ACCOUNT -->
-        <div class="form-container sign-up-container d-flex flex-column justify-content-around align-items-center">
-            <h3 class="text-center font-weight-bold">{% trans "What kind of account would you like to create" %} ?</h3>
+        {% if REGISTRATION_ACCESS %}
+            <!-- CREATE ACCOUNT -->
+            <div class="form-container sign-up-container d-flex flex-column justify-content-around align-items-center">
+                <h3 class="text-center font-weight-bold">{% trans "What kind of account would you like to create" %} ?</h3>
 
-            <!-- ACCOUNT OPTION -->
-            <a class="btn btn-perso w-75" href="{% url 'register_user' mod='resident' %}">{% trans "Resident" %}</a>
-            <a class="btn btn-perso w-75" href="{% url 'register_user' mod='family' %}">{% trans "Family member" %}</a>
-            <a class="btn btn-perso w-75" href="{% url 'register_user' mod='employee' %}">{% trans "Employee / Collaborator" %}</a>
-
-        </div>
+                <!-- ACCOUNT OPTION -->
+                <a class="btn btn-perso w-75" href="{% url 'register_user' mod='resident' %}">{% trans "Resident" %}</a>
+                <a class="btn btn-perso w-75" href="{% url 'register_user' mod='family' %}">{% trans "Family member" %}</a>
+                <a class="btn btn-perso w-75" href="{% url 'register_user' mod='employee' %}">{% trans "Employee / Collaborator" %}</a>
+            </div>
+        {% endif %}
 
         <!-- LOGIN -->
         <div class="form-container sign-in-container">
             <form method="post" action="{% url 'login' %}">
-
-                <h1 class="pb-4">{% trans "Login" %}</h1>
+                
+                {% if REGISTRATION_ACCESS %}
+                    <h1 class="pb-4">{% trans "Login" %}</h1>
+                {% endif %}
 
                 <!-- ERRORS -->
                 {% if form.errors %}
@@ -95,22 +98,32 @@
             </form>
         </div>
 
-        <div class="overlay-container">
-            <div class="overlay">
+        {% if REGISTRATION_ACCESS %}
+            <div class="overlay-container">
+                <div class="overlay">
 
-                <div class="overlay-panel overlay-left">
-                    <h1>{% trans "Sign In" %}</h1>
-                    <p class="text-center">{% trans "Please login to stay connected with your family" %}</p>
-                    <button class="btn btn-perso" id="signIn">{% trans "Sign in" %}</button>
+                    <div class="overlay-panel overlay-left">
+                        <h1>{% trans "Sign In" %}</h1>
+                        <p class="text-center">{% trans "Please login to stay connected with your family" %}</p>
+                        <button class="btn btn-perso" id="signIn">{% trans "Sign in" %}</button>
+                    </div>
+
+                    <div class="overlay-panel overlay-right">
+                        <h1>{% trans "Create an account" %}</h1>
+                        <button class="btn btn-perso" id="signUp">{% trans "Sign up" %}</button>
+                    </div>
+
                 </div>
-
-                <div class="overlay-panel overlay-right">
-                    <h1>{% trans "Create an account" %}</h1>
-                    <button class="btn btn-perso" id="signUp">{% trans "Sign up" %}</button>
-                </div>
-
             </div>
-        </div>
+        {% else %}
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-right">
+                        <h1>{% trans "Log in" %}</h1>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
 
     </div>
 

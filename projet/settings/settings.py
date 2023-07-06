@@ -88,6 +88,7 @@ TEMPLATES = [
                 'projet.context_processors.get_domain',
                 'projet.context_processors.get_facial_reco_ip',
                 'projet.context_processors.checkalerts',
+                'projet.context_processors.registration_access',
                 ],
             'libraries': {
                 'admin_utils': 'app1_base.templatetags.admin_nav_bar',
@@ -252,3 +253,7 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesSto
 
 # --------------------------------------------------------------------------------------------------------------------
 KEY_API_MAPBOX = os.getenv('KEY_API_MAPBOXY', '')
+
+
+# Pour avoir accès à l'inscription, mettre à True
+REGISTRATION_ACCESS = False

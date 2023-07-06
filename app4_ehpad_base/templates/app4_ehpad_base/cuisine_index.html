@@ -5,7 +5,7 @@
 {% block content %}
 
 
-<main class="mt-3 mx-2">
+<main class="container-xl mt-3 mx-auto">
     <!--    boutons de sélection    -->
     <div class="d-flex justify-content-evenly gap-2">
         <!--     colonne gauche       -->
@@ -24,7 +24,8 @@
                     {% trans 'Create / edit dishes' %}
                     {% else %}
                     {% trans 'Available dishes' %}
-                    {% endif %}</h5>
+                    {% endif %}
+                </h5>
             </a>
         </div>
         <!--      colonne droite      -->
@@ -78,56 +79,59 @@
             </div>
         </div>
     </div>
-    <!--  tableau réservations hebdomadaire  -->
-    <div class="d-flex flex-wrap justify-content-evenly mt-2">
+
+    <!--  tableau réservations hebdomadaire - Affichage à partir de sm  -->
+    <div class="d-none d-sm-flex flex-wrap justify-content-evenly mt-2">
         <div class="d-flex flex-wrap justify-content-center">
             <table class="table">
-              <thead>
-                <tr>
-                    <!--           titres colonnes             -->
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col">{% trans 'Residents' %}</th>
-                  <th scope="col">{% trans 'Families' %}</th>
-                  <th scope="col" title="{% trans 'Employees & meals offered (trainee, discovery day)' %}">{% trans 'Employees' %}</th>
-                  <th scope="col" title="{% trans 'Management guests, prospects : unrelated to a resident' %}">{% trans 'Guests' %}</th>
-                </tr>
-              </thead>
+                <thead>
+                    <tr>
+                        <!-- titres colonnes -->
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col" class="text-center">{% trans 'Residents' %}</th>
+                        <th scope="col" class="text-center">{% trans 'Families' %}</th>
+                        <th scope="col" class="text-center" title="{% trans 'Employees & meals offered (trainee, discovery day)' %}">{% trans 'Employees' %}</th>
+                        <th scope="col" class="text-center" title="{% trans 'Management guests, prospects : unrelated to a resident' %}">{% trans 'Guests' %}</th>
+                    </tr>
+                </thead>
                 <tbody>
-                {% for day in week %}
-                    <tr {% if day.date == date_now %}class="bg-lightblue"{% endif %}>
-                        <th scope="row">{{ day.date|date:'D d M' }}</th>
-                        <th scope="row">{% trans 'Noon' %}</th>
-                        <td>{{ day.resident }}</td>
-                        <td>
-                            <span {% if day.family_noon != 0 %}class='fw-bold'{% endif %}>{{ day.family_noon }}</span>
-                        </td>
-                        <td>
-                            <span {% if day.employee_noon != 0 %}class='fw-bold'{% endif %}>{{ day.employee_noon }}</span>
-                        </td>
-                        <td>
-                            <span {% if day.guest_noon != 0 %}class='fw-bold'{% endif %}>{{ day.guest_noon }}</span>
-                        </td>
-                    </tr>
-                    <tr {% if day.date == date_now %}class="bg-lightblue"{% endif %}>
-                        <th scope="row"></th>
-                        <th scope="row">{% trans 'Evening' %}</th>
-                        <td>{{ day.resident }}</td>
-                        <td>
-                            <span {% if day.family_evening != 0 %}class='fw-bold'{% endif %}>{{ day.family_evening }}</span>
-                        </td>
-                        <td>
-                            <span {% if day.employee_evening != 0 %}class='fw-bold'{% endif %}>{{ day.employee_evening }}</span>
-                        </td>
-                        <td>
-                            <span {% if day.guest_evening != 0 %}class='fw-bold'{% endif %}>{{ day.guest_evening }}</span>
-                        </td>
-                    </tr>
-                {% endfor %}
-              </tbody>
+                    {% for day in week %}
+                        <tr {% if day.date == date_now %}class="bg-lightblue"{% endif %}>
+                            <th scope="row">{{ day.date|date:'D d M' }}</th>
+                            <th scope="row">{% trans 'Noon' %}</th>
+                            <td class="text-center">{{ day.resident }}</td>
+                            <td class="text-center">
+                                <span {% if day.family_noon != 0 %}class='fw-bold'{% endif %}>{{ day.family_noon }}</span>
+                            </td>
+                            <td class="text-center">
+                                <span {% if day.employee_noon != 0 %}class='fw-bold'{% endif %}>{{ day.employee_noon }}</span>
+                            </td>
+                            <td class="text-center">
+                                <span {% if day.guest_noon != 0 %}class='fw-bold'{% endif %}>{{ day.guest_noon }}</span>
+                            </td>
+                        </tr>
+                        <tr {% if day.date == date_now %}class="bg-lightblue"{% endif %}>
+                            <th scope="row"></th>
+                            <th scope="row">{% trans 'Evening' %}</th>
+                            <td class="text-center">{{ day.resident }}</td>
+                            <td class="text-center">
+                                <span {% if day.family_evening != 0 %}class='fw-bold'{% endif %}>{{ day.family_evening }}</span>
+                            </td>
+                            <td class="text-center">
+                                <span {% if day.employee_evening != 0 %}class='fw-bold'{% endif %}>{{ day.employee_evening }}</span>
+                            </td>
+                            <td class="text-center">
+                                <span {% if day.guest_evening != 0 %}class='fw-bold'{% endif %}>{{ day.guest_evening }}</span>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
             </table>
-            <!--       navigation         -->
-            <form method="post" action="{% url 'Cuisine index' %}">{% csrf_token %}
+
+            <!-- navigation -->
+            <form method="post" action="{% url 'Cuisine index' %}" class="pb-3">
+                {% csrf_token %}
                 <div class="d-flex justify-content-center">
                     <input class="img-fluid me-5" name="previous" type="image" src="{% static 'app4_ehpad_base/img/fleche_gauche.png' %}" width="24em">
                     <input class="img-fluid ms-5" name="next" type="image" src="{% static 'app4_ehpad_base/img/fleche_droite.png' %}" width="24em">
