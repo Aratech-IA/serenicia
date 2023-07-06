@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-05 07:10+0200\n"
+"POT-Creation-Date: 2023-07-05 19:17+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "App access Config"
 msgstr "Configuration d'accès à l'application"
 
-#: app0_access/forms.py:12 app0_access/templates/app0_access/user_types.html:34
+#: app0_access/forms.py:12 app0_access/templates/app0_access/user_types.html:51
 #: app0_access/views.py:268
 msgid "Not defined"
 msgstr "Non défini"
@@ -89,6 +89,7 @@ msgid "Can manage the invoices for the family"
 msgstr "Peut gérer les factures pour la famille"
 
 #: app0_access/models.py:31
+#: app17_help/templates/app17_help/access_management.html:29
 msgid "User Management"
 msgstr "Gestion des utilisateurs"
 
@@ -140,7 +141,8 @@ msgstr "Compte utilisateur"
 msgid "Access to the user account creation"
 msgstr "Accès à l'interface de création de compte utilisateur"
 
-#: app0_access/models.py:47 app17_help/templates/app17_help/index.html:12
+#: app0_access/models.py:47 app17_help/templates/app17_help/cuisine.html:9
+#: app17_help/templates/app17_help/index.html:12
 #: app1_base/templates/app1_base/base.html:306
 msgid "Cuisine"
 msgstr "Cuisine"
@@ -204,6 +206,7 @@ msgstr "Peut prendre des photos publiques ou privées"
 
 #: app0_access/models.py:63 app10_social_activities/apps.py:7
 #: app17_help/templates/app17_help/index.html:11
+#: app17_help/templates/app17_help/social_life.html:10
 #: app1_base/templates/app1_base/base.html:271 app4_ehpad_base/models.py:492
 msgid "Social life"
 msgstr "Vie sociale"
@@ -229,7 +232,8 @@ msgstr "Reconnaissance faciale"
 msgid "Can create facial recognition videos for residents"
 msgstr "Peut créer les vidéos de reconnaissance faciale pour les résidents"
 
-#: app0_access/models.py:69 app17_help/templates/app17_help/index.html:13
+#: app0_access/models.py:69 app17_help/templates/app17_help/hotel.html:9
+#: app17_help/templates/app17_help/index.html:13
 #: app1_base/templates/app1_base/base.html:539
 #: app1_base/templates/app1_base/base.html:642 app4_ehpad_base/models.py:494
 #: app6_care/templates/app6_care/hotel/free_comment.html:15
@@ -267,7 +271,10 @@ msgstr "Mon avis"
 msgid "Access to the Mon Avis interface"
 msgstr "Accès à l'interface Mon Avis"
 
-#: app0_access/models.py:78 app1_base/templates/app1_base/base.html:122
+#: app0_access/models.py:78
+#: app17_help/templates/app17_help/access_management.html:9
+#: app17_help/templates/app17_help/index.html:15
+#: app1_base/templates/app1_base/base.html:122
 msgid "Access management"
 msgstr "Gestion des accès"
 
@@ -327,26 +334,26 @@ msgstr "accès à l'interface de gestion des droits"
 msgid "Can manage custom group"
 msgstr "Peut gérer les groupes personnalisés"
 
-#: app0_access/templates/app0_access/index.html:28
+#: app0_access/templates/app0_access/index.html:21
 msgid "Manage users"
 msgstr "Gestion des utilisateurs"
 
-#: app0_access/templates/app0_access/index.html:36
+#: app0_access/templates/app0_access/index.html:29
 msgid "Manage rights group"
 msgstr "Gestion des groupes de droits"
 
-#: app0_access/templates/app0_access/index.html:47
+#: app0_access/templates/app0_access/index.html:40
 msgid "See permissions"
 msgstr "Voir les permissions"
 
-#: app0_access/templates/app0_access/index.html:56
+#: app0_access/templates/app0_access/index.html:49
 msgid "User types"
 msgstr "Types d'utilisateurs"
 
 #: app0_access/templates/app0_access/list_group.html:6
-#: app0_access/templates/app0_access/modify_group.html:8
-#: app0_access/templates/app0_access/modify_user.html:6
-#: app0_access/templates/app0_access/new_group.html:6
+#: app0_access/templates/app0_access/modify_group.html:74
+#: app0_access/templates/app0_access/modify_user.html:34
+#: app0_access/templates/app0_access/new_group.html:10
 #: app10_social_activities/templates/app10_social_activities/attendance_list.html:28
 #: app10_social_activities/templates/app10_social_activities/details.html:49
 #: app10_social_activities/templates/app10_social_activities/gallery.html:21
@@ -376,27 +383,21 @@ msgstr "Types d'utilisateurs"
 msgid "Back"
 msgstr "Retour"
 
-#: app0_access/templates/app0_access/modify_group.html:10
-#: app11_quality/models.py:68 app11_quality/models.py:75 app1_base/models.py:58
-#: app1_base/utils.py:213 app4_ehpad_base/models.py:622
-msgid "User"
-msgstr "Utilisateur"
-
-#: app0_access/templates/app0_access/modify_group.html:35
+#: app0_access/templates/app0_access/modify_group.html:30
 msgid "Users details"
 msgstr "Détails des utilisateurs"
 
-#: app0_access/templates/app0_access/modify_group.html:44
-#: app0_access/templates/app0_access/modify_user.html:37
+#: app0_access/templates/app0_access/modify_group.html:39
+#: app0_access/templates/app0_access/modify_user.html:39
 msgid "profile pic"
 msgstr "photo de profil"
 
-#: app0_access/templates/app0_access/modify_group.html:50
+#: app0_access/templates/app0_access/modify_group.html:45
 #: app10_social_activities/models.py:25
 msgid "Active"
 msgstr "Actif"
 
-#: app0_access/templates/app0_access/modify_group.html:69
+#: app0_access/templates/app0_access/modify_group.html:64
 #: app10_social_activities/templates/app10_social_activities/details.html:170
 #: app11_quality/templates/app11_quality/protocols_list.html:150
 #: app15_calendar/templates/app15_calendar/calendar.html:186
@@ -430,21 +431,27 @@ msgstr "Actif"
 msgid "Close"
 msgstr "Fermer"
 
-#: app0_access/templates/app0_access/modify_group.html:79
-#: app0_access/templates/app0_access/new_group.html:15
+#: app0_access/templates/app0_access/modify_group.html:76
+#: app11_quality/models.py:68 app11_quality/models.py:75 app1_base/models.py:58
+#: app1_base/utils.py:213 app4_ehpad_base/models.py:622
+msgid "User"
+msgstr "Utilisateur"
+
+#: app0_access/templates/app0_access/modify_group.html:83
+#: app0_access/templates/app0_access/new_group.html:17
 msgid "Enter group name here"
 msgstr "Entrez un nom de groupe ici"
 
-#: app0_access/templates/app0_access/modify_group.html:82
-#: app0_access/templates/app0_access/new_group.html:18
+#: app0_access/templates/app0_access/modify_group.html:86
+#: app0_access/templates/app0_access/new_group.html:20
 msgid "Rights and options"
 msgstr "Droits et options"
 
-#: app0_access/templates/app0_access/modify_group.html:86
+#: app0_access/templates/app0_access/modify_group.html:90
 msgid "User type"
 msgstr "Type d'utilisateur"
 
-#: app0_access/templates/app0_access/modify_group.html:114
+#: app0_access/templates/app0_access/modify_group.html:118
 #: app11_quality/templates/app11_quality/protocols_list.html:76
 #: app12_delivery/templates/app12_delivery/contract_delivery.html:81
 #: app15_calendar/templates/app15_calendar/calendar.html:183
@@ -460,8 +467,8 @@ msgstr "Type d'utilisateur"
 #: app6_care/templates/app6_care/caregiver/care_plan_creation.html:347
 #: app6_care/templates/app6_care/caregiver/caregiver.html:426
 #: app6_care/templates/app6_care/caregiver/caregiver.html:456
-#: app6_care/templates/app6_care/hotel/hotel.html:260
-#: app6_care/templates/app6_care/hotel/hotel.html:289
+#: app6_care/templates/app6_care/hotel/hotel.html:256
+#: app6_care/templates/app6_care/hotel/hotel.html:290
 #: app9_personnalized_project/templates/app9_personnalized_project/appointments.html:123
 #: app9_personnalized_project/templates/app9_personnalized_project/appointments_employee.html:67
 #: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:48
@@ -470,7 +477,7 @@ msgstr "Type d'utilisateur"
 msgid "Delete"
 msgstr "Supprimer"
 
-#: app0_access/templates/app0_access/modify_group.html:115
+#: app0_access/templates/app0_access/modify_group.html:119
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:211
 #: app14_profile/templates/app14_profile/change_password.html:67
 #: app14_profile/templates/app14_profile/profile.html:255
@@ -494,7 +501,7 @@ msgstr "Supprimer"
 #: app6_care/templates/app6_care/caregiver/caregiver.html:405
 #: app6_care/templates/app6_care/caregiver/free_comment.html:28
 #: app6_care/templates/app6_care/hotel/free_comment.html:32
-#: app6_care/templates/app6_care/hotel/hotel.html:238
+#: app6_care/templates/app6_care/hotel/hotel.html:234
 #: app8_survey/templates/app8_survey/survey.html:100
 #: app9_personnalized_project/templates/app9_personnalized_project/appointments.html:125
 #: app9_personnalized_project/templates/app9_personnalized_project/create_person.html:38
@@ -507,9 +514,9 @@ msgstr "Supprimer"
 msgid "Cancel"
 msgstr "Annuler"
 
-#: app0_access/templates/app0_access/modify_group.html:116
-#: app0_access/templates/app0_access/modify_user.html:99
-#: app0_access/templates/app0_access/new_group.html:42
+#: app0_access/templates/app0_access/modify_group.html:120
+#: app0_access/templates/app0_access/modify_user.html:101
+#: app0_access/templates/app0_access/new_group.html:44
 #: app10_social_activities/templates/app10_social_activities/index.html:79
 #: app12_delivery/templates/app12_delivery/benefit_create.html:13
 #: app12_delivery/templates/app12_delivery/contract_delivery.html:75
@@ -553,39 +560,39 @@ msgstr "Annuler"
 msgid "Save"
 msgstr "Enregistrer"
 
-#: app0_access/templates/app0_access/modify_user.html:41
+#: app0_access/templates/app0_access/modify_user.html:43
 msgid "Active user"
 msgstr "Utilisateur actif"
 
-#: app0_access/templates/app0_access/modify_user.html:43
+#: app0_access/templates/app0_access/modify_user.html:45
 msgid "Deactivate"
 msgstr "Désactiver"
 
-#: app0_access/templates/app0_access/modify_user.html:46
+#: app0_access/templates/app0_access/modify_user.html:48
 msgid "Inactive user"
 msgstr "Utilisateur inactif"
 
-#: app0_access/templates/app0_access/modify_user.html:48
+#: app0_access/templates/app0_access/modify_user.html:50
 msgid "Activate"
 msgstr "Activer"
 
-#: app0_access/templates/app0_access/modify_user.html:57
-#: app0_access/templates/app0_access/modify_user.html:74
+#: app0_access/templates/app0_access/modify_user.html:59
+#: app0_access/templates/app0_access/modify_user.html:76
 msgid "Association request pending"
 msgstr "Demande d'association en attente"
 
-#: app0_access/templates/app0_access/modify_user.html:58
+#: app0_access/templates/app0_access/modify_user.html:60
 msgid "Select the resident to associate"
 msgstr "Sélectionnez le résident à associer"
 
-#: app0_access/templates/app0_access/modify_user.html:75
+#: app0_access/templates/app0_access/modify_user.html:77
 msgid "The requested resident was not found in the database"
 msgstr "Le résident demandé n'a pas été retrouvé dans la base de données"
 
-#: app0_access/templates/app0_access/select_group.html:8
-#: app0_access/templates/app0_access/select_group_by_permission.html:6
-#: app0_access/templates/app0_access/select_user.html:5
-#: app0_access/templates/app0_access/user_types.html:6
+#: app0_access/templates/app0_access/select_group.html:25
+#: app0_access/templates/app0_access/select_group_by_permission.html:10
+#: app0_access/templates/app0_access/select_user.html:24
+#: app0_access/templates/app0_access/user_types.html:25
 #: app12_delivery/templates/app12_delivery/composant/navLeft.html:19
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:198
 #: app4_ehpad_base/templates/app4_ehpad_base/select_top_reco.html:39
@@ -593,26 +600,26 @@ msgstr "Le résident demandé n'a pas été retrouvé dans la base de données"
 msgid "Home"
 msgstr "Accueil"
 
-#: app0_access/templates/app0_access/select_group.html:11
+#: app0_access/templates/app0_access/select_group.html:28
 msgid "New group"
 msgstr "Nouveau groupe"
 
-#: app0_access/templates/app0_access/select_group.html:33
-#: app0_access/templates/app0_access/select_user.html:48
+#: app0_access/templates/app0_access/select_group.html:37
+#: app0_access/templates/app0_access/select_user.html:50
 msgid "Group name"
 msgstr "Nom du groupe"
 
-#: app0_access/templates/app0_access/select_group.html:34
+#: app0_access/templates/app0_access/select_group.html:38
 msgid "Number of users"
 msgstr "Nombre d'utilisateurs"
 
-#: app0_access/templates/app0_access/select_user.html:27
+#: app0_access/templates/app0_access/select_user.html:29
 #: app3_messaging/templates/app3_messaging/select_receiver.html:18
 #: app3_messaging/templates/app3_messaging/select_receiver.html:47
 msgid "Search by name"
 msgstr "Rechercher par nom"
 
-#: app0_access/templates/app0_access/select_user.html:35
+#: app0_access/templates/app0_access/select_user.html:37
 #: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:20
 #: app3_messaging/templates/app3_messaging/select_receiver.html:19
 #: app3_messaging/templates/app3_messaging/select_receiver.html:48
@@ -620,21 +627,21 @@ msgstr "Rechercher par nom"
 msgid "Search"
 msgstr "Chercher"
 
-#: app0_access/templates/app0_access/select_user.html:38
+#: app0_access/templates/app0_access/select_user.html:40
 msgid "All groups"
 msgstr "Tous les groupes"
 
-#: app0_access/templates/app0_access/select_user.html:47
+#: app0_access/templates/app0_access/select_user.html:49
 msgid "User name"
 msgstr "Nom d'utilisateur"
 
-#: app0_access/templates/app0_access/select_user.html:49
+#: app0_access/templates/app0_access/select_user.html:51
 #: app4_ehpad_base/models.py:815 app8_survey/models.py:89
 #: app9_personnalized_project/models.py:92
 msgid "Is active"
 msgstr "Est actif"
 
-#: app0_access/templates/app0_access/select_user.html:61
+#: app0_access/templates/app0_access/select_user.html:63
 #: app16_portal/templates/app16_portal/index.html:104
 #: app3_messaging/views_messaging.py:142 app4_ehpad_base/forms.py:130
 #: app4_ehpad_base/forms.py:171 app4_ehpad_base/forms.py:212
@@ -1128,10 +1135,10 @@ msgstr "Liste de présence"
 #: app6_care/templates/app6_care/caregiver/caregiver.html:345
 #: app6_care/templates/app6_care/caregiver/caregiver.html:356
 #: app6_care/templates/app6_care/caregiver/interventions_report.html:72
-#: app6_care/templates/app6_care/hotel/hotel.html:179
-#: app6_care/templates/app6_care/hotel/hotel.html:188
-#: app6_care/templates/app6_care/hotel/hotel.html:205
-#: app6_care/templates/app6_care/hotel/hotel.html:215
+#: app6_care/templates/app6_care/hotel/hotel.html:178
+#: app6_care/templates/app6_care/hotel/hotel.html:187
+#: app6_care/templates/app6_care/hotel/hotel.html:204
+#: app6_care/templates/app6_care/hotel/hotel.html:212
 #: app8_survey/templates/app8_survey/details.html:65
 #: app8_survey/templates/app8_survey/details.html:82
 #: app8_survey/templates/app8_survey/survey.html:81
@@ -1261,8 +1268,8 @@ msgstr "Contenu du protocole"
 #: app4_ehpad_base/forms.py:425 app4_ehpad_base/models.py:505
 #: app6_care/templates/app6_care/caregiver/caregiver.html:203
 #: app6_care/templates/app6_care/caregiver/caregiver.html:206
-#: app6_care/templates/app6_care/hotel/hotel.html:91
-#: app6_care/templates/app6_care/hotel/hotel.html:94
+#: app6_care/templates/app6_care/hotel/hotel.html:85
+#: app6_care/templates/app6_care/hotel/hotel.html:88
 msgid "Category"
 msgstr "Catégorie"
 
@@ -1519,6 +1526,7 @@ msgid "Criteria sheet"
 msgstr "Fiche critères"
 
 #: app11_quality/templates/app11_quality/fiche-critere.html:18
+#: app17_help/templates/app17_help/access_management.html:8
 #: app17_help/templates/app17_help/cuisine.html:8
 #: app17_help/templates/app17_help/hotel.html:8
 #: app17_help/templates/app17_help/quality.html:8
@@ -3132,9 +3140,110 @@ msgstr "Cet utilisateur n'existe pas"
 msgid "Wrong password"
 msgstr "Mot de passe invalide"
 
+#: app17_help/templates/app17_help/access_management.html:9
 #: app17_help/templates/app17_help/cuisine.html:9
-msgid "Help module Cuisine"
-msgstr "Aide module Cuisine"
+#: app17_help/templates/app17_help/hotel.html:9
+#: app17_help/templates/app17_help/quality.html:9
+#: app17_help/templates/app17_help/referrers.html:9
+#: app17_help/templates/app17_help/social_life.html:10
+#: app3_messaging/templates/app3_messaging/mails_template_create.html:28
+#: app3_messaging/templates/app3_messaging/mails_template_mailbox.html:35
+#: app4_ehpad_base/templates/app4_ehpad_base/navbar.html:30
+msgid "Help"
+msgstr "Aide"
+
+#: app17_help/templates/app17_help/access_management.html:15
+msgid "Access access management"
+msgstr "Accéder à la gestion des accès"
+
+#: app17_help/templates/app17_help/access_management.html:16
+msgid "Click on firstname.lastname, then 'Access management'"
+msgstr "Cliquer sur prénom.nom, puis 'Gestion des accès'"
+
+#: app17_help/templates/app17_help/access_management.html:17
+#: app17_help/templates/app17_help/access_management.html:46
+#: app17_help/templates/app17_help/hotel.html:17
+msgid "Click on 'Hotel'"
+msgstr "Cliquer sur 'Hotellerie'"
+
+#: app17_help/templates/app17_help/access_management.html:18
+#: app17_help/templates/app17_help/access_management.html:47
+#: app17_help/templates/app17_help/hotel.html:18
+msgid "Choose the task(s) performed and validate"
+msgstr "Choisir la/les tâche(s) effectuée et valider"
+
+#: app17_help/templates/app17_help/access_management.html:19
+#: app17_help/templates/app17_help/access_management.html:48
+#: app17_help/templates/app17_help/hotel.html:19
+msgid "If necessary, you can leave a comment on a task carried out"
+msgstr ""
+"Si nécessaire, vous pouvez laisser un commentaire sur une tâche effectuée"
+
+#: app17_help/templates/app17_help/access_management.html:20
+#: app17_help/templates/app17_help/access_management.html:49
+#: app17_help/templates/app17_help/hotel.html:20
+#: app17_help/templates/app17_help/hotel.html:37
+msgid "To validate"
+msgstr "Valider"
+
+#: app17_help/templates/app17_help/access_management.html:21
+#: app17_help/templates/app17_help/access_management.html:50
+#: app17_help/templates/app17_help/hotel.html:21
+msgid "Find the tasks on the resident's personal page"
+msgstr "Retrouvez les tâches sur la page personnelle du résident"
+
+#: app17_help/templates/app17_help/access_management.html:23
+msgid "Screenshot of Access Management page"
+msgstr "Capture d'écran de la page Gestion d'accès"
+
+#: app17_help/templates/app17_help/access_management.html:30
+msgid "choose a user"
+msgstr "choisir un utilisateur"
+
+#: app17_help/templates/app17_help/access_management.html:31
+msgid "Click on it"
+msgstr "Cliquer dessus'"
+
+#: app17_help/templates/app17_help/access_management.html:32
+msgid "Assign a group"
+msgstr "Lui attribuer un groupe"
+
+#: app17_help/templates/app17_help/access_management.html:33
+#: app17_help/templates/app17_help/referrers.html:20
+msgid "Register"
+msgstr "Enregistrer"
+
+#: app17_help/templates/app17_help/access_management.html:37
+#: app17_help/templates/app17_help/cuisine.html:21
+#: app17_help/templates/app17_help/cuisine.html:29
+#: app17_help/templates/app17_help/hotel.html:25
+#: app17_help/templates/app17_help/hotel.html:42
+#: app17_help/templates/app17_help/referrers.html:26
+#: app17_help/templates/app17_help/social_life.html:22
+#: app17_help/templates/app17_help/social_life.html:31
+msgid "Your browser does not support the HTML video tag"
+msgstr "Votre navigateur ne prend pas en charge la balise vidéo HTML"
+
+#: app17_help/templates/app17_help/access_management.html:44
+msgid "Management of groups of rights"
+msgstr "Gestion des groupes de droits"
+
+#: app17_help/templates/app17_help/access_management.html:45
+#: app17_help/templates/app17_help/hotel.html:16
+#: app17_help/templates/app17_help/hotel.html:33
+msgid "Choose a resident"
+msgstr "Choisir un résident"
+
+#: app17_help/templates/app17_help/access_management.html:52
+msgid "Screenshot of the Rights Groups page"
+msgstr ""
+
+#: app17_help/templates/app17_help/cuisine.html:9
+#: app17_help/templates/app17_help/hotel.html:9
+#: app17_help/templates/app17_help/quality.html:9
+#: app17_help/templates/app17_help/social_life.html:10
+msgid "Module"
+msgstr "Module"
 
 #: app17_help/templates/app17_help/cuisine.html:13
 msgid "Kitchen page presentation"
@@ -3148,55 +3257,14 @@ msgstr "Capture d'écran de la page Cuisine"
 msgid "Create a dish"
 msgstr "Créer un plat"
 
-#: app17_help/templates/app17_help/cuisine.html:21
-#: app17_help/templates/app17_help/cuisine.html:29
-#: app17_help/templates/app17_help/hotel.html:25
-#: app17_help/templates/app17_help/hotel.html:42
-#: app17_help/templates/app17_help/referrers.html:26
-#: app17_help/templates/app17_help/social_life.html:22
-#: app17_help/templates/app17_help/social_life.html:31
-msgid "Your browser does not support the HTML video tag"
-msgstr "Votre navigateur ne prend pas en charge la balise vidéo HTML"
-
 #: app17_help/templates/app17_help/cuisine.html:26
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_index.html:14
 msgid "Create new menu"
 msgstr "Créer un nouveau menu"
 
-#: app17_help/templates/app17_help/hotel.html:9
-msgid "Help module Hotel"
-msgstr "Aide module Hôtellerie"
-
 #: app17_help/templates/app17_help/hotel.html:15
 msgid "Enter a completed task"
 msgstr "Entrer une tâche effectuée"
-
-#: app17_help/templates/app17_help/hotel.html:16
-#: app17_help/templates/app17_help/hotel.html:33
-msgid "Choose a resident"
-msgstr "Choisir un résident"
-
-#: app17_help/templates/app17_help/hotel.html:17
-msgid "Click on 'Hotel'"
-msgstr "Cliquer sur 'Hotellerie'"
-
-#: app17_help/templates/app17_help/hotel.html:18
-msgid "Choose the task(s) performed and validate"
-msgstr "Choisir la/les tâche(s) effectuée et valider"
-
-#: app17_help/templates/app17_help/hotel.html:19
-msgid "If necessary, you can leave a comment on a task carried out"
-msgstr ""
-"Si nécessaire, vous pouvez laisser un commentaire sur une tâche effectuée"
-
-#: app17_help/templates/app17_help/hotel.html:20
-#: app17_help/templates/app17_help/hotel.html:37
-msgid "To validate"
-msgstr "Valider"
-
-#: app17_help/templates/app17_help/hotel.html:21
-msgid "Find the tasks on the resident's personal page"
-msgstr "Retrouvez les tâches sur la page personnelle du résident"
 
 #: app17_help/templates/app17_help/hotel.html:32
 msgid "Enter a comment about a resident"
@@ -3212,7 +3280,7 @@ msgstr "Cliquez sur 'envoyer un commentaire'"
 
 #: app17_help/templates/app17_help/hotel.html:36
 #: app6_care/templates/app6_care/caregiver/caregiver.html:280
-#: app6_care/templates/app6_care/hotel/hotel.html:168
+#: app6_care/templates/app6_care/hotel/hotel.html:164
 msgid "Enter the comment"
 msgstr "Saisissez votre commentaire"
 
@@ -3229,25 +3297,22 @@ msgid "Click on the module button where you need help"
 msgstr "Cliquez sur le bouton du module où vous avez besoin d'aide"
 
 #: app17_help/templates/app17_help/index.html:14
+#: app17_help/templates/app17_help/quality.html:9
 #: app1_base/templates/app1_base/base.html:577
 msgid "Quality"
 msgstr "Qualité"
 
-#: app17_help/templates/app17_help/index.html:15
+#: app17_help/templates/app17_help/index.html:16
 msgid "Referrers"
 msgstr "Référents"
 
-#: app17_help/templates/app17_help/index.html:18
+#: app17_help/templates/app17_help/index.html:19
 msgid "Understanding Navigation Bars"
 msgstr "Comprendre les barres de navigation"
 
-#: app17_help/templates/app17_help/index.html:19
+#: app17_help/templates/app17_help/index.html:20
 msgid "Navbars screenshot"
 msgstr "Capture d'écran des barres de navigation"
-
-#: app17_help/templates/app17_help/quality.html:9
-msgid "Help module Quality"
-msgstr "Aide module Qualité"
 
 #: app17_help/templates/app17_help/quality.html:12
 msgid "Choose a criterion"
@@ -3282,8 +3347,8 @@ msgstr ""
 "chaque protocole pour pouvoir les classer et les retrouver plus facilement"
 
 #: app17_help/templates/app17_help/referrers.html:9
-msgid "Help referrer attribution"
-msgstr "Aide attribution référents"
+msgid "Referrers attribution"
+msgstr "Attribution des référents"
 
 #: app17_help/templates/app17_help/referrers.html:15
 msgid "Add, remove or modify referrers"
@@ -3310,10 +3375,6 @@ msgstr ""
 msgid "In 'profile Sérénicia', choose the residents to assign"
 msgstr "Dans 'profil Sérénicia', choisissez les résidents à affecter"
 
-#: app17_help/templates/app17_help/referrers.html:20
-msgid "Register"
-msgstr "Enregistrer"
-
 #: app17_help/templates/app17_help/referrers.html:21
 msgid ""
 "PLEASE NOTE, for a referrer to be assigned, he must have already logged in "
@@ -3326,10 +3387,6 @@ msgstr ""
 #: app17_help/templates/app17_help/referrers.html:22
 msgid "Find the referents on the resident's personal page"
 msgstr "Retrouvez les référents sur la page personnelle du résident"
-
-#: app17_help/templates/app17_help/social_life.html:10
-msgid "Help module Social life"
-msgstr "Aide module Vie sociale"
 
 #: app17_help/templates/app17_help/social_life.html:14
 msgid "Activity page presentation"
@@ -4767,12 +4824,6 @@ msgstr "Votre mail type a été sauvegardé avec succès"
 #: app3_messaging/templates/app3_messaging/mails_template_send.html:22
 msgid "Emailing App"
 msgstr "Application d'envoi de mail"
-
-#: app3_messaging/templates/app3_messaging/mails_template_create.html:28
-#: app3_messaging/templates/app3_messaging/mails_template_mailbox.html:35
-#: app4_ehpad_base/templates/app4_ehpad_base/navbar.html:30
-msgid "Help"
-msgstr "Aide"
 
 #: app3_messaging/templates/app3_messaging/mails_template_create.html:34
 msgid "Inside the templates"
@@ -7145,7 +7196,7 @@ msgstr ""
 
 #: app4_ehpad_base/templates/app4_ehpad_base/gallery.html:86
 #: app6_care/templates/app6_care/caregiver/caregiver.html:454
-#: app6_care/templates/app6_care/hotel/hotel.html:287
+#: app6_care/templates/app6_care/hotel/hotel.html:288
 #: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:139
 msgid "Continue"
 msgstr "Continuer"
@@ -8538,14 +8589,14 @@ msgid "Life story"
 msgstr "Histoire de vie"
 
 #: app6_care/templates/app6_care/caregiver/caregiver.html:136
-#: app6_care/templates/app6_care/hotel/hotel.html:45
+#: app6_care/templates/app6_care/hotel/hotel.html:44
 msgid "Inputs that are being entered"
 msgstr "Interventions en cours de saisie"
 
 #: app6_care/templates/app6_care/caregiver/caregiver.html:139
 #: app6_care/templates/app6_care/caregiver/caregiver.html:140
+#: app6_care/templates/app6_care/hotel/hotel.html:47
 #: app6_care/templates/app6_care/hotel/hotel.html:48
-#: app6_care/templates/app6_care/hotel/hotel.html:49
 msgid "My incomplete inputs"
 msgstr "Mes interventions en cours de saisie"
 
@@ -8562,8 +8613,10 @@ msgstr "Soin ponctuel"
 #: app6_care/templates/app6_care/caregiver/caregiver.html:162
 #: app6_care/templates/app6_care/caregiver/free_comment.html:20
 #: app6_care/templates/app6_care/hotel/free_comment.html:24
-#: app6_care/templates/app6_care/hotel/hotel.html:78
-#: app6_care/templates/app6_care/hotel/hotel.html:80
+#: app6_care/templates/app6_care/hotel/hotel.html:72
+#: app6_care/templates/app6_care/hotel/hotel.html:74
+#: app6_care/templates/app6_care/hotel/hotel.html:265
+#: app6_care/templates/app6_care/hotel/hotel.html:266
 msgid "Free comment"
 msgstr "Commentaire libre"
 
@@ -8575,10 +8628,10 @@ msgstr "10 derniers commentaires :"
 #: app6_care/templates/app6_care/caregiver/caregiver.html:215
 #: app6_care/templates/app6_care/caregiver/caregiver.html:263
 #: app6_care/templates/app6_care/caregiver/caregiver.html:267
+#: app6_care/templates/app6_care/hotel/hotel.html:91
 #: app6_care/templates/app6_care/hotel/hotel.html:97
-#: app6_care/templates/app6_care/hotel/hotel.html:103
-#: app6_care/templates/app6_care/hotel/hotel.html:151
-#: app6_care/templates/app6_care/hotel/hotel.html:155
+#: app6_care/templates/app6_care/hotel/hotel.html:141
+#: app6_care/templates/app6_care/hotel/hotel.html:145
 msgid "Come back to"
 msgstr "Revenir sur"
 
@@ -8586,10 +8639,10 @@ msgstr "Revenir sur"
 #: app6_care/templates/app6_care/caregiver/caregiver.html:215
 #: app6_care/templates/app6_care/caregiver/caregiver.html:263
 #: app6_care/templates/app6_care/caregiver/caregiver.html:267
+#: app6_care/templates/app6_care/hotel/hotel.html:91
 #: app6_care/templates/app6_care/hotel/hotel.html:97
-#: app6_care/templates/app6_care/hotel/hotel.html:103
-#: app6_care/templates/app6_care/hotel/hotel.html:151
-#: app6_care/templates/app6_care/hotel/hotel.html:155
+#: app6_care/templates/app6_care/hotel/hotel.html:141
+#: app6_care/templates/app6_care/hotel/hotel.html:145
 msgid "Come back"
 msgstr "Retour"
 
@@ -8597,10 +8650,10 @@ msgstr "Retour"
 #: app6_care/templates/app6_care/caregiver/caregiver.html:228
 #: app6_care/templates/app6_care/caregiver/caregiver.html:233
 #: app6_care/templates/app6_care/caregiver/caregiver.html:235
-#: app6_care/templates/app6_care/hotel/hotel.html:114
-#: app6_care/templates/app6_care/hotel/hotel.html:116
-#: app6_care/templates/app6_care/hotel/hotel.html:121
-#: app6_care/templates/app6_care/hotel/hotel.html:123
+#: app6_care/templates/app6_care/hotel/hotel.html:108
+#: app6_care/templates/app6_care/hotel/hotel.html:109
+#: app6_care/templates/app6_care/hotel/hotel.html:113
+#: app6_care/templates/app6_care/hotel/hotel.html:115
 msgid "Cancel a pictogram mode"
 msgstr "Mode annuler un pictogramme"
 
@@ -8608,73 +8661,73 @@ msgstr "Mode annuler un pictogramme"
 #: app6_care/templates/app6_care/caregiver/caregiver.html:243
 #: app6_care/templates/app6_care/caregiver/caregiver.html:248
 #: app6_care/templates/app6_care/caregiver/caregiver.html:249
-#: app6_care/templates/app6_care/hotel/hotel.html:130
-#: app6_care/templates/app6_care/hotel/hotel.html:131
-#: app6_care/templates/app6_care/hotel/hotel.html:136
-#: app6_care/templates/app6_care/hotel/hotel.html:137
+#: app6_care/templates/app6_care/hotel/hotel.html:122
+#: app6_care/templates/app6_care/hotel/hotel.html:123
+#: app6_care/templates/app6_care/hotel/hotel.html:127
+#: app6_care/templates/app6_care/hotel/hotel.html:128
 msgid "Leave a comment"
 msgstr "Laisser un commentaire"
 
 #: app6_care/templates/app6_care/caregiver/caregiver.html:277
-#: app6_care/templates/app6_care/hotel/hotel.html:165
+#: app6_care/templates/app6_care/hotel/hotel.html:156
 msgid "Select the pictograms to cancel"
 msgstr "Sélectionnez les pictogrammes à annuler"
 
 #: app6_care/templates/app6_care/caregiver/caregiver.html:278
-#: app6_care/templates/app6_care/hotel/hotel.html:166
+#: app6_care/templates/app6_care/hotel/hotel.html:160
 msgid "Select the pictogram to comment"
 msgstr "Sélectionnez le pictogramme à commenter"
 
 #: app6_care/templates/app6_care/caregiver/caregiver.html:280
 #: app6_care/templates/app6_care/caregiver/free_comment.html:22
 #: app6_care/templates/app6_care/hotel/free_comment.html:26
-#: app6_care/templates/app6_care/hotel/hotel.html:168
+#: app6_care/templates/app6_care/hotel/hotel.html:164
 msgid "voice input"
 msgstr "saisie vocale"
 
 #: app6_care/templates/app6_care/caregiver/caregiver.html:280
 #: app6_care/templates/app6_care/caregiver/free_comment.html:22
 #: app6_care/templates/app6_care/hotel/free_comment.html:26
-#: app6_care/templates/app6_care/hotel/hotel.html:168
+#: app6_care/templates/app6_care/hotel/hotel.html:164
 msgid "Voice input"
 msgstr "Saisie vocale"
 
 #: app6_care/templates/app6_care/caregiver/caregiver.html:280
 #: app6_care/templates/app6_care/caregiver/free_comment.html:22
 #: app6_care/templates/app6_care/hotel/free_comment.html:26
-#: app6_care/templates/app6_care/hotel/hotel.html:168
+#: app6_care/templates/app6_care/hotel/hotel.html:164
 msgid "is available on tablet"
 msgstr "disponible sur tablette"
 
 #: app6_care/templates/app6_care/caregiver/caregiver.html:282
-#: app6_care/templates/app6_care/hotel/hotel.html:170
+#: app6_care/templates/app6_care/hotel/hotel.html:168
 msgid "Choose a category"
 msgstr "Choisir une catégorie"
 
 #: app6_care/templates/app6_care/caregiver/caregiver.html:404
 #: app6_care/templates/app6_care/caregiver/free_comment.html:27
 #: app6_care/templates/app6_care/hotel/free_comment.html:31
-#: app6_care/templates/app6_care/hotel/hotel.html:237
+#: app6_care/templates/app6_care/hotel/hotel.html:233
 msgid "Confirm comment"
 msgstr "Confirmez le commentaire"
 
 #: app6_care/templates/app6_care/caregiver/caregiver.html:423
-#: app6_care/templates/app6_care/hotel/hotel.html:257
+#: app6_care/templates/app6_care/hotel/hotel.html:253
 msgid "Intervention that I am entering"
 msgstr "Intervention en cours de saisie"
 
 #: app6_care/templates/app6_care/caregiver/caregiver.html:425
-#: app6_care/templates/app6_care/hotel/hotel.html:259
+#: app6_care/templates/app6_care/hotel/hotel.html:255
 msgid "Done"
 msgstr "Terminé"
 
 #: app6_care/templates/app6_care/caregiver/caregiver.html:442
-#: app6_care/templates/app6_care/hotel/hotel.html:275
+#: app6_care/templates/app6_care/hotel/hotel.html:276
 msgid "Interventions that are being entered"
 msgstr "Interventions en cours de saisie"
 
 #: app6_care/templates/app6_care/caregiver/caregiver.html:465
-#: app6_care/templates/app6_care/hotel/hotel.html:298
+#: app6_care/templates/app6_care/hotel/hotel.html:299
 msgid "Ignore"
 msgstr "Ignorer"
 
@@ -8775,41 +8828,36 @@ msgid "Surprise visit"
 msgstr "Visite surprise"
 
 #: app6_care/templates/app6_care/hotel/free_comment.html:12
-#: app6_care/templates/app6_care/hotel/hotel.html:12
+#: app6_care/templates/app6_care/hotel/hotel.html:11
 msgid "Hotel home"
 msgstr "Hôtellerie accueil"
 
-#: app6_care/templates/app6_care/hotel/hotel.html:15
+#: app6_care/templates/app6_care/hotel/hotel.html:14
 msgid "Room of"
 msgstr "Chambre de"
 
-#: app6_care/templates/app6_care/hotel/hotel.html:23
+#: app6_care/templates/app6_care/hotel/hotel.html:22
 msgid "Reserved meals"
 msgstr "Repas réservés"
 
-#: app6_care/templates/app6_care/hotel/hotel.html:40
+#: app6_care/templates/app6_care/hotel/hotel.html:39
 msgid "No meals were booked that day"
 msgstr "Aucun repas n'a été retenu ce jour là"
 
-#: app6_care/templates/app6_care/hotel/hotel.html:56
+#: app6_care/templates/app6_care/hotel/hotel.html:55
 msgid "Enter new hotel intervention"
 msgstr "Saisir une nouvelle intervention d'hôtellerie"
 
-#: app6_care/templates/app6_care/hotel/hotel.html:59
-#: app6_care/templates/app6_care/hotel/hotel.html:61
-msgid "Hotel Plan"
-msgstr "Plan d'hôtellerie"
-
+#: app6_care/templates/app6_care/hotel/hotel.html:58
 #: app6_care/templates/app6_care/hotel/hotel.html:64
-#: app6_care/templates/app6_care/hotel/hotel.html:70
 msgid "Hotel intervention"
 msgstr "Intervention d'hôtellerie"
 
-#: app6_care/templates/app6_care/hotel/hotel.html:66
+#: app6_care/templates/app6_care/hotel/hotel.html:60
 msgid "Communals"
 msgstr "Communs"
 
-#: app6_care/templates/app6_care/hotel/hotel.html:73
+#: app6_care/templates/app6_care/hotel/hotel.html:67
 #, python-format
 msgid "Room of %(resident)s"
 msgstr "Logement de %(resident)s"
@@ -9666,5 +9714,5 @@ msgstr "Vous n'avez pas encore de rendez-vous."
 msgid "The story life has been deleted"
 msgstr "L'histoire de vie a été supprimée"
 
-#~ msgid "Bookings"
-#~ msgstr "Réservations"
+#~ msgid "Click on 'Click on it'"
+#~ msgstr "Cliquer sur 'Cliquer dessus'"

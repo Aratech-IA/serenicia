@@ -118,9 +118,9 @@
             </a>
         </div>
 
-        <!-- Bouton alert -->
         {% if ALERT %}
             {% if perms.app0_access.view_care %}
+                <!-- Bouton alert -->
                 <form action="{% url 'select resident' %}" method="post">
                     {% csrf_token %}
                     <input type="hidden" name="rooms" value="alerts">

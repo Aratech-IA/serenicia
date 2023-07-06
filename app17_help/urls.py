@@ -9,5 +9,6 @@ urlpatterns = [
     path('cuisine', views.cuisine, name='app17_help cuisine'),
     path('hotel', views.hotel, name='app17_help hotel'),
     path('quality', views.quality, name='app17_help quality'),
+    path('access_management', views.access_management, name='app17_help access_management'),
     path('referrers', views.referrers, name='app17_help referrers'),
 ]

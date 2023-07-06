@@ -6,18 +6,57 @@
 
 <div class="pt-3 pt-md-4">
     <h4 class="text-center text-uppercase">{% trans "Welcome to Serenicia Help" %} !</h4>
-    <h5 class="text-center pt-3 pt-md-4 pb-2 pb-md-3">{% trans "Click on the module button where you need help" %}</h5>
+
+    {% if perms.app0_access.view_family %}
+    {% else %}
+        <h5 class="text-center pt-3 pt-md-4 pb-2 pb-md-3">{% trans "Click on the module button where you need help" %}</h5>
+    {% endif %}
+
     <div class="d-flex justify-content-evenly align-items-center">
-        <a href="{% url 'app17_help social_life' %}" class="btn btn-perso">{% trans "Social life" %}</a>
-        <a href="{% url 'app17_help cuisine' %}" class="btn btn-perso">{% trans "Cuisine" %}</a>
-        <a href="{% url 'app17_help hotel' %}" class="btn btn-perso">{% trans "Hotel" %}</a>
-        <a href="{% url 'app17_help quality' %}" class="btn btn-perso">{% trans "Quality" %}</a>
-        <a href="{% url 'app17_help referrers' %}" class="btn btn-perso">{% trans "Referrers" %}</a>
+
+        {% if perms.app0_access.view_animation %}
+            <!-- Aide Vie Sociale -->
+            <a href="{% url 'app17_help social_life' %}" class="btn btn-perso">{% trans "Social life" %}</a>
+        {% endif %}
+
+        {% if perms.app0_access.view_cuisine %}
+            <!-- Aide Cuisine -->
+            <a href="{% url 'app17_help cuisine' %}" class="btn btn-perso">{% trans "Cuisine" %}</a>
+        {% endif %}
+
+        {% if perms.app0_access.view_hotel %}
+            <!-- Aide Hôtellerie -->
+            <a href="{% url 'app17_help hotel' %}" class="btn btn-perso">{% trans "Hotel" %}</a>
+        {% endif %}
+
+        {% if perms.app0_access.view_quality %}
+            <!-- Aide Qualité -->
+            <a href="{% url 'app17_help quality' %}" class="btn btn-perso">{% trans "Quality" %}</a>
+        {% endif %}
+
+        {% if perms.app0_access.view_rightsmanagement %}
+            <!-- Aide Gestions des accès -->
+            <a href="{% url 'app17_help access_management' %}" class="btn btn-perso">{% trans "Access management" %}</a>
+        {% endif %}
+
+        {% if perms.app0_access.view_rightsmanagement %}
+            <!-- Aide Gestions des référents -->
+            <a href="{% url 'app17_help referrers' %}" class="btn btn-perso">{% trans "Referrers" %}</a>
+        {% endif %}
+
     </div>
-    <div class="d-flex flex-column flex-md-row align-items-center py-5">
-        <p class="col-11 col-md-3 text-center pb-2 pb-md-0">{% trans "Understanding Navigation Bars" %}</p>
-        <img src="{% static 'app17_help/images/Barres_de_navigation-explications.png' %}" alt="{% trans 'Navbars screenshot' %}" class="col-11 col-md-8">
-    </div>
+
+    
+        <div class="d-flex flex-column flex-md-row align-items-center py-5">
+            <p class="col-11 col-md-3 text-center pb-2 pb-md-0">{% trans "Understanding Navigation Bars" %}</p>
+
+            {% if perms.app0_access.view_family %}
+                <img src="{% static 'app17_help/images/Barres_de_navigation_famille.png' %}" alt="{% trans 'Navbars screenshot' %}" class="col-11 col-md-8">
+            {% else %}
+                <img src="{% static 'app17_help/images/Barres_de_navigation.png' %}" alt="{% trans 'Navbars screenshot' %}" class="col-11 col-md-8">
+            {% endif %}
+        </div>
+
 </div>
 
 

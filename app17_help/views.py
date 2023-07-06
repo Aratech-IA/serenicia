@@ -20,6 +20,10 @@ def hotel(request):
 def quality(request):
     return render(request, 'app17_help/quality.html')
     
+# Page access_management help
+def access_management(request):
+    return render(request, 'app17_help/access_management.html')
+    
 # Page referrers help
 def referrers(request):
     return render(request, 'app17_help/referrers.html')
