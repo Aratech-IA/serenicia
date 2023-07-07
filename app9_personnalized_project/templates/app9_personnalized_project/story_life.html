@@ -3,12 +3,16 @@
 {% load i18n %}
 
 {% block content %}
+
+
 <style>
     .bg-lightblue {
         background-color: #93a9d2;
     }
 </style>
-<main class="d-flex flex-column gap-2 py-2">
+
+
+<main class="container-lg d-flex flex-column gap-2 py-3">
     {% for title in titles %}
         <div class="d-flex flex-column align-items-center gap-1">
             <h5>
@@ -33,7 +37,7 @@
                     </div>
                 </div>
             </div>
-            <form action="" method="post" class="d-flex flex-column align-items-center gap-1 w-75">{% csrf_token %}
+            <form action="" method="post" class="d-flex flex-column align-items-center gap-1 w-100 px-2">{% csrf_token %}
                 <input hidden name="title" value="{{ title.object.id }}">
                 {{ title.form.text }}
                 <div class="d-flex justify-content-between w-100">
@@ -57,6 +61,8 @@
         </div>
     {% endfor %}
 </main>
+
+
 <script>
     function disableModifyBtn(){
         var modifyButtons = document.getElementsByClassName('btn-outline-warning');
@@ -77,4 +83,6 @@
         disableModifyBtn();
     };
 </script>
+
+
 {% endblock content %}
