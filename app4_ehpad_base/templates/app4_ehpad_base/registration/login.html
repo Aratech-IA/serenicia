@@ -6,7 +6,7 @@
 
 <div id="connexionpage" class="d-flex flex-column align-items-center">
     
-    <img class="d-md-none img-fluid text-center my-2" width="200px" height="auto" src="{{ IMG_LOGO }}" alt="{% trans 'Location logo' %}" style="border-radius: 10px;">
+    <img class="d-md-none img-fluid text-center mt-2 my-3" width="200px" height="auto" src="{{ IMG_LOGO }}" alt="{% trans 'Location logo' %}" style="border-radius: 10px;">
 
     <div class="social__content mb-4 mt-md-4">
         <div class="d-flex py-3 px-5 ps-md-0 justify-content-between align-items-center">
@@ -33,7 +33,7 @@
 
     <!-- Affichage Desktop -->
 
-    <div class="container-lg mb-4" id="container-lg">
+    <div id="container-lg" class="container-lg mb-4">
 
         {% if REGISTRATION_ACCESS %}
             <!-- CREATE ACCOUNT -->
@@ -48,12 +48,12 @@
         {% endif %}
 
         <!-- LOGIN -->
-        <div class="form-container sign-in-container">
+        <div id="desktop" class="form-container sign-in-container">
             <form method="post" action="{% url 'login' %}">
                 
-                {% if REGISTRATION_ACCESS %}
-                    <h1 class="pb-4">{% trans "Login" %}</h1>
-                {% endif %}
+                
+                <h1 class="pb-4">{% trans "Login" %}</h1>
+                
 
                 <!-- ERRORS -->
                 {% if form.errors %}
@@ -131,36 +131,37 @@
 
     <!-- Affichage phone / tablette -->
 
-    <div class="mb-3 sign-in-container" id="container-sm">
+    <div id="container-sm" class="mb-3 sign-in-container">
 
         <form method="post" action="{% url 'login' %}" class="d-flex flex-column align-items-center justify-content-center">
 
             <h1 class="pb-4">{% trans "Login" %}</h1>
 
-                {% if form.errors %}
-                    <p class="text-center">{% trans "Your username and password didn't match. Please try again" %}.</p>
-                {% endif %}
+            {% if form.errors %}
+                <p class="text-center">{% trans "Your username and password didn't match. Please try again" %}.</p>
+            {% endif %}
 
-                {% if next %}
-                    {% if user.is_authenticated %}
-                        <p class="text-center">{% trans "Your account does not have access to this page. To continue, please log in with a valid account" %}.</p>
-                    {% else %}
-                        <p class="text-center">{% trans "Please login to see this page" %}.</p>
-                    {% endif %}
+            {% if next %}
+                {% if user.is_authenticated %}
+                    <p class="text-center">{% trans "Your account does not have access to this page. To continue, please log in with a valid account" %}.</p>
+                {% else %}
+                    <p class="text-center text-danger pb-3">{% trans "Please login to see this page" %}.</p>
                 {% endif %}
+            {% endif %}
 
             {% csrf_token %}
 
             {% trans 'Username' %}
             {{ form.username }}
 
-            <span>
+            <div class="d-flex align-items-center">
                 {% trans 'Password' %}
                 <img class="btn ps-3" src="{% static 'app4_ehpad_base/img/bi/eye-fill.svg' %}" id="eye_icon" onclick="togglePassword()">
-            </span>
+            </div>
             {{ form.password }}
 
-            <a class="text-decoration-underline disabled pt-2" href="">{% trans "Reset Password" %}</a>
+            <a class="text-decoration-underline pt-2" href="{% url 'password_reset' %}">{% trans "Reset Password" %}</a>
+
 
             <div class="d-inline pt-4">
 
@@ -173,45 +174,93 @@
                 </a>
 
             </div>
-            <button class="btn btn-perso mt-2" onclick="showOrHide()" type="button">{% trans "Sign Up" %}</button>
+
+            {% if REGISTRATION_ACCESS %}
+                <button class="btn btn-perso mt-2" onclick="showOrHide()" type="button">{% trans "Sign Up" %}</button>
+            {% endif %}
+            
         </form>
 
-        <div id="select">
-            <div class="d-flex flex-column justify-content-around align-items-center pt-4">
-                <h3 class="text-center font-weight-bold">
-                    {% trans "What kind of account would you like to create" %} ?
-                </h3>
-                <button class="btn btn-perso w-75 m-2">
-                    <a href="{% url 'register_user' mod='resident' %}">{% trans "Resident" %}</a>
-                </button>
-                <button class="btn btn-perso w-75 m-2">
-                    <a href="{% url 'register_user' mod='family' %}">{% trans "Family member" %}</a>
-                </button>
-                <button class="btn btn-perso w-75 m-2">
-                    <a href="{% url 'register_user' mod='employee' %}">{% trans "Employee / Collaborator" %}</a>
-                </button>
+        {% if REGISTRATION_ACCESS %}
+            <div id="select">
+                <div class="d-flex flex-column justify-content-around align-items-center pt-4">
+                    <h3 class="text-center font-weight-bold">
+                        {% trans "What kind of account would you like to create" %} ?
+                    </h3>
+                    <button class="btn btn-perso w-75 m-2">
+                        <a href="{% url 'register_user' mod='resident' %}">{% trans "Resident" %}</a>
+                    </button>
+                    <button class="btn btn-perso w-75 m-2">
+                        <a href="{% url 'register_user' mod='family' %}">{% trans "Family member" %}</a>
+                    </button>
+                    <button class="btn btn-perso w-75 m-2">
+                        <a href="{% url 'register_user' mod='employee' %}">{% trans "Employee / Collaborator" %}</a>
+                    </button>
+                </div>
             </div>
-        </div>
+        {% endif %}
     </div>
 
-    <img class="img-fluid pb-3"  width="400em" src="{% static 'app4_ehpad_base/img/serenicia.png' %}" alt="{% trans 'Serenicia logo' %}">
+    <img class="img-fluid py-3"  width="260em" src="{% static 'app4_ehpad_base/img/serenicia.png' %}" alt="{% trans 'Serenicia logo' %}">
 
 </div>
 
 
+{% if REGISTRATION_ACCESS %}
+    <!-- Pour les inscriptions -->
+    <script>
+        const signUpButton = document.getElementById('signUp');
+        const signInButton = document.getElementById('signIn');
+        const container = document.getElementById('container-lg');
+
+        signUpButton.addEventListener('click', () =>
+        container.classList.add('right-panel-active'));
+
+        signInButton.addEventListener('click', () =>
+        container.classList.remove('right-panel-active'));
+
+        // Je ne sais pas ce que ça fait ça, à voir plus tard
+        function showOrHide() {
+            var div = document.getElementById("select");
+            if (div.style.display === "block") {
+                div.style.display = "none";
+            } else {
+                div.style.display = "block";
+            }
+        }
+    </script>
+{% endif %}
 
 
+<!-- Voir le mot de passe ou non -->
 <script>
-    const signUpButton = document.getElementById('signUp');
-    const signInButton = document.getElementById('signIn');
-    const container = document.getElementById('container-lg');
+     // Stocker le nœud desktop
+    var deskNode = document.getElementById("desktop");
 
-    signUpButton.addEventListener('click', () =>
-    container.classList.add('right-panel-active'));
+    // supprimer le code descktop sur les petits écrans pour éviter d'avoir 2 fois le même id dans le code et le remettre sur grand écran
+    function removeElementOnMobile() {
+        var container = document.getElementById("container-lg");
+        var desk = document.getElementById("desktop");
+        
+        if (window.innerWidth < 821) {
+            if (desk && desk.parentNode === container) {
+                container.removeChild(desk);
+            }
+        } else {
+            if (deskNode && deskNode.parentNode !== container) {
+                container.appendChild(deskNode);
+            }
+        }
+    }
 
-    signInButton.addEventListener('click', () =>
-    container.classList.remove('right-panel-active'));
+    // Appel initial pour vérifier la taille de l'écran lors du chargement de la page
+    document.addEventListener("DOMContentLoaded", removeElementOnMobile);
 
+    // Écouteur d'événement pour vérifier la taille de l'écran lors du redimensionnement
+    window.addEventListener("resize", removeElementOnMobile);
+
+
+    // Voir le mot de passe ou non
     function togglePassword() {
         var pwdfield = document.getElementById("id_password");
         var eyeicon = document.getElementById("eye_icon");
@@ -224,16 +273,9 @@
         }
     }
 
-    function showOrHide() {
-        var div = document.getElementById("select");
-        if (div.style.display === "block") {
-            div.style.display = "none";
-        } else {
-            div.style.display = "block";
-        }
-    }
 </script>
-    {% include 'app1_base/check_api_face_reco.html' %}
+
+{% include 'app1_base/check_api_face_reco.html' %}
 
 {% endblock content %}
 

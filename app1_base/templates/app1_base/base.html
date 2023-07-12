@@ -753,8 +753,9 @@
 
     <script>
         {#  /* Ouvre une modal générique de message utilisateur */  #}
-        var myModal = new bootstrap.Modal(document.getElementById('warning_msg'))
-        myModal.show()
+        // Fait pété une erreur dans la console : Uncaught TypeError: this._config is undefined
+        // var myModal = new bootstrap.Modal(document.getElementById('warning_msg'))
+        // myModal.show()
     </script>
 
     <script>
@@ -778,6 +779,7 @@
         {% include 'app1_base/check_api_face_reco.html' %}
     {% endif %}
 {% endblock scripts %}
+
 {% block scriptcaregiver %}{% endblock scriptcaregiver %}
 {% block scriptsmails %}{% endblock scriptsmails %}
 {% block scriptscamera %}{% endblock scriptscamera %}
