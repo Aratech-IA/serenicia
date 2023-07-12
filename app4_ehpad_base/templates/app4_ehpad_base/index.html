@@ -522,26 +522,29 @@
                                 <span aria-hidden="true"></span>
                             </button>
                         </div>
-                        <div class="modal-body bg-lightblue">
-                            <div class="form-control bg-light">
+                        <div class="modal-body bg-lightblue p-1 p-sm-2 p-md-3">
+                            <div class="form-control bg-light p-1 p-sm-2 p-md-3">
                                 <form class="input-group" action="{% url 'personal page' %}" method="post">
                                     {% csrf_token %}
                                     <div class="input-group-prepend d-flex flex-grow-1 justify-content-base m-2 overflow-auto">
-                                        <span class="input-group-text w-50">{% trans 'To' %} </span>{{ new_event.type }}
+                                        <span class="input-group-text w-50 me-2">{% trans 'To' %}</span>
+                                        {{ new_event.type }}
                                     </div>
                                     <div class="input-group-prepend d-flex flex-grow-1 justify-content-base m-2 overflow-auto">
-                                        <span class="input-group-text w-50">{% trans 'On the' %} </span>{{ new_event.start }}
+                                        <span class="input-group-text w-50 me-2">{% trans 'On the' %}</span>
+                                        {{ new_event.start }}
                                     </div>
                                     <div class="input-group-prepend d-flex flex-grow-1 justify-content-base m-2 overflow-auto">
-                                        <span class="input-group-text w-50">{% trans 'For about' %} </span>{{ new_event.event_duration }}
+                                        <span class="input-group-text w-50 me-2">{% trans 'For about' %}</span>
+                                        {{ new_event.event_duration }}
                                     </div>
                                     <div class="input-group-append w-100 m-2 overflow-hidden">
+                                        <span class="input-group-text mb-2">{% trans 'Further comments' %}</span>
                                         {{ new_event.event_comment }}
-                                        <span class="input-group-text">{% trans 'Further comments' %}</span>
                                     </div>
                                     <div class="modal-footer d-flex flex-grow-1">
-                                        <button type="submit" class="btn btn-perso align-self-end overflow-auto text-wrap"
-                                                value="Submit">{% trans 'Submit my choices' %}
+                                        <button type="submit" class="btn btn-perso align-self-end overflow-auto text-wrap" value="Submit">
+                                                {% trans 'Submit my choices' %}
                                         </button>
                                     </div>
                                 </form>
