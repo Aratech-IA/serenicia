@@ -139,11 +139,11 @@
         {% endif %}
 
         <!-- prénom.nom de la personne connectée -->
-        <a onclick="togglenamemenu()" class="clicnom position-relative d-flex flex-column justify-content-center align-items-center mt-1">
+        <a onclick="togglenamemenu()" class="clicnom position-relative d-flex flex-column justify-content-center align-items-center">
             {{ user.get_username }}
             <img src="{% static 'app4_ehpad_base/img/angle-down-solid.svg' %}" alt="{% trans 'Arrow' %}" width="10em">
             {% if request.session.unopened_messages > 0 or request.session.unopened_notifs > 0 %}
-                <span id="notif_unopened" class="position-absolute p-2 {% if request.session.urgent_msg %}bg-danger{% else %}bg-lightblue{% endif %} rounded-circle notif_unopened">
+                <span id="notif_unopened" class="position-absolute p-2 {% if request.session.urgent_msg %}bg-danger{% else %}bg-lightblue{% endif %} rounded-pill notif_unopened w-25 pt-1">
                 </span>
             {% endif %}
         </a>

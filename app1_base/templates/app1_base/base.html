@@ -435,9 +435,9 @@
                         {% if perms.app0_access.view_supportproject %}
                             <!-- Projet personnalisé -->
                             {% if request.session.resident_id %}
-                                <li class="nav-item dropdown pt-4 pb-1">
+                                <li class="nav-item pt-4 pb-1">
                             {% else %}
-                                <li class="nav-item dropdown py-2 py-lg-0">
+                                <li class="nav-item py-2 py-lg-0">
                             {% endif %}
                                     <a href="{% url 'app9_personnalized_project index' %}" class="d-flex align-items-center my-2 my-lg-3 px-2 {% if '/support/' in request.path %}active{% endif %}">
                                         <svg

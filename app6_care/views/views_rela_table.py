@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.utils.translation import gettext as _
 from app4_ehpad_base.models import ProfileSerenicia, UserListIntermediate
 
 
@@ -47,16 +48,30 @@ def resident_employee_automatic(access, actif=True):
 
 
 def table_relations(request):
+    accesss = []
+    relations = []
+
+    access_labels = {
+        '-------': _('Choose a function to see the relationships'),
+        'view_as': _('Relationships Caregiver'),
+        'view_ash': _('Relationships Hospital Caregiver'),
+        'view_ide': _('Relationships Nursing'),
+    }
+
     try:
         request.session.pop('resident_id')
     except KeyError:
         pass
-    accesss = ['view_as', 'view_ash', 'view_ide']
-    access = 'view_as'
+
+    accesss = list(access_labels.keys())
+    access = '-------'
+
     if request.POST:
         access = request.POST.get("access")
-    dict_relation = resident_employee(access)
-    relations = [(key.user, [x.user for x in value]) for key, value in dict_relation.items()]
+        dict_relation = resident_employee(access)
+        relations = [(key.user, [x.user for x in value]) for key, value in dict_relation.items()]
 
-    context = {"rels": relations, "accesss": accesss, "access": access}
+    context = {"rels": relations, "accesss": accesss, "access": access, "access_labels": access_labels}
+
     return render(request, 'app6_care/rela_table/rela_table.html', context)
+
