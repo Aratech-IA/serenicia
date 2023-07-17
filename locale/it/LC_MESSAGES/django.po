@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-13 18:46+0200\n"
+"POT-Creation-Date: 2023-07-17 16:17+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1023,7 +1023,7 @@ msgstr ""
 #: app11_quality/models.py:69 app11_quality/models.py:76
 #: app11_quality/templates/app11_quality/room-chat.html:73
 #: app1_base/models.py:635
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:147
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:41
 #: app6_care/templates/app6_care/caregiver/showers_report.html:14
 #: app6_care/templates/app6_care/caregiver/showers_report.html:22
 msgid "Room"
@@ -4720,7 +4720,7 @@ msgid "Showers report"
 msgstr "Rapporto di docce"
 
 #: app1_base/templates/app1_base/base.html:517
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:112
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:11
 #, fuzzy
 #| msgid "Documents"
 msgid "Laundry management"
@@ -8100,17 +8100,17 @@ msgstr "Parrucchiere"
 msgid "Pedicure"
 msgstr "Pedicure"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:114
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:12
 msgid ""
-"To create an inventory, select a resident then click on \"healing\" in the "
-"navigation bar, then on \"create inventory\""
+"To create an inventory, select a resident then click on 'create inventory' "
+"in the resident's navigation bar"
 msgstr ""
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:131
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:25
 msgid "list of residents whose laundry is washed by the nursing home"
 msgstr ""
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:163
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:56
 msgid "list of residents whose laundry is marked by the nursing home"
 msgstr ""
 

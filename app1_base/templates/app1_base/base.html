@@ -434,7 +434,7 @@
 
                         {% if perms.app0_access.view_supportproject %}
                             <!-- Projet personnalisé -->
-                            {% if request.session.resident_id %}
+                            {% if perms.app0_access.view_family %}
                                 <li class="nav-item pt-4 pb-1">
                             {% else %}
                                 <li class="nav-item py-2 py-lg-0">
@@ -693,13 +693,13 @@
                     {% endif %}
         
                     <!-- Soins inventaire -->
-                    <!-- {% if perms.app0_access.view_care %}
+                    {% if perms.app0_access.view_care %}
                         <li class="ps-3 ps-lg-4">
                             <a href="{% url 'create_inventory' %}">
                                 {% trans 'Create inventory' %}
                             </a>
                         </li>
-                    {% endif %} -->
+                    {% endif %}
                 </ul>
             {% endif %}
 

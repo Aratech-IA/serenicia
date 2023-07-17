@@ -143,7 +143,7 @@
 
             {% if next %}
                 {% if user.is_authenticated %}
-                    <p class="text-center">{% trans "Your account does not have access to this page. To continue, please log in with a valid account" %}.</p>
+                    <p class="text-center text-danger pb-3">{% trans "Your account does not have access to this page. To continue, please log in with a valid account" %}.</p>
                 {% else %}
                     <p class="text-center text-danger pb-3">{% trans "Please login to see this page" %}.</p>
                 {% endif %}
