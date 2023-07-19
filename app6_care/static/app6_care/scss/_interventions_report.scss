@@ -1,0 +1,38 @@
+#interventions_report {
+    
+    .section-titre {
+        box-shadow: inset 0 -1em #93a9d2;
+    }
+
+    select {
+        border-color: #93a9d2;
+        background-color: transparent;
+        padding: 4px;
+        border-radius: 15px;
+    }
+
+    .largeur_max_recherche {
+        max-width: 400px;
+
+        @media screen and (min-width: $desktops-media-rupture) {
+            max-width: $desktops-media-rupture;
+        }
+
+        button {
+            width: 50%;
+
+            @media screen and (min-width: $desktops-media-rupture) {
+                width: auto;
+            }
+        }
+    }
+
+    .largeur_max_tab {
+        max-width: $fix-media-rupture;
+    }
+
+    .largeur_max_alerte {
+        max-width: $tablette-media-rupture;
+    }
+
+}
