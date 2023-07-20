@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-17 16:17+0200\n"
+"POT-Creation-Date: 2023-07-20 11:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,7 +62,7 @@ msgstr "Partecipanti"
 #: app4_ehpad_base/templates/app4_ehpad_base/registration/login.html:191
 #: app4_ehpad_base/views_cuisine_eval.py:1167 app6_care/filters.py:34
 #: app6_care/forms/forms_intervention.py:28
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:58
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:48
 #: app8_survey/models.py:76
 msgid "Resident"
 msgstr "Residente"
@@ -519,7 +519,7 @@ msgstr "Attività"
 #: app6_care/templates/app6_care/caregiver/care_plan_creation.html:348
 #: app6_care/templates/app6_care/caregiver/care_plan_creation.html:375
 #: app6_care/templates/app6_care/caregiver/caregiver.html:186
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:81
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:70
 #: app8_survey/templates/app8_survey/details.html:77
 #: app8_survey/templates/app8_survey/survey.html:91
 #: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:50
@@ -641,7 +641,7 @@ msgstr "Cancellare"
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:29
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_menu.html:37
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:42
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:197
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:117
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/diet.html:57
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:84
 #: app4_ehpad_base/templates/app4_ehpad_base/index.html:486
@@ -711,7 +711,7 @@ msgstr ""
 #: app0_access/templates/app0_access/select_user.html:24
 #: app0_access/templates/app0_access/user_types.html:25
 #: app12_delivery/templates/app12_delivery/composant/navLeft.html:19
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:198
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:118
 #: app4_ehpad_base/templates/app4_ehpad_base/select_top_reco.html:39
 #: app6_care/templates/app6_care/caregiver/caregiver.html:35
 msgid "Home"
@@ -748,7 +748,7 @@ msgstr "Barra di ricerca"
 #: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:20
 #: app3_messaging/templates/app3_messaging/select_receiver.html:19
 #: app3_messaging/templates/app3_messaging/select_receiver.html:48
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:50
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:39
 #, fuzzy
 #| msgid "Search bar"
 msgid "Search"
@@ -996,10 +996,12 @@ msgstr "Assente"
 #: app10_social_activities/templates/app10_social_activities/details.html:134
 #: app10_social_activities/templates/app10_social_activities/details.html:214
 #: app1_base/models.py:263
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:12
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/documents.html:180
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:97
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:32
 #: app6_care/templates/app6_care/caregiver/care_plan_creation.html:294
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:92
 #: app6_care/templates/app6_care/rela_table/rela_table.html:40
 #: app9_personnalized_project/templates/app9_personnalized_project/index.html:47
 msgid "Mr"
@@ -1009,10 +1011,12 @@ msgstr ""
 #: app10_social_activities/templates/app10_social_activities/details.html:134
 #: app10_social_activities/templates/app10_social_activities/details.html:214
 #: app1_base/models.py:264
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:12
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/documents.html:180
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:97
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:32
 #: app6_care/templates/app6_care/caregiver/care_plan_creation.html:294
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:92
 #: app6_care/templates/app6_care/rela_table/rela_table.html:40
 #: app9_personnalized_project/templates/app9_personnalized_project/index.html:47
 msgid "Mrs"
@@ -1024,8 +1028,6 @@ msgstr ""
 #: app11_quality/templates/app11_quality/room-chat.html:73
 #: app1_base/models.py:635
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:41
-#: app6_care/templates/app6_care/caregiver/showers_report.html:14
-#: app6_care/templates/app6_care/caregiver/showers_report.html:22
 msgid "Room"
 msgstr "Camera"
 
@@ -1331,7 +1333,7 @@ msgstr "Lista di presenze"
 #: app6_care/templates/app6_care/caregiver/caregiver.html:302
 #: app6_care/templates/app6_care/caregiver/caregiver.html:345
 #: app6_care/templates/app6_care/caregiver/caregiver.html:356
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:72
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:60
 #: app6_care/templates/app6_care/hotel/hotel.html:178
 #: app6_care/templates/app6_care/hotel/hotel.html:187
 #: app6_care/templates/app6_care/hotel/hotel.html:204
@@ -1530,7 +1532,7 @@ msgid "Value"
 msgstr ""
 
 #: app11_quality/models.py:67 app11_quality/models.py:74
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:57
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:47
 #: app9_personnalized_project/models.py:90
 #: app9_personnalized_project/models.py:126
 msgid "Date"
@@ -1601,7 +1603,7 @@ msgstr "Arbitri"
 
 #: app11_quality/models_qualite.py:63 app11_quality/models_qualite.py:133
 #: app1_base/templates/app1_base/panel_detail.html:9
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:61
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:51
 #, fuzzy
 #| msgid "emails"
 msgid "Detail"
@@ -4482,7 +4484,7 @@ msgstr "Non capisco quest'ordine, tipo"
 #: app1_base/templates/app1_base/alert.html:15
 #: app1_base/templates/app1_base/index.html:109
 #: app1_base/templates/app1_base/panel.html:48
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:27
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:21
 msgid "Alert"
 msgstr "Avviso"
 
@@ -6825,7 +6827,7 @@ msgid "Laundry washed"
 msgstr ""
 
 #: app4_ehpad_base/models.py:700
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:103
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:50
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:264
 #, fuzzy
 #| msgid "not equipped"
@@ -6833,7 +6835,7 @@ msgid "Dental equipment"
 msgstr "non attrezzato "
 
 #: app4_ehpad_base/models.py:703
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:102
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:49
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:263
 #, fuzzy
 #| msgid "not equipped"
@@ -6841,31 +6843,31 @@ msgid "Hearing equipment"
 msgstr "non attrezzato "
 
 #: app4_ehpad_base/models.py:705
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:107
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:51
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:268
 msgid "Cane"
 msgstr ""
 
 #: app4_ehpad_base/models.py:706
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:109
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:53
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:270
 msgid "Walker"
 msgstr "Camminatore"
 
 #: app4_ehpad_base/models.py:707
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:110
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:54
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:271
 msgid "Glasses"
 msgstr ""
 
 #: app4_ehpad_base/models.py:708
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:108
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:52
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:269
 msgid "Wheelchair"
 msgstr "Sedia a rotelle"
 
 #: app4_ehpad_base/models.py:728
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:141
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:75
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:185
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:302
 msgid "Pants"
@@ -6878,53 +6880,53 @@ msgid "Skirt and dress"
 msgstr "Indirizzo"
 
 #: app4_ehpad_base/models.py:732
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:142
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:76
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:161
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:303
 msgid "Pull"
 msgstr ""
 
 #: app4_ehpad_base/models.py:733
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:126
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:65
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:184
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:287
 msgid "Jacket"
 msgstr ""
 
 #: app4_ehpad_base/models.py:734
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:127
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:66
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:288
 msgid "Head cover"
 msgstr ""
 
 #: app4_ehpad_base/models.py:735
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:148
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:79
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:309
 msgid "Long sleeve sweater"
 msgstr ""
 
 #: app4_ehpad_base/models.py:736
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:149
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:80
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:310
 msgid "Short sleeve sweater"
 msgstr ""
 
 #: app4_ehpad_base/models.py:737
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:143
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:77
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:304
 msgid "Long sleeve t-shirt"
 msgstr ""
 
 #: app4_ehpad_base/models.py:738
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:144
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:170
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:78
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:96
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:305
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:331
 msgid "Short sleeve t-shirt"
 msgstr ""
 
 #: app4_ehpad_base/models.py:740
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:188
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:111
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:201
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:203
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:349
@@ -6932,13 +6934,13 @@ msgid "Socks"
 msgstr ""
 
 #: app4_ehpad_base/models.py:741
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:169
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:95
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:330
 msgid "Slipper"
 msgstr ""
 
 #: app4_ehpad_base/models.py:742
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:124
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:63
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:285
 msgid "Summer shoe"
 msgstr ""
@@ -6948,15 +6950,15 @@ msgid "Winter  shoe"
 msgstr ""
 
 #: app4_ehpad_base/models.py:745
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:186
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:108
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:200
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:347
 msgid "Bra"
 msgstr ""
 
 #: app4_ehpad_base/models.py:746
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:181
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:184
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:103
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:105
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:198
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:342
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:345
@@ -6964,7 +6966,7 @@ msgid "Underwear"
 msgstr ""
 
 #: app4_ehpad_base/models.py:748
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:167
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:93
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:328
 #, fuzzy
 #| msgid "Tonight"
@@ -6972,7 +6974,7 @@ msgid "Nightdress"
 msgstr "Questa sera"
 
 #: app4_ehpad_base/models.py:749
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:168
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:94
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:329
 msgid "Dressing gown"
 msgstr ""
@@ -7761,72 +7763,72 @@ msgstr "Vedere/ceare un album photo"
 msgid "See gallery"
 msgstr "Vedere la galleria"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:57
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:11
 #, fuzzy
 #| msgid "Confirm identity"
-msgid "Create arrival inventory for"
+msgid "Create an inventory for"
 msgstr "Confirmare l'identità"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:69
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:23
 #, fuzzy
 #| msgid "not equipped"
 msgid "Clothing and equipment"
 msgstr "non attrezzato "
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:84
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:36
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:245
 msgid "linen"
 msgstr ""
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:87
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:38
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:248
 #, fuzzy
 #| msgid "Modify my informations"
 msgid "Laundry washing option"
 msgstr "Modificare le mie informazioni"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:88
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:39
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:249
 #, fuzzy
 #| msgid "Modify my informations"
 msgid "Laundry marking option"
 msgstr "Modificare le mie informazioni"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:99
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:47
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:260
 #, fuzzy
 #| msgid "residents"
 msgid "Equipment"
 msgstr "residenti"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:121
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:61
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:282
 msgid "Outside"
 msgstr ""
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:125
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:64
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:286
 msgid "Winter shoe"
 msgstr ""
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:138
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:73
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:299
 msgid "Days clothing"
 msgstr ""
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:152
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:83
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:313
 #, fuzzy
 #| msgid "Tonight"
 msgid "Skirt dress"
 msgstr "Questa sera"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:164
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:91
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:325
 msgid "Night clothing"
 msgstr ""
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:212
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:132
 msgid "Equipment in the bathroom"
 msgstr ""
 
@@ -9761,7 +9763,7 @@ msgid ""
 msgstr ""
 
 #: app6_care/filters.py:31
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:59
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:49
 msgid "Caregiver"
 msgstr "Badante"
 
@@ -10055,41 +10057,41 @@ msgstr "Intervenzioni che sono state inseriche"
 msgid "Ignore"
 msgstr "Ignorare"
 
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:24
-msgid "To research"
-msgstr ""
-
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:32
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:13
 #, fuzzy
 #| msgid "Housing"
 msgid "Nursing report"
 msgstr "Alloggiamento"
 
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:60
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:20
+msgid "To research"
+msgstr ""
+
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:50
 #, fuzzy
 #| msgid "Intervention that I am entering"
 msgid "Intervention"
 msgstr "Intervenzioni che inserico"
 
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:91
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:79
 #, fuzzy
 #| msgid "Empty variable"
 msgid "Empty search"
 msgstr "Variabile piena"
 
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:112
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:104
 msgid "Patient has not showered for 1 week"
 msgstr ""
 
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:115
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:107
 msgid "The patient has not peed for 1 week"
 msgstr ""
 
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:118
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:110
 msgid "The patient has not had a bowel movement for 1 week"
 msgstr ""
 
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:121
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:113
 msgid "Cleaning has not been done for 1 week"
 msgstr ""
 
@@ -10099,20 +10101,20 @@ msgstr ""
 msgid "No comments available"
 msgstr "Nessun menu disponibile"
 
-#: app6_care/templates/app6_care/caregiver/showers_report.html:8
+#: app6_care/templates/app6_care/caregiver/showers_report.html:10
 msgid "Showers taken since Monday report"
 msgstr "Docce prese da lunedi"
 
-#: app6_care/templates/app6_care/caregiver/showers_report.html:11
+#: app6_care/templates/app6_care/caregiver/showers_report.html:16
 msgid "Taken"
 msgstr "Preso"
 
-#: app6_care/templates/app6_care/caregiver/showers_report.html:11
-#: app6_care/templates/app6_care/caregiver/showers_report.html:19
+#: app6_care/templates/app6_care/caregiver/showers_report.html:17
+#: app6_care/templates/app6_care/caregiver/showers_report.html:33
 msgid "residents"
 msgstr "residenti"
 
-#: app6_care/templates/app6_care/caregiver/showers_report.html:19
+#: app6_care/templates/app6_care/caregiver/showers_report.html:32
 msgid "Not taken"
 msgstr "Non preso"
 
