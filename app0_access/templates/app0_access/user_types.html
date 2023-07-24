@@ -8,7 +8,7 @@
 <head>
     <style>
         .type_users {
-            width: 100%;
+            width: 90%;
         }
 
         @media screen and (min-width: 576px) {
@@ -16,11 +16,23 @@
                 width: 70%;
             }
         }
+
+        @media screen and (min-width: 992px) {
+            .type_users {
+                width: 50%;
+            }
+        }
+
+        @media screen and (min-width: 1200px) {
+            .type_users {
+                width: 40%;
+            }
+        }
     </style>
 </head>
 
 
-<main class="container mt-3 mx-auto">
+<main class="container px-0 mt-3 mx-auto">
     <div class="w-100 d-flex justify-content-start">
         <a href="{% url 'access index' %}" class="btn btn-perso d-none d-md-block sticky-top-btn">{% trans 'Home' %}</a>
     </div>
@@ -37,28 +49,24 @@
                     <div id="type{{ forloop.counter }}" class="accordion-collapse {% if user_type.codename != force_display %} collapse {% endif %}" aria-labelledby="panelsStayOpen-headingOne">
                         <div class="accordion-body">
                             <span class="fw-bold pt-1">{{ app.description }}</span>
-                            <table class="table table-stripped table-hover">
-                                <tbody>
-                                    {% for group in user_type.groups %}
-                                        <tr>
-                                            <th class="text-center">
-                                                <a href="{% url 'modify rights group' grp_id=group.id %}">{{ group.name }}</a>
-                                            </th>
-                                            <td class="text-right">
-                                                <form action="" method="post">{% csrf_token %}
-                                                    <input hidden name="group" value="{{ group.id }}">
-                                                    <select name="user_type" onchange="this.form.submit()">
-                                                        <option value="none">{% trans 'Not defined' %}</option>
-                                                        {% for codename, name in user_types.items %}
-                                                            <option value="{{ codename }}" {% if user_type.codename == codename %}selected{% endif %}>{{ name }}</option>
-                                                        {% endfor %}
-                                                    </select>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
+                            {% for group in user_type.groups %}
+                                <div class="d-flex flex-column flex-sm-row justify-content-between">
+                                    <div>
+                                        <a href="{% url 'modify rights group' grp_id=group.id %}">{{ group.name }}</a>
+                                    </div>
+                                    <div>
+                                        <form action="" method="post">{% csrf_token %}
+                                            <input hidden name="group" value="{{ group.id }}">
+                                            <select name="user_type" onchange="this.form.submit()">
+                                                <option value="none">{% trans 'Not defined' %}</option>
+                                                {% for codename, name in user_types.items %}
+                                                    <option value="{{ codename }}" {% if user_type.codename == codename %}selected{% endif %}>{{ name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </form>
+                                    </div>
+                                </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>

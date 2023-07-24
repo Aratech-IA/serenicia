@@ -15,10 +15,14 @@
       .w-tab {
          max-width: 700px;
       }
+
+      .pagination {
+         max-width: 800px;
+      }
    </style>
 </head>
 
-<main class="container mt-3 mx-auto d-flex flex-column align-items-center">
+<main class="container my-3 mx-auto d-flex flex-column align-items-center">
    <div class="w-100 d-flex justify-content-start">
       <div class="w-100 d-flex justify-content-between gap-2 sticky-top-btn">
          <div class="d-flex">
@@ -48,8 +52,8 @@
       </tbody>
    </table>
 
-   <div class="pagination">
-      <span class="step-links">
+   <div class="pagination w-100 d-flex justify-content-center">
+      <span class="step-links w-100 w-100 d-flex justify-content-evenly align-items-center">
          {% if page_obj.has_previous %}
             <a href="?page=1" class="btn btn-sm btn-perso">
                <svg viewbox="0 0 16 16" class="bi bi-chevron-double-left chevron-size" fill="currentColor">

@@ -5,79 +5,6 @@
 {% load i18n %}
 
 
-<style>
-  /* .one h1 {
-    text-align:center;
-    font-size:35px;
-    text-transform:uppercase;
-    letter-spacing:1px;
-    font-family:"Playfair Display", serif;
-    font-weight:400;
-  }
-  .one h1 span {
-    margin-top: 5px;
-    font-size:15px; word-spacing:1px; letter-spacing:2px;
-    text-transform: uppercase;
-    font-family:"Raleway", sans-serif;
-    font-weight:500;
-    display: grid;
-    grid-template-columns: 1fr max-content 1fr;
-    grid-template-rows: 27px 0;
-    grid-gap: 20px;
-    align-items: center;
-  }
-
-  .one h1 span:after,.one h1 span:before {
-      content: " ";
-  }
-
-  input, select, .tox-tinymce{
-      background: #eee;
-      border: solid 1px #93a9d2;
-      border-radius: 20px;
-      padding: 12px 15px;
-      margin: 8px 0;
-  }
-
-  .img-to-delete {
-    position: relative;
-    width: 300px;
-  }
-
-  .image {
-    width: 300px;
-    height: auto;
-  }
-
-  .delete-text {
-    color: white;
-    font-weight: bold;
-    font-size: 20px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    text-align: center;
-  }
-
-  .overlay_delete-text {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    opacity: 0;
-    transition: .5s ease;
-    background-color: rgb(249, 49, 84);
-  }
-
-  .img-to-delete:hover .overlay_delete-text {
-    opacity: 0.8;
-  } */
-</style>
-
 <div class="container-xl pt-2 pt-md-3">
 
   <div class="d-flex flex-column align-items-center">
@@ -100,8 +27,8 @@
           {% if not field.id_for_label == 'files__pdf' and not field.id_for_label == 'from_device' %}
             <div class="form-group mb-3">
               <div class="d-md-flex align-items-center">
-                <h6>{{ field.label_tag }}</h6>
-                <h6 class="ps-md-4">{{ field.help_text }}  {{ field }}</h6>
+                <h6 class="w-25">{{ field.label_tag }}</h6>
+                <h6 class="w-100 ps-md-4">{{ field.help_text }}  {{ field }}</h6>
               </div>
               
               {% if field.errors%}
@@ -185,10 +112,13 @@
         </div>
 
         <!-- Boutons enregistrer et retour -->
-        <div class="mb-2">
-          <button type="submit" class="btn btn-perso py-2">{% trans 'Save' %}</button>
-          <a class="btn btn-outline-danger ms-3" href="{% url 'public_photo' %}">{% trans 'Back' %}</a>
+        <div class="d-flex justify-content-center align-items-center">
+          <div class="mb-2">
+            <button type="submit" class="btn btn-perso py-2">{% trans 'Save' %}</button>
+            <a class="btn btn-outline-danger ms-3" href="{% url 'public_photo' %}">{% trans 'Back' %}</a>
+          </div>
         </div>
+        
       </form>
 
       <!-- Photos présentes dans l'article qui peuvent être effacées -->

@@ -7,11 +7,16 @@
         border-color: $lightblue;
         color: $black;
         border-radius: 1em;
+        text-align: center;
 
         &:hover {
             background-color: $lightblue;
             border-color: $lightblue;
         }
+    }
+
+    .form-switch .form-check-input {
+        margin: 0;
     }
 }
 
