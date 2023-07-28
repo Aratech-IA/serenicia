@@ -695,9 +695,15 @@
                     <!-- Soins inventaire -->
                     {% if perms.app0_access.view_care %}
                         <li class="ps-3 ps-lg-4">
-                            <a href="{% url 'create_inventory' %}">
-                                {% trans 'Create inventory' %}
-                            </a>
+                            {% if user_inventory %}
+                                <a href="{% url 'inventory' %}">
+                                    {% trans 'Inventory' %}
+                                </a>
+                            {% else %}
+                                <a href="{% url 'create_inventory' %}">
+                                    {% trans 'Create inventory' %}
+                                </a>
+                            {% endif %}
                         </li>
                     {% endif %}
                 </ul>

@@ -284,30 +284,28 @@ def document_signed(request):
 
 """ User entrance inventory form (need right access for create) + display it in inventory page. """
 
-
 @login_required
 def inventory(request):
     user_resident = User.objects.get(pk=request.session['resident_id'])
-    user_inventory = KitInventory.objects.filter(user_resident=user_resident).order_by('-creation_date')
+    user_inventory = KitInventory.objects.filter(user_resident=user_resident).first()
 
-    context = {
-        'user_inventory': user_inventory, 'user_resident': user_resident
-    }
+    context = {'user_inventory': user_inventory, 'user_resident': user_resident}
 
     return render(request, 'app4_ehpad_base/documents/inventory.html', context)
 
 
 @login_required
 def kit_inventory(request):
-    created = str(_('has been created successfully'))
-    message_success = str(_('Arrival inventory of'))
+    message_success = str(_('Inventory has been updated successfully'))
     message_perm = str(_('You do not have the rights to access this page'))
 
     if request.user.is_authenticated and request.user.has_perm('app0_access.view_care'):
         user_resident = User.objects.get(pk=request.session['resident_id'])
+        user_inventory = KitInventory.objects.filter(user_resident=user_resident).first()
 
         if request.method == 'POST':
-            kit_form = KitInventoryForm(request.POST)
+            # Passer l'instance pour mettre à jour l'inventaire existant
+            kit_form = KitInventoryForm(request.POST, instance=user_inventory)
 
             if kit_form.is_valid():
                 instance = kit_form.save(commit=False)
@@ -316,21 +314,20 @@ def kit_inventory(request):
                 instance.creation_date = timezone.now()
                 kit_form.save()
 
-                messages.success(request,
-                                 f"{message_success} {user_resident.last_name} {user_resident.first_name} {created}",
-                                 extra_tags='success'
-                                 )
+                messages.success(request, f"{message_success}")
                 return redirect('inventory')
 
             else:
                 log_doc.error(kit_form.errors)
 
         else:
-            kit_form = KitInventoryForm()
+            # Si l'inventaire existe, remplir le formulaire avec les données existantes
+            kit_form = KitInventoryForm(instance=user_inventory) if user_inventory else KitInventoryForm()
 
         context = {
-            'kit_form': kit_form, 'user_resident': user_resident,
-            'user_inventory': KitInventory.objects.filter(user_resident=user_resident).exists()
+            'kit_form': kit_form,
+            'user_resident': user_resident,
+            'user_inventory': user_inventory is not None  # Vérifier si l'inventaire existe
         }
         return render(request, 'app4_ehpad_base/documents/create_inventory.html', context)
 
@@ -339,13 +336,14 @@ def kit_inventory(request):
         return redirect('/inventory/')
 
 
+
 def laundry_management(request):
     try:
         request.session.pop('resident_id')
     except KeyError:
         pass
-    laundry_washed = KitInventory.objects.all().filter(laundry_washed='washed by residence')
-    laundry_labeled = KitInventory.objects.all().filter(laundry_labeled='labeled by residence')
+    laundry_washed = KitInventory.objects.all().filter(laundry_washed='washed by residence').exclude(user_resident__profileserenicia__status='deceased')
+    laundry_labeled = KitInventory.objects.all().filter(laundry_labeled='labeled by residence').exclude(user_resident__profileserenicia__status='deceased')
 
     if request.user.is_authenticated and request.user.has_perm('app0_access.view_care'):
         laundry_washed = laundry_washed

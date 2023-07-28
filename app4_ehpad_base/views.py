@@ -45,7 +45,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 
 from .models import Pic, MealBooking, ProfileSerenicia, Card, MenuEvaluation, UserListIntermediate, BlogPost, \
-    WordToRecord, IntonationToRecord, PreferencesSerenicia, EmptyRoomCleaned
+    WordToRecord, IntonationToRecord, PreferencesSerenicia, EmptyRoomCleaned, KitInventory
 import glob
 
 from app4_ehpad_base.views_administrative_documents import progress_bar
@@ -187,6 +187,11 @@ def get_filtered_interventions(resident, connected_user):
 
 
 def personal_page(request):
+    # pour l'inventaire
+    # user_resident = User.objects.get(pk=request.session['resident_id'])
+    # user_inventory = KitInventory.objects.filter(user_resident=user_resident).first()
+    
+    # pour la suite
     blog_articles = BlogPost.objects.all().order_by('-created_on')[:6]
     if not request.session.get('resident_id'):
         return redirect('app4_ehpad_base index')
@@ -204,6 +209,7 @@ def personal_page(request):
     ws_alexa = 'wss://' + request.get_host() + ':' + request.META.get('SERVER_PORT') + '/ws_alexa/'
     connected_user = User.objects.get(id=request.user.id)
     resident = User.objects.select_related('profileserenicia').get(pk=request.session['resident_id'])
+    user_inventory = KitInventory.objects.filter(user_resident=resident).first() # pour l'inventaire
     if resident.profile.civility:
         civility = _(resident.profile.civility)
     else:
@@ -272,7 +278,7 @@ def personal_page(request):
     if connected_user.has_perm('app0_access.view_photostaff'):
         contexte['form_photo'] = PhotoFromStaff(initial={'folder': resident.profileserenicia.folder})
         contexte['form_photo_sensitive'] = PhotoFromStaffSensitive(initial={'folder': resident.profileserenicia.folder})
-    context = {**event_data, **contexte, **meal_data, **carousel_images, **message}
+    context = {**event_data, **contexte, **meal_data, **carousel_images, **message, 'user_inventory': user_inventory}
     return render(request, 'app4_ehpad_base/index.html', context)
 
 

@@ -24,7 +24,7 @@
             <hr class="w-50 mx-auto">
             <div class="row text-center">
                 <span>{% trans 'Number of guest' %}</span>
-                <span class="text-muted">{% trans 'Exclude yourself' %}</span>
+                <span class="text-muted pb-1">{% trans 'Exclude yourself' %}</span>
             </div>
             <div class="d-flex align-items-center justify-content-center mb-3">
                 {{ form.other_guests }}
@@ -36,7 +36,7 @@
         </form>
         
         {% for booking in next_booking|dictsort:'dinner'|dictsort:'date' %}
-            <div class="border border-darkblue rounded-3 py-3">
+            <div class="border border-darkblue rounded-3 my-3 py-1">
                 <a class="d-flex justify-content-center gap-3" href="#booking{{ booking.id }}" data-bs-toggle="modal">
                     <span>{{ booking.date }} {% if booking.lunch %}{% trans 'Lunch' %} {% endif %}{% if booking.dinner %}{% trans 'Diner' %}{% endif %}</span>
                     <span>{% trans 'Total' %} : {{ booking.other_guests|add:1 }}</span>

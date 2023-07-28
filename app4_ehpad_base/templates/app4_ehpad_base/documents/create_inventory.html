@@ -7,144 +7,95 @@
 
 <div id="create_inventory" class="container pt-4">
 
-    <h5 class="text-center text-uppercase pb-4">
-        {% trans "Create an inventory for" %}
-        {% if user_resident.profile.civility == 'Mr' %}{% trans "Mr" %} {% elif user_resident.profile.civility == 'Mrs' %}{% trans "Mrs" %}  {% else %}{% endif %}
-        {{ user_resident.last_name }} {{ user_resident.first_name }}
-    </h5>
-
-    <div class="accordion accordion-flush position-relative d-flex justify-content-center" id="accordionFlushExample">
-        <div class="accordion-item border border-0 rounded-bottom rounded-4">
-
-            <!-- Vêtements et Equipements -->
-            <div class="accordion-header border border-0 rounded-bottom rounded-4" id="flush-headingOne">
-                <button class="accordion-button accordion-button-1 border rounded-bottom rounded-4 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                    <div class="col pt-0 pb-0 d-flex justify-content-start">
-                        <h5 class="text-uppercase text-center w-100 mb-0 pe-2">{% trans "Clothing and equipment" %}</h5>
-                    </div>
-                </button>
-            </div>
-
-            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">
-
-                    <form method="post" enctype="multipart/form-data" action="{% url 'create_inventory' %}">
-                        {% csrf_token %}
-
-                        <!-- Linge -->
-                        <div class="pb-4">
-                            <h6 class="text-uppercase fs-5 fw-semibold">{% trans "linen" %} :</h6>
-
-                            <p class="pb-1">{% trans "Laundry washing option" %} : {{ kit_form.laundry_washed }}</p>
-                            <p>{% trans "Laundry marking option" %} : {{ kit_form.laundry_labeled }}</p>
-                        </div>
-
-                        <!-- <hr> -->
-
-                        <!-- Matériel -->
-                        <div class="pb-4">
-
-                            <h6 class="text-uppercase fs-5 fw-semibold">{% trans "Equipment" %} :</h6>
-
-                            <p class="pb-1">{% trans "Hearing equipment" %} : {{ kit_form.hearing_equipment }}</p>
-                            <p class="pb-1">{% trans "Dental equipment" %} : {{ kit_form.dental_equipment }}</p>
-                            <p class="pb-1">{% trans "Cane" %} : {{ kit_form.cane }}</p>
-                            <p class="pb-1">{% trans "Wheelchair" %} : {{ kit_form.wheelchair }}</p>
-                            <p class="pb-1">{% trans "Walker" %} : {{ kit_form.walker }}</p>
-                            <p class="">{% trans "Glasses" %} : {{ kit_form.glasses }}</p>
-
-                        </div>
-
-                        <!-- Extérieur -->
-                        <div class="pb-4">
-
-                            <h6 class="text-uppercase fs-5 fw-semibold">{% trans "Outside" %} :</h6>
-
-                            <p class="pb-1">{% trans "Summer shoe" %} : {{ kit_form.summer_shoe }}</p>
-                            <p class="pb-1">{% trans "Winter shoe" %} : {{ kit_form.winter_shoe }}</p>
-                            <p class="pb-1">{% trans "Jacket" %} : {{ kit_form.jacket }}</p>
-                            <p class="">{% trans "Head cover" %} : {{ kit_form.head_cover }}</p>
-
-                        </div>
-
-                        <!-- Vêtements de jour -->
-                        <div class="pb-4">
-
-                            <h6 class="text-uppercase fs-5 fw-semibold">{% trans "Days clothing" %} :</h6>
-
-                            <p class="pb-1">{% trans "Pants" %} : {{ kit_form.pants }}</p>
-                            <p class="pb-1">{% trans "Pull" %} : {{ kit_form.pull }}</p>
-                            <p class="pb-1">{% trans "Long sleeve t-shirt" %} : {{ kit_form.t_shirt_long }}</p>
-                            <p class="pb-1">{% trans "Short sleeve t-shirt" %} : {{ kit_form.t_shirt_short }}</p>
-                            <p class="pb-1">{% trans "Long sleeve sweater" %} : {{ kit_form.sweater_long }}</p>
-                            <p class="">{% trans "Short sleeve sweater" %} : {{ kit_form.sweater_short }}</p>
-
-                            {% if user_resident.profile.civility == 'Mme' or user_resident.profile.civility == 'Mrs' %}
-                                <p class="pt-1">{% trans "Skirt dress" %} : {{ kit_form.skirt_dress }}</p>
-                            {% endif %}
-
-                        </div>
-
-                        <!-- Vêtement de nuit -->
-                        <div class="pb-4">
-
-                            <h6 class="text-uppercase fs-5 fw-semibold">{% trans "Night clothing" %} :</h6>
-
-                            <p class="pb-1">{% trans "Nightdress" %} : {{ kit_form.nightdress }}</p>
-                            <p class="pb-1">{% trans "Dressing gown" %} : {{ kit_form.dressing_gown }}</p>
-                            <p class="pb-1">{% trans "Slipper" %} : {{ kit_form.slipper }}</p>
-                            <p class="">{% trans "Short sleeve t-shirt" %} : {{ kit_form.t_shirt_short }}</p>
-
-                        </div>
-
-                        <!-- Sous-vêtement -->
-                        <div class="pb-4">
-
-                            <h6 class="text-uppercase fs-5 fw-semibold">{% trans "Underwear" %} :</h6>
-
-                            <p class="pb-1">{% trans "Underwear" %} : {{ kit_form.underwear }}</p>
-
-                            {% if user_resident.profile.civility == 'Mme' or user_resident.profile.civility == 'Mrs' %}
-                                <p class="pb-1">{% trans "Bra" %} : {{ kit_form.bra }}</p>
-                            {% endif %}
-                            
-                            <p class="">{% trans "Socks" %} : {{ kit_form.socks }}</p>
-
-                        </div>
-
-                        <!-- Enregistrer ou retour à l'accueil -->
-                        <div class="d-flex justify-content-center pt-2 pb-4">
-                            <button type="submit" class="btn btn-perso">{% trans "Save" %}</button>
-                            <a type="submit" class="btn btn-outline-secondary ms-2" href="/resident/">{% trans "Home" %}</a>
-                        </div>
-
-                    </form>
-
-                </div>
-            </div>
-
-            <!-- Equipement de la salle de bain (A finir) -->
-            <div class="accordion-item pt-3 bg-light">
-
-                <div class="accordion-header border border-0 rounded-bottom rounded-4" id="flush-headingTwo">
-                    <button class="accordion-button accordion-button-2 border rounded-bottom rounded-4 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                        <div class="col pt-0 pb-0 d-flex justify-content-start">
-                            <h5 class="text-uppercase text-center w-100 mb-0 pe-2">{% trans "Equipment in the bathroom" %}</h5>
-                        </div>
-                    </button>
-                </div>
-
-                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">
-
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
+    <div class="text-center text-uppercase mb-4">
+        <h4 class="d-inline-flex inventory-titre pb-1 px-1 px-md-3">
+            {% trans "Create or modify an inventory for" %}
+            {% if user_resident.profile.civility == 'Mr' %}{% trans "Mr" %} {% elif user_resident.profile.civility == 'Mrs' %}{% trans "Mrs" %}  {% else %}{% endif %}
+            {{ user_resident.first_name }}
+            {{ user_resident.last_name }}
+        </h4>
     </div>
 
+    <div class="position-relative d-flex justify-content-center">
+        <form method="post" enctype="multipart/form-data" action="{% url 'create_inventory' %}">
+            {% csrf_token %}
+
+            <!-- Linge -->
+            <div class="pb-4">
+                <h6 class="text-uppercase fs-5 fw-semibold">{% trans "linen" %} :</h6>
+
+                <p class="pb-1">{% trans "Laundry washing option" %} : {{ kit_form.laundry_washed }}</p>
+                <p>{% trans "Laundry marking option" %} : {{ kit_form.laundry_labeled }}</p>
+            </div>
+
+            <!-- Matériel -->
+            <div class="pb-4">
+                <h6 class="text-uppercase fs-5 fw-semibold">{% trans "Equipment" %} :</h6>
+
+                <p class="pb-1">{% trans "Hearing equipment" %} : {{ kit_form.hearing_equipment }}</p>
+                <p class="pb-1">{% trans "Dental equipment" %} : {{ kit_form.dental_equipment }}</p>
+                <p class="pb-1">{% trans "Cane" %} : {{ kit_form.cane }}</p>
+                <p class="pb-1">{% trans "Wheelchair" %} : {{ kit_form.wheelchair }}</p>
+                <p class="pb-1">{% trans "Walker" %} : {{ kit_form.walker }}</p>
+                <p >{% trans "Glasses" %} : {{ kit_form.glasses }}</p>
+            </div>
+
+            <!-- Extérieur -->
+            <div class="pb-4">
+                <h6 class="text-uppercase fs-5 fw-semibold">{% trans "Outside" %} :</h6>
+
+                <p class="pb-1">{% trans "Summer shoe" %} : {{ kit_form.summer_shoe }}</p>
+                <p class="pb-1">{% trans "Winter shoe" %} : {{ kit_form.winter_shoe }}</p>
+                <p class="pb-1">{% trans "Jacket" %} : {{ kit_form.jacket }}</p>
+                <p >{% trans "Head cover" %} : {{ kit_form.head_cover }}</p>
+            </div>
+
+            <!-- Vêtements de jour -->
+            <div class="pb-4">
+                <h6 class="text-uppercase fs-5 fw-semibold">{% trans "Days clothing" %} :</h6>
+
+                <p class="pb-1">{% trans "Pants" %} : {{ kit_form.pants }}</p>
+                <p class="pb-1">{% trans "Pull" %} : {{ kit_form.pull }}</p>
+                <p class="pb-1">{% trans "Long sleeve t-shirt" %} : {{ kit_form.t_shirt_long }}</p>
+                <p class="pb-1">{% trans "Short sleeve t-shirt" %} : {{ kit_form.t_shirt_short }}</p>
+                <p class="pb-1">{% trans "Long sleeve sweater" %} : {{ kit_form.sweater_long }}</p>
+                <p >{% trans "Short sleeve sweater" %} : {{ kit_form.sweater_short }}</p>
+
+                {% if user_resident.profile.civility == 'Mme' or user_resident.profile.civility == 'Mrs' %}
+                    <p class="pt-1">{% trans "Skirt dress" %} : {{ kit_form.skirt_dress }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Vêtement de nuit -->
+            <div class="pb-4">
+                <h6 class="text-uppercase fs-5 fw-semibold">{% trans "Night clothing" %} :</h6>
+
+                <p class="pb-1">{% trans "Nightdress" %} : {{ kit_form.nightdress }}</p>
+                <p class="pb-1">{% trans "Dressing gown" %} : {{ kit_form.dressing_gown }}</p>
+                <p class="pb-1">{% trans "Slipper" %} : {{ kit_form.slipper }}</p>
+                <p >{% trans "Short sleeve t-shirt" %} : {{ kit_form.t_shirt_short }}</p>
+            </div>
+
+            <!-- Sous-vêtement -->
+            <div class="pb-4">
+                <h6 class="text-uppercase fs-5 fw-semibold">{% trans "Underwear" %} :</h6>
+
+                <p class="pb-1">{% trans "Underwear" %} : {{ kit_form.underwear }}</p>
+
+                {% if user_resident.profile.civility == 'Mme' or user_resident.profile.civility == 'Mrs' %}
+                    <p class="pb-1">{% trans "Bra" %} : {{ kit_form.bra }}</p>
+                {% endif %}
+                
+                <p >{% trans "Socks" %} : {{ kit_form.socks }}</p>
+            </div>
+
+            <!-- Enregistrer ou retour à l'accueil -->
+            <div class="d-flex justify-content-center pt-2 pb-4">
+                <button type="submit" class="btn btn-perso">{% trans "Save" %}</button>
+                <a type="submit" class="btn btn-outline-secondary ms-2" href="/resident/">{% trans "Home" %}</a>
+            </div>
+        </form>
+    </div>
 </div>
 
 

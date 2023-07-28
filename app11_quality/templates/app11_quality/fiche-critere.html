@@ -9,7 +9,7 @@
 </head>
 
 
-<main class="mt-3 mx-2 mx-lg-5">
+<main class="my-3 mx-2 mx-lg-5">
     <div class="d-flex justify-content-between align-items-start">
         <div>
             <h3 class="text-uppercase">{% trans "Thematic" %}</h3>
@@ -82,7 +82,7 @@
         <!-- Eléments d'évaluation -->
         <div class="col-lg-6 px-2 ps-lg-0 pe-lg-3 pt-lg-4">
             <div class="d-flex justify-content-center align-items-center bg-lightblue border border-dark py-2">
-                <h5 class="">{% trans "Evaluation elements" %}</h5>
+                <h5 >{% trans "Evaluation elements" %}</h5>
             </div>
             {% for element, details in element.items %}
                 <div class="border-left border-right border-bottom border-dark p-2">
@@ -147,12 +147,12 @@
 
     {% if request.user.profileserenicia == manual_page.manager %}
         <!-- Saut de ligne -->
-        <div class="d-flex justify-content-center align-items-center pt-4 pb-3">
+        <div class="d-flex justify-content-center align-items-center py-3">
             <p class="lightblue">--------------------------------------------------------</p>
         </div>
     
         <!-- création d'une response -->
-        <div class="tri d-flex flex-column justify-content-center pt-3">
+        <div class="tri d-flex flex-column justify-content-center py-3">
             <form action="" method="post">
                 {% csrf_token %}
                 <input type="submit" name="add_response" value="{% trans 'Add a response to this criterion' %}" class="btn btn-perso w-100">
@@ -162,7 +162,7 @@
 
     {% if responses %}
         <!-- Saut de ligne -->
-        <div class="d-flex justify-content-center align-items-center pt-4 pb-3">
+        <div class="d-flex justify-content-center align-items-center py-3">
             <p class="lightblue">--------------------------------------------------------</p>
         </div>
     {% endif %}
@@ -188,7 +188,7 @@
                             <form action="" method="post">
                                 {% csrf_token %}
                                 {{ form }}
-                                <input type="submit" value="{% trans 'Validate' %}" class="btn btn-perso w-100">
+                                <input type="submit" value="{% trans 'Validate' %}" class="btn btn-perso w-100 mt-1">
                             </form>
                         </div>
                     {% endif %}
@@ -224,7 +224,7 @@
                                     {% csrf_token %}
                                     {{ form }}
                                     <input type="hidden" name="modif_rep" value="{{ rep.id }}">
-                                    <button type="submit" class="btn btn-perso w-100">{% trans 'Validate' %}</button>
+                                    <button type="submit" class="btn btn-perso w-100 mt-1">{% trans 'Validate' %}</button>
                                 </form>
                             </div>
                         {% endif %}

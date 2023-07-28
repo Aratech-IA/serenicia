@@ -18,6 +18,7 @@ import logging
 
 from multiselectfield import MultiSelectField
 
+
 if 'log_model' not in globals():
     global log_model
     log_model = Logger('model', level=logging.ERROR, file=False).run()
@@ -666,12 +667,12 @@ class KitInventory(models.Model):
         (_('no'), _('no')),
     ]
     LABELED_MARK_CHOICES = [
-        (_('labeled by family'), _('Laundry labeled by family')),
-        (_('labeled by residence'), _('Laundry mark by residence')),
+        ('labeled by family', _('Laundry labeled by family')),
+        ('labeled by residence', _('Laundry labeled by residence')),
     ]
     LAUNDRY_WASHED_CHOICES = [
-        (_('washed by family'), _('Laundry washed by family')),
-        (_('washed by residence'), _('Laundry washed by residence')),
+        ('washed by family', _('Laundry washed by family')),
+        ('washed by residence', _('Laundry washed by residence')),
     ]
     DENTAL_EQUIPMENT = [
         (_('top'), _('Top')),
