@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-28 17:58+0200\n"
+"POT-Creation-Date: 2023-07-30 19:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -458,7 +458,8 @@ msgstr "Utenti"
 #: app4_ehpad_base/templates/app4_ehpad_base/client_selection_empty_clean.html:9
 #: app4_ehpad_base/templates/app4_ehpad_base/create_post.html:118
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_group_reservation.html:33
-#: app4_ehpad_base/templates/app4_ehpad_base/dir_photo_family.html:32
+#: app4_ehpad_base/templates/app4_ehpad_base/dir_photo_family.html:10
+#: app4_ehpad_base/templates/app4_ehpad_base/dir_photo_family.html:39
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/diet.html:26
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:24
 #: app4_ehpad_base/templates/app4_ehpad_base/eval_dashboard.html:93
@@ -799,7 +800,7 @@ msgstr "Quest'utente esiste già"
 #: app10_social_activities/templates/app10_social_activities/attendance_list.html:88
 #: app10_social_activities/templates/app10_social_activities/gallery.html:30
 #: app1_base/views.py:633 app1_base/views.py:656
-#: app3_messaging/views_messaging.py:398 app4_ehpad_base/views.py:689
+#: app3_messaging/views_messaging.py:398 app4_ehpad_base/views.py:691
 #: app9_personnalized_project/views.py:346
 #: app9_personnalized_project/views.py:351
 #, fuzzy
@@ -1029,7 +1030,8 @@ msgstr ""
 #: app11_quality/models.py:69 app11_quality/models.py:76
 #: app11_quality/templates/app11_quality/room-chat.html:73
 #: app1_base/models.py:635
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:36
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:33
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:58
 msgid "Room"
 msgstr "Camera"
 
@@ -1392,8 +1394,8 @@ msgstr "Confirmare l'identità"
 msgid "No activity today"
 msgstr "Attività"
 
-#: app10_social_activities/views.py:74 app4_ehpad_base/views.py:203
-#: app4_ehpad_base/views.py:208
+#: app10_social_activities/views.py:74 app4_ehpad_base/views.py:205
+#: app4_ehpad_base/views.py:210
 msgid "Photo successfully sent !"
 msgstr ""
 
@@ -6101,7 +6103,7 @@ msgstr "Ciao, il tuo messaggio è stato mandato!"
 msgid "The group has been successfully deleted"
 msgstr "Evento annulato con successo."
 
-#: app3_messaging/views_messaging.py:382 app4_ehpad_base/views.py:677
+#: app3_messaging/views_messaging.py:382 app4_ehpad_base/views.py:679
 #, fuzzy
 #| msgid "Delete"
 msgid "Deleting"
@@ -7710,38 +7712,44 @@ msgstr "Selezionare il menu"
 msgid "Validate staff"
 msgstr "Il personale validato"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/dir_photo_family.html:10
+#: app4_ehpad_base/templates/app4_ehpad_base/dir_photo_family.html:14
 #, fuzzy
 #| msgid "Enter a new album name"
 msgid "New album name"
 msgstr "Entra un nuovo nome d'album"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/dir_photo_family.html:11
+#: app4_ehpad_base/templates/app4_ehpad_base/dir_photo_family.html:15
 msgid "Create album"
 msgstr "Creare un account"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/dir_photo_family.html:16
+#: app4_ehpad_base/templates/app4_ehpad_base/dir_photo_family.html:21
 msgid "The album"
 msgstr "L'album"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/dir_photo_family.html:16
+#: app4_ehpad_base/templates/app4_ehpad_base/dir_photo_family.html:21
 #, fuzzy
 #| msgid "Already registered"
 msgid "already exist."
 msgstr "Già registrato"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/dir_photo_family.html:17
+#: app4_ehpad_base/templates/app4_ehpad_base/dir_photo_family.html:22
 msgid "Enter an other name or click on the existing album below"
 msgstr "Entrare un altro nome o cliccare su l'album esistente qui sotto"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/dir_photo_family.html:37
+#: app4_ehpad_base/templates/app4_ehpad_base/dir_photo_family.html:46
 msgid "Add photos to this album"
 msgstr "Aggiungere una foto a quest'album"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/dir_photo_family.html:41
+#: app4_ehpad_base/templates/app4_ehpad_base/dir_photo_family.html:50
 #: app5_ehpad_messaging/templates/app5_ehpad_messaging/internal_emailing_family.html:123
 msgid "Send"
 msgstr "Mandare"
+
+#: app4_ehpad_base/templates/app4_ehpad_base/dir_photo_family.html:68
+#, fuzzy
+#| msgid "Delete preset:"
+msgid "Delete this album"
+msgstr "Rimuovere la preconfigurazione "
 
 #: app4_ehpad_base/templates/app4_ehpad_base/dir_photo_family_index.html:9
 msgid "See/create photo album"
@@ -7990,11 +7998,11 @@ msgid ""
 "in the resident's navigation bar"
 msgstr ""
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:23
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:20
 msgid "list of residents whose laundry is washed by the nursing home"
 msgstr ""
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:48
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:45
 msgid "list of residents whose laundry is marked by the nursing home"
 msgstr ""
 
@@ -8154,7 +8162,7 @@ msgstr "Domande"
 #: app4_ehpad_base/templates/app4_ehpad_base/gallery.html:27
 #: app4_ehpad_base/templates/app4_ehpad_base/navbar.html:86
 #: app4_ehpad_base/templates/app4_ehpad_base/navbar.html:90
-#: app4_ehpad_base/views.py:208
+#: app4_ehpad_base/views.py:210
 #, fuzzy
 #| msgid "Private photo"
 msgid "Sensitive photo"
@@ -8515,7 +8523,7 @@ msgstr "Selezionare tipo"
 
 #: app4_ehpad_base/templates/app4_ehpad_base/navbar.html:75
 #: app4_ehpad_base/templates/app4_ehpad_base/navbar.html:79
-#: app4_ehpad_base/views.py:203
+#: app4_ehpad_base/views.py:205
 msgid "Private photo"
 msgstr "Foto privata"
 
@@ -8887,48 +8895,48 @@ msgstr "Seleziona il tuo nome in alto a destra dello schermo !"
 msgid "Only pdf file is accepted"
 msgstr ""
 
-#: app4_ehpad_base/views.py:313
+#: app4_ehpad_base/views.py:315
 msgid "year{}"
 msgstr "ano"
 
-#: app4_ehpad_base/views.py:316
+#: app4_ehpad_base/views.py:318
 msgid "month{}"
 msgstr "mese"
 
-#: app4_ehpad_base/views.py:319
+#: app4_ehpad_base/views.py:321
 msgid "day{}"
 msgstr "giorno"
 
-#: app4_ehpad_base/views.py:529 app4_ehpad_base/views.py:533
+#: app4_ehpad_base/views.py:531 app4_ehpad_base/views.py:535
 msgid "No record available"
 msgstr "Nessun record disponibile"
 
-#: app4_ehpad_base/views.py:614
+#: app4_ehpad_base/views.py:616
 msgid "No contact available."
 msgstr "Nessun contatto disponibile"
 
-#: app4_ehpad_base/views.py:677
+#: app4_ehpad_base/views.py:679
 #, fuzzy
 #| msgid "Event successfully deleted."
 msgid "The photo was successfully deleted"
 msgstr "Evento annulato con successo."
 
-#: app4_ehpad_base/views.py:689
+#: app4_ehpad_base/views.py:691
 #, fuzzy
 #| msgid "Ok you are registered"
 msgid "Your modifications has been registered"
 msgstr "Ok, sei registrato"
 
-#: app4_ehpad_base/views.py:908
+#: app4_ehpad_base/views.py:925
 msgid "Recognition impossible, please try again later"
 msgstr ""
 
-#: app4_ehpad_base/views.py:916
+#: app4_ehpad_base/views.py:933
 msgid ""
 "Help us improve our recognition by selecting the person you tried to identify"
 msgstr ""
 
-#: app4_ehpad_base/views.py:917
+#: app4_ehpad_base/views.py:934
 msgid "It did not work ?"
 msgstr ""
 

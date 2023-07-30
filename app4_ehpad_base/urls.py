@@ -49,6 +49,7 @@ urlpatterns = [
      path('gallery/details/', views.gallery_details, name="app4_ehpad_base gallery details"),
      path('photoalbum/<str:name>/', views.photo_from_family, name="photo_from_family"),
      path('photoalbum/', views.photo_from_family, name="new_photo_album"),
+     path('delete_photo_album/<str:name>/', views.delete_photo_album, name='delete_photo_album'),
      path('ws_image/', api_ws.ws_profile_image),
      path('ws_image_bytes/', api_ws.ws_image_bytes),
      path('security/family/', views.security_family, name="app4_ehpad_base security family"),

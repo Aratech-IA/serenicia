@@ -7,6 +7,7 @@ Created on Sun Apr 14 21:29:53 2019
 import json
 import secrets
 import time
+import os
 from math import ceil
 from random import choice
 from urllib.parse import quote_plus
@@ -106,12 +107,13 @@ def get_data_photo_album(folder):
         result.append(tmp_data)
         list_index += 1
     result = sorted(result, key=lambda x: x['thumbnail_url'].split('/')[-1], reverse=True)
-    if elem_to_first_place:
-        result.insert(0, result.pop(result.index(elem_to_first_place)))
+    if elem_to_first_place is not None and elem_to_first_place < len(result):
+        result.insert(0, result.pop(elem_to_first_place))
     if len(result) > 0:
         return result
     else:
         return None
+
 
 
 def goto_page(page, user_language=None):
@@ -837,6 +839,21 @@ def photo_from_family(request, name=None):
         list_pictures.sort(reverse=True)
         context['list_pictures'] = list_pictures
     return render(request, 'app4_ehpad_base/dir_photo_family.html', context)
+
+
+@login_required
+def delete_photo_album(request, name):
+    resident = ProfileSerenicia.objects.get(user__pk=request.session['resident_id'])
+    base_dir = os.path.join(settings.MEDIA_ROOT, 'residents', resident.folder, 'photo_family')
+    album_dir = os.path.join(base_dir, name)
+
+    # Assurez-vous que l'album existe et qu'il appartient bien à l'utilisateur avant de le supprimer.
+    if os.path.exists(album_dir) and os.path.isdir(album_dir):
+        # Supprimer l'album et son contenu (toutes les photos)
+        import shutil
+        shutil.rmtree(album_dir)
+        
+    return redirect('new_photo_album')
 
 
 @login_required
