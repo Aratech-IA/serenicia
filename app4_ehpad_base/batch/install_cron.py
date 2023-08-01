@@ -1,5 +1,6 @@
 import os
 import sys
+
 # Because this script have to be run in a separate process from manage.py
 # you need to set up a Django environnement to use the Class defined in
 # the Django models. It is necesssary to interact witht the Django database
@@ -19,6 +20,7 @@ from crontab import CronTab
 from django.conf import settings
 
 from app5_ehpad_messaging.batch import install_cron as app5cron
+from projet.context_processors import registration_access
 
 
 def install_pics_counter_cron():
@@ -95,5 +97,8 @@ if __name__ == '__main__':
     install_api_netsoins_cron()
     #install_cleaning_unsent()
     #install_get_emails()
-    app5cron.install_algo_affectation()
+    if registration_access:
+        app5cron.install_algo_affectation()
     #install_create_calendar()
+
+    # Ligne 98 à mettre à condition d'une variable pour empêcher l'affectation automatique

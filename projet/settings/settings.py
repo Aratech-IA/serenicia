@@ -257,3 +257,6 @@ KEY_API_MAPBOX = os.getenv('KEY_API_MAPBOXY', '')
 
 # Pour avoir accès à l'inscription, mettre à True
 REGISTRATION_ACCESS = False
+
+# Pour l'attribution automatique des référents, mettre à True
+ASSIGNMENT_REFERRERS = False

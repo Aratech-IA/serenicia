@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-30 19:32+0200\n"
+"POT-Creation-Date: 2023-08-01 15:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -9959,9 +9959,9 @@ msgstr "Intervenzioni che inserico"
 
 #: app6_care/templates/app6_care/caregiver/interventions_report.html:79
 #, fuzzy
-#| msgid "Empty variable"
-msgid "Empty search"
-msgstr "Variabile piena"
+#| msgid "There are no reservations in"
+msgid "There have been no interventions yet"
+msgstr "Non ci sono prenotazioni"
 
 #: app6_care/templates/app6_care/caregiver/interventions_report.html:104
 msgid "Patient has not showered for 1 week"
@@ -11205,6 +11205,11 @@ msgstr "Non hai ancora una video"
 #| msgid "Ok you are registered"
 msgid "The story life has been deleted"
 msgstr "Ok, sei registrato"
+
+#, fuzzy
+#~| msgid "Empty variable"
+#~ msgid "Empty search"
+#~ msgstr "Variabile piena"
 
 #, fuzzy
 #~| msgid "residents"

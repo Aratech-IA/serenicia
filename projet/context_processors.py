@@ -26,3 +26,7 @@ def registration_access(request):
     return {'REGISTRATION_ACCESS': settings.REGISTRATION_ACCESS}
 
 
+def assignment_referrers(request):
+    return {'ASSIGNMENT_REFERRERS': settings.ASSIGNMENT_REFERRERS}
+
+

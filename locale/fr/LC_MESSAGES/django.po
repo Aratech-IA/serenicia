@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-30 19:32+0200\n"
+"POT-Creation-Date: 2023-08-01 15:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -8604,8 +8604,8 @@ msgid "Intervention"
 msgstr "Intervention"
 
 #: app6_care/templates/app6_care/caregiver/interventions_report.html:79
-msgid "Empty search"
-msgstr "Recherche vide"
+msgid "There have been no interventions yet"
+msgstr "Il n'y a pas encore eu d'intervention"
 
 #: app6_care/templates/app6_care/caregiver/interventions_report.html:104
 msgid "Patient has not showered for 1 week"
@@ -9585,6 +9585,9 @@ msgstr "Vous n'avez pas encore de rendez-vous."
 #: app9_personnalized_project/views.py:346
 msgid "The story life has been deleted"
 msgstr "L'histoire de vie a été supprimée"
+
+#~ msgid "Empty search"
+#~ msgstr "Recherche vide"
 
 #~ msgid "labeled by family"
 #~ msgstr "Etiqueté par la famille"
