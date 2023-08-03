@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-01 15:53+0200\n"
+"POT-Creation-Date: 2023-08-03 09:57+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,7 +54,7 @@ msgstr "Praticien"
 #: app4_ehpad_base/templates/app4_ehpad_base/registration/login.html:191
 #: app4_ehpad_base/views_cuisine_eval.py:1167 app6_care/filters.py:34
 #: app6_care/forms/forms_intervention.py:28
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:48
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:51
 #: app8_survey/models.py:76
 msgid "Resident"
 msgstr "Résident"
@@ -234,8 +234,7 @@ msgstr "Peut créer les vidéos de reconnaissance faciale pour les résidents"
 
 #: app0_access/models.py:69 app17_help/templates/app17_help/hotel.html:9
 #: app17_help/templates/app17_help/index.html:29
-#: app1_base/templates/app1_base/base.html:539
-#: app1_base/templates/app1_base/base.html:642 app4_ehpad_base/models.py:495
+#: app1_base/templates/app1_base/base.html:534 app4_ehpad_base/models.py:495
 #: app6_care/templates/app6_care/hotel/free_comment.html:15
 #: app6_care/templates/app6_care/hotel/free_comment.html:20
 msgid "Hotel"
@@ -245,8 +244,8 @@ msgstr "Hôtellerie"
 msgid "Access to the hotel interface"
 msgstr "Accès à l'interface hôtellerie"
 
-#: app0_access/models.py:72 app1_base/templates/app1_base/base.html:554
-#: app1_base/templates/app1_base/base.html:584
+#: app0_access/models.py:72 app1_base/templates/app1_base/base.html:562
+#: app1_base/templates/app1_base/base.html:592
 msgid "Referential"
 msgstr "Référentiel"
 
@@ -423,7 +422,7 @@ msgstr "Actif"
 #: app6_care/templates/app6_care/caregiver/care_plan_creation.html:348
 #: app6_care/templates/app6_care/caregiver/care_plan_creation.html:375
 #: app6_care/templates/app6_care/caregiver/caregiver.html:186
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:70
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:73
 #: app8_survey/templates/app8_survey/details.html:76
 #: app8_survey/templates/app8_survey/survey.html:91
 #: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:50
@@ -626,7 +625,7 @@ msgstr "Rechercher par nom"
 #: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:20
 #: app3_messaging/templates/app3_messaging/select_receiver.html:19
 #: app3_messaging/templates/app3_messaging/select_receiver.html:48
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:39
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:41
 msgid "Search"
 msgstr "Chercher"
 
@@ -844,7 +843,7 @@ msgstr "Absent"
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:97
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:32
 #: app6_care/templates/app6_care/caregiver/care_plan_creation.html:294
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:92
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:95
 #: app6_care/templates/app6_care/rela_table/rela_table.html:40
 #: app9_personnalized_project/templates/app9_personnalized_project/index.html:47
 msgid "Mr"
@@ -860,7 +859,7 @@ msgstr "M."
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:97
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:32
 #: app6_care/templates/app6_care/caregiver/care_plan_creation.html:294
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:92
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:95
 #: app6_care/templates/app6_care/rela_table/rela_table.html:40
 #: app9_personnalized_project/templates/app9_personnalized_project/index.html:47
 msgid "Mrs"
@@ -1144,7 +1143,7 @@ msgstr "Liste de présence"
 #: app6_care/templates/app6_care/caregiver/caregiver.html:302
 #: app6_care/templates/app6_care/caregiver/caregiver.html:345
 #: app6_care/templates/app6_care/caregiver/caregiver.html:356
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:60
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:63
 #: app6_care/templates/app6_care/hotel/hotel.html:178
 #: app6_care/templates/app6_care/hotel/hotel.html:187
 #: app6_care/templates/app6_care/hotel/hotel.html:204
@@ -1315,7 +1314,7 @@ msgid "Value"
 msgstr "Valeur"
 
 #: app11_quality/models.py:67 app11_quality/models.py:74
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:47
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:50
 #: app9_personnalized_project/models.py:90
 #: app9_personnalized_project/models.py:126
 msgid "Date"
@@ -1382,7 +1381,7 @@ msgstr "Référence"
 
 #: app11_quality/models_qualite.py:63 app11_quality/models_qualite.py:133
 #: app1_base/templates/app1_base/panel_detail.html:9
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:51
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:54
 msgid "Detail"
 msgstr "Détail"
 
@@ -2076,7 +2075,7 @@ msgstr ""
 
 #: app12_delivery/templates/app12_delivery/account_delivery.html:26
 #: app1_base/templates/app1_base/base.html:474
-#: app1_base/templates/app1_base/base.html:689
+#: app1_base/templates/app1_base/base.html:697
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/documents.html:176
 msgid "Profile"
 msgstr "Profil"
@@ -2461,7 +2460,7 @@ msgstr "Facture "
 
 #: app12_delivery/templates/app12_delivery/composant/navLeft.html:45
 #: app1_base/templates/app1_base/base.html:461
-#: app1_base/templates/app1_base/base.html:682
+#: app1_base/templates/app1_base/base.html:690
 msgid "Invoices"
 msgstr "Factures"
 
@@ -3300,7 +3299,7 @@ msgstr "Cliquez sur le bouton du module où vous avez besoin d'aide"
 
 #: app17_help/templates/app17_help/index.html:34
 #: app17_help/templates/app17_help/quality.html:9
-#: app1_base/templates/app1_base/base.html:577
+#: app1_base/templates/app1_base/base.html:585
 msgid "Quality"
 msgstr "Qualité"
 
@@ -3941,7 +3940,7 @@ msgid "Add automat"
 msgstr "Ajouter un automatisme"
 
 #: app1_base/templates/app1_base/archive.html:10
-#: app1_base/templates/app1_base/base.html:662
+#: app1_base/templates/app1_base/base.html:670
 msgid "Video"
 msgstr "Vidéo"
 
@@ -4033,14 +4032,22 @@ msgid "Cares"
 msgstr "Soins"
 
 #: app1_base/templates/app1_base/base.html:497
+msgid "Showers report"
+msgstr "Rapport douches"
+
+#: app1_base/templates/app1_base/base.html:502
 msgid "Interventions report"
 msgstr "Rapport interventions"
 
-#: app1_base/templates/app1_base/base.html:502
+#: app1_base/templates/app1_base/base.html:507
+msgid "Relationship Table"
+msgstr "Tableau relation"
+
+#: app1_base/templates/app1_base/base.html:512
 msgid "Presence"
 msgstr "Présence"
 
-#: app1_base/templates/app1_base/base.html:507
+#: app1_base/templates/app1_base/base.html:517
 #: app6_care/templates/app6_care/nappy_management/nappy_delivery.html:9
 #: app6_care/templates/app6_care/nappy_management/nappy_delivery.html:11
 #: app6_care/templates/app6_care/nappy_management/nappy_inventory.html:9
@@ -4053,47 +4060,44 @@ msgstr "Présence"
 msgid "Nappies management"
 msgstr "Gestion des protections"
 
-#: app1_base/templates/app1_base/base.html:512
-msgid "Showers report"
-msgstr "Rapport douches"
+#: app1_base/templates/app1_base/base.html:540
+#: app1_base/templates/app1_base/base.html:650
+msgid "Hotel entry"
+msgstr "Saisie hôtellerie"
 
-#: app1_base/templates/app1_base/base.html:517
+#: app1_base/templates/app1_base/base.html:545
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:11
 msgid "Laundry management"
 msgstr "Gestion linge"
 
-#: app1_base/templates/app1_base/base.html:522
-msgid "Relationship Table"
-msgstr "Tableau relation"
-
-#: app1_base/templates/app1_base/base.html:560
+#: app1_base/templates/app1_base/base.html:568
 msgid "Open envelope icon"
 msgstr "Icône enveloppe ouverte"
 
-#: app1_base/templates/app1_base/base.html:561
-#: app1_base/templates/app1_base/base.html:590
+#: app1_base/templates/app1_base/base.html:569
+#: app1_base/templates/app1_base/base.html:598
 msgid "Protocols"
 msgstr "Protocoles"
 
-#: app1_base/templates/app1_base/base.html:621
+#: app1_base/templates/app1_base/base.html:629
 msgid "Eval'Menu"
 msgstr "Eval'Menu"
 
-#: app1_base/templates/app1_base/base.html:651
+#: app1_base/templates/app1_base/base.html:659
 msgid "Cares input"
 msgstr "Saisie soins"
 
-#: app1_base/templates/app1_base/base.html:656
+#: app1_base/templates/app1_base/base.html:664
 #: app6_care/templates/app6_care/caregiver/caregiver.html:150
 #: app6_care/templates/app6_care/caregiver/caregiver.html:151
 msgid "Care plan"
 msgstr "Plan soins"
 
-#: app1_base/templates/app1_base/base.html:672
+#: app1_base/templates/app1_base/base.html:680
 msgid "Satisfaction survey"
 msgstr "Enquête de satisfaction"
 
-#: app1_base/templates/app1_base/base.html:700
+#: app1_base/templates/app1_base/base.html:708
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/documents.html:351
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:26
 #: app6_care/templates/app6_care/nappy_management/nappy_inventory.html:12
@@ -4101,7 +4105,7 @@ msgstr "Enquête de satisfaction"
 msgid "Inventory"
 msgstr "Inventaire"
 
-#: app1_base/templates/app1_base/base.html:704
+#: app1_base/templates/app1_base/base.html:712
 msgid "Create inventory"
 msgstr "Créer un inventaire"
 
@@ -8341,7 +8345,7 @@ msgstr ""
 "Votre compte a été créé, vos identifiants vous ont été envoyés par email"
 
 #: app6_care/filters.py:31
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:49
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:52
 msgid "Caregiver"
 msgstr "Soignant(e)"
 
@@ -8592,34 +8596,34 @@ msgid "Ignore"
 msgstr "Ignorer"
 
 #: app6_care/templates/app6_care/caregiver/interventions_report.html:13
-msgid "Nursing report"
-msgstr "Rapport infirmier"
+msgid "Intervention report"
+msgstr "Rapport interventions"
 
 #: app6_care/templates/app6_care/caregiver/interventions_report.html:20
 msgid "To research"
 msgstr "Rechercher"
 
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:50
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:53
 msgid "Intervention"
 msgstr "Intervention"
 
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:79
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:82
 msgid "There have been no interventions yet"
 msgstr "Il n'y a pas encore eu d'intervention"
 
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:104
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:107
 msgid "Patient has not showered for 1 week"
 msgstr "Le patient ne s'est pas douché depuis 1 semaine"
 
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:107
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:110
 msgid "The patient has not peed for 1 week"
 msgstr "Le patient n'a pas fait pipi depuis 1 semaine"
 
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:110
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:113
 msgid "The patient has not had a bowel movement for 1 week"
 msgstr "Le patient n'est pas allé à la selle depuis 1 semaine"
 
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:113
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:116
 msgid "Cleaning has not been done for 1 week"
 msgstr "Le ménage n'a pas été fait depuis 1 semaine"
 
@@ -9585,6 +9589,9 @@ msgstr "Vous n'avez pas encore de rendez-vous."
 #: app9_personnalized_project/views.py:346
 msgid "The story life has been deleted"
 msgstr "L'histoire de vie a été supprimée"
+
+#~ msgid "Nursing report"
+#~ msgstr "Rapport infirmier"
 
 #~ msgid "Empty search"
 #~ msgstr "Recherche vide"

@@ -493,8 +493,18 @@
                                 <!-- Menu Care -->
                                 <ul id="care_menu" class="d-none pe-2 ps-4">
                                     <li>
+                                        <a href="{% url 'showers_report' %}">
+                                            <p>{% trans 'Showers report' %}</p>
+                                        </a>
+                                    </li>
+                                    <li>
                                         <a href="{% url 'interventions_report' %}">
                                             <p>{% trans 'Interventions report' %}</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'table_relations' %}">
+                                            <p>{% trans 'Relationship Table' %}</p>
                                         </a>
                                     </li>
                                     <!-- <li>
@@ -507,21 +517,6 @@
                                             {% trans 'Nappies management' %}
                                         </a>
                                     </li> -->
-                                    <li>
-                                        <a href="{% url 'showers_report' %}">
-                                            <p>{% trans 'Showers report' %}</p>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{% url 'laundry_management' %}">
-                                            <p>{% trans 'Laundry management' %}</p>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{% url 'table_relations' %}">
-                                            <p>{% trans 'Relationship Table' %}</p>
-                                        </a>
-                                    </li>
                                 </ul>
                             </li>
                         {% endif %}
@@ -529,7 +524,7 @@
                         {% if perms.app0_access.view_hotel %}
                             <!-- Hôtellerie -->
                             <li class="nav-item dropdown py-1 py-lg-0">
-                                <a href="{% url 'hotel' %}" class="d-flex align-items-center my-2 my-lg-3 px-2 {% if '/hotel/' in request.path %}active{% endif %}">
+                                <a onclick="togglehotel()" class="dropdown-toggle d-flex align-items-center my-2 mt-lg-3 mb-lg-2 px-2 {% if '/app6_care/hotel/' in request.path or '/laundry_management/' in request.path %}active{% endif %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <svg
                                         fill="currentColor"
                                         viewbox="0 0 640 512"
@@ -538,6 +533,19 @@
                                     </svg>
                                     <p class="text-uppercase ps-2">{% trans 'Hotel' %}</p>
                                 </a>
+                                <!-- Menu Hôttelerie -->
+                                <ul id="hotel_menu" class="d-none pe-2 ps-4">
+                                    <li>
+                                        <a href="{% url 'hotel' %}">
+                                            <p>{% trans 'Hotel entry' %}</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'laundry_management' %}">
+                                            <p>{% trans 'Laundry management' %}</p>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                         {% endif %}
 
@@ -639,7 +647,7 @@
                         <!-- Hôtellerie -->
                         <li>
                             <a href="{% url 'personal index hotel' %}">
-                                {% trans 'Hotel' %}
+                                {% trans 'Hotel entry' %}
                             </a>
                         </li>
                     {% endif %}

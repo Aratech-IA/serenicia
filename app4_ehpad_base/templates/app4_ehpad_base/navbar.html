@@ -236,6 +236,15 @@
         }
     }
 
+    function togglehotel() {
+        var care_menu = document.getElementById("hotel_menu");
+        if (care_menu.classList.contains('d-none')) {
+            care_menu.classList.remove('d-none');
+        } else {
+            care_menu.classList.add('d-none');
+        }
+    }
+
     function togglequality() {
         var quality_menu = document.getElementById("quality_menu");
         if (quality_menu.classList.contains('d-none')) {

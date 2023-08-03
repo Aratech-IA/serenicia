@@ -10,7 +10,7 @@
     <!-- Titre de la page (Rapport infirmier) -->
     <div class="d-flex justify-content-center justify-content-md-end">
         <div class="section-titre d-inline-flex px-3 me-3">
-            <h1 class="text-center mb-0">{% trans 'Nursing report' %}</h1>
+            <h1 class="text-center mb-0">{% trans 'Intervention report' %}</h1>
         </div>
     </div>
 
@@ -26,19 +26,22 @@
         <div id="pills-home" class="tab-pane fade show active" role="tabpanel" aria-labelledby="pills-home-tab">
     
             <!-- Recherche -->
-            <form method="GET" class="largeur_max_recherche mx-auto mt-5 d-flex flex-column flex-lg-row justify-content-lg-between">
-                {% for field in filter.form %}
-                    <div class="d-flex flex-column">
-                        {{ field.label }}
-                        {{ field }}
-                    </div>
-                {% endfor %}
+            <form method="GET" class="largeur_max_recherche mx-auto mt-5">
+                <div class="d-flex flex-column flex-lg-row justify-content-lg-between">
+                    {% for field in filter.form %}
+                        <div class="d-flex flex-column">
+                            {{ field.label }}
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+                </div>
+                
+                <div class="d-flex justify-content-center align-items-center">
+                    <button type="submit" class="btn btn-perso mx-auto mt-2">
+                        {% trans 'Search' %}
+                    </button>
+                </div>
             </form>
-            <div class="d-flex justify-content-center align-items-center">
-                <button type="submit" class="btn btn-perso mx-auto mt-2">
-                    {% trans 'Search' %}
-                </button>
-            </div>
             
             <!-- Tableau interventions -->
             {% if filter.qs %}
@@ -76,7 +79,7 @@
                     {% endfor %}
                 </div>
             {% else %}
-                <p>{% trans "Empty search" %}</p>
+                <p class="text-center mt-5">{% trans "There have been no interventions yet" %}</p>
             {% endif %}
         </div>
 
