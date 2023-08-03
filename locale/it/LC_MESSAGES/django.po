@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-03 09:57+0200\n"
+"POT-Creation-Date: 2023-08-03 12:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,7 +25,7 @@ msgid "App access Config"
 msgstr "Configurazione di base"
 
 #: app0_access/forms.py:12 app0_access/templates/app0_access/user_types.html:61
-#: app0_access/views.py:268
+#: app0_access/views.py:269
 #, fuzzy
 #| msgid "Not specified"
 msgid "Not defined"
@@ -444,7 +444,7 @@ msgstr "Utenti"
 
 #: app0_access/templates/app0_access/list_group.html:6
 #: app0_access/templates/app0_access/modify_group.html:74
-#: app0_access/templates/app0_access/modify_user.html:34
+#: app0_access/templates/app0_access/modify_user.html:36
 #: app0_access/templates/app0_access/new_group.html:10
 #: app10_social_activities/templates/app10_social_activities/attendance_list.html:28
 #: app10_social_activities/templates/app10_social_activities/details.html:49
@@ -485,7 +485,7 @@ msgid "Users details"
 msgstr "Dettagli del programma"
 
 #: app0_access/templates/app0_access/modify_group.html:39
-#: app0_access/templates/app0_access/modify_user.html:39
+#: app0_access/templates/app0_access/modify_user.html:43
 #, fuzzy
 #| msgid "Profile pic"
 msgid "profile pic"
@@ -497,6 +497,7 @@ msgid "Active"
 msgstr "Attività"
 
 #: app0_access/templates/app0_access/modify_group.html:64
+#: app0_access/templates/app0_access/modify_group.html:138
 #: app10_social_activities/templates/app10_social_activities/details.html:170
 #: app11_quality/templates/app11_quality/protocols_list.html:153
 #: app15_calendar/templates/app15_calendar/calendar.html:186
@@ -556,7 +557,9 @@ msgstr "Mano destra"
 msgid "User type"
 msgstr "Utenti"
 
-#: app0_access/templates/app0_access/modify_group.html:118
+#: app0_access/templates/app0_access/modify_group.html:120
+#: app0_access/templates/app0_access/modify_group.html:121
+#: app0_access/templates/app0_access/modify_group.html:139
 #: app11_quality/templates/app11_quality/protocols_list.html:79
 #: app12_delivery/templates/app12_delivery/contract_delivery.html:81
 #: app15_calendar/templates/app15_calendar/calendar.html:183
@@ -582,7 +585,7 @@ msgstr "Utenti"
 msgid "Delete"
 msgstr "Cancellare"
 
-#: app0_access/templates/app0_access/modify_group.html:119
+#: app0_access/templates/app0_access/modify_group.html:122
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:211
 #: app14_profile/templates/app14_profile/change_password.html:67
 #: app14_profile/templates/app14_profile/profile.html:255
@@ -619,8 +622,8 @@ msgstr "Cancellare"
 msgid "Cancel"
 msgstr "Cancellare"
 
-#: app0_access/templates/app0_access/modify_group.html:120
-#: app0_access/templates/app0_access/modify_user.html:101
+#: app0_access/templates/app0_access/modify_group.html:123
+#: app0_access/templates/app0_access/modify_user.html:112
 #: app0_access/templates/app0_access/new_group.html:44
 #: app10_social_activities/templates/app10_social_activities/index.html:79
 #: app12_delivery/templates/app12_delivery/benefit_create.html:13
@@ -665,44 +668,70 @@ msgstr "Cancellare"
 msgid "Save"
 msgstr "Salvare"
 
-#: app0_access/templates/app0_access/modify_user.html:43
+#: app0_access/templates/app0_access/modify_group.html:131
+#, fuzzy
+#| msgid "Intervention that I am entering"
+msgid "Attention"
+msgstr "Intervenzioni che inserico"
+
+#: app0_access/templates/app0_access/modify_group.html:135
+#: app11_quality/templates/app11_quality/protocols_list.html:83
+#: app4_ehpad_base/templates/app4_ehpad_base/public_photo.html:76
+#, fuzzy
+#| msgid "Are you sure that you want to send"
+msgid "Are you sure you want to delete"
+msgstr "Sei sicuro/a di volere mandare"
+
+#: app0_access/templates/app0_access/modify_group.html:135
+#, fuzzy
+#| msgid "Create account"
+msgid "this group"
+msgstr "Creare un account"
+
+#: app0_access/templates/app0_access/modify_user.html:47
+#, fuzzy
+#| msgid "No record available"
+msgid "Profile picture not available"
+msgstr "Nessun record disponibile"
+
+#: app0_access/templates/app0_access/modify_user.html:54
 #, fuzzy
 #| msgid "Active"
 msgid "Active user"
 msgstr "Attività"
 
-#: app0_access/templates/app0_access/modify_user.html:45
+#: app0_access/templates/app0_access/modify_user.html:56
 #, fuzzy
 #| msgid "Active"
 msgid "Deactivate"
 msgstr "Attività"
 
-#: app0_access/templates/app0_access/modify_user.html:48
+#: app0_access/templates/app0_access/modify_user.html:59
 #, fuzzy
 #| msgid "Active"
 msgid "Inactive user"
 msgstr "Attività"
 
-#: app0_access/templates/app0_access/modify_user.html:50
+#: app0_access/templates/app0_access/modify_user.html:61
 #, fuzzy
 #| msgid "Active"
 msgid "Activate"
 msgstr "Attività"
 
-#: app0_access/templates/app0_access/modify_user.html:59
-#: app0_access/templates/app0_access/modify_user.html:76
+#: app0_access/templates/app0_access/modify_user.html:70
+#: app0_access/templates/app0_access/modify_user.html:87
 #, fuzzy
 #| msgid "Associated Resident : "
 msgid "Association request pending"
 msgstr "Residente associato: "
 
-#: app0_access/templates/app0_access/modify_user.html:60
+#: app0_access/templates/app0_access/modify_user.html:71
 #, fuzzy
 #| msgid "Please select the resident concerned:"
 msgid "Select the resident to associate"
 msgstr "Per favore selezionare il residente mirato"
 
-#: app0_access/templates/app0_access/modify_user.html:77
+#: app0_access/templates/app0_access/modify_user.html:88
 msgid "The requested resident was not found in the database"
 msgstr ""
 
@@ -795,7 +824,7 @@ msgstr "Cancellare l'evento "
 msgid "A group with this name already exists"
 msgstr "Quest'utente esiste già"
 
-#: app0_access/views.py:69 app0_access/views.py:145 app0_access/views.py:209
+#: app0_access/views.py:69 app0_access/views.py:146 app0_access/views.py:210
 #: app10_social_activities/templates/app10_social_activities/attendance_list.html:88
 #: app10_social_activities/templates/app10_social_activities/gallery.html:30
 #: app1_base/views.py:633 app1_base/views.py:656
@@ -813,27 +842,27 @@ msgstr "Salvare"
 msgid "The group has been saved"
 msgstr "Ok, sei registrato"
 
-#: app0_access/views.py:145 app9_personnalized_project/genosociogram.py:195
+#: app0_access/views.py:146 app9_personnalized_project/genosociogram.py:195
 #, fuzzy
 #| msgid "Ok you are registered"
 msgid "Changes have been saved"
 msgstr "Ok, sei registrato"
 
-#: app0_access/views.py:197
+#: app0_access/views.py:198
 #, fuzzy
 #| msgid "Event successfully deleted."
 msgid "The resident has been successfully associated with this user"
 msgstr "Evento annulato con successo."
 
-#: app0_access/views.py:201
+#: app0_access/views.py:202
 msgid "This user now has access to the Serenicia site"
 msgstr ""
 
-#: app0_access/views.py:204
+#: app0_access/views.py:205
 msgid "This user no longer has access to the Serenicia site"
 msgstr ""
 
-#: app0_access/views.py:208
+#: app0_access/views.py:209
 msgid "This user is now part of the group"
 msgstr ""
 
@@ -1947,13 +1976,6 @@ msgstr "Nome"
 #| msgid "Address : "
 msgid "Add"
 msgstr "Indirizzo"
-
-#: app11_quality/templates/app11_quality/protocols_list.html:83
-#: app4_ehpad_base/templates/app4_ehpad_base/public_photo.html:76
-#, fuzzy
-#| msgid "Are you sure that you want to send"
-msgid "Are you sure you want to delete"
-msgstr "Sei sicuro/a di volere mandare"
 
 #: app11_quality/templates/app11_quality/protocols_list.html:86
 #, fuzzy

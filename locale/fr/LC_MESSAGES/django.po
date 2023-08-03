@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-03 09:57+0200\n"
+"POT-Creation-Date: 2023-08-03 12:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +23,7 @@ msgid "App access Config"
 msgstr "Configuration d'accès à l'application"
 
 #: app0_access/forms.py:12 app0_access/templates/app0_access/user_types.html:61
-#: app0_access/views.py:268
+#: app0_access/views.py:269
 msgid "Not defined"
 msgstr "Non défini"
 
@@ -351,7 +351,7 @@ msgstr "Types d'utilisateurs"
 
 #: app0_access/templates/app0_access/list_group.html:6
 #: app0_access/templates/app0_access/modify_group.html:74
-#: app0_access/templates/app0_access/modify_user.html:34
+#: app0_access/templates/app0_access/modify_user.html:36
 #: app0_access/templates/app0_access/new_group.html:10
 #: app10_social_activities/templates/app10_social_activities/attendance_list.html:28
 #: app10_social_activities/templates/app10_social_activities/details.html:49
@@ -390,7 +390,7 @@ msgid "Users details"
 msgstr "Détails des utilisateurs"
 
 #: app0_access/templates/app0_access/modify_group.html:39
-#: app0_access/templates/app0_access/modify_user.html:39
+#: app0_access/templates/app0_access/modify_user.html:43
 msgid "profile pic"
 msgstr "photo de profil"
 
@@ -400,6 +400,7 @@ msgid "Active"
 msgstr "Actif"
 
 #: app0_access/templates/app0_access/modify_group.html:64
+#: app0_access/templates/app0_access/modify_group.html:138
 #: app10_social_activities/templates/app10_social_activities/details.html:170
 #: app11_quality/templates/app11_quality/protocols_list.html:153
 #: app15_calendar/templates/app15_calendar/calendar.html:186
@@ -453,7 +454,9 @@ msgstr "Droits et options"
 msgid "User type"
 msgstr "Type d'utilisateur"
 
-#: app0_access/templates/app0_access/modify_group.html:118
+#: app0_access/templates/app0_access/modify_group.html:120
+#: app0_access/templates/app0_access/modify_group.html:121
+#: app0_access/templates/app0_access/modify_group.html:139
 #: app11_quality/templates/app11_quality/protocols_list.html:79
 #: app12_delivery/templates/app12_delivery/contract_delivery.html:81
 #: app15_calendar/templates/app15_calendar/calendar.html:183
@@ -479,7 +482,7 @@ msgstr "Type d'utilisateur"
 msgid "Delete"
 msgstr "Supprimer"
 
-#: app0_access/templates/app0_access/modify_group.html:119
+#: app0_access/templates/app0_access/modify_group.html:122
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:211
 #: app14_profile/templates/app14_profile/change_password.html:67
 #: app14_profile/templates/app14_profile/profile.html:255
@@ -516,8 +519,8 @@ msgstr "Supprimer"
 msgid "Cancel"
 msgstr "Annuler"
 
-#: app0_access/templates/app0_access/modify_group.html:120
-#: app0_access/templates/app0_access/modify_user.html:101
+#: app0_access/templates/app0_access/modify_group.html:123
+#: app0_access/templates/app0_access/modify_user.html:112
 #: app0_access/templates/app0_access/new_group.html:44
 #: app10_social_activities/templates/app10_social_activities/index.html:79
 #: app12_delivery/templates/app12_delivery/benefit_create.html:13
@@ -562,32 +565,50 @@ msgstr "Annuler"
 msgid "Save"
 msgstr "Enregistrer"
 
-#: app0_access/templates/app0_access/modify_user.html:43
+#: app0_access/templates/app0_access/modify_group.html:131
+msgid "Attention"
+msgstr "Attention"
+
+#: app0_access/templates/app0_access/modify_group.html:135
+#: app11_quality/templates/app11_quality/protocols_list.html:83
+#: app4_ehpad_base/templates/app4_ehpad_base/public_photo.html:76
+msgid "Are you sure you want to delete"
+msgstr "Êtes vous sûr de vouloir supprimer"
+
+#: app0_access/templates/app0_access/modify_group.html:135
+msgid "this group"
+msgstr "ce groupe"
+
+#: app0_access/templates/app0_access/modify_user.html:47
+msgid "Profile picture not available"
+msgstr "Photo de profil non disponible"
+
+#: app0_access/templates/app0_access/modify_user.html:54
 msgid "Active user"
 msgstr "Utilisateur actif"
 
-#: app0_access/templates/app0_access/modify_user.html:45
+#: app0_access/templates/app0_access/modify_user.html:56
 msgid "Deactivate"
 msgstr "Désactiver"
 
-#: app0_access/templates/app0_access/modify_user.html:48
+#: app0_access/templates/app0_access/modify_user.html:59
 msgid "Inactive user"
 msgstr "Utilisateur inactif"
 
-#: app0_access/templates/app0_access/modify_user.html:50
+#: app0_access/templates/app0_access/modify_user.html:61
 msgid "Activate"
 msgstr "Activer"
 
-#: app0_access/templates/app0_access/modify_user.html:59
-#: app0_access/templates/app0_access/modify_user.html:76
+#: app0_access/templates/app0_access/modify_user.html:70
+#: app0_access/templates/app0_access/modify_user.html:87
 msgid "Association request pending"
 msgstr "Demande d'association en attente"
 
-#: app0_access/templates/app0_access/modify_user.html:60
+#: app0_access/templates/app0_access/modify_user.html:71
 msgid "Select the resident to associate"
 msgstr "Sélectionnez le résident à associer"
 
-#: app0_access/templates/app0_access/modify_user.html:77
+#: app0_access/templates/app0_access/modify_user.html:88
 msgid "The requested resident was not found in the database"
 msgstr "Le résident demandé n'a pas été retrouvé dans la base de données"
 
@@ -660,7 +681,7 @@ msgstr "Sauvegarde impossible"
 msgid "A group with this name already exists"
 msgstr "Un groupe avec ce nom existe déjà"
 
-#: app0_access/views.py:69 app0_access/views.py:145 app0_access/views.py:209
+#: app0_access/views.py:69 app0_access/views.py:146 app0_access/views.py:210
 #: app10_social_activities/templates/app10_social_activities/attendance_list.html:88
 #: app10_social_activities/templates/app10_social_activities/gallery.html:30
 #: app1_base/views.py:633 app1_base/views.py:656
@@ -674,23 +695,23 @@ msgstr "Sauvegardé"
 msgid "The group has been saved"
 msgstr "Le groupe à bien été enregistré"
 
-#: app0_access/views.py:145 app9_personnalized_project/genosociogram.py:195
+#: app0_access/views.py:146 app9_personnalized_project/genosociogram.py:195
 msgid "Changes have been saved"
 msgstr "Vos modifications ont été enregistrées"
 
-#: app0_access/views.py:197
+#: app0_access/views.py:198
 msgid "The resident has been successfully associated with this user"
 msgstr "Le résident a bien été associé à cet utilisateur"
 
-#: app0_access/views.py:201
+#: app0_access/views.py:202
 msgid "This user now has access to the Serenicia site"
 msgstr "Cet utilisateur a désormais accès au site Sérénicia"
 
-#: app0_access/views.py:204
+#: app0_access/views.py:205
 msgid "This user no longer has access to the Serenicia site"
 msgstr "Cet utilisateur n'a désormais plus accès au site Sérénicia"
 
-#: app0_access/views.py:208
+#: app0_access/views.py:209
 msgid "This user is now part of the group"
 msgstr "Cet utilisateur fait désormais partie du groupe"
 
@@ -1668,11 +1689,6 @@ msgstr "liste des protocoles"
 #: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:89
 msgid "Add"
 msgstr "Ajouter"
-
-#: app11_quality/templates/app11_quality/protocols_list.html:83
-#: app4_ehpad_base/templates/app4_ehpad_base/public_photo.html:76
-msgid "Are you sure you want to delete"
-msgstr "Êtes vous sûr de vouloir supprimer"
 
 #: app11_quality/templates/app11_quality/protocols_list.html:86
 msgid "close"

@@ -67,6 +67,7 @@ def new_group(request):
                 result.extend(get_list_related_permissions(option.split('.')[0]))
             grp.permissions.set(result)
             context.update({'category': _('Saved'), 'message': _('The group has been saved')})
+            return redirect('select rights group')
     context.update({'apps': get_app_list(), 'user_type': USER_TYPE})
     return render(request, 'app0_access/new_group.html', context)
 

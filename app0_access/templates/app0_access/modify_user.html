@@ -7,21 +7,23 @@
 
 <head>
     <style>
-        .rounded-profile-pic-large{
+        .rounded-profile-pic-large {
             overflow: hidden;
             border-radius: 50%;
-            width: 150px;
-            height: 150px;
+            width: 130px;
+            height: 130px;
             object-fit: cover;
         }
-        .rounded-profile-pic-small{
+        
+        .rounded-profile-pic-small {
             overflow: hidden;
             border-radius: 50%;
             width: 80px;
             height: 80px;
             object-fit: cover;
         }
-        .btn-icon{
+
+        .btn-icon {
             height: 40px;
             width: 40px;
         }
@@ -36,7 +38,16 @@
 
     <div class="d-flex border border-darkblue rounded-3 p-2 gap-3">
         <div class="d-flex gap-3 align-items-center">
-            <img class="rounded-profile-pic-large" src="{{ selected_user.profile.get_photo_url }}" alt="{% trans 'profile pic' %}">
+            <div class="picresident my-auto">
+                {% if selected_user.profile %}
+                    <img class="img-fluid rounded-3 select-resident-pic rounded-profile-pic-large" src="{{ selected_user.profile.get_photo_url }}" alt="{% trans 'profile pic' %}">
+                {% else %}
+                    <div id="no_reco" class="d-flex flex-column rounded-3 justify-content-center align-items-center">
+                        <img class="img-fluid" src="{% static 'app4_ehpad_base/img/s.svg' %}" width="60px">
+                        <span id="no_reco_txt" class="text-center pt-1">{% trans 'Profile picture not available' %}</span>
+                    </div>
+                {% endif %}
+            </div>
             <form action="" method="post" class="d-flex flex-column">{% csrf_token %}
                 <h3>{{ selected_user.get_full_name }}</h3>
                 {% if selected_user.is_active %}
