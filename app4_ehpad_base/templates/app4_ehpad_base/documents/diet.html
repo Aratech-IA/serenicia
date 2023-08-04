@@ -4,21 +4,16 @@
                 {% load i18n %}
 
 <style>
-.card {
-    display: flex;
-    position: relative;
-    word-wrap: break-word;
-    flex-direction: column;
-    box-shadow: 0 20px 20px -20px #a6a6a6;
-    background-color: white;
-    border: solid 1px black;
-    border-radius: 15px;
-}
-
-/* .dropdown-toggle {
-    background: #fff;
-    border: solid 1px grey;
-} */
+    .card {
+        display: flex;
+        position: relative;
+        word-wrap: break-word;
+        flex-direction: column;
+        box-shadow: 0 20px 20px -20px #a6a6a6;
+        background-color: white;
+        border: solid 1px black;
+        border-radius: 15px;
+    }
 </style>
 
 
@@ -26,41 +21,41 @@
 <a href="{% url 'documents' %}" class="btn btn-perso sticky-top-btn d-none d-md-inline-block m-2">{% trans 'Back' %}</a>
 
 <div class="container">
-    <div class="row d-flex justify-content-center pt-4">
+    <div class="row d-flex justify-content-center py-3">
 
         <div class="col-md-6">
-                <div class="p-3 card">
+            <div class="p-3 card">
 
-                    <h6 class="text-uppercase text-start text-decoration-underline">Information sur le régime alimentaire</h6>
+                <h6 class="text-uppercase text-start text-decoration-underline">Information sur le régime alimentaire</h6>
 
-                    <form method="post" action="{% url 'diet' %}" enctype="multipart/form-data" class="pt-3">
-                    {% csrf_token %}
+                <form method="post" action="{% url 'diet' %}" enctype="multipart/form-data" class="pt-3">
+                {% csrf_token %}
 
-                        <div class="row pt-3">
-                            <div class="col">{% trans "Type of diet" %} :</div>
-                            <div class="col">{{ diet_form.type_diet }}</div>
-                        </div>
+                    <div class="row pt-3">
+                        <div class="col">{% trans "Type of diet" %} :</div>
+                        <div class="col">{{ diet_form.type_diet }}</div>
+                    </div>
 
-                        <div class="row pt-2">
-                            <div class="col">{% trans "Food option" %} :</div>
-                            <div class="col">{{  diet_form.food_option }}</div>
-                        </div>
+                    <div class="row pt-2">
+                        <div class="col">{% trans "Food option" %} :</div>
+                        <div class="col">{{  diet_form.food_option }}</div>
+                    </div>
 
-                        <div class="row pt-2">
-                            <div class="col">{% trans "Allergies" %} :</div>
-                            <div class="col">{{  diet_form.allergies }}</div>
-                        </div>
+                    <div class="row pt-2">
+                        <div class="col">{% trans "Allergies" %} :</div>
+                        <div class="col">{{  diet_form.allergies }}</div>
+                    </div>
 
-                        <hr>
+                    <hr>
 
-                        <div class="mb-3 mt-3">
-                            <button type="submit" class="btn btn-perso">{% trans "Save" %}</button>
-                        </div>
+                    <div class="mb-3 mt-3">
+                        <button type="submit" class="btn btn-perso">{% trans "Save" %}</button>
+                    </div>
 
-                    </form>
+                </form>
 
-                </div>
             </div>
+        </div>
 
     </div>
 </div>

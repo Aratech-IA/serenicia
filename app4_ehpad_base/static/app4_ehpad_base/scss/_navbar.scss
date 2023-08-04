@@ -36,7 +36,7 @@
     z-index: 10;
     background-color: $lightblue !important;
 
-    @media screen and (max-width: $tablette-media-rupture) {
+    @media screen and (max-width: 767px) {
         transition: transform 0.5s;
         transform: translateX(-100%);
     }

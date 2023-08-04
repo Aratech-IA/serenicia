@@ -5,293 +5,167 @@
 {% block content %}
 
 
-<style>
-    .card {
-        display: flex;
-        position: relative;
-        word-wrap: break-word;
-        flex-direction: column;
-        box-shadow: 0 20px 20px -20px #a6a6a6;
-        background-color: white;
-        border: solid 1px black;
-        border-radius: 15px;
-    }
-
-    .btn--white {
-        background: #FFF;
-        border-color: #000000;
-    }
-
-    .btn--white:hover {
-        background: #93a9d2;
-        border-color: #000000;
-    }
-
-    .white-background {
-        background: #FFF !important;
-    }
-
-    .modal {
-        top: 0;
-        left: 0;
-        z-index: 1;
-        width: 100%;
-        height: 100%;
-        display: none;
-        overflow: auto;
-        position: fixed;
-        background-color: rgb(0,0,0);
-        background-color: rgba(0,0,0,0.4);
-    }
-
-    .modal-content {
-        width: 80%;
-        padding: 20px;
-        margin: 15% auto;
-        background-color: #fefefe;
-        border: 2px solid #000000;
-    }
-
-    .modal h5 {
-        margin-bottom: 10px;
-    }
-
-    .close {
-        color: #aaa;
-        float: right;
-        font-size: 28px;
-        padding-left: 95%;
-        font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-        color: black;
-        cursor: pointer;
-        text-decoration: none;
-    }
-
-    ol {
-        list-style-type: decimal;
-    }
-
-    .grey--line {
-        box-shadow: inset 0 -0.2em 0 rgba(211,211,211,1);
-    }
-
-    .green--line {
-        box-shadow: inset 0 -0.2em 0 #93a9d2;
-    }
-
-    .alert-success {
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
-        background:  #93a9d2;
-        border-color:  #000000;
-        text-align: justify;
-    }
-
-    .alert-error {
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
-        background: rgb(236, 177, 177);
-        border-color: #000000;
-        text-align: justify;
-    }
-
-    .pic {
-        width: 150px;
-        height: 150px;
-        overflow: hidden;
-        object-fit: cover;
-    }
-
-    .accordion {
-        --bs-accordion-bg : none;
-    }
-
-    .accordion-button-1:hover {
-        color: #000;
-        background: #93a9d2;
-        border-top-left-radius: 15px !important;
-        border-top-right-radius: 15px !important;
-        border-bottom-left-radius: 15px !important;
-        border-bottom-right-radius: 15px !important;
-    }
-
-    .accordion-button-1:not(.collapsed) {
-        color: #000;
-        background: #93a9d2;
-        border-top-left-radius: 15px !important;
-        border-top-right-radius: 15px !important;
-        border-bottom-left-radius: none !important;
-        border-bottom-right-radius: none !important;
-    }
-</style>
-
-<body>
-    <div class="container-fluid pt-5 pb-5">
+<body id="documents">
+    <div class="container-fluid py-3">
 
         {% for message in messages %}
             {% if "success" in message.tags %}
-                <div class="container-fluid mt-3 alert alert-success alert-dismissible">
-                <div><a href="" class="close--cross" data-bs-dismiss="alert" aria-label="close p-1">&times;</a></div>
-                    <div class="mb-2 text-center green--line" aria-label="close">
-                        <p>{{ message }}<p>
+                <div class="container-fluid mt-3 alert border border-dark bg-lightblue text-uppercase fs-6 p-2">
+                    <div class="d-flex justify-content-between justify-content-md-evenly align-items-center" aria-label="close">
+                        {{ message }}
+                        <a href="" class="close--cross fs-2" data-bs-dismiss="alert" aria-label="close p-1">&times;</a>
                     </div>
                 </div>
             {% endif %}
 
             {% if "error" in message.tags %}
-                <div class="container-fluid mt-3 alert alert-error alert-dismissible">
-                <div><a href="" class="close--cross" data-bs-dismiss="alert" aria-label="close p-1">&times;</a></div>
-                    <div class="mb-2 text-center" aria-label="close">
-                        <p>{{ message }}<p></div>
+                <div class="container-fluid mt-3 alert border border-dark bg-danger text-uppercase fs-6 p-2">
+                    <div class="d-flex justify-content-between justify-content-md-evenly align-items-center" aria-label="close">
+                        {{ message }}
+                        <a href="" class="close--cross fs-2" data-bs-dismiss="alert" aria-label="close p-1">&times;</a>
+                    </div>
                 </div>
             {% endif %}
         {% endfor %}
 
-        <div class="row gutters-sm" style="display: flex;">
+        <!-- Profil + Dossier administratif -->
+        <div class="d-md-flex justify-content-center align-items-center mx-lg-3 mx-xl-5">
 
-            <div class="col">
-                <div class="card">
+            <!-- Profil -->
+            <div class="col-md-5 card flex-sm-row justify-content-evenly align-items-center flex-md-column">
 
-                    <div class="row">
+                <div class="text-center">
+                    {% if user_resident.profile.photo %}
+                        <img src="{{ user_resident.profile.photo.url }}" class="rounded-circle border border-dark pic img-fluid">
+                    {% else %}
+                        <img src="http://sarangglobaltours.com/wp-content/uploads/2014/02/team.png" class="rounded-circle border border-dark pic img-fluid">
+                    {% endif %}
+                </div>
 
-                        <div class="col-md-3 mb-3">
+                <div>
+                    <h5 class="text-uppercase text-center text-decoration-underline py-3">{% trans "Profile" %}</h5>
 
-                            <div class="card-body pt-5 text-center">
-                                {% if user_resident.profile.photo %}
-                                    <img src="{{ user_resident.profile.photo.url }}" class="rounded-circle border border-dark pic mt-2 img-fluid">
-                                {% else %}
-                                    <img src="http://sarangglobaltours.com/wp-content/uploads/2014/02/team.png" class="rounded-circle border border-dark pic mt-2 img-fluid">
-                                {% endif %}
+                    <div>
+                        <div class="d-flex justify-content-center align-items-center text-center">
+                            <h6 class="mb-0 me-2">{% trans "Full Name" %} :</h6>
+                            <div class="text-secondary text-center">
+                                {% if user_resident.first_name %} {{ user_resident.first_name }} {% endif %}
+                                {% if user_resident.last_name %} {{ user_resident.last_name }} {% endif %}
                             </div>
-
                         </div>
+                    </div>
 
-                        <div class="col-md-9 mb-3">
-
-                           <div class="row pt-3">
-                               <h6 class="text-uppercase pb-3 text-center text-decoration-underline">{% trans "Profile" %}</h6>
-
-                               <div class="col-sm-6 text-center"><h6 class="mb-0">{% trans "Full Name" %} :</h6></div>
-                                   <div class="col-sm-6 text-secondary text-center">
-                                       <!-- {% if user_resident.profile.civility %} {% if user_resident.profile.civility == 'Mr' %} {% trans "Mr" %} {% else %} {% trans "Mrs" %} {% endif %} {% endif %} -->
-                                       {% if user_resident.first_name %} {{ user_resident.first_name }} {% endif %}
-                                       {% if user_resident.last_name %} {{ user_resident.last_name }} {% endif %}
-                                   </div>
-                           </div>
-
-                            <div class="row pt-3">
-                                <div class="col-sm-6 text-center"><h6 class="mb-0">{% trans "Birth date" %} :</h6></div>
-                                    <div class="col-sm-6 text-center text-secondary">
-                                        {% if user_resident.profileserenicia.birth_date %} {{ user_resident.profileserenicia.birth_date }} {% endif %}
-                                    </div>
+                    <div class="pt-2">
+                        <div class="d-flex justify-content-center align-items-center text-center">
+                            <h6 class="mb-0 me-2">{% trans "Birth date" %} :</h6>
+                            <div class="text-center text-secondary">
+                                {% if user_resident.profileserenicia.birth_date %} {{ user_resident.profileserenicia.birth_date }} {% endif %}
                             </div>
-
-                            <div class="row pt-3">
-                                <div class="col-sm-6 text-center"><h6 class="mb-0">{% trans "Birth city" %} :</h6></div>
-                                    <div class="col-sm-6 text-center text-secondary">
-                                        {% if user_resident.profileserenicia.birth_city %} {{ user_resident.profileserenicia.birth_city }} {% endif %}
-                                    </div>
-                            </div>
-
-                            <hr>
-
-                            <div class="d-flex justify-content-center">
-                                <a href="{% url 'resident_form' %}" class="btn btn-perso pe-3">{% trans "Modify information" %}</a>
-                            </div>
-
                         </div>
+                    </div>
 
+                    <div class="pt-2">
+                        <div class="d-flex justify-content-center align-items-center text-center">
+                            <h6 class="mb-0 me-2">{% trans "Birth city" %} :</h6>
+                            <div class="text-center text-secondary">
+                                {% if user_resident.profileserenicia.birth_city %} {{ user_resident.profileserenicia.birth_city }} {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-center pt-4">
+                        <a href="{% url 'resident_form' %}" class="btn btn-perso pe-3">{% trans "Modify information" %}</a>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-7">
-                <div class="card">
+            <!-- Espace entre card -->
+            <div class="col-md-1"></div>
 
-                <h6 class="text-uppercase pt-3 pb-1 text-center text-decoration-underline">{% trans "Administrative file" %}</h6>
-                    <p class="pt-2 pb-2 text-center" style="text-align: justify;">{{ button_descriptive }}</p>
+            <!-- Dossier administratif -->
+            <div class="col-md-6 card mt-3">
 
-                    <div class="row pb-3 text-center d-flex justify-content-center">
-                        <div class="col-md-5">
-                            {% for administrative_doc in administrative_doc %}
+                <h5 class="text-uppercase pb-1 text-center text-decoration-underline">
+                    {% trans "Administrative file" %}
+                </h5>
+                <p class="py-3 text-center">{{ button_descriptive }}</p>
 
-                                {% if administrative_doc.document_type == "bond" %}
-                                    <a href="{{ administrative_doc.file.url }}">
-                                    <h6>{{ administrative_doc.get_document_type_display }}</h6>
-                                    </a>
-                                {% endif %}
+                <div class="pb-3 text-center d-flex justify-content-center">
+                    <div>
+                        {% for administrative_doc in administrative_doc %}
 
-                                {% if administrative_doc.document_type == "stay-contract" %}
-                                    <a href="{{ administrative_doc.file.url }}">
-                                    <h6>{{ administrative_doc.get_document_type_display }}</h6>
-                                    </a>
-                                {% endif %}
+                            {% if administrative_doc.document_type == "bond" %}
+                                <a href="{{ administrative_doc.file.url }}">
+                                <h6>{{ administrative_doc.get_document_type_display }}</h6>
+                                </a>
+                            {% endif %}
 
-                                {% if administrative_doc.document_type == "general-condition" %}
-                                    <a href="{{ administrative_doc.file.url }}">
-                                    <h6>{{ administrative_doc.get_document_type_display }}</h6>
-                                    </a>
-                                {% endif %}
+                            {% if administrative_doc.document_type == "stay-contract" %}
+                                <a href="{{ administrative_doc.file.url }}">
+                                <h6>{{ administrative_doc.get_document_type_display }}</h6>
+                                </a>
+                            {% endif %}
 
-                                {% if administrative_doc.document_type == "price-statement" %}
-                                    <a href="{{ administrative_doc.file.url }}">
-                                    <h6>{{ administrative_doc.get_document_type_display }}</h6>
-                                    </a>
-                                {% endif %}
+                            {% if administrative_doc.document_type == "general-condition" %}
+                                <a href="{{ administrative_doc.file.url }}">
+                                <h6>{{ administrative_doc.get_document_type_display }}</h6>
+                                </a>
+                            {% endif %}
 
-                                {% if administrative_doc.document_type == "benefit" %}
-                                    <a href="{{ administrative_doc.file.url }}">
-                                    <h6>{{ administrative_doc.get_document_type_display }}</h6>
-                                    </a>
-                                {% endif %}
+                            {% if administrative_doc.document_type == "price-statement" %}
+                                <a href="{{ administrative_doc.file.url }}">
+                                <h6>{{ administrative_doc.get_document_type_display }}</h6>
+                                </a>
+                            {% endif %}
 
-                            {% endfor %}
-                        </div>
+                            {% if administrative_doc.document_type == "benefit" %}
+                                <a href="{{ administrative_doc.file.url }}">
+                                <h6>{{ administrative_doc.get_document_type_display }}</h6>
+                                </a>
+                            {% endif %}
 
-                        <div class="col-md-5">
-                            {% for administrative_doc in administrative_doc %}
-
-                                {% if administrative_doc.document_type == "endorsement" %}
-                                    <a href="{{ administrative_doc.file.url }}">
-                                    <h6>{{ administrative_doc.get_document_type_display }}</h6>
-                                    </a>
-                                {% endif %}
-
-                                {% if administrative_doc.document_type == "rules-operation" %}
-                                    <a href="{{ administrative_doc.file.url }}">
-                                    <h6>{{ administrative_doc.get_document_type_display }}</h6>
-                                    </a>
-                                {% endif %}
-
-                                {% if administrative_doc.document_type == "conduct-charter" %}
-                                    <a href="{{ administrative_doc.file.url }}">
-                                    <h6>{{ administrative_doc.get_document_type_display }}</h6>
-                                    </a>
-                                {% endif %}
-
-                                {% if administrative_doc.document_type == "reading-certificate" %}
-                                    <a href="{{ administrative_doc.file.url }}">
-                                    <h6>{{ administrative_doc.get_document_type_display }}</h6>
-                                    </a>
-                                {% endif %}
-
-                                {% if administrative_doc.document_type == "image-authorization" %}
-                                    <a href="{{ administrative_doc.file.url }}" class="col-lg-3 col-sm-6 text-center pt-5">
-                                    <h6>{{ administrative_doc.get_document_type_display }}</h6>
-                                    </a>
-                                {% endif %}
-
-                            {% endfor %}
-                        </div>
-
+                        {% endfor %}
                     </div>
 
+                    <div>
+                        {% for administrative_doc in administrative_doc %}
+
+                            {% if administrative_doc.document_type == "endorsement" %}
+                                <a href="{{ administrative_doc.file.url }}">
+                                <h6>{{ administrative_doc.get_document_type_display }}</h6>
+                                </a>
+                            {% endif %}
+
+                            {% if administrative_doc.document_type == "rules-operation" %}
+                                <a href="{{ administrative_doc.file.url }}">
+                                <h6>{{ administrative_doc.get_document_type_display }}</h6>
+                                </a>
+                            {% endif %}
+
+                            {% if administrative_doc.document_type == "conduct-charter" %}
+                                <a href="{{ administrative_doc.file.url }}">
+                                <h6>{{ administrative_doc.get_document_type_display }}</h6>
+                                </a>
+                            {% endif %}
+
+                            {% if administrative_doc.document_type == "reading-certificate" %}
+                                <a href="{{ administrative_doc.file.url }}">
+                                <h6>{{ administrative_doc.get_document_type_display }}</h6>
+                                </a>
+                            {% endif %}
+
+                            {% if administrative_doc.document_type == "image-authorization" %}
+                                <a href="{{ administrative_doc.file.url }}" class="text-center pt-5">
+                                <h6>{{ administrative_doc.get_document_type_display }}</h6>
+                                </a>
+                            {% endif %}
+
+                        {% endfor %}
+                    </div>
+                </div>
+
                 {% if display_button %}
-                    <div class="pb-3" style="display: flex; justify-content: center;">
+                    <div class="d-flex justify-content-evenly">
 
                         {% if personalized_doc == 10 %}
                             <form method="post" enctype="multipart/form-data" action="{% url 'sign_document' %}">
@@ -305,14 +179,14 @@
                             </form>
                         {% endif %}
 
-
-                        <button class="btn btn-perso" id="button">{% trans "How to use online signature" %}</button>
+                        <button class="btn btn-perso ms-3" id="button">{% trans "How to use online signature" %}</button>
 
                         <div id="modal" class="modal">
                             <div class="modal-content">
 
                                 <span class="close">&times;</span>
                                 <h5 class="green--line">{% trans "How online signature works" %} :</h5>
+
                                 <ol>
                                     <li class="mb-2 mt-2">{% trans "Once you have clicked the sign my documents button you are redirecting to a page with your documents, the loading can be a bit long don’t worry" %}.</li>
                                     <li class="mb-2">{% trans "You must accept the consents to be able to use the fields" %}.</li>
@@ -330,224 +204,218 @@
                             </div>
                         </div>
                     </div>
-
                 {% endif %}
-
             </div>
         </div>
+        
+        <!-- Cartes du résident + Régime alimentaire -->
+        <div class="d-md-flex justify-content-center align-items-center mt-3 mx-lg-3 mx-xl-5">
 
-    </div>
+            <!-- Cartes du résident -->
+            <div class="col-md-6 card mt-3">
 
-    <div class="container pt-5 pb-5">
-        <hr>
-    </div>
-
-    <div class="row gutters-sm" style="display: flex;">
-
-        <div class="col">
-            <div class="card">
-
-                <div class="row pt-3 text-center">
-                   <h6 class="text-uppercase text-decoration-underline pb-3">{% trans "Inventory" %}</h6>
+                <div class="pt-0 pb-0">
+                    <h5 class="text-uppercase text-decoration-underline text-center">{% trans "Resident card" %} :</h5>
+                    <p class="text-center">{{ total_card }}</p>
                 </div>
 
-                <div class="row pb-3">
+                <div>
+                    <div class="pt-0 d-flex justify-content-center">
+                        {% if count_card != 4 %}
+                            <form class="d-flex flex-column align-items-center flex-xl-row w-100 mt-3" enctype="multipart/form-data" method="post">
+                            {% csrf_token %}
 
-                    {% for arrival_inventory in arrival_inventory %}
-                        {% if arrival_inventory %}
+                                <select class="btn btn-perso d-md-block" name="type_card" id="type_card">
+                                    <option value="" disabled selected class="bg-white">{% trans "Choose card" %}</option>
+                                    <option value="national_card" class="bg-white">{% trans "National Card" %}</option>
+                                    <option value="vital_card" class="bg-white">{% trans "Vital Card" %}</option>
+                                    <option value="mutual_card" class="bg-white">{% trans "Mutual Card" %}</option>
+                                    <option value="blood_card" class="bg-white">{% trans "Blood Card" %}</option>
+                                </select>
 
-                            <a href="{% url 'inventory' %}" class="text-center text-uppercase">
-                                {% trans "View inventory of" %}
-                                {{ arrival_inventory.user_resident.profile.civility }} {{ arrival_inventory.user_resident.last_name }} {{ arrival_inventory.user_resident.first_name }}
-                                {% trans "create the" %} {{ arrival_inventory.creation_date }}
-                                {% trans "by" %}
-                                {{ arrival_inventory.nurses.profile.civility }} {{ arrival_inventory.nurses.last_name }} {{ arrival_inventory.nurses.first_name }}
-                            </a>
+                                <label class="btn btn-perso d-md-block my-2 mx-xl-2" for="upload_card">
+                                    <input id="upload_card" type="file" name="upload_card" accept="image/*,.pdf" hidden>
+                                    {% trans "Select File" %}
+                                </label>
+
+                                <button class="btn btn-perso d-md-block" type="submit">{% trans "Upload" %}</button>
+
+                            </form>
                         {% endif %}
-                    {% endfor %}
-
-                </div>
-
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card accordion accordion-flush" id="accordionFlushExample">
-
-                <div class="accordion-item">
-                    <div class="accordion-header" id="flush-headingOne">
-
-                        <button class="accordion-button accordion-button-1 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                            <div class="col pt-0 pb-0 d-flex justify-content-start">
-                                <h6 class="text-uppercase text-decoration-underline">{% trans "Resident card" %} :</h6>
-                                <p class="ms-5">{{ total_card }}</p>
-                            </div>
-                        </button>
-
                     </div>
+                    
+                    {% if national_card or vital_card or mutual_card or blood_card %}
+                        <!-- Affichage des carte téléchargées -->
+                        <div class="d-flex justify-content-center flex-wrap pt-3">
 
-
-                        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body">
-
-                                <div class="pt-0 d-flex justify-content-center">
-
-                                    {% if count_card != 4 %}
-                                        <form class="row w-100" style="display: flex;" enctype="multipart/form-data" method="post">
-                                        {% csrf_token %}
-
-                                            <select class="col btn btn--white d-md-block me-3" name="type_card" id="type_card">
-                                                <option value="" disabled selected class="white-background">{% trans "Choose card" %}</option>
-                                                <option value="national_card" class="white-background">{% trans "National Card" %}</option>
-                                                <option value="vital_card" class="white-background">{% trans "Vital Card" %}</option>
-                                                <option value="mutual_card" class="white-background">{% trans "Mutual Card" %}</option>
-                                                <option value="blood_card" class="white-background">{% trans "Blood Card" %}</option>
-                                            </select>
-
-                                            <label class="col btn btn--white d-md-block me-3" for="upload_card">
-                                                <input id="upload_card" type="file" name="upload_card" accept="image/*,.pdf" hidden>
-                                                {% trans "Select File" %}
-                                            </label>
-
-                                            <button class="col btn btn--white d-md-block" type="submit">{% trans "Upload" %}</button>
-
+                            {% if national_card %}
+                                <!--NATIONAL CARD-->
+                                <div class="text-center mx-1">
+                                    {% for card in national_card %}
+                                        <form method="post" action="{% url 'delete_card' card.pk %}" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <a href="{{ card.upload_card.url }}">
+                                                <h6 class="grey--line mb-1">{{ form.type_card.0 }}</h6>
+                                            </a>
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                {% trans "Delete" %}
+                                            </button>
                                         </form>
-                                    {% endif %}
-
+                                    {% endfor %}
                                 </div>
+                            {% endif %}
 
-                                <div class="row pt-2">
-
-                                    <!--NATIONAL CARD-->
-                                    <div class="col text-center me-3 ms-3 pt-3">
-                                        {% for card in national_card %}
-                                            {% if card.upload_card %}
-                                                <form method="post" action="{% url 'delete_card' card.pk %}" enctype="multipart/form-data">
-                                                {% csrf_token %}
-                                                <a href="{{ card.upload_card.url }}"><h6 class="grey--line">{{ form.type_card.0 }}</h6></a>
-                                                <button type="submit" class="btn btn-outline-danger">{% trans "Delete" %}</button></form>
-                                            {% endif %}
-                                        {% endfor %}
-                                    </div>
-
-                                    <!--VITAL CARD-->
-                                    <div class="col text-center me-3 pt-3">
-                                        {% for card in vital_card %}
-                                            {% if card.upload_card %}
-                                                <form method="post" action="{% url 'delete_card' card.pk %}" enctype="multipart/form-data">
-                                                {% csrf_token %}
-                                                <a href="{{ card.upload_card.url }}"><h6 class="grey--line">{{ form.type_card.1 }}</h6></a>
-                                                <button type="submit" class="btn btn-outline-danger">{% trans "Delete" %}</button></form>
-                                            {% endif %}
-                                        {% endfor %}
-                                    </div>
-
-                                    <!--MUTUAL CARD -->
-                                    <div class="col text-center me-3 pt-3">
-                                        {% for card in mutual_card %}
-                                            {% if card.upload_card %}
-                                                <form method="post" action="{% url 'delete_card' card.pk %}" enctype="multipart/form-data">
-                                                {% csrf_token %}
-                                                <a href="{{ card.upload_card.url }}"><h6 class="grey--line">{{ form.type_card.2 }}</h6></a>
-                                                <button type="submit" class="btn btn-outline-danger">{% trans "Delete" %}</button></form>
-                                            {% endif %}
-                                        {% endfor %}
-                                    </div>
-
-                                    <!--BLOOD CARD-->
-                                    <div class="col text-center me-3 pt-3">
-                                        {% for card in blood_card %}
-                                            {% if card.upload_card %}
-                                                <form method="post" action="{% url 'delete_card' card.pk %}" enctype="multipart/form-data">
-                                                {% csrf_token %}
-                                                <a href="{{ card.upload_card.url }}"><h6 class="grey--line">{{ form.type_card.3 }}</h6></a>
-                                                <button type="submit" class="btn btn-outline-danger">{% trans "Delete" %}</button></form>
-                                            {% endif %}
-                                        {% endfor %}
-                                    </div>
-
+                            {% if vital_card %}
+                                <!--VITAL CARD-->
+                                <div class="text-center mx-1 mx-sm-2">
+                                    {% for card in vital_card %}
+                                        <form method="post" action="{% url 'delete_card' card.pk %}" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <a href="{{ card.upload_card.url }}">
+                                                <h6 class="grey--line mb-1">{{ form.type_card.1 }}</h6>
+                                            </a>
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                {% trans "Delete" %}
+                                            </button>
+                                        </form>
+                                    {% endfor %}
                                 </div>
+                            {% endif %}
 
+                            {% if mutual_card %}
+                                <!--MUTUAL CARD -->
+                                <div class="text-center me-3 mx-1 mx-sm-2">
+                                    {% for card in mutual_card %}
+                                        <form method="post" action="{% url 'delete_card' card.pk %}" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                            <a href="{{ card.upload_card.url }}">
+                                                <h6 class="grey--line mb-1">{{ form.type_card.2 }}</h6>
+                                            </a>
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                {% trans "Delete" %}
+                                            </button>
+                                        </form>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+
+                            {% if blood_card %}
+                                <!--BLOOD CARD-->
+                                <div class="text-center me-3 mx-1 mx-sm-2">
+                                    {% for card in blood_card %}
+                                        <form method="post" action="{% url 'delete_card' card.pk %}" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <a href="{{ card.upload_card.url }}">
+                                                <h6 class="grey--line mb-1">{{ form.type_card.3 }}</h6>
+                                            </a>
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                {% trans "Delete" %}
+                                            </button>
+                                        </form>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Espace entre card -->
+            <div class="col-md-1"></div>
+
+            <!-- Régime alimentaire -->
+            <div class="col-md-5 card mt-3 justify-content-center align-items-center">
+
+                <h5 class="text-uppercase text-decoration-underline pb-3">
+                    {% trans "Diet" %}
+                </h5>
+
+                {% for diet_result in diet_result %}
+                    <div class="pb-3">
+                        <div class="d-flex align-items-center">
+                            <h6 class="mb-0 pe-2">{% trans "Type of diet" %} :</h6>
+                            <div class="text-secondary">
+                                {% if diet_result.type_diet %}
+                                    {{ diet_result.type_diet }}
+                                {% else %}
+                                    {% trans "No data" %}
+                                {% endif %}
                             </div>
                         </div>
 
+                        <div class="d-flex align-items-center pt-2">
+                            <h6 class="mb-0 pe-2">{% trans "Food option" %} :</h6>
+                            <div class=" text-secondary">
+                                {% if diet_result.food_option %}
+                                    {{ diet_result.food_option }}
+                                {% else %}
+                                    {% trans "No data" %}
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center pt-2">
+                            <h6 class="mb-0 pe-2">{% trans "Allergies" %} :</h6>
+                            <div class="text-secondary">
+                                {% if diet_result.allergies %}
+                                    {{ diet_result.allergies }}
+                                {% endif %}
+                            </div>
+                        </div>
                     </div>
+                {% endfor %}
 
+                <div class="d-flex justify-content-center">
+                    <a href="{% url 'diet' %}" class="btn btn-perso">{% trans "Modify information" %}</a>
                 </div>
-            </div>
 
+            </div>
         </div>
 
-        <div class="container pt-5 pb-5">
-            <hr>
-        </div>
+        <!-- Inventaire + Soins médicaux -->
+        <div class="d-flex justify-content-center align-items-center mx-lg-3 mx-xl-5">
 
-        <div class="row gutters-sm" style="display: flex;">
+            {% if arrival_inventory %}
+                <!-- Inventaire -->
+                <div class="col-md-4 card mt-3">
 
-            <div class="col">
-                <div class="card">
+                    <div class="d-flex justify-content-center">
+                        <h5 class="text-uppercase text-decoration-underline pb-3">{% trans "Inventory" %}</h5>
+                    </div>
 
-                    <div class="row">
-                        <div class="col mb-3 text-center">
-
-                        <h6 class="text-uppercase text-center text-decoration-underline pb-3 pt-3">{% trans "Medical history" %}</h6>
-
-                        </div>
+                    <div class="d-flex justify-content-center">
+                        {% for arrival_inventory in arrival_inventory %}
+                            <a href="{% url 'inventory' %}" class="text-center">
+                                {% trans "View inventory of" %}
+                                {% if arrival_inventory.user_resident.profile.civility == 'Mr' %}{% trans "Mr" %} {% elif arrival_inventory.user_resident.profile.civility == 'Mrs' %}{% trans "Mrs" %} {% else %}{% endif %}
+                                {{ arrival_inventory.user_resident.first_name }}
+                                {{ arrival_inventory.user_resident.last_name }}
+                                {% trans "modified on" %}
+                                {{ arrival_inventory.creation_date }}
+                                {% trans "by" %}
+                                {{ arrival_inventory.nurses.first_name }}
+                                {{ arrival_inventory.nurses.last_name }}
+                            </a>
+                        {% endfor %}
                     </div>
 
                 </div>
-            </div>
+            {% endif %}
 
-            <div class="col text-center">
-                <div class="card">
-
-                <h6 class="text-uppercase text-decoration-underline pb-3 pt-3">{% trans "Diet" %}</h6>
-
-                    {% for diet_result in diet_result %}
-                        <div class="row">
-                            <div class="col"><h6 class="mb-0">{% trans "Type of diet" %} :</h6></div>
-                                <div class="col text-secondary">
-                                    {% if diet_result.type_diet %}
-                                        {{ diet_result.type_diet }}
-                                    {% else %}
-                                        {% trans "No data" %}
-                                    {% endif %}
-                                </div>
-                        </div>
-
-                        <div class="row pt-2">
-                            <div class="col"><h6 class="mb-0">{% trans "Food option" %} :</h6></div>
-                                <div class="col text-secondary">
-                                    {% if diet_result.food_option %}
-                                        {{ diet_result.food_option }}
-                                    {% else %}
-                                        {% trans "No data" %}
-                                    {% endif %}
-                                </div>
-                        </div>
-
-                        <div class="row pt-2">
-                            <div class="col"><h6 class="mb-0">{% trans "Allergies" %} :</h6></div>
-                                <div class="col text-secondary">
-                                    {% if diet_result.allergies %}
-                                        {{ diet_result.allergies }}
-                                    {% endif %}
-                                </div>
-                        </div>
-
-                    {% endfor %}
-
-                    <div class="d-flex justify-content-center pb-3 pt-3">
-                        <a href="{% url 'diet' %}" class="btn btn-perso pe-3">{% trans "Modify information" %}</a>
+            <!-- Soins médicaux -->
+            <!-- <div class="card">
+                <div class="d-flex">
+                    <div class="mb-3 text-center mt-3">
+                        <h5 class="text-uppercase text-center text-decoration-underline pb-3 pt-3">
+                            {% trans "Medical history" %}
+                        </h5>
                     </div>
-
                 </div>
-            </div>
-
+            </div> -->
         </div>
     </div>
-
 </body>
+
 
 <script>
    var modal = document.getElementById("modal");
