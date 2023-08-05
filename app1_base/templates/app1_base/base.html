@@ -481,7 +481,7 @@
                         {% if perms.app0_access.view_care %}
                             <!-- Soins -->
                             <li class="nav-item dropdown py-1 py-lg-0">
-                                <a onclick="togglecare()" class="dropdown-toggle d-flex align-items-center my-2 mt-lg-3 mb-lg-2 px-2 {% if '/app6_care/' in request.path %}{% if '/hotel/' not in request.path %}active{% endif %}{% endif %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a onclick="togglecare()" class="dropdown-toggle d-flex align-items-center my-2 mt-lg-3 mb-lg-2 px-2 {% if '/app6_care/' in request.path%}{% if '/hotel/' not in request.path %}active{% endif %}{% endif %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <svg
                                         fill="currentColor"
                                         viewbox="0 0 512 512"
@@ -498,12 +498,12 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{% url 'interventions_report' %}">
+                                        <a href="{% url 'interventions_report' %}?type=&profession=AS&nurse=&patient=&date_range=">
                                             <p>{% trans 'Interventions report' %}</p>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{% url 'table_relations' %}">
+                                        <a href="{% url 'table_relations' %}?filter=view_as">
                                             <p>{% trans 'Relationship Table' %}</p>
                                         </a>
                                     </li>
@@ -524,7 +524,7 @@
                         {% if perms.app0_access.view_hotel %}
                             <!-- Hôtellerie -->
                             <li class="nav-item dropdown py-1 py-lg-0">
-                                <a onclick="togglehotel()" class="dropdown-toggle d-flex align-items-center my-2 mt-lg-3 mb-lg-2 px-2 {% if '/app6_care/hotel/' in request.path or '/laundry_management/' in request.path %}active{% endif %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a onclick="togglehotel()" class="dropdown-toggle d-flex align-items-center my-2 mt-lg-3 mb-lg-2 px-2 {% if '/app6_care/hotel/' in request.path or '/laundry_management/' in request.path or '/relat_table/' in request.path or '/interventions_report/' in request.path  %}active{% endif %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <svg
                                         fill="currentColor"
                                         viewbox="0 0 640 512"
@@ -543,6 +543,16 @@
                                     <li>
                                         <a href="{% url 'laundry_management' %}">
                                             <p>{% trans 'Laundry management' %}</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'interventions_report' %}?type=&profession=ASH&nurse=&patient=&date_range=">
+                                            <p>{% trans 'Interventions report' %}</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'table_relations' %}?filter=view_ash">
+                                            <p>{% trans 'Relationship Table' %}</p>
                                         </a>
                                     </li>
                                 </ul>

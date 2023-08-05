@@ -217,9 +217,7 @@ def intervention(request, profession, specific_to_a_resident):
 
                 # user choosed a category at level 1
                 if task_level == '1':
-                    intervention = Intervention.objects.create(
-                        nurse=request.user, patient=resident, type=TaskLevel1.objects.get(pk=task_id),
-                        profession=profession, specific_to_a_resident=specific_to_a_resident)
+                    intervention = Intervention.objects.create(nurse=request.user, patient=resident, type=TaskLevel1.objects.get(pk=task_id), profession=profession, specific_to_a_resident=specific_to_a_resident)
                     task_level = 2
 
             except ObjectDoesNotExist:

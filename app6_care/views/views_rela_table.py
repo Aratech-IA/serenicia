@@ -64,12 +64,27 @@ def table_relations(request):
         pass
 
     accesss = list(access_labels.keys())
-    access = '-------'
 
-    if request.POST:
+    # Récupérer le paramètre d'URL "filter"
+    filter_value = request.GET.get("filter", None)
+
+    # Vérifier si le paramètre "filter" est présent et correspond à l'une des valeurs d'accès
+    if filter_value in access_labels:
+        access = filter_value
+    else:
+        access = '-------'
+
+    # Si la requête est une requête POST, utiliser la valeur de "access" dans le formulaire
+    if request.method == 'POST':
         access = request.POST.get("access")
-        dict_relation = resident_employee(access)
-        relations = [(key.user, [x.user for x in value]) for key, value in dict_relation.items()]
+    else:  # Si la requête est une requête GET, utiliser le paramètre d'URL "filter"
+        filter_value = request.GET.get("filter", None)
+        if filter_value in access_labels:
+            access = filter_value
+
+    # Calculer les relations en fonction de la valeur de "access"
+    dict_relation = resident_employee(access)
+    relations = [(key.user, [x.user for x in value]) for key, value in dict_relation.items()]
 
     context = {"rels": relations, "accesss": accesss, "access": access, "access_labels": access_labels}
 
