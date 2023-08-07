@@ -74,11 +74,14 @@
 
                 {% if video %}
                 <!-- vidéo -->
-                <div class="card px-1 d-flex justify-content-center align-items-center">
-                    <div class="d-flex flex-column align-items-center text-center my-3">
-                        <video controls width="200px"><source src="{{ video }}" type="video/mp4"></video>
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="card px-2 d-flex justify-content-center align-items-center">
+                        <div class="d-flex flex-column align-items-center text-center my-2">
+                            <video controls width="300px"><source src="{{ video }}" type="video/mp4"></video>
+                        </div>
                     </div>
                 </div>
+                
                 {% endif %}
 
             </div>
