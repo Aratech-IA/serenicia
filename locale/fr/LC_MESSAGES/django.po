@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-16 11:41+0200\n"
+"POT-Creation-Date: 2023-08-16 17:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -379,8 +379,8 @@ msgstr "Types d'utilisateurs"
 #: app4_ehpad_base/templates/app4_ehpad_base/webcam.html:72
 #: app6_care/templates/app6_care/caregiver/story_life_modal.html:7
 #: app6_care/templates/app6_care/caregiver/support_project_modal.html:9
-#: app9_personnalized_project/templates/app9_personnalized_project/genosociogram.html:6
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:7
+#: app9_personnalized_project/templates/app9_personnalized_project/genosociogram.html:32
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:24
 #: app9_personnalized_project/templates/app9_personnalized_project/survey.html:41
 msgid "Back"
 msgstr "Retour"
@@ -426,7 +426,7 @@ msgstr "Actif"
 #: app6_care/templates/app6_care/caregiver/interventions_report.html:73
 #: app8_survey/templates/app8_survey/details.html:76
 #: app8_survey/templates/app8_survey/survey.html:91
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:50
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:55
 #: app9_personnalized_project/templates/app9_personnalized_project/story_life.html:35
 #: app9_personnalized_project/templates/app9_personnalized_project/survey.html:110
 #: app9_personnalized_project/templates/app9_personnalized_project/survey.html:325
@@ -476,8 +476,8 @@ msgstr "Type d'utilisateur"
 #: app6_care/templates/app6_care/hotel/hotel.html:290
 #: app9_personnalized_project/templates/app9_personnalized_project/appointments.html:128
 #: app9_personnalized_project/templates/app9_personnalized_project/appointments_employee.html:67
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:48
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:122
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:53
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:134
 #: app9_personnalized_project/templates/app9_personnalized_project/story_life.html:50
 msgid "Delete"
 msgstr "Supprimer"
@@ -511,10 +511,10 @@ msgstr "Supprimer"
 #: app8_survey/templates/app8_survey/survey.html:100
 #: app9_personnalized_project/templates/app9_personnalized_project/appointments.html:130
 #: app9_personnalized_project/templates/app9_personnalized_project/create_person.html:38
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:53
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:74
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:93
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:138
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:58
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:80
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:100
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:150
 #: app9_personnalized_project/templates/app9_personnalized_project/survey.html:316
 #: app9_personnalized_project/templates/app9_personnalized_project/survey.html:340
 msgid "Cancel"
@@ -556,10 +556,10 @@ msgstr "Annuler"
 #: app8_survey/templates/app8_survey/survey.html:101
 #: app9_personnalized_project/templates/app9_personnalized_project/appointments.html:175
 #: app9_personnalized_project/templates/app9_personnalized_project/create_person.html:39
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:54
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:75
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:94
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:125
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:59
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:81
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:101
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:137
 #: app9_personnalized_project/templates/app9_personnalized_project/story_life.html:53
 #: app9_personnalized_project/templates/app9_personnalized_project/survey.html:317
 #: app9_personnalized_project/templates/app9_personnalized_project/survey.html:341
@@ -1589,8 +1589,8 @@ msgstr "Champ d’application"
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_group_reservation.html:62
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:118
 #: app4_ehpad_base/templates/app4_ehpad_base/public_photo.html:57
-#: app9_personnalized_project/templates/app9_personnalized_project/genosociogram.html:59
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:165
+#: app9_personnalized_project/templates/app9_personnalized_project/genosociogram.html:62
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:178
 #: app9_personnalized_project/templates/app9_personnalized_project/story_life.html:56
 msgid "Modify"
 msgstr "Modifier"
@@ -1690,8 +1690,8 @@ msgstr "liste des protocoles"
 
 #: app11_quality/templates/app11_quality/protocols_list.html:64
 #: app16_portal/templates/app16_portal/index.html:94
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:71
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:89
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:77
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:96
 msgid "Add"
 msgstr "Ajouter"
 
@@ -6342,7 +6342,7 @@ msgstr "Page"
 #: app4_ehpad_base/templates/app4_ehpad_base/blog.html:94
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:27
 #: app4_ehpad_base/templates/app4_ehpad_base/public_photo.html:105
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:71
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:77
 msgid "of"
 msgstr "de"
 
@@ -7097,7 +7097,7 @@ msgstr ""
 #: app4_ehpad_base/templates/app4_ehpad_base/gallery.html:88
 #: app6_care/templates/app6_care/caregiver/caregiver.html:454
 #: app6_care/templates/app6_care/hotel/hotel.html:288
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:139
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:151
 msgid "Continue"
 msgstr "Continuer"
 
@@ -7423,8 +7423,8 @@ msgid "I'm done, send"
 msgstr "j'ai fini, envoyer"
 
 #: app4_ehpad_base/templates/app4_ehpad_base/photo_list.html:53
-#: app9_personnalized_project/templates/app9_personnalized_project/genosociogram.html:34
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:178
+#: app9_personnalized_project/templates/app9_personnalized_project/genosociogram.html:37
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:190
 msgid "Preview"
 msgstr "Aperçu"
 
@@ -8100,8 +8100,8 @@ msgid "Meal with"
 msgstr "Repas avec"
 
 #: app4_ehpad_base/views_cuisine_eval.py:1018
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:42
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:89
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:46
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:96
 msgid "and"
 msgstr "et"
 
@@ -9168,7 +9168,7 @@ msgid "Date of death"
 msgstr "Date de décés"
 
 #: app9_personnalized_project/forms.py:142
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:90
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:97
 msgid "Entente"
 msgstr "Entente"
 
@@ -9445,7 +9445,7 @@ msgstr "Participant"
 msgid "Add photo"
 msgstr "Ajouter une photo"
 
-#: app9_personnalized_project/templates/app9_personnalized_project/genosociogram.html:36
+#: app9_personnalized_project/templates/app9_personnalized_project/genosociogram.html:39
 msgid "Download PDF"
 msgstr "Télécharger le PDF"
 
@@ -9463,70 +9463,78 @@ msgstr "Complété"
 msgid "Finalized on"
 msgstr "Finalisé le"
 
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:27
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:31
 msgid "Modify relationship"
 msgstr "Modifier relation"
 
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:32
-#, python-format
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:36
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "                  %(from_person)s is the\n"
+#| "                  "
 msgid ""
 "\n"
-"                  %(from_person)s is the\n"
-"                  "
+"                     %(from_person)s is the\n"
+"                     "
 msgstr ""
 "\n"
 "                  %(from_person)s est le/la\n"
 "                  "
 
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:36
-#, python-format
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:40
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "                  of %(to_person)s\n"
+#| "                  "
 msgid ""
 "\n"
-"                  of %(to_person)s\n"
-"                  "
+"                     of %(to_person)s\n"
+"                     "
 msgstr ""
 "\n"
 "                  de %(to_person)s\n"
 "                  "
 
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:42
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:88
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:46
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:95
 msgid "Between"
 msgstr "Entre"
 
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:66
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:72
 msgid "Add new relative"
 msgstr "Ajouter un proche"
 
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:70
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:76
 msgid "Is the"
 msgstr "Est le/la"
 
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:85
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:92
 msgid "Add new entente"
 msgstr "Ajouter une entente"
 
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:107
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:115
 msgid "Change photo"
 msgstr "Changer la photo"
 
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:132
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:144
 msgid "Delete person"
 msgstr "Supprimer la personne"
 
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:135
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:147
 msgid "All the person's data will be erased, do you want to continue?"
 msgstr "Toutes les données seront éffacées, souhaitez-vous continuer ?"
 
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:152
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:164
 msgid "Relationship management"
 msgstr "Gestion des relations"
 
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:154
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:167
 msgid "Add a relative"
 msgstr "Ajouter un proche"
 
-#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:155
+#: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:168
 msgid "Add entente"
 msgstr "Ajouter une entente"
 
