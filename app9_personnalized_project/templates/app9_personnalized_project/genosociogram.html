@@ -2,32 +2,35 @@
 {% load static %}
 {% load i18n %}
 
-{% block sticky-top-btn %}
-    <a href="{% url 'support project answering' survey_id=survey %}" class="btn btn-perso sticky-top-btn d-none d-md-block m-2">{% trans 'Back' %}</a>
-{% endblock sticky-top-btn %}
-
 {% block content %}
+
+
 <style>
-    .bi-plus{
+    .bi-plus {
         width: 30px;
         height: auto;
     }
-    .photo-resident{
+
+    .photo-resident {
         height: 80px;
         width: 80px;
         border-radius: 100px;
         object-fit: cover;
         overflow: hidden;
     }
-    .sticky-back-btn{
+
+    .sticky-back-btn {
         width: 160px;
     }
-    .bg-deceased{
+    
+    .bg-deceased {
         background-color: #d3d3d3;
     }
 </style>
 
-<main class="container mt-5 mt-sm-2">
+<main class="container my-3">
+    <a href="{% url 'support project answering' survey_id=survey %}" class="btn btn-perso sticky-top-btn d-none d-md-inline-flex m-2">{% trans 'Back' %}</a>
+
     {% if preview %}
     <div class="d-flex flex-column align-items-center gap-2 border border-darkblue rounded-3 p-2">
             <div>
@@ -69,4 +72,6 @@
         {% endfor %}
     </div>
 </main>
+
+
 {% endblock content %}

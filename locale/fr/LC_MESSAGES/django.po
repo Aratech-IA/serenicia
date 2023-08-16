@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-07 10:29+0200\n"
+"POT-Creation-Date: 2023-08-16 11:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -485,7 +485,7 @@ msgstr "Supprimer"
 #: app0_access/templates/app0_access/modify_group.html:122
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:211
 #: app14_profile/templates/app14_profile/change_password.html:67
-#: app14_profile/templates/app14_profile/profile.html:255
+#: app14_profile/templates/app14_profile/profile.html:258
 #: app1_base/templates/registration/password_reset.html:62
 #: app1_base/templates/registration/password_reset_form.html:100
 #: app1_base/templates/registration/password_reset_sent.html:53
@@ -892,8 +892,8 @@ msgstr "Mme"
 #: app11_quality/models.py:69 app11_quality/models.py:76
 #: app11_quality/templates/app11_quality/room-chat.html:73
 #: app1_base/models.py:635
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:33
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:58
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:34
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:63
 msgid "Room"
 msgstr "Chambre"
 
@@ -1090,12 +1090,16 @@ msgstr "Novembre"
 msgid "December"
 msgstr "Décembre"
 
-#: app10_social_activities/templates/app10_social_activities/historic.html:85
+#: app10_social_activities/templates/app10_social_activities/historic.html:86
 #: app10_social_activities/templates/app10_social_activities/index.html:40
 #: app10_social_activities/templates/app10_social_activities/selection_activity.html:39
 #: app10_social_activities/views.py:81
 msgid "participants"
 msgstr "participants"
+
+#: app10_social_activities/templates/app10_social_activities/historic.html:108
+msgid "No history this month"
+msgstr "Pas d'historique ce mois-ci"
 
 #: app10_social_activities/templates/app10_social_activities/index.html:36
 msgid "To end this activity ?"
@@ -1750,7 +1754,7 @@ msgstr "Groupe"
 
 #: app12_delivery/admin.py:15 app12_delivery/admin.py:44
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:193
-#: app14_profile/templates/app14_profile/profile.html:191
+#: app14_profile/templates/app14_profile/profile.html:194
 #: app1_base/models.py:284
 msgid "Adress"
 msgstr "Adresse"
@@ -1837,8 +1841,8 @@ msgstr "Saisir son nom d'utilisateur"
 #: app12_delivery/form_registration.py:73
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:76
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:157
-#: app14_profile/templates/app14_profile/profile.html:109
-#: app14_profile/templates/app14_profile/profile.html:211
+#: app14_profile/templates/app14_profile/profile.html:112
+#: app14_profile/templates/app14_profile/profile.html:214
 #: app1_base/models.py:276 app9_personnalized_project/signals.py:54
 msgid "Phone number"
 msgstr "Numéro de téléphone"
@@ -1849,7 +1853,7 @@ msgstr "Saisir son numéro de téléphone"
 
 #: app12_delivery/form_registration.py:77
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:83
-#: app14_profile/templates/app14_profile/profile.html:117
+#: app14_profile/templates/app14_profile/profile.html:120
 #: app5_ehpad_messaging/forms.py:193
 msgid "Address"
 msgstr "Adresse"
@@ -1868,7 +1872,7 @@ msgstr "Saisir son code postal"
 
 #: app12_delivery/form_registration.py:85
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:203
-#: app14_profile/templates/app14_profile/profile.html:201
+#: app14_profile/templates/app14_profile/profile.html:204
 #: app1_base/models.py:286 app5_ehpad_messaging/forms.py:213
 msgid "City"
 msgstr "Ville"
@@ -2263,7 +2267,7 @@ msgstr "Utilisateur créé"
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:132
 #: app12_delivery/templates/app12_delivery/create_account_delivery.html:94
 #: app14_profile/templates/app14_profile/profile.html:53
-#: app14_profile/templates/app14_profile/profile.html:171
+#: app14_profile/templates/app14_profile/profile.html:174
 #: app16_portal/templates/app16_portal/login.html:14
 #: app1_base/templates/registration/login.html:63
 #: app4_ehpad_base/templates/app4_ehpad_base/create_account.html:20
@@ -2288,15 +2292,15 @@ msgid "Create my video"
 msgstr "Créer ma vidéo"
 
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:61
-#: app14_profile/templates/app14_profile/profile.html:92
+#: app14_profile/templates/app14_profile/profile.html:95
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/documents.html:50
 msgid "Full Name"
 msgstr "Nom complet"
 
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:69
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:152
-#: app14_profile/templates/app14_profile/profile.html:101
-#: app14_profile/templates/app14_profile/profile.html:206
+#: app14_profile/templates/app14_profile/profile.html:104
+#: app14_profile/templates/app14_profile/profile.html:209
 #: app5_ehpad_messaging/forms.py:42 app5_ehpad_messaging/forms.py:81
 #: app5_ehpad_messaging/forms.py:138
 msgid "Email"
@@ -2304,8 +2308,8 @@ msgstr "Email"
 
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:92
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:162
-#: app14_profile/templates/app14_profile/profile.html:127
-#: app14_profile/templates/app14_profile/profile.html:221
+#: app14_profile/templates/app14_profile/profile.html:130
+#: app14_profile/templates/app14_profile/profile.html:224
 #: app4_ehpad_base/models.py:168
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/documents.html:60
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:65
@@ -2315,8 +2319,8 @@ msgstr "Date de naissance"
 
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:99
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:167
-#: app14_profile/templates/app14_profile/profile.html:135
-#: app14_profile/templates/app14_profile/profile.html:226
+#: app14_profile/templates/app14_profile/profile.html:138
+#: app14_profile/templates/app14_profile/profile.html:229
 #: app4_ehpad_base/models.py:167
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/documents.html:69
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:70
@@ -2324,17 +2328,17 @@ msgid "Birth city"
 msgstr "Ville de naissance"
 
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:107
-#: app14_profile/templates/app14_profile/profile.html:145
+#: app14_profile/templates/app14_profile/profile.html:148
 msgid "Edit profile"
 msgstr "Modifier mon profil"
 
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:108
-#: app14_profile/templates/app14_profile/profile.html:149
+#: app14_profile/templates/app14_profile/profile.html:152
 msgid "Edit password"
 msgstr "Modifier mot de passe"
 
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:117
-#: app14_profile/templates/app14_profile/profile.html:160
+#: app14_profile/templates/app14_profile/profile.html:163
 msgid "Edit information"
 msgstr "Modifier information"
 
@@ -2345,7 +2349,7 @@ msgid "About you"
 msgstr "A propos de vous"
 
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:137
-#: app14_profile/templates/app14_profile/profile.html:176
+#: app14_profile/templates/app14_profile/profile.html:179
 #: app1_base/models.py:278
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:48
 #: app5_ehpad_messaging/forms.py:183
@@ -2353,21 +2357,21 @@ msgid "Civility"
 msgstr "Civilité"
 
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:142
-#: app14_profile/templates/app14_profile/profile.html:181
+#: app14_profile/templates/app14_profile/profile.html:184
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:58
 #: app9_personnalized_project/models.py:221
 msgid "Last name"
 msgstr "Nom de famille"
 
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:147
-#: app14_profile/templates/app14_profile/profile.html:186
+#: app14_profile/templates/app14_profile/profile.html:189
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:53
 #: app9_personnalized_project/models.py:222
 msgid "First name"
 msgstr "Prénom"
 
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:172
-#: app14_profile/templates/app14_profile/profile.html:231
+#: app14_profile/templates/app14_profile/profile.html:234
 #: app4_ehpad_base/templates/app4_ehpad_base/index.html:26
 #: app4_ehpad_base/templates/app4_ehpad_base/index.html:30
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:34
@@ -2376,7 +2380,7 @@ msgid "Profile pic"
 msgstr "Photo de profil"
 
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:180
-#: app14_profile/templates/app14_profile/profile.html:239
+#: app14_profile/templates/app14_profile/profile.html:242
 msgid "National card"
 msgstr "Carte nationale"
 
@@ -2385,22 +2389,22 @@ msgid "Living location"
 msgstr "Lieu de vie"
 
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:198
-#: app14_profile/templates/app14_profile/profile.html:196
+#: app14_profile/templates/app14_profile/profile.html:199
 msgid "Postcode"
 msgstr "Code postal"
 
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:210
-#: app14_profile/templates/app14_profile/profile.html:252
+#: app14_profile/templates/app14_profile/profile.html:255
 msgid "Save changes"
 msgstr "Enregistrer les changements"
 
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:229
-#: app14_profile/templates/app14_profile/profile.html:271
+#: app14_profile/templates/app14_profile/profile.html:274
 msgid "My payslips"
 msgstr "Mes fiches de paies"
 
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:233
-#: app14_profile/templates/app14_profile/profile.html:275
+#: app14_profile/templates/app14_profile/profile.html:278
 msgid "Payslip"
 msgstr "Fiche de paie"
 
@@ -2410,12 +2414,12 @@ msgid "Download"
 msgstr "Télécharger"
 
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:238
-#: app14_profile/templates/app14_profile/profile.html:282
+#: app14_profile/templates/app14_profile/profile.html:285
 msgid "A problem"
 msgstr "Un problème"
 
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:242
-#: app14_profile/templates/app14_profile/profile.html:286
+#: app14_profile/templates/app14_profile/profile.html:289
 msgid "Contact HR"
 msgstr "Contact RH"
 
@@ -2919,14 +2923,14 @@ msgid "Confirm"
 msgstr "Confirmer"
 
 #: app14_profile/templates/app14_profile/profile.html:56
-#: app14_profile/templates/app14_profile/profile.html:216
+#: app14_profile/templates/app14_profile/profile.html:219
 #: app4_ehpad_base/models.py:160 app5_ehpad_messaging/forms.py:264
 msgid "Family bond"
 msgstr "Lien familial"
 
-#: app14_profile/templates/app14_profile/profile.html:144
-#: app14_profile/templates/app14_profile/profile.html:148
-#: app14_profile/templates/app14_profile/profile.html:276
+#: app14_profile/templates/app14_profile/profile.html:147
+#: app14_profile/templates/app14_profile/profile.html:151
+#: app14_profile/templates/app14_profile/profile.html:279
 msgid "Download icon"
 msgstr "Icone Télécharger"
 
@@ -6934,7 +6938,12 @@ msgstr ""
 msgid "list of residents whose laundry is washed by the nursing home"
 msgstr "liste des résidents dont le linge est lavé par la maison de repos"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:45
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:41
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:70
+msgid "None"
+msgstr "Aucun(e)"
+
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:49
 msgid "list of residents whose laundry is marked by the nursing home"
 msgstr "liste des résidents dont le linge est marqué par la maison de repos"
 
@@ -8155,8 +8164,8 @@ msgid "Read and approved, good for joint surety"
 msgstr "Lu et approuvé, bon pour caution solidaire"
 
 #: app4_ehpad_base/views_personalized_documents.py:116
-msgid "{error}, {_('code error user room')}"
-msgstr ""
+msgid "code error user room"
+msgstr "erreur de code chambre"
 
 #: app5_ehpad_messaging/forms.py:24 app5_ehpad_messaging/forms.py:63
 #: app5_ehpad_messaging/forms.py:120
@@ -9008,8 +9017,8 @@ msgstr "Les référents"
 msgid "Survey type"
 msgstr "Type de sondage"
 
-#: app8_survey/models.py:81 app8_survey/templates/app8_survey/dashboard.html:16
-#: app8_survey/templates/app8_survey/dashboard.html:30
+#: app8_survey/models.py:81 app8_survey/templates/app8_survey/dashboard.html:20
+#: app8_survey/templates/app8_survey/dashboard.html:35
 msgid "Target"
 msgstr "Cible"
 
@@ -9052,18 +9061,22 @@ msgstr "Taux"
 msgid "Overall satisfaction rate"
 msgstr "Taux de satisfaction global"
 
-#: app8_survey/templates/app8_survey/dashboard.html:10
+#: app8_survey/templates/app8_survey/dashboard.html:9
+msgid "No current poll"
+msgstr "Aucun sondage en cours"
+
+#: app8_survey/templates/app8_survey/dashboard.html:14
 msgid "Active poll"
 msgid_plural "Active polls"
 msgstr[0] "Sondage actif"
 msgstr[1] "Sondages actifs"
 
-#: app8_survey/templates/app8_survey/dashboard.html:15
-#: app8_survey/templates/app8_survey/dashboard.html:29
+#: app8_survey/templates/app8_survey/dashboard.html:19
+#: app8_survey/templates/app8_survey/dashboard.html:34
 msgid "Questionnaire"
 msgstr "Questionnaire"
 
-#: app8_survey/templates/app8_survey/dashboard.html:24
+#: app8_survey/templates/app8_survey/dashboard.html:29
 msgid "Inactive poll"
 msgid_plural "Inactive polls"
 msgstr[0] "Sondage inactif"
