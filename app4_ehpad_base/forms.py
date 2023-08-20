@@ -149,8 +149,7 @@ class NewEntreeForm(forms.ModelForm):
 
 class NewMainDishForm(forms.ModelForm):
     id = forms.CharField(widget=forms.HiddenInput, required=False)
-    price_cents = forms.FloatField(required=False, min_value=0.00, initial=0.00, label=_('Price'),
-                                   widget=forms.NumberInput(attrs={'step': '0.01'}))
+    price_cents = forms.FloatField(required=False, min_value=0.00, initial=0.00, label=_('Price'), widget=forms.NumberInput(attrs={'step': '0.01', 'class': 'w-100'}))
     name = forms.CharField(required=False, label=_('Name'))
 
     def __init__(self, *args, **kwargs):
@@ -190,8 +189,7 @@ class NewMainDishForm(forms.ModelForm):
 
 class NewDessertForm(forms.ModelForm):
     id = forms.CharField(widget=forms.HiddenInput, required=False)
-    price_cents = forms.FloatField(required=False, min_value=0.00, initial=0.00, label=_('Price'),
-                                   widget=forms.NumberInput(attrs={'step': '0.01'}))
+    price_cents = forms.FloatField(required=False, min_value=0.00, initial=0.00, label=_('Price'), widget=forms.NumberInput(attrs={'step': '0.01', 'class': 'w-100'}))
     name = forms.CharField(required=False, label=_('Name'))
 
     def __init__(self, *args, **kwargs):
@@ -231,8 +229,7 @@ class NewDessertForm(forms.ModelForm):
 
 class NewAccompanimentForm(forms.ModelForm):
     id = forms.CharField(widget=forms.HiddenInput, required=False)
-    price_cents = forms.FloatField(required=False, min_value=0.00, initial=0.00, label=_('Price'),
-                                   widget=forms.NumberInput(attrs={'step': '0.01'}))
+    price_cents = forms.FloatField(required=False, min_value=0.00, initial=0.00, label=_('Price'), widget=forms.NumberInput(attrs={'step': '0.01', 'class': 'w-100'}))
     name = forms.CharField(required=False, label=_('Name'))
 
     def __init__(self, *args, **kwargs):

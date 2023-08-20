@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-16 17:38+0200\n"
+"POT-Creation-Date: 2023-08-20 15:42+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,9 +44,9 @@ msgstr "Praticien"
 #: app0_access/models.py:20
 #: app13_resident/templates/app13_resident/test.html:182
 #: app13_resident/templates/app13_resident/test.html:199
-#: app4_ehpad_base/models.py:568 app4_ehpad_base/models.py:624
-#: app4_ehpad_base/models.py:648 app4_ehpad_base/models.py:690
-#: app4_ehpad_base/models.py:786 app4_ehpad_base/models.py:813
+#: app4_ehpad_base/models.py:567 app4_ehpad_base/models.py:619
+#: app4_ehpad_base/models.py:643 app4_ehpad_base/models.py:685
+#: app4_ehpad_base/models.py:781 app4_ehpad_base/models.py:808
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_pdf.html:29
 #: app4_ehpad_base/templates/app4_ehpad_base/menu_of_the_day.html:49
 #: app4_ehpad_base/templates/app4_ehpad_base/menu_of_the_day.html:88
@@ -105,7 +105,7 @@ msgstr "Gestion des payes"
 msgid "Can make pay sheet "
 msgstr "Peut faire les feuilles de paye"
 
-#: app0_access/models.py:39 app4_ehpad_base/models.py:870
+#: app0_access/models.py:39 app4_ehpad_base/models.py:862
 msgid "Payroll"
 msgstr "Paie"
 
@@ -436,7 +436,7 @@ msgstr "Fermer"
 
 #: app0_access/templates/app0_access/modify_group.html:76
 #: app11_quality/models.py:68 app11_quality/models.py:75 app1_base/models.py:58
-#: app1_base/utils.py:213 app4_ehpad_base/models.py:623
+#: app1_base/utils.py:213 app4_ehpad_base/models.py:618
 msgid "User"
 msgstr "Utilisateur"
 
@@ -539,7 +539,7 @@ msgstr "Annuler"
 #: app4_ehpad_base/templates/app4_ehpad_base/create_account.html:11
 #: app4_ehpad_base/templates/app4_ehpad_base/create_post.html:117
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_group_reservation.html:34
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:29
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:27
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_menu.html:37
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:42
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:94
@@ -660,7 +660,7 @@ msgid "User name"
 msgstr "Nom d'utilisateur"
 
 #: app0_access/templates/app0_access/select_user.html:60
-#: app4_ehpad_base/models.py:816 app8_survey/models.py:89
+#: app4_ehpad_base/models.py:811 app8_survey/models.py:89
 #: app9_personnalized_project/models.py:92
 msgid "Is active"
 msgstr "Est actif"
@@ -668,8 +668,8 @@ msgstr "Est actif"
 #: app0_access/templates/app0_access/select_user.html:72
 #: app16_portal/templates/app16_portal/index.html:104
 #: app3_messaging/views_messaging.py:142 app4_ehpad_base/forms.py:129
-#: app4_ehpad_base/forms.py:170 app4_ehpad_base/forms.py:211
-#: app4_ehpad_base/forms.py:252
+#: app4_ehpad_base/forms.py:169 app4_ehpad_base/forms.py:209
+#: app4_ehpad_base/forms.py:249
 msgid "Error"
 msgstr "Erreur"
 
@@ -862,7 +862,7 @@ msgstr "Absent"
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:13
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/documents.html:390
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:28
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:97
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:72
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:32
 #: app6_care/templates/app6_care/caregiver/care_plan_creation.html:294
 #: app6_care/templates/app6_care/caregiver/interventions_report.html:95
@@ -878,7 +878,7 @@ msgstr "M."
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:13
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/documents.html:390
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:28
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:97
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:72
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:32
 #: app6_care/templates/app6_care/caregiver/care_plan_creation.html:294
 #: app6_care/templates/app6_care/caregiver/interventions_report.html:95
@@ -1273,7 +1273,7 @@ msgstr "Image"
 
 #: app11_quality/models.py:16 app11_quality/models_qualite.py:12
 #: app11_quality/models_qualite.py:23 app11_quality/models_qualite.py:31
-#: app11_quality/models_qualite.py:75 app4_ehpad_base/forms.py:403
+#: app11_quality/models_qualite.py:75 app4_ehpad_base/forms.py:400
 #: app4_ehpad_base/models.py:498
 #: app4_ehpad_base/templates/app4_ehpad_base/public_photo.html:35
 #: app8_survey/models.py:85 app9_personnalized_project/models.py:89
@@ -1299,8 +1299,8 @@ msgstr "Spécifique"
 msgid "Content of the protocol"
 msgstr "Contenu du protocole"
 
-#: app11_quality/models.py:31 app4_ehpad_base/forms.py:415
-#: app4_ehpad_base/forms.py:424 app4_ehpad_base/models.py:506
+#: app11_quality/models.py:31 app4_ehpad_base/forms.py:412
+#: app4_ehpad_base/forms.py:421 app4_ehpad_base/models.py:506
 #: app6_care/templates/app6_care/caregiver/caregiver.html:203
 #: app6_care/templates/app6_care/caregiver/caregiver.html:206
 #: app6_care/templates/app6_care/hotel/hotel.html:85
@@ -1312,9 +1312,9 @@ msgstr "Catégorie"
 msgid "Tag"
 msgstr "Tag"
 
-#: app11_quality/models.py:46 app4_ehpad_base/models.py:573
-#: app4_ehpad_base/models.py:613 app4_ehpad_base/models.py:626
-#: app4_ehpad_base/models.py:653 app4_ehpad_base/models.py:815
+#: app11_quality/models.py:46 app4_ehpad_base/models.py:570
+#: app4_ehpad_base/models.py:608 app4_ehpad_base/models.py:621
+#: app4_ehpad_base/models.py:648 app4_ehpad_base/models.py:810
 #: app9_personnalized_project/models.py:127
 msgid "File"
 msgstr "Fichier"
@@ -1325,10 +1325,10 @@ msgstr "Flag"
 
 #: app11_quality/models.py:60 app16_portal/models.py:36
 #: app16_portal/models.py:46 app4_ehpad_base/forms.py:113
-#: app4_ehpad_base/forms.py:154 app4_ehpad_base/forms.py:195
-#: app4_ehpad_base/forms.py:236
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:44
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:68
+#: app4_ehpad_base/forms.py:153 app4_ehpad_base/forms.py:193
+#: app4_ehpad_base/forms.py:233
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:43
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:67
 #: app4_ehpad_base/views_cuisine_eval.py:1102
 #: app9_personnalized_project/signals.py:54
 msgid "Name"
@@ -2405,6 +2405,7 @@ msgstr "Mes fiches de paies"
 
 #: app12_delivery/templates/app12_delivery/composant/cardProfile.html:233
 #: app14_profile/templates/app14_profile/profile.html:278
+#: app4_ehpad_base/models.py:859
 msgid "Payslip"
 msgstr "Fiche de paie"
 
@@ -2722,9 +2723,9 @@ msgstr "Pourcentage Vat"
 
 #: app12_delivery/templates/app12_delivery/listing_benefit.html:11
 #: app1_base/models.py:194 app4_ehpad_base/forms.py:112
-#: app4_ehpad_base/forms.py:152 app4_ehpad_base/forms.py:193
-#: app4_ehpad_base/forms.py:234
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:45
+#: app4_ehpad_base/forms.py:152 app4_ehpad_base/forms.py:192
+#: app4_ehpad_base/forms.py:232
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:44
 #: app4_ehpad_base/views_cuisine_commission.py:259
 msgid "Price"
 msgstr "Prix"
@@ -2833,7 +2834,7 @@ msgstr "Plat"
 
 #: app13_resident/templates/app13_resident/test.html:171
 #: app4_ehpad_base/forms.py:75 app4_ehpad_base/models.py:389
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:18
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:17
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_select_menu.html:108
 #: app4_ehpad_base/templates/app4_ehpad_base/eval_dashboard.html:360
 #: app4_ehpad_base/templates/app4_ehpad_base/eval_dashboard.html:890
@@ -5403,7 +5404,7 @@ msgid "Main dish"
 msgstr "Plat principal"
 
 #: app4_ehpad_base/forms.py:78
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:17
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:16
 msgid "Accompaniment"
 msgstr "Accompagnement"
 
@@ -5423,42 +5424,42 @@ msgstr "Menu de remplacement"
 msgid "Write your comments here"
 msgstr "Ecrivez vos commentaires ici"
 
-#: app4_ehpad_base/forms.py:128 app4_ehpad_base/forms.py:169
-#: app4_ehpad_base/forms.py:210 app4_ehpad_base/forms.py:251
+#: app4_ehpad_base/forms.py:128 app4_ehpad_base/forms.py:168
+#: app4_ehpad_base/forms.py:208 app4_ehpad_base/forms.py:248
 msgid "already exist"
 msgstr "existe déjà"
 
-#: app4_ehpad_base/forms.py:134 app4_ehpad_base/forms.py:175
-#: app4_ehpad_base/forms.py:216 app4_ehpad_base/forms.py:257
+#: app4_ehpad_base/forms.py:134 app4_ehpad_base/forms.py:174
+#: app4_ehpad_base/forms.py:214 app4_ehpad_base/forms.py:254
 msgid "updated"
 msgstr "mis à jour"
 
 #: app4_ehpad_base/forms.py:135 app4_ehpad_base/forms.py:147
-#: app4_ehpad_base/forms.py:176 app4_ehpad_base/forms.py:188
-#: app4_ehpad_base/forms.py:217 app4_ehpad_base/forms.py:229
-#: app4_ehpad_base/forms.py:258 app4_ehpad_base/forms.py:270
+#: app4_ehpad_base/forms.py:175 app4_ehpad_base/forms.py:187
+#: app4_ehpad_base/forms.py:215 app4_ehpad_base/forms.py:227
+#: app4_ehpad_base/forms.py:255 app4_ehpad_base/forms.py:267
 #: app4_ehpad_base/views_cuisine_eval.py:298
 msgid "Success"
 msgstr "Succès"
 
-#: app4_ehpad_base/forms.py:146 app4_ehpad_base/forms.py:187
-#: app4_ehpad_base/forms.py:228 app4_ehpad_base/forms.py:269
+#: app4_ehpad_base/forms.py:146 app4_ehpad_base/forms.py:186
+#: app4_ehpad_base/forms.py:226 app4_ehpad_base/forms.py:266
 msgid "has been added to the list"
 msgstr "à été ajouté à la liste"
 
-#: app4_ehpad_base/forms.py:404 app4_ehpad_base/models.py:499
+#: app4_ehpad_base/forms.py:401 app4_ehpad_base/models.py:499
 msgid "Content"
 msgstr "Contenu"
 
-#: app4_ehpad_base/forms.py:414
+#: app4_ehpad_base/forms.py:411
 msgid "Uncheck if this post should not be visible by families"
 msgstr "Décochez si cette article ne doit pas être visible pour les familles"
 
-#: app4_ehpad_base/forms.py:415
+#: app4_ehpad_base/forms.py:412
 msgid "is public"
 msgstr "Public ?"
 
-#: app4_ehpad_base/forms.py:424 app4_ehpad_base/models.py:501
+#: app4_ehpad_base/forms.py:421 app4_ehpad_base/models.py:501
 msgid "Created the"
 msgstr "Créé le"
 
@@ -5524,7 +5525,7 @@ msgid "Granddaughter"
 msgstr "Petite-fille"
 
 #: app4_ehpad_base/models.py:145 app4_ehpad_base/models.py:238
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:170
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:155
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:425
 #: app8_survey/models.py:72
 msgid "Other"
@@ -5695,7 +5696,7 @@ msgstr "Actualités"
 msgid "Author"
 msgstr "Auteur"
 
-#: app4_ehpad_base/models.py:561 app4_ehpad_base/models.py:580
+#: app4_ehpad_base/models.py:561 app4_ehpad_base/models.py:575
 msgid "Invoice"
 msgstr "Facture EHPAD"
 
@@ -5715,272 +5716,280 @@ msgstr "Facture pharmacie"
 msgid "Other Invoice"
 msgstr "Autre facture"
 
-#: app4_ehpad_base/models.py:569
+#: app4_ehpad_base/models.py:568
 msgid "Name of invoice"
 msgstr "Nom de la facture"
 
-#: app4_ehpad_base/models.py:570
+#: app4_ehpad_base/models.py:568
+msgid "Define name for this invoice"
+msgstr "Définir le nom de cette facture"
+
+#: app4_ehpad_base/models.py:568
 msgid "Invoice EHPAD"
 msgstr "Facture EHPAD"
 
-#: app4_ehpad_base/models.py:571
+#: app4_ehpad_base/models.py:569
 msgid "Type of invoice"
 msgstr "Type de facture"
 
-#: app4_ehpad_base/models.py:574
+#: app4_ehpad_base/models.py:571
 msgid "Publication date"
 msgstr "Date de publication"
 
-#: app4_ehpad_base/models.py:576
+#: app4_ehpad_base/models.py:571
+msgid "Define the day/month/year of the invoice"
+msgstr "Définir le jour/mois/année de la facture"
+
+#: app4_ehpad_base/models.py:572
 msgid "Added by"
 msgstr "Ajouté part"
 
-#: app4_ehpad_base/models.py:598
+#: app4_ehpad_base/models.py:593
 msgid "Surety Bond"
 msgstr "Caution solidaire"
 
-#: app4_ehpad_base/models.py:599
+#: app4_ehpad_base/models.py:594
 msgid "Stay Contract"
 msgstr "Contrat de séjour"
 
-#: app4_ehpad_base/models.py:600
+#: app4_ehpad_base/models.py:595
 msgid "General Condition"
 msgstr "Conditions générales"
 
-#: app4_ehpad_base/models.py:601
+#: app4_ehpad_base/models.py:596
 msgid "Price Statement"
 msgstr "Déclaration de prix"
 
-#: app4_ehpad_base/models.py:602
+#: app4_ehpad_base/models.py:597
 msgid "Benefit"
 msgstr "Prestation"
 
-#: app4_ehpad_base/models.py:603
+#: app4_ehpad_base/models.py:598
 msgid "Endorsement"
 msgstr "Avenant"
 
-#: app4_ehpad_base/models.py:604
+#: app4_ehpad_base/models.py:599
 msgid "Rules Operation"
 msgstr "Règlement de fonctionnement"
 
-#: app4_ehpad_base/models.py:605
+#: app4_ehpad_base/models.py:600
 msgid "Conduct Charter"
 msgstr "Charte de bonne conduite"
 
-#: app4_ehpad_base/models.py:606
+#: app4_ehpad_base/models.py:601
 msgid "Reading Certificate"
 msgstr "Certificat de lecture"
 
-#: app4_ehpad_base/models.py:607
+#: app4_ehpad_base/models.py:602
 msgid "Image Authorization"
 msgstr "Droit d'image"
 
-#: app4_ehpad_base/models.py:614 app4_ehpad_base/models.py:628
-#: app4_ehpad_base/models.py:650
+#: app4_ehpad_base/models.py:609 app4_ehpad_base/models.py:623
+#: app4_ehpad_base/models.py:645
 msgid "Type of document"
 msgstr "Type de document"
 
-#: app4_ehpad_base/models.py:616 app4_ehpad_base/models.py:692
+#: app4_ehpad_base/models.py:611 app4_ehpad_base/models.py:687
 msgid "Add date"
 msgstr "Ajouter une date"
 
-#: app4_ehpad_base/models.py:647
+#: app4_ehpad_base/models.py:642
 #: app4_ehpad_base/templates/app4_ehpad_base/index.html:212
 #: app8_survey/models.py:75
 msgid "Family"
 msgstr "Famille"
 
-#: app4_ehpad_base/models.py:655
+#: app4_ehpad_base/models.py:650
 msgid "Envelope id"
 msgstr "Envelope id"
 
-#: app4_ehpad_base/models.py:656
+#: app4_ehpad_base/models.py:651
 msgid "Document id"
 msgstr "Document id"
 
-#: app4_ehpad_base/models.py:657
+#: app4_ehpad_base/models.py:652
 msgid "Signature date"
 msgstr "Date de la signature"
 
-#: app4_ehpad_base/models.py:658
+#: app4_ehpad_base/models.py:653
 msgid "Signer user id"
 msgstr "identifiant du signataire"
 
-#: app4_ehpad_base/models.py:666
+#: app4_ehpad_base/models.py:661
 msgid "yes"
 msgstr "oui"
 
-#: app4_ehpad_base/models.py:667
+#: app4_ehpad_base/models.py:662
 msgid "no"
 msgstr "non"
 
-#: app4_ehpad_base/models.py:670
+#: app4_ehpad_base/models.py:665
 msgid "Laundry labeled by family"
 msgstr "Linge étiqueté par la famille"
 
-#: app4_ehpad_base/models.py:671
+#: app4_ehpad_base/models.py:666
 msgid "Laundry labeled by residence"
 msgstr "Linge étiqueté par la résidence"
 
-#: app4_ehpad_base/models.py:674
+#: app4_ehpad_base/models.py:669
 msgid "Laundry washed by family"
 msgstr "Linge lavé par la famille"
 
-#: app4_ehpad_base/models.py:675
+#: app4_ehpad_base/models.py:670
 msgid "Laundry washed by residence"
 msgstr "Linge lavé par la résidence"
 
-#: app4_ehpad_base/models.py:678
+#: app4_ehpad_base/models.py:673
 msgid "top"
 msgstr "Arrêter"
 
-#: app4_ehpad_base/models.py:678
+#: app4_ehpad_base/models.py:673
 msgid "Top"
 msgstr "Haut"
 
-#: app4_ehpad_base/models.py:679
+#: app4_ehpad_base/models.py:674
 msgid "bottom"
 msgstr "Bas"
 
-#: app4_ehpad_base/models.py:679
+#: app4_ehpad_base/models.py:674
 msgid "Bottom"
 msgstr "Bas"
 
-#: app4_ehpad_base/models.py:680
+#: app4_ehpad_base/models.py:675
 msgid "top bottom"
 msgstr "haut bas"
 
-#: app4_ehpad_base/models.py:680
+#: app4_ehpad_base/models.py:675
 msgid "Top and Bottom"
 msgstr "Haut et bas"
 
-#: app4_ehpad_base/models.py:681 app4_ehpad_base/models.py:687
+#: app4_ehpad_base/models.py:676 app4_ehpad_base/models.py:682
 msgid "does not have"
 msgstr "N'en possède pas"
 
-#: app4_ehpad_base/models.py:681 app4_ehpad_base/models.py:687
+#: app4_ehpad_base/models.py:676 app4_ehpad_base/models.py:682
 msgid "Does not have one"
 msgstr "N'en possède pas"
 
-#: app4_ehpad_base/models.py:684
+#: app4_ehpad_base/models.py:679
 msgid "left"
 msgstr "gauche"
 
-#: app4_ehpad_base/models.py:684
+#: app4_ehpad_base/models.py:679
 msgid "Left"
 msgstr "Gauche"
 
-#: app4_ehpad_base/models.py:685
+#: app4_ehpad_base/models.py:680
 msgid "right"
 msgstr "Droit"
 
-#: app4_ehpad_base/models.py:685
+#: app4_ehpad_base/models.py:680
 msgid "Right"
 msgstr "Droit"
 
-#: app4_ehpad_base/models.py:686
+#: app4_ehpad_base/models.py:681
 msgid "right left"
 msgstr "droite gauche"
 
-#: app4_ehpad_base/models.py:686
+#: app4_ehpad_base/models.py:681
 msgid "Right and Left"
 msgstr "Droit et Gauche"
 
-#: app4_ehpad_base/models.py:691
+#: app4_ehpad_base/models.py:686
 msgid "Nurses"
 msgstr "Infirmier"
 
-#: app4_ehpad_base/models.py:695
+#: app4_ehpad_base/models.py:690
 msgid "Laundry mark"
 msgstr "Linge étiqueté"
 
-#: app4_ehpad_base/models.py:698
+#: app4_ehpad_base/models.py:693
 msgid "Laundry washed"
 msgstr "Linge lavé"
 
-#: app4_ehpad_base/models.py:701
+#: app4_ehpad_base/models.py:696
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:36
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:59
 msgid "Dental equipment"
 msgstr "Matériel dentaire"
 
-#: app4_ehpad_base/models.py:704
+#: app4_ehpad_base/models.py:699
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:35
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:58
 msgid "Hearing equipment"
 msgstr "Appareil auditif"
 
-#: app4_ehpad_base/models.py:706
+#: app4_ehpad_base/models.py:701
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:37
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:60
 msgid "Cane"
 msgstr "Canne"
 
-#: app4_ehpad_base/models.py:707
+#: app4_ehpad_base/models.py:702
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:39
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:62
 msgid "Walker"
 msgstr "Déambulateur"
 
-#: app4_ehpad_base/models.py:708
+#: app4_ehpad_base/models.py:703
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:40
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:63
 msgid "Glasses"
 msgstr "Lunettes"
 
-#: app4_ehpad_base/models.py:709
+#: app4_ehpad_base/models.py:704
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:38
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:61
 msgid "Wheelchair"
 msgstr "Fauteuil roulant"
 
-#: app4_ehpad_base/models.py:729
+#: app4_ehpad_base/models.py:724
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:57
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:80
 msgid "Pants"
 msgstr "Pantalon"
 
-#: app4_ehpad_base/models.py:731
+#: app4_ehpad_base/models.py:726
 msgid "Skirt and dress"
 msgstr "Jupe et robe"
 
-#: app4_ehpad_base/models.py:733
+#: app4_ehpad_base/models.py:728
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:58
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:81
 msgid "Pull"
 msgstr "Pull"
 
-#: app4_ehpad_base/models.py:734
+#: app4_ehpad_base/models.py:729
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:49
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:72
 msgid "Jacket"
 msgstr "Veste"
 
-#: app4_ehpad_base/models.py:735
+#: app4_ehpad_base/models.py:730
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:50
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:73
 msgid "Head cover"
 msgstr "Couvre-chef"
 
-#: app4_ehpad_base/models.py:736
+#: app4_ehpad_base/models.py:731
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:61
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:84
 msgid "Long sleeve sweater"
 msgstr "Chandaille à manches longues"
 
-#: app4_ehpad_base/models.py:737
+#: app4_ehpad_base/models.py:732
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:62
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:85
 msgid "Short sleeve sweater"
 msgstr "Chandaille à manches courtes"
 
-#: app4_ehpad_base/models.py:738
+#: app4_ehpad_base/models.py:733
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:59
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:82
 msgid "Long sleeve t-shirt"
 msgstr "T-shirt à manches longues"
 
-#: app4_ehpad_base/models.py:739
+#: app4_ehpad_base/models.py:734
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:60
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:76
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:83
@@ -5988,35 +5997,35 @@ msgstr "T-shirt à manches longues"
 msgid "Short sleeve t-shirt"
 msgstr "T-shirt manches courtes"
 
-#: app4_ehpad_base/models.py:741
+#: app4_ehpad_base/models.py:736
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:89
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:112
 msgid "Socks"
 msgstr "Chaussettes"
 
-#: app4_ehpad_base/models.py:742
+#: app4_ehpad_base/models.py:737
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:75
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:98
 msgid "Slipper"
 msgstr "Pantoufle"
 
-#: app4_ehpad_base/models.py:743
+#: app4_ehpad_base/models.py:738
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:47
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:70
 msgid "Summer shoe"
 msgstr "Chaussure d'été"
 
-#: app4_ehpad_base/models.py:744
+#: app4_ehpad_base/models.py:739
 msgid "Winter  shoe"
 msgstr "Chaussure d'hiver"
 
-#: app4_ehpad_base/models.py:746
+#: app4_ehpad_base/models.py:741
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:86
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:109
 msgid "Bra"
 msgstr "Soutien-gorge"
 
-#: app4_ehpad_base/models.py:747
+#: app4_ehpad_base/models.py:742
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:81
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:83
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:104
@@ -6024,273 +6033,286 @@ msgstr "Soutien-gorge"
 msgid "Underwear"
 msgstr "Sous-vêtement"
 
-#: app4_ehpad_base/models.py:749
+#: app4_ehpad_base/models.py:744
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:73
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:96
 msgid "Nightdress"
 msgstr "Chemise de nuit"
 
-#: app4_ehpad_base/models.py:750
+#: app4_ehpad_base/models.py:745
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:74
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:97
 msgid "Dressing gown"
 msgstr "Robe de chambre"
 
-#: app4_ehpad_base/models.py:755 app4_ehpad_base/models.py:762
+#: app4_ehpad_base/models.py:750 app4_ehpad_base/models.py:757
 msgid "normal"
 msgstr "Normal"
 
-#: app4_ehpad_base/models.py:755 app4_ehpad_base/models.py:762
+#: app4_ehpad_base/models.py:750 app4_ehpad_base/models.py:757
 msgid "Normal"
 msgstr "Normal"
 
-#: app4_ehpad_base/models.py:756
+#: app4_ehpad_base/models.py:751
 msgid "diabetic"
 msgstr "diabétique"
 
-#: app4_ehpad_base/models.py:756
+#: app4_ehpad_base/models.py:751
 msgid "Diabetic"
 msgstr "Diabétique"
 
-#: app4_ehpad_base/models.py:757
+#: app4_ehpad_base/models.py:752
 msgid "without salt"
 msgstr "Sans sel"
 
-#: app4_ehpad_base/models.py:757
+#: app4_ehpad_base/models.py:752
 msgid "Without salt"
 msgstr "Sans sel"
 
-#: app4_ehpad_base/models.py:758
+#: app4_ehpad_base/models.py:753
 msgid "without residue"
 msgstr "sans résidu"
 
-#: app4_ehpad_base/models.py:758
+#: app4_ehpad_base/models.py:753
 msgid "Without residue"
 msgstr "Sans résidu"
 
-#: app4_ehpad_base/models.py:759
+#: app4_ehpad_base/models.py:754
 msgid "high protein"
 msgstr "riche en protéines"
 
-#: app4_ehpad_base/models.py:759
+#: app4_ehpad_base/models.py:754
 msgid "High protein"
 msgstr "Riche en protéines"
 
-#: app4_ehpad_base/models.py:763
+#: app4_ehpad_base/models.py:758
 msgid "minced"
 msgstr "hachée"
 
-#: app4_ehpad_base/models.py:763
+#: app4_ehpad_base/models.py:758
 msgid "Minced"
 msgstr "Hachée"
 
-#: app4_ehpad_base/models.py:764
+#: app4_ehpad_base/models.py:759
 msgid "mixed"
 msgstr "mixé"
 
-#: app4_ehpad_base/models.py:764
+#: app4_ehpad_base/models.py:759
 msgid "Mixed"
 msgstr "Mixé"
 
-#: app4_ehpad_base/models.py:765
+#: app4_ehpad_base/models.py:760
 msgid "liquid"
 msgstr "liquide"
 
-#: app4_ehpad_base/models.py:765
+#: app4_ehpad_base/models.py:760
 msgid "Liquid"
 msgstr "Liquide"
 
-#: app4_ehpad_base/models.py:766
+#: app4_ehpad_base/models.py:761
 msgid "gelled waters"
 msgstr "eaux gélifiées"
 
-#: app4_ehpad_base/models.py:766
+#: app4_ehpad_base/models.py:761
 msgid "Gelled waters"
 msgstr "Eaux gélifiées"
 
-#: app4_ehpad_base/models.py:770
+#: app4_ehpad_base/models.py:765
 msgid "gluten"
 msgstr "gluten"
 
-#: app4_ehpad_base/models.py:770
+#: app4_ehpad_base/models.py:765
 msgid "Gluten"
 msgstr "Gluten"
 
-#: app4_ehpad_base/models.py:771
+#: app4_ehpad_base/models.py:766
 msgid "peanut"
 msgstr "arachide"
 
-#: app4_ehpad_base/models.py:771
+#: app4_ehpad_base/models.py:766
 msgid "Peanut"
 msgstr "Arachide"
 
-#: app4_ehpad_base/models.py:772
+#: app4_ehpad_base/models.py:767
 msgid "milk"
 msgstr "lait"
 
-#: app4_ehpad_base/models.py:772
+#: app4_ehpad_base/models.py:767
 msgid "Milk"
 msgstr "Lait"
 
-#: app4_ehpad_base/models.py:773
+#: app4_ehpad_base/models.py:768
 msgid "eggs"
 msgstr "oeufs"
 
-#: app4_ehpad_base/models.py:773
+#: app4_ehpad_base/models.py:768
 msgid "Eggs"
 msgstr "Oeufs"
 
-#: app4_ehpad_base/models.py:774
+#: app4_ehpad_base/models.py:769
 msgid "nut"
 msgstr "noix"
 
-#: app4_ehpad_base/models.py:774
+#: app4_ehpad_base/models.py:769
 msgid "Nut"
 msgstr "Noix"
 
-#: app4_ehpad_base/models.py:775
+#: app4_ehpad_base/models.py:770
 msgid "molluscs"
 msgstr "mollusques"
 
-#: app4_ehpad_base/models.py:775
+#: app4_ehpad_base/models.py:770
 msgid "Molluscs"
 msgstr "Mollusques"
 
-#: app4_ehpad_base/models.py:776
+#: app4_ehpad_base/models.py:771
 msgid "seafood"
 msgstr "fruit de mer"
 
-#: app4_ehpad_base/models.py:776
+#: app4_ehpad_base/models.py:771
 msgid "Seafood"
 msgstr "Fruit de mer"
 
-#: app4_ehpad_base/models.py:777
+#: app4_ehpad_base/models.py:772
 msgid "mustard"
 msgstr "moutarde"
 
-#: app4_ehpad_base/models.py:777
+#: app4_ehpad_base/models.py:772
 msgid "Mustard"
 msgstr "Moutarde"
 
-#: app4_ehpad_base/models.py:778
+#: app4_ehpad_base/models.py:773
 msgid "fish"
 msgstr "poisson"
 
-#: app4_ehpad_base/models.py:778
+#: app4_ehpad_base/models.py:773
 msgid "Fish"
 msgstr "Poissons"
 
-#: app4_ehpad_base/models.py:779
+#: app4_ehpad_base/models.py:774
 msgid "celery"
 msgstr "céleri"
 
-#: app4_ehpad_base/models.py:779
+#: app4_ehpad_base/models.py:774
 msgid "Celery"
 msgstr "Céleri"
 
-#: app4_ehpad_base/models.py:780
+#: app4_ehpad_base/models.py:775
 msgid "soy"
 msgstr "soja"
 
-#: app4_ehpad_base/models.py:780
+#: app4_ehpad_base/models.py:775
 msgid "Soy"
 msgstr "Soja"
 
-#: app4_ehpad_base/models.py:781
+#: app4_ehpad_base/models.py:776
 msgid "sulphites"
 msgstr "sulfites"
 
-#: app4_ehpad_base/models.py:781
+#: app4_ehpad_base/models.py:776
 msgid "Sulphites"
 msgstr "Sulfites"
 
-#: app4_ehpad_base/models.py:782
+#: app4_ehpad_base/models.py:777
 msgid "sesame"
 msgstr "sésame"
 
-#: app4_ehpad_base/models.py:782
+#: app4_ehpad_base/models.py:777
 msgid "Sesame"
 msgstr "Sésame"
 
-#: app4_ehpad_base/models.py:783
+#: app4_ehpad_base/models.py:778
 msgid "lupine"
 msgstr "lupin"
 
-#: app4_ehpad_base/models.py:783
+#: app4_ehpad_base/models.py:778
 msgid "Lupine"
 msgstr "Lupin"
 
-#: app4_ehpad_base/models.py:788
+#: app4_ehpad_base/models.py:783
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/diet.html:35
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/documents.html:336
 msgid "Type of diet"
 msgstr "Type de régime"
 
-#: app4_ehpad_base/models.py:790
+#: app4_ehpad_base/models.py:785
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/diet.html:40
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/documents.html:347
 msgid "Food option"
 msgstr "Restauration"
 
-#: app4_ehpad_base/models.py:791
+#: app4_ehpad_base/models.py:786
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/diet.html:45
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/documents.html:358
 msgid "Allergies"
 msgstr "Allergies"
 
-#: app4_ehpad_base/models.py:808
+#: app4_ehpad_base/models.py:803
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/documents.html:230
 msgid "National Card"
 msgstr "Carte Nationale"
 
-#: app4_ehpad_base/models.py:809
+#: app4_ehpad_base/models.py:804
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/documents.html:231
 msgid "Vital Card"
 msgstr "Carte Vitale"
 
-#: app4_ehpad_base/models.py:810
+#: app4_ehpad_base/models.py:805
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/documents.html:232
 msgid "Mutual Card"
 msgstr "Carte Mutuelle"
 
-#: app4_ehpad_base/models.py:811
+#: app4_ehpad_base/models.py:806
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/documents.html:233
 msgid "Blood Card"
 msgstr "Carte de groupe sanguin"
 
-#: app4_ehpad_base/models.py:814
+#: app4_ehpad_base/models.py:809
 msgid "Type of card"
 msgstr "Type de carte"
 
-#: app4_ehpad_base/models.py:829
+#: app4_ehpad_base/models.py:824
 msgid "Visio Call"
 msgstr "Appel visio"
 
-#: app4_ehpad_base/models.py:830
+#: app4_ehpad_base/models.py:825
 msgid "Back to Index"
 msgstr "Retour à l'acceuil"
 
-#: app4_ehpad_base/models.py:884
+#: app4_ehpad_base/models.py:857
+msgid "Name of employee"
+msgstr "Nom de l'employé"
+
+#: app4_ehpad_base/models.py:858
+msgid "Date of payslip"
+msgstr "Date du bulletin de paie"
+
+#: app4_ehpad_base/models.py:858
+msgid "Chose a date with correct month of payslip, dont mind the day"
+msgstr ""
+"Choisissez une date avec le bon mois de fiche de paie, peu importe le jour"
+
+#: app4_ehpad_base/models.py:875
 msgid "State of fixtures"
 msgstr "Etat des lieux"
 
-#: app4_ehpad_base/models.py:885
+#: app4_ehpad_base/models.py:876
 msgid "Smoke disinfection"
 msgstr "Désinfection fumigène"
 
-#: app4_ehpad_base/models.py:886
+#: app4_ehpad_base/models.py:877
 msgid "Painting done"
 msgstr "Peinture faite"
 
-#: app4_ehpad_base/models.py:887
+#: app4_ehpad_base/models.py:878
 msgid "Menage done"
 msgstr "Ménage fait"
 
-#: app4_ehpad_base/models.py:888
+#: app4_ehpad_base/models.py:879
 msgid "Bed done"
 msgstr "Lit fait"
 
-#: app4_ehpad_base/models.py:894
+#: app4_ehpad_base/models.py:885
 msgid "Empty Room Cleaned"
 msgstr "Chambre vide nettoyée"
 
@@ -6613,23 +6635,23 @@ msgstr "Télécharger document docx"
 msgid "Select type"
 msgstr "Selectionnez le type"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:48
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:47
 msgid "Alphabetical order"
 msgstr "Ordre alphabétique"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:49
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:48
 msgid "Reverse alphabetic"
 msgstr "Alphabétique inversé"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:50
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:49
 msgid "Higher price"
 msgstr "Prix le plus élevé"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:51
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:50
 msgid "Lower price"
 msgstr "Plus le moins élevé"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:60
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:59
 #: app6_care/templates/app6_care/caregiver/treatments_plan.html:91
 #: app6_care/templates/app6_care/caregiver/treatments_plan.html:92
 msgid "Edit"
@@ -6894,35 +6916,35 @@ msgstr "Option de lavage"
 msgid "Labeling option"
 msgstr "Option d'étiquetage"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:96
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:71
 msgid "Bills of"
 msgstr "Les factures de"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:106
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:81
 msgid "You have access to the invoices and can download them"
 msgstr "Vous avez accès aux factures et pouvez les télécharger"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:113
-msgid "Accommodation Bill"
-msgstr "Facture d'hébergement"
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:88
+msgid "Accommodation"
+msgstr "Hébergement"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:120
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:97
 msgid "See all of my invoice"
 msgstr "Voir toutes mes factures"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:127
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:104
 msgid "My invoice since"
 msgstr "Mes facture depuis le"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:143
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:122
 msgid "Pharmacy"
 msgstr "Pharmacie"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:152
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:133
 msgid "Hairdresser"
 msgstr "Coiffeur"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:161
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/invoice.html:144
 msgid "Pedicure"
 msgstr "Pédicure"
 
