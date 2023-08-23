@@ -713,7 +713,6 @@ def get_global_notation(list_eval, option):
 @login_required
 @permission_required('app0_access.view_cuisine')
 def dashboard_eval(request, res_id):
-    print(request.POST)
     res_id = int(res_id)
     context = {}
     if request.method == 'POST':
@@ -1003,7 +1002,7 @@ def group_reservation(request):
                 else:
                     context.update(get_message('error'))
     if not form:
-        form = BookingGroupForm(initial={'date': timezone.localdate(), 'lunch': True})
+        form = BookingGroupForm(initial={'date': timezone.localdate().isoformat(), 'lunch': True})
     context['form'] = form
     context['next_booking'] = MealBooking.objects.filter(
         owner__user__groups__permissions__codename='view_groupreservation',

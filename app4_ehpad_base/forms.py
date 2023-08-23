@@ -436,7 +436,7 @@ class PublicPhoto(forms.ModelForm):
 
 
 class BookingGroupForm(forms.ModelForm):
-    date = forms.DateField(widget=forms.DateInput(attrs={'readonly': True, 'class': 'text-center'}))
+    date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'class': 'text-center'}))
     lunch = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class': 'btn-check'}), required=False)
     dinner = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class': 'btn-check'}), required=False)
     other_guests = forms.IntegerField(widget=forms.NumberInput(attrs={'min': 1, 'value': 1}))
