@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-20 15:42+0200\n"
+"POT-Creation-Date: 2023-08-23 09:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -232,7 +232,7 @@ msgid "Can send mail to prospects"
 msgstr "Questo un email test"
 
 #: app0_access/models.py:59
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:46
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:45
 msgid "Group reservation"
 msgstr "Prenotazione di gruppo"
 
@@ -564,7 +564,7 @@ msgstr "Utenti"
 #: app12_delivery/templates/app12_delivery/contract_delivery.html:81
 #: app15_calendar/templates/app15_calendar/calendar.html:183
 #: app3_messaging/templates/app3_messaging/custom_group_modify.html:73
-#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:164
+#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:166
 #: app3_messaging/templates/app3_messaging/internal_emailing_mailbox_conv.html:104
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_group_reservation.html:61
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/documents.html:261
@@ -593,7 +593,7 @@ msgstr "Cancellare"
 #: app1_base/templates/registration/password_reset_form.html:100
 #: app1_base/templates/registration/password_reset_sent.html:53
 #: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:23
-#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:155
+#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:157
 #: app3_messaging/templates/app3_messaging/internal_emailing_mailbox_conv.html:95
 #: app3_messaging/templates/app3_messaging/mails_template_manage.html:44
 #: app3_messaging/templates/app3_messaging/mails_template_send.html:182
@@ -642,9 +642,9 @@ msgstr "Cancellare"
 #: app4_ehpad_base/templates/app4_ehpad_base/create_account.html:11
 #: app4_ehpad_base/templates/app4_ehpad_base/create_post.html:117
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_group_reservation.html:34
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:27
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:28
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_menu.html:37
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:42
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:41
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:94
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/diet.html:52
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:84
@@ -1190,84 +1190,84 @@ msgid "OK"
 msgstr ""
 
 #: app10_social_activities/templates/app10_social_activities/historic.html:37
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:21
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:20
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_pdf.html:12
 #: app9_personnalized_project/signals.py:17
 msgid "January"
 msgstr "Gennaio"
 
 #: app10_social_activities/templates/app10_social_activities/historic.html:38
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:22
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:21
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_pdf.html:13
 #: app9_personnalized_project/signals.py:17
 msgid "February"
 msgstr "Febbraio"
 
 #: app10_social_activities/templates/app10_social_activities/historic.html:39
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:23
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:22
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_pdf.html:14
 #: app9_personnalized_project/signals.py:17
 msgid "March"
 msgstr "Marzo"
 
 #: app10_social_activities/templates/app10_social_activities/historic.html:40
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:24
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:23
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_pdf.html:15
 #: app9_personnalized_project/signals.py:17
 msgid "April"
 msgstr "Aprile"
 
 #: app10_social_activities/templates/app10_social_activities/historic.html:41
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:25
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:24
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_pdf.html:16
 #: app9_personnalized_project/signals.py:17
 msgid "May"
 msgstr "Maggio"
 
 #: app10_social_activities/templates/app10_social_activities/historic.html:42
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:26
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:25
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_pdf.html:17
 #: app9_personnalized_project/signals.py:17
 msgid "June"
 msgstr "Giugno"
 
 #: app10_social_activities/templates/app10_social_activities/historic.html:43
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:27
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:26
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_pdf.html:18
 #: app9_personnalized_project/signals.py:17
 msgid "July"
 msgstr "Luglio"
 
 #: app10_social_activities/templates/app10_social_activities/historic.html:44
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:28
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:27
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_pdf.html:19
 #: app9_personnalized_project/signals.py:18
 msgid "August"
 msgstr "Agosto"
 
 #: app10_social_activities/templates/app10_social_activities/historic.html:45
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:29
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:28
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_pdf.html:20
 #: app9_personnalized_project/signals.py:18
 msgid "September"
 msgstr "Septembre"
 
 #: app10_social_activities/templates/app10_social_activities/historic.html:46
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:30
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:29
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_pdf.html:21
 #: app9_personnalized_project/signals.py:18
 msgid "October"
 msgstr "Ottobre"
 
 #: app10_social_activities/templates/app10_social_activities/historic.html:47
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:31
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:30
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_pdf.html:22
 #: app9_personnalized_project/signals.py:18
 msgid "November"
 msgstr "Novembre"
 
 #: app10_social_activities/templates/app10_social_activities/historic.html:48
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:32
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:31
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_pdf.html:23
 #: app9_personnalized_project/signals.py:18
 msgid "December"
@@ -1556,8 +1556,8 @@ msgstr ""
 #: app16_portal/models.py:46 app4_ehpad_base/forms.py:113
 #: app4_ehpad_base/forms.py:153 app4_ehpad_base/forms.py:193
 #: app4_ehpad_base/forms.py:233
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:43
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:67
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:42
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:72
 #: app4_ehpad_base/views_cuisine_eval.py:1102
 #: app9_personnalized_project/signals.py:54
 msgid "Name"
@@ -2630,7 +2630,7 @@ msgstr "Contatto"
 
 #: app12_delivery/templates/app12_delivery/account_delivery.html:143
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_menu_commission.html:44
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:62
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:61
 msgid "to"
 msgstr "A"
 
@@ -3242,7 +3242,7 @@ msgstr ""
 #: app1_base/models.py:194 app4_ehpad_base/forms.py:112
 #: app4_ehpad_base/forms.py:152 app4_ehpad_base/forms.py:192
 #: app4_ehpad_base/forms.py:232
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:44
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:43
 #: app4_ehpad_base/views_cuisine_commission.py:259
 msgid "Price"
 msgstr ""
@@ -3322,7 +3322,7 @@ msgstr "Entra il tuo nuovo numero di telefono"
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_group_reservation.html:20
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_group_reservation.html:41
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_group_reservation.html:49
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:98
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:97
 #: app4_ehpad_base/templates/app4_ehpad_base/eval_dashboard.html:64
 #: app4_ehpad_base/templates/app4_ehpad_base/index.html:401
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:407
@@ -3332,7 +3332,7 @@ msgstr "Pranzo"
 
 #: app13_resident/templates/app13_resident/test.html:154
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_group_reservation.html:22
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:100
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:99
 #: app4_ehpad_base/templates/app4_ehpad_base/eval_dashboard.html:592
 #: app4_ehpad_base/templates/app4_ehpad_base/index.html:403
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:409
@@ -3597,7 +3597,7 @@ msgid "Month"
 msgstr "Mensile"
 
 #: app15_calendar/templates/app15_calendar/calendar.html:96
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:59
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:58
 #: app6_care/templates/app6_care/caregiver/care_plan_creation.html:318
 #: app6_care/templates/app6_care/caregiver/care_plan_creation.html:321
 msgid "Week"
@@ -5330,7 +5330,7 @@ msgid "Copy"
 msgstr ""
 
 #: app3_messaging/templates/app3_messaging/internal_emailing.html:99
-#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:139
+#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:141
 msgid "Answer to all"
 msgstr "Rispondere a tutto"
 
@@ -5404,51 +5404,44 @@ msgstr "Ricercare utenti..."
 msgid "You have yet to receive any Message"
 msgstr "Non hai ancora ricevuto messaggi. "
 
-#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:44
+#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:45
 msgid "ANSWERED"
 msgstr ""
 
-#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:44
+#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:45
 #, fuzzy
 #| msgid "Support:"
 msgid "Support"
 msgstr "Sostegno"
 
-#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:50
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_menu_commission.html:40
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:62
-#: app6_care/forms/forms_intervention.py:33
-msgid "From"
-msgstr "Da"
-
-#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:50
+#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:52
 msgid "on"
 msgstr "Su"
 
-#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:51
-#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:70
+#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:53
+#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:72
 #: app3_messaging/templates/app3_messaging/internal_emailing_mailbox_conv.html:22
 #: app3_messaging/templates/app3_messaging/notifs_mailbox.html:52
 msgid "Sent on"
 msgstr "Mandato in"
 
-#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:67
+#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:69
 #: app3_messaging/templates/app3_messaging/internal_emailing_mailbox_conv.html:19
 msgid "Message from"
 msgstr "Messaggio da"
 
-#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:78
+#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:80
 #: app3_messaging/templates/app3_messaging/internal_emailing_mailbox_conv.html:30
 msgid "Message to"
 msgstr "Messaggio a"
 
-#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:80
+#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:82
 #: app3_messaging/templates/app3_messaging/internal_emailing_mailbox_conv.html:32
 msgid "Also sent to:"
 msgstr "Anche mandato da:"
 
-#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:88
-#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:91
+#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:90
+#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:93
 #: app3_messaging/templates/app3_messaging/internal_emailing_mailbox_conv.html:40
 #: app3_messaging/templates/app3_messaging/internal_emailing_mailbox_conv.html:43
 #: app3_messaging/templates/app3_messaging/internal_emailing_mailbox_sent.html:53
@@ -5456,8 +5449,8 @@ msgstr "Anche mandato da:"
 msgid "Opened on"
 msgstr "Aperto il"
 
-#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:88
-#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:93
+#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:90
+#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:95
 #: app3_messaging/templates/app3_messaging/internal_emailing_mailbox_conv.html:40
 #: app3_messaging/templates/app3_messaging/internal_emailing_mailbox_conv.html:45
 #: app3_messaging/templates/app3_messaging/internal_emailing_mailbox_sent.html:53
@@ -5465,46 +5458,46 @@ msgstr "Aperto il"
 msgid "Notified by e-mail on"
 msgstr ""
 
-#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:105
+#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:107
 #: app3_messaging/templates/app3_messaging/internal_emailing_mailbox_conv.html:57
 #: app3_messaging/templates/app3_messaging/internal_emailing_mailbox_sent.html:70
 #: app4_ehpad_base/templates/app4_ehpad_base/index.html:680
 msgid "See more"
 msgstr "Vedere più"
 
-#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:106
+#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:108
 #: app3_messaging/templates/app3_messaging/internal_emailing_mailbox_conv.html:58
 #: app3_messaging/templates/app3_messaging/internal_emailing_mailbox_sent.html:71
 msgid "See less"
 msgstr "Vedere meno"
 
-#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:110
+#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:112
 msgid "Subject:"
 msgstr "Soggetto"
 
-#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:112
+#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:114
 msgid "Tags"
 msgstr ""
 
-#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:122
+#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:124
 #: app3_messaging/templates/app3_messaging/internal_emailing_mailbox_conv.html:67
 #: app3_messaging/templates/app3_messaging/internal_emailing_mailbox_sent.html:78
 msgid "Attachments"
 msgstr "Documenti"
 
-#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:125
+#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:127
 #: app3_messaging/templates/app3_messaging/internal_emailing_mailbox_conv.html:70
 #: app3_messaging/templates/app3_messaging/internal_emailing_mailbox_sent.html:81
 msgid "Attachment"
 msgstr "Documento"
 
-#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:135
+#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:137
 #, fuzzy
 #| msgid "Answer to all"
 msgid "Answer to"
 msgstr "Rispondere a tutto"
 
-#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:151
+#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:153
 #: app3_messaging/templates/app3_messaging/internal_emailing_mailbox_conv.html:91
 #: app3_messaging/templates/app3_messaging/mails_template_manage.html:40
 #: app3_messaging/templates/app3_messaging/mails_template_send.html:178
@@ -5513,14 +5506,14 @@ msgstr "Rispondere a tutto"
 msgid "Confirmation"
 msgstr "Confermazione"
 
-#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:152
+#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:154
 #: app3_messaging/templates/app3_messaging/internal_emailing_mailbox_conv.html:92
 #, fuzzy
 #| msgid "Are you sure that you want to send"
 msgid "Are you sure that you want to delete this message"
 msgstr "Sei sicuro/a di volere mandare"
 
-#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:156
+#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:158
 #: app3_messaging/templates/app3_messaging/internal_emailing_mailbox_conv.html:96
 #: app3_messaging/templates/app3_messaging/mails_template_manage.html:45
 #: app3_messaging/templates/app3_messaging/mails_template_send.html:183
@@ -5528,7 +5521,7 @@ msgstr "Sei sicuro/a di volere mandare"
 msgid "Yes, I am sure"
 msgstr "Si, sono sicuro/a"
 
-#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:172
+#: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:174
 msgid "Click here to see all the messages of this conversation."
 msgstr ""
 
@@ -7644,7 +7637,7 @@ msgstr "Menu del cruscotto"
 
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_index.html:60
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_index.html:102
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:67
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:66
 #: app4_ehpad_base/views_cuisine_commission.py:73
 msgid "Noon"
 msgstr "Mezzogiorno"
@@ -7679,7 +7672,7 @@ msgstr "Ospiti"
 
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_index.html:72
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_index.html:116
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:68
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:67
 #: app4_ehpad_base/views_cuisine_commission.py:74
 msgid "Evening"
 msgstr "Sera"
@@ -7692,6 +7685,12 @@ msgstr "Dipendenti e pasti offerti (stage, discovery day)"
 msgid "Management guests, prospects : unrelated to a resident"
 msgstr "Ospiti della direzione, potenziali clienti: estranei a un residente"
 
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_menu_commission.html:40
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:61
+#: app6_care/forms/forms_intervention.py:33
+msgid "From"
+msgstr "Da"
+
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_menu_commission.html:48
 msgid "Download docx document"
 msgstr "Scaricare i documenti docx"
@@ -7700,27 +7699,38 @@ msgstr "Scaricare i documenti docx"
 msgid "Select type"
 msgstr "Selezionare tipo"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:47
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:46
 msgid "Alphabetical order"
 msgstr "Ordine alfabetico"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:48
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:47
 msgid "Reverse alphabetic"
 msgstr "Alfabetico inverso"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:49
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:48
 msgid "Higher price"
 msgstr "Prezzo più alto"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:50
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:49
 msgid "Lower price"
 msgstr "Prezzo meno alto"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:59
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:58
 #: app6_care/templates/app6_care/caregiver/treatments_plan.html:91
 #: app6_care/templates/app6_care/caregiver/treatments_plan.html:92
 msgid "Edit"
 msgstr "Modificare"
+
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:66
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:83
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:41
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:70
+msgid "None"
+msgstr ""
+
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:89
+msgid "To access the list, please select a type of dish"
+msgstr ""
 
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_menu.html:26
 msgid "Price to date"
@@ -7743,7 +7753,7 @@ msgstr "sostituzione"
 msgid "Not specified"
 msgstr "Non specificato"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:51
+#: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:50
 msgid "Click on the day to see the menus"
 msgstr "Selezione il giorno per vedere i menu"
 
@@ -8064,11 +8074,6 @@ msgstr ""
 
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:20
 msgid "list of residents whose laundry is washed by the nursing home"
-msgstr ""
-
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:41
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:70
-msgid "None"
 msgstr ""
 
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:49
