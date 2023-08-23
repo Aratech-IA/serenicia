@@ -6,7 +6,7 @@
 {% block content %}
 
 
-<div class="container">
+<div class="container pt-3">
     <div id="maindiv" class="mx-auto">
         <form action="{% url 'Meal booking group' %}" method="post" class="border border-darkblue rounded-3 py-3">{% csrf_token %}
             {% if save_update %}
@@ -24,7 +24,7 @@
             <hr class="w-50 mx-auto">
             <div class="row text-center">
                 <span>{% trans 'Number of guest' %}</span>
-                <span class="text-muted">{% trans 'Exclude yourself' %}</span>
+                <span class="text-muted pb-1">{% trans 'Exclude yourself' %}</span>
             </div>
             <div class="d-flex align-items-center justify-content-center mb-3">
                 {{ form.other_guests }}
@@ -34,8 +34,9 @@
                 <button class="btn btn-perso">{% trans 'Save' %}</button>
             </div>
         </form>
-        <div class="border border-darkblue rounded-3 py-3">
-            {% for booking in next_booking|dictsort:'dinner'|dictsort:'date' %}
+        
+        {% for booking in next_booking|dictsort:'dinner'|dictsort:'date' %}
+            <div class="border border-darkblue rounded-3 my-3 py-1">
                 <a class="d-flex justify-content-center gap-3" href="#booking{{ booking.id }}" data-bs-toggle="modal">
                     <span>{{ booking.date }} {% if booking.lunch %}{% trans 'Lunch' %} {% endif %}{% if booking.dinner %}{% trans 'Diner' %}{% endif %}</span>
                     <span>{% trans 'Total' %} : {{ booking.other_guests|add:1 }}</span>
@@ -67,8 +68,8 @@
                 {% if not forloop.last %}
                     <hr class="mx-auto w-50">
                 {% endif %}
-            {% endfor %}
-        </div>
+            </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock content %}

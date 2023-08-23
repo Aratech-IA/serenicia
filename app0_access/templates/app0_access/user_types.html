@@ -2,52 +2,78 @@
 {% load static %}
 {% load i18n %}
 
-{% block sticky-top-btn %}
-    <a href="{% url 'access index' %}" class="btn btn-perso d-none d-md-block sticky-top-btn">{% trans 'Home' %}</a>
-{% endblock sticky-top-btn %}
-
 {% block content %}
-<main class="container mt-2">
+
+
+<head>
+    <style>
+        .type_users {
+            width: 90%;
+        }
+
+        @media screen and (min-width: 576px) {
+            .type_users {
+                width: 70%;
+            }
+        }
+
+        @media screen and (min-width: 992px) {
+            .type_users {
+                width: 50%;
+            }
+        }
+
+        @media screen and (min-width: 1200px) {
+            .type_users {
+                width: 40%;
+            }
+        }
+    </style>
+</head>
+
+
+<main class="container px-0 mt-3 mx-auto">
+    <div class="w-100 d-flex justify-content-start">
+        <a href="{% url 'access index' %}" class="btn btn-perso d-none d-md-block sticky-top-btn">{% trans 'Home' %}</a>
+    </div>
+
     <div class="d-flex flex-column align-items-center">
-        <div class="w-75">
+        <div class="type_users">
             {% for user_type in list_types %}
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
+                <div class="accordion-item pb-2">
+                    <div class="accordion-header">
                         <button class="accordion-button btn-perso {% if user_type.codename == force_display %} show {% else %} collapsed {% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#type{{ forloop.counter }}" aria-expanded="true" aria-controls="panelchap{{ chapter.id }}">
-                            {{ user_type.name }} ({{ user_type.groups|length }})
+                            <h5>{{ user_type.name }} ({{ user_type.groups|length }})</h5>
                         </button>
-                    </h2>
+                    </div>
                     <div id="type{{ forloop.counter }}" class="accordion-collapse {% if user_type.codename != force_display %} collapse {% endif %}" aria-labelledby="panelsStayOpen-headingOne">
                         <div class="accordion-body">
-                            <span class="fw-bold">{{ app.description }}</span>
-                            <table class="table table-stripped table-hover">
-                                <tbody>
-                                    {% for group in user_type.groups %}
-                                        <tr>
-                                            <th class="text-center">
-                                                <a href="{% url 'modify rights group' grp_id=group.id %}">{{ group.name }}</a>
-                                            </th>
-                                            <td class="text-right">
-                                                <form action="" method="post">{% csrf_token %}
-                                                    <input hidden name="group" value="{{ group.id }}">
-                                                    <select name="user_type" onchange="this.form.submit()">
-                                                        <option value="none">{% trans 'Not defined' %}</option>
-                                                        {% for codename, name in user_types.items %}
-                                                            <option value="{{ codename }}" {% if user_type.codename == codename %}selected{% endif %}>{{ name }}</option>
-                                                        {% endfor %}
-                                                    </select>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
+                            <span class="fw-bold pt-1">{{ app.description }}</span>
+                            {% for group in user_type.groups %}
+                                <div class="d-flex flex-column flex-sm-row justify-content-between">
+                                    <div>
+                                        <a href="{% url 'modify rights group' grp_id=group.id %}">{{ group.name }}</a>
+                                    </div>
+                                    <div>
+                                        <form action="" method="post">{% csrf_token %}
+                                            <input hidden name="group" value="{{ group.id }}">
+                                            <select name="user_type" onchange="this.form.submit()">
+                                                <option value="none">{% trans 'Not defined' %}</option>
+                                                {% for codename, name in user_types.items %}
+                                                    <option value="{{ codename }}" {% if user_type.codename == codename %}selected{% endif %}>{{ name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </form>
+                                    </div>
+                                </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
             {% endfor %}
         </div>
     </div>
-
 </main>
+
+
 {% endblock content %}

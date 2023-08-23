@@ -62,7 +62,7 @@
                 </svg>
                 <p class="ps-2">{% trans 'Messaging' %}</p>
                 {% if request.session.unopened_messages > 0 %}
-                    <span id="unopened_msg_count" class="badge rounded-pill {% if request.session.urgent_msg %}bg-danger{% else %}bg-darkblue{% endif %} notif_unopened">
+                    <span id="unopened_msg_count" class="badge rounded-pill {% if request.session.urgent_msg %}bg-danger{% else %}bg-darkblue{% endif %} notif_unopened ms-1">
                         {{request.session.unopened_messages}}
                     </span>
                 {% endif %}
@@ -79,7 +79,7 @@
                 </svg>
                 <p class="ps-2">{% trans 'Notifications' %}</p>
                 {% if request.session.unopened_notifs > 0 %}
-                    <span id="unopened_notif_count" class="badge rounded-pill bg-darkblue notif_unopened">
+                    <span id="unopened_notif_count" class="badge rounded-pill bg-darkblue notif_unopened ms-1">
                         {{request.session.unopened_notifs}}
                     </span>
                 {% endif %}
@@ -151,6 +151,22 @@
                 {% endif %}
             {% endif %}
 
+            
+            <!-- Mes rendez-vous (famille) -->
+            {% if perms.app0_access.view_family %}
+                <a href="{% url 'support project appointments' %}" class="d-flex align-items-center mb-3">
+            {% else %}
+                <a href="{% url 'support project appointments employee' %}" class="d-flex align-items-center mb-3">
+            {% endif %}
+                    <svg 
+                        fill="currentColor"
+                        viewBox="0 0 448 512"
+                        width="1.6em">
+                        <path d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zM329 305c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-95 95-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L329 305z"/>
+                    </svg>
+                    <p class="ps-2">{% trans 'Appointments' %}</p>
+                </a>
+
             <!-- Déconnexion -->
             <a href="/accounts/logout/" class="d-flex align-items-center mt-4">
                 <svg
@@ -180,7 +196,7 @@
                         {% if perms.app0_access.view_family %}
                             <span>{% trans 'Housing' %} {{ client.room_number }}</span>
                         {% else %}
-                            <div class="d-flex align-item-center">
+                            <div class="d-flex align-items-center">
                                 <p class="my-auto">{{ client.cp }}</p>
                             </div>
                             <div class="ms-1 d-none d-md-block">
@@ -418,51 +434,36 @@
 
                         {% if perms.app0_access.view_supportproject %}
                             <!-- Projet personnalisé -->
-                            <li class="nav-item dropdown py-1 py-lg-0">
-                                <a onclick="toggleproject()" class="dropdown-toggle d-flex align-items-center my-2 mt-lg-3 mb-lg-2 px-2 {% if '/support/' in request.path %}active{% endif %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <svg
-                                        fill="currentColor"
-                                        viewbox="0 0 512 512"
-                                        width="1.6em">
-                                        <path d="M271.9 4.2c-9.8-5.6-21.9-5.6-31.8 0l-224 128C6.2 137.9 0 148.5 0 160V480c0 17.7 14.3 32 32 32s32-14.3 32-32V178.6L256 68.9 448 178.6V480c0 17.7 14.3 32 32 32s32-14.3 32-32V160c0-11.5-6.2-22.1-16.1-27.8l-224-128zM256 208a40 40 0 1 0 0-80 40 40 0 1 0 0 80zm-8 280V400h16v88c0 13.3 10.7 24 24 24s24-10.7 24-24V313.5l26.9 49.9c6.3 11.7 20.8 16 32.5 9.8s16-20.8 9.8-32.5l-37.9-70.3c-15.3-28.5-45.1-46.3-77.5-46.3H246.2c-32.4 0-62.1 17.8-77.5 46.3l-37.9 70.3c-6.3 11.7-1.9 26.2 9.8 32.5s26.2 1.9 32.5-9.8L200 313.5V488c0 13.3 10.7 24 24 24s24-10.7 24-24z"/>
-                                    </svg>
-                                    <p class="text-uppercase ps-2">{% trans 'Project' %}</p>
-                                </a>
-                                <!-- Menu projet -->
-                                <ul id="project_menu" class="d-none pe-2 ps-4">
-                                    <li class="pe-lg-4">
-                                        <a href="{% url 'app9_personnalized_project index' %}">
-                                            <p>{% trans 'Support projects' %}</p>
-                                        </a>
-                                    </li>
-                                    {% if perms.app0_access.view_family %}
-                                        <li>
-                                            <a href="{% url 'support project appointments' %}">
-                                                <p>{% trans 'My appointments' %}</p>
-                                            </a>
-                                        </li>
-                                    {% else %}
-                                        <li>
-                                            <a href="{% url 'support project appointments employee' %}">
-                                                <p>{% trans 'My appointments' %}</p>
-                                            </a>
-                                        </li>
-                                    {% endif %}
-                                </ul>
-                            </li>
+                            {% if perms.app0_access.view_family %}
+                                <li class="nav-item pt-4 pb-1">
+                            {% else %}
+                                <li class="nav-item py-2 py-lg-0">
+                            {% endif %}
+                                    <a href="{% url 'app9_personnalized_project index' %}" class="d-flex align-items-center my-2 my-lg-3 px-2 {% if '/support/' in request.path %}active{% endif %}">
+                                        <svg
+                                            fill="currentColor"
+                                            viewbox="0 0 512 512"
+                                            width="1.6em">
+                                            <path d="M271.9 4.2c-9.8-5.6-21.9-5.6-31.8 0l-224 128C6.2 137.9 0 148.5 0 160V480c0 17.7 14.3 32 32 32s32-14.3 32-32V178.6L256 68.9 448 178.6V480c0 17.7 14.3 32 32 32s32-14.3 32-32V160c0-11.5-6.2-22.1-16.1-27.8l-224-128zM256 208a40 40 0 1 0 0-80 40 40 0 1 0 0 80zm-8 280V400h16v88c0 13.3 10.7 24 24 24s24-10.7 24-24V313.5l26.9 49.9c6.3 11.7 20.8 16 32.5 9.8s16-20.8 9.8-32.5l-37.9-70.3c-15.3-28.5-45.1-46.3-77.5-46.3H246.2c-32.4 0-62.1 17.8-77.5 46.3l-37.9 70.3c-6.3 11.7-1.9 26.2 9.8 32.5s26.2 1.9 32.5-9.8L200 313.5V488c0 13.3 10.7 24 24 24s24-10.7 24-24z"/>
+                                        </svg>
+                                        <p class="text-uppercase ps-2">{% trans 'Project' %}</p>
+                                    </a>
+                                </li>
                         {% endif %}
 
-                        {% if request.session.resident_id %}
-                            <!-- Administratif -->
+                        {% if request.session.resident_id %} <!-- Décomposition des menus pour les familles -->
                             {% if perms.app0_access.view_documents %}
                                 {% if perms.app0_access.view_family %}
-                                    <li class="nav-item pb-5 pt-1 py-lg-0">
+                                    <!-- Factures -->
+                                    <li class="nav-item py-1 pt-md-0">
                                         <a class="d-flex align-items-center my-2 my-lg-3 px-2" href="/invoice/">
                                             <img src="{% static 'app4_ehpad_base/img/file-invoice-solid.svg' %}" alt="{% trans 'Invoice icon' %}" width="25em">
                                             <p class="text-uppercase ps-2">{% trans 'Invoices' %}</p>
                                         </a>
                                     </li>
-                                    <li class="nav-item py-1 py-lg-0">
+
+                                    <!-- Profile -->
+                                    <li class="nav-item py-1 pt-md-0">
                                         <a class="d-flex align-items-center my-2 my-lg-3 px-2" href="/documents/">
                                             <svg
                                                 fill="currentColor"
@@ -470,7 +471,6 @@
                                                 width="1.6em">
                                                 <path d="m 208,224 c 35.35,0 64,-28.65 64,-64 0,-35.35 -28.65,-64 -64,-64 -35.35,0 -64,28.65 -64,64 0,35.3 28.7,64 64,64 z m 256,-24 h -96 c -13.25,0 -24,10.75 -24,24 0,13.25 10.75,24 24,24 h 96 c 13.25,0 24,-10.75 24,-24 0,-13.25 -10.7,-24 -24,-24 z m -224,56 h -64 c -44.2,0 -80,35.8 -80,80 0,8.8 7.2,16 16,16 h 192 c 8.836,0 16,-7.164 16,-16 0,-44.2 -35.8,-80 -80,-80 z M 464,120 h -96 c -13.25,0 -24,10.75 -24,24 0,13.25 10.75,24 24,24 h 96 c 13.25,0 24,-10.75 24,-24 0,-13.25 -10.7,-24 -24,-24 z M 512,0 H 64 C 28.65,0 0,28.65 0,64 v 320 c 0,35.35 28.65,64 64,64 h 448 c 35.35,0 64,-28.65 64,-64 V 64 C 576,28.65 547.3,0 512,0 Z m 16,384 c 0,8.822 -7.178,16 -16,16 H 64 c -8.822,0 -16,-7.178 -16,-16 V 64 c 0,-8.822 7.178,-16 16,-16 h 448 c 8.822,0 16,7.178 16,16 z"></path>
                                             </svg>
-                                            <!-- <img src="{% static 'app4_ehpad_base/img/envelope-open-text-solid.svg' %}" alt="{% trans 'Open envelope icon' %}" width="25em"> -->
                                             <p class="text-uppercase ps-2">{% trans 'Profile' %}</p>
                                         </a>
                                     </li>
@@ -481,7 +481,7 @@
                         {% if perms.app0_access.view_care %}
                             <!-- Soins -->
                             <li class="nav-item dropdown py-1 py-lg-0">
-                                <a onclick="togglecare()" class="dropdown-toggle d-flex align-items-center my-2 mt-lg-3 mb-lg-2 px-2 {% if '/app6_care/' in request.path %}{% if '/hotel/' not in request.path %}active{% endif %}{% endif %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a onclick="togglecare()" class="dropdown-toggle d-flex align-items-center my-2 mt-lg-3 mb-lg-2 px-2 {% if '/app6_care/' in request.path%}{% if '/hotel/' not in request.path %}active{% endif %}{% endif %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <svg
                                         fill="currentColor"
                                         viewbox="0 0 512 512"
@@ -493,8 +493,18 @@
                                 <!-- Menu Care -->
                                 <ul id="care_menu" class="d-none pe-2 ps-4">
                                     <li>
-                                        <a href="{% url 'interventions_report' %}">
+                                        <a href="{% url 'showers_report' %}">
+                                            <p>{% trans 'Showers report' %}</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'interventions_report' %}?type=&profession=AS&nurse=&patient=&date_range=">
                                             <p>{% trans 'Interventions report' %}</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'table_relations' %}?filter=view_as">
+                                            <p>{% trans 'Relationship Table' %}</p>
                                         </a>
                                     </li>
                                     <!-- <li>
@@ -507,21 +517,6 @@
                                             {% trans 'Nappies management' %}
                                         </a>
                                     </li> -->
-                                    <li>
-                                        <a href="{% url 'showers_report' %}">
-                                            <p>{% trans 'Showers report' %}</p>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{% url 'laundry_management' %}">
-                                            <p>{% trans 'Laundry management' %}</p>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{% url 'table_relations' %}">
-                                            <p>{% trans 'Relationship Table' %}</p>
-                                        </a>
-                                    </li>
                                 </ul>
                             </li>
                         {% endif %}
@@ -529,7 +524,7 @@
                         {% if perms.app0_access.view_hotel %}
                             <!-- Hôtellerie -->
                             <li class="nav-item dropdown py-1 py-lg-0">
-                                <a href="{% url 'hotel' %}" class="d-flex align-items-center my-2 my-lg-3 px-2 {% if '/hotel/' in request.path %}active{% endif %}">
+                                <a onclick="togglehotel()" class="dropdown-toggle d-flex align-items-center my-2 mt-lg-3 mb-lg-2 px-2 {% if '/app6_care/hotel/' in request.path or '/laundry_management/' in request.path or '/relat_table/' in request.path or '/interventions_report/' in request.path  %}active{% endif %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <svg
                                         fill="currentColor"
                                         viewbox="0 0 640 512"
@@ -538,6 +533,29 @@
                                     </svg>
                                     <p class="text-uppercase ps-2">{% trans 'Hotel' %}</p>
                                 </a>
+                                <!-- Menu Hôttelerie -->
+                                <ul id="hotel_menu" class="d-none pe-2 ps-4">
+                                    <li>
+                                        <a href="{% url 'hotel' %}">
+                                            <p>{% trans 'Hotel entry' %}</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'laundry_management' %}">
+                                            <p>{% trans 'Laundry management' %}</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'interventions_report' %}?type=&profession=ASH&nurse=&patient=&date_range=">
+                                            <p>{% trans 'Interventions report' %}</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'table_relations' %}?filter=view_ash">
+                                            <p>{% trans 'Relationship Table' %}</p>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                         {% endif %}
 
@@ -577,7 +595,7 @@
                                         <p class="text-uppercase ps-2">{% trans 'Quality' %}</p>
                                     </a>
                                     <!-- Menu qualité -->
-                                    <ul id="quality_menu" class="d-none align-item-center pe-2 ps-4">
+                                    <ul id="quality_menu" class="d-none align-items-center pe-2 ps-4">
                                         <!-- Qualité -->
                                         <li>
                                             <a href="{% url 'app11_quality index-fiche-critere' %}">
@@ -639,7 +657,7 @@
                         <!-- Hôtellerie -->
                         <li>
                             <a href="{% url 'personal index hotel' %}">
-                                {% trans 'Hotel' %}
+                                {% trans 'Hotel entry' %}
                             </a>
                         </li>
                     {% endif %}
@@ -665,8 +683,8 @@
                         {% endif %} -->
                     {% endif %}
         
-                    <!-- Menu mon avis -->
                     {% if perms.app0_access.view_monavis %}
+                        <!-- Menu mon avis -->
                         <li class="ps-3 ps-lg-4">
                             <a href="{% url 'satisfaction survey resident' %}">
                                 {% trans 'Satisfaction survey' %}
@@ -674,32 +692,38 @@
                         </li>
                     {% endif %}
         
-                    <!-- Administratif -->
                     {% if perms.app0_access.view_documents %}
-                            <li class="ps-3 ps-lg-4">
-                                <a class="d-flex align-items-center" href="/invoice/">
-                                    <span>
-                                        {% trans 'Invoices' %}
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="ps-3 ps-lg-4">
-                                <a class="d-flex align-items-center" href="/documents/">
-                                    <span>
-                                        {% trans 'Profile' %}
-                                    </span>
-                                </a>
-                            </li>
+                        <!-- Administratif -->
+                        <li class="ps-3 ps-lg-4">
+                            <a class="d-flex align-items-center" href="/invoice/">
+                                <span>
+                                    {% trans 'Invoices' %}
+                                </span>
+                            </a>
+                        </li>
+                        <li class="ps-3 ps-lg-4">
+                            <a class="d-flex align-items-center" href="/documents/">
+                                <span>
+                                    {% trans 'Profile' %}
+                                </span>
+                            </a>
+                        </li>
                     {% endif %}
         
                     <!-- Soins inventaire -->
-                    <!-- {% if perms.app0_access.view_care %}
+                    {% if perms.app0_access.view_care %}
                         <li class="ps-3 ps-lg-4">
-                            <a href="{% url 'create_inventory' %}">
-                                {% trans 'Create inventory' %}
-                            </a>
+                            {% if user_inventory %}
+                                <a href="{% url 'inventory' %}">
+                                    {% trans 'Inventory' %}
+                                </a>
+                            {% else %}
+                                <a href="{% url 'create_inventory' %}">
+                                    {% trans 'Create inventory' %}
+                                </a>
+                            {% endif %}
                         </li>
-                    {% endif %} -->
+                    {% endif %}
                 </ul>
             {% endif %}
 
@@ -722,8 +746,9 @@
 
     <script>
         {#  /* Ouvre une modal générique de message utilisateur */  #}
-        var myModal = new bootstrap.Modal(document.getElementById('warning_msg'))
-        myModal.show()
+        // Fait pété une erreur dans la console : Uncaught TypeError: this._config is undefined
+        // var myModal = new bootstrap.Modal(document.getElementById('warning_msg'))
+        // myModal.show()
     </script>
 
     <script>
@@ -747,6 +772,7 @@
         {% include 'app1_base/check_api_face_reco.html' %}
     {% endif %}
 {% endblock scripts %}
+
 {% block scriptcaregiver %}{% endblock scriptcaregiver %}
 {% block scriptsmails %}{% endblock scriptsmails %}
 {% block scriptscamera %}{% endblock scriptscamera %}

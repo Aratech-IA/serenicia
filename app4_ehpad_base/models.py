@@ -18,6 +18,7 @@ import logging
 
 from multiselectfield import MultiSelectField
 
+
 if 'log_model' not in globals():
     global log_model
     log_model = Logger('model', level=logging.ERROR, file=False).run()
@@ -563,17 +564,12 @@ class Invoice(models.Model):
         ('invoice_pharmacy', _('Invoice Pharmacy')),
         ('other_invoice', _('Other Invoice')),
     ]
-    user_resident = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='user',
-                                      verbose_name=_('Resident'))
-    name = models.CharField(max_length=100, verbose_name=_('Name of invoice'),
-                            help_text='Define name for this invoice.', default=_('Invoice EHPAD'))
-    type = models.CharField(max_length=50, choices=INVOICE_CHOICES, verbose_name=_('Type of invoice'),
-                            default='invoice')
+    user_resident = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='user', verbose_name=_('Resident'))
+    name = models.CharField(max_length=100, verbose_name=_('Name of invoice'), help_text=_('Define name for this invoice'), default=_('Invoice EHPAD'))
+    type = models.CharField(max_length=50, choices=INVOICE_CHOICES, verbose_name=_('Type of invoice'), default='invoice')
     upload = models.FileField(upload_to=invoice_file, verbose_name=_('File'), null=True, blank=True)
-    pub_date = models.DateField(default=timezone.localtime, verbose_name=_('Publication date'),
-                                help_text='Define the day/month/year of the invoice.')
-    added_by = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('Added by'), related_name='staff',
-                                 null=True)
+    pub_date = models.DateField(default=timezone.localtime, verbose_name=_('Publication date'), help_text=_('Define the day/month/year of the invoice'))
+    added_by = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('Added by'), related_name='staff', null=True)
 
     class Meta:
         verbose_name = _('Invoice')
@@ -666,12 +662,12 @@ class KitInventory(models.Model):
         (_('no'), _('no')),
     ]
     LABELED_MARK_CHOICES = [
-        (_('labeled by family'), _('Laundry labeled by family')),
-        (_('labeled by residence'), _('Laundry mark by residence')),
+        ('labeled by family', _('Laundry labeled by family')),
+        ('labeled by residence', _('Laundry labeled by residence')),
     ]
     LAUNDRY_WASHED_CHOICES = [
-        (_('washed by family'), _('Laundry washed by family')),
-        (_('washed by residence'), _('Laundry washed by residence')),
+        ('washed by family', _('Laundry washed by family')),
+        ('washed by residence', _('Laundry washed by residence')),
     ]
     DENTAL_EQUIPMENT = [
         (_('top'), _('Top')),
@@ -858,20 +854,16 @@ class IntonationToRecord(models.Model):
 
 
 class PayRoll(models.Model):
-    employees = models.ForeignKey(User, limit_choices_to=Q(groups__permissions__codename='view_internalemployees'),
-                                  related_name='user_list', verbose_name="Name of employee",
-                                  blank=True, on_delete=models.CASCADE)
-    date_of_payslip = models.DateField(default=date_payroll,
-                                       help_text='Chose a date with correct month of payslip, dont mind the day')
-    payslip = models.FileField(upload_to='payroll/', null=True, blank=True)
+    employees = models.ForeignKey(User, limit_choices_to=Q(groups__permissions__codename='view_internalemployees'), related_name='user_list', verbose_name=_("Name of employee"), blank=True, on_delete=models.CASCADE)
+    date_of_payslip = models.DateField(default=date_payroll, verbose_name=_('Date of payslip'), help_text=_("Chose a date with correct month of payslip, dont mind the day"))
+    payslip = models.FileField(upload_to='payroll/', verbose_name=_('Payslip'), null=True, blank=True)
 
     class Meta:
         verbose_name = _('Payroll')
 
     class Meta:
         constraints = [
-            models.UniqueConstraint(fields=['employees', 'date_of_payslip'],
-                                    name='Can have one payslip per month per employee in a year'),
+            models.UniqueConstraint(fields=['employees', 'date_of_payslip'], name='Can have one payslip per month per employee in a year'),
         ]
 
 

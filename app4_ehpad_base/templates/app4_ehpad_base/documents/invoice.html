@@ -7,38 +7,7 @@
     a {
         color: rgb(8,8,8);
     }
-    .btn--success {
-        font-size: 20px;
-        letter-spacing: 0.5px;
-        background:  #FFF;
-        border-color:  #FFF;
-    }
-    .btn---success {
-        font-size: 20px;
-        letter-spacing: 0.5px;
-        background:  #93a9d2;
-        border-color:  #93a9d2;
-    }
-    .btn---success:hover {
-        font-size: 20px;
-        letter-spacing: 0.5px;
-        background:  #FFF;
-        border-color:  #000000;
-    }
-    .btn--success:hover {
-        font-size: 20px;
-        letter-spacing: 0.5px;
-        background:  #93a9d2;
-        border-color:  #93a9d2;
-    }
-    .green--body {
-        font-size: 20px;
-        padding-top: 20px;
-        padding-bottom: 20px;
-        background: #93a9d2;
-        letter-spacing: 0.5px;
-    }
-    .resident-small-pic{
+    .resident-small-pic {
         overflow: hidden;
         -webkit-border-radius: 50px;
         -moz-border-radius: 50px;
@@ -46,12 +15,6 @@
         width: 100px;
         height: 100px;
         object-fit: cover;
-    }
-    .title {
-        font-size: 40px;
-    }
-    .title--invoice {
-        font-size: 25px;
     }
     .grey--line {
         box-shadow: inset 0 -0.2em 0 rgba(211,211,211,1);
@@ -94,20 +57,23 @@
         cursor: pointer;
         text-decoration: none;
     }
+    .title--invoice {
+        font-size: 25px;
+    }
 </style>
 
-<body>
 
 <div class="container-fluid pt-3">
 
-        <div class="green--body text-center text-uppercase title">
+        <div class="text-center bg-lightblue py-3">
             <div>
-                {% trans "Bills of" %}
-                {% if user_resident_info.civility == 'Mr' or user_resident_info.civility == 'Mrs' %} {% if user_resident_info.civility == 'Mr' %} {% trans "Mr" %} {% else %} {% trans "Mrs" %} {% endif %} {% endif %}
-                <!-- {{ user_resident_info.civility }} -->
-                {{ user_resident_info.complete_name }}
+                <h3 class="text-uppercase">
+                    {% trans "Bills of" %}
+                    {% if user_resident_info.civility == 'Mr' or user_resident_info.civility == 'Mrs' %} {% if user_resident_info.civility == 'Mr' %} {% trans "Mr" %} {% else %} {% trans "Mrs" %} {% endif %} {% endif %}
+                    {{ user_resident_info.complete_name }}
+                </h3>
 
-                {% if request.session.profile_pic %} 
+                {% if request.session.profile_pic %}
                     <img class="resident-small-pic mx-1" src="{{ request.session.profile_pic }}" alt="Photo de profile resident">
                 {% endif %}
             </div>
@@ -116,17 +82,19 @@
 
         </div>
 
-        <div class="container-fluid row p-2 text-uppercase title--invoice justify-content-center">
+        <div class="container-fluid row text-uppercase title--invoice justify-content-center mx-0 px-0">
 
                 <!--ACCOMMODATION INVOICE-->
-                <div class="col-lg-3 col-sm-6 text-center pe-5 ps-5 pt-5"><h4 class="grey--line">{% trans "Accommodation Bill" %}</h4>
+                <div class="col-sm-6 col-lg-3 text-center px-3 pt-3"><h4 class="grey--line">{% trans "Accommodation" %}</h4>
                     {% for EHPAD_invoice in EHPAD_invoice %}
                         {% if EHPAD_invoice.upload %}
-                        <a href="{{ EHPAD_invoice.upload.url }}" class="text-center btn btn--success">{{ EHPAD_invoice.pub_date }}</a><hr>
+                            <a href="{{ EHPAD_invoice.upload.url }}" class="text-center btn btn-perso my-1">
+                                {{ EHPAD_invoice.pub_date }}
+                            </a>
                         {% endif %}
                     {% endfor %}
 
-                    <button class="btn btn---success mt-5" id="button">{% trans "See all of my invoice" %}</button>
+                    <button class="btn btn-perso-inverse mt-1" id="button">{% trans "See all of my invoice" %}</button>
 
                     <div id="modal" class="modal">
                         <div class="modal-content">
@@ -140,7 +108,9 @@
 
                             {% for invoices in invoices %}
                                 {% if invoices.upload and invoices.type == "invoice" %}
-                                <a href="{{ invoices.upload.url }}" class="text-center btn btn--success">{{ invoices.pub_date }}</a><hr>
+                                    <a href="{{ invoices.upload.url }}" class="text-center btn btn-perso my-1">
+                                        {{ invoices.pub_date }}
+                                    </a>
                                 {% endif %}
                             {% endfor %}
 
@@ -149,37 +119,45 @@
                 </div>
 
                 <!--PHARMACY INVOICE-->
-                <div class="col-lg-2 col-sm-6 pe-5 ps-5 text-center pt-5"><h4 class="green--line">{% trans "Pharmacy" %}</h4>
+                <div class="col-lg-2 col-sm-6 text-center px-3 pt-3"><h4 class="green--line">{% trans "Pharmacy" %}</h4>
                     {% for invoices in invoices %}
                         {% if invoices.upload and invoices.type == "invoice_pharmacy" %}
-                        <a href="{{ invoices.upload.url }}" class="text-center btn btn--success">{{ invoices.name }}</a><hr>
+                            <a href="{{ invoices.upload.url }}" class="text-center btn btn-perso my-1">
+                                {{ invoices.name }}
+                            </a>
                         {% endif %}
                     {% endfor %}
                 </div>
 
                 <!--HAIRDRESSER INVOICE-->
-                <div class="col-lg-2 col-sm-6 pe-5 ps-5 text-center pt-5"><h4 class="grey--line">{% trans "Hairdresser" %}</h4>
+                <div class="col-lg-2 col-sm-6 text-center px-3 pt-3"><h4 class="grey--line">{% trans "Hairdresser" %}</h4>
                     {% for invoices in invoices %}
                         {% if invoices.upload and invoices.type == "invoice_hairdresser" %}
-                        <a href="{{ invoices.upload.url }}" class="text-center btn btn--success">{{ invoices.name }}</a><hr>
+                            <a href="{{ invoices.upload.url }}" class="text-center btn btn-perso my-1">
+                                {{ invoices.name }}
+                            </a>
                         {% endif %}
                     {% endfor %}
                 </div>
 
                 <!--PEDICURE INVOICE-->
-                <div class="col-lg-2 col-sm-6 pe-5 ps-5 text-center pt-5"><h4 class="green--line">{% trans "Pedicure" %}</h4>
+                <div class="col-lg-2 col-sm-6 text-center px-3 pt-3"><h4 class="green--line">{% trans "Pedicure" %}</h4>
                     {% for invoices in invoices %}
                         {% if invoices.upload and invoices.type == "invoice_pedicure" %}
-                        <a href="{{ invoices.upload.url }}" class="text-center btn btn--success">{{ invoices.name }}</a><hr>
+                            <a href="{{ invoices.upload.url }}" class="text-center btn btn-perso my-1">
+                                {{ invoices.name }}
+                            </a>
                         {% endif %}
                     {% endfor %}
                 </div>
 
-                <!--PEDICURE INVOICE-->
-                <div class="col-lg-2 col-sm-6 pe-5 ps-5 text-center pt-5"><h4 class="grey--line">{% trans "Other" %}</h4>
+                <!--OTHER INVOICE-->
+                <div class="col-lg-2 col-sm-6 text-center px-3 pt-3"><h4 class="grey--line">{% trans "Other" %}</h4>
                     {% for invoices in invoices %}
                         {% if invoices.upload and invoices.type == "other_invoice" %}
-                        <a href="{{ invoices.upload.url }}" class="text-center btn btn--success">{{ invoices.name }}</a><hr>
+                            <a href="{{ invoices.upload.url }}" class="text-center btn btn-perso my-1">
+                                {{ invoices.name }}
+                            </a>
                         {% endif %}
                     {% endfor %}
                 </div>
@@ -187,13 +165,14 @@
 
 </div>
 
+
 <script>
-   var modal = document.getElementById("modal");
-   var btn = document.getElementById("button");
-   var span = document.getElementsByClassName("close")[0];
+    var modal = document.getElementById("modal");
+    var btn = document.getElementById("button");
+    var span = document.getElementsByClassName("close")[0];
 
     btn.onclick = function() {
-      modal.style.display = "block";
+        modal.style.display = "block";
     }
     span.onclick = function() {
         modal.style.display = "none";
@@ -205,6 +184,5 @@
     }
 </script>
 
-</body>
 
 {% endblock content %}

@@ -4,26 +4,47 @@
 
 {% block content %}
 
-<div class="container-fluid mt-3 d-flex flex-column align-items-center">
-    <h3 class="mb-5">{% trans 'Showers taken since Monday report' %}</h3>
-    <div class="d-flex flex-row">
-        <div class="d-flex flex-column align-items center mx-5">
-            <h4>{% trans 'Taken' %} ({% trans 'residents' %} : {{ residents_who_took_a_shower_since_monday|length }})</h4>
+
+<div class="container-fluid mt-3 px-1 d-flex flex-column align-items-center">
+    
+    <h3 class="text-center pb-4">{% trans 'Showers taken since Monday report' %}</h3>
+
+    <div class="d-flex justify-content-evenly w-100">
+
+        <div class="mx-1">
+            <div class="d-flex flex-column align-items-center pb-3">
+                <h5 class="mb-1">{% trans 'Taken' %}</h5>
+                <h5>({{ residents_who_took_a_shower_since_monday|length }} {% trans 'residents' %})</h5>
+            </div>
             <ol class="p-0">
                 {% for resident in residents_who_took_a_shower_since_monday %}
-                <li>{{ resident.last_name }} - {% trans 'Room' %} : {{ resident.profile.client.room_number }}</li>
+                    <li class="d-flex">
+                        <p class="d-none d-md-block pe-1">{{ resident.first_name }}</p>
+                        <p class="pe-1">{{ resident.last_name }}</p>
+                        <p class="pe-1">({{ resident.profile.client.room_number }})</p>
+                    </li>
                 {% endfor %}
             </ol>
         </div>
-        <div class="mx-5">
-            <h4>{% trans 'Not taken' %} ({% trans 'residents' %} : {{ others|length }})</h4>
+
+        <div class="mx-1">
+            <div class="d-flex flex-column align-items-center pb-3">
+                <h5 class="mb-1">{% trans 'Not taken' %}</h5>
+                <h5>({{ others|length }} {% trans 'residents' %})</h5>
+            </div>
             <ol class="p-0">
                 {% for resident in others %}
-                <li>{{ resident.last_name }} - {% trans 'Room' %} : {{ resident.profile.client.room_number }}</li>
+                    <li class="d-flex">
+                        <p class="d-none d-md-block pe-1">{{ resident.first_name }}</p>
+                        <p class="pe-1">{{ resident.last_name }}</p>
+                        <p class="pe-1">({{ resident.profile.client.room_number }})</p>
+                    </li>
                 {% endfor %}
             </ol>
         </div>
+
     </div>
 </div>
+
 
 {% endblock %}

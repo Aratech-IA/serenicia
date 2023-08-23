@@ -54,9 +54,7 @@ def views_caregiver_free_comment(request):
     if request.method == 'POST':
         form = FreeCommentForm(request.POST)
         if form.is_valid():
-            free_comment = FreeComment.objects.create(patient=User.objects.get(pk=request.session['resident_id']),
-                                                      content=form.cleaned_data['content'], nurse=request.user,
-                                                      profession='AS')
+            free_comment = FreeComment.objects.create(patient=User.objects.get(pk=request.session['resident_id']), content=form.cleaned_data['content'], nurse=request.user, profession='AS')
             post_free_comment(free_comment)
             return redirect('caregiver')
 
@@ -120,8 +118,7 @@ def views_interventions_report(request):
         pass
     filter = ASInterventionFilter(request.GET, queryset=Intervention.objects.all().order_by('-start'))
 
-    resident_list = User.objects.filter(groups__permissions__codename='view_residentehpad',
-                                        is_active=True).exclude(profileserenicia__status='deceased')
+    resident_list = User.objects.filter(groups__permissions__codename='view_residentehpad', is_active=True).exclude(profileserenicia__status='deceased')
     alerts = {}
     for resident in resident_list:
         count = [0]

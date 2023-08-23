@@ -30,7 +30,7 @@
                     {% endif %}
                     {% if not page_obj_received %}
                         <div class="alert alert-info my-3" role="alert">
-                            {% trans 'You have yet to receive any Message' %}.
+                            <p>{% trans 'You have yet to receive any Message' %}</p>
                         </div>
                     {% endif %}
                     {% for convo in list_convos %}
@@ -41,13 +41,15 @@
                                         <p class="col-2 mb-0 d-none d-md-block">
                                             <img class="style1 col-3 rounded-circle me-2" src="{{ sender.profile.get_photo_url }}">{{ sender.get_full_name }}
                                         </p>
-                                        <p class="col-8 mb-0 object">{% if inter.user_type == 'CC' %}CC : {% elif inter.user_type == 'CCI' %}CCI : {% elif inter.user_type == 'sender' %}<span class="answered p-1">{% trans 'ANSWERED'%}</span>{%endif%} {% if convo.0.is_support %}{% trans 'Support' %} : {% endif %}{{ convo.0.subject }}
-                                        {% for tag in convo.0.tags.all %}
-                                        <span class="badge rounded-pill bg-lightblue">{{tag.name}}</span>
-                                        {% endfor %}
+                                        <p class="col-8 mb-0 object">
+                                            {% if inter.user_type == 'CC' %}CC : {% elif inter.user_type == 'CCI' %}CCI : {% elif inter.user_type == 'sender' %}<span class="answered p-1">{% trans 'ANSWERED'%}</span>{%endif%} {% if convo.0.is_support %}{% trans 'Support' %} : {% endif %}{{ convo.0.subject }}
+
+                                            {% for tag in convo.0.tags.all %}
+                                            <span class="badge rounded-pill bg-lightblue">{{tag.name}}</span>
+                                            {% endfor %}
                                         </p>
                                         <p class="style2 col-2 mb-0 date">
-                                            &nbsp;&nbsp;{% if inter.user_type != 'sender' %}<span class="d-xs-block d-md-none">{% trans 'From' %} {{ sender.get_full_name }} {% trans 'on' %}</span>
+                                            {% if inter.user_type != 'sender' %}<span class="d-xs-block d-md-none">{{ sender.get_full_name }} {% trans 'on' %}</span>
                                                         {% else %}{% trans 'Sent on' %}{% endif %}&nbsp;{{ convo.0.date_sent }}
                                         </p>
                                     </div>

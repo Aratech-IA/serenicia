@@ -49,6 +49,7 @@ urlpatterns = [
      path('gallery/details/', views.gallery_details, name="app4_ehpad_base gallery details"),
      path('photoalbum/<str:name>/', views.photo_from_family, name="photo_from_family"),
      path('photoalbum/', views.photo_from_family, name="new_photo_album"),
+     path('delete_photo_album/<str:name>/', views.delete_photo_album, name='delete_photo_album'),
      path('ws_image/', api_ws.ws_profile_image),
      path('ws_image_bytes/', api_ws.ws_image_bytes),
      path('security/family/', views.security_family, name="app4_ehpad_base security family"),
@@ -84,8 +85,9 @@ urlpatterns = [
      path('sign_documents/', views_administrative_documents.sign_documents, name='sign_document'),
      path('documents/signed/', views_administrative_documents.document_signed, name='document_signed'),
 
-     path('inventory/', views_administrative_documents.inventory, name='inventory'),
      path('create_inventory/', views_administrative_documents.kit_inventory, name='create_inventory'),
+     path('create_inventory/edit/<int:inventory_id>/', views_administrative_documents.kit_inventory, name='create_inventory'),
+     path('inventory/', views_administrative_documents.inventory, name='inventory'),
      path('laundry_management/', views_administrative_documents.laundry_management, name='laundry_management'),
 
      path('resident_form/', views_administrative_documents.resident_form, name='resident_form'),

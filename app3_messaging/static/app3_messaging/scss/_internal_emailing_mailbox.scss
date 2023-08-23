@@ -18,13 +18,13 @@
     }
 
     .accordion-body input:checked ~ .hiding {
-        display: inline-block!important;
+        display: inline-block !important;
     }
 
     .accordion-button {
-        border-radius: 10px!important;
+        border-radius: 10px !important;
         border: none;
-        padding: 0.25rem 1.25rem;
+        padding: 0.25rem 0.5rem;
     }
 
     .accordion-collapse {
@@ -46,7 +46,7 @@
     }
 
     .accordion-body {
-        background-color: $white!important;
+        background-color: $white !important;
         border-radius: 10px;
     }
 
@@ -92,7 +92,7 @@
     }
 
     .page-link.current {
-        background-color: $lightblue!important;
+        background-color: $lightblue !important;
         color: white;
     }
 
@@ -103,7 +103,7 @@
 
     .page-link:hover {
         color: white;
-        background-color: $lightblue!important;
+        background-color: $lightblue !important;
     }
 
     .unopened-color {
@@ -111,7 +111,7 @@
     }
 
     .alert-info {
-        width: 700px;
+        max-width: 700px;
     }
 
     .style1 {

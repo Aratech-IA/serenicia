@@ -5,78 +5,91 @@
 
 
 {% block content %}
-<main class="mx-3 pt-2">
+<main class="mx-1 py-3">
     <div class="d-flex flex-column text-center">
-    <form action="{% url 'New dish' %}" method="post" class="d-flex flex-column align-items-center my-0">{% csrf_token %}
-        <div>
-            <select name="orderby" class="d-flex form-select-sm text-center btn btn-perso" onchange="this.form.submit()">
-                <option {% if option == "0" %} selected {% endif %}value="0">{% trans 'Select type' %}</option>
-                <option {% if option == "1" %} selected {% endif %}value="1">{% trans 'Entree' %}</option>
-                <option {% if option == "2" %} selected {% endif %}value="2">{% trans 'Main dish' %}</option>
-                <option {% if option == "3" %}
-                    selected {% endif %}value="3">{% trans 'Accompaniment' %}</option>
-                <option {% if option == "4" %} selected {% endif %}value="4">{% trans 'Dessert' %}</option>
-            </select>
-        </div>
-        {% if option != '0' %}
-            {% if perms.app0_access.view_cuisineprice %}
-            <div class="d-flex flex-column gap-2">
-                <div class="d-flex flex-column">
-                    {{ dish_form }}
-                </div>
-                <div>
-                    <input name="register_data" type="submit" class="btn btn-perso"
-                           value="{% trans 'Save' %}">
-                </div>
-                {% if msg %}
-                    <div class="border {% if msg.type == 'err' %} border-warning {% else %} border-darkblue {% endif %} rounded-3 p-2">
-                        {{ msg.txt }}
+        <form action="{% url 'New dish' %}" method="post" class="d-flex flex-column align-items-center my-0">{% csrf_token %}
+            <div>
+                <select name="orderby" class="d-flex form-select-sm text-center btn btn-perso" onchange="this.form.submit()">
+                    <option {% if option == "0" %} selected {% endif %}value="0">{% trans 'Select type' %}</option>
+                    <option {% if option == "1" %} selected {% endif %}value="1">{% trans 'Entree' %}</option>
+                    <option {% if option == "2" %} selected {% endif %}value="2">{% trans 'Main dish' %}</option>
+                    <option {% if option == "3" %} selected {% endif %}value="3">{% trans 'Accompaniment' %}</option>
+                    <option {% if option == "4" %} selected {% endif %}value="4">{% trans 'Dessert' %}</option>
+                </select>
+            </div>
+
+            {% if option != '0' %}
+                {% if perms.app0_access.view_cuisineprice %}
+                    <div class="d-flex flex-column gap-2 pt-4">
+                        <div class="d-flex flex-column align-items-center">
+                            {{ dish_form }}
+                        </div>
+                        <div>
+                            <input name="register_data" type="submit" class="btn btn-perso" value="{% trans 'Save' %}">
+                        </div>
+                        {% if msg %}
+                            <div class="border {% if msg.type == 'err' %} border-warning {% else %} border-darkblue {% endif %} rounded-3 p-2">
+                                {{ msg.txt }}
+                            </div>
+                        {% endif %}
                     </div>
                 {% endif %}
-            </div>
-            {% endif %}
-            {% if known_dish %}
-            <hr class="mx-auto w-75">
-            {% endif %}
-            {% if perms.app0_access.view_cuisineprice %}
-            <div class="d-flex flex-column col-6 gap-3">
-                    <div class="d-flex justify-content-between">
-                        <div class="col-4 fw-bold">{% trans 'Name' %}</div>
-                        <div class="col-4 fw-bold">{% trans 'Price' %}</div>
-                        <div class="col-4">
-                            <select name="sorting" class="d-flex form-select-sm text-center" onchange="this.form.submit()">
-                                <option {% if sorting == "0" %} selected {% endif %}value="0">{% trans 'Alphabetical order' %}</option>
-                                <option {% if sorting == "1" %} selected {% endif %}value="1">{% trans 'Reverse alphabetic' %}</option>
-                                <option {% if sorting == "2" %} selected {% endif %}value="2">{% trans 'Higher price' %}</option>
-                                <option {% if sorting == "3" %} selected {% endif %}value="3">{% trans 'Lower price' %}</option>
-                            </select>
+
+                {% if perms.app0_access.view_cuisineprice %}
+                    {% if known_dish %}
+                        <div class="d-flex flex-column col-md-6 col-lg-5 col-xl-4 gap-2 pt-5">
+                            <div class="d-flex justify-content-between">
+                                <div class="col-4 fw-bold">{% trans 'Name' %}</div>
+                                <div class="col-3 fw-bold">{% trans 'Price' %}</div>
+                                <div class="col-5">
+                                    <select name="sorting" class="d-flex form-select-sm text-center mx-auto px-0" onchange="this.form.submit()">
+                                        <option {% if sorting == "0" %} selected {% endif %}value="0">{% trans 'Alphabetical order' %}</option>
+                                        <option {% if sorting == "1" %} selected {% endif %}value="1">{% trans 'Reverse alphabetic' %}</option>
+                                        <option {% if sorting == "2" %} selected {% endif %}value="2">{% trans 'Higher price' %}</option>
+                                        <option {% if sorting == "3" %} selected {% endif %}value="3">{% trans 'Lower price' %}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            {% for dish in known_dish %}
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="col-4 text-start">{{ dish.name }}</div>
+                                    <div class="col-3">{{ dish.price_cents }}</div>
+                                    <div class="d-flex align-items-center col-5 justify-content-around">
+                                        <button class="btn btn-perso btn-sm" type="submit" name="modify" value="{{ dish.id }}">{% trans 'Edit' %}</button>
+                                        <button class="btn btn-close btn-danger" type="submit" name="delete" value="{{ dish.id }}"></button>
+                                    </div>
+                                </div>
+                            {% endfor %}
                         </div>
-                    </div>
-                {% for dish in known_dish %}
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="col-4">{{ dish.name }}</div>
-                        <div class="col-4">{{ dish.price_cents }}</div>
-                        <div class="d-flex align-items-center col-4 justify-content-evenly">
-                            <button class="btn btn-perso btn-sm" type="submit" name="modify" value="{{ dish.id }}">{% trans 'Edit' %}</button>
-                            <button class="btn btn-close btn-danger" type="submit" name="delete" value="{{ dish.id }}"></button>
+                    {% else %}
+                        <div class="d-flex justify-content-center pt-4">
+                            <div class="fw-bold pb-2">{% trans "None" %}</div>
                         </div>
-                    </div>
-                {% endfor %}
-            </div>
+                    {% endif %}
+                {% else %}
+                    {% if known_dish %}
+                        <div class="d-flex justify-content-center pt-4">
+                            <div class="fw-bold pb-2">{% trans "Name" %}</div>
+                        </div>
+                        <div class="d-flex flex-column gap-2">
+                            {% for dish in known_dish %}
+                                <div class="d-flex justify-content-center align-items-center">
+                                    {{ dish.name }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="d-flex justify-content-center pt-4">
+                            <div class="fw-bold pb-2">{% trans "None" %}</div>
+                        </div>
+                    {% endif %}
+                {% endif %}
             {% else %}
                 <div class="d-flex justify-content-center">
-                        <div class="fw-bold">{% trans 'Name' %}</div>
-                </div>
-                <div class="d-flex flex-column gap-2">
-                {% for dish in known_dish %}
-                    <div class="d-flex justify-content-center align-items-center">
-                        {{ dish.name }}
-                    </div>
-                {% endfor %}
+                    <div class="fw-bold pt-4">{% trans "To access the list, please select a type of dish" %}</div>
                 </div>
             {% endif %}
-        {% endif %}
-      </form>
-</div>
+        </form>
+    </div>
 </main>
 {% endblock %}

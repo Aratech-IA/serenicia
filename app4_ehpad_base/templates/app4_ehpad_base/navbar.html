@@ -8,7 +8,7 @@
 
 <!-- Barre Navigation -->
 <nav class="navbar bg-light navbar-light bg-light py-1">
-    <div class="container-fluid px-2">
+    <div class="container-fluid px-1 px-sm-2">
         <div class="d-flex">
             <!-- Bouton menu burger -->
             <button onclick="togglenavbar()" id="burger" class=" bg-light border-0 p-0 ps-sm-2 d-lg-none" type="button">
@@ -118,9 +118,9 @@
             </a>
         </div>
 
-        <!-- Bouton alert -->
         {% if ALERT %}
             {% if perms.app0_access.view_care %}
+                <!-- Bouton alert -->
                 <form action="{% url 'select resident' %}" method="post">
                     {% csrf_token %}
                     <input type="hidden" name="rooms" value="alerts">
@@ -139,11 +139,11 @@
         {% endif %}
 
         <!-- prénom.nom de la personne connectée -->
-        <a onclick="togglenamemenu()" class="clicnom position-relative d-flex flex-column justify-content-center align-items-center mt-1">
+        <a onclick="togglenamemenu()" class="clicnom position-relative d-flex flex-column justify-content-center align-items-center">
             {{ user.get_username }}
             <img src="{% static 'app4_ehpad_base/img/angle-down-solid.svg' %}" alt="{% trans 'Arrow' %}" width="10em">
             {% if request.session.unopened_messages > 0 or request.session.unopened_notifs > 0 %}
-                <span id="notif_unopened" class="position-absolute p-2 {% if request.session.urgent_msg %}bg-danger{% else %}bg-lightblue{% endif %} rounded-circle notif_unopened">
+                <span id="notif_unopened" class="position-absolute p-2 {% if request.session.urgent_msg %}bg-danger{% else %}bg-lightblue{% endif %} rounded-pill notif_unopened w-25 pt-1">
                 </span>
             {% endif %}
         </a>
@@ -229,6 +229,15 @@
 
     function togglecare() {
         var care_menu = document.getElementById("care_menu");
+        if (care_menu.classList.contains('d-none')) {
+            care_menu.classList.remove('d-none');
+        } else {
+            care_menu.classList.add('d-none');
+        }
+    }
+
+    function togglehotel() {
+        var care_menu = document.getElementById("hotel_menu");
         if (care_menu.classList.contains('d-none')) {
             care_menu.classList.remove('d-none');
         } else {

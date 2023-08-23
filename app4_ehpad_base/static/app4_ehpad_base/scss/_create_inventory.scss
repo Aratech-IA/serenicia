@@ -1,0 +1,28 @@
+#create_inventory {
+
+    .accordion-button-1:hover {
+        color: $black;
+        background: $lightblue;
+    }
+
+    .accordion-button-1:not(.collapsed) {
+        color: $black;
+        background: $lightblue;
+    }
+
+    .accordion-button-2:hover {
+        color: $black;
+        background: $lightblue;
+    }
+
+    .accordion-button-2:not(.collapsed) {
+        color: $black;
+        background: $lightblue;
+    }
+
+    .accordion-button-2:not(.collapsed):hover {
+        color: $black;
+        background: $lightblue;
+    }
+
+}

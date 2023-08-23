@@ -2,16 +2,9 @@
 {% load static %}
 {% load i18n %}
 
-{% block sticky-top-btn %}
-    <div class="sticky-top-btn d-flex flex-column gap-2">
-        <div class="d-flex">
-            <a href="{% url 'select rights group' %}" class="btn btn-perso d-none d-md-block">{% trans 'Back' %}</a>
-        </div>
-        <button class="btn btn-perso" data-bs-toggle="modal" data-bs-target="#modalUsers">{% trans 'User' %}{{ nb_users|pluralize }} <span class="fw-bold">{{ nb_users }}</span></button>
-    </div>
-{% endblock sticky-top-btn %}
-
 {% block content %}
+
+
 <head>
     <style>
         .icon-size{
@@ -27,17 +20,19 @@
         }
     </style>
 </head>
+
+
 <!-- Modal -->
-    <div class="modal fade" id="modalUsers">
-      <div class="modal-dialog modal-xl">
+<div class="modal fade" id="modalUsers">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">{% trans 'Users details' %}</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body d-flex flex-wrap justify-content-center gap-2">
+            <div class="modal-header">
+                <h5 class="modal-title">{% trans 'Users details' %}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex flex-wrap justify-content-center gap-2">
             {% for users_param in list_users %}
-              {% for user in users_param.users %}
+                {% for user in users_param.users %}
                 <div class="border border-darkblue rounded-3 p-2">
                     <div class="d-flex">
                         {% if user.profile.photo %}
@@ -62,16 +57,25 @@
                         </div>
                     </div>
                 </div>
-              {% endfor %}
+                {% endfor %}
             {% endfor %}
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-perso" data-bs-dismiss="modal">{% trans 'Close' %}</button>
-          </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-perso" data-bs-dismiss="modal">{% trans 'Close' %}</button>
+            </div>
         </div>
-      </div>
     </div>
-<main class="container mt-2">
+</div>
+
+
+<main class="container my-3">
+    <div class="sticky-top-btn d-flex justify-content-between pb-4">
+        <div class="d-flex">
+            <a href="{% url 'select rights group' %}" class="btn btn-perso d-none d-md-block">{% trans 'Back' %}</a>
+        </div>
+        <button class="btn btn-perso" data-bs-toggle="modal" data-bs-target="#modalUsers">{% trans 'User' %}{{ nb_users|pluralize }} <span class="fw-bold">{{ nb_users }}</span></button>
+    </div>
+
     <form class="d-flex flex-column align-items-center" action="" method="post">
         {% csrf_token %}
         <div class="w-75">
@@ -110,14 +114,38 @@
                     </div>
                 </div>
             {% endfor %}
-            <div class="d-flex align-items-center justify-content-end gap-2 mt-4">
-                <button type="submit" class="btn btn-danger" name="delete" value="delete">{% trans 'Delete' %}</button>
+
+            <!-- Bouton en bas -->
+            <div class="d-flex justify-content-center align-items-center gap-4 mt-4">
+                <!-- <button type="submit" class="btn btn-danger" name="delete" value="delete">{% trans 'Delete' %}</button> -->
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteModal">{% trans 'Delete' %}</button>
                 <a href="" class="btn btn-outline-warning">{% trans 'Cancel' %}</a>
                 <button type="submit" class="btn btn-perso">{% trans 'Save' %}</button>
+            </div>
+
+            <!-- Fenêtre modale de confirmation de suppression -->
+            <div class="modal fade" id="DeleteModal" tabindex="-1" aria-labelledby="DeleteModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title text-uppercase" id="DeleteModalLabel">{% trans 'Attention' %}</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h5>{% trans 'Are you sure you want to delete' %} {% trans 'this group' %} ?</h5>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-warning me-5" data-bs-dismiss="modal">{% trans 'Close' %}</button>
+                            <button type="submit" class="btn btn-danger" name="delete" value="delete">{% trans 'Delete' %}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </form>
 </main>
+
+
 <script>
     function addCode(codename){
         document.getElementById(codename).checked = true;
@@ -129,4 +157,6 @@
         };
     }
 </script>
+
+
 {% endblock content %}

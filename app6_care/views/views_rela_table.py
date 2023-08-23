@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.utils.translation import gettext as _
 from app4_ehpad_base.models import ProfileSerenicia, UserListIntermediate
 
 
@@ -47,16 +48,45 @@ def resident_employee_automatic(access, actif=True):
 
 
 def table_relations(request):
+    accesss = []
+    relations = []
+
+    access_labels = {
+        '-------': _('Choose a function to see the relationships'),
+        'view_as': _('Relationships Caregiver'),
+        'view_ash': _('Relationships Hospital Caregiver'),
+        'view_ide': _('Relationships Nursing'),
+    }
+
     try:
         request.session.pop('resident_id')
     except KeyError:
         pass
-    accesss = ['view_as', 'view_ash', 'view_ide']
-    access = 'view_as'
-    if request.POST:
+
+    accesss = list(access_labels.keys())
+
+    # Récupérer le paramètre d'URL "filter"
+    filter_value = request.GET.get("filter", None)
+
+    # Vérifier si le paramètre "filter" est présent et correspond à l'une des valeurs d'accès
+    if filter_value in access_labels:
+        access = filter_value
+    else:
+        access = '-------'
+
+    # Si la requête est une requête POST, utiliser la valeur de "access" dans le formulaire
+    if request.method == 'POST':
         access = request.POST.get("access")
+    else:  # Si la requête est une requête GET, utiliser le paramètre d'URL "filter"
+        filter_value = request.GET.get("filter", None)
+        if filter_value in access_labels:
+            access = filter_value
+
+    # Calculer les relations en fonction de la valeur de "access"
     dict_relation = resident_employee(access)
     relations = [(key.user, [x.user for x in value]) for key, value in dict_relation.items()]
 
-    context = {"rels": relations, "accesss": accesss, "access": access}
+    context = {"rels": relations, "accesss": accesss, "access": access, "access_labels": access_labels}
+
     return render(request, 'app6_care/rela_table/rela_table.html', context)
+

@@ -1,0 +1,48 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+
+{% block content %}
+{% load static %}
+{% load i18n %}
+
+<div class="p-2">
+    <a class="btn btn-perso" href="{% url 'app17_help index' %}">{% trans "Return" %}</a>
+    <h4 class="text-center text-uppercase pb-3 pb-md-4">{% trans "Help" %} {% trans "Access management" %}</h4>
+    <div class="container-xl">
+
+        <!-- Accéder à la gestion des accès -->
+        <div class="d-flex flex-column flex-md-row align-items-center pb-5">
+            <div class="col-12 col-md-4 pb-2 pb-md-0 pe-2">
+                <h5 class="pb-3">{% trans "Access access management" %}</h5>
+                <p class="pb-1">{% trans "Click on firstname.lastname, then 'Access management'" %}</p>
+            </div>
+            <img src="{% static 'app17_help/images/Gestion_accès.png' %}" alt="{% trans 'Screenshot of Access Management page' %}" class="col-12 col-md-8">
+        </div>
+        
+        <!-- Gestion des utilisateurs -->
+        <div class="d-flex flex-column flex-md-row align-items-center pb-5">
+            <div class="col-12 col-md-4 pb-2 pb-md-0 pe-2">
+                <h5 class="pb-3">{% trans "User Management" %}</h5>
+                <p class="pb-1">1- {% trans "choose a user" %}</p>
+                <p class="pb-1">2- {% trans "Click on it" %}</p>
+                <p class="pb-1">3- {% trans "Assign a group" %}</p>
+                <p class="pb-1">4- {% trans "Register" %}</p>
+            </div>
+            <video controls class="col-12 col-md-8">
+                <source src="{% static 'app17_help/videos/Gestion_utilisateurs.mp4' %}" type="video/mp4">
+                {% trans "Your browser does not support the HTML video tag" %}.
+            </video>
+        </div>
+        
+        <!-- Gestion des groupes de droits -->
+        <div class="d-flex flex-column flex-md-row align-items-center pb-5">
+            <div class="col-12 col-md-4 pb-2 pb-md-0 pe-2">
+                <h5 class="pb-3">{% trans "Management of groups of rights" %}</h5>
+            </div>
+            <img src="{% static 'app17_help/images/Gestion-groupes_de_droits.png' %}" alt="{% trans 'Screenshot of the Rights Groups page' %}" class="col-12 col-md-8">
+        </div>
+        
+    </div>
+</div>
+
+
+{% endblock content %}

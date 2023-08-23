@@ -3,24 +3,24 @@
 
 {% block content %}
 
-<main class="container mt-3">
+<main class="m-3 m-md-5">
     <div>
         <form action="" method="post" name="prefs" class="d-flex flex-column align-items-center">{% csrf_token %}
 
             <div id="preference-content">
                 {% for field in prefs %}
-                    <div class="d-flex flex-column flex-sm-row align-items-center justify-content-sm-between border-bottom border-2">
-                        <p>{{ field.label }}</p>
-                        <p class="form-switch">{{ field }}</p>
+                    <div class="d-flex flex-column flex-sm-row align-items-center justify-content-sm-between border-bottom border-2 pb-3">
+                        <p class="text-center">{{ field.label }}</p>
+                        <p class="form-switch p-0">{{ field }}</p>
                     </div>
                 {% endfor %}
                 {% for field in prefs_j %}
-                    <div class="d-flex flex-column flex-sm-row align-items-center justify-content-sm-between border-bottom border-2 pt-3">
-                        <p class="text-center">{{ field.label }}</p>
+                    <div class="d-flex flex-column flex-sm-row align-items-center justify-content-sm-between border-bottom border-2 py-3">
+                        <p class="text-center pb-1 pe-3">{{ field.label }}</p>
                         {% if field.name == 'interventions' and interventions_force_display %}
                             <p class="text-muted">{{ interventions_force_display }}</p>
                         {% else %}
-                            <p class="form-switch">{{ field }}</p>
+                            <p class="form-switch p-0 d-flex justify-content-center justify-content-sm-end align-items-center">{{ field }}</p>
                         {% endif %}
                     </div>
                 {% endfor %}
@@ -30,6 +30,7 @@
                 <button type="submit" name="prefs" class="btn btn-perso">
                     {% trans 'Save' %}
                 </button>
+
             </div>
         </form>
     </div>

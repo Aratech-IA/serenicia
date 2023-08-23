@@ -3,133 +3,130 @@
 {% load static %}
 
 {% block content %}
-<style>
-    select{
-        border-color: #93a9d2;
-        background-color: transparent;
-        padding: 5px;
-        border-radius: 15px;
-        margin-right: 40px;
-        margin-bottom: 20px;
-    }
-    .section-titre {
-        box-shadow: inset 0 -0.9em 0 #93a9d2;
-    }
-</style>
 
-<div class="d-flex justify-content-between mt-3 mb-4">
 
-    <ul class="nav nav-pills" id="pills-tab" role="tablist">
-        <li class="nav-item" role="presentation">
-            <button class="nav-link active btn-perso me-1" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">{% trans "To research" %}</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link btn-perso" id="pills-alert-tab" data-bs-toggle="pill" data-bs-target="#pills-alert" type="button" role="tab" aria-controls="pills-alert" aria-selected="false">{% trans "Alert" %}</button>
-        </li>
-    </ul>
+<div id="interventions_report">
 
-    <div class="section-titre d-inline-flex px-5">
-        <h1 class="text-center mb-0">{% trans 'Nursing report' %}</h1>
+    <!-- Titre de la page (Rapport infirmier) -->
+    <div class="d-flex justify-content-center justify-content-md-end">
+        <div class="section-titre d-inline-flex px-3 me-3">
+            <h1 class="text-center mb-0">{% trans 'Intervention report' %}</h1>
+        </div>
     </div>
 
-
-</div>
-
-<div class="tab-content mx-5" id="pills-tabContent">
-  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-
-        <form method="GET" class="mb-3">
-            <div class="d-flex flex-wrap">
-                {% for field in filter.form %}
-                    <div class="d-flex flex-column">
-                        {{ field.label }}
-                        {{ field }}
+    <!-- Choix entre "Recherche" et "Alertes" -->
+    <div class="d-flex justify-content-center mt-3">
+        <div  id="pills-tab" role="tablist">
+            <button class="active btn-perso p-2 me-4" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">{% trans "To research" %}</button>
+            <button class="btn-perso p-2 ms-4" id="pills-alert-tab" data-bs-toggle="pill" data-bs-target="#pills-alert" type="button" role="tab" aria-controls="pills-alert" aria-selected="false">{% trans "Alert" %}</button>
+        </div>
+    </div>
+    
+    <div id="pills-tabContent" class="tab-content mx-3">
+        <div id="pills-home" class="tab-pane fade show active" role="tabpanel" aria-labelledby="pills-home-tab">
+    
+            <!-- Recherche -->
+            <form method="GET" class="largeur_max_recherche mx-auto mt-5">
+                <div class="d-flex flex-column flex-lg-row justify-content-lg-between">
+                    {% for field in filter.form %}
+                        <div class="d-flex flex-column">
+                            {{ field.label }}
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+                </div>
+                
+                <div class="d-flex justify-content-center align-items-center">
+                    <button type="submit" class="btn btn-perso mx-auto mt-2">
+                        {% trans 'Search' %}
+                    </button>
+                </div>
+            </form>
+            
+            <!-- Tableau interventions -->
+            {% if filter.qs %}
+                <div class="largeur_max_tab mx-auto mt-5">
+                    <div class="d-flex align-items-center pb-2 text-center fs-5">
+                        <p class="col-4 col-md-2">{% trans "Date" %}</p>
+                        <p class="col-4 col-md-2">{% trans "Resident" %}</p>
+                        <p class="d-none d-md-block col-2">{% trans "Caregiver" %}</p>
+                        <p class="col-4 col-md-3">{% trans "Intervention" %}</p>
+                        <p class="d-none d-md-block col-3">{% trans "Detail" %}</p>
                     </div>
-                {% endfor %}
-            </div>
-            <button type="submit" class="btn btn-perso">{% trans 'Search' %}</button>
-        </form>
-
-        {% if filter.qs %}
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">{% trans "Date" %}</th>
-                        <th scope="col">{% trans "Resident" %}</th>
-                        <th scope="col">{% trans "Caregiver" %}</th>
-                        <th scope="col">{% trans "Intervention" %}</th>
-                        <th scope="col">{% trans "Detail" %}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for intervention in filter.qs %}
-                    {% if forloop.counter < 150 %}
-                    <tr>
-                        <th scope="row">{% if intervention.end == None %} {{ intervention.start}} {% else %} {{intervention.end}} {% endif %}</th>
-                        <td>{{intervention.patient.first_name}} {{intervention.patient.last_name}}</td>
-                        <td>{{intervention.nurse.first_name}} {{intervention.nurse.last_name}}</td>
-                        <td>{{intervention.type.name}} {% if intervention.task_comment.all.0.content %}
-                            <button type="button" class="btn btn-perso ms-5" data-bs-toggle="modal" data-bs-target="#intervention_modal{{forloop.counter}}">{% trans "Comment" %}</button> {% endif %}</td>
-                        <td>{{intervention.details.all.0.task_level_2.name}}</td>
-                    </tr>
+                    {% for intervention in filter.qs %}
+                        {% if forloop.counter < 150 %}
+                        <div class="d-flex align-items-center text-center py-1">
+                            <p class="col-4 col-md-2">{% if intervention.end == None %} {{ intervention.start}} {% else %} {{intervention.end}} {% endif %}</p>
+                            <p class="col-4 col-md-2">{{intervention.patient.first_name}} {{intervention.patient.last_name}}</p>
+                            <p class="d-none d-md-block col-2">{{intervention.nurse.first_name}} {{intervention.nurse.last_name}}</p>
+                            <p class="col-4 col-md-3">{{intervention.type.name}} {% if intervention.task_comment.all.0.content %}
+                                <button type="button" class="btn btn-perso ms-2 p-1" data-bs-toggle="modal" data-bs-target="#intervention_modal{{forloop.counter}}">{% trans "Comment" %}</button> {% endif %}</p>
+                            <p class="d-none d-md-block col-3">{{intervention.details.all.0.task_level_2.name}}</p>
+                        </div>
+                        
                         <!-- Modal -->
                         <div class="modal fade" id="intervention_modal{{forloop.counter}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                          <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                              <div class="modal-body d-flex justify-content-between align-items-center">
-                                  {{intervention.task_comment.all.0.content}}
-                                  <button type="button" class="btn btn-perso" data-bs-dismiss="modal">{% trans 'Close' %}</button>
-                              </div>
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body d-flex justify-content-between align-items-center">
+                                        {{intervention.task_comment.all.0.content}}
+                                        <button type="button" class="btn btn-perso" data-bs-dismiss="modal">{% trans 'Close' %}</button>
+                                    </div>
+                                </div>
                             </div>
-                          </div>
                         </div>
-                    {%endif%}
+                        {%endif%}
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="text-center mt-5">{% trans "There have been no interventions yet" %}</p>
+            {% endif %}
+        </div>
+
+        <!-- Alertes interventions -->
+        <div class="largeur_max_alerte mx-auto tab-pane fade mt-4" id="pills-alert" role="tabpanel" aria-labelledby="pills-alert-tab">
+            <div class="accordion accordion-flush" id="accordion">
+                {% for key, value in alerts.items %}
+                <div class="accordion-item">
+                    <h2 class="accordion-header mb-2" id="flush-headingOne">
+                        {% if value.count > 0%}
+                            <button class="accordion-button collapsed p-1 p-sm-2 p-md-3" type="button" data-bs-toggle="collapse" data-bs-target="#user{{forloop.counter}}" aria-expanded="false" aria-controls="{{forloop.counter}}"
+                            style="background-color: {% if value.count < 4 %} #ffd95f {% else %} #ff5f5f {% endif %};">
+                                {% if key.profile.civility == 'Mr' %}{% trans "Mr" %} {% elif key.profile.civility == 'Mrs' %}{% trans "Mrs" %}  {% else %}{% endif %}
+                                {{key.first_name}}
+                                {{key.last_name}}
+                                -
+                                {{key.profile.client.room_number}}
+                            </button>
+                        {% endif %}
+                    </h2>
+                    <div id="user{{forloop.counter}}" class="accordion-collapse collapse" aria-labelledby="{{forloop.counter}}" data-bs-parent="#accordion">
+                    <div class="accordion-body px-1 px-sm-2 px-md-3 pt-1 pb-2">
+                        <ul>
+                            {% if value.shower_alert == True %}
+                                    <li>{% trans "Patient has not showered for 1 week" %} !</li>
+                            {% endif %}
+                            {% if value.pee_alert == True %}
+                                    <li>{% trans "The patient has not peed for 1 week" %} !</li>
+                            {% endif %}
+                            {% if value.poop_alert == True %}
+                                    <li>{% trans "The patient has not had a bowel movement for 1 week" %} !</li>
+                            {% endif %}
+                            {% if value.ground_alert == True %}
+                                    <li>{% trans "Cleaning has not been done for 1 week" %} !</li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    </div>
+                </div>
                 {% endfor %}
-                </tbody>
-            </table>
-        {% else %}
-            <p>{% trans "Empty search" %}</p>
-        {% endif %}
-
-  </div>
-  <div class="tab-pane fade" id="pills-alert" role="tabpanel" aria-labelledby="pills-alert-tab">
-
-      <div class="accordion accordion-flush" id="accordion">
-          {% for key, value in alerts.items %}
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingOne" style="margin-bottom: 5px; border-radius:15px;">
-                {% if value.count > 0%}
-                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#user{{forloop.counter}}" aria-expanded="false" aria-controls="{{forloop.counter}}"
-                      style="background-color: {% if value.count < 4 %} #ffd95f {% else %} #ff5f5f {% endif %};">
-                          {{key.first_name}} {{key.last_name}} - {{key.profilserenicia.client.room_number}}
-                      </button>
-                {% endif %}
-            </h2>
-            <div id="user{{forloop.counter}}" class="accordion-collapse collapse" aria-labelledby="{{forloop.counter}}" data-bs-parent="#accordion">
-              <div class="accordion-body">
-                  <ul>
-                    {% if value.shower_alert == True %}
-                            <li>{% trans "Patient has not showered for 1 week" %} !</li>
-                    {% endif %}
-                    {% if value.pee_alert == True %}
-                            <li>{% trans "The patient has not peed for 1 week" %} !</li>
-                    {% endif %}
-                    {% if value.poop_alert == True %}
-                            <li>{% trans "The patient has not had a bowel movement for 1 week" %} !</li>
-                    {% endif %}
-                    {% if value.ground_alert == True %}
-                            <li>{% trans "Cleaning has not been done for 1 week" %} !</li>
-                    {% endif %}
-                  </ul>
-              </div>
             </div>
-          </div>
-          {% endfor %}
-      </div>
+        </div>
+    </div>
 
-
-  </div>
 </div>
+
+
 
 
 {% endblock %}

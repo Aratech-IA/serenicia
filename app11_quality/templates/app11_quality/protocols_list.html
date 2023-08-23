@@ -14,148 +14,152 @@
 
     <div class="d-flex flex-column flex-lg-row justify-content-between px-2 px-sm-3 px-md-5 px-lg-0">
 
-        <div class="sideBar col-lg-3 d-flex flex-column align-items-center pt-4 ps-2 pe-2 pe-lg-5">
-            <div class="d-flex justify-content-center align-content-center">
-                <h5 class="titreproto text-uppercase text-center mb-4 px-3">{% trans 'filter protocols' %}</h5>
+        {% if tags %}
+            <div class="sideBar col-lg-3 d-flex flex-column align-items-center pt-4 ps-2 pe-2 pe-lg-5">
+                <div class="d-flex justify-content-center align-content-center">
+                    <h5 class="titreproto text-uppercase text-center mb-4 px-3">{% trans 'filter protocols' %}</h5>
+                </div>
+                
+                <!-- Filtrer les tags (form) -->
+                <div id="list1" >
+                    <ul class="items d-flex flex-wrap justify-content-between flex-lg-column">
+                        {% for tag in tags %}
+                            <li class="px-1">
+                                <input type="checkbox" id="tag{{tag.id}}" name="tag_name" value="{{ tag.name }}" onclick="this.form.submit()" {% if tag.name in selected_tags %}checked{% endif %}>
+                                <label for="tag{{tag.id}}">
+                                    {{tag.name}}
+                                </label>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
-            
-            <!-- Filtrer les tags (form) -->
-            <div id="list1" class="">
-                <ul class="items d-flex flex-wrap justify-content-between flex-lg-column">
-                    {%for tag in tags%}
-                        <li class="px-1">
-                            <input type="checkbox" id="tag{{tag.id}}" name="tag_name" value="{{ tag.name }}" onclick="this.form.submit()" {% if tag.name in selected_tags %}checked{% endif %}>
-                            <label for="tag{{tag.id}}">
-                                {{tag.name}}
-                            </label>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
+        {% endif %}
 
-        <div class="protocols col-lg-6 pt-4 py-lg-0">
-            <div class="d-flex justify-content-center align-content-center">
-                <h5 class="titreproto text-uppercase text-center mb-3 px-3">
-                    {% trans 'list of protocols' %}
-                </h5>
-            </div>
+        {% if protocols %}
+            <div class="protocols col-lg-6 pt-4 py-lg-0">
+                <div class="d-flex justify-content-center align-content-center">
+                    <h5 class="titreproto text-uppercase text-center mb-3 px-3">
+                        {% trans 'list of protocols' %}
+                    </h5>
+                </div>
 
-            {% for protocol in protocols %}
-                <div class="protocol position-relative d-flex flex-column justify-content-center align-items-center w-100 mt-4 mb-4">
-                    <div class="protocolName position-absolute d-flex justify-content-between align-items-center rounded-pill py-1 px-2">
-                        <a target="_blank" href="{% url 'app11_quality dlProtocol' protocol_id=protocol.id %}">
-                            <h6 class="my-auto ps-1">{{protocol.name}}</h6>
-                        </a>
+                {% for protocol in protocols %}
+                    <div class="protocol position-relative d-flex flex-column justify-content-center align-items-center w-100 mt-4 mb-4">
+                        <div class="protocolName position-absolute d-flex justify-content-between align-items-center rounded-pill py-1 px-2">
+                            <a target="_blank" href="{% url 'app11_quality dlProtocol' protocol_id=protocol.id %}">
+                                <h6 class="my-auto ps-1">{{protocol.name}}</h6>
+                            </a>
 
-                        <div class="d-flex">
-                            {% if response %}
-                                {% if protocol in response.protocols.all %}
-                                    <div class="disabled">
-                                        <svg width="30px" height="30px" viewbox="0 0 16 16" class="bi bi-check-circle-fill" fill="green">
-                                            <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                                        </svg>
-                                    </div>
+                            <div class="d-flex">
+                                {% if response %}
+                                    {% if protocol in response.protocols.all %}
+                                        <div class="disabled">
+                                            <svg width="30px" height="30px" viewbox="0 0 16 16" class="bi bi-check-circle-fill" fill="green">
+                                                <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                            </svg>
+                                        </div>
+                                    {% else %}
+                                        <button type="submit" name="selected" value="{{ protocol.id }}" class="btn btn-link text-decoration-none text-dark">
+                                                {% trans 'Add' %}
+                                        </button>
+                                    {% endif %}
                                 {% else %}
-                                    <button type="submit" name="selected" value="{{ protocol.id }}" class="btn btn-link text-decoration-none text-dark">
-                                            {% trans 'Add' %}
-                                    </button>
-                                {% endif %}
-                            {% else %}
-                                <a type="button" class="pe-1" data-bs-toggle="modal" data-bs-target="#exampleModal{{protocol.id}}">
-                                    <img src="{% static 'app4_ehpad_base/img/bi/x-circle.svg' %}" height="24em" class="deleteprotocol">
-                                </a>
-                            {% endif %}
-                        </div>
-                    </div>
-
-                    <div class="modal fade" id="exampleModal{{protocol.id}}" tabindex="-1" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">{% trans 'Delete' %}</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                {% trans 'Are you sure you want to delete' %} {{ protocol.name }} ?
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">{% trans 'close' %}</button>
-                                <a class="deletebtn" href="{% url 'app11_quality deleteProtocol' protocol_id=protocol.id %}">
-                                <button type="button" class="btn btn-perso">{% trans 'confirm' %}</button> </a>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="protocolFile w-100 d-flex ps-2 pt-4">
-                        <p class="my-auto">Tags:&nbsp;</p>
-                        <div class="protocolTags d-flex align-items-center">
-                            {% for tag in protocol.tag.all %}
-                                <p class="my-auto ps-2">{{tag.name}}</p>
-                                {% if not response %}
-                                    <a class="deletebtn" href="{%url 'app11_quality removeTagRelation' protocol_id=protocol.id tag_id=tag.id %}">
-                                        <img src="{% static 'app4_ehpad_base/img/bi/x-circle.svg' %}" class="deletetag ps-1">
+                                    <a type="button" class="pe-1" data-bs-toggle="modal" data-bs-target="#exampleModal{{protocol.id}}">
+                                        <img src="{% static 'app4_ehpad_base/img/bi/x-circle.svg' %}" height="24em" class="deleteprotocol">
                                     </a>
                                 {% endif %}
-                            {% endfor %}
+                            </div>
                         </div>
-                        {% for tag in protocol.tag.all %}
-                        {% endfor %}
 
-                        {% if not response %}
-                            <!-- Button modal ajout tag -->
-                            <a class="ms-5" data-bs-toggle="modal" data-bs-target="#myDropdown{{protocol.id}}">
-                                <img src="{% static 'app4_ehpad_base/img/bi/plus-circle.svg' %}" height="24em" class="addtag">
-                            </a>
-                        {% endif %}
-                        
-                        <!-- Modal ajout tag -->
-                        <div class="modal fade" id="myDropdown{{protocol.id}}" tabindex="-1" aria-hidden="true">
+                        <div class="modal fade" id="exampleModal{{protocol.id}}" tabindex="-1" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">{% trans 'Adding or Selecting Tags' %}</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <ul class="mb-0">
-                                            <form id="addExistingTagForm{{protocol.id}}" action="{% url 'app11_quality addExistingTag' protocol_id=protocol.id %}" method="post" class="d-flex flex-column align-items-center">
-                                                <div>
-                                                    {% csrf_token %}
-                                                    {% for tag in  tags %}
-                                                    <li>
-                                                        <input id="taglist{{tag.name}}" type="checkbox" name="tag_name" value="{{ tag.name }}">
-                                                        <label for="taglist{{tag.name}}">{{tag.name}}</label>
-                                                    </li>
-                                                    {% endfor %}
-                                                </div>
-                                                
-                                                <button id="addExistingbtn" form="addExistingTagForm{{protocol.id}}" type="submit" class="btn btn-perso mt-1 mb-4">{% trans 'Add selected' %}</button>
-                                            </form>
-                                            <li>
-                                                <form id="protocol{{protocol.id}}" method="post" action="">
-                                                    {% csrf_token %}
-                                                    
-                                                    <div class="addNewTag d-flex justify-content-lg-evenly">
-                                                        <input type="hidden" name="protocol_id" value="{{protocol.id}}">
-                                                        {{tagForm}}
-                                                        <button id="validatebtn" form="protocol{{protocol.id}}" type="submit" class="btn btn-perso">✓</button>
+                                <div class="modal-header">
+                                    <h5 class="modal-title">{% trans 'Delete' %}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    {% trans 'Are you sure you want to delete' %} {{ protocol.name }} ?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">{% trans 'close' %}</button>
+                                    <a class="deletebtn" href="{% url 'app11_quality deleteProtocol' protocol_id=protocol.id %}">
+                                    <button type="button" class="btn btn-perso">{% trans 'confirm' %}</button> </a>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="protocolFile w-100 d-flex ps-2 pt-4">
+                            <p class="my-auto">Tags:&nbsp;</p>
+                            <div class="protocolTags d-flex align-items-center">
+                                {% for tag in protocol.tag.all %}
+                                    <p class="my-auto ps-2">{{tag.name}}</p>
+                                    {% if not response %}
+                                        <a class="deletebtn" href="{%url 'app11_quality removeTagRelation' protocol_id=protocol.id tag_id=tag.id %}">
+                                            <img src="{% static 'app4_ehpad_base/img/bi/x-circle.svg' %}" class="deletetag ps-1">
+                                        </a>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            {% for tag in protocol.tag.all %}
+                            {% endfor %}
+
+                            {% if not response %}
+                                <!-- Button modal ajout tag -->
+                                <a class="ms-5" data-bs-toggle="modal" data-bs-target="#myDropdown{{protocol.id}}">
+                                    <img src="{% static 'app4_ehpad_base/img/bi/plus-circle.svg' %}" height="24em" class="addtag">
+                                </a>
+                            {% endif %}
+                            
+                            <!-- Modal ajout tag -->
+                            <div class="modal fade" id="myDropdown{{protocol.id}}" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">{% trans 'Adding or Selecting Tags' %}</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <ul class="mb-0">
+                                                <form id="addExistingTagForm{{protocol.id}}" action="{% url 'app11_quality addExistingTag' protocol_id=protocol.id %}" method="post" class="d-flex flex-column align-items-center">
+                                                    <div>
+                                                        {% csrf_token %}
+                                                        {% for tag in  tags %}
+                                                        <li>
+                                                            <input id="taglist{{tag.name}}" type="checkbox" name="tag_name" value="{{ tag.name }}">
+                                                            <label for="taglist{{tag.name}}">{{tag.name}}</label>
+                                                        </li>
+                                                        {% endfor %}
                                                     </div>
+                                                    
+                                                    <button id="addExistingbtn" form="addExistingTagForm{{protocol.id}}" type="submit" class="btn btn-perso mt-1 mb-4">{% trans 'Add selected' %}</button>
                                                 </form>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-perso" data-bs-dismiss="modal">{% trans 'Close' %}</button>
+                                                <li>
+                                                    <form id="protocol{{protocol.id}}" method="post" action="">
+                                                        {% csrf_token %}
+                                                        
+                                                        <div class="addNewTag d-flex justify-content-lg-evenly">
+                                                            <input type="hidden" name="protocol_id" value="{{protocol.id}}">
+                                                            {{tagForm}}
+                                                            <button id="validatebtn" form="protocol{{protocol.id}}" type="submit" class="btn btn-perso">✓</button>
+                                                        </div>
+                                                    </form>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-perso" data-bs-dismiss="modal">{% trans 'Close' %}</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
-        </div>
+                {% endfor %}
+            </div>
+        {% endif %}
 
         {% if response %}
             <div class="p-4">

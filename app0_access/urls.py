@@ -10,5 +10,4 @@ urlpatterns = [
     path('user/<int:grp_id>/', views.select_user, name='select user'),
     path('user/modify/<int:user_id>/', views.modify_user, name='modify user'),
     path('user/types/', views.user_types, name='user types'),
-    path('help/', views.help_doc, name='access help doc'),
 ]

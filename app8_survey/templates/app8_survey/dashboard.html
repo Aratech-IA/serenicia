@@ -5,6 +5,10 @@
 
 {% block content %}
 <main class="container d-flex flex-column align-items-center pt-2">
+    {% if not active and not inactive %}
+        <h3 class="text-center pt-4">{% trans "No current poll" %}</h3>
+    {% endif %}
+
     {% if active %}
         <div>
             <h4 class="text-center">{% blocktranslate count counter=active.count %}Active poll{% plural %}Active polls{% endblocktranslate %}</h4>
@@ -19,6 +23,7 @@
             </div>
         </div>
     {% endif %}
+    
     {% if inactive %}
         <div>
             <h4 class="text-center">{% blocktranslate count counter=inactive.count %}Inactive poll{% plural %}Inactive polls{% endblocktranslate %}</h4>

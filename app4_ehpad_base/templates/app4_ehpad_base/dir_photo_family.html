@@ -1,15 +1,20 @@
 {% extends "app4_ehpad_base/base_footer.html" %}
-
 {% load static %}
 {% load i18n %}
 
 {% block content %}
-<div class="d-flex flex-column align-items-center gap-3 mt-5">
+
+
+<div class="d-flex flex-column align-items-center gap-3 my-3">
     {% if new_dir %}
-        <form method="post" action="{% url 'new_photo_album' %}" class="d-flex flex-wrap justify-content-center gap-2">{% csrf_token %}
-            <input type="text" maxlength="50" name="new_name" placeholder="{% trans 'Enter a new album name' %}">
-            <button class="btn btn-perso">{% trans 'Create album' %}</button>
+        <a href="{% url 'app4_ehpad_base index' %}" class="btn btn-perso align-self-start ms-3">{% trans 'Back' %}</a>
+
+        <form method="post" action="{% url 'new_photo_album' %}" class="d-flex flex-wrap justify-content-center gap-2">
+            {% csrf_token %}
+            <input type="text" maxlength="50" name="new_name" placeholder="{% trans 'New album name' %}">
+            <button class="btn btn-perso ms-sm-3">{% trans 'Create album' %}</button>
         </form>
+
         {% if exist %}
             <div class="d-flex justify-content-center">
                 <div class="d-flex flex-column text-center border border-2 border-warning rounded-3 p-2">
@@ -18,37 +23,54 @@
                 </div>
             </div>
         {% endif %}
+
         <div class="d-flex flex-wrap justify-content-center gap-3">
-        {% for album in photo_album %}
-            <a href="{% url 'photo_from_family' name=album.name %}">
-                <div class="h-100 d-flex flex-column border {% if album.hl_border %}border-2 border-warning{% else %} border-darkblue{% endif %} rounded-3 p-2 align-items-center justify-content-between">
-                    <img src="{{ album.thumbnail_url }}" class="img-fluid my-auto rounded-3" style="max-height: 150px; max-width: 150px;">
-                    <h3 class="mb-0">{{ album.name }}</h3>
-                </div>
-            </a>
-        {% endfor %}
+            {% for album in photo_album %}
+                <a href="{% url 'photo_from_family' name=album.name %}">
+                    <div class="h-100 d-flex flex-column border {% if album.hl_border %}border-2 border-warning{% else %} border-darkblue{% endif %} rounded-3 p-2 align-items-center justify-content-between">
+                        <img src="{{ album.thumbnail_url }}" class="img-fluid my-auto rounded-3" style="max-height: 150px; max-width: 150px;">
+                        <h3 class="mb-0">{{ album.name }}</h3>
+                    </div>
+                </a>
+            {% endfor %}
         </div>
+
     {% else %}
-        <a href="{% url 'new_photo_album' %}" class="btn btn-perso align-self-start">{% trans 'Back' %}</a>
+        <a href="{% url 'new_photo_album' %}" class="btn btn-perso align-self-start ms-3">{% trans 'Back' %}</a>
+
         <div class="d-flex justify-content-center">
             <h1>{{ dir_name }}</h1>
         </div>
-        <div class="d-flex flex-column align-items-center gap-2 border border-darkblue rounded-3 p-2">
-            <h5>{% trans 'Add photos to this album' %}</h5>
-        <form action="{% url 'photo_from_family' name=dir_name %}" method="post" enctype="multipart/form-data">{% csrf_token %}
-            <div class="d-flex justify-content-center">
-                {% for field in img_form %}{{ field }}{% endfor %}
-                <button class="btn btn-perso" type="submit">{% trans 'Send' %}</button>
-            </div>
-        </form>
+
+        <div class="d-flex flex-column flex-md-row align-items-center gap-md-2 border border-darkblue rounded-3 p-2">
+            <h5 class="text-center pb-2 pb-md-0 pe-md-3">{% trans 'Add photos to this album' %}</h5>
+            <form action="{% url 'photo_from_family' name=dir_name %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+                <div class="d-flex flex-column justify-content-center">
+                    {% for field in img_form %}{{ field }}{% endfor %}
+                    <button class="btn btn-perso mt-2" type="submit">{% trans 'Send' %}</button>
+                </div>
+            </form>
         </div>
-        <div class="d-flex flex-wrap justify-content-center gap-3">
+        
+        <div class="d-flex flex-wrap justify-content-center gap-3 pt-4">
             {% for pic in list_pictures %}
-            <div>
-                <img class="img-fluid rounded-3" src="{{ pic }}" style="max-height: 240px;">
-            </div>
+                <div>
+                    <img class="img-fluid rounded-3" src="{{ pic }}" style="max-height: 240px;">
+                </div>
             {% endfor %}
         </div>
+
+        <!-- Bouton "Supprimer cet album" -->
+        {% if dir_name %}
+            <form method="post" action="{% url 'delete_photo_album' name=dir_name %}" class="d-flex justify-content-center mt-4">
+                {% csrf_token %}
+                <button class="btn btn-danger" type="submit">
+                    {% trans "Delete this album" %}
+                </button>
+            </form>
+        {% endif %}
     {% endif %}
 </div>
+
+
 {% endblock content %}

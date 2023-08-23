@@ -67,6 +67,7 @@ def new_group(request):
                 result.extend(get_list_related_permissions(option.split('.')[0]))
             grp.permissions.set(result)
             context.update({'category': _('Saved'), 'message': _('The group has been saved')})
+            return redirect('select rights group')
     context.update({'apps': get_app_list(), 'user_type': USER_TYPE})
     return render(request, 'app0_access/new_group.html', context)
 
@@ -271,9 +272,3 @@ def user_types(request):
                       'codename': 'none'})
     context['list_types'] = result
     return render(request, 'app0_access/user_types.html', context)
-
-
-@login_required
-@permission_required('app0_access.view_rightsmanagement')
-def help_doc(request):
-    return FileResponse(open(settings.STATIC_ROOT + '/app0_access/doc/user_group_fr.pdf', 'rb'))

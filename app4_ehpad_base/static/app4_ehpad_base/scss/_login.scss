@@ -15,6 +15,10 @@
         display: none
     }
     
+    .element-visible {
+        display: block !important;
+    }
+    
     .form-container form {
         background: #fff;
         display: flex;

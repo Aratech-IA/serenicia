@@ -1,0 +1,34 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+
+{% block content %}
+{% load static %}
+{% load i18n %}
+
+<div class="p-2">
+    <a class="btn btn-perso" href="{% url 'app17_help index' %}">{% trans "Return" %}</a>
+    <h4 class="text-center text-uppercase pb-3 pb-md-4">{% trans "Help" %} {% trans "Referrers attribution" %}</h4>
+    <div class="container-xl">
+
+        <!-- Ajouter ou changer des référents -->
+        <div class="d-flex flex-column flex-md-row align-items-center pb-5">
+            <div class="col-12 col-md-4 pb-2 pb-md-0 pe-2">
+                <h5 class="pb-3">{% trans "Add, remove or modify referrers" %}</h5>
+                <p class="pb-1">1- {% trans "Go to the administration (accessible from the first name.last name menu)" %}</p>
+                <p class="pb-1">2- {% trans "Click on 'user'" %}</p>
+                <p class="pb-1">3- {% trans "Search for the referent concerned by the allocation of residents (in the menu on the right, it is possible to sort by profession (AS, ASH, ...))" %}</p>
+                <p class="pb-1">4- {% trans "In 'profile Sérénicia', choose the residents to assign" %}</p>
+                <p class="pb-1">5- {% trans "Register" %}</p>
+                <p class="pb-1">5- {% trans "PLEASE NOTE, for a referrer to be assigned, he must have already logged in with his profile. Login can take place after assignment." %}</p>
+                <p class="pb-1">5- {% trans "Find the referents on the resident's personal page" %}</p>
+            </div>
+            <video controls class="col-12 col-md-8">
+                <source src="{% static 'app17_help/videos/Modifier_referents.mp4' %}" type="video/mp4">
+                {% trans "Your browser does not support the HTML video tag" %}.
+            </video>
+        </div>
+        
+    </div>
+</div>
+
+
+{% endblock content %}

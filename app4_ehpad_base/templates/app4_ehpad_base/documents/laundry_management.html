@@ -1,200 +1,77 @@
 {% extends "app4_ehpad_base/base_footer.html" %}
-    {% block content %}
-            {% load static %}
-                {% load i18n %}
+{% load static %}
+{% load i18n %}
 
-<style>
+{% block content %}
 
-.card {
-    display: flex;
-    position: relative;
-    word-wrap: break-word;
-    flex-direction: column;
-    box-shadow: 0 20px 20px -20px #a6a6a6;
-    background-color: white;
-}
 
-.alert-success {
-    font-size: 20px;
-    border-color: #000;
-    background: #93a9d2;
-    text-align: justify;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-}
-
-.accordion-button-1:hover {
-    color: #000;
-    background: #93a9d2;
-}
-
-.accordion-button-1:not(.collapsed) {
-    color: #000;
-    background: #93a9d2;
-}
-
-.accordion-button-20:hover {
-    color: #000;
-    background: #93a9d2;
-}
-
-.accordion-button-20:not(.collapsed) {
-    color: #000;
-    background: #93a9d2;
-}
-
-.accordion-button-20:not(.collapsed):hover {
-    color: #000;
-    background: #93a9d2;
-}
-
-.accordion-button-20:hover {
-    color: #000;
-    background: #93a9d2;
-}
-
-.accordion-button-20:not(.collapsed) {
-    color: #000;
-    background: #93a9d2;
-}
-.popup {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-}
-
-.popup .popuptext {
-    visibility: hidden;
-    width: 160px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 8px 0;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -80px;
-}
-
-.popup .popuptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
-}
-
-.popup .show {
-    visibility: visible;
-    -webkit-animation: fadeIn 1s;
-    animation: fadeIn 1s
-}
-
-@-webkit-keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
-
-@keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity:1 ;}
-}
-</style>
-
-<div class="container pt-5">
+<div class="laundry_management container pt-3">
 
     <div class="text-center">
-        <h4 class="text-uppercase text-decoration-underline">{% trans "Laundry management" %}</h4>
-        <span>
-            {% trans 'To create an inventory, select a resident then click on "healing" in the navigation bar, then on "create inventory"' %}
-            <div class="popup" onclick="myFunction()">
-                <span class="popuptext" id="myPopup">Bonne journée ʕᵔᴥᵔʔ</span>
-            </div>
-        </span>
+        <h4 class="text-uppercase">{% trans "Laundry management" %}</h4>
+        <p>{% trans "To create an inventory, select a resident then click on 'create inventory' in the resident's navigation bar" %}</p>
     </div>
 
-    <div class="row pt-5">
-        <div class="col">
-
-            <div class="accordion accordion-flush card" id="accordionFlushExample">
-                <div class="accordion-item">
-
-                    <div class="accordion-header border-bottom" id="flush-headingOne">
-                        <button class="accordion-button accordion-button-1 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-
-                            <div class="col pt-0 pb-0 d-flex justify-content-start">
-                                <h6 class="text-uppercase">{% trans "list of residents whose laundry is washed by the nursing home" %}</h6>
-                            </div>
-
-                        </button>
-                    </div>
-
-                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">
-
-                            {% for laundry_washed in laundry_washed %}
-                                <ul class="text-start">
-                                    <li style="list-style: square;">
-
-                                        {{ laundry_washed.user_resident.last_name }} {{ laundry_washed.user_resident.first_name }}
-
-                                        {% if laundry_washed.user_resident.profile.client.room_number %}
-                                            -> {% trans "Room" %} {{ laundry_washed.user_resident.profile.client.room_number }}
-                                        {% endif %}
-
-                                    </li>
-                                </ul>
-                            {% endfor %}
-
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-
-                        <div class="accordion-header" id="flush-headingTwo">
-                            <button class="accordion-button accordion-button-20 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-
-                                <div class="col pt-0 pb-0 d-flex justify-content-start">
-                                    <h6 class="text-uppercase">{% trans "list of residents whose laundry is marked by the nursing home" %}</h6>
-                                </div>
-
-                            </button>
-                        </div>
-
-                        <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body">
-
-                            {% for laundry_labeled in laundry_labeled %}
-                                <ul class="text-start">
-                                    <li style="list-style: square;">
-                                        {{ laundry_labeled.user_resident.last_name }} {{ laundry_labeled.user_resident.first_name }}
-                                    </li>
-                                </ul>
-                            {% endfor %}
-
-                            </div>
-                        </div>
-
-                    </div>
-
+    <div class="d-flex flex-column flex-md-row justify-content-md-evenly">
+        <div>
+            <div class="border-bottom mb-1">
+                <div class="pt-0 pb-0 d-flex justify-content-center pt-5">
+                    <h6 class="text-uppercase text-center">
+                        {% trans "list of residents whose laundry is washed by the nursing home" %}
+                    </h6>
                 </div>
             </div>
 
+            {% if laundry_washed %}
+                <div class="d-flex flex-column justify-content-center">
+                    <ul class="text-center mb-0">
+                        {% for laundry_washed in laundry_washed %}
+                            <li style="list-style: inside;">
+                                {{ laundry_washed.user_resident.first_name }}
+                                {{ laundry_washed.user_resident.last_name }}
+
+                                {% if laundry_washed.user_resident.profile.client.room_number %}
+                                    -> {% trans "Room" %} {{ laundry_washed.user_resident.profile.client.room_number }}
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% else %}
+                <h5 class="text-center pt-3">{% trans "None" %}</h5>
+            {% endif %}
+        </div>
+
+        <div>
+            <div class="border-bottom mb-1">
+                <div class="pt-0 pb-0 d-flex justify-content-center pt-5">
+                    <h6 class="text-uppercase text-center">
+                        {% trans "list of residents whose laundry is marked by the nursing home" %}
+                    </h6>
+                </div>
+            </div>
+
+            {% if laundry_labeled %}
+                <div>
+                    {% for laundry_labeled in laundry_labeled %}
+                        <ul class="text-center mb-0">
+                            <li style="list-style: inside;">
+                                {{ laundry_labeled.user_resident.first_name }}
+                                {{ laundry_labeled.user_resident.last_name }}
+
+                                {% if laundry_labeled.user_resident.profile.client.room_number %}
+                                    -> {% trans "Room" %} {{ laundry_labeled.user_resident.profile.client.room_number }}
+                                {% endif %}
+                            </li>
+                        </ul>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <h5 class="text-center pt-3">{% trans "None" %}</h5>
+            {% endif %}
         </div>
     </div>
-
 </div>
 
-<script>
-function myFunction() {
-  var popup = document.getElementById("myPopup");
-  popup.classList.toggle("show");
-}
-</script>
 
 {% endblock content %}

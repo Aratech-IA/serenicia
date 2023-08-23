@@ -5,7 +5,7 @@
 
 {% block content %}
 
-<main class="m-3">
+<main class="m-2 m-sm-3 m-md-4">
 <!--        CSRF IS NEEDED TO SEND COOKIE WHEN WE OPEN THE EMAIL, DONT TAKE IT OFF-->
     {% csrf_token %}
     <div class="tab-content" id="myTabContentSent">
@@ -21,18 +21,18 @@
                     <div class="accordion-item">
                         <div class="accordion-header row" id="headingsent{{forloop.counter}}">
                             <div class="accordion-button padding-sent collapsed d-flex cursorpointer" data-bs-toggle="collapse" data-bs-target="#collapsesent{{forloop.counter}}" aria-expanded="false" aria-controls="collapsesent{{forloop.counter}}">
-                                <p class="style1 col-2 mb-0 p-2">
+                                <p class="style1 col-3 col-md-2 mb-0 p-2">
                                     &nbsp;&nbsp;{{ mail.date_sent }}
                                 </p>
 
-                                <p class="col-8 mb-0">
+                                <p class="col-6 col-md-8 mb-0">
                                     {{ mail.subject }}
                                     {% for tag in mail.tags.all %}
                                         <span class="badge rounded-pill bg-lightblue">{{tag.name}}</span>
                                     {% endfor %}
                                 </p>
 
-                                <p class="style1 style2 col-2 mb-0">
+                                <p class="style1 style2 col-3 col-md-2 mb-0">
                                     {{mail.number_opened}} {% trans 'opened' %} /{% with number=mail.intermediate_set.all|length %}{{ number|add:'-1' }}{% endwith%} {% trans 'sent' %}
                                 </p>
                             </div>

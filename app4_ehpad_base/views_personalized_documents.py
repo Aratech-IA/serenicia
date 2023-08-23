@@ -113,7 +113,8 @@ def personalized_documents(request):
 
         else:
             log_doc.error(f"Error generate document user room")
-            messages.error(request, _(f"{error}, {_('code error user room')}"), extra_tags='error')
+            error_message = _('code error user room')
+            messages.error(request, f"{error}, {error_message}", extra_tags='error')
             return redirect('documents')
 
         try:

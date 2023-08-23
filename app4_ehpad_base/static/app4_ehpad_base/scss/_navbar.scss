@@ -36,7 +36,7 @@
     z-index: 10;
     background-color: $lightblue !important;
 
-    @media screen and (max-width: $tablette-media-rupture) {
+    @media screen and (max-width: 767px) {
         transition: transform 0.5s;
         transform: translateX(-100%);
     }
@@ -90,7 +90,7 @@
 // Menu prénom.nom
 
 .menu_nom {
-    // display: none;
+    box-shadow: 0 0 1.5em rgba(0,0,0,.5);
     position: fixed;
     transition: transform 0.5s;
     transform: translateX(100%);
@@ -219,7 +219,6 @@
 
     span {
         bottom: -5%;
-        left: 39.5%;
         z-index: 9;
     }
 }
