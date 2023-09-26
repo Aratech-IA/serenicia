@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-23 09:54+0200\n"
+"POT-Creation-Date: 2023-09-26 15:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,7 +52,7 @@ msgstr "Praticien"
 #: app4_ehpad_base/templates/app4_ehpad_base/menu_of_the_day.html:88
 #: app4_ehpad_base/templates/app4_ehpad_base/registration/login.html:44
 #: app4_ehpad_base/templates/app4_ehpad_base/registration/login.html:191
-#: app4_ehpad_base/views_cuisine_eval.py:1167 app6_care/filters.py:16
+#: app4_ehpad_base/views_cuisine_eval.py:1166 app6_care/filters.py:16
 #: app6_care/forms/forms_intervention.py:28
 #: app6_care/templates/app6_care/caregiver/interventions_report.html:51
 #: app8_survey/models.py:76
@@ -534,6 +534,7 @@ msgstr "Annuler"
 #: app12_delivery/templates/app12_delivery/setting_day_done.html:42
 #: app12_delivery/templates/app12_delivery/update_account_delivery.html:86
 #: app15_calendar/templates/app15_calendar/calendar.html:188
+#: app17_help/templates/app17_help/hotel.html:54
 #: app3_messaging/templates/app3_messaging/custom_group_modify.html:72
 #: app3_messaging/templates/app3_messaging/mails_template_create.html:132
 #: app4_ehpad_base/templates/app4_ehpad_base/create_account.html:11
@@ -1329,7 +1330,7 @@ msgstr "Flag"
 #: app4_ehpad_base/forms.py:233
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:42
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:72
-#: app4_ehpad_base/views_cuisine_eval.py:1102
+#: app4_ehpad_base/views_cuisine_eval.py:1101
 #: app9_personnalized_project/signals.py:54
 msgid "Name"
 msgstr "Nom"
@@ -1900,7 +1901,7 @@ msgstr "Sélectionnez son moyen de paiement"
 #: app12_delivery/models.py:15 app12_delivery/models.py:26
 #: app12_delivery/models.py:84 app15_calendar/models.py:46
 #: app1_base/models.py:21 app4_ehpad_base/models.py:70
-#: app4_ehpad_base/views_cuisine_eval.py:854
+#: app4_ehpad_base/views_cuisine_eval.py:853
 #: app6_care/templates/app6_care/caregiver/care_plan_creation.html:364
 #: app9_personnalized_project/models.py:152
 #: app9_personnalized_project/signals.py:15
@@ -1910,7 +1911,7 @@ msgstr "Lundi"
 #: app12_delivery/models.py:16 app12_delivery/models.py:28
 #: app12_delivery/models.py:85 app15_calendar/models.py:47
 #: app1_base/models.py:22 app4_ehpad_base/models.py:71
-#: app4_ehpad_base/views_cuisine_eval.py:854
+#: app4_ehpad_base/views_cuisine_eval.py:853
 #: app6_care/templates/app6_care/caregiver/care_plan_creation.html:365
 #: app9_personnalized_project/models.py:153
 #: app9_personnalized_project/signals.py:15
@@ -1920,7 +1921,7 @@ msgstr "Mardi"
 #: app12_delivery/models.py:17 app12_delivery/models.py:30
 #: app12_delivery/models.py:86 app15_calendar/models.py:48
 #: app1_base/models.py:23 app4_ehpad_base/models.py:72
-#: app4_ehpad_base/views_cuisine_eval.py:854
+#: app4_ehpad_base/views_cuisine_eval.py:853
 #: app6_care/templates/app6_care/caregiver/care_plan_creation.html:366
 #: app9_personnalized_project/models.py:154
 #: app9_personnalized_project/signals.py:15
@@ -1930,7 +1931,7 @@ msgstr "Mercredi"
 #: app12_delivery/models.py:18 app12_delivery/models.py:32
 #: app12_delivery/models.py:87 app15_calendar/models.py:49
 #: app1_base/models.py:24 app4_ehpad_base/models.py:73
-#: app4_ehpad_base/views_cuisine_eval.py:854
+#: app4_ehpad_base/views_cuisine_eval.py:853
 #: app6_care/templates/app6_care/caregiver/care_plan_creation.html:367
 #: app9_personnalized_project/models.py:155
 #: app9_personnalized_project/signals.py:15
@@ -1940,7 +1941,7 @@ msgstr "Jeudi"
 #: app12_delivery/models.py:19 app12_delivery/models.py:34
 #: app12_delivery/models.py:88 app15_calendar/models.py:50
 #: app1_base/models.py:25 app4_ehpad_base/models.py:74
-#: app4_ehpad_base/views_cuisine_eval.py:855
+#: app4_ehpad_base/views_cuisine_eval.py:854
 #: app6_care/templates/app6_care/caregiver/care_plan_creation.html:368
 #: app9_personnalized_project/models.py:156
 #: app9_personnalized_project/signals.py:15
@@ -1950,7 +1951,7 @@ msgstr "Vendredi"
 #: app12_delivery/models.py:20 app12_delivery/models.py:36
 #: app12_delivery/models.py:89 app15_calendar/models.py:51
 #: app1_base/models.py:26 app4_ehpad_base/models.py:75
-#: app4_ehpad_base/views_cuisine_eval.py:855
+#: app4_ehpad_base/views_cuisine_eval.py:854
 #: app6_care/templates/app6_care/caregiver/care_plan_creation.html:369
 #: app9_personnalized_project/models.py:157
 #: app9_personnalized_project/signals.py:15
@@ -1960,7 +1961,7 @@ msgstr "Samedi"
 #: app12_delivery/models.py:21 app12_delivery/models.py:38
 #: app12_delivery/models.py:90 app15_calendar/models.py:52
 #: app1_base/models.py:27 app4_ehpad_base/models.py:76
-#: app4_ehpad_base/views_cuisine_eval.py:855
+#: app4_ehpad_base/views_cuisine_eval.py:854
 #: app6_care/templates/app6_care/caregiver/care_plan_creation.html:370
 #: app9_personnalized_project/models.py:158
 #: app9_personnalized_project/signals.py:16
@@ -3204,7 +3205,7 @@ msgstr "choisir un utilisateur"
 
 #: app17_help/templates/app17_help/access_management.html:26
 msgid "Click on it"
-msgstr "Cliquer dessus'"
+msgstr "Cliquer dessus"
 
 #: app17_help/templates/app17_help/access_management.html:27
 msgid "Assign a group"
@@ -3220,6 +3221,7 @@ msgstr "Enregistrer"
 #: app17_help/templates/app17_help/cuisine.html:29
 #: app17_help/templates/app17_help/hotel.html:25
 #: app17_help/templates/app17_help/hotel.html:42
+#: app17_help/templates/app17_help/hotel.html:59
 #: app17_help/templates/app17_help/referrers.html:26
 #: app17_help/templates/app17_help/social_life.html:22
 #: app17_help/templates/app17_help/social_life.html:31
@@ -3264,6 +3266,7 @@ msgstr "Entrer une tâche effectuée"
 
 #: app17_help/templates/app17_help/hotel.html:16
 #: app17_help/templates/app17_help/hotel.html:33
+#: app17_help/templates/app17_help/hotel.html:50
 msgid "Choose a resident"
 msgstr "Choisir un résident"
 
@@ -3310,6 +3313,30 @@ msgstr "Saisissez votre commentaire"
 #: app17_help/templates/app17_help/hotel.html:38
 msgid "Find the comments on the resident's personal page"
 msgstr "Retrouvez les commentaires sur la page personnelle du résident"
+
+#: app17_help/templates/app17_help/hotel.html:49
+msgid "Create/Modify inventory"
+msgstr "Créer/Modifier un inventaire"
+
+#: app17_help/templates/app17_help/hotel.html:51
+msgid "Click 'Create Inventory' or 'Inventory' in the resident navigation bar"
+msgstr ""
+"Cliquez sur 'Créer un inventaire' ou 'Inventaire' dans la barre de navigation des résidents"
+
+#: app17_help/templates/app17_help/hotel.html:52
+msgid ""
+"If you want to modify the inventory, click 'edit' at the bottom of the page"
+msgstr "Si vous souhaitez modifier l'inventaire, cliquez sur 'modifier' en bas de la page"
+
+#: app17_help/templates/app17_help/hotel.html:53
+msgid "Enter inventory"
+msgstr "Entrer l'inventaire"
+
+#: app17_help/templates/app17_help/hotel.html:55
+msgid ""
+"In the left navigation bar, 'Hospitality' 'Linen management', you will be "
+"able to find if the linen has been washed and marked by your establishment"
+msgstr "Dans la bar de navigation de gauche, 'Hôtellerie' 'Gestion du linge', vous pourrez retrouver si le linge et lavé et marqué par votre établissament"
 
 #: app17_help/templates/app17_help/index.html:8
 msgid "Welcome to Serenicia Help"
@@ -6693,12 +6720,12 @@ msgid "Click on the day to see the menus"
 msgstr "Cliquez sur le jour pour voir les menus"
 
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_pdf.html:33
-#: app4_ehpad_base/views_cuisine_eval.py:1169
+#: app4_ehpad_base/views_cuisine_eval.py:1168
 msgid "Staff"
 msgstr "Employés"
 
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_pdf.html:37
-#: app4_ehpad_base/views_cuisine_eval.py:1171
+#: app4_ehpad_base/views_cuisine_eval.py:1170
 msgid "Discovery training"
 msgstr "Stage découverte"
 
@@ -7039,7 +7066,7 @@ msgid "Monthly"
 msgstr "Mensuel"
 
 #: app4_ehpad_base/templates/app4_ehpad_base/eval_dashboard.html:45
-#: app4_ehpad_base/views_cuisine_eval.py:797
+#: app4_ehpad_base/views_cuisine_eval.py:796
 msgid "All residents"
 msgstr "Tous les résidents"
 
@@ -7135,8 +7162,8 @@ msgid "Location logo"
 msgstr "Logo du lieu"
 
 #: app4_ehpad_base/templates/app4_ehpad_base/index.html:59
-#: app4_ehpad_base/views_cuisine_eval.py:948
-#: app4_ehpad_base/views_cuisine_eval.py:952
+#: app4_ehpad_base/views_cuisine_eval.py:947
+#: app4_ehpad_base/views_cuisine_eval.py:951
 msgid "Missing information"
 msgstr "Information manquante"
 
@@ -8060,53 +8087,53 @@ msgstr "Aucun utilisateur connecté à cette date"
 msgid "The service team has been registered"
 msgstr "L'équipe de service à bien été enregistrée"
 
-#: app4_ehpad_base/views_cuisine_eval.py:817
+#: app4_ehpad_base/views_cuisine_eval.py:816
 msgid "An error has occured"
 msgstr "Une erreur est survenue"
 
-#: app4_ehpad_base/views_cuisine_eval.py:845
+#: app4_ehpad_base/views_cuisine_eval.py:844
 msgid "Your booking for the "
 msgstr "Votre réservation pour le "
 
-#: app4_ehpad_base/views_cuisine_eval.py:845
+#: app4_ehpad_base/views_cuisine_eval.py:844
 msgid ", for a total of"
 msgstr ", pour un total de"
 
-#: app4_ehpad_base/views_cuisine_eval.py:846
+#: app4_ehpad_base/views_cuisine_eval.py:845
 msgid "guests"
 msgstr "invités"
 
-#: app4_ehpad_base/views_cuisine_eval.py:847
+#: app4_ehpad_base/views_cuisine_eval.py:846
 msgid "has been registered !"
 msgstr "a été enregistrée !"
 
-#: app4_ehpad_base/views_cuisine_eval.py:850
-#: app4_ehpad_base/views_cuisine_eval.py:1046
+#: app4_ehpad_base/views_cuisine_eval.py:849
+#: app4_ehpad_base/views_cuisine_eval.py:1045
 msgid "Meal booking"
 msgstr "Réservation de repas"
 
-#: app4_ehpad_base/views_cuisine_eval.py:945
+#: app4_ehpad_base/views_cuisine_eval.py:944
 msgid "Your modification has been registered"
 msgstr "Votre modification a été enregistrée"
 
-#: app4_ehpad_base/views_cuisine_eval.py:945
+#: app4_ehpad_base/views_cuisine_eval.py:944
 msgid "Booking updated"
 msgstr "Réservation mise à jour"
 
-#: app4_ehpad_base/views_cuisine_eval.py:946
+#: app4_ehpad_base/views_cuisine_eval.py:945
 msgid "Your booking has been registered"
 msgstr "Votre réservation a été enregistrée"
 
-#: app4_ehpad_base/views_cuisine_eval.py:946
+#: app4_ehpad_base/views_cuisine_eval.py:945
 msgid "Booking saved"
 msgstr "Réservation enregistrée"
 
-#: app4_ehpad_base/views_cuisine_eval.py:947
+#: app4_ehpad_base/views_cuisine_eval.py:946
 msgid "Please specify if this is a reservation for lunch or dinner"
 msgstr ""
 "Veuillez préciser s'il s'agit d'une réservation pour le déjeuner ou le dîner"
 
-#: app4_ehpad_base/views_cuisine_eval.py:950
+#: app4_ehpad_base/views_cuisine_eval.py:949
 msgid ""
 "Booking not possible, please check your reservation schedule (group and "
 "individual)"
@@ -8114,41 +8141,41 @@ msgstr ""
 "Réservation impossible, merci de vérifier votre planning de réservation "
 "(groupe et individuel)"
 
-#: app4_ehpad_base/views_cuisine_eval.py:951
+#: app4_ehpad_base/views_cuisine_eval.py:950
 msgid "Registeration not possible"
 msgstr "Inscription impossible"
 
-#: app4_ehpad_base/views_cuisine_eval.py:952
+#: app4_ehpad_base/views_cuisine_eval.py:951
 msgid "Please specifiy the number of guests"
 msgstr "Merci de préciser le nombre d'invités"
 
-#: app4_ehpad_base/views_cuisine_eval.py:1015
+#: app4_ehpad_base/views_cuisine_eval.py:1014
 msgid "Meal with"
 msgstr "Repas avec"
 
-#: app4_ehpad_base/views_cuisine_eval.py:1018
+#: app4_ehpad_base/views_cuisine_eval.py:1017
 #: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:46
 #: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:96
 msgid "and"
 msgstr "et"
 
-#: app4_ehpad_base/views_cuisine_eval.py:1023
+#: app4_ehpad_base/views_cuisine_eval.py:1022
 msgid "other guests"
 msgstr "autres invités"
 
-#: app4_ehpad_base/views_cuisine_eval.py:1045
+#: app4_ehpad_base/views_cuisine_eval.py:1044
 msgid "Your reservation has been successfully deleted"
 msgstr "Votre réservation a été supprimée avec succès"
 
-#: app4_ehpad_base/views_cuisine_eval.py:1102
+#: app4_ehpad_base/views_cuisine_eval.py:1101
 msgid "Quantity"
 msgstr "Quantité"
 
-#: app4_ehpad_base/views_cuisine_eval.py:1179
+#: app4_ehpad_base/views_cuisine_eval.py:1178
 msgid "Reservations"
 msgstr "Réservations"
 
-#: app4_ehpad_base/views_cuisine_eval.py:1195
+#: app4_ehpad_base/views_cuisine_eval.py:1194
 msgid "Totals"
 msgstr "Totaux"
 
@@ -9664,155 +9691,3 @@ msgstr "Vous n'avez pas encore de rendez-vous."
 msgid "The story life has been deleted"
 msgstr "L'histoire de vie a été supprimée"
 
-#~ msgid "create the"
-#~ msgstr "crée le"
-
-#~ msgid "Nursing report"
-#~ msgstr "Rapport infirmier"
-
-#~ msgid "Empty search"
-#~ msgstr "Recherche vide"
-
-#~ msgid "labeled by family"
-#~ msgstr "Etiqueté par la famille"
-
-#~ msgid "labeled by residence"
-#~ msgstr "Etiqueté par la résidence"
-
-#~ msgid "washed by family"
-#~ msgstr "Lavé par la famille"
-
-#~ msgid "washed by residence"
-#~ msgstr "Lavé par la résidence"
-
-#~ msgid "Laundry mark by residence"
-#~ msgstr "Linge étiqueté par la résidence"
-
-#~ msgid "Clothing and equipment"
-#~ msgstr "Vêtements et équipement"
-
-#~ msgid "Skirt / Dress"
-#~ msgstr "Jupe / Robe"
-
-#~ msgid "Equipment in the bathroom"
-#~ msgstr "Équipement dans la salle de bain"
-
-#~ msgid "Distribution of objects in the room"
-#~ msgstr "Répartition des objets dans la pièce"
-
-#~ msgid "Closet shelf"
-#~ msgstr "Étagère de placard"
-
-#~ msgid "Covers"
-#~ msgstr "Couvertures"
-
-#~ msgid "Skirts & dresses"
-#~ msgstr "Jupes & robes"
-
-#~ msgid "Nightdress & Dressing gown"
-#~ msgstr "Chemise de nuit & Peignoir"
-
-#~ msgid "Bath towels"
-#~ msgstr "Serviettes de bain"
-
-#~ msgid "Towels"
-#~ msgstr "Les serviettes"
-
-#~ msgid "Closet wardrobe"
-#~ msgstr "Armoire penderie"
-
-#~ msgid "Suitcase"
-#~ msgstr "Valise"
-
-#~ msgid "Shirt"
-#~ msgstr "Chemise"
-
-#~ msgid "Shoes & slippers"
-#~ msgstr "Chaussures & pantoufles"
-
-#~ msgid "Cupboard drawer"
-#~ msgstr "Tiroir de placard"
-
-#~ msgid "Complementary information"
-#~ msgstr "Informations complémentaires"
-
-#~ msgid ""
-#~ "Ensure that all clothing provided to the residence goes to the residents"
-#~ msgstr ""
-#~ "S'assurer que tous les vêtements fournis à la résidence aillent aux "
-#~ "résidents"
-
-#~ msgid ""
-#~ "At each change of season, please remove all linen unsuitable for the "
-#~ "season"
-#~ msgstr ""
-#~ "A chaque changement de saison, merci de retirer tout le linge inadapté à "
-#~ "la saison"
-
-#~ msgid ""
-#~ "This may be an opportunity to check the sizes and wear of clothes and "
-#~ "possibly complete the inventory"
-#~ msgstr ""
-#~ "Cela peut être l'occasion de vérifier les tailles et l'usure des "
-#~ "vêtements et d'éventuellement compléter l'inventaire"
-
-#~ msgid ""
-#~ "Faced with the workload, the nursing staff often go to the fastest and "
-#~ "may tend to offer the same clothes to the resident. Do not hesitate when "
-#~ "you come, to place clothes often worn below the pile of laundry to "
-#~ "promote rotation"
-#~ msgstr ""
-#~ "Face à la charge de travail, le personnel soignant va souvent au plus "
-#~ "vite et peut avoir tendance à proposer les mêmes vêtements au résident. "
-#~ "N'hésitez pas lorsque vous venez de placer les vêtements souvent portés "
-#~ "sous la pile de linge pour favoriser rotation"
-
-#~ msgid ""
-#~ "If you want to renew or complete laundry in your inventory. Or simply if "
-#~ "you received a garment as a gift, be sure to mark it before bringing it. "
-#~ "If this service is provided by the residence, the linen must be left at "
-#~ "reception, which will forward it to the sewing department."
-#~ msgstr ""
-#~ "Si vous souhaitez renouveler ou compléter la lessive dans votre "
-#~ "inventaire. Ou simplement si vous avez reçu un vêtement en cadeau, "
-#~ "assurez-vous de le marquer avant de l'apporter. Si ce le service est "
-#~ "assuré par la résidence, le linge doit être déposé à l'accueil qui le "
-#~ "transmettra au service couture"
-
-#~ msgid ""
-#~ "If wearing braces: Adhesive paste and box to store the dentures. "
-#~ "Effervescent tablets are ineffective. We don't use them"
-#~ msgstr ""
-#~ "Si vous portez un appareil dentaire : Pâte adhésive et boîte pour ranger "
-#~ "le dentier. Les comprimés effervescents sont inefficaces. Nous ne les "
-#~ "utilisons pas"
-
-#~ msgid "Arrival inventory of"
-#~ msgstr "Inventaire d'arrivée"
-
-#~ msgid "Choose a permission to see"
-#~ msgstr "Choisissez une autorisation pour voir"
-
-#~ msgid "choose"
-#~ msgstr "choisir"
-
-#~ msgid "view_as"
-#~ msgstr "Vue AS"
-
-#~ msgid "view_ash"
-#~ msgstr "Vue ASH"
-
-#~ msgid "view_ide"
-#~ msgstr "Vue IDE"
-
-#~ msgid "Support projects"
-#~ msgstr "Projets d'accompagnement"
-
-#~ msgid "My appointments"
-#~ msgstr "Mes rendez-vous"
-
-#~ msgid "My Family"
-#~ msgstr "Ma famille"
-
-#~ msgid "Click on 'Click on it'"
-#~ msgstr "Cliquer sur 'Cliquer dessus'"

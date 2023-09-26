@@ -43,6 +43,23 @@
             </video>
         </div>
         
+        <!-- Créer ou modifier un inventaire -->
+        <div class="d-flex flex-column flex-md-row align-items-center pb-5">
+            <div class="col-12 col-md-4 pb-2 pb-md-0 pe-2">
+                <h5 class="pb-3">{% trans "Create/Modify inventory" %}</h5>
+                <p class="pb-1">1- {% trans "Choose a resident" %}</p>
+                <p class="pb-1">2- {% trans "Click 'Create Inventory' or 'Inventory' in the resident navigation bar" %}</p>
+                <p class="pb-1">3- {% trans "If you want to modify the inventory, click 'edit' at the bottom of the page" %}</p>
+                <p class="pb-1">4- {% trans "Enter inventory" %}</p>
+                <p class="pb-1">5- {% trans "Save" %}</p>
+                <p class="pb-1">5- {% trans "In the left navigation bar, 'Hospitality' 'Linen management', you will be able to find if the linen has been washed and marked by your establishment" %}</p>
+            </div>
+            <video controls class="col-12 col-md-8">
+                <source src="{% static 'app17_help/videos/Inventaire.mp4' %}" type="video/mp4">
+                {% trans "Your browser does not support the HTML video tag" %}.
+            </video>
+        </div>
+        
     </div>
 </div>
 
