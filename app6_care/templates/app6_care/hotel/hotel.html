@@ -11,7 +11,19 @@
             <a class="btn btn-perso mx-1" href="{% url 'hotel' %}">{% trans 'Hotel home' %}</a>
             {% if request.session.resident_id and specific_to_a_resident %}
                 <div class="d-flex justify-content-center align-items-center fs-5">
-                        {% trans 'Room of' %} {{request.session.res_lastname}} - {{ room_number }}
+                        {% trans 'Room of' %}
+                        {{request.session.res_lastname}}
+                        -
+                        {% if room_number|stringformat:"s"|length == 4 %}
+                            {% if room_number|stringformat:"s"|slice:"3:4" == "1" %}
+                                {{ room_number|stringformat:"s"|slice:"0:3" }}F
+                            {% else %}
+                                {{ room_number|stringformat:"s"|slice:"0:3" }}P
+                            {% endif %}
+                        {% else %}
+                            {{ room_number }}
+                        {% endif %}
+
                         {% if request.session.profile_pic %}
                             <img class="resident-small-pic mx-1" src="{{ request.session.profile_pic }}" alt="{trans 'resident profile pic' %}">
                         {% endif %}

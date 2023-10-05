@@ -194,13 +194,38 @@
                 <a href="{% url 'app1_base index' %}" class="btn btn-perso sticky-top-btn">
                     <div class="d-flex">
                         {% if perms.app0_access.view_family %}
-                            <span>{% trans 'Housing' %} {{ client.room_number }}</span>
+                            <span>
+                                {% trans 'Housing' %}
+                                {% if client.room_number|stringformat:"s"|length == 4 %}
+                                    {% if client.room_number|stringformat:"s"|slice:"3:4" == "1" %}
+                                        {{ client.room_number|stringformat:"s"|slice:"0:3" }}F
+                                    {% else %}
+                                        {{ client.room_number|stringformat:"s"|slice:"0:3" }}P
+                                    {% endif %}
+                                {% else %}
+                                    {{ client.room_number }}
+                                {% endif %}
+                            </span>
                         {% else %}
                             <div class="d-flex align-items-center">
                                 <p class="my-auto">{{ client.cp }}</p>
                             </div>
                             <div class="ms-1 d-none d-md-block">
-                                <small>{% if client.adress_lieu %}{{ client.adress_lieu }}{% else %}{{ client.room_number }}{% endif %}</small>
+                                <small>
+                                    {% if client.adress_lieu %}
+                                        {{ client.adress_lieu }}
+                                    {% else %}
+                                        {% if client.room_number|stringformat:"s"|length == 4 %}
+                                            {% if client.room_number|stringformat:"s"|slice:"3:4" == "1" %}
+                                                {{ client.room_number|stringformat:"s"|slice:"0:3" }}F
+                                            {% else %}
+                                                {{ client.room_number|stringformat:"s"|slice:"0:3" }}P
+                                            {% endif %}
+                                        {% else %}
+                                            {{ client.room_number }}
+                                        {% endif %}
+                                    {% endif %}
+                                </small>
                             </div>
                         {% endif %}
                     </div>

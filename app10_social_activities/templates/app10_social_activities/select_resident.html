@@ -48,7 +48,18 @@
                                 <p>
                                     {{ resident.user.profile.civility }} {{ resident.user.first_name.0 }}. {{ resident.user.last_name }}
                                 </p>
-                                <span class="text-muted">{% trans 'Room' %}: {{ resident.user.profile.client.room_number }}</span>
+                                <span class="text-muted">
+                                    {% trans 'Room' %}:
+                                    {% if resident.user.profile.client.room_number|stringformat:"s"|length == 4 %}
+                                        {% if resident.user.profile.client.room_number|stringformat:"s"|slice:"3:4" == "1" %}
+                                            {{ resident.user.profile.client.room_number|stringformat:"s"|slice:"0:3" }}F
+                                        {% else %}
+                                            {{ resident.user.profile.client.room_number|stringformat:"s"|slice:"0:3" }}P
+                                        {% endif %}
+                                    {% else %}
+                                        {{ resident.user.profile.client.room_number }}
+                                    {% endif %}
+                                </span>
                             </div>
                         </div>
                     </button>

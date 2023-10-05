@@ -29,7 +29,15 @@
         <div class="text-center row justify-content-center p-2 border-top border-bottom border-darkblue">
             {% for room in roomlist %}
                 <div class="col-3">
-                    N° {{ room.camera.client.clientsserenicia.room_number }}
+                    {% if room.camera.client.clientsserenicia.room_number|stringformat:"s"|length == 4 %}
+                        {% if room.camera.client.clientsserenicia.room_number|stringformat:"s"|slice:"3:4" == "1" %}
+                            N° {{ room.camera.client.clientsserenicia.room_number|stringformat:"s"|slice:"0:3" }}F
+                        {% else %}
+                            N° {{ room.camera.client.clientsserenicia.room_number|stringformat:"s"|slice:"0:3" }}P
+                        {% endif %}
+                    {% else %}
+                        N° {{ room.camera.client.clientsserenicia.room_number }}
+                    {% endif %}
                 </div>
                 <div class="col-3">
                     {{ room.camera.client.name }} {{ room.camera.client.first_name }}

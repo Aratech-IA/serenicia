@@ -40,7 +40,15 @@
                             {% if resident.profile.civility == 'Mr' %}{% trans "Mr" %} {% elif resident.profile.civility == 'Mrs' %}{% trans "Mrs" %}  {% else %}{% endif %}
                             <!-- {{ resident.first_name }} -->
                             {{ resident.last_name }}
-                            [N°{{ resident.profile.client.room_number }}]
+                            {% if resident.profile.client.room_number|stringformat:"s"|length == 4 %}
+                                {% if resident.profile.client.room_number|stringformat:"s"|slice:"3:4" == "1" %}
+                                    [N°{{ resident.profile.client.room_number|stringformat:"s"|slice:"0:3" }}F]
+                                {% else %}
+                                    [N°{{ resident.profile.client.room_number|stringformat:"s"|slice:"0:3" }}P]
+                                {% endif %}
+                            {% else %}
+                                [N°{{ resident.profile.client.room_number }}]
+                            {% endif %}
                             <br>
                         {% endfor %}
                     </div>

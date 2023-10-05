@@ -34,7 +34,23 @@
 
                 <!--Nom, logement, complétion du dossier-->
                 <div class="col-lg-10 d-flex flex-column justify-content-center align-items-center">
-                    <h4 class="text-center mt-5">{{ civility }} {{firstname}} {{lastname}} {% if main_resident_informations %} {% trans 'Housing' %} {{ main_resident_informations.room_number }}{% endif %}</h4>
+                    <h4 class="text-center mt-5">
+                        {{ civility }}
+                        {{firstname}}
+                        {{lastname}}
+                        {% if main_resident_informations %}
+                            {% trans 'Housing' %}
+                            {% if main_resident_informations.room_number|stringformat:"s"|length == 4 %}
+                                {% if main_resident_informations.room_number|stringformat:"s"|slice:"3:4" == "1" %}
+                                    {{ main_resident_informations.room_number|stringformat:"s"|slice:"0:3" }}F
+                                {% else %}
+                                    {{ main_resident_informations.room_number|stringformat:"s"|slice:"0:3" }}P
+                                {% endif %}
+                            {% else %}
+                                {{ main_resident_informations.room_number }}
+                            {% endif %}
+                        {% endif %}
+                    </h4>
 
                     {% if main_resident_informations %}
                         {% if main_resident_informations.got_multi_resistant_bacteria %}<label class="orange my_radius m-1 p-1">BMR</label>{% endif%}

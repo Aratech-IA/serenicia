@@ -96,7 +96,15 @@
                                 {{key.first_name}}
                                 {{key.last_name}}
                                 -
-                                {{key.profile.client.room_number}}
+                                {% if key.profile.client.room_number|stringformat:"s"|length == 4 %}
+                                    {% if key.profile.client.room_number|stringformat:"s"|slice:"3:4" == "1" %}
+                                        {{ key.profile.client.room_number|stringformat:"s"|slice:"0:3" }}F
+                                    {% else %}
+                                        {{ key.profile.client.room_number|stringformat:"s"|slice:"0:3" }}P
+                                    {% endif %}
+                                {% else %}
+                                    {{ key.profile.client.room_number }}
+                                {% endif %}
                             </button>
                         {% endif %}
                     </h2>

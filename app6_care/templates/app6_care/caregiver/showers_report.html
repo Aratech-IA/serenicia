@@ -21,7 +21,17 @@
                     <li class="d-flex">
                         <p class="d-none d-md-block pe-1">{{ resident.first_name }}</p>
                         <p class="pe-1">{{ resident.last_name }}</p>
-                        <p class="pe-1">({{ resident.profile.client.room_number }})</p>
+                        <p class="pe-1">
+                            {% if resident.profile.client.room_number|stringformat:"s"|length == 4 %}
+                                {% if resident.profile.client.room_number|stringformat:"s"|slice:"3:4" == "1" %}
+                                    ({{ resident.profile.client.room_number|stringformat:"s"|slice:"0:3" }}F)
+                                {% else %}
+                                    ({{ resident.profile.client.room_number|stringformat:"s"|slice:"0:3" }}P)
+                                {% endif %}
+                            {% else %}
+                                ({{ resident.profile.client.room_number }})
+                            {% endif %}
+                        </p>
                     </li>
                 {% endfor %}
             </ol>
@@ -37,7 +47,17 @@
                     <li class="d-flex">
                         <p class="d-none d-md-block pe-1">{{ resident.first_name }}</p>
                         <p class="pe-1">{{ resident.last_name }}</p>
-                        <p class="pe-1">({{ resident.profile.client.room_number }})</p>
+                        <p class="pe-1">
+                            {% if resident.profile.client.room_number|stringformat:"s"|length == 4 %}
+                                {% if resident.profile.client.room_number|stringformat:"s"|slice:"3:4" == "1" %}
+                                    ({{ resident.profile.client.room_number|stringformat:"s"|slice:"0:3" }}F)
+                                {% else %}
+                                    ({{ resident.profile.client.room_number|stringformat:"s"|slice:"0:3" }}P)
+                                {% endif %}
+                            {% else %}
+                                ({{ resident.profile.client.room_number }})
+                            {% endif %}
+                        </p>
                     </li>
                 {% endfor %}
             </ol>

@@ -49,7 +49,17 @@
                                     <img src="{% static 'app4_ehpad_base/img/etiquette_ok.png' %}" alt="" class="position-absolute etiquetteok">
                                 {% endif %}
 
-                                <h5>{{ resident.empty.room_number }}</h5>
+                                <h5>
+                                    {% if resident.empty.room_number|stringformat:"s"|length == 4 %}
+                                        {% if resident.empty.room_number|stringformat:"s"|slice:"3:4" == "1" %}
+                                            {{ resident.empty.room_number|stringformat:"s"|slice:"0:3" }}F
+                                        {% else %}
+                                            {{ resident.empty.room_number|stringformat:"s"|slice:"0:3" }}P
+                                        {% endif %}
+                                    {% else %}
+                                        {{ resident.empty.room_number }}
+                                    {% endif %}
+                                </h5>
                                 <p>{% trans 'Shower' %} : {{ resident.empty.shower|showerdisplay }}</p>
                                 <p>{% trans 'Aid' %} : {{ resident.empty.helper|aidedisplay }}</p>
                                 {% if resident.empty.bed|beddisplay == None %}
@@ -89,7 +99,17 @@
                                     </div>
                                     <div class="ms-4 align-self-center">
                                         <p class="my-auto">{% if resident.resident.user.profile.civility %}{% trans resident.resident.user.profile.civility %}{% endif %} {{ resident.resident.user.first_name.0 }}. {{ resident.resident.user.last_name }}</p>
-                                        <p>{{ resident.resident.user.profile.client.room_number }}</p>
+                                        <p>
+                                            {% if resident.resident.user.profile.client.room_number|stringformat:"s"|length == 4 %}
+                                                {% if resident.resident.user.profile.client.room_number|stringformat:"s"|slice:"3:4" == "1" %}
+                                                    {{ resident.resident.user.profile.client.room_number|stringformat:"s"|slice:"0:3" }}F
+                                                {% else %}
+                                                    {{ resident.resident.user.profile.client.room_number|stringformat:"s"|slice:"0:3" }}P
+                                                {% endif %}
+                                            {% else %}
+                                                {{ resident.resident.user.profile.client.room_number }}
+                                            {% endif %}
+                                        </p>
                                         {% if resident.age %}
                                             <small class="{% if not resident.birthday %}text-muted{% endif %} age rounded-3 px-1">{{ resident.age }} {% trans 'years' %}</small>
                                         {% endif %}
@@ -102,7 +122,7 @@
                         <button id="{{ resident.resident.user.profile.client.id }}" class="carteresident btn {% if resident.resident.bacterium %}btn-outline-warning border-2{% else %}btn-perso{% endif %} {% if resident.birthday %}birthday{% endif %} m-1 d-flex justify-content-center align-items-center" type="submit" name="res_id" value="{{ resident.resident.user.id }}">
                             <div class="picresident col-5 d-flex flex-column align-items-center">
                                 {% if resident.profile_pic %}
-                                <img class="img-fluid rounded-3 select-resident-pic" src="{{ resident.profile_pic }}">
+                                    <img class="img-fluid rounded-3 select-resident-pic" src="{{ resident.profile_pic }}">
                                 {% else %}
                                     <div id="no_reco" class="d-flex flex-column rounded-3 justify-content-center align-items-center">
                                         <img class="img-fluid" src="{% static 'app4_ehpad_base/img/s.svg' %}" width="60px">
@@ -116,7 +136,17 @@
                             </div>
                             <div class="col-7 align-self-center">
                                 <p class="my-auto">{% if resident.resident.user.profile.civility %}{% trans resident.resident.user.profile.civility %}{% endif %} {{ resident.resident.user.first_name.0 }}. {{ resident.resident.user.last_name }}</p>
-                                <p>{{ resident.resident.user.profile.client.room_number }}</p>
+                                <p>
+                                    {% if resident.resident.user.profile.client.room_number|stringformat:"s"|length == 4 %}
+                                        {% if resident.resident.user.profile.client.room_number|stringformat:"s"|slice:"3:4" == "1" %}
+                                            {{ resident.resident.user.profile.client.room_number|stringformat:"s"|slice:"0:3" }}F
+                                        {% else %}
+                                            {{ resident.resident.user.profile.client.room_number|stringformat:"s"|slice:"0:3" }}P
+                                        {% endif %}
+                                    {% else %}
+                                        {{ resident.resident.user.profile.client.room_number }}
+                                    {% endif %}
+                                </p>
                                 <p class="text-muted my-auto">
                                     <small  {% if resident.resident.entry_date %}
                                                 title="{% trans 'since' %} {{ resident.resident.entry_date }}"

@@ -31,7 +31,16 @@
                                 {{ laundry_washed.user_resident.last_name }}
 
                                 {% if laundry_washed.user_resident.profile.client.room_number %}
-                                    -> {% trans "Room" %} {{ laundry_washed.user_resident.profile.client.room_number }}
+                                    -> {% trans "Room" %}
+                                    {% if laundry_washed.user_resident.profile.client.room_number|stringformat:"s"|length == 4 %}
+                                        {% if laundry_washed.user_resident.profile.client.room_number|stringformat:"s"|slice:"3:4" == "1" %}
+                                            {{ laundry_washed.user_resident.profile.client.room_number|stringformat:"s"|slice:"0:3" }}F
+                                        {% else %}
+                                            {{ laundry_washed.user_resident.profile.client.room_number|stringformat:"s"|slice:"0:3" }}P
+                                        {% endif %}
+                                    {% else %}
+                                        {{ laundry_washed.user_resident.profile.client.room_number }}
+                                    {% endif %}
                                 {% endif %}
                             </li>
                         {% endfor %}
@@ -60,7 +69,16 @@
                                 {{ laundry_labeled.user_resident.last_name }}
 
                                 {% if laundry_labeled.user_resident.profile.client.room_number %}
-                                    -> {% trans "Room" %} {{ laundry_labeled.user_resident.profile.client.room_number }}
+                                    -> {% trans "Room" %}
+                                    {% if laundry_labeled.user_resident.profile.client.room_number|stringformat:"s"|length == 4 %}
+                                        {% if laundry_labeled.user_resident.profile.client.room_number|stringformat:"s"|slice:"3:4" == "1" %}
+                                            {{ laundry_labeled.user_resident.profile.client.room_number|stringformat:"s"|slice:"0:3" }}F
+                                        {% else %}
+                                            {{ laundry_labeled.user_resident.profile.client.room_number|stringformat:"s"|slice:"0:3" }}P
+                                        {% endif %}
+                                    {% else %}
+                                        {{ laundry_labeled.user_resident.profile.client.room_number }}
+                                    {% endif %}
                                 {% endif %}
                             </li>
                         </ul>

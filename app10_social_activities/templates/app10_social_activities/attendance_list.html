@@ -81,7 +81,18 @@
               {{ participant.user.first_name.0 }}.
               {{ participant.user.last_name }}
             </h5>
-            <span class="text-muted">{% trans 'Room' %} {{ participant.user.profile.client.room_number }}</span>
+            <span class="text-muted">
+              {% trans 'Room' %}
+              {% if participant.user.profile.client.room_number|stringformat:"s"|length == 4 %}
+                  {% if participant.user.profile.client.room_number|stringformat:"s"|slice:"3:4" == "1" %}
+                      {{ participant.user.profile.client.room_number|stringformat:"s"|slice:"0:3" }}F
+                  {% else %}
+                      {{ participant.user.profile.client.room_number|stringformat:"s"|slice:"0:3" }}P
+                  {% endif %}
+              {% else %}
+                  {{ participant.user.profile.client.room_number }}
+              {% endif %}
+            </span>
           </div>
 
           {% if saved == participant.id %}

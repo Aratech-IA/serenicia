@@ -65,7 +65,19 @@
             <!-- Barre résident -->
             <div class="py-3 my-3 d-flex flex-column flex-lg-row align-items-center justify-lg-content-center gap-3">
                 <div class="d-flex flex-column align-items-center">
-                    <h3>{% trans 'Treatment' %} - {{room_number}}</h3>
+                    <h3>
+                        {% trans 'Treatment' %}
+                        -
+                        {% if room_number|stringformat:"s"|length == 4 %}
+                            {% if room_number|stringformat:"s"|slice:"3:4" == "1" %}
+                                {{ room_number|stringformat:"s"|slice:"0:3" }}F
+                            {% else %}
+                                {{ room_number|stringformat:"s"|slice:"0:3" }}P
+                            {% endif %}
+                        {% else %}
+                            {{ room_number }}
+                        {% endif %}
+                    </h3>
                     <h3>{{request.session.res_lastname}}</h3>
                 </div>
 
