@@ -498,6 +498,9 @@ class PayRollAdmin(admin.ModelAdmin):
     ordering = ['pk']
     list_filter = ["date_of_payslip"]
 
+    class Meta:
+        verbose_name = _("Payroll")
+
 # ----------------------------------------------------------------------------------------------------------------------
 
 

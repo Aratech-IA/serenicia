@@ -27,3 +27,7 @@ def access_management(request):
 # Page referrers help
 def referrers(request):
     return render(request, 'app17_help/referrers.html')
+    
+# Page administrative help
+def administrative(request):
+    return render(request, 'app17_help/administrative.html')

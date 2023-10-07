@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-26 15:35+0200\n"
+"POT-Creation-Date: 2023-10-07 13:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -127,7 +127,8 @@ msgstr "Gestione dei pannolini "
 msgid "Can make pay sheet "
 msgstr ""
 
-#: app0_access/models.py:39 app4_ehpad_base/models.py:862
+#: app0_access/models.py:39 app4_ehpad_base/admin.py:502
+#: app4_ehpad_base/models.py:862
 msgid "Payroll"
 msgstr ""
 
@@ -135,7 +136,7 @@ msgstr ""
 msgid "Can get payroll"
 msgstr ""
 
-#: app0_access/models.py:41 app1_base/templates/app1_base/base.html:385
+#: app0_access/models.py:41 app1_base/templates/app1_base/base.html:410
 msgid "Security"
 msgstr "Sicurezza"
 
@@ -146,8 +147,8 @@ msgid "Access to the security interface"
 msgstr "Documenti Amministrativi"
 
 #: app0_access/models.py:43
-#: app6_care/templates/app6_care/caregiver/caregiver.html:83
-#: app6_care/templates/app6_care/caregiver/caregiver.html:92
+#: app6_care/templates/app6_care/caregiver/caregiver.html:95
+#: app6_care/templates/app6_care/caregiver/caregiver.html:104
 #: app9_personnalized_project/apps.py:7
 #: app9_personnalized_project/models.py:146
 #, fuzzy
@@ -173,7 +174,7 @@ msgstr ""
 
 #: app0_access/models.py:47 app17_help/templates/app17_help/cuisine.html:9
 #: app17_help/templates/app17_help/index.html:24
-#: app1_base/templates/app1_base/base.html:322
+#: app1_base/templates/app1_base/base.html:347
 msgid "Cuisine"
 msgstr "Cucina"
 
@@ -189,7 +190,7 @@ msgstr "Documenti Amministrativi"
 msgid "Can use Eval'Menu"
 msgstr "Valutare il menu"
 
-#: app0_access/models.py:50 app1_base/templates/app1_base/base.html:337
+#: app0_access/models.py:50 app1_base/templates/app1_base/base.html:362
 msgid "Communication"
 msgstr "Communicazione"
 
@@ -257,7 +258,7 @@ msgstr "Conferma il password"
 #: app0_access/models.py:63 app10_social_activities/apps.py:7
 #: app17_help/templates/app17_help/index.html:19
 #: app17_help/templates/app17_help/social_life.html:10
-#: app1_base/templates/app1_base/base.html:287 app4_ehpad_base/models.py:493
+#: app1_base/templates/app1_base/base.html:312 app4_ehpad_base/models.py:493
 #, fuzzy
 #| msgid "Social Life Council"
 msgid "Social life"
@@ -269,7 +270,7 @@ msgstr "Consiglio della vita sociale"
 msgid "Access to the social life interface"
 msgstr "Documenti Amministrativi"
 
-#: app0_access/models.py:65 app1_base/templates/app1_base/base.html:350
+#: app0_access/models.py:65 app1_base/templates/app1_base/base.html:375
 #: app4_ehpad_base/templates/app4_ehpad_base/registration/login.html:22
 msgid "Blog"
 msgstr ""
@@ -288,9 +289,11 @@ msgstr "Condizione generale"
 msgid "Can create facial recognition videos for residents"
 msgstr ""
 
-#: app0_access/models.py:69 app17_help/templates/app17_help/hotel.html:9
+#: app0_access/models.py:69
+#: app17_help/templates/app17_help/administrative.html:9
+#: app17_help/templates/app17_help/hotel.html:9
 #: app17_help/templates/app17_help/index.html:29
-#: app1_base/templates/app1_base/base.html:534 app4_ehpad_base/models.py:495
+#: app1_base/templates/app1_base/base.html:559 app4_ehpad_base/models.py:495
 #: app6_care/templates/app6_care/hotel/free_comment.html:15
 #: app6_care/templates/app6_care/hotel/free_comment.html:20
 msgid "Hotel"
@@ -302,8 +305,8 @@ msgstr ""
 msgid "Access to the hotel interface"
 msgstr "Documenti Amministrativi"
 
-#: app0_access/models.py:72 app1_base/templates/app1_base/base.html:572
-#: app1_base/templates/app1_base/base.html:602
+#: app0_access/models.py:72 app1_base/templates/app1_base/base.html:597
+#: app1_base/templates/app1_base/base.html:627
 #, fuzzy
 #| msgid "Referees"
 msgid "Referential"
@@ -511,7 +514,7 @@ msgstr "Attività"
 #: app4_ehpad_base/templates/app4_ehpad_base/eval_dashboard.html:519
 #: app4_ehpad_base/templates/app4_ehpad_base/eval_dashboard.html:1050
 #: app4_ehpad_base/templates/app4_ehpad_base/gallery.html:70
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:315
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:331
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:174
 #: app4_ehpad_base/templates/app4_ehpad_base/interventions_lvl3_full.html:53
 #: app5_ehpad_messaging/templates/app5_ehpad_messaging/internal_emailing_family.html:54
@@ -519,7 +522,7 @@ msgstr "Attività"
 #: app6_care/templates/app6_care/caregiver/care_plan.html:155
 #: app6_care/templates/app6_care/caregiver/care_plan_creation.html:348
 #: app6_care/templates/app6_care/caregiver/care_plan_creation.html:375
-#: app6_care/templates/app6_care/caregiver/caregiver.html:186
+#: app6_care/templates/app6_care/caregiver/caregiver.html:198
 #: app6_care/templates/app6_care/caregiver/interventions_report.html:73
 #: app8_survey/templates/app8_survey/details.html:76
 #: app8_survey/templates/app8_survey/survey.html:91
@@ -573,10 +576,10 @@ msgstr "Utenti"
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/documents.html:312
 #: app4_ehpad_base/templates/app4_ehpad_base/gallery.html:65
 #: app6_care/templates/app6_care/caregiver/care_plan_creation.html:347
-#: app6_care/templates/app6_care/caregiver/caregiver.html:426
-#: app6_care/templates/app6_care/caregiver/caregiver.html:456
-#: app6_care/templates/app6_care/hotel/hotel.html:256
-#: app6_care/templates/app6_care/hotel/hotel.html:290
+#: app6_care/templates/app6_care/caregiver/caregiver.html:438
+#: app6_care/templates/app6_care/caregiver/caregiver.html:468
+#: app6_care/templates/app6_care/hotel/hotel.html:268
+#: app6_care/templates/app6_care/hotel/hotel.html:302
 #: app9_personnalized_project/templates/app9_personnalized_project/appointments.html:128
 #: app9_personnalized_project/templates/app9_personnalized_project/appointments_employee.html:67
 #: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:53
@@ -601,16 +604,16 @@ msgstr "Cancellare"
 #: app3_messaging/templates/app3_messaging/mails_template_send.html:224
 #: app3_messaging/templates/app3_messaging/mails_template_send.html:270
 #: app4_ehpad_base/templates/app4_ehpad_base/gallery.html:87
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:354
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:370
 #: app4_ehpad_base/templates/app4_ehpad_base/public_photo.html:80
 #: app5_ehpad_messaging/templates/app5_ehpad_messaging/registration/register_user.html:118
 #: app5_ehpad_messaging/templates/app5_ehpad_messaging/registration/register_user.html:167
 #: app5_ehpad_messaging/templates/app5_ehpad_messaging/registration/register_user.html:196
 #: app5_ehpad_messaging/templates/app5_ehpad_messaging/registration/register_user.html:230
-#: app6_care/templates/app6_care/caregiver/caregiver.html:405
+#: app6_care/templates/app6_care/caregiver/caregiver.html:417
 #: app6_care/templates/app6_care/caregiver/free_comment.html:28
 #: app6_care/templates/app6_care/hotel/free_comment.html:32
-#: app6_care/templates/app6_care/hotel/hotel.html:234
+#: app6_care/templates/app6_care/hotel/hotel.html:246
 #: app8_survey/templates/app8_survey/survey.html:100
 #: app9_personnalized_project/templates/app9_personnalized_project/appointments.html:130
 #: app9_personnalized_project/templates/app9_personnalized_project/create_person.html:38
@@ -649,7 +652,7 @@ msgstr "Cancellare"
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/create_inventory.html:94
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/diet.html:52
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/resident_form.html:84
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:450
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:466
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:443
 #: app4_ehpad_base/templates/app4_ehpad_base/preferences.html:31
 #: app4_ehpad_base/templates/app4_ehpad_base/record_passphrase.html:76
@@ -827,7 +830,7 @@ msgid "A group with this name already exists"
 msgstr "Quest'utente esiste già"
 
 #: app0_access/views.py:69 app0_access/views.py:146 app0_access/views.py:210
-#: app10_social_activities/templates/app10_social_activities/attendance_list.html:88
+#: app10_social_activities/templates/app10_social_activities/attendance_list.html:99
 #: app10_social_activities/templates/app10_social_activities/gallery.html:30
 #: app1_base/views.py:633 app1_base/views.py:656
 #: app3_messaging/views_messaging.py:398 app4_ehpad_base/views.py:691
@@ -869,7 +872,7 @@ msgid "This user is now part of the group"
 msgstr ""
 
 #: app10_social_activities/admin.py:28 app10_social_activities/admin.py:29
-#: app1_base/templates/app1_base/base.html:304
+#: app1_base/templates/app1_base/base.html:329
 #, fuzzy
 #| msgid "I'm planning"
 msgid "Planning"
@@ -954,7 +957,7 @@ msgid "For the following year"
 msgstr ""
 
 #: app10_social_activities/models.py:78
-#: app1_base/templates/app1_base/base.html:449
+#: app1_base/templates/app1_base/base.html:474
 msgid "Project"
 msgstr "Progetto"
 
@@ -1055,13 +1058,13 @@ msgstr ""
 msgid "Mrs"
 msgstr ""
 
-#: app10_social_activities/templates/app10_social_activities/attendance_list.html:84
-#: app10_social_activities/templates/app10_social_activities/select_resident.html:51
+#: app10_social_activities/templates/app10_social_activities/attendance_list.html:85
+#: app10_social_activities/templates/app10_social_activities/select_resident.html:52
 #: app11_quality/models.py:69 app11_quality/models.py:76
 #: app11_quality/templates/app11_quality/room-chat.html:73
 #: app1_base/models.py:635
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:34
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:63
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:72
 msgid "Room"
 msgstr "Camera"
 
@@ -1346,7 +1349,7 @@ msgstr ""
 #: app4_ehpad_base/templates/app4_ehpad_base/eval_dashboard.html:671
 #: app4_ehpad_base/templates/app4_ehpad_base/eval_dashboard.html:812
 #: app4_ehpad_base/templates/app4_ehpad_base/eval_dashboard.html:954
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:597
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:613
 msgid "Evaluation"
 msgstr "Valutazione"
 
@@ -1367,15 +1370,15 @@ msgstr "Lista di presenze"
 #: app10_social_activities/templates/app10_social_activities/index.html:195
 #: app15_calendar/models.py:75
 #: app6_care/templates/app6_care/caregiver/care_plan.html:148
-#: app6_care/templates/app6_care/caregiver/caregiver.html:292
-#: app6_care/templates/app6_care/caregiver/caregiver.html:302
-#: app6_care/templates/app6_care/caregiver/caregiver.html:345
-#: app6_care/templates/app6_care/caregiver/caregiver.html:356
+#: app6_care/templates/app6_care/caregiver/caregiver.html:304
+#: app6_care/templates/app6_care/caregiver/caregiver.html:314
+#: app6_care/templates/app6_care/caregiver/caregiver.html:357
+#: app6_care/templates/app6_care/caregiver/caregiver.html:368
 #: app6_care/templates/app6_care/caregiver/interventions_report.html:63
-#: app6_care/templates/app6_care/hotel/hotel.html:178
-#: app6_care/templates/app6_care/hotel/hotel.html:187
-#: app6_care/templates/app6_care/hotel/hotel.html:204
-#: app6_care/templates/app6_care/hotel/hotel.html:212
+#: app6_care/templates/app6_care/hotel/hotel.html:190
+#: app6_care/templates/app6_care/hotel/hotel.html:199
+#: app6_care/templates/app6_care/hotel/hotel.html:216
+#: app6_care/templates/app6_care/hotel/hotel.html:224
 #: app8_survey/templates/app8_survey/details.html:64
 #: app8_survey/templates/app8_survey/details.html:81
 #: app8_survey/templates/app8_survey/survey.html:81
@@ -1397,8 +1400,8 @@ msgid "My activities only"
 msgstr "Attività"
 
 #: app10_social_activities/templates/app10_social_activities/select_resident.html:43
-#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:86
-#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:109
+#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:96
+#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:129
 msgid "No facial recognition authorization yet"
 msgstr "Riconoscimento facciale non ancora autorizzato"
 
@@ -1529,10 +1532,10 @@ msgstr ""
 
 #: app11_quality/models.py:31 app4_ehpad_base/forms.py:412
 #: app4_ehpad_base/forms.py:421 app4_ehpad_base/models.py:506
-#: app6_care/templates/app6_care/caregiver/caregiver.html:203
-#: app6_care/templates/app6_care/caregiver/caregiver.html:206
-#: app6_care/templates/app6_care/hotel/hotel.html:85
-#: app6_care/templates/app6_care/hotel/hotel.html:88
+#: app6_care/templates/app6_care/caregiver/caregiver.html:215
+#: app6_care/templates/app6_care/caregiver/caregiver.html:218
+#: app6_care/templates/app6_care/hotel/hotel.html:97
+#: app6_care/templates/app6_care/hotel/hotel.html:100
 msgid "Category"
 msgstr "Categoria"
 
@@ -1822,6 +1825,7 @@ msgstr ""
 
 #: app11_quality/templates/app11_quality/fiche-critere.html:18
 #: app17_help/templates/app17_help/access_management.html:8
+#: app17_help/templates/app17_help/administrative.html:8
 #: app17_help/templates/app17_help/cuisine.html:8
 #: app17_help/templates/app17_help/hotel.html:8
 #: app17_help/templates/app17_help/quality.html:8
@@ -2469,8 +2473,8 @@ msgid "titulaire du compte, civilité, nom et prénom. Obligatoire"
 msgstr ""
 
 #: app12_delivery/templates/app12_delivery/account_delivery.html:26
-#: app1_base/templates/app1_base/base.html:474
-#: app1_base/templates/app1_base/base.html:707
+#: app1_base/templates/app1_base/base.html:499
+#: app1_base/templates/app1_base/base.html:732
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/documents.html:46
 #, fuzzy
 #| msgid "Profile pic"
@@ -2905,7 +2909,7 @@ msgid "Any tour delivery register"
 msgstr "Già registrato"
 
 #: app12_delivery/templates/app12_delivery/composant/navLeft.html:14
-#: app1_base/templates/app1_base/base.html:256 app4_ehpad_base/forms.py:85
+#: app1_base/templates/app1_base/base.html:281 app4_ehpad_base/forms.py:85
 #: app4_ehpad_base/views_cuisine_commission.py:260
 msgid "Menu"
 msgstr "Menu"
@@ -2957,8 +2961,8 @@ msgid "Invoice "
 msgstr "Fattura"
 
 #: app12_delivery/templates/app12_delivery/composant/navLeft.html:45
-#: app1_base/templates/app1_base/base.html:461
-#: app1_base/templates/app1_base/base.html:700
+#: app1_base/templates/app1_base/base.html:486
+#: app1_base/templates/app1_base/base.html:725
 msgid "Invoices"
 msgstr "Fatture"
 
@@ -3325,7 +3329,7 @@ msgstr "Entra il tuo nuovo numero di telefono"
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_group_reservation.html:49
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:97
 #: app4_ehpad_base/templates/app4_ehpad_base/eval_dashboard.html:64
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:401
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:417
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:407
 #: app4_ehpad_base/templates/app4_ehpad_base/menu_of_the_day.html:9
 msgid "Lunch"
@@ -3335,7 +3339,7 @@ msgstr "Pranzo"
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_group_reservation.html:22
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_reservation_employee.html:99
 #: app4_ehpad_base/templates/app4_ehpad_base/eval_dashboard.html:592
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:403
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:419
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:409
 #: app4_ehpad_base/templates/app4_ehpad_base/menu_of_the_day.html:11
 msgid "Dinner"
@@ -3514,10 +3518,11 @@ msgid "Protected unit"
 msgstr "Protezione attivata"
 
 #: app15_calendar/models.py:35
+#: app17_help/templates/app17_help/social_life.html:44
 msgid "Check if this activity is intended for the protected unit"
 msgstr ""
 
-#: app15_calendar/models.py:42 app1_base/templates/app1_base/base.html:293
+#: app15_calendar/models.py:42 app1_base/templates/app1_base/base.html:318
 #: app9_personnalized_project/templates/app9_personnalized_project/survey.html:69
 msgid "Activities"
 msgstr "Attività"
@@ -3783,6 +3788,7 @@ msgid "Wrong password"
 msgstr "Conferma il password"
 
 #: app17_help/templates/app17_help/access_management.html:9
+#: app17_help/templates/app17_help/administrative.html:9
 #: app17_help/templates/app17_help/cuisine.html:9
 #: app17_help/templates/app17_help/hotel.html:9
 #: app17_help/templates/app17_help/quality.html:9
@@ -3801,7 +3807,7 @@ msgid "Access access management"
 msgstr "Gestione dei pannolini "
 
 #: app17_help/templates/app17_help/access_management.html:16
-msgid "Click on firstname.lastname, then 'Access management'"
+msgid "Click on firstname.lastname, then «Access management»"
 msgstr ""
 
 #: app17_help/templates/app17_help/access_management.html:18
@@ -3834,14 +3840,16 @@ msgid "Register"
 msgstr "Già registrato"
 
 #: app17_help/templates/app17_help/access_management.html:32
-#: app17_help/templates/app17_help/cuisine.html:21
-#: app17_help/templates/app17_help/cuisine.html:29
+#: app17_help/templates/app17_help/administrative.html:26
+#: app17_help/templates/app17_help/administrative.html:44
+#: app17_help/templates/app17_help/cuisine.html:30
+#: app17_help/templates/app17_help/cuisine.html:47
 #: app17_help/templates/app17_help/hotel.html:25
 #: app17_help/templates/app17_help/hotel.html:42
 #: app17_help/templates/app17_help/hotel.html:59
 #: app17_help/templates/app17_help/referrers.html:26
-#: app17_help/templates/app17_help/social_life.html:22
-#: app17_help/templates/app17_help/social_life.html:31
+#: app17_help/templates/app17_help/social_life.html:30
+#: app17_help/templates/app17_help/social_life.html:51
 msgid "Your browser does not support the HTML video tag"
 msgstr ""
 
@@ -3853,11 +3861,99 @@ msgstr ""
 msgid "Screenshot of the Rights Groups page"
 msgstr ""
 
+#: app17_help/templates/app17_help/administrative.html:9
 #: app17_help/templates/app17_help/cuisine.html:9
 #: app17_help/templates/app17_help/hotel.html:9
 #: app17_help/templates/app17_help/quality.html:9
 #: app17_help/templates/app17_help/social_life.html:10
 msgid "Module"
+msgstr ""
+
+#: app17_help/templates/app17_help/administrative.html:15
+#, fuzzy
+#| msgid "Create account"
+msgid "Enter an invoice"
+msgstr "Creare un account"
+
+#: app17_help/templates/app17_help/administrative.html:16
+#: app17_help/templates/app17_help/administrative.html:34
+#: app17_help/templates/app17_help/referrers.html:16
+#: app17_help/templates/app17_help/social_life.html:21
+#: app17_help/templates/app17_help/social_life.html:38
+msgid ""
+"Go to the administration (accessible from the first name.last name menu)"
+msgstr ""
+
+#: app17_help/templates/app17_help/administrative.html:17
+msgid "Click on «EHPADs invoice», in «CONFIG SERENICIA»"
+msgstr ""
+
+#: app17_help/templates/app17_help/administrative.html:18
+#, fuzzy
+#| msgid "Click on your name at the top right of the screen !"
+msgid "Click on «Add EHPAD invoice», at the top right of the screen"
+msgstr "Seleziona il tuo nome in alto a destra dello schermo !"
+
+#: app17_help/templates/app17_help/administrative.html:19
+msgid ""
+"Choose the resident concerned by the invoice, as well as the name and type "
+"of the invoice"
+msgstr ""
+
+#: app17_help/templates/app17_help/administrative.html:20
+msgid "Click on «browse» and search for the relevant invoice"
+msgstr ""
+
+#: app17_help/templates/app17_help/administrative.html:21
+#: app17_help/templates/app17_help/administrative.html:39
+#: app17_help/templates/app17_help/cuisine.html:24
+#: app17_help/templates/app17_help/cuisine.html:42
+#: app17_help/templates/app17_help/social_life.html:26
+#: app17_help/templates/app17_help/social_life.html:47
+#, fuzzy
+#| msgid "Leave a comment"
+msgid "Click «save»"
+msgstr "Lasciare un commento"
+
+#: app17_help/templates/app17_help/administrative.html:22
+msgid ""
+"Families will be able to view invoices by clicking on «invoices» in their "
+"navigation bar on the left of the screen. Authorized staff members will be "
+"able to view these invoices by clicking on a resident, then clicking "
+"«invoices», in the resident's navigation bar"
+msgstr ""
+
+#: app17_help/templates/app17_help/administrative.html:33
+#, fuzzy
+#| msgid "today"
+msgid "Enter a pay slip"
+msgstr "oggi"
+
+#: app17_help/templates/app17_help/administrative.html:35
+msgid "Click on «Pay rolls», in «CONFIG SERENICIA»"
+msgstr ""
+
+#: app17_help/templates/app17_help/administrative.html:36
+#, fuzzy
+#| msgid "Click on your name at the top right of the screen !"
+msgid "Click on «Add Pay Roll», at the top right of the screen"
+msgstr "Seleziona il tuo nome in alto a destra dello schermo !"
+
+#: app17_help/templates/app17_help/administrative.html:37
+msgid ""
+"Choose the employee concerned by the pay slip, as well as the date of the "
+"pay slip (the day does not matter, it is the month and year that are "
+"important)"
+msgstr ""
+
+#: app17_help/templates/app17_help/administrative.html:38
+msgid "Click “Browse” and search for the corresponding pay slip"
+msgstr ""
+
+#: app17_help/templates/app17_help/administrative.html:40
+msgid ""
+"The employee can find their pay slip by clicking on “My profile” (accessible "
+"from the first name.last name menu)"
 msgstr ""
 
 #: app17_help/templates/app17_help/cuisine.html:13
@@ -3870,16 +3966,76 @@ msgstr "cena"
 msgid "Kitchen page screenshot"
 msgstr ""
 
-#: app17_help/templates/app17_help/cuisine.html:18
+#: app17_help/templates/app17_help/cuisine.html:19
 #, fuzzy
 #| msgid "Create / edit dishes"
 msgid "Create a dish"
 msgstr "Creare un nuovo piatto"
 
+#: app17_help/templates/app17_help/cuisine.html:20
+#: app17_help/templates/app17_help/cuisine.html:37
+#, fuzzy
+#| msgid "Click on your name at the top right of the screen !"
+msgid "Click on «Kitchen» in the navigation bar on the left of the screen"
+msgstr "Seleziona il tuo nome in alto a destra dello schermo !"
+
+#: app17_help/templates/app17_help/cuisine.html:21
+#, fuzzy
+#| msgid "Create / edit dishes"
+msgid "Click on «Create/edit dishes»"
+msgstr "Creare un nuovo piatto"
+
+#: app17_help/templates/app17_help/cuisine.html:22
+#, fuzzy
+#| msgid "Select a date"
+msgid "Select a dish type"
+msgstr "Selezionare una data"
+
+#: app17_help/templates/app17_help/cuisine.html:23
+msgid "Enter the name of the dish and if you know its price"
+msgstr ""
+
+#: app17_help/templates/app17_help/cuisine.html:25
+msgid ""
+"To modify a dish, simply click on «Edit», to the right of the dish concerned"
+msgstr ""
+
 #: app17_help/templates/app17_help/cuisine.html:26
+msgid ""
+"To delete a dish, simply click on the cross to the right of the dish "
+"concerned"
+msgstr ""
+
+#: app17_help/templates/app17_help/cuisine.html:36
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_index.html:14
 msgid "Create new menu"
 msgstr "Creare un nuovo menu"
+
+#: app17_help/templates/app17_help/cuisine.html:38
+#, fuzzy
+#| msgid "Create / edit dishes"
+msgid "Click on «Create new menu»"
+msgstr "Creare un nuovo piatto"
+
+#: app17_help/templates/app17_help/cuisine.html:39
+msgid "Choose the date and time of the menu (lunch or dinner)"
+msgstr ""
+
+#: app17_help/templates/app17_help/cuisine.html:40
+msgid "Select an entry, main course, side dish, dessert and type of cheese"
+msgstr ""
+
+#: app17_help/templates/app17_help/cuisine.html:41
+#, fuzzy
+#| msgid "Further comments"
+msgid "If necessary, enter a comment"
+msgstr "Altri commenti"
+
+#: app17_help/templates/app17_help/cuisine.html:43
+msgid ""
+"By clicking on one of the last menus, this will populate the menu currently "
+"being created which you will only have to modify according to your needs"
+msgstr ""
 
 #: app17_help/templates/app17_help/hotel.html:15
 #, fuzzy
@@ -3896,8 +4052,10 @@ msgid "Choose a resident"
 msgstr "Scegliere una categoria "
 
 #: app17_help/templates/app17_help/hotel.html:17
-msgid "Click on 'Hotel'"
-msgstr ""
+#, fuzzy
+#| msgid "Leave a comment"
+msgid "Click on «Hotel»"
+msgstr "Lasciare un commento"
 
 #: app17_help/templates/app17_help/hotel.html:18
 #, fuzzy
@@ -3927,18 +4085,18 @@ msgid "Enter a comment about a resident"
 msgstr "residenti"
 
 #: app17_help/templates/app17_help/hotel.html:34
-msgid "Click on 'Hospitality' in the left navigation bar"
+msgid "Click on «Hospitality» in the left navigation bar"
 msgstr ""
 
 #: app17_help/templates/app17_help/hotel.html:35
 #, fuzzy
 #| msgid "Leave a comment"
-msgid "Click on 'send a comment'"
+msgid "Click on «send a comment»"
 msgstr "Lasciare un commento"
 
 #: app17_help/templates/app17_help/hotel.html:36
-#: app6_care/templates/app6_care/caregiver/caregiver.html:280
-#: app6_care/templates/app6_care/hotel/hotel.html:164
+#: app6_care/templates/app6_care/caregiver/caregiver.html:292
+#: app6_care/templates/app6_care/hotel/hotel.html:176
 #, fuzzy
 #| msgid "Further comments"
 msgid "Enter the comment"
@@ -3955,14 +4113,14 @@ msgid "Create/Modify inventory"
 msgstr "Creare un account"
 
 #: app17_help/templates/app17_help/hotel.html:51
-msgid "Click 'Create Inventory' or 'Inventory' in the resident navigation bar"
+msgid "Click «Create Inventory» or «Inventory» in the resident navigation bar"
 msgstr ""
 
 #: app17_help/templates/app17_help/hotel.html:52
 #, fuzzy
 #| msgid "Confirm identity"
 msgid ""
-"If you want to modify the inventory, click 'edit' at the bottom of the page"
+"If you want to modify the inventory, click «edit» at the bottom of the page"
 msgstr "Confirmare l'identità"
 
 #: app17_help/templates/app17_help/hotel.html:53
@@ -3973,7 +4131,7 @@ msgstr "Creare un account"
 
 #: app17_help/templates/app17_help/hotel.html:55
 msgid ""
-"In the left navigation bar, 'Hospitality' 'Linen management', you will be "
+"In the left navigation bar, «Hospitality» «Linen management», you will be "
 "able to find if the linen has been washed and marked by your establishment"
 msgstr ""
 
@@ -3989,7 +4147,7 @@ msgstr "Selezione il giorno per vedere i menu"
 
 #: app17_help/templates/app17_help/index.html:34
 #: app17_help/templates/app17_help/quality.html:9
-#: app1_base/templates/app1_base/base.html:595
+#: app1_base/templates/app1_base/base.html:620
 #, fuzzy
 #| msgid "Video Quality"
 msgid "Quality"
@@ -4001,12 +4159,16 @@ msgstr "Video qualità"
 msgid "Referrers"
 msgstr "referenti"
 
-#: app17_help/templates/app17_help/index.html:51
+#: app17_help/templates/app17_help/index.html:49
+msgid "Administrative"
+msgstr "Amministrativo"
+
+#: app17_help/templates/app17_help/index.html:56
 msgid "Understanding Navigation Bars"
 msgstr ""
 
-#: app17_help/templates/app17_help/index.html:54
-#: app17_help/templates/app17_help/index.html:56
+#: app17_help/templates/app17_help/index.html:59
+#: app17_help/templates/app17_help/index.html:61
 msgid "Navbars screenshot"
 msgstr ""
 
@@ -4023,13 +4185,13 @@ msgstr ""
 #: app17_help/templates/app17_help/quality.html:14
 msgid ""
 "Each manager will then have the opportunity to respond to each of their "
-"criteria by logging in with their account."
+"criteria by logging in with their account"
 msgstr ""
 
 #: app17_help/templates/app17_help/quality.html:15
 msgid ""
 "Each manager can attach to the response a pdf protocol to be created on the "
-"'Protocols' page"
+"«Protocols» page"
 msgstr ""
 
 #: app17_help/templates/app17_help/quality.html:16
@@ -4048,15 +4210,10 @@ msgstr "referenti"
 msgid "Add, remove or modify referrers"
 msgstr ""
 
-#: app17_help/templates/app17_help/referrers.html:16
-msgid ""
-"Go to the administration (accessible from the first name.last name menu)"
-msgstr ""
-
 #: app17_help/templates/app17_help/referrers.html:17
 #, fuzzy
 #| msgid "Leave a comment"
-msgid "Click on 'user'"
+msgid "Click on «user»"
 msgstr "Lasciare un commento"
 
 #: app17_help/templates/app17_help/referrers.html:18
@@ -4066,7 +4223,7 @@ msgid ""
 msgstr ""
 
 #: app17_help/templates/app17_help/referrers.html:19
-msgid "In 'profile Sérénicia', choose the residents to assign"
+msgid "In «profile Sérénicia», choose the residents to assign"
 msgstr ""
 
 #: app17_help/templates/app17_help/referrers.html:21
@@ -4089,17 +4246,72 @@ msgstr "cena"
 msgid "Social life page screenshot"
 msgstr ""
 
-#: app17_help/templates/app17_help/social_life.html:19
+#: app17_help/templates/app17_help/social_life.html:20
 #, fuzzy
 #| msgid "Create account"
 msgid "Create a place"
 msgstr "Creare un account"
 
-#: app17_help/templates/app17_help/social_life.html:28
+#: app17_help/templates/app17_help/social_life.html:22
+msgid "Click on «Places», in «CALENDAR»"
+msgstr ""
+
+#: app17_help/templates/app17_help/social_life.html:23
+#, fuzzy
+#| msgid "Click on your name at the top right of the screen !"
+msgid "Click on «Add place», at the top right of the screen"
+msgstr "Seleziona il tuo nome in alto a destra dello schermo !"
+
+#: app17_help/templates/app17_help/social_life.html:24
+#, fuzzy
+#| msgid "Phone number : "
+msgid "Enter a place name"
+msgstr "Numero di telefono"
+
+#: app17_help/templates/app17_help/social_life.html:25
+msgid "Click on «browse» and find a photo of this place"
+msgstr ""
+
+#: app17_help/templates/app17_help/social_life.html:37
 #, fuzzy
 #| msgid "Create account"
 msgid "Create an activity"
 msgstr "Creare un account"
+
+#: app17_help/templates/app17_help/social_life.html:39
+msgid "Click on «Activities», in «CALENDAR»"
+msgstr ""
+
+#: app17_help/templates/app17_help/social_life.html:40
+#, fuzzy
+#| msgid "Click on your name at the top right of the screen !"
+msgid "Click on «Add Activity», at the top right of the screen"
+msgstr "Seleziona il tuo nome in alto a destra dello schermo !"
+
+#: app17_help/templates/app17_help/social_life.html:41
+msgid "Enter an activity name, location and organizer"
+msgstr ""
+
+#: app17_help/templates/app17_help/social_life.html:42
+#, fuzzy
+#| msgid "Rate an activity"
+msgid "Indicate if the activity is public"
+msgstr "Notare un'attività"
+
+#: app17_help/templates/app17_help/social_life.html:43
+#, fuzzy
+#| msgid "Phone number : "
+msgid "Enter a goal"
+msgstr "Numero di telefono"
+
+#: app17_help/templates/app17_help/social_life.html:45
+msgid ""
+"Choose a start and end date and time (it is possible to set several dates)"
+msgstr ""
+
+#: app17_help/templates/app17_help/social_life.html:46
+msgid "Indicate the participants in the activity"
+msgstr ""
 
 #: app1_base/admin.py:277 app1_base/admin_superuser.py:123
 #: app3_messaging/admin.py:86 app4_ehpad_base/admin.py:246
@@ -4178,10 +4390,10 @@ msgstr "Filtri"
 #: app1_base/models.py:150
 #: app3_messaging/templates/app3_messaging/mails_unsubscribe.html:17
 #: app4_ehpad_base/models.py:91
-#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:64
-#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:69
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:432
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:443
+#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:74
+#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:79
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:448
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:459
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:438
 #: app9_personnalized_project/models.py:55
 msgid "No"
@@ -4577,8 +4789,8 @@ msgid "Action"
 msgstr "Azione"
 
 #: app1_base/templates/app1_base/alert.html:68
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:223
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:253
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:239
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:269
 msgid "Contact"
 msgstr "Contatto"
 
@@ -4645,7 +4857,7 @@ msgid "Add automat"
 msgstr "Aggiungere un automi"
 
 #: app1_base/templates/app1_base/archive.html:10
-#: app1_base/templates/app1_base/base.html:680
+#: app1_base/templates/app1_base/base.html:705
 #, fuzzy
 #| msgid "Video Chat"
 msgid "Video"
@@ -4691,94 +4903,94 @@ msgstr "Prenotazione di un pasto"
 msgid "Appointments"
 msgstr "Lasciare un commento"
 
-#: app1_base/templates/app1_base/base.html:197
-#: app1_base/templates/app1_base/base.html:373
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:37
+#: app1_base/templates/app1_base/base.html:198
+#: app1_base/templates/app1_base/base.html:398
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:42
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:19
 msgid "Housing"
 msgstr "Alloggiamento"
 
-#: app1_base/templates/app1_base/base.html:232
+#: app1_base/templates/app1_base/base.html:257
 #: app4_ehpad_base/templates/app4_ehpad_base/navbar.html:97
 #, fuzzy
 #| msgid "Public"
 msgid "Public photo"
 msgstr "Pubblico"
 
-#: app1_base/templates/app1_base/base.html:237
+#: app1_base/templates/app1_base/base.html:262
 #, fuzzy
 #| msgid "Event successfully deleted."
 msgid "Photo successfully sent"
 msgstr "Evento annulato con successo."
 
-#: app1_base/templates/app1_base/base.html:267
+#: app1_base/templates/app1_base/base.html:292
 msgid "Tour"
 msgstr ""
 
-#: app1_base/templates/app1_base/base.html:298
+#: app1_base/templates/app1_base/base.html:323
 msgid "Historic"
 msgstr ""
 
-#: app1_base/templates/app1_base/base.html:344
+#: app1_base/templates/app1_base/base.html:369
 msgid "EMAIL app"
 msgstr ""
 
-#: app1_base/templates/app1_base/base.html:355
+#: app1_base/templates/app1_base/base.html:380
 #, fuzzy
 #| msgid "Nappies Management"
 msgid "Blog management"
 msgstr "Gestione dei pannolini "
 
-#: app1_base/templates/app1_base/base.html:402
-#: app1_base/templates/app1_base/base.html:414
+#: app1_base/templates/app1_base/base.html:427
+#: app1_base/templates/app1_base/base.html:439
 #, fuzzy
 #| msgid "My opinion"
 msgid "My Opinion"
 msgstr "La mia opinione"
 
-#: app1_base/templates/app1_base/base.html:420
+#: app1_base/templates/app1_base/base.html:445
 #, fuzzy
 #| msgid "See more"
 msgid "Surveys"
 msgstr "Vedere più"
 
-#: app1_base/templates/app1_base/base.html:426
+#: app1_base/templates/app1_base/base.html:451
 #, fuzzy
 #| msgid "Dashboard menu"
 msgid "Dashboard"
 msgstr "Menu del cruscotto"
 
-#: app1_base/templates/app1_base/base.html:460
+#: app1_base/templates/app1_base/base.html:485
 #, fuzzy
 #| msgid "Invoice"
 msgid "Invoice icon"
 msgstr "Fattura"
 
-#: app1_base/templates/app1_base/base.html:491
+#: app1_base/templates/app1_base/base.html:516
 msgid "Cares"
 msgstr "Cura"
 
-#: app1_base/templates/app1_base/base.html:497
+#: app1_base/templates/app1_base/base.html:522
 msgid "Showers report"
 msgstr "Rapporto di docce"
 
-#: app1_base/templates/app1_base/base.html:502
-#: app1_base/templates/app1_base/base.html:550
+#: app1_base/templates/app1_base/base.html:527
+#: app1_base/templates/app1_base/base.html:575
 #, fuzzy
 #| msgid "Intervention that I am entering"
 msgid "Interventions report"
 msgstr "Intervenzioni che inserico"
 
-#: app1_base/templates/app1_base/base.html:507
-#: app1_base/templates/app1_base/base.html:555
+#: app1_base/templates/app1_base/base.html:532
+#: app1_base/templates/app1_base/base.html:580
 msgid "Relationship Table"
 msgstr "Tavolo di rilazioni sociali"
 
-#: app1_base/templates/app1_base/base.html:512
+#: app1_base/templates/app1_base/base.html:537
 msgid "Presence"
 msgstr "Presenza"
 
-#: app1_base/templates/app1_base/base.html:517
+#: app1_base/templates/app1_base/base.html:542
 #: app6_care/templates/app6_care/nappy_management/nappy_delivery.html:9
 #: app6_care/templates/app6_care/nappy_management/nappy_delivery.html:11
 #: app6_care/templates/app6_care/nappy_management/nappy_inventory.html:9
@@ -4793,56 +5005,56 @@ msgstr "Presenza"
 msgid "Nappies management"
 msgstr "Gestione dei pannolini "
 
-#: app1_base/templates/app1_base/base.html:540
-#: app1_base/templates/app1_base/base.html:660
+#: app1_base/templates/app1_base/base.html:565
+#: app1_base/templates/app1_base/base.html:685
 #, fuzzy
 #| msgid "Special tasks"
 msgid "Hotel entry"
 msgstr "Compiti speciali"
 
-#: app1_base/templates/app1_base/base.html:545
+#: app1_base/templates/app1_base/base.html:570
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:11
 #, fuzzy
 #| msgid "Documents"
 msgid "Laundry management"
 msgstr "Documenti"
 
-#: app1_base/templates/app1_base/base.html:578
+#: app1_base/templates/app1_base/base.html:603
 msgid "Open envelope icon"
 msgstr ""
 
-#: app1_base/templates/app1_base/base.html:579
-#: app1_base/templates/app1_base/base.html:608
+#: app1_base/templates/app1_base/base.html:604
+#: app1_base/templates/app1_base/base.html:633
 #, fuzzy
 #| msgid "First Name"
 msgid "Protocols"
 msgstr "Nome"
 
-#: app1_base/templates/app1_base/base.html:639
+#: app1_base/templates/app1_base/base.html:664
 #, fuzzy
 #| msgid "Eval'Menu"
 msgid "Eval'Menu"
 msgstr "Valutare il menu"
 
-#: app1_base/templates/app1_base/base.html:669
+#: app1_base/templates/app1_base/base.html:694
 msgid "Cares input"
 msgstr "Entrata di cura"
 
-#: app1_base/templates/app1_base/base.html:674
-#: app6_care/templates/app6_care/caregiver/caregiver.html:150
-#: app6_care/templates/app6_care/caregiver/caregiver.html:151
+#: app1_base/templates/app1_base/base.html:699
+#: app6_care/templates/app6_care/caregiver/caregiver.html:162
+#: app6_care/templates/app6_care/caregiver/caregiver.html:163
 #, fuzzy
 #| msgid "Care Pole"
 msgid "Care plan"
 msgstr "Cura"
 
-#: app1_base/templates/app1_base/base.html:690
+#: app1_base/templates/app1_base/base.html:715
 #, fuzzy
 #| msgid "Satisfaction survey"
 msgid "Satisfaction survey"
 msgstr "Sondaggio di soddisfazione"
 
-#: app1_base/templates/app1_base/base.html:718
+#: app1_base/templates/app1_base/base.html:743
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/documents.html:383
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:26
 #: app6_care/templates/app6_care/nappy_management/nappy_inventory.html:12
@@ -4850,7 +5062,7 @@ msgstr "Sondaggio di soddisfazione"
 msgid "Inventory"
 msgstr ""
 
-#: app1_base/templates/app1_base/base.html:722
+#: app1_base/templates/app1_base/base.html:747
 #, fuzzy
 #| msgid "Create account"
 msgid "Create inventory"
@@ -4955,7 +5167,7 @@ msgstr "Consegna ricevuta"
 
 #: app1_base/templates/app1_base/panel.html:91
 #: app1_base/templates/app1_base/panel.html:125
-#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:132
+#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:162
 msgid "recent"
 msgstr "recente"
 
@@ -5344,7 +5556,7 @@ msgid "Create group"
 msgstr "Creare un account"
 
 #: app3_messaging/templates/app3_messaging/internal_emailing.html:30
-#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:54
+#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:64
 #, fuzzy
 #| msgid "Address : "
 msgid "Aid"
@@ -5493,7 +5705,7 @@ msgstr ""
 #: app3_messaging/templates/app3_messaging/internal_emailing_mailbox.html:107
 #: app3_messaging/templates/app3_messaging/internal_emailing_mailbox_conv.html:57
 #: app3_messaging/templates/app3_messaging/internal_emailing_mailbox_sent.html:70
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:680
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:696
 msgid "See more"
 msgstr "Vedere più"
 
@@ -6042,7 +6254,7 @@ msgid "Select this email"
 msgstr "Selezionare questo mail"
 
 #: app3_messaging/templates/app3_messaging/mails_template_send.html:254
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:105
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:121
 #: app5_ehpad_messaging/templates/app5_ehpad_messaging/registration/register_user.html:169
 #: app5_ehpad_messaging/templates/app5_ehpad_messaging/registration/register_user.html:172
 #: app5_ehpad_messaging/templates/app5_ehpad_messaging/registration/register_user.html:197
@@ -6053,7 +6265,7 @@ msgid "Previous"
 msgstr "prima"
 
 #: app3_messaging/templates/app3_messaging/mails_template_send.html:258
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:110
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:126
 #: app5_ehpad_messaging/templates/app5_ehpad_messaging/registration/register_user.html:120
 #: app5_ehpad_messaging/templates/app5_ehpad_messaging/registration/register_user.html:122
 #: app5_ehpad_messaging/templates/app5_ehpad_messaging/registration/register_user.html:173
@@ -6091,10 +6303,10 @@ msgstr ""
 
 #: app3_messaging/templates/app3_messaging/mails_unsubscribe.html:16
 #: app4_ehpad_base/models.py:92
-#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:62
-#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:67
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:431
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:442
+#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:72
+#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:77
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:447
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:458
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:437
 #: app9_personnalized_project/models.py:56
 msgid "Yes"
@@ -6190,13 +6402,13 @@ msgid "meal"
 msgstr "Prenotazione di un pasto"
 
 #: app4_ehpad_base/admin.py:72 app4_ehpad_base/admin.py:94
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:458
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:474
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:451
 msgid "lunch"
 msgstr "pranzo"
 
 #: app4_ehpad_base/admin.py:74 app4_ehpad_base/admin.py:96
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:459
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:475
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:452
 msgid "dinner"
 msgstr "cena"
@@ -6237,7 +6449,7 @@ msgstr "Locazione"
 #: app4_ehpad_base/admin.py:99
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/documents.html:395
 #: app4_ehpad_base/templates/app4_ehpad_base/documents/inventory.html:39
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:669
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:685
 msgid "by"
 msgstr ""
 
@@ -6489,6 +6701,35 @@ msgstr "Stato"
 #| msgid "Entry updated"
 msgid "Entry date"
 msgstr "Primo piatto aggiornato"
+
+#: app4_ehpad_base/models.py:184
+msgid "Bacterium"
+msgstr ""
+
+#: app4_ehpad_base/models.py:185
+msgid "Date status deceased"
+msgstr ""
+
+#: app4_ehpad_base/models.py:186
+msgid "UP Volunteer"
+msgstr ""
+
+#: app4_ehpad_base/models.py:187
+msgid "Pass phrase"
+msgstr ""
+
+#: app4_ehpad_base/models.py:188
+msgid "Word played"
+msgstr ""
+
+#: app4_ehpad_base/models.py:190
+#: app6_care/templates/app6_care/caregiver/support_project_modal.html:37
+#: app9_personnalized_project/templates/app9_personnalized_project/survey.html:203
+#: app9_personnalized_project/templates/app9_personnalized_project/survey.html:212
+#, fuzzy
+#| msgid "Select type"
+msgid "Meal type"
+msgstr "Selezionare tipo"
 
 #: app4_ehpad_base/models.py:203
 msgid "No display"
@@ -6753,7 +6994,7 @@ msgid "Add date"
 msgstr "Aggiungere un automi"
 
 #: app4_ehpad_base/models.py:642
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:212
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:228
 #: app8_survey/models.py:75
 #, fuzzy
 #| msgid "family"
@@ -7451,54 +7692,54 @@ msgstr "Registrare la campagna"
 msgid "See alerts"
 msgstr "Vedere meno"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:53
+#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:63
 msgid "Shower"
 msgstr "Doccia"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:56
-#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:58
+#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:66
+#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:68
 #, fuzzy
 #| msgid "Weekly"
 msgid "Bed"
 msgstr "Settimanalmente"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:56
+#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:66
 #, fuzzy
 #| msgid "Modify my informations"
 msgid "To inform"
 msgstr "Modificare le mie informazioni"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:60
+#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:70
 msgid "Tariff"
 msgstr ""
 
-#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:62
-#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:64
+#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:72
+#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:74
 msgid "Sensor Chamber"
 msgstr ""
 
-#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:67
-#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:69
+#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:77
+#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:79
 msgid "Sensor Bathroom"
 msgstr ""
 
-#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:94
-#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:128
+#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:114
+#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:158
 #, fuzzy
 #| msgid "year{}"
 msgid "years"
 msgstr "ano"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:114
-#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:131
+#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:134
+#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:161
 msgid "7 last days"
 msgstr "7 ultimi giorni"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:122
+#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:152
 msgid "since"
 msgstr "da"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:132
+#: app4_ehpad_base/templates/app4_ehpad_base/client_selection.html:162
 #, fuzzy
 #| msgid "Pic"
 msgid "pic"
@@ -7697,7 +7938,7 @@ msgstr "Dipendente"
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_index.html:64
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_index.html:76
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_index.html:95
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:419
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:435
 #: app6_care/templates/app6_care/hotel/booking.html:27
 msgid "Guests"
 msgstr "Ospiti"
@@ -7755,8 +7996,8 @@ msgstr "Modificare"
 
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:66
 #: app4_ehpad_base/templates/app4_ehpad_base/cuisine_new_dish.html:83
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:41
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:70
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:50
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:88
 msgid "None"
 msgstr ""
 
@@ -8108,7 +8349,7 @@ msgstr ""
 msgid "list of residents whose laundry is washed by the nursing home"
 msgstr ""
 
-#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:49
+#: app4_ehpad_base/templates/app4_ehpad_base/documents/laundry_management.html:58
 msgid "list of residents whose laundry is marked by the nursing home"
 msgstr ""
 
@@ -8293,8 +8534,8 @@ msgid "Deleting a photo is irreversible, do you want to continue ?"
 msgstr ""
 
 #: app4_ehpad_base/templates/app4_ehpad_base/gallery.html:88
-#: app6_care/templates/app6_care/caregiver/caregiver.html:454
-#: app6_care/templates/app6_care/hotel/hotel.html:288
+#: app6_care/templates/app6_care/caregiver/caregiver.html:466
+#: app6_care/templates/app6_care/hotel/hotel.html:300
 #: app9_personnalized_project/templates/app9_personnalized_project/person_details.html:151
 msgid "Continue"
 msgstr "Continuare"
@@ -8307,7 +8548,7 @@ msgstr "Continuare"
 msgid "Location logo"
 msgstr "Locazione"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:59
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:75
 #: app4_ehpad_base/views_cuisine_eval.py:947
 #: app4_ehpad_base/views_cuisine_eval.py:951
 #, fuzzy
@@ -8315,208 +8556,208 @@ msgstr "Locazione"
 msgid "Missing information"
 msgstr "Modificare le mie informazioni"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:165
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:181
 #, fuzzy
 #| msgid "Your residents : "
 msgid "Your referents"
 msgstr "I tuoi residenti : "
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:173
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:189
 #, fuzzy
 #| msgid "nurse"
 msgid "IDE nurse"
 msgstr "infermiere"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:174
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:190
 #, fuzzy
 #| msgid "Pedicure"
 msgid "Medical care"
 msgstr "Pedicure"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:179
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:195
 #, fuzzy
 #| msgid "Contact"
 msgid "Contact the Nurses"
 msgstr "Contatto"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:184
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:200
 msgid "Caregiver Assistant AS / AMP / AES"
 msgstr ""
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:185
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:201
 #, fuzzy
 #| msgid "Nappies Management"
 msgid "Nursing care, linen management"
 msgstr "Gestione dei pannolini "
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:190
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:206
 #, fuzzy
 #| msgid "Caregiver"
 msgid "Contact Caregivers"
 msgstr "Badante"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:195
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:211
 #, fuzzy
 #| msgid "Service"
 msgid "Hotel Service Agent"
 msgstr "Servizio"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:196
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:212
 msgid "Maintenance of premises and meal service"
 msgstr ""
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:201
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:217
 #, fuzzy
 #| msgid "Connection to the server"
 msgid "Contact the Hotel Service"
 msgstr "Connessione al server"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:230
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:246
 msgid "Contact all your family"
 msgstr ""
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:241
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:257
 msgid "Liberal speakers"
 msgstr ""
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:269
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:285
 #, fuzzy
 #| msgid "I keep up to date with the latest treatments in real time"
 msgid "I keep up to date with the latest supports in real time"
 msgstr "Mi tengo aggiornato con gli ultimi trattamenti in tempo reale"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:288
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:304
 #, fuzzy
 #| msgid "No record available"
 msgid "No care data available"
 msgstr "Nessun record disponibile"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:295
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:311
 #, fuzzy
 #| msgid "Further comments"
 msgid "Free comments of the week"
 msgstr "Altri commenti"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:299
-#: app6_care/templates/app6_care/caregiver/caregiver.html:172
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:315
+#: app6_care/templates/app6_care/caregiver/caregiver.html:184
 #, fuzzy
 #| msgid "UNREAD"
 msgid "READ"
 msgstr "Non ancora letto"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:305
-#: app6_care/templates/app6_care/caregiver/caregiver.html:178
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:321
+#: app6_care/templates/app6_care/caregiver/caregiver.html:190
 #, fuzzy
 #| msgid "Comments"
 msgid "Comment written by"
 msgstr "Commenti"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:329
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:345
 #, fuzzy
 #| msgid "Calendar's details"
 msgid "Calendar and Video call"
 msgstr "Dettagli del programma"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:346
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:362
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:229
 msgid "Be a part of the schedule"
 msgstr "Entra a far parte del programma"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:364
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:380
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:253
 msgid "Video Chat"
 msgstr "Video chiamata"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:383
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:399
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:312
 msgid "Book"
 msgstr "Libro"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:389
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:405
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:394
 msgid "Booking a meal"
 msgstr "Prenotazione di un pasto"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:408
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:424
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:414
 msgid "You bring a guest ?"
 msgstr "Avete un ospite?"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:419
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:435
 #: app6_care/templates/app6_care/hotel/booking.html:63
 #, fuzzy
 #| msgid "All the guests"
 msgid "Other guests"
 msgstr "Tutti gli ospiti"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:426
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:442
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:431
 msgid "Private room ?"
 msgstr "Camera privata"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:437
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:453
 msgid "Surprise visit ?"
 msgstr ""
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:481
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:497
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:325
 msgid "I'm planning"
 msgstr "Sto planificando"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:494
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:510
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:338
 msgid "To"
 msgstr "A"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:498
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:514
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:341
 msgid "On the"
 msgstr "Nel"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:502
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:518
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:344
 msgid "For about"
 msgstr "Per circa"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:506
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:522
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:348
 msgid "Further comments"
 msgstr "Altri commenti"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:511
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:527
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:353
 msgid "Submit my choices"
 msgstr "Mandare le mie scelte"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:524
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:540
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:366
 msgid "Cancel my event"
 msgstr "Cancellare l'evento "
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:537
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:553
 #: app4_ehpad_base/templates/app4_ehpad_base/index_backup.html:379
 msgid "planned on"
 msgstr "pianificato su"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:554
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:570
 #, fuzzy
 #| msgid "Reporting Panel"
 msgid "Regarding meals"
 msgstr "Pannello Rapporti"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:572
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:588
 #, fuzzy
 #| msgid "Activities"
 msgid "Last activities"
 msgstr "Attività"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:616
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:632
 #, fuzzy
 #| msgid "Participants"
 msgid "All participants"
 msgstr "Partecipanti"
 
-#: app4_ehpad_base/templates/app4_ehpad_base/index.html:636
+#: app4_ehpad_base/templates/app4_ehpad_base/index.html:652
 #, fuzzy
 #| msgid "Participants"
 msgid "No participation in an activity has been recorded"
@@ -9877,12 +10118,12 @@ msgid "Treatment home"
 msgstr "Trattamento a casa"
 
 #: app6_care/templates/app6_care/caregiver/caregiver.html:21
-#: app6_care/templates/app6_care/caregiver/caregiver.html:68
+#: app6_care/templates/app6_care/caregiver/caregiver.html:69
 #: app6_care/templates/app6_care/caregiver/free_comment.html:14
 msgid "Treatment"
 msgstr "Trattamento"
 
-#: app6_care/templates/app6_care/caregiver/caregiver.html:73
+#: app6_care/templates/app6_care/caregiver/caregiver.html:85
 #: app6_care/templates/app6_care/caregiver/plan_de_soin.html:52
 #: app6_care/templates/app6_care/caregiver/plan_de_soin_jour.html:23
 #, fuzzy
@@ -9890,171 +10131,171 @@ msgstr "Trattamento"
 msgid "resident profile pic"
 msgstr "Foto di profilo"
 
-#: app6_care/templates/app6_care/caregiver/caregiver.html:100
+#: app6_care/templates/app6_care/caregiver/caregiver.html:112
 #: app9_personnalized_project/models.py:203
 msgid "Life story"
 msgstr ""
 
-#: app6_care/templates/app6_care/caregiver/caregiver.html:136
-#: app6_care/templates/app6_care/hotel/hotel.html:44
+#: app6_care/templates/app6_care/caregiver/caregiver.html:148
+#: app6_care/templates/app6_care/hotel/hotel.html:56
 #, fuzzy
 #| msgid "Treatments that are being entered"
 msgid "Inputs that are being entered"
 msgstr "Trattamenti in elaborazione"
 
-#: app6_care/templates/app6_care/caregiver/caregiver.html:139
-#: app6_care/templates/app6_care/caregiver/caregiver.html:140
-#: app6_care/templates/app6_care/hotel/hotel.html:47
-#: app6_care/templates/app6_care/hotel/hotel.html:48
+#: app6_care/templates/app6_care/caregiver/caregiver.html:151
+#: app6_care/templates/app6_care/caregiver/caregiver.html:152
+#: app6_care/templates/app6_care/hotel/hotel.html:59
+#: app6_care/templates/app6_care/hotel/hotel.html:60
 #, fuzzy
 #| msgid "My incomplete treatments"
 msgid "My incomplete inputs"
 msgstr "I miei trattamenti incompleti"
 
-#: app6_care/templates/app6_care/caregiver/caregiver.html:147
+#: app6_care/templates/app6_care/caregiver/caregiver.html:159
 msgid "Enter new treatment"
 msgstr "Entra un nuovo trattamento"
 
-#: app6_care/templates/app6_care/caregiver/caregiver.html:155
-#: app6_care/templates/app6_care/caregiver/caregiver.html:157
+#: app6_care/templates/app6_care/caregiver/caregiver.html:167
+#: app6_care/templates/app6_care/caregiver/caregiver.html:169
 msgid "Punctual treatment"
 msgstr "Trattamento puntuale"
 
-#: app6_care/templates/app6_care/caregiver/caregiver.html:160
-#: app6_care/templates/app6_care/caregiver/caregiver.html:162
+#: app6_care/templates/app6_care/caregiver/caregiver.html:172
+#: app6_care/templates/app6_care/caregiver/caregiver.html:174
 #: app6_care/templates/app6_care/caregiver/free_comment.html:20
 #: app6_care/templates/app6_care/hotel/free_comment.html:24
-#: app6_care/templates/app6_care/hotel/hotel.html:72
-#: app6_care/templates/app6_care/hotel/hotel.html:74
-#: app6_care/templates/app6_care/hotel/hotel.html:265
-#: app6_care/templates/app6_care/hotel/hotel.html:266
+#: app6_care/templates/app6_care/hotel/hotel.html:84
+#: app6_care/templates/app6_care/hotel/hotel.html:86
+#: app6_care/templates/app6_care/hotel/hotel.html:277
+#: app6_care/templates/app6_care/hotel/hotel.html:278
 #, fuzzy
 #| msgid "Further comments"
 msgid "Free comment"
 msgstr "Altri commenti"
 
-#: app6_care/templates/app6_care/caregiver/caregiver.html:168
+#: app6_care/templates/app6_care/caregiver/caregiver.html:180
 #, fuzzy
 #| msgid "Further comments"
 msgid "Last 10 free comments :"
 msgstr "Altri commenti"
 
-#: app6_care/templates/app6_care/caregiver/caregiver.html:209
-#: app6_care/templates/app6_care/caregiver/caregiver.html:215
-#: app6_care/templates/app6_care/caregiver/caregiver.html:263
-#: app6_care/templates/app6_care/caregiver/caregiver.html:267
-#: app6_care/templates/app6_care/hotel/hotel.html:91
-#: app6_care/templates/app6_care/hotel/hotel.html:97
-#: app6_care/templates/app6_care/hotel/hotel.html:141
-#: app6_care/templates/app6_care/hotel/hotel.html:145
+#: app6_care/templates/app6_care/caregiver/caregiver.html:221
+#: app6_care/templates/app6_care/caregiver/caregiver.html:227
+#: app6_care/templates/app6_care/caregiver/caregiver.html:275
+#: app6_care/templates/app6_care/caregiver/caregiver.html:279
+#: app6_care/templates/app6_care/hotel/hotel.html:103
+#: app6_care/templates/app6_care/hotel/hotel.html:109
+#: app6_care/templates/app6_care/hotel/hotel.html:153
+#: app6_care/templates/app6_care/hotel/hotel.html:157
 msgid "Come back to"
 msgstr "Tornare a"
 
-#: app6_care/templates/app6_care/caregiver/caregiver.html:209
-#: app6_care/templates/app6_care/caregiver/caregiver.html:215
-#: app6_care/templates/app6_care/caregiver/caregiver.html:263
-#: app6_care/templates/app6_care/caregiver/caregiver.html:267
-#: app6_care/templates/app6_care/hotel/hotel.html:91
-#: app6_care/templates/app6_care/hotel/hotel.html:97
-#: app6_care/templates/app6_care/hotel/hotel.html:141
-#: app6_care/templates/app6_care/hotel/hotel.html:145
+#: app6_care/templates/app6_care/caregiver/caregiver.html:221
+#: app6_care/templates/app6_care/caregiver/caregiver.html:227
+#: app6_care/templates/app6_care/caregiver/caregiver.html:275
+#: app6_care/templates/app6_care/caregiver/caregiver.html:279
+#: app6_care/templates/app6_care/hotel/hotel.html:103
+#: app6_care/templates/app6_care/hotel/hotel.html:109
+#: app6_care/templates/app6_care/hotel/hotel.html:153
+#: app6_care/templates/app6_care/hotel/hotel.html:157
 msgid "Come back"
 msgstr "Tornare"
 
-#: app6_care/templates/app6_care/caregiver/caregiver.html:226
-#: app6_care/templates/app6_care/caregiver/caregiver.html:228
-#: app6_care/templates/app6_care/caregiver/caregiver.html:233
-#: app6_care/templates/app6_care/caregiver/caregiver.html:235
-#: app6_care/templates/app6_care/hotel/hotel.html:108
-#: app6_care/templates/app6_care/hotel/hotel.html:109
-#: app6_care/templates/app6_care/hotel/hotel.html:113
-#: app6_care/templates/app6_care/hotel/hotel.html:115
+#: app6_care/templates/app6_care/caregiver/caregiver.html:238
+#: app6_care/templates/app6_care/caregiver/caregiver.html:240
+#: app6_care/templates/app6_care/caregiver/caregiver.html:245
+#: app6_care/templates/app6_care/caregiver/caregiver.html:247
+#: app6_care/templates/app6_care/hotel/hotel.html:120
+#: app6_care/templates/app6_care/hotel/hotel.html:121
+#: app6_care/templates/app6_care/hotel/hotel.html:125
+#: app6_care/templates/app6_care/hotel/hotel.html:127
 #, fuzzy
 #| msgid "Cancel a treatment mode"
 msgid "Cancel a pictogram mode"
 msgstr "Cancellare il modalità di trattamento"
 
-#: app6_care/templates/app6_care/caregiver/caregiver.html:242
-#: app6_care/templates/app6_care/caregiver/caregiver.html:243
-#: app6_care/templates/app6_care/caregiver/caregiver.html:248
-#: app6_care/templates/app6_care/caregiver/caregiver.html:249
-#: app6_care/templates/app6_care/hotel/hotel.html:122
-#: app6_care/templates/app6_care/hotel/hotel.html:123
-#: app6_care/templates/app6_care/hotel/hotel.html:127
-#: app6_care/templates/app6_care/hotel/hotel.html:128
+#: app6_care/templates/app6_care/caregiver/caregiver.html:254
+#: app6_care/templates/app6_care/caregiver/caregiver.html:255
+#: app6_care/templates/app6_care/caregiver/caregiver.html:260
+#: app6_care/templates/app6_care/caregiver/caregiver.html:261
+#: app6_care/templates/app6_care/hotel/hotel.html:134
+#: app6_care/templates/app6_care/hotel/hotel.html:135
+#: app6_care/templates/app6_care/hotel/hotel.html:139
+#: app6_care/templates/app6_care/hotel/hotel.html:140
 msgid "Leave a comment"
 msgstr "Lasciare un commento"
 
-#: app6_care/templates/app6_care/caregiver/caregiver.html:277
-#: app6_care/templates/app6_care/hotel/hotel.html:156
+#: app6_care/templates/app6_care/caregiver/caregiver.html:289
+#: app6_care/templates/app6_care/hotel/hotel.html:168
 #, fuzzy
 #| msgid "Select the treatments to cancel "
 msgid "Select the pictograms to cancel"
 msgstr "Selezionare i trattamenti per cancellare"
 
-#: app6_care/templates/app6_care/caregiver/caregiver.html:278
-#: app6_care/templates/app6_care/hotel/hotel.html:160
+#: app6_care/templates/app6_care/caregiver/caregiver.html:290
+#: app6_care/templates/app6_care/hotel/hotel.html:172
 #, fuzzy
 #| msgid "Select the treatments to cancel "
 msgid "Select the pictogram to comment"
 msgstr "Selezionare i trattamenti per cancellare"
 
-#: app6_care/templates/app6_care/caregiver/caregiver.html:280
+#: app6_care/templates/app6_care/caregiver/caregiver.html:292
 #: app6_care/templates/app6_care/caregiver/free_comment.html:22
 #: app6_care/templates/app6_care/hotel/free_comment.html:26
-#: app6_care/templates/app6_care/hotel/hotel.html:164
+#: app6_care/templates/app6_care/hotel/hotel.html:176
 #, fuzzy
 #| msgid "Cares input"
 msgid "voice input"
 msgstr "Entrata di cura"
 
-#: app6_care/templates/app6_care/caregiver/caregiver.html:280
+#: app6_care/templates/app6_care/caregiver/caregiver.html:292
 #: app6_care/templates/app6_care/caregiver/free_comment.html:22
 #: app6_care/templates/app6_care/hotel/free_comment.html:26
-#: app6_care/templates/app6_care/hotel/hotel.html:164
+#: app6_care/templates/app6_care/hotel/hotel.html:176
 #, fuzzy
 #| msgid "Cares input"
 msgid "Voice input"
 msgstr "Entrata di cura"
 
-#: app6_care/templates/app6_care/caregiver/caregiver.html:280
+#: app6_care/templates/app6_care/caregiver/caregiver.html:292
 #: app6_care/templates/app6_care/caregiver/free_comment.html:22
 #: app6_care/templates/app6_care/hotel/free_comment.html:26
-#: app6_care/templates/app6_care/hotel/hotel.html:164
+#: app6_care/templates/app6_care/hotel/hotel.html:176
 msgid "is available on tablet"
 msgstr ""
 
-#: app6_care/templates/app6_care/caregiver/caregiver.html:282
-#: app6_care/templates/app6_care/hotel/hotel.html:168
+#: app6_care/templates/app6_care/caregiver/caregiver.html:294
+#: app6_care/templates/app6_care/hotel/hotel.html:180
 msgid "Choose a category"
 msgstr "Scegliere una categoria "
 
-#: app6_care/templates/app6_care/caregiver/caregiver.html:404
+#: app6_care/templates/app6_care/caregiver/caregiver.html:416
 #: app6_care/templates/app6_care/caregiver/free_comment.html:27
 #: app6_care/templates/app6_care/hotel/free_comment.html:31
-#: app6_care/templates/app6_care/hotel/hotel.html:233
+#: app6_care/templates/app6_care/hotel/hotel.html:245
 #, fuzzy
 #| msgid "Confirm password"
 msgid "Confirm comment"
 msgstr "Conferma il password"
 
-#: app6_care/templates/app6_care/caregiver/caregiver.html:423
-#: app6_care/templates/app6_care/hotel/hotel.html:253
+#: app6_care/templates/app6_care/caregiver/caregiver.html:435
+#: app6_care/templates/app6_care/hotel/hotel.html:265
 msgid "Intervention that I am entering"
 msgstr "Intervenzioni che inserico"
 
-#: app6_care/templates/app6_care/caregiver/caregiver.html:425
-#: app6_care/templates/app6_care/hotel/hotel.html:255
+#: app6_care/templates/app6_care/caregiver/caregiver.html:437
+#: app6_care/templates/app6_care/hotel/hotel.html:267
 msgid "Done"
 msgstr "Fatto"
 
-#: app6_care/templates/app6_care/caregiver/caregiver.html:442
-#: app6_care/templates/app6_care/hotel/hotel.html:276
+#: app6_care/templates/app6_care/caregiver/caregiver.html:454
+#: app6_care/templates/app6_care/hotel/hotel.html:288
 msgid "Interventions that are being entered"
 msgstr "Intervenzioni che sono state inseriche"
 
-#: app6_care/templates/app6_care/caregiver/caregiver.html:465
-#: app6_care/templates/app6_care/hotel/hotel.html:299
+#: app6_care/templates/app6_care/caregiver/caregiver.html:477
+#: app6_care/templates/app6_care/hotel/hotel.html:311
 msgid "Ignore"
 msgstr "Ignorare"
 
@@ -10080,19 +10321,19 @@ msgstr "Intervenzioni che inserico"
 msgid "There have been no interventions yet"
 msgstr "Non ci sono prenotazioni"
 
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:107
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:115
 msgid "Patient has not showered for 1 week"
 msgstr ""
 
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:110
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:118
 msgid "The patient has not peed for 1 week"
 msgstr ""
 
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:113
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:121
 msgid "The patient has not had a bowel movement for 1 week"
 msgstr ""
 
-#: app6_care/templates/app6_care/caregiver/interventions_report.html:116
+#: app6_care/templates/app6_care/caregiver/interventions_report.html:124
 msgid "Cleaning has not been done for 1 week"
 msgstr ""
 
@@ -10111,11 +10352,11 @@ msgid "Taken"
 msgstr "Preso"
 
 #: app6_care/templates/app6_care/caregiver/showers_report.html:17
-#: app6_care/templates/app6_care/caregiver/showers_report.html:33
+#: app6_care/templates/app6_care/caregiver/showers_report.html:43
 msgid "residents"
 msgstr "residenti"
 
-#: app6_care/templates/app6_care/caregiver/showers_report.html:32
+#: app6_care/templates/app6_care/caregiver/showers_report.html:42
 msgid "Not taken"
 msgstr "Non preso"
 
@@ -10131,14 +10372,6 @@ msgstr "Consiglio della vita sociale"
 #| msgid "Personal info"
 msgid "Personnalized support project"
 msgstr "Informazioni personali"
-
-#: app6_care/templates/app6_care/caregiver/support_project_modal.html:37
-#: app9_personnalized_project/templates/app9_personnalized_project/survey.html:203
-#: app9_personnalized_project/templates/app9_personnalized_project/survey.html:212
-#, fuzzy
-#| msgid "Select type"
-msgid "Meal type"
-msgstr "Selezionare tipo"
 
 #: app6_care/templates/app6_care/caregiver/treatments_plan.html:10
 msgid "Treatments plan"
@@ -10189,36 +10422,36 @@ msgstr "Compiti speciali"
 msgid "Room of"
 msgstr "Camera"
 
-#: app6_care/templates/app6_care/hotel/hotel.html:22
+#: app6_care/templates/app6_care/hotel/hotel.html:34
 #, fuzzy
 #| msgid "Reporting Panel"
 msgid "Reserved meals"
 msgstr "Pannello Rapporti"
 
-#: app6_care/templates/app6_care/hotel/hotel.html:39
+#: app6_care/templates/app6_care/hotel/hotel.html:51
 msgid "No meals were booked that day"
 msgstr ""
 
-#: app6_care/templates/app6_care/hotel/hotel.html:55
+#: app6_care/templates/app6_care/hotel/hotel.html:67
 #, fuzzy
 #| msgid "Enter new treatment"
 msgid "Enter new hotel intervention"
 msgstr "Entra un nuovo trattamento"
 
-#: app6_care/templates/app6_care/hotel/hotel.html:58
-#: app6_care/templates/app6_care/hotel/hotel.html:64
+#: app6_care/templates/app6_care/hotel/hotel.html:70
+#: app6_care/templates/app6_care/hotel/hotel.html:76
 #, fuzzy
 #| msgid "Service"
 msgid "Hotel intervention"
 msgstr "Servizio"
 
-#: app6_care/templates/app6_care/hotel/hotel.html:60
+#: app6_care/templates/app6_care/hotel/hotel.html:72
 #, fuzzy
 #| msgid "Communication"
 msgid "Communals"
 msgstr "Communicazione"
 
-#: app6_care/templates/app6_care/hotel/hotel.html:67
+#: app6_care/templates/app6_care/hotel/hotel.html:79
 #, fuzzy, python-format
 #| msgid "residents"
 msgid "Room of %(resident)s"
@@ -11328,6 +11561,16 @@ msgid "The story life has been deleted"
 msgstr "Ok, sei registrato"
 
 #, fuzzy
+#~| msgid "Click on your name at the top right of the screen !"
+#~ msgid "Click on “Kitchen” in the navigation bar on the left of the screen"
+#~ msgstr "Seleziona il tuo nome in alto a destra dello schermo !"
+
+#, fuzzy
+#~| msgid "Leave a comment"
+#~ msgid "Click «Save»"
+#~ msgstr "Lasciare un commento"
+
+#, fuzzy
 #~| msgid "Treatment home"
 #~ msgid "create the"
 #~ msgstr "Trattamento a casa"
@@ -12092,9 +12335,6 @@ msgstr "Ok, sei registrato"
 
 #~ msgid "Pic"
 #~ msgstr "Foto"
-
-#~ msgid "Administrative"
-#~ msgstr "Amministrativo"
 
 #~ msgid "Resident's Video"
 #~ msgstr "Video dei residenti"

@@ -1,0 +1,52 @@
+{% extends "app4_ehpad_base/base_footer.html" %}
+
+{% block content %}
+{% load static %}
+{% load i18n %}
+
+<div class="p-2">
+    <a class="btn btn-perso" href="{% url 'app17_help index' %}">{% trans "Return" %}</a>
+    <h4 class="text-center text-uppercase pb-3 pb-md-4">{% trans "Help" %} {% trans "Module" %} {% trans "Hotel" %}</h4>
+    <div class="container-xl">
+
+        <!-- Entrer une facture -->
+        <div class="d-flex flex-column flex-md-row align-items-center pb-5">
+            <div class="col-12 col-md-4 pb-2 pb-md-0 pe-2">
+                <h5 class="pb-3">{% trans "Enter an invoice" %}</h5>
+                <p class="pb-1">1- {% trans "Go to the administration (accessible from the first name.last name menu)" %}</p>
+                <p class="pb-1">2- {% trans "Click on «EHPADs invoice», in «CONFIG SERENICIA»" %}</p>
+                <p class="pb-1">3- {% trans "Click on «Add EHPAD invoice», at the top right of the screen" %}</p>
+                <p class="pb-1">4- {% trans "Choose the resident concerned by the invoice, as well as the name and type of the invoice" %}</p>
+                <p class="pb-1">5- {% trans "Click on «browse» and search for the relevant invoice" %}</p>
+                <p class="pb-1">6- {% trans "Click «save»" %}</p>
+                <p class="pb-1">7- {% trans "Families will be able to view invoices by clicking on «invoices» in their navigation bar on the left of the screen. Authorized staff members will be able to view these invoices by clicking on a resident, then clicking «invoices», in the resident's navigation bar" %}</p>
+            </div>
+            <video controls class="col-12 col-md-8">
+                <source src="{% static 'app17_help/videos/Ajout_facture.mp4' %}" type="video/mp4">
+                {% trans "Your browser does not support the HTML video tag" %}.
+            </video>
+        </div>
+        
+        <!-- Entrer une fiche de paie -->
+        <div class="d-flex flex-column flex-md-row align-items-center pb-5">
+            <div class="col-12 col-md-4 pb-2 pb-md-0 pe-2">
+                <h5 class="pb-3">{% trans "Enter a pay slip" %}</h5>
+                <p class="pb-1">1- {% trans "Go to the administration (accessible from the first name.last name menu)" %}</p>
+                <p class="pb-1">2- {% trans "Click on «Pay rolls», in «CONFIG SERENICIA»" %}</p>
+                <p class="pb-1">3- {% trans "Click on «Add Pay Roll», at the top right of the screen" %}</p>
+                <p class="pb-1">4- {% trans "Choose the employee concerned by the pay slip, as well as the date of the pay slip (the day does not matter, it is the month and year that are important)" %}</p>
+                <p class="pb-1">5- {% trans "Click “Browse” and search for the corresponding pay slip" %}</p>
+                <p class="pb-1">6- {% trans "Click «save»" %}</p>
+                <p class="pb-1">7- {% trans "The employee can find their pay slip by clicking on “My profile” (accessible from the first name.last name menu)" %}</p>
+            </div>
+            <video controls class="col-12 col-md-8">
+                <source src="{% static 'app17_help/videos/Ajout_fiche_paie.mp4' %}" type="video/mp4">
+                {% trans "Your browser does not support the HTML video tag" %}.
+            </video>
+        </div>
+        
+    </div>
+</div>
+
+
+{% endblock content %}

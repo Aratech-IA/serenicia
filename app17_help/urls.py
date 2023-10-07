@@ -11,4 +11,5 @@ urlpatterns = [
     path('quality', views.quality, name='app17_help quality'),
     path('access_management', views.access_management, name='app17_help access_management'),
     path('referrers', views.referrers, name='app17_help referrers'),
+    path('administrative', views.administrative, name='app17_help administrative'),
 ]

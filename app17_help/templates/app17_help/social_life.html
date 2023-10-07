@@ -8,16 +8,24 @@
 <div class="p-2">
     <a class="btn btn-perso" href="{% url 'app17_help index' %}">{% trans "Return" %}</a>
     <h4 class="text-center text-uppercase pb-3 pb-md-4">{% trans "Help" %} {% trans "Module" %} {% trans "Social life" %}</h4>
-    <div>
+    <div class="container-xl">
 
         <div class="d-flex flex-column flex-md-row align-items-center pb-5">
-            <p class="col-11 col-md-3 text-center pb-2 pb-md-0">{% trans "Activity page presentation" %}</p>
-            <img src="{% static 'app17_help/images/vie_sociale-page_evenement-explications.png' %}" alt="{% trans 'Social life page screenshot' %}" class="col-11 col-md-8">
+            <h5 class="col-12 col-md-4 pb-2 pb-md-0">{% trans "Activity page presentation" %}</h5>
+            <img src="{% static 'app17_help/images/vie_sociale-page_evenement-explications.png' %}" alt="{% trans 'Social life page screenshot' %}" class="col-12 col-md-8">
         </div>
 
         <div class="d-flex flex-column flex-md-row align-items-center pb-5">
-            <p class="col-11 col-md-3 text-center pb-2 pb-md-0">{% trans "Create a place" %}</p>
-            <video controls class="col-11 col-md-8">
+            <div class="col-12 col-md-4 pb-2 pb-md-0 pe-2">
+                <h5 class="pb-3">{% trans "Create a place" %}</h5>
+                <p class="pb-1">1- {% trans "Go to the administration (accessible from the first name.last name menu)" %}</p>
+                <p class="pb-1">2- {% trans "Click on «Places», in «CALENDAR»" %}</p>
+                <p class="pb-1">3- {% trans "Click on «Add place», at the top right of the screen" %}</p>
+                <p class="pb-1">4- {% trans "Enter a place name" %}</p>
+                <p class="pb-1">5- {% trans "Click on «browse» and find a photo of this place" %}</p>
+                <p class="pb-1">6- {% trans "Click «save»" %}</p>
+            </div>
+            <video controls class="col-12 col-md-8">
                 <source src="{% static 'app17_help/videos/vie_sociale-Creation_lieu.mp4' %}" type="video/mp4">
                 {% trans "Your browser does not support the HTML video tag" %}.
                 
@@ -25,8 +33,20 @@
         </div>
         
         <div class="d-flex flex-column flex-md-row align-items-center pb-5">
-            <p class="col-11 col-md-3 text-center pb-2 pb-md-0">{% trans "Create an activity" %}</p>
-            <video controls class="col-11 col-md-8">
+            <div class="col-12 col-md-4 pb-2 pb-md-0 pe-2">
+                <h5 class="pb-3">{% trans "Create an activity" %}</h5>
+                <p class="pb-1">1- {% trans "Go to the administration (accessible from the first name.last name menu)" %}</p>
+                <p class="pb-1">2- {% trans "Click on «Activities», in «CALENDAR»" %}</p>
+                <p class="pb-1">3- {% trans "Click on «Add Activity», at the top right of the screen" %}</p>
+                <p class="pb-1">4- {% trans "Enter an activity name, location and organizer" %}</p>
+                <p class="pb-1">5- {% trans "Indicate if the activity is public" %}</p>
+                <p class="pb-1">6- {% trans "Enter a goal" %}</p>
+                <p class="pb-1">7- {% trans "Check if this activity is intended for the protected unit" %}</p>
+                <p class="pb-1">8- {% trans "Choose a start and end date and time (it is possible to set several dates)" %}</p>
+                <p class="pb-1">9- {% trans "Indicate the participants in the activity" %}</p>
+                <p class="pb-1">10- {% trans "Click «save»" %}</p>
+            </div>
+            <video controls class="col-12 col-md-8">
                 <source src="{% static 'app17_help/videos/vie_sociale-Creation_activite.mp4' %}" type="video/mp4">
                 {% trans "Your browser does not support the HTML video tag" %}.
             </video>

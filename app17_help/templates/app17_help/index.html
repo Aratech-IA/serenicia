@@ -44,6 +44,11 @@
             <a href="{% url 'app17_help referrers' %}" class="btn btn-perso mb-2">{% trans "Referrers" %}</a>
         {% endif %}
 
+        {% if perms.app0_access.view_rightsmanagement %}
+            <!-- Aide administrative -->
+            <a href="{% url 'app17_help administrative' %}" class="btn btn-perso mb-2">{% trans "Administrative" %}</a>
+        {% endif %}
+
     </div>
 
     
