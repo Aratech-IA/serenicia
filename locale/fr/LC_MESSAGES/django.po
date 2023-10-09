@@ -3398,8 +3398,6 @@ msgid "Choose the date and time of the menu (lunch or dinner)"
 msgstr "Choisissez la date et le moment du menu (midi ou soir)"
 
 #: app17_help/templates/app17_help/cuisine.html:40
-#, fuzzy
-#| msgid "Select a recipe, main course, side dish, dessert and type of cheese"
 msgid "Select an entry, main course, side dish, dessert and type of cheese"
 msgstr ""
 "Sélectionnez une entrée, un plat, un accompagnement, un dessert et un type "
